@@ -37,6 +37,8 @@ import Change_Department from './components/system/department/change.vue'
 
 import Role from './components/system/role/role.vue'
 import Create_Role from './components/system/role/create.vue'
+import Role_List from './components/system/role/list.vue'
+import Change_Role from './components/system/role/change.vue'
 
 //==========导入CSS文件===============
 import 'style/font_sans'
@@ -86,17 +88,19 @@ var routes = [
     {
         path: "/role",
         name: "role",
-        component: Department,
+        component: Role,
         children: [
             {
                 path: "create",
-                name: "create",
                 component: Create_Role
             },
             {
                 path: "list",
-                name: "list",
-                component: Department_List
+                component: Role_List
+            },
+            {
+                path: "change",
+                component: Change_Role
             }
         ]
     }

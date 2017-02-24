@@ -1,7 +1,7 @@
 <template>
     <!-- BEGIN CONTENT BODY -->
     <div>
-        <h1 class="page-title"> 创建新岗位
+        <h1 class="page-title"> 更新岗位信息
             <small>／Role</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
@@ -45,6 +45,7 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-5 col-md-9">
+                                <button type="button" class="btn blue" @click="back">返回列表</button>
                                 <button type="button" class="btn green" @click="create">保 存</button>
                                 <button type="reset" class="btn default">重 置</button>
                             </div>
@@ -63,11 +64,34 @@
             return {
                 name: "",
                 department_list: [],
-                departmentId: ""
+                departmentId: "",
+                id: ""
             }
         },
         mounted(){
             var me = this;
+            var query = me.$route.query;
+            if (!query.id) {
+                confirm({
+                    content: "请先选择需要维护的岗位信息！",
+                    success: function () {
+                        router.push("/role/list");
+                        closeConfirm();
+                    }
+                });
+            } else {
+                me.id = query.id;
+                me.$http.get("/api/role/findById", {
+                    params: {
+                        id: query.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.name = data.name;
+                }, response => {
+                    serverErrorInfo();
+                })
+            }
             me.fetchDepartment();
             handleValidation1();
 
@@ -85,18 +109,22 @@
             create(){
                 var me = this;
                 if (jQuery("#role_add").valid()) {
-                    me.$http.post("/api/role/create", {
+                    me.$http.post("/api/role/change", {
+                        id: me.id,
                         name: me.name,
                         department_id: me.departmentId
                     }).then(response => {
                         var data = response.data;
                         codeState(data.code, {
-                            200: "新岗位创建成功"
+                            200: "岗位信息更新成功！"
                         });
                     }, response => {
                         serverErrorInfo();
                     });
                 }
+            },
+            back(){
+                router.push("/department/list");
             }
         }
     }

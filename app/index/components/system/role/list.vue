@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 部门信息维护
-            <small>／Department</small>
+        <h1 class="page-title"> 岗位信息维护
+            <small>／Role</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -16,6 +16,7 @@
                                 <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
                                     <i class="fa fa-check-square-o"></i>
                                 </a>
+
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
                                     <i class="fa fa-trash-o"></i>
                                 </a>
@@ -36,12 +37,13 @@
                                 <tr class="uppercase">
                                     <th> 选择</th>
                                     <th> 编号</th>
-                                    <th> 部门名称</th>
+                                    <th> 岗位名称</th>
+                                    <th> 所属部门</th>
                                     <th> 操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <template v-for="(item,index) in departmentList">
+                                <template v-for="(item,index) in roleList">
                                     <tr>
                                         <td class="text-center">
                                             <label class="mt-checkbox mt-checkbox-outline">
@@ -52,6 +54,7 @@
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
+                                        <td class="text-center"> {{item.department.name}}</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">编 辑
@@ -83,6 +86,7 @@
         data(){
             return {
                 departmentList: [],
+                roleList: [],
                 currentPage: 1,
                 condition: "",
                 selected: []
@@ -95,7 +99,7 @@
         methods: {
             fetchData (pageNum, rowCount) {
                 var me = this;
-                this.$http.get('/api/department/list', {
+                this.$http.get('/api/role/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -103,7 +107,7 @@
                     }
                 }).then((response) => {
                     var data = response.data;
-                    me.departmentList = data.results;
+                    me.roleList = data.results;
                 }, (response) => {
                     serverErrorInfo();
                 });
@@ -111,7 +115,7 @@
             //渲染页码
             fetchPages (rowCount) {
                 var me = this;
-                this.$http.get('/api/department/list', {
+                this.$http.get('/api/role/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
@@ -143,14 +147,14 @@
                 me.getData();
             },
             create(){
-                router.push("/department/create");
+                router.push("/role/create");
             },
             remove(id){
                 var me = this;
                 confirm({
-                    content: "是否删除当前部门信息？",
+                    content: "是否删除当前岗位信息？",
                     success: function () {
-                        me.$http.get("/api/department/delete", {
+                        me.$http.get("/api/role/delete", {
                             params: {
                                 id: id
                             }
@@ -158,7 +162,7 @@
                             var data = response.data;
                             codeState(data.code, {
                                 200: function () {
-                                    alert("部门删除成功！");
+                                    alert("岗位信息删除成功！");
                                     me.getData();
                                 }
                             })
@@ -170,7 +174,7 @@
             },
             edit(item){
                 var me = this;
-                router.push("/department/change?id=" + item.id);
+                router.push("/role/change?id=" + item.id);
             },
             getData(){
                 var me = this;
@@ -180,10 +184,10 @@
             removeAll(){
                 var me = this;
                 if (me.selected.length == 0) {
-                    error("至少需要选择一个部门信息");
+                    error("至少需要选择一个岗位信息");
                     return;
                 }
-                me.$http.get("/api/department/deleteAll", {
+                me.$http.get("/api/role/deleteAll", {
                     params: {
                         selected: me.selected
                     }
@@ -191,7 +195,7 @@
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
-                            alert("部门信息删除成功！");
+                            alert("岗位信息删除成功！");
                             me.getData();
                         }
                     });
@@ -202,7 +206,7 @@
             selectAll(){
                 var me = this;
                 me.selected = [];
-                me.departmentList.forEach(function (item, index) {
+                me.roleList.forEach(function (item, index) {
                     me.selected.push(item.id);
                 })
             }
