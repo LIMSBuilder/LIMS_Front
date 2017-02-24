@@ -12,50 +12,24 @@
                             <table class="table table-hover table-light">
                                 <thead>
                                 <tr class="uppercase">
-                                    <th> #</th>
-                                    <th> First Name</th>
-                                    <th> Last Name</th>
-                                    <th> Username</th>
-                                    <th> Status</th>
+                                    <th><input type="checkbox"></th>
+                                    <th> 编号</th>
+                                    <th> 部门名称</th>
+                                    <th> 操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td> 1</td>
-                                    <td> Mark</td>
-                                    <td> Otto</td>
-                                    <td> makr124</td>
-                                    <td>
-                                        <span class="label label-sm label-success"> Approved </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> 2</td>
-                                    <td> Jacob</td>
-                                    <td> Nilson</td>
-                                    <td> jac123</td>
-                                    <td>
-                                        <span class="label label-sm label-info"> Pending </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> 3</td>
-                                    <td> Larry</td>
-                                    <td> Cooper</td>
-                                    <td> lar</td>
-                                    <td>
-                                        <span class="label label-sm label-warning"> Suspended </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> 4</td>
-                                    <td> Sandy</td>
-                                    <td> Lim</td>
-                                    <td> sanlim</td>
-                                    <td>
-                                        <span class="label label-sm label-danger"> Blocked </span>
-                                    </td>
-                                </tr>
+                                <template v-for="item in departmentList">
+                                    <tr>
+                                        <td> 1</td>
+                                        <td> Mark</td>
+                                        <td> Otto</td>
+                                        <td> makr124</td>
+                                        <td>
+                                            <span class="label label-sm label-success"> Approved </span>
+                                        </td>
+                                    </tr>
+                                </template>
                                 </tbody>
                             </table>
                         </div>
@@ -74,13 +48,20 @@
 
 <script>
     module.exports = {
+        data(){
+            return {
+                departmentList: [],
+                currentPage: 1
+            }
+        },
         mounted(){
-
+            var me = this;
+            me.fetchData(me.currentPage, rowCount);
         },
         methods: {
             fetchData (pageNum, rowCount) {
                 var me = this;
-                this.$http.get('/api/article/list', {
+                this.$http.get('/api/department/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -88,7 +69,7 @@
                     }
                 }).then((response) => {
                     var data = response.data;
-                    this.article_list = data.results;
+                    me.departmentList = data.results;
                 }, (response) => {
                     serverErrorInfo();
                 });
@@ -96,7 +77,7 @@
             //渲染页码
             fetchPages (rowCount) {
                 var me = this;
-                this.$http.get('/api/article/page', {
+                this.$http.get('/api/department/page', {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,

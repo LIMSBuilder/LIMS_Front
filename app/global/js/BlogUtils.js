@@ -59,6 +59,7 @@ var BlogUtils = {
         document.body.removeChild(textArea);
     }
 };
+var rowCount = window.rowCount = localStorage.getItem("rowCount") || 10;
 window.alert = function (content) {
     iziToast.success({
         title: '通知',
