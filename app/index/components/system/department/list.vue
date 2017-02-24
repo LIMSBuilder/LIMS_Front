@@ -13,10 +13,13 @@
                                 <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
                                     <i class="fa fa-plus"></i>
                                 </a>
+                                <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
+                                    <i class="fa fa-check-square-o"></i>
+                                </a>
                                 <a href="javascript:;" class="btn btn-sm grey-cascade"> 迁 移
                                     <i class="fa fa-link"></i>
                                 </a>
-                                <a href="javascript:;" @click="remove" class="btn btn-sm red"> 删 除
+                                <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
                                     <i class="fa fa-trash-o"></i>
                                 </a>
                             </div>
@@ -34,7 +37,7 @@
                             <table class="table table-hover table-light">
                                 <thead>
                                 <tr class="uppercase">
-                                    <th><input type="checkbox"></th>
+                                    <th> 选择</th>
                                     <th> 编号</th>
                                     <th> 部门名称</th>
                                     <th> 操作</th>
@@ -44,7 +47,11 @@
                                 <template v-for="(item,index) in departmentList">
                                     <tr>
                                         <td class="text-center">
-
+                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                <input type="checkbox" :value="item.id" name="select"
+                                                       v-model="selected">
+                                                <span></span>
+                                            </label>
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
@@ -82,7 +89,8 @@
             return {
                 departmentList: [],
                 currentPage: 1,
-                condition: ""
+                condition: "",
+                selected: []
             }
         },
         mounted(){
@@ -173,6 +181,35 @@
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
+            },
+            removeAll(){
+                var me = this;
+                if (me.selected.length == 0) {
+                    error("至少需要选择一个部门信息");
+                    return;
+                }
+                me.$http.get("/api/department/deleteAll", {
+                    params: {
+                        selected: me.selected
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("部门信息删除成功！");
+                            me.getData();
+                        }
+                    });
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            selectAll(){
+                var me = this;
+                me.selected = [];
+                me.departmentList.forEach(function (item, index) {
+                    me.selected.push(item.id);
+                })
             }
         }
     }

@@ -30,6 +30,7 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-5 col-md-9">
+                                <button type="button" class="btn blue" @click="back">返回列表</button>
                                 <button type="button" class="btn green" @click="create">保 存</button>
                                 <button type="reset" class="btn default">重 置</button>
                             </div>
@@ -93,6 +94,9 @@
                         serverErrorInfo();
                     });
                 }
+            },
+            back(){
+                router.push("/department/list");
             }
         }
     }
