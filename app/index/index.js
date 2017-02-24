@@ -42,6 +42,8 @@ import Change_Role from './components/system/role/change.vue'
 
 import User from './components/system/user/user.vue'
 import Create_User from './components/system/user/create.vue'
+import User_List from './components/system/user/list.vue'
+import Change_User from './components/system/user/change.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -117,11 +119,11 @@ var routes = [
             },
             {
                 path: "list",
-                component: Role_List
+                component: User_List
             },
             {
                 path: "change",
-                component: Change_Role
+                component: Change_User
             }
         ]
     }
