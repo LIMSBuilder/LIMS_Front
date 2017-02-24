@@ -46,10 +46,10 @@ module.exports = {
             'mod/layout_demo': path.resolve(PluginsPath, 'layout/scripts/demo.js'),
             'mod/sidebar': path.resolve(JsPath, 'quick-sidebar.js'),
             'mod/nav': path.resolve(JsPath, 'quick-nav.js'),
-            'mod/multiselect':path.resolve(PluginsPath,'jquery-multi-select/js/jquery.multi-select.js'),
-            'mod/fileinput':path.resolve(PluginsPath,'bootstrap-fileinput/bootstrap-fileinput.js'),
-            'mod/select':path.resolve(PluginsPath,'bootstrap-select/js/bootstrap-select.js'),
-
+            'mod/multiselect': path.resolve(PluginsPath, 'jquery-multi-select/js/jquery.multi-select.js'),
+            'mod/fileinput': path.resolve(PluginsPath, 'bootstrap-fileinput/bootstrap-fileinput.js'),
+            'mod/select': path.resolve(PluginsPath, 'bootstrap-select/js/bootstrap-select.js'),
+            'mod/pagination':path.resolve(JsPath,'jquery.pagination.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -69,10 +69,10 @@ module.exports = {
 
             'style/iziToast': path.resolve(PluginsPath, 'iziToast/dist/css/iziToast.css'),
             'style/iziModal': path.resolve(PluginsPath, 'iziModal/css/iziModal.css'),
-            'style/multiselect':path.resolve(PluginsPath,'jquery-multi-select/css/multi-select.css'),
-            'style/fileinput':path.resolve(PluginsPath,'bootstrap-fileinput/bootstrap-fileinput.css'),
-            'style/select':path.resolve(PluginsPath,'bootstrap-select/css/bootstrap-select.css'),
-
+            'style/multiselect': path.resolve(PluginsPath, 'jquery-multi-select/css/multi-select.css'),
+            'style/fileinput': path.resolve(PluginsPath, 'bootstrap-fileinput/bootstrap-fileinput.css'),
+            'style/select': path.resolve(PluginsPath, 'bootstrap-select/css/bootstrap-select.css'),
+            'style/pagination':path.resolve(StylePath,'pagination.css')
         }
     },
     module: {

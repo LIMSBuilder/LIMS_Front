@@ -2,7 +2,7 @@
     <!-- BEGIN CONTENT BODY -->
     <div>
         <h1 class="page-title"> 创建新部门
-            <small>／ Department</small>
+            <small>／Department</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">
@@ -22,7 +22,7 @@
                                 <input type="text" class="form-control" id="title" v-model="name" placeholder=""
                                        name="title">
                                 <div class="form-control-focus"></div>
-                                <span class="help-block">请输入部门名称，不少于3个字符。</span>
+                                <span class="help-block">请输入部门名称，必需字段。</span>
                             </div>
                         </div>
                     </div>
@@ -55,14 +55,16 @@
         methods: {
             create(){
                 var me = this;
-                me.$http.post("/api/department/create", {
-                    name: me.name
-                }).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {});
-                }, response => {
-                    serverErrorInfo();
-                });
+                if (jQuery("#department_add").valid()) {
+                    me.$http.post("/api/department/create", {
+                        name: me.name
+                    }).then(response => {
+                        var data = response.data;
+                        codeState(data.code, {});
+                    }, response => {
+                        serverErrorInfo();
+                    });
+                }
             }
         }
     }
@@ -70,7 +72,6 @@
     var handleValidation1 = function () {
         var form1 = $('#department_add');
         var error1 = $('.alert-danger', form1);
-        //var success1 = $('.alert-success', form1);
         form1.validate({
             errorElement: 'span', //default input error message container
             errorClass: 'help-block help-block-error', // default input error message class

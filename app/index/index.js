@@ -18,6 +18,8 @@ import 'mod/validate'
 import 'mod/valudate_additional'
 import 'mod/fileinput'
 import 'mod/select'
+import  'mod/pagination'
+
 //===========导入Vue组件==============
 
 import Top from './components/Top.vue'
@@ -27,8 +29,8 @@ import Footer from './components/Footer.vue'
 //=============System===============
 //Department
 import Department from './components/system/department/department.vue'
-import Create_Department from './components/system/department/createDepart.vue'
-
+import Create_Department from './components/system/department/create.vue'
+import Department_List from './components/system/department/list.vue'
 
 //==========导入CSS文件===============
 import 'style/font_sans'
@@ -49,6 +51,7 @@ import 'style/custom'
 import 'style/multiselect'
 import 'style/fileinput'
 import 'style/select'
+import 'style/pagination'
 
 Vue.config.debug = true;//开启错误提示
 Vue.use(VueRouter);
@@ -63,6 +66,10 @@ var routes = [
                 path: "create",
                 name: "create",
                 component: Create_Department
+            }, {
+                path: "list",
+                name: "list",
+                component: Department_List
             }
         ]
     }

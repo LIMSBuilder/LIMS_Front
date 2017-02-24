@@ -64,8 +64,8 @@
             <li class="heading">
                 <h3 class="uppercase">合同</h3>
             </li>
-            <li class="nav-item" >
-                <a href="javascript:;" class="nav-link nav-toggle" >
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-diamond"></i>
                     <span class="title">合同起草</span>
                     <span class="arrow"></span>
@@ -86,8 +86,8 @@
             <li class="heading">
                 <h3 class="uppercase">System</h3>
             </li>
-            <li class="nav-item" >
-                <a href="javascript:;" class="nav-link nav-toggle" >
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-diamond"></i>
                     <span class="title">部门管理</span>
                     <span class="arrow"></span>
@@ -98,11 +98,11 @@
                             <span class="title">创建新部门</span>
                         </a>
                     </router-link>
-                    <li class="nav-item  ">
-                        <a href="javascript:;" class="nav-link ">
-                            <span class="title">部门列表</span>
+                    <router-link :to="{ path: '/department/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">部门信息维护</span>
                         </a>
-                    </li>
+                    </router-link>
                 </ul>
             </li>
         </ul>
