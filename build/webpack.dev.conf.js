@@ -20,6 +20,7 @@ config.plugins = [
     new ExtractTextPlugin("styles.css")
 ];
 
+
 // 动态向入口配置中注入 webpack-hot-middleware/client
 // var devClient = 'webpack-hot-middleware/client';
 var devClient = './build/dev-client';

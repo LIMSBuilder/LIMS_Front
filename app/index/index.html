@@ -18,7 +18,7 @@
 </head>
 <!-- END HEAD -->
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" style="overflow-x:hidden ">
 <div class="page-wrapper">
 
     <template id="header"></template>
@@ -72,5 +72,41 @@
 </nav>
 <div class="quick-nav-overlay"></div>
 <!-- END QUICK NAV -->
+
+<div class="modal fade draggable-modal" id="confirm" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="modal_title">确认消息框</h4>
+            </div>
+            <div class="modal-body" id="modal_body"> Modal body goes here</div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                <button type="button" class="btn green" id="modal_btn">确 认</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade draggable-modal" id="modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="dialog_title">确认消息框</h4>
+            </div>
+            <div class="modal-body" id="dialog_body"> Modal body goes here</div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                <button type="button" class="btn green" id="dialog_btn">确 认</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 </body>
 </html>

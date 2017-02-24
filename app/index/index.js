@@ -19,6 +19,8 @@ import 'mod/valudate_additional'
 import 'mod/fileinput'
 import 'mod/select'
 import  'mod/pagination'
+import 'mod／utils'
+import 'mod/jqueryUI'
 
 //===========导入Vue组件==============
 
@@ -31,6 +33,10 @@ import Footer from './components/Footer.vue'
 import Department from './components/system/department/department.vue'
 import Create_Department from './components/system/department/create.vue'
 import Department_List from './components/system/department/list.vue'
+import Change_Department from './components/system/department/change.vue'
+
+import Role from './components/system/role/role.vue'
+import Create_Role from './components/system/role/create.vue'
 
 //==========导入CSS文件===============
 import 'style/font_sans'
@@ -52,21 +58,42 @@ import 'style/multiselect'
 import 'style/fileinput'
 import 'style/select'
 import 'style/pagination'
-
+import 'style/jqueryUI'
 Vue.config.debug = true;//开启错误提示
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.http.options.emulateJSON = true;
+
+
 var routes = [
     {
         path: "/department",
         name: "department",
+        component: Role,
+        children: [
+            {
+                path: "create",
+                component: Create_Department
+            }, {
+                path: "list",
+                component: Department_List
+            }, {
+                path: "change",
+                component: Change_Department
+            }
+        ]
+    },
+    {
+        path: "/role",
+        name: "role",
         component: Department,
         children: [
             {
                 path: "create",
                 name: "create",
-                component: Create_Department
-            }, {
+                component: Create_Role
+            },
+            {
                 path: "list",
                 name: "list",
                 component: Department_List

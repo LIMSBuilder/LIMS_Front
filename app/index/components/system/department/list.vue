@@ -7,7 +7,29 @@
             <div class="col-md-12">
                 <!-- BEGIN BORDERED TABLE PORTLET-->
                 <div class="portlet light portlet-fit bordered">
-                    <div class="portlet-body">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <div class="clearfix">
+                                <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-sm grey-cascade"> 迁 移
+                                    <i class="fa fa-link"></i>
+                                </a>
+                                <a href="javascript:;" @click="remove" class="btn btn-sm red"> 删 除
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="input-icon right">
+                                <i class="fa fa-search"></i>
+                                <input type="text" class="form-control" placeholder="搜索..."
+                                       @keyup.enter="search($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
                         <div class="table-scrollable table-scrollable-borderless">
                             <table class="table table-hover table-light">
                                 <thead>
@@ -19,14 +41,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <template v-for="item in departmentList">
+                                <template v-for="(item,index) in departmentList">
                                     <tr>
-                                        <td> 1</td>
-                                        <td> Mark</td>
-                                        <td> Otto</td>
-                                        <td> makr124</td>
-                                        <td>
-                                            <span class="label label-sm label-success"> Approved </span>
+                                        <td class="text-center">
+
+                                        </td>
+                                        <td class="text-center"> {{index+1}}</td>
+                                        <td class="text-center"> {{item.name}}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-sm blue btn-outline"
+                                                    @click="edit(item)">编 辑
+                                            </button>
+                                            <button type="button" class="btn btn-sm grey-cascade btn-outline">迁 移
+                                            </button>
+                                            <button type="button" class="btn btn-sm red btn-outline"
+                                                    @click="remove(item.id)">删 除
+                                            </button>
                                         </td>
                                     </tr>
                                 </template>
@@ -51,12 +81,13 @@
         data(){
             return {
                 departmentList: [],
-                currentPage: 1
+                currentPage: 1,
+                condition: ""
             }
         },
         mounted(){
             var me = this;
-            me.fetchData(me.currentPage, rowCount);
+            me.getData();
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -77,16 +108,16 @@
             //渲染页码
             fetchPages (rowCount) {
                 var me = this;
-                this.$http.get('/api/department/page', {
+                this.$http.get('/api/department/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
-                        condition: this.condition
+                        condition: me.condition
                     }
                 }).then((response) => {
                     var data = response.data;
                     jQuery(".M-box").pagination({
-                        pageCount: data.total,
+                        pageCount: data.totalPage || 1,
                         coping: true,
                         homePage: '首页',
                         endPage: '末页',
@@ -101,6 +132,48 @@
                     serverErrorInfo();
                 });
             },
+            search(e){
+                var me = this;
+                var value = e.target.value;
+                me.currentPag = 1;
+                me.condition = value ? "name=" + encodeURI(value) : "";
+                me.getData();
+            },
+            create(){
+                router.push("/department/create");
+            },
+            remove(id){
+                var me = this;
+                confirm({
+                    content: "是否删除当前部门信息？",
+                    success: function () {
+                        me.$http.get("/api/department/delete", {
+                            params: {
+                                id: id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("部门删除成功！");
+                                    me.getData();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo();
+                        });
+                    }
+                })
+            },
+            edit(item){
+                var me = this;
+                router.push("/department/change?id=" + item.id);
+            },
+            getData(){
+                var me = this;
+                me.fetchData(me.currentPage, rowCount);
+                me.fetchPages(rowCount);
+            }
         }
     }
 </script>

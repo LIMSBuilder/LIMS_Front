@@ -113,6 +113,7 @@
   min-height: 17px;
   display: inline-block;
   margin: 0 -2px;
+  float: right!important;
 }
 .iziToast > .iziToast-body > .iziToast-buttons > button,
 .iziToast > .iziToast-body > .iziToast-buttons > a {
@@ -187,7 +188,7 @@
 .iziToast.iziToast-animateInside strong,
 .iziToast.iziToast-animateInside .iziToast-icon,
 .iziToast.iziToast-animateInside .iziToast-buttons * {
-  opacity: 0;
+  /*opacity: 0;*/
 }
 .iziToast.iziToast-animateInside .iziToast-icon {
   opacity: 1;

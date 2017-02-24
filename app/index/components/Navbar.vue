@@ -88,7 +88,7 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-diamond"></i>
+                    <i class="fa fa-building"></i>
                     <span class="title">部门管理</span>
                     <span class="arrow"></span>
                 </a>
@@ -101,6 +101,30 @@
                     <router-link :to="{ path: '/department/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">部门信息维护</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/department/change' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">更新部门信息</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-users"></i>
+                    <span class="title">岗位管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/role/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建新岗位</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/role/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">岗位信息维护</span>
                         </a>
                     </router-link>
                 </ul>

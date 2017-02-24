@@ -25,7 +25,7 @@ var hotMiddleware = require('webpack-hot-middleware')(compiler)
 compiler.plugin('compilation', function (compilation) {
     compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
         // 发布事件
-        hotMiddleware.publish({ action: 'reload' })
+        hotMiddleware.publish({action: 'reload'})
         cb()
     })
 })
@@ -36,7 +36,7 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 //当发送/api请求时，自动会跨域访问8080端口，前后端分离
-app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
+app.use('/api', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
 
 // 监听 8888端口，开启服务器
 app.listen(8888, function (err) {

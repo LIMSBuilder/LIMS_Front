@@ -1,7 +1,7 @@
 <template>
     <!-- BEGIN CONTENT BODY -->
     <div>
-        <h1 class="page-title"> 创建新部门
+        <h1 class="page-title"> 更新部门信息
             <small>／Department</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
@@ -46,22 +46,48 @@
     module.exports = {
         data: function () {
             return {
-                name: ""
+                name: "",
+                id: ""
             }
         },
         mounted(){
+            var me = this;
+            var query = me.$route.query;
+            if (!query.id) {
+                confirm({
+                    content: "请先选择需要维护的部门信息！",
+                    success: function () {
+                        router.push("/department/list");
+                        closeConfirm();
+                    }
+                });
+            } else {
+                me.id = query.id;
+                me.$http.get("/api/department/findById", {
+                    params: {
+                        id: query.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.name = data.name;
+                }, response => {
+                    serverErrorInfo();
+                })
+            }
+
             handleValidation1();
         },
         methods: {
             create(){
                 var me = this;
                 if (jQuery("#department_add").valid()) {
-                    me.$http.post("/api/department/create", {
-                        name: me.name
+                    me.$http.post("/api/department/change", {
+                        name: me.name,
+                        id: me.id
                     }).then(response => {
                         var data = response.data;
                         codeState(data.code, {
-                            200: "部门信息创建成功！"
+                            200: "部门信息更新成功！"
                         });
                     }, response => {
                         serverErrorInfo();

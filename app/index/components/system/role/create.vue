@@ -1,8 +1,8 @@
 <template>
     <!-- BEGIN CONTENT BODY -->
     <div>
-        <h1 class="page-title"> 创建新部门
-            <small>／Department</small>
+        <h1 class="page-title"> 创建新岗位
+            <small>／Role</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">
@@ -15,14 +15,29 @@
                             表单尚未填写完整。
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="title">部门名称
+                            <label class="col-md-3 control-label" for="title">岗位名称
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="title" v-model="name" placeholder=""
                                        name="title">
                                 <div class="form-control-focus"></div>
-                                <span class="help-block">请输入部门名称，必需字段。</span>
+                                <span class="help-block">请输入岗位名称，必需字段。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="departmentId">部门类型
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7">
+                                <select class="form-control" name="departmentId" id="departmentId"
+                                        v-model="departmentId">
+                                    <option value></option>
+                                    <template v-for="item in department_list">
+                                        <option :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                                <div class="form-control-focus"></div>
                             </div>
                         </div>
                     </div>
@@ -46,7 +61,9 @@
     module.exports = {
         data: function () {
             return {
-                name: ""
+                name: "",
+                department_list: [],
+                departmentId: ""
             }
         },
         mounted(){
@@ -61,7 +78,7 @@
                     }).then(response => {
                         var data = response.data;
                         codeState(data.code, {
-                            200: "部门信息创建成功！"
+                            200: "新部门创建成功"
                         });
                     }, response => {
                         serverErrorInfo();
@@ -81,11 +98,17 @@
             ignore: "", // validate all fields including form hidden input
             messages: {
                 title: {
-                    required: "部门名称不能为空"
+                    required: "岗位名称不能为空"
+                },
+                departmentId: {
+                    required: "部门类型不能为空"
                 }
             },
             rules: {
                 title: {
+                    required: true
+                },
+                departmentId: {
                     required: true
                 }
             },
