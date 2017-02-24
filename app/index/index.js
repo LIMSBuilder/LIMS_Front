@@ -40,6 +40,8 @@ import Create_Role from './components/system/role/create.vue'
 import Role_List from './components/system/role/list.vue'
 import Change_Role from './components/system/role/change.vue'
 
+import User from './components/system/user/user.vue'
+import Create_User from './components/system/user/create.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -93,6 +95,25 @@ var routes = [
             {
                 path: "create",
                 component: Create_Role
+            },
+            {
+                path: "list",
+                component: Role_List
+            },
+            {
+                path: "change",
+                component: Change_Role
+            }
+        ]
+    },
+    {
+        path: "/user",
+        name: "user",
+        component: User,
+        children: [
+            {
+                path: "create",
+                component: Create_User
             },
             {
                 path: "list",

@@ -1,39 +1,76 @@
 <template>
     <!-- BEGIN CONTENT BODY -->
     <div>
-        <h1 class="page-title"> 更新岗位信息
-            <small>／Role</small>
+        <h1 class="page-title"> 创建新用户
+            <small>／User</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">
             <div class="portlet-body">
                 <!-- BEGIN FORM-->
-                <form action="#" class="form-horizontal" id="role_add">
+                <form action="#" class="form-horizontal" id="user_add">
                     <div class="form-body">
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="title">岗位名称
+                            <label class="col-md-3 control-label" for="nick">用户昵称
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="title" v-model="name" placeholder=""
-                                       name="title">
+                                <input type="text" class="form-control" id="nick" v-model="user.nick" placeholder=""
+                                       name="nick">
                                 <div class="form-control-focus"></div>
-                                <span class="help-block">请输入岗位名称，必需字段。</span>
+                                <span class="help-block">请输入用户昵称，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="departmentId">部门类型
+                            <label class="col-md-3 control-label" for="name">真实姓名
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="name" v-model="user.name" placeholder=""
+                                       name="name">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入真实姓名，必需字段。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="cardId">证件号
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="cardId" v-model="user.cardId" placeholder=""
+                                       name="cardId">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入证件号，必需字段。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="departmentId">所属部门
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
                                 <select class="form-control" name="departmentId" id="departmentId"
-                                        v-model="departmentId">
+                                        v-model="user.departmentId" @change="fetchRole($event)">
                                     <option value></option>
                                     <template v-for="item in department_list">
+                                        <option :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                                <div class="form-control-focus"></div>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="roleId">所属岗位
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7">
+                                <select class="form-control" name="roleId" id="roleId"
+                                        v-model="user.roleId">
+                                    <option value></option>
+                                    <template v-for="item in role_list">
                                         <option :value="item.id">{{item.name}}</option>
                                     </template>
                                 </select>
@@ -45,7 +82,6 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-5 col-md-9">
-                                <button type="button" class="btn blue" @click="back">返回列表</button>
                                 <button type="button" class="btn green" @click="create">保 存</button>
                                 <button type="reset" class="btn default">重 置</button>
                             </div>
@@ -62,37 +98,13 @@
     module.exports = {
         data: function () {
             return {
-                name: "",
+                user: {},
                 department_list: [],
-                departmentId: "",
-                id: ""
+                role_list: []
             }
         },
         mounted(){
             var me = this;
-            var query = me.$route.query;
-            if (!query.id) {
-                confirm({
-                    content: "请先选择需要维护的岗位信息！",
-                    success: function () {
-                        router.push("/role/list");
-                        closeConfirm();
-                    }
-                });
-            } else {
-                me.id = query.id;
-                me.$http.get("/api/role/findById", {
-                    params: {
-                        id: query.id
-                    }
-                }).then(response => {
-                    var data = response.data;
-                    me.name = data.name;
-                    me.departmentId = data.department.id;
-                }, response => {
-                    serverErrorInfo();
-                })
-            }
             me.fetchDepartment();
             handleValidation1();
 
@@ -109,29 +121,40 @@
             },
             create(){
                 var me = this;
-                if (jQuery("#role_add").valid()) {
-                    me.$http.post("/api/role/change", {
-                        id: me.id,
-                        name: me.name,
-                        department_id: me.departmentId
-                    }).then(response => {
+                if (jQuery("#user_add").valid()) {
+                    me.$http.post("/api/user/create", me.user).then(response => {
                         var data = response.data;
                         codeState(data.code, {
-                            200: "岗位信息更新成功！"
+                            200: "新用户创建成功"
                         });
                     }, response => {
                         serverErrorInfo();
                     });
                 }
             },
-            back(){
-                router.push("/department/list");
+            fetchRole(e){
+                var me = this;
+                var value = e.target.value;
+                if (value) {
+                    me.$http.get("/api/role/findByDepartment", {
+                        params: {
+                            department_id: value
+                        }
+                    }).then(response => {
+                        var data = response.data;
+                        me.role_list = data.results;
+                    }, response => {
+                        serverErrorInfo();
+                    })
+                } else {
+                    me.role_list = [];
+                }
             }
         }
     }
 
     var handleValidation1 = function () {
-        var form1 = $('#role_add');
+        var form1 = $('#user_add');
         var error1 = $('.alert-danger', form1);
         form1.validate({
             errorElement: 'span', //default input error message container
@@ -139,18 +162,36 @@
             focusInvalid: false, // do not focus the last invalid input
             ignore: "", // validate all fields including form hidden input
             messages: {
-                title: {
-                    required: "岗位名称不能为空"
+                nick: {
+                    required: "用户昵称不能为空"
+                },
+                name: {
+                    required: "真实姓名不能为空"
+                },
+                cardId: {
+                    required: "证件号不能为空"
                 },
                 departmentId: {
-                    required: "部门类型不能为空"
+                    required: "所属部门不能为空"
+                },
+                roleId: {
+                    required: "所属岗位不能为空"
                 }
             },
             rules: {
-                title: {
+                nick: {
+                    required: true
+                },
+                name: {
+                    required: true
+                },
+                cardId: {
                     required: true
                 },
                 departmentId: {
+                    required: true
+                },
+                roleId: {
                     required: true
                 }
             },

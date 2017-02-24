@@ -134,6 +134,30 @@
                     </router-link>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-user"></i>
+                    <span class="title">用户管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/user/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建新用户</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path:'/user/list'}" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">用户信息维护</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/user/change' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">更新用户信息</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->

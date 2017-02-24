@@ -19,6 +19,9 @@
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
                                     <i class="fa fa-trash-o"></i>
                                 </a>
+                                <a href="javascript:;" @click="total" class="btn btn-sm default"> 全 部
+                                    <i class="fa fa-list"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="actions">
@@ -183,20 +186,26 @@
                     error("至少需要选择一个部门信息");
                     return;
                 }
-                me.$http.get("/api/department/deleteAll", {
-                    params: {
-                        selected: me.selected
+                confirm({
+                    content: "是否删除当前选中部门信息？",
+                    success: function () {
+                        me.$http.get("/api/department/deleteAll", {
+                            params: {
+                                selected: me.selected
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("部门信息删除成功！");
+                                    me.getData();
+                                    closeConfirm();
+                                }
+                            });
+                        }, response => {
+                            serverErrorInfo();
+                        });
                     }
-                }).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("部门信息删除成功！");
-                            me.getData();
-                        }
-                    });
-                }, response => {
-                    serverErrorInfo();
                 });
             },
             selectAll(){
@@ -205,6 +214,12 @@
                 me.departmentList.forEach(function (item, index) {
                     me.selected.push(item.id);
                 })
+            },
+            total(){
+                var me = this;
+                me.condition = "";
+                me.currentPage = 1;
+                me.getData();
             }
         }
     }

@@ -16,9 +16,11 @@
                                 <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
                                     <i class="fa fa-check-square-o"></i>
                                 </a>
-
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
                                     <i class="fa fa-trash-o"></i>
+                                </a>
+                                <a href="javascript:;" @click="total" class="btn btn-sm default"> 全 部
+                                    <i class="fa fa-list"></i>
                                 </a>
                             </div>
                         </div>
@@ -28,6 +30,14 @@
                                 <input type="text" class="form-control" placeholder="搜索..."
                                        @keyup.enter="search($event)">
                             </div>
+                        </div>
+                        <div class="actions" style="min-width: 200px;margin-right: 10px;">
+                            <select class="form-control" @change="findByDepartment($event)">
+                                <option value>未选择</option>
+                                <template v-for="item in departmentList">
+                                    <option :value="item.id">{{item.name}}</option>
+                                </template>
+                            </select>
                         </div>
                     </div>
                     <div>
@@ -54,7 +64,9 @@
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
-                                        <td class="text-center"> {{item.department.name}}</td>
+                                        <td class="text-center"><a href="javascript:;"
+                                                                   @click="showSameDepartment(item.department.id)">{{item.department.name}}</a>
+                                        </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">编 辑
@@ -95,6 +107,7 @@
         mounted(){
             var me = this;
             me.getData();
+            me.fetchDepartment();
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -108,6 +121,15 @@
                 }).then((response) => {
                     var data = response.data;
                     me.roleList = data.results;
+                }, (response) => {
+                    serverErrorInfo();
+                });
+            },
+            fetchDepartment(){
+                var me = this;
+                this.$http.get('/api/department/total').then((response) => {
+                    var data = response.data;
+                    me.departmentList = data.results;
                 }, (response) => {
                     serverErrorInfo();
                 });
@@ -187,20 +209,26 @@
                     error("至少需要选择一个岗位信息");
                     return;
                 }
-                me.$http.get("/api/role/deleteAll", {
-                    params: {
-                        selected: me.selected
+                confirm({
+                    content: "是否删除当前选中岗位信息？",
+                    success: function () {
+                        me.$http.get("/api/role/deleteAll", {
+                            params: {
+                                selected: me.selected
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("岗位信息删除成功！");
+                                    me.getData();
+                                    closeConfirm();
+                                }
+                            });
+                        }, response => {
+                            serverErrorInfo();
+                        });
                     }
-                }).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("岗位信息删除成功！");
-                            me.getData();
-                        }
-                    });
-                }, response => {
-                    serverErrorInfo();
                 });
             },
             selectAll(){
@@ -209,6 +237,33 @@
                 me.roleList.forEach(function (item, index) {
                     me.selected.push(item.id);
                 })
+            },
+            findByDepartment(e){
+                var me = this;
+                var id = e.target.value;
+                if (id) {
+                    me.condition = "department_id=" + id;
+                    me.currentPage = 1;
+                    me.getData();
+                } else {
+                    me.total();
+                }
+            },
+            showSameDepartment(id){
+                var me = this;
+                if (id) {
+                    me.condition = "department_id=" + id;
+                    me.currentPage = 1;
+                    me.getData();
+                } else {
+                    me.total();
+                }
+            },
+            total(){
+                var me = this;
+                me.condition = "";
+                me.currentPage = 1;
+                me.getData();
             }
         }
     }
