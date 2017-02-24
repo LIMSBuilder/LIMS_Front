@@ -19,6 +19,9 @@
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
                                     <i class="fa fa-trash-o"></i>
                                 </a>
+                                <a href="javascript:;" @click="resetAll" class="btn btn-sm yellow"> 重设密码
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
                                 <a href="javascript:;" @click="total" class="btn btn-sm default"> 全 部
                                     <i class="fa fa-list"></i>
                                 </a>
@@ -82,6 +85,9 @@
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">编 辑
+                                            </button>
+                                            <button type="button" class="btn btn-sm yellow btn-outline"
+                                                    @click="initPass(item)">初始化
                                             </button>
                                             <button type="button" class="btn btn-sm red btn-outline"
                                                     @click="remove(item.id)">删 除
@@ -294,6 +300,52 @@
                 me.condition = "";
                 me.currentPage = 1;
                 me.getData();
+            },
+            initPass(item){
+                var me = this;
+                confirm({
+                    content: "是否重设用户【" + item.name + "】的登录密码？",
+                    success: function () {
+                        me.$http.post("/api/user/reset", {
+                            id: item.id
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: "密码重设成功！"
+                            })
+                        }, response => {
+                            serverErrorInfo();
+                        })
+                    }
+                })
+            },
+            resetAll(){
+                var me = this;
+                if (me.selected.length == 0) {
+                    error("至少需要选择一个用户信息");
+                    return;
+                }
+                confirm({
+                    content: "是否重设当前选中用户的登录密码？",
+                    success: function () {
+                        me.$http.get("/api/user/resetAll", {
+                            params: {
+                                selected: me.selected
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("用户登录密码重设成功！");
+                                    me.getData();
+                                    closeConfirm();
+                                }
+                            });
+                        }, response => {
+                            serverErrorInfo();
+                        });
+                    }
+                });
             }
         }
     }
