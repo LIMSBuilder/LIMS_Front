@@ -42,7 +42,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <select class="form-control" id="unit" name="unit" v-model="frequency.unit">
+                                    <select class="form-control" id="unit" name="unit" v-model="frequency.unit"
+                                            @change="unitChange($event)">
                                         <option value="">选择周期单位</option>
                                         <option value="one">仅一次</option>
                                         <option value="minute">分钟</option>
@@ -105,7 +106,8 @@
             return {
                 frequency: {
                     unit: "",
-                    notice: 1
+                    notice: 1,
+                    times: 1
                 }
             }
         },
@@ -125,6 +127,17 @@
                     }, response => {
                         serverErrorInfo();
                     });
+                }
+            },
+            unitChange(e){
+                var me = this;
+                var value = e.target.value;
+                if (value == "one") {
+                    me.frequency.times = "0";
+                    jQuery("#times").prop("disabled", true);
+                } else {
+                    me.frequency.times = me.frequency.times == 0 ? 1 : me.frequency.times;
+                    jQuery("#times").prop("disabled", false);
                 }
             }
         }

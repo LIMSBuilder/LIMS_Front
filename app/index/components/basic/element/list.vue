@@ -57,7 +57,8 @@
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn green btn-outline" @click="exportView(item)">查
+                                            <button type="button" class="btn green btn-outline"
+                                                    @click="exportView(item)">查
                                                 看
                                             </button>
                                         </td>
@@ -228,7 +229,8 @@
                 me.getData();
             },
             exportView(item){
-                alert("导出" + item.name + ",功能待开发");
+                window.open(item.path);
+                alert("导出" + item.name + ",功能待开发" + item.path);
             }
         }
     }
