@@ -88,7 +88,7 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-building"></i>
+                    <i class="fa fa-balance-scale"></i>
                     <span class="title">环境要素</span>
                     <span class="arrow"></span>
                 </a>
@@ -104,6 +104,30 @@
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/element/change' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">更新要素信息</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-balance-scale"></i>
+                    <span class="title">监测频次</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/frequency/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建监测频次</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/frequency/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">监测频次维护</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/frequency/change' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">更新要素信息</span>
                         </a>

@@ -176,9 +176,12 @@
                         id: me.id
                     }
                 }).then(response => {
-
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: "当前环境要素送检单模板已删除！"
+                    })
                 }, response => {
-
+                    serverErrorInfo();
                 })
             }
         }

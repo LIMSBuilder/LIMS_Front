@@ -34,6 +34,11 @@ import Create_Element from './components/basic/element/create.vue'
 import Element_List from './components/basic/element/list.vue'
 import CHange_Element from './components/basic/element/change.vue'
 
+//Frequency
+import Frequency from './components/basic/frequency/frequency.vue'
+import Create_Frequency from './components/basic/frequency/create.vue'
+import Frequency_List from "./components/basic/frequency/list.vue"
+import Change_Frequency from './components/basic/frequency/change.vue'
 //=============System===============
 //Department
 import Department from './components/system/department/department.vue'
@@ -151,6 +156,24 @@ var routes = [
             {
                 path: "change",
                 component: CHange_Element
+            }
+        ]
+    }, {
+        path: "/frequency",
+        name: "frequency",
+        component: Frequency,
+        children: [
+            {
+                path: "create",
+                component: Create_Frequency
+            },
+            {
+                path: "list",
+                component: Frequency_List
+            },
+            {
+                path: "change",
+                component: Change_Frequency
             }
         ]
     }
