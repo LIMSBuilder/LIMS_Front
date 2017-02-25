@@ -32,7 +32,7 @@ import Footer from './components/Footer.vue'
 import Element from './components/basic/element/element.vue'
 import Create_Element from './components/basic/element/create.vue'
 import Element_List from './components/basic/element/list.vue'
-
+import CHange_Element from './components/basic/element/change.vue'
 
 //=============System===============
 //Department
@@ -150,7 +150,7 @@ var routes = [
             },
             {
                 path: "change",
-                component: Change_User
+                component: CHange_Element
             }
         ]
     }
