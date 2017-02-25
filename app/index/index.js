@@ -27,6 +27,11 @@ import 'mod/jqueryUI'
 import Top from './components/Top.vue'
 import Container from './components/Container.vue'
 import Footer from './components/Footer.vue'
+//=============Basic================
+//Element
+import Element from './components/basic/element/element.vue'
+import Create_Element from './components/basic/element/create.vue'
+
 
 //=============System===============
 //Department
@@ -35,11 +40,13 @@ import Create_Department from './components/system/department/create.vue'
 import Department_List from './components/system/department/list.vue'
 import Change_Department from './components/system/department/change.vue'
 
+//Role
 import Role from './components/system/role/role.vue'
 import Create_Role from './components/system/role/create.vue'
 import Role_List from './components/system/role/list.vue'
 import Change_Role from './components/system/role/change.vue'
 
+//User
 import User from './components/system/user/user.vue'
 import Create_User from './components/system/user/create.vue'
 import User_List from './components/system/user/list.vue'
@@ -116,6 +123,25 @@ var routes = [
             {
                 path: "create",
                 component: Create_User
+            },
+            {
+                path: "list",
+                component: User_List
+            },
+            {
+                path: "change",
+                component: Change_User
+            }
+        ]
+    },
+    {
+        path: "/element",
+        name: "element",
+        component: Element,
+        children: [
+            {
+                path: "create",
+                component: Create_Element
             },
             {
                 path: "list",

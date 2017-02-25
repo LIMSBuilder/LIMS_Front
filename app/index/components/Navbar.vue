@@ -84,7 +84,34 @@
                 </ul>
             </li>
             <li class="heading">
-                <h3 class="uppercase">System</h3>
+                <h3 class="uppercase">基础设置</h3>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-building"></i>
+                    <span class="title">环境要素</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/element/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建新要素</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/element/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">要素维护</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/element/change' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">更新要素信息</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="heading">
+                <h3 class="uppercase">系统设置</h3>
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
