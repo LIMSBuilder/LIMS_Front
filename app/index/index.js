@@ -31,6 +31,7 @@ import Footer from './components/Footer.vue'
 //Element
 import Element from './components/basic/element/element.vue'
 import Create_Element from './components/basic/element/create.vue'
+import Element_List from './components/basic/element/list.vue'
 
 
 //=============System===============
@@ -145,7 +146,7 @@ var routes = [
             },
             {
                 path: "list",
-                component: User_List
+                component: Element_List
             },
             {
                 path: "change",

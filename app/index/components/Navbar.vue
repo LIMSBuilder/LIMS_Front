@@ -100,7 +100,7 @@
                     </router-link>
                     <router-link :to="{ path: '/element/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">要素维护</span>
+                            <span class="title">环境要素维护</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/element/change' }" tag="li" active-class="active">

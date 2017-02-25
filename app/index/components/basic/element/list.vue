@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 部门信息维护
-            <small>／Department</small>
+        <h1 class="page-title"> 环境要素维护
+            <small>／Element</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -39,7 +39,8 @@
                                 <tr class="uppercase">
                                     <th> 选择</th>
                                     <th> 编号</th>
-                                    <th> 部门名称</th>
+                                    <th> 环境要素名称</th>
+                                    <th> 送检单模板</th>
                                     <th> 操作</th>
                                 </tr>
                                 </thead>
@@ -55,6 +56,11 @@
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn green btn-outline" @click="exportView(item)">查
+                                                看
+                                            </button>
+                                        </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">编 辑
@@ -85,7 +91,7 @@
     module.exports = {
         data(){
             return {
-                departmentList: [],
+                elementList: [],
                 currentPage: 1,
                 condition: "",
                 selected: []
@@ -98,7 +104,7 @@
         methods: {
             fetchData (pageNum, rowCount) {
                 var me = this;
-                this.$http.get('/api/department/list', {
+                this.$http.get('/api/element/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -106,7 +112,7 @@
                     }
                 }).then((response) => {
                     var data = response.data;
-                    me.departmentList = data.results;
+                    me.elementList = data.results;
                 }, (response) => {
                     serverErrorInfo();
                 });
@@ -114,7 +120,7 @@
             //渲染页码
             fetchPages (rowCount) {
                 var me = this;
-                this.$http.get('/api/department/list', {
+                this.$http.get('/api/element/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
@@ -146,14 +152,14 @@
                 me.getData();
             },
             create(){
-                router.push("/department/create");
+                router.push("/element/create");
             },
             remove(id){
                 var me = this;
                 confirm({
-                    content: "是否删除当前部门信息？",
+                    content: "是否删除当前环境要素信息？",
                     success: function () {
-                        me.$http.get("/api/department/delete", {
+                        me.$http.get("/api/element/delete", {
                             params: {
                                 id: id
                             }
@@ -161,7 +167,7 @@
                             var data = response.data;
                             codeState(data.code, {
                                 200: function () {
-                                    alert("部门删除成功！");
+                                    alert("环境要素删除成功！");
                                     me.getData();
                                 }
                             })
@@ -173,7 +179,7 @@
             },
             edit(item){
                 var me = this;
-                router.push("/department/change?id=" + item.id);
+                router.push("/element/change?id=" + item.id);
             },
             getData(){
                 var me = this;
@@ -183,13 +189,13 @@
             removeAll(){
                 var me = this;
                 if (me.selected.length == 0) {
-                    error("至少需要选择一个部门信息");
+                    error("至少需要选择一个环境要素信息");
                     return;
                 }
                 confirm({
-                    content: "是否删除当前选中部门信息？",
+                    content: "是否删除当前选中环境要素信息？",
                     success: function () {
-                        me.$http.get("/api/department/deleteAll", {
+                        me.$http.get("/api/element/deleteAll", {
                             params: {
                                 selected: me.selected
                             }
@@ -197,7 +203,7 @@
                             var data = response.data;
                             codeState(data.code, {
                                 200: function () {
-                                    alert("部门信息删除成功！");
+                                    alert("环境要素信息删除成功！");
                                     me.getData();
                                     closeConfirm();
                                 }
@@ -211,7 +217,7 @@
             selectAll(){
                 var me = this;
                 me.selected = [];
-                me.departmentList.forEach(function (item, index) {
+                me.elementList.forEach(function (item, index) {
                     me.selected.push(item.id);
                 })
             },
@@ -220,6 +226,9 @@
                 me.condition = "";
                 me.currentPage = 1;
                 me.getData();
+            },
+            exportView(item){
+                alert("导出" + item.name + ",功能待开发");
             }
         }
     }
