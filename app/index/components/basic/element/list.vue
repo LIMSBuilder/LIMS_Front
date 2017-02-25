@@ -45,7 +45,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <template v-for="(item,index) in departmentList">
+                                <template v-for="(item,index) in elementList">
                                     <tr>
                                         <td class="text-center">
                                             <label class="mt-checkbox mt-checkbox-outline">
@@ -63,7 +63,7 @@
                                         </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
-                                                    @click="edit(item)">编 辑
+                                                    @click="edit(item)">修 改
                                             </button>
                                             <button type="button" class="btn btn-sm red btn-outline"
                                                     @click="remove(item.id)">删 除

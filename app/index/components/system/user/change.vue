@@ -146,10 +146,10 @@
             create(){
                 var me = this;
                 if (jQuery("#user_add").valid()) {
-                    me.$http.post("/api/user/create", me.user).then(response => {
+                    me.$http.post("/api/user/change", me.user).then(response => {
                         var data = response.data;
                         codeState(data.code, {
-                            200: "新用户创建成功"
+                            200: "用户信息修改成功"
                         });
                     }, response => {
                         serverErrorInfo();

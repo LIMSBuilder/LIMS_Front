@@ -84,10 +84,10 @@
                                         <td class="text-center">{{item.role.name}}</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
-                                                    @click="edit(item)">编 辑
+                                                    @click="edit(item)">修 改
                                             </button>
                                             <button type="button" class="btn btn-sm yellow btn-outline"
-                                                    @click="initPass(item)">初始化
+                                                    @click="initPass(item)">重设密码
                                             </button>
                                             <button type="button" class="btn btn-sm red btn-outline"
                                                     @click="remove(item.id)">删 除
@@ -225,7 +225,7 @@
                 me.getData();
             },
             create(){
-                router.push("/role/create");
+                router.push("/user/create");
             },
             remove(id){
                 var me = this;

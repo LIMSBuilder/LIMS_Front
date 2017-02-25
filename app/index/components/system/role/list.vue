@@ -69,7 +69,7 @@
                                         </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
-                                                    @click="edit(item)">编 辑
+                                                    @click="edit(item)">修 改
                                             </button>
                                             <button type="button" class="btn btn-sm red btn-outline"
                                                     @click="remove(item.id)">删 除

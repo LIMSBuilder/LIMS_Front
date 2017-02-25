@@ -125,7 +125,7 @@
                 }
             },
             back(){
-                router.push("/department/list");
+                router.push("/role/list");
             }
         }
     }
