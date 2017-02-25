@@ -134,6 +134,30 @@
                     </router-link>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-balance-scale"></i>
+                    <span class="title">监测项目</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/project/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建监测项目</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/project/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">监测项目维护</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/project/change' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">更新监测项目</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
             <li class="heading">
                 <h3 class="uppercase">系统设置</h3>
             </li>

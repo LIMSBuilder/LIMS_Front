@@ -39,6 +39,14 @@ import Frequency from './components/basic/frequency/frequency.vue'
 import Create_Frequency from './components/basic/frequency/create.vue'
 import Frequency_List from "./components/basic/frequency/list.vue"
 import Change_Frequency from './components/basic/frequency/change.vue'
+
+//Project
+import Project from './components/basic/project/project.vue'
+import Create_Project from './components/basic/project/create.vue'
+import Project_List from "./components/basic/project/list.vue"
+import Change_Project from './components/basic/project/change.vue'
+
+
 //=============System===============
 //Department
 import Department from './components/system/department/department.vue'
@@ -174,6 +182,25 @@ var routes = [
             {
                 path: "change",
                 component: Change_Frequency
+            }
+        ]
+    },
+    {
+        path: "/project",
+        name: "project",
+        component: Project,
+        children: [
+            {
+                path: "create",
+                component: Create_Project
+            },
+            {
+                path: "list",
+                component: Project_List
+            },
+            {
+                path: "change",
+                component: Change_Project
             }
         ]
     }

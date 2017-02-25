@@ -15,35 +15,36 @@
                             表单尚未填写完整。
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="nick">项目名称
+                            <label class="col-md-3 control-label" for="name">项目名称
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="nick" v-model="user.nick" placeholder=""
-                                       name="nick">
+                                <input type="text" class="form-control" id="name" v-model="project.name" placeholder=""
+                                       name="name">
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入项目名称，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="name">项目描述
+                            <label class="col-md-3 control-label" for="desp">项目描述
+                                <span class="required"></span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="name" v-model="user.name" placeholder=""
-                                       name="name">
+                                <input type="text" class="form-control" id="desp" v-model="project.desp" placeholder=""
+                                       name="desp">
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请对项目进行简要描述。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="roleId">所属要素
+                            <label class="col-md-3 control-label" for="elementId">所属要素
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <select class="form-control" name="roleId" id="roleId"
-                                        v-model="user.roleId">
+                                <select class="form-control" name="elementId" id="elementId"
+                                        v-model="project.elementId">
                                     <option value></option>
-                                    <template v-for="item in role_list">
+                                    <template v-for="item in elementList">
                                         <option :value="item.id">{{item.name}}</option>
                                     </template>
                                 </select>
@@ -56,7 +57,7 @@
                             </label>
                             <div class="col-md-7">
                                 <select class="form-control" name="departmentId" id="departmentId"
-                                        v-model="user.departmentId" @change="fetchRole($event)">
+                                        v-model="project.departmentId">
                                     <option value></option>
                                     <template v-for="item in department_list">
                                         <option :value="item.id">{{item.name}}</option>
@@ -86,14 +87,15 @@
     module.exports = {
         data: function () {
             return {
-                user: {},
+                project: {},
                 department_list: [],
-                role_list: []
+                elementList: []
             }
         },
         mounted(){
             var me = this;
             me.fetchDepartment();
+            me.fetchElement();
             handleValidation1();
 
         },
@@ -108,37 +110,28 @@
                     }
                 );
             },
+            fetchElement(){
+                var me = this;
+                me.$http.get("/api/element/total").then(function (response) {
+                        var data = response.data;
+                        me.elementList = data.results;
+                    }, function (response) {
+                        serverErrorInfo();
+                    }
+                );
+            },
             create(){
                 var me = this;
                 if (jQuery("#user_add").valid()) {
-                    me.$http.post("/api/user/create", me.user).then(function (response) {
+                    me.$http.post("/api/project/create", me.user).then(function (response) {
                             var data = response.data;
                             codeState(data.code, {
-                                200: "新用户创建成功"
+                                200: "新监测项目创建成功"
                             });
                         }, function (response) {
                             serverErrorInfo();
                         }
                     )
-                }
-            },
-            fetchRole(e){
-                var me = this;
-                var value = e.target.value;
-                if (value) {
-                    me.$http.get("/api/role/findByDepartment", {
-                        params: {
-                            department_id: value
-                        }
-                    }).then(function (response) {
-                            var data = response.data;
-                            me.role_list = data.results;
-                        }, function (response) {
-                            serverErrorInfo();
-                        }
-                    )
-                } else {
-                    me.role_list = [];
                 }
             }
         }
