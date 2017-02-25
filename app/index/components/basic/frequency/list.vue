@@ -167,11 +167,13 @@
                                 200: function () {
                                     alert("监测频次删除成功！");
                                     me.getData();
+
                                 }
                             })
                         }, response => {
                             serverErrorInfo();
                         });
+                        closeConfirm();
                     }
                 })
             },
@@ -209,6 +211,7 @@
                         }, response => {
                             serverErrorInfo();
                         });
+                        closeConfirm();
                     }
                 });
             },

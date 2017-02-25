@@ -56,12 +56,19 @@
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
-                                        <td class="text-center">
+                                        <td class="text-center" v-if="item.path">
                                             <button type="button" class="btn green btn-outline"
                                                     @click="exportView(item)">查
                                                 看
                                             </button>
+                                            <button type="button" class="btn red btn-outline"
+                                                    @click="deleteTemplate(item)">删 除
+                                            </button>
                                         </td>
+                                        <td class="text-center" v-else>
+                                            暂无模板
+                                        </td>
+
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">修 改
@@ -231,6 +238,27 @@
             exportView(item){
                 window.open(item.path);
                 alert("导出" + item.name + ",功能待开发" + item.path);
+            },
+            deleteTemplate(item){
+                var me = this;
+                confirm({
+                    content: "是否删除当前送检单模板？",
+                    success: function () {
+                        me.$http.get("/api/element/deleteTemplate", {
+                            params: {
+                                id: item.id
+                            }
+                        }).then(function (response) {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: "送检单模板删除成功！"
+                            })
+                        }, function (response) {
+                            serverErrorInfo();
+                        })
+                        closeConfirm();
+                    }
+                })
             }
         }
     }

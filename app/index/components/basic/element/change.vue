@@ -29,10 +29,13 @@
                             <label class="col-md-3 control-label" for="name">当前送检单
                                 <span class="required">*</span>
                             </label>
-                            <div class="col-md-7">
+                            <div class="col-md-7" v-if="path">
                                 <button type="button" class="btn green btn-outline" @click="viewFile">查 看</button>
-                                <button type="button" class="btn grey-mint btn-outline" @click="downFile">下 载</button>
+                                <a class="btn grey-mint btn-outline" :href="path">下 载</a>
                                 <button type="button" class="btn red btn-outline" @click="deleteFile">删 除</button>
+                            </div>
+                            <div class="col-md-7" v-else>
+                                <span>暂无模板</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
@@ -164,10 +167,6 @@
             viewFile(){
                 var me = this;
                 alert("待开发，查看资源文件" + me.path);
-            },
-            downFile(){
-                var me = this;
-                alert("待开发，下载资源文件" + me.path);
             },
             deleteFile(){
                 var me = this;
