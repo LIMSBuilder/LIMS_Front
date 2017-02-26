@@ -72,8 +72,9 @@
                                         </div>
                                         <div class="tab-pane active" id="tab1">
                                             <h3 class="block">甲方信息
-                                                <button type="button" class="btn green btn-outline pull-right">选择客户
-                                                </button>
+                                                <a href="#chooseCustomer" data-toggle="modal"
+                                                   class="btn green btn-outline pull-right">选择客户
+                                                </a>
                                             </h3>
                                             <div class="row">
                                                 <div class="form-group col-md-6">
@@ -166,7 +167,8 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <h3 class="block">乙方信息
-                                                <button type="button" class="btn green btn-outline pull-right">导入预设
+                                                <button type="button" class="btn green btn-outline pull-right"
+                                                        @click="importDefault">导入预设
                                                 </button>
                                             </h3>
                                             <div class="row">
@@ -460,6 +462,88 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade bs-modal-lg" id="chooseCustomer" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">选择客户信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN BORDERED TABLE PORTLET-->
+                                <div class="portlet light portlet-fit bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <div class="clearfix">
+                                                <a href="javascript:;" @click="createCustomer" class="btn btn-sm green">
+                                                    创 建
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
+                                                <a href="javascript:;" @click="total" class="btn btn-sm default"> 全 部
+                                                    <i class="fa fa-list"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="actions">
+                                            <div class="input-icon right">
+                                                <i class="fa fa-search"></i>
+                                                <input type="text" class="form-control" placeholder="搜索..."
+                                                       @keyup.enter="search($event)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="table-scrollable table-scrollable-borderless">
+                                            <table class="table table-hover table-light">
+                                                <thead>
+                                                <tr class="uppercase">
+                                                    <th> 编号</th>
+                                                    <th> 客户单位</th>
+                                                    <th> 联系人</th>
+                                                    <th> 客户地址</th>
+                                                    <th> 联系电话</th>
+                                                    <th> 操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <template v-for="(item,index) in customerList">
+                                                    <tr>
+                                                        <td class="text-center"> {{index+1}}</td>
+                                                        <td class="text-center"> {{item.client_unit}}</td>
+                                                        <td class="text-center"> {{item.client}}</td>
+                                                        <td class="text-center"> {{item.client_address}}</td>
+                                                        <td class="text-center"> {{item.client_tel}}</td>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-sm blue btn-outline"
+                                                                    @click="edit(item)">选 择
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </template>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Pagination -->
+                                    <div class="pagination pull-right">
+                                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                                    </div>
+                                    <!-- End Pagination -->
+                                </div>
+                                <!-- END BORDERED TABLE PORTLET-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 </template>
 
@@ -474,6 +558,12 @@
         data(){
             return {
                 contract: {
+                    trustee: "",
+                    trustee_code: "",
+                    trustee_address: "",
+                    trustee_tel: "",
+                    trustee_unit: "",
+                    trustee_fax: "",
                     way: 1,
                     wayDesp: "",
                     paymentWay: "客户自取",
@@ -481,7 +571,10 @@
                     inRoom: false,
                     secret: false
                 },
-                typeList: []
+                typeList: [],
+                customerList: [],
+                currentPage: 1,
+                condition: "",
             }
         },
         mounted(){
@@ -522,6 +615,10 @@
                     $('#defaultrange input').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
                 }
             );
+            $("#chooseCustomer").draggable({
+                handle: ".modal-header"
+            });
+            me.getCustomer();
         },
         methods: {
             create(){
@@ -529,6 +626,91 @@
                 me.contract.package_project = jQuery("#package_project").val();
                 me.contract.finish_time = jQuery("#finishTime").val();
                 console.log(JSON.parse(JSON.stringify(me.contract)));
+            },
+            fetchCustomer(pageNum, rowCount){
+                var me = this;
+                me.$http.get("/api/customer/list", {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: pageNum,
+                        condition: this.condition
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.customerList = data.results;
+
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            fetchPages (rowCount) {
+                var me = this;
+                this.$http.get('/api/customer/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: 1,
+                        condition: me.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    jQuery(".M-box").pagination({
+                        pageCount: data.totalPage || 1,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (data) {
+                            me.fetchCustomer(data.getCurrent(), rowCount, me.condition);
+                            me.currentPage = data.getCurrent();
+                        }
+                    });
+                }, (response) => {
+                    serverErrorInfo();
+                });
+            },
+            getCustomer(){
+                var me = this;
+                me.fetchCustomer(me.currentPage, rowCount);
+                me.fetchPages(rowCount);
+            },
+            search(e){
+                var me = this;
+                var value = e.target.value;
+                me.currentPag = 1;
+                me.condition = value ? "keyword=" + encodeURI(value) : "";
+                me.getCustomer();
+            },
+            createCustomer(){
+                jQuery("#chooseCustomer").modal("hide");
+                router.push("/customer/create");
+            },
+            total(){
+                var me = this;
+                me.condition = "";
+                me.currentPage = 1;
+                me.getCustomer();
+            },
+            importDefault(){
+                //导入预设
+                var me = this;
+                confirm({
+                    content: "是否导入预设的乙方联系信息？",
+                    success: function () {
+                        var demo = {
+                            trustee: "张全蛋",
+                            trustee_code: "000000",
+                            trustee_address: "江苏省常州市",
+                            trustee_tel: "1234567890",
+                            trustee_unit: "常州某坑货公司",
+                            trustee_fax: "09821331"
+                        };
+                        for (var key in demo) {
+                            me.contract[key] = demo[key];
+                        }
+
+                    }
+                })
             },
             init: function () {
                 if (!jQuery().bootstrapWizard) {
@@ -741,6 +923,7 @@
                 });
 
                 $('#form_wizard_1').find('.button-previous').hide();
+                $('#form_wizard_1').find('.button-submit').hide();
                 //apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.
                 $('#country_list', form).change(function () {
                     form.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input

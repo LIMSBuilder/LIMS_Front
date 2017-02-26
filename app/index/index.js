@@ -59,6 +59,12 @@ import Create_Type from './components/basic/type/create.vue'
 import Type_List from "./components/basic/type/list.vue"
 import Change_Type from './components/basic/type/change.vue'
 
+//Customer
+import Customer from './components/basic/customer/customer.vue'
+import Create_Customer from './components/basic/customer/create.vue'
+import Customer_List from "./components/basic/customer/list.vue"
+import Change_Customer from './components/basic/customer/change.vue'
+
 //=============System===============
 //Department
 import Department from './components/system/department/department.vue'
@@ -233,6 +239,25 @@ var routes = [
             {
                 path: "change",
                 component: Change_Type
+            }
+        ]
+    },
+    {
+        path: "/customer",
+        name: "customer",
+        component: Customer,
+        children: [
+            {
+                path: "create",
+                component: Create_Customer
+            },
+            {
+                path: "list",
+                component: Customer_List
+            },
+            {
+                path: "change",
+                component: Change_Customer
             }
         ]
     },
