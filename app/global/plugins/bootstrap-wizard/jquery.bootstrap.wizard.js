@@ -13,6 +13,8 @@
     var k = function (d, g) {
         d = e(d);
         var a = this,
+            $index,
+            $element,
             b = e.extend({}, e.fn.bootstrapWizard.defaults, g),
             f = null,
             c = null;

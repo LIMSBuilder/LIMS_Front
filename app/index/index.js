@@ -22,6 +22,7 @@ import  'mod/pagination'
 import 'mod／utils'
 import 'mod/jqueryUI'
 import 'mod/select2'
+
 //===========导入Vue组件==============
 
 import Top from './components/Top.vue'
@@ -52,6 +53,11 @@ import Create_Project from './components/basic/project/create.vue'
 import Project_List from "./components/basic/project/list.vue"
 import Change_Project from './components/basic/project/change.vue'
 
+//Type
+import Type from './components/basic/type/type.vue'
+import Create_Type from './components/basic/type/create.vue'
+import Type_List from "./components/basic/type/list.vue"
+import Change_Type from './components/basic/type/change.vue'
 
 //=============System===============
 //Department
@@ -84,6 +90,7 @@ import 'style/iziModal'
 import 'style/component'
 import 'style/plugins'
 
+import 'style/select'
 import 'style/layout'
 import 'style/theme'
 import 'style/custom'
@@ -207,6 +214,25 @@ var routes = [
             {
                 path: "change",
                 component: Change_Project
+            }
+        ]
+    },
+    {
+        path: "/type",
+        name: "type",
+        component: Type,
+        children: [
+            {
+                path: "create",
+                component: Create_Type
+            },
+            {
+                path: "list",
+                component: Type_List
+            },
+            {
+                path: "change",
+                component: Change_Type
             }
         ]
     },

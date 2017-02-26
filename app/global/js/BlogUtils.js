@@ -80,6 +80,7 @@ window.confirm = function (option) {
     option.content && jQuery("#modal_body").html(option.content);
     option.success && jQuery("#modal_btn").off("click").on("click", function () {
         option.success();
+        closeConfirm();
     });
     $("#confirm").modal("show");
 };

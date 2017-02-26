@@ -140,7 +140,7 @@
             create(){
                 var me = this;
                 if (jQuery("#frequency_add").valid()) {
-                    me.$http.post("/api/frequency/create", me.frequency).then(response => {
+                    me.$http.post("/api/frequency/change", me.frequency).then(response => {
                         var data = response.data;
                         codeState(data.code, {
                             200: "监测频次创建成功！"

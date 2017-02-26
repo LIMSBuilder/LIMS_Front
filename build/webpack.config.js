@@ -53,13 +53,16 @@ module.exports = {
             'mod/jqueryUI': path.resolve(PluginsPath, 'jquery-ui/jquery-ui.min.js'),
             'mod/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone-amd-module.js'),
             'mod/wizard': path.resolve(PluginsPath, 'bootstrap-wizard/jquery.bootstrap.wizard.js'),
+            'mod/datarangepicker':path.resolve(PluginsPath,'bootstrap-daterangepicker/daterangepicker.js'),
+            'mod/moment':path.resolve(PluginsPath,'moment.min'),
+            'mod/maxlength':path.resolve(PluginsPath,'bootstrap-maxlength/bootstrap-maxlength.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
             'style/line_icon': path.resolve(PluginsPath, 'simple-line-icons/simple-line-icons.min.css'),
             'style/bootstrap': path.resolve(PluginsPath, 'bootstrap/css/bootstrap.css'),
             'style/switch': path.resolve(PluginsPath, 'bootstrap-switch/css/bootstrap-switch.min.css'),
-
+            'style/select':path.resolve(PluginsPath,'bootstrap-select/css/bootstrap-select.css'),
             'style/select2': path.resolve(PluginsPath, 'select2/css/select2.min.css'),
             'style/select2_bootstrap': path.resolve(PluginsPath, 'select2/css/select2-bootstrap.min.css'),
 
@@ -77,7 +80,8 @@ module.exports = {
             'style/select': path.resolve(PluginsPath, 'bootstrap-select/css/bootstrap-select.css'),
             'style/pagination': path.resolve(StylePath, 'pagination.css'),
             'style/jqueryUI': path.resolve(PluginsPath, 'jquery-ui/jquery-ui.min.css'),
-            'style/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone.css')
+            'style/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone.css'),
+            'style/datarangepicker':path.resolve(PluginsPath,'bootstrap-daterangepicker/daterangepicker.css'),
         }
     },
     module: {
