@@ -62,7 +62,7 @@
                 </a>
             </li>
             <li class="heading">
-                <h3 class="uppercase">合同</h3>
+                <h3 class="uppercase">业务</h3>
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
@@ -71,16 +71,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/article/create' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/contract/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">业务监测合同</span>
+                            <span class="title">监测业务合同</span>
                         </a>
                     </router-link>
-                    <li class="nav-item  ">
-                        <a href="javascript:;" class="nav-link ">
-                            <span class="title">大客户合同</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
             <li class="heading">

@@ -49,9 +49,10 @@ module.exports = {
             'mod/multiselect': path.resolve(PluginsPath, 'jquery-multi-select/js/jquery.multi-select.js'),
             'mod/fileinput': path.resolve(PluginsPath, 'bootstrap-fileinput/bootstrap-fileinput.js'),
             'mod/select': path.resolve(PluginsPath, 'bootstrap-select/js/bootstrap-select.js'),
-            'mod/pagination':path.resolve(JsPath,'jquery.pagination.js'),
-            'mod/jqueryUI':path.resolve(PluginsPath,'jquery-ui/jquery-ui.min.js'),
-            'mod/dropzone':path.resolve(PluginsPath,'dropzone/dropzone-amd-module.js'),
+            'mod/pagination': path.resolve(JsPath, 'jquery.pagination.js'),
+            'mod/jqueryUI': path.resolve(PluginsPath, 'jquery-ui/jquery-ui.min.js'),
+            'mod/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone-amd-module.js'),
+            'mod/wizard': path.resolve(PluginsPath, 'bootstrap-wizard/jquery.bootstrap.wizard.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -74,9 +75,9 @@ module.exports = {
             'style/multiselect': path.resolve(PluginsPath, 'jquery-multi-select/css/multi-select.css'),
             'style/fileinput': path.resolve(PluginsPath, 'bootstrap-fileinput/bootstrap-fileinput.css'),
             'style/select': path.resolve(PluginsPath, 'bootstrap-select/css/bootstrap-select.css'),
-            'style/pagination':path.resolve(StylePath,'pagination.css'),
-            'style/jqueryUI':path.resolve(PluginsPath,'jquery-ui/jquery-ui.min.css'),
-            'style/dropzone':path.resolve(PluginsPath,'dropzone/dropzone.css')
+            'style/pagination': path.resolve(StylePath, 'pagination.css'),
+            'style/jqueryUI': path.resolve(PluginsPath, 'jquery-ui/jquery-ui.min.css'),
+            'style/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone.css')
         }
     },
     module: {

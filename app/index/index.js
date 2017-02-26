@@ -21,12 +21,18 @@ import 'mod/select'
 import  'mod/pagination'
 import 'mod／utils'
 import 'mod/jqueryUI'
-
+import 'mod/select2'
 //===========导入Vue组件==============
 
 import Top from './components/Top.vue'
 import Container from './components/Container.vue'
 import Footer from './components/Footer.vue'
+
+
+//=============Bussiness============
+import Contract from './components/bussiness/contract/contract.vue'
+import Create_Contract from './components/bussiness/contract/create.vue'
+
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -193,6 +199,25 @@ var routes = [
             {
                 path: "create",
                 component: Create_Project
+            },
+            {
+                path: "list",
+                component: Project_List
+            },
+            {
+                path: "change",
+                component: Change_Project
+            }
+        ]
+    },
+    {
+        path: "/contract",
+        name: "contract",
+        component: Contract,
+        children: [
+            {
+                path: "create",
+                component: Create_Contract
             },
             {
                 path: "list",
