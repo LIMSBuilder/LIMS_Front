@@ -36,10 +36,10 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 //当发送/api请求时，自动会跨域访问8080端口，前后端分离
-// app.use('/api', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
-// app.use('/upload', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
-app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
-app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
+app.use('/api', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
+app.use('/upload', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
+// app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
+// app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 // 监听 8888端口，开启服务器
 app.listen(8888, function (err) {
     if (err) {

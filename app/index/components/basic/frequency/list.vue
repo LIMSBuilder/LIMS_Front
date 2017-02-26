@@ -108,10 +108,10 @@
                         currentPage: pageNum,
                         condition: this.condition
                     }
-                }).then((response) => {
+                }).then(response => {
                     var data = response.data;
                     me.frequencyList = data.results;
-                }, (response) => {
+                }, response => {
                     serverErrorInfo();
                 });
             },
@@ -124,7 +124,7 @@
                         currentPage: 1,
                         condition: me.condition
                     }
-                }).then((response) => {
+                }).then(response => {
                     var data = response.data;
                     jQuery(".M-box").pagination({
                         pageCount: data.totalPage || 1,
@@ -138,7 +138,7 @@
                             me.currentPage = data.getCurrent();
                         }
                     });
-                }, (response) => {
+                }, response => {
                     serverErrorInfo();
                 });
             },
@@ -146,7 +146,7 @@
                 var me = this;
                 var value = e.target.value;
                 me.currentPag = 1;
-                me.condition = value ? "name=" + encodeURI(value) : "";
+                me.condition = value ? "count=" + encodeURI(value) : "";
                 me.getData();
             },
             create(){
