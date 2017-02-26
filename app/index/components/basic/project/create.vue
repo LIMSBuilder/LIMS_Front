@@ -2,7 +2,7 @@
     <!-- BEGIN CONTENT BODY -->
     <div>
         <h1 class="page-title"> 创建新监测项目
-            <small>／User</small>
+            <small>／Project</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">
@@ -30,10 +30,9 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="desp" v-model="project.desp" placeholder=""
-                                       name="desp">
+                                <textarea class="form-control" rows="3" id="desp" v-model="project.desp"
+                                          name="desp"></textarea>
                                 <div class="form-control-focus"></div>
-                                <span class="help-block">请对项目进行简要描述。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
@@ -123,7 +122,7 @@
             create(){
                 var me = this;
                 if (jQuery("#user_add").valid()) {
-                    me.$http.post("/api/project/create", me.user).then(function (response) {
+                    me.$http.post("/api/project/create", me.project).then(function (response) {
                             var data = response.data;
                             codeState(data.code, {
                                 200: "新监测项目创建成功"

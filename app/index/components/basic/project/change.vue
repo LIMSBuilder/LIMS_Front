@@ -1,85 +1,68 @@
 <template>
     <!-- BEGIN CONTENT BODY -->
     <div>
-        <h1 class="page-title"> 创建监测频次
-            <small>／Frequency</small>
+        <h1 class="page-title"> 创建新监测项目
+            <small>／Project</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">
             <div class="portlet-body">
                 <!-- BEGIN FORM-->
-                <form action="#" class="form-horizontal" id="frequency_add">
+                <form action="#" class="form-horizontal" id="user_add">
                     <div class="form-body">
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="count">监测频次名称
+                            <label class="col-md-3 control-label" for="name">项目名称
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <input type="number" class="form-control" min="0" placeholder="周期监测次数"
-                                               id="count"
-                                               name="count"
-                                               v-model="frequency.count">
-                                        <div class="form-control-focus"></div>
-                                        <span class="help-block">每周期内进行监测的次数。</span>
-                                        <span class="input-group-addon">次</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">每</span>
-                                        <input type="number" class="form-control" min="0" placeholder="周期单位长度"
-                                               id="times"
-                                               name="times"
-                                               v-model="frequency.times">
-                                        <div class="form-control-focus"></div>
-                                        <span class="help-block">每周期包含的周期单位个数。</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <select class="form-control" id="unit" name="unit" v-model="frequency.unit">
-                                        <option value="">选择周期单位</option>
-                                        <option value="one">仅一次</option>
-                                        <option value="minute">分钟</option>
-                                        <option value="hour">小时</option>
-                                        <option value="day">天数</option>
-                                        <option value="week">星期</option>
-                                        <option value="mouth">月份</option>
-                                        <option value="quarter">季度</option>
-                                        <option value="year">年度</option>
-                                    </select>
-                                </div>
-
+                                <input type="text" class="form-control" id="name" v-model="project.name" placeholder=""
+                                       name="name">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入项目名称，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="open">循环提示
+                            <label class="col-md-3 control-label" for="desp">项目描述
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7">
+                                <textarea class="form-control" rows="3" id="desp" v-model="project.desp"
+                                          name="desp"></textarea>
+                                <div class="form-control-focus"></div>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="elementId">所属要素
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <div class="md-radio-inline">
-                                    <div class="md-radio">
-                                        <input type="radio" id="open" name="notice" v-model="frequency.notice"
-                                               value="1" class="md-radiobtn">
-                                        <label for="open">
-                                            <span class="inc"></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 开 启 </label>
-                                    </div>
-                                    <div class="md-radio">
-                                        <input type="radio" id="close" name="notice" v-model="frequency.notice"
-                                               value="0" class="md-radiobtn">
-                                        <label for="close">
-                                            <span class="inc"></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 关 闭 </label>
-                                    </div>
-                                </div>
+                                <select class="form-control" name="elementId" id="elementId"
+                                        v-model="project.elementId">
+                                    <option value></option>
+                                    <template v-for="item in elementList">
+                                        <option :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                                <div class="form-control-focus"></div>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="departmentId">承接部门
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7">
+                                <select class="form-control" name="departmentId" id="departmentId"
+                                        v-model="project.departmentId">
+                                    <option value></option>
+                                    <template v-for="item in department_list">
+                                        <option :value="item.id">{{item.name}}</option>
+                                    </template>
+                                </select>
+                                <div class="form-control-focus"></div>
                             </div>
                         </div>
                     </div>
@@ -103,125 +86,150 @@
     module.exports = {
         data: function () {
             return {
-                frequency: {
-                    unit: "",
-                    notice: 1
-                }
+                project: {},
+                department_list: [],
+                elementList: []
             }
         },
         mounted(){
             var me = this;
+            me.fetchDepartment();
+            me.fetchElement();
+
             var query = me.$route.query;
             if (!query.id) {
                 confirm({
-                    content: "请先选择需要维护的监测频次！",
+                    content: "请先选择需要维护的监测项目！",
                     success: function () {
-                        router.push("/frequency/list");
+                        router.push("/project/list");
                         closeConfirm();
                     }
                 });
             } else {
                 me.id = query.id;
-                me.$http.get("/api/frequency/findById", {
+                me.$http.get("/api/project/findById", {
                     params: {
                         id: query.id
                     }
-                }).then(response => {
+                }).then(function (response) {
                     var data = response.data;
-                    me.frequency = data;
-                }, response => {
+                    me.project = data;
+                }, function (response) {
                     serverErrorInfo();
-                })
+                });
             }
-
             handleValidation1();
+
         },
         methods: {
+            fetchDepartment(){
+                var me = this;
+                me.$http.get("/api/department/total").then(function (response) {
+                        var data = response.data;
+                        me.department_list = data.results;
+                    }, function (response) {
+                        serverErrorInfo();
+                    }
+                );
+            },
+            fetchElement(){
+                var me = this;
+                me.$http.get("/api/element/total").then(function (response) {
+                        var data = response.data;
+                        me.elementList = data.results;
+                    }, function (response) {
+                        serverErrorInfo();
+                    }
+                );
+            },
             create(){
                 var me = this;
-                if (jQuery("#frequency_add").valid()) {
-                    me.$http.post("/api/frequency/create", me.frequency).then(response => {
-                        var data = response.data;
-                        codeState(data.code, {
-                            200: "监测频次创建成功！"
-                        });
-                    }, response => {
-                        serverErrorInfo();
-                    });
+                if (jQuery("#user_add").valid()) {
+                    me.$http.post("/api/project/change", me.project).then(function (response) {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: "新监测项目修改成功"
+                            });
+                        }, function (response) {
+                            serverErrorInfo();
+                        }
+                    )
                 }
             }
         }
     }
 
     var handleValidation1 = function () {
-        var form1 = $('#frequency_add');
-        var error3 = $('.alert-danger', form1);
+        var form1 = $('#user_add');
+        var error1 = $('.alert-danger', form1);
         form1.validate({
             errorElement: 'span', //default input error message container
             errorClass: 'help-block help-block-error', // default input error message class
             focusInvalid: false, // do not focus the last invalid input
             ignore: "", // validate all fields including form hidden input
-            rules: {
-
-                times: {
-                    required: true,
-                    min: 0
+            messages: {
+                nick: {
+                    required: "用户昵称不能为空"
                 },
-                count: {
-                    required: true,
-                    min: 0
+                name: {
+                    required: "真实姓名不能为空"
+                },
+                cardId: {
+                    required: "证件号不能为空"
+                },
+                departmentId: {
+                    required: "所属部门不能为空"
+                },
+                roleId: {
+                    required: "所属岗位不能为空"
                 }
             },
-            errorPlacement: function (error, element) { // render error placement for each input type
-                if (element.parents('.mt-radio-list') || element.parents('.mt-checkbox-list')) {
-                    if (element.parents('.mt-radio-list')[0]) {
-                        error.appendTo(element.parents('.mt-radio-list')[0]);
-                    }
-                    if (element.parents('.mt-checkbox-list')[0]) {
-                        error.appendTo(element.parents('.mt-checkbox-list')[0]);
-                    }
-                } else if (element.parents('.mt-radio-inline') || element.parents('.mt-checkbox-inline')) {
-                    if (element.parents('.mt-radio-inline')[0]) {
-                        error.appendTo(element.parents('.mt-radio-inline')[0]);
-                    }
-                    if (element.parents('.mt-checkbox-inline')[0]) {
-                        error.appendTo(element.parents('.mt-checkbox-inline')[0]);
-                    }
-                } else if (element.parent(".input-group").size() > 0) {
-                    error.insertAfter(element.parent(".input-group"));
-                } else if (element.attr("data-error-container")) {
-                    error.appendTo(element.attr("data-error-container"));
+            rules: {
+                nick: {
+                    required: true
+                },
+                name: {
+                    required: true
+                },
+                cardId: {
+                    required: true
+                },
+                departmentId: {
+                    required: true
+                },
+                roleId: {
+                    required: true
+                }
+            },
+            invalidHandler: function (event, validator) { //display error alert on form submit
+                //success1.hide();
+                error1.show();
+                App.scrollTo(error1, -200);
+            },
+            errorPlacement: function (error, element) {
+                if (element.is(':checkbox')) {
+                    error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
+                } else if (element.is(':radio')) {
+                    error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
                 } else {
                     error.insertAfter(element); // for other inputs, just perform default behavior
                 }
             },
-
-            invalidHandler: function (event, validator) { //display error alert on form submit
-                error3.show();
-                App.scrollTo(error3, -200);
-            },
-
             highlight: function (element) { // hightlight error inputs
                 $(element)
                     .closest('.form-group').addClass('has-error'); // set error class to the control group
             },
-
             unhighlight: function (element) { // revert the change done by hightlight
                 $(element)
                     .closest('.form-group').removeClass('has-error'); // set error class to the control group
             },
-
             success: function (label) {
                 label
                     .closest('.form-group').removeClass('has-error'); // set success class to the control group
             },
-
             submitHandler: function (form) {
-                error3.hide();
-                form[0].submit(); // submit the form
+                error1.hide();
             }
-
         });
-
     };
 </script>
