@@ -132,7 +132,7 @@
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-balance-scale"></i>
-                    <span class="title">监测项目</span>
+                    <span class="title">监测项目测试</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">

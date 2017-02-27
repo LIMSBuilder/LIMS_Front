@@ -326,6 +326,31 @@
                                                     <span class="required">  </span>
                                                 </label>
                                                 <div class="col-md-9">
+                                                    <div class="table-scrollable table-scrollable-borderless">
+                                                        <table class="table table-hover table-light">
+                                                            <thead>
+                                                            <tr class="uppercase">
+                                                                <th> 选择</th>
+                                                                <th> 序号</th>
+                                                                <th> 环境要素</th>
+                                                                <th> 监测点（个）</th>
+                                                                <th> 监测项目</th>
+                                                                <th> 监测频次</th>
+                                                                <th> 备注</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <p>
+                                                        <a href="#createMonitor" data-toggle="modal"
+                                                           class="btn green btn-outline">新 增</a>
+                                                        <button type="button" class="btn red btn-outline">删除全部</button>
+                                                        <button type="button" class="btn yellow btn-outline">读取模板
+                                                        </button>
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -393,6 +418,7 @@
                                                         <option value="客户自取">客户自取</option>
                                                         <option value="挂号邮寄">挂号邮寄</option>
                                                         <option value="其他方式">其他方式</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -519,7 +545,7 @@
                                                         <td class="text-center"> {{item.client_tel}}</td>
                                                         <td class="text-center">
                                                             <button type="button" class="btn btn-sm blue btn-outline"
-                                                                    @click="edit(item)">选 择
+                                                                    @click="choose(item)">选 择
                                                             </button>
                                                         </td>
                                                     </tr>
@@ -542,6 +568,98 @@
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
+
+        </div>
+        <div class="modal fade bs-modal-lg" id="createMonitor" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">创建监测项</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="portlet light portlet-fit portlet-form ">
+                            <div class="portlet-body">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal" id="user_add">
+                                    <div class="form-body">
+                                        <div class="alert alert-danger display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            表单尚未填写完整。
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="monitor_company">监测企业
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="monitor_company"
+                                                       v-model="monitor.company"
+                                                       placeholder=""
+                                                       name="monitor_company">
+                                                <div class="form-control-focus"></div>
+                                                <span class="help-block">请输入监测企业，必需字段。</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="monitor_element">环境要素
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="monitor_element"
+                                                        v-model="monitor.element" id="monitor_element">
+                                                    <template v-for="item in elementList">
+                                                        <option :value="item.id">{{item.name}}</option>
+                                                    </template>
+                                                </select>
+                                                <div class="form-control-focus"></div>
+                                                <span class="help-block">请选择环境要素，必需字段。</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="monitor_project">监测项目
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="monitor_project"
+                                                        v-model="monitor.project" id="monitor_project">
+                                                    <template v-for="item in elementList">
+                                                        <option :value="item.id">{{item.name}}</option>
+                                                    </template>
+                                                </select>
+                                                <div class="form-control-focus"></div>
+                                                <span class="help-block">请选择环境要素，必需字段。</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="monitor_frequency">监测频次
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="monitor_frequency"
+                                                        v-model="monitor.frequency" id="monitor_frequency">
+                                                    <template v-for="item in frequencyList">
+                                                        <option :value="item.id">{{item.name}}</option>
+                                                    </template>
+                                                </select>
+                                                <div class="form-control-focus"></div>
+                                                <span class="help-block">请选择监测频次，必需字段。</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green">添 加</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
 
     </div>
@@ -558,6 +676,12 @@
         data(){
             return {
                 contract: {
+                    client: "",
+                    client_code: "",
+                    client_address: "",
+                    client_tel: "",
+                    client_unit: "",
+                    client_fax: "",
                     trustee: "",
                     trustee_code: "",
                     trustee_address: "",
@@ -575,12 +699,18 @@
                 customerList: [],
                 currentPage: 1,
                 condition: "",
+                create: {},
+                monitor: {},
+                elementList: [],
+                frequencyList: []
             }
         },
         mounted(){
             var me = this;
             me.init();
             me.fetchType();
+            me.fetchElement();
+            me.fetchFrequency();
             moment.locale('zh-cn');
             // textarea的字数显示
             $('#projectAim').maxlength({
@@ -618,6 +748,9 @@
             $("#chooseCustomer").draggable({
                 handle: ".modal-header"
             });
+            $("#createMonitor").draggable({
+                handle: ".modal-header"
+            });
             me.getCustomer();
         },
         methods: {
@@ -639,6 +772,50 @@
                     var data = response.data;
                     me.customerList = data.results;
 
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            fetchProjectByElement(e){
+                var me = this;
+                var value = e.target.value;
+                me.$http.get("/api/project/findByElement", {
+                    params: {
+                        id: value
+                    }
+                }).then(response => {
+                    var data = response.data;
+
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            fetchElement(){
+                var me = this;
+                me.$http.get("/api/element/total").then(response => {
+                    var me = this;
+                    me.elementList = response.data.results;
+                    me.$nextTick(function () {
+                        $('#monitor_element').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check'
+                        });
+                    });
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            fetchFrequency(){
+                var me = this;
+                me.$http.get("/api/frequency/total").then(response => {
+                    var data = response.data;
+                    me.frequencyList = data.results;
+                    me.$nextTick(function () {
+                        $('#monitor_frequency').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check'
+                        });
+                    });
                 }, response => {
                     serverErrorInfo();
                 });
@@ -690,6 +867,12 @@
                 me.condition = "";
                 me.currentPage = 1;
                 me.getCustomer();
+            },
+            choose(item){
+                var me = this;
+                for (var key in item) {
+                    me.contract[key] = item[key];
+                }
             },
             importDefault(){
                 //导入预设
