@@ -41,7 +41,7 @@
                             </label>
                             <div class="col-md-7">
                                 <select class="form-control" name="elementId" id="elementId"
-                                        v-model="project.elementId">
+                                        v-model="project.element_id">
                                     <option value></option>
                                     <template v-for="item in elementList">
                                         <option :value="item.id">{{item.name}}</option>
@@ -51,12 +51,12 @@
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="departmentId">承接部门
+                            <label class="col-md-3 control-label" for="department_id">承接部门
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <select class="form-control" name="departmentId" id="departmentId"
-                                        v-model="project.departmentId">
+                                <select class="form-control" name="departmentId" id="department_id"
+                                        v-model="project.department_id">
                                     <option value></option>
                                     <template v-for="item in department_list">
                                         <option :value="item.id">{{item.name}}</option>
@@ -86,7 +86,9 @@
     module.exports = {
         data: function () {
             return {
-                project: {},
+                project: {
+                    desp:""
+                },
                 department_list: [],
                 elementList: []
             }

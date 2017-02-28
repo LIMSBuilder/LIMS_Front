@@ -56,6 +56,7 @@ module.exports = {
             'mod/datarangepicker':path.resolve(PluginsPath,'bootstrap-daterangepicker/daterangepicker.js'),
             'mod/moment':path.resolve(PluginsPath,'moment.min'),
             'mod/maxlength':path.resolve(PluginsPath,'bootstrap-maxlength/bootstrap-maxlength.js'),
+            'mod/taginput':path.resolve(PluginsPath,'bootstrap-tagsinput/bootstrap-tagsinput.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -82,6 +83,7 @@ module.exports = {
             'style/jqueryUI': path.resolve(PluginsPath, 'jquery-ui/jquery-ui.min.css'),
             'style/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone.css'),
             'style/datarangepicker':path.resolve(PluginsPath,'bootstrap-daterangepicker/daterangepicker.css'),
+            'style/taginput':path.resolve(PluginsPath,'bootstrap-tagsinput/bootstrap-tagsinput.css'),
         }
     },
     module: {

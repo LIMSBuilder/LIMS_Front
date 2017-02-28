@@ -588,7 +588,7 @@
                                             表单尚未填写完整。
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label" for="monitor_company">监测企业
+                                            <label class="col-md-2 control-label" for="monitor_company">监测企业或路段
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
@@ -601,36 +601,23 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label" for="monitor_element">环境要素
-                                                <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <select class="form-control" name="monitor_element"
-                                                        v-model="monitor.element" id="monitor_element">
-                                                    <template v-for="item in elementList">
-                                                        <option :value="item.id">{{item.name}}</option>
-                                                    </template>
-                                                </select>
-                                                <div class="form-control-focus"></div>
-                                                <span class="help-block">请选择环境要素，必需字段。</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label class="col-md-2 control-label" for="monitor_project">监测项目
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <select class="form-control" name="monitor_project"
-                                                        v-model="monitor.project" id="monitor_project">
+                                                <select multiple="multiple" class="multi-select"
+                                                        id="monitor_project" name="monitor_project"
+                                                        v-model="monitor.project">
                                                     <template v-for="item in elementList">
-                                                        <option :value="item.id">{{item.name}}</option>
+                                                        <optgroup :label="item.name">
+                                                            <template v-for="project in item.project">
+                                                                <option :value="project.id">{{project.name}}</option>
+                                                            </template>
+                                                        </optgroup>
                                                     </template>
                                                 </select>
-                                                <div class="form-control-focus"></div>
-                                                <span class="help-block">请选择环境要素，必需字段。</span>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="monitor_frequency">监测频次
                                                 <span class="required">*</span>
@@ -638,12 +625,23 @@
                                             <div class="col-md-9">
                                                 <select class="form-control" name="monitor_frequency"
                                                         v-model="monitor.frequency" id="monitor_frequency">
+                                                    <option value>请选择监测频次</option>
                                                     <template v-for="item in frequencyList">
-                                                        <option :value="item.id">{{item.name}}</option>
+                                                        <option :value="item.id">{{item.total}}</option>
                                                     </template>
                                                 </select>
                                                 <div class="form-control-focus"></div>
                                                 <span class="help-block">请选择监测频次，必需字段。</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="monitor_frequency">监测点
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control input-large"
+                                                       placeholder="回车以输入不同监测点" v-model="monitor.point"
+                                                       data-role="tagsinput" id="monitor_point">
                                             </div>
                                         </div>
                                     </div>
@@ -654,7 +652,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green">添 加</button>
+                        <button type="button" class="btn green" @click="addMonitor">添 加</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -669,8 +667,10 @@
     import 'mod/wizard'
     import 'mod/datarangepicker'
     import 'mod/maxlength'
+    import  'mod/taginput'
     import 'style/datarangepicker'
     //    import 'mod/moment'
+    import  'style/taginput'
     import moment from 'moment'
     export default{
         data(){
@@ -700,8 +700,13 @@
                 currentPage: 1,
                 condition: "",
                 create: {},
-                monitor: {},
-                elementList: [],
+                monitor: {
+                    project: [],
+                    point: "",
+                    frequency: "",
+                    company: ""
+                },
+                elementList: [{project: []}],
                 frequencyList: []
             }
         },
@@ -709,8 +714,11 @@
             var me = this;
             me.init();
             me.fetchType();
-            me.fetchElement();
+            me.fetchProjectByElement();
             me.fetchFrequency();
+            me.getCustomer();
+
+
             moment.locale('zh-cn');
             // textarea的字数显示
             $('#projectAim').maxlength({
@@ -751,9 +759,17 @@
             $("#createMonitor").draggable({
                 handle: ".modal-header"
             });
-            me.getCustomer();
+
         },
         methods: {
+            addMonitor(){
+                var me = this;
+
+                me.monitor.project = jQuery("#monitor_project").val();
+                me.monitor.point = jQuery('#monitor_point').val();
+
+                console.log(JSON.parse(JSON.stringify(me.monitor)));
+            },
             create(){
                 var me = this;
                 me.contract.package_project = jQuery("#package_project").val();
@@ -776,29 +792,14 @@
                     serverErrorInfo();
                 });
             },
-            fetchProjectByElement(e){
+            fetchProjectByElement(){
                 var me = this;
-                var value = e.target.value;
-                me.$http.get("/api/project/findByElement", {
-                    params: {
-                        id: value
-                    }
-                }).then(response => {
-                    var data = response.data;
-
-                }, response => {
-                    serverErrorInfo();
-                });
-            },
-            fetchElement(){
-                var me = this;
-                me.$http.get("/api/element/total").then(response => {
+                me.$http.get("/api/project/findElementList").then(response => {
                     var me = this;
                     me.elementList = response.data.results;
                     me.$nextTick(function () {
-                        $('#monitor_element').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check'
+                        $('#monitor_project').multiSelect({
+                            selectableOptgroup: true
                         });
                     });
                 }, response => {

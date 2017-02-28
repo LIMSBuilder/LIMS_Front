@@ -50,7 +50,7 @@
                                         <option value="hour">小时</option>
                                         <option value="day">天数</option>
                                         <option value="week">星期</option>
-                                        <option value="mouth">月份</option>
+                                        <option value="month">月份</option>
                                         <option value="quarter">季度</option>
                                         <option value="year">年度</option>
                                     </select>
