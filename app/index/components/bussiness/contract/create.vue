@@ -237,6 +237,7 @@
                                                     <div class="col-md-8">
                                                         <select class="form-control" name="trustee"
                                                                 v-model="contract.trustee" id="trustee">
+                                                            <option value="">请选择联系人</option>
                                                             <template v-for="item in userList">
                                                                 <option :value="item.id">{{item.name}}</option>
                                                             </template>
@@ -288,6 +289,7 @@
                                                 <div class="col-md-10">
                                                     <select class="bs-select form-control" name="projectType"
                                                             v-model="contract.type" id="projectType">
+                                                        <option>请选择监测类别</option>
                                                         <template v-for="item in typeList">
                                                             <option :value="item.id">{{item.name}}</option>
                                                         </template>
@@ -380,13 +382,13 @@
                                                                     </td>
                                                                     <td class="text-center">{{item.other}}</td>
                                                                     <td class="text-center">
-                                                                        <a
-                                                                                class="btn btn-icon-only green"
-                                                                                @click="changeItem(item)"
-                                                                                href="#createMonitor"
-                                                                                data-toggle="modal">
-                                                                            <i class="fa fa-edit"> </i>
-                                                                        </a>
+                                                                        <!--<a-->
+                                                                        <!--class="btn btn-icon-only green"-->
+                                                                        <!--@click="changeItem(item)"-->
+                                                                        <!--href="#createMonitor"-->
+                                                                        <!--data-toggle="modal">-->
+                                                                        <!--<i class="fa fa-edit"> </i>-->
+                                                                        <!--</a>-->
                                                                         <a href="javascript:;"
                                                                            class="btn btn-icon-only red"
                                                                            @click="deleteItem(item)">
@@ -614,13 +616,13 @@
                         <div class="portlet light portlet-fit portlet-form ">
                             <div class="portlet-body">
                                 <!-- BEGIN FORM-->
-                                <form action="#" class="form-horizontal" id="user_add">
+                                <form action="#" class="form-horizontal" id="item_add">
                                     <div class="form-body">
                                         <div class="alert alert-danger display-hide">
                                             <button class="close" data-close="alert"></button>
                                             表单尚未填写完整。
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_company">监测企业或路段
                                                 <span class="required">*</span>
                                             </label>
@@ -629,17 +631,16 @@
                                                        v-model="monitor.company"
                                                        placeholder=""
                                                        name="monitor_company">
-                                                <div class="form-control-focus"></div>
-                                                <span class="help-block">请输入监测企业，必需字段。</span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
                                                 <select class="form-control"
-                                                        v-model="monitor.element" id="monitor_element"
+                                                        v-model="monitor.element" name="monitor_element"
+                                                        id="monitor_element"
                                                         @change="fetchProjectByElement($event)" data-live-search="true">
                                                     <option>请选择环境要素</option>
                                                     <template v-for="item in elementList">
@@ -647,31 +648,28 @@
                                                         </option>
                                                     </template>
                                                 </select>
-                                                <div class="form-control-focus"></div>
-                                                <span class="help-block">请输入环境要素，必需字段。</span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_project">监测项目
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
                                                 <select class="form-control"
-                                                        v-model="monitor.project" id="monitor_project" multiple
+                                                        v-model="monitor.project" name="monitor_project"
+                                                        id="monitor_project" multiple
                                                         data-actions-box="true" data-live-search="true">
                                                     <template v-for="item in projectList">
                                                         <option :value="item.id">{{item.name}}
                                                         </option>
                                                     </template>
                                                 </select>
-                                                <div class="form-control-focus"></div>
-                                                <span class="help-block">请输入监测项目，必需字段。</span>
                                             </div>
                                         </div>
 
                                         <!--</div>-->
 
-                                        <div class="form-group">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_frequency">监测频次
                                                 <span class="required">*</span>
                                             </label>
@@ -684,21 +682,19 @@
                                                         <option :value="item.id">{{item.total}}</option>
                                                     </template>
                                                 </select>
-                                                <div class="form-control-focus"></div>
-                                                <span class="help-block">请选择监测频次，必需字段。</span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_point">监测点
-                                                <span class="required">*</span>
+                                                <span class="required"> </span>
                                             </label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control input-large"
-                                                       v-model="monitor.point"
+                                                       v-model="monitor.point" name="monitor_point"
                                                        data-role="tagsinput" id="monitor_point">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label">是否外包
                                                 <span class="required">  </span>
                                             </label>
@@ -717,7 +713,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_other">备注
                                                 <span class="required">  </span>
                                             </label>
@@ -869,20 +865,22 @@
             addMonitor(){
                 //新增一项监测内容
                 var me = this;
-                me.monitor.point = jQuery("#monitor_point").tagsinput("items");
-                me.$http.get("/api/project/details", {
-                    params: me.monitor
-                }).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("监测项目创建成功！");
-                            me.contract.item.push(data);
-                        }
-                    })
-                }, response => {
-                    serverErrorInfo();
-                });
+                if (jQuery("#item_add").valid()) {
+                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
+                    me.$http.get("/api/project/details", {
+                        params: me.monitor
+                    }).then(response => {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("监测项目创建成功！");
+                                me.contract.item.push(data);
+                            }
+                        })
+                    }, response => {
+                        serverErrorInfo();
+                    });
+                }
             },
             deleteItem(item){
                 var me = this;
@@ -894,6 +892,10 @@
             },
             changeItem(item){
                 var me = this;
+                var temp = [];
+                for (var i = 0; i < item.project.length; i++) {
+                    temp.push(item.project[i].id);
+                }
                 var data = {
                     element: item.element.id,
                     frequency: item.frequency.id,
@@ -901,7 +903,7 @@
                     is_package: item.is_package,
                     point: item.point,
                     other: item.other,
-                    project: []
+                    project: temp
                 };
                 me.monitor = data;
                 jQuery("#monitor_element").selectpicker("val", data.element);
@@ -1194,6 +1196,90 @@
                         },
                         projectType: {
                             required: true
+                        },
+                        payWay: {
+                            required: true
+                        },
+                        payment: {
+                            required: true
+                        },
+                        finish_time: {
+                            required: true
+                        }
+                    },
+
+                    messages: { // custom messages for radio buttons and checkboxes
+
+                    },
+
+                    errorPlacement: function (error, element) { // render error placement for each input type
+                        if (element.attr("name") == "gender") { // for uniform radio buttons, insert the after the given container
+                            error.insertAfter("#form_gender_error");
+                        } else if (element.attr("name") == "payment[]") { // for uniform checkboxes, insert the after the given container
+                            error.insertAfter("#form_payment_error");
+                        } else {
+                            error.insertAfter(element); // for other inputs, just perform default behavior
+                        }
+                    },
+
+                    invalidHandler: function (event, validator) { //display error alert on form submit
+                        success.hide();
+                        error.show();
+                        App.scrollTo(error, -200);
+                    },
+
+                    highlight: function (element) { // hightlight error inputs
+                        $(element)
+                            .closest('.form-group').removeClass('has-success').addClass('has-error'); // set error class to the control group
+                    },
+
+                    unhighlight: function (element) { // revert the change done by hightlight
+                        $(element)
+                            .closest('.form-group').removeClass('has-error'); // set error class to the control group
+                    },
+
+                    success: function (label) {
+                        if (label.attr("for") == "gender" || label.attr("for") == "payment[]") { // for checkboxes and radio buttons, no need to show OK icon
+                            label
+                                .closest('.form-group').removeClass('has-error').addClass('has-success');
+                            label.remove(); // remove error label here
+                        } else { // display success icon for other inputs
+                            label
+                                .addClass('valid') // mark the current input as valid and display OK icon
+                                .closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
+                        }
+                    },
+
+                    submitHandler: function (form) {
+                        success.show();
+                        error.hide();
+                        form[0].submit();
+                        //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
+                    }
+
+                });
+
+
+                jQuery("#item_add").validate({
+                    doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
+                    errorElement: 'span', //default input error message container
+                    errorClass: 'help-block help-block-error', // default input error message class
+                    focusInvalid: false, // do not focus the last invalid input
+                    rules: {
+                        monitor_company: {
+                            required: true
+                        },
+                        monitor_element: {
+                            required: true
+                        },
+                        monitor_project: {
+                            required: true
+                        },
+                        monitor_point: {
+                            required: true
+                        },
+                        monitor_frequency: {
+                            required: true
                         }
                     },
 
@@ -1318,9 +1404,9 @@
                         success.hide();
                         error.hide();
 
-//                        if (form.valid() == false) {
-//                            return false;
-//                        }
+                        if (form.valid() == false) {
+                            return false;
+                        }
 
                         handleTitle(tab, navigation, index);
                     },
