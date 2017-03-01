@@ -896,7 +896,8 @@
                     paymentWay: "客户自取",
                     in_room: false,
                     secret: false,
-                    item: []
+                    item: [],
+                    project_items: []
                 },
                 typeList: [],
                 customerList: [],
@@ -937,12 +938,6 @@
                 limitReachedClass: "label label-danger",
                 alwaysShow: true,
                 placement: 'centered-right'
-            });
-            $('#package_project').multiSelect({
-                selectableOptgroup: true,
-                afterSelect: function (values) {
-                    alert("Select value: " + values);
-                }
             });
             $('#defaultrange').daterangepicker({
                     opens: (App.isRTL() ? 'left' : 'right'),
@@ -1035,8 +1030,15 @@
             },
             create(){
                 var me = this;
-                me.contract.package_project = jQuery("#package_project").val();
                 me.contract.finish_time = jQuery("#finish_time").val();
+
+                var items = me.contract.item;
+                me.contract.project_items = [];
+                for (var i = 0; i < items.length; i++) {
+                    console.log(JSON.stringify(items[i]))
+                    me.contract.project_items.push(JSON.stringify(items[i]))
+                }
+
                 me.$http.post("/api/contract/create", me.contract).then(response => {
                     var data = response.data;
                     codeState(data.code, {
@@ -1045,7 +1047,7 @@
                 }, response => {
                     serverErrorInfo();
                 });
-                console.log(JSON.parse(JSON.stringify(me.contract)));
+//                console.log(JSON.parse(JSON.stringify(me.contract)));
             },
             fetchCustomer(pageNum, rowCount){
                 var me = this;
@@ -1523,9 +1525,9 @@
                         success.hide();
                         error.hide();
 
-                        if (form.valid() == false) {
-                            return false;
-                        }
+//                        if (form.valid() == false) {
+//                            return false;
+//                        }
 
                         handleTitle(tab, navigation, index);
                     },

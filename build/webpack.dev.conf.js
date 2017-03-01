@@ -24,7 +24,8 @@ config.plugins = [
         inject: true,
         chunks: ['login']
     }),
-    new ExtractTextPlugin("styles.css")
+    // new ExtractTextPlugin("styles.css")
+    new ExtractTextPlugin("[name].css")
 ];
 
 
