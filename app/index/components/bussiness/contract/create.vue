@@ -235,7 +235,7 @@
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <select class="bs-select form-control" name="trustee"
+                                                        <select class="form-control" name="trustee"
                                                                 v-model="contract.trustee" id="trustee">
                                                             <template v-for="item in userList">
                                                                 <option :value="item.id">{{item.name}}</option>
