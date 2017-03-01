@@ -380,9 +380,11 @@
                                                                     </td>
                                                                     <td class="text-center">{{item.other}}</td>
                                                                     <td class="text-center">
-                                                                        <a href="javascript:;"
-                                                                           class="btn btn-icon-only green"
-                                                                           @click="changeItem(item)">
+                                                                        <a
+                                                                                class="btn btn-icon-only green"
+                                                                                @click="changeItem(item)"
+                                                                                href="#createMonitor"
+                                                                                data-toggle="modal">
                                                                             <i class="fa fa-edit"> </i>
                                                                         </a>
                                                                         <a href="javascript:;"
@@ -900,13 +902,28 @@
                     point: item.point,
                     other: item.other,
                     project: []
-                }
+                };
                 me.monitor = data;
+                jQuery("#monitor_element").selectpicker("val", data.element);
+                jQuery("#monitor_frequency").selectpicker("val", data.frequency);
+                me.fetchProjectByValue(data.element, data.project);
+                jQuery("#monitor_point").tagsinput("removeAll")
+                for (var p in item.point) {
+                    jQuery("#monitor_point").tagsinput("add", item.point[p]);
+                }
             },
             create(){
                 var me = this;
                 me.contract.package_project = jQuery("#package_project").val();
                 me.contract.finish_time = jQuery("#finish_time").val();
+                me.$http.post("/api/contract/create", me.contract).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: "合同创建成功！"
+                    })
+                }, response => {
+                    serverErrorInfo();
+                });
                 console.log(JSON.parse(JSON.stringify(me.contract)));
             },
             fetchCustomer(pageNum, rowCount){
@@ -963,6 +980,34 @@
                             selectAllText: "选择全部",
                             noneSelectedText: "请选择监测项目"
                         });
+                    })
+                }, resposne => {
+                    serverErrorInfo();
+                })
+            },
+            fetchProjectByValue(value, selected){
+                var me = this;
+                me.$http.get("/api/project/findByElement", {
+                    params: {
+                        element_id: value
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.projectList = data.results;
+                    me.$nextTick(function () {
+                        //销毁监测项目选择框
+                        $('#monitor_project').selectpicker('destroy');
+                        //初始化监测项目选择框
+                        $('#monitor_project').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            countSelectedText: "count",
+                            deselectAllText: "取消选择",
+                            selectAllText: "选择全部",
+                            noneSelectedText: "请选择监测项目"
+                        });
+                        debugger
+                        $('#monitor_project').selectpicker("val", selected);
                     })
                 }, resposne => {
                     serverErrorInfo();
