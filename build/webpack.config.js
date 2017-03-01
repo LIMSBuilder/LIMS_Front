@@ -6,13 +6,15 @@ var RootPath = path.resolve(__dirname, '../app');
 var PluginsPath = path.resolve(__dirname, '../app/global/plugins');
 var JsPath = path.resolve(__dirname, '../app/global/js');
 var StylePath = path.resolve(__dirname, '../app/global/style');
+var GlobalPath = path.resolve(__dirname, '../app/global');
 module.exports = {
     // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
     entry: {
         index: [
             './build/dev-client',
             path.resolve(__dirname, '../app/index/index.js')
-        ]
+        ],
+        login: path.resolve(__dirname, '../app/login/index.js'),
     },
     // 输出配置
     output: {
@@ -53,17 +55,17 @@ module.exports = {
             'mod/jqueryUI': path.resolve(PluginsPath, 'jquery-ui/jquery-ui.min.js'),
             'mod/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone-amd-module.js'),
             'mod/wizard': path.resolve(PluginsPath, 'bootstrap-wizard/jquery.bootstrap.wizard.js'),
-            'mod/datarangepicker':path.resolve(PluginsPath,'bootstrap-daterangepicker/daterangepicker.js'),
-            'mod/moment':path.resolve(PluginsPath,'moment.min'),
-            'mod/maxlength':path.resolve(PluginsPath,'bootstrap-maxlength/bootstrap-maxlength.js'),
-            'mod/taginput':path.resolve(PluginsPath,'bootstrap-tagsinput/bootstrap-tagsinput.js'),
+            'mod/datarangepicker': path.resolve(PluginsPath, 'bootstrap-daterangepicker/daterangepicker.js'),
+            'mod/moment': path.resolve(PluginsPath, 'moment.min'),
+            'mod/maxlength': path.resolve(PluginsPath, 'bootstrap-maxlength/bootstrap-maxlength.js'),
+            'mod/taginput': path.resolve(PluginsPath, 'bootstrap-tagsinput/bootstrap-tagsinput.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
             'style/line_icon': path.resolve(PluginsPath, 'simple-line-icons/simple-line-icons.min.css'),
             'style/bootstrap': path.resolve(PluginsPath, 'bootstrap/css/bootstrap.css'),
             'style/switch': path.resolve(PluginsPath, 'bootstrap-switch/css/bootstrap-switch.min.css'),
-            'style/select':path.resolve(PluginsPath,'bootstrap-select/css/bootstrap-select.css'),
+            'style/select': path.resolve(PluginsPath, 'bootstrap-select/css/bootstrap-select.css'),
             'style/select2': path.resolve(PluginsPath, 'select2/css/select2.min.css'),
             'style/select2_bootstrap': path.resolve(PluginsPath, 'select2/css/select2-bootstrap.min.css'),
 
@@ -82,8 +84,12 @@ module.exports = {
             'style/pagination': path.resolve(StylePath, 'pagination.css'),
             'style/jqueryUI': path.resolve(PluginsPath, 'jquery-ui/jquery-ui.min.css'),
             'style/dropzone': path.resolve(PluginsPath, 'dropzone/dropzone.css'),
-            'style/datarangepicker':path.resolve(PluginsPath,'bootstrap-daterangepicker/daterangepicker.css'),
-            'style/taginput':path.resolve(PluginsPath,'bootstrap-tagsinput/bootstrap-tagsinput.css'),
+            'style/datarangepicker': path.resolve(PluginsPath, 'bootstrap-daterangepicker/daterangepicker.css'),
+            'style/taginput': path.resolve(PluginsPath, 'bootstrap-tagsinput/bootstrap-tagsinput.css'),
+
+            'style/login': path.resolve(StylePath, 'login.css'),
+
+            'globalPath': path.resolve(GlobalPath)
         }
     },
     module: {

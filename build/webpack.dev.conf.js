@@ -15,7 +15,14 @@ config.plugins = [
     new HtmlWebpackPlugin({
         filename: 'index.html',
         template: path.resolve(__dirname, '../app/index/index.html'),
-        inject: true
+        inject: true,
+        chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+        filename: 'login.html',
+        template: path.resolve(__dirname, '../app/login/index.html'),
+        inject: true,
+        chunks: ['login']
     }),
     new ExtractTextPlugin("styles.css")
 ];

@@ -41,7 +41,7 @@ app.use(hotMiddleware)
 app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 // 监听 8888端口，开启服务器
-app.listen(8888, function (err) {
+app.listen(8889, function (err) {
     if (err) {
         console.log(err)
         return
