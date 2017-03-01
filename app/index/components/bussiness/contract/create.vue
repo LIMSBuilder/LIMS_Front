@@ -382,13 +382,6 @@
                                                                     </td>
                                                                     <td class="text-center">{{item.other}}</td>
                                                                     <td class="text-center">
-                                                                        <!--<a-->
-                                                                        <!--class="btn btn-icon-only green"-->
-                                                                        <!--@click="changeItem(item)"-->
-                                                                        <!--href="#createMonitor"-->
-                                                                        <!--data-toggle="modal">-->
-                                                                        <!--<i class="fa fa-edit"> </i>-->
-                                                                        <!--</a>-->
                                                                         <a href="javascript:;"
                                                                            class="btn btn-icon-only red"
                                                                            @click="deleteItem(item)">
@@ -498,8 +491,136 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab4">
-                                            <h3 class="block">Confirm your account</h3>
-                                            <h4 class="form-section">Account</h4>
+                                            <h3 class="block">确认您的合同信息</h3>
+                                            <span>暂时不显示</span>
+                                            <!--<h4 class="form-section">甲方信息</h4>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_unit">委托单位-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.client_unit}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_code">邮政编码-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.client_code}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_address">联系地址-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label">-->
+                                                            <!--{{contract.client_address}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_tel">联系电话-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.client_tel}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client">联系人-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.client}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_fax">传真号码-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.client_fax}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<h4 class="form-section">乙方信息</h4>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_unit">受托单位-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.trustee_unit}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_code">邮政编码-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.trustee_code}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_address">联系地址-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label">-->
+                                                            <!--{{contract.client_address}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_tel">联系电话-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.trustee_tel}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client">联系人-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.trustee}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="form-group col-md-6">-->
+                                                    <!--<label class="control-label col-md-4" for="client_fax">传真号码-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.trustee_fax}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<h4 class="form-section">合同详情</h4>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-12">-->
+                                                    <!--<label class="control-label col-md-2" for="client">项目名称-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.name}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-12">-->
+                                                    <!--<label class="control-label col-md-2" for="client">监测目的-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.aim}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group col-md-12">-->
+                                                    <!--<label class="control-label col-md-2" for="client">监测类别-->
+                                                    <!--</label>-->
+                                                    <!--<div class="col-md-8">-->
+                                                        <!--<label class="control-label"> {{contract.type}}</label>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -774,7 +895,7 @@
                     wayDesp: "",
                     paymentWay: "客户自取",
                     package_project: [],
-                    inRoom: false,
+                    in_room: false,
                     secret: false,
                     item: []
                 },
