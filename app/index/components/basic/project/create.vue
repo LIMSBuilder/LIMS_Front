@@ -136,7 +136,7 @@
                 }
             }
         }
-    }
+    };
 
     var handleValidation1 = function () {
         var form1 = $('#user_add');
