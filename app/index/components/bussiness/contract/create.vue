@@ -235,15 +235,12 @@
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <div class="input-icon right">
-                                                            <i class="fa fa-user"></i>
-                                                            <select class="bs-select form-control" name="trustee"
-                                                                    v-model="contract.trustee" id="trustee">
-                                                                <template v-for="item in userList">
-                                                                    <option :value="item.id">{{item.name}}</option>
-                                                                </template>
-                                                            </select>
-                                                        </div>
+                                                        <select class="bs-select form-control" name="trustee"
+                                                                v-model="contract.trustee" id="trustee">
+                                                            <template v-for="item in userList">
+                                                                <option :value="item.id">{{item.name}}</option>
+                                                            </template>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
@@ -811,6 +808,7 @@
             me.fetchFrequency();
             me.getCustomer();
             me.fetchElement();
+            me.fetchUser();
 
             moment.locale('zh-cn');
             $('#projectAim').maxlength({
@@ -1017,6 +1015,12 @@
                 me.$http.get("/api/user/total").then(response => {
                     var data = response.data;
                     me.userList = data.results;
+                    me.$nextTick(function () {
+                        $('#trustee').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check'
+                        });
+                    });
                 }, response => {
                     serverErrorInfo();
                 });
