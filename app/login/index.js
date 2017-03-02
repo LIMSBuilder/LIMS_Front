@@ -58,10 +58,10 @@ var Login = function () {
 
             messages: {
                 username: {
-                    required: "Username is required."
+                    required: "用户名不能为空"
                 },
                 password: {
-                    required: "Password is required."
+                    required: "登录密码不能为空"
                 }
             },
 
@@ -105,15 +105,20 @@ var Login = function () {
             focusInvalid: false, // do not focus the last invalid input
             ignore: "",
             rules: {
-                email: {
-                    required: true,
-                    email: true
+                username: {
+                    required: true
+                },
+                card: {
+                    required: true
                 }
             },
 
             messages: {
-                email: {
-                    required: "Email is required."
+                username: {
+                    required: "用户名不能为空"
+                },
+                card: {
+                    required: "证件号不能为空"
                 }
             },
 
@@ -202,38 +207,43 @@ var Login = function () {
                 fullname: {
                     required: true
                 },
-                email: {
-                    required: true,
-                    email: true
-                },
-                address: {
+                card: {
                     required: true
                 },
-                city: {
-                    required: true
-                },
-                country: {
-                    required: true
-                },
-
                 username: {
-                    required: true
+                    required: true,
+                    minlength: 5,
+                    maxlength: 15
                 },
                 password: {
-                    required: true
+                    required: true,
+                    minlength: 5,
+                    maxlength: 15
                 },
                 rpassword: {
                     equalTo: "#register_password"
-                },
-
-                tnc: {
-                    required: true
                 }
             },
 
             messages: { // custom messages for radio buttons and checkboxes
-                tnc: {
-                    required: "Please accept TNC first."
+                fullname: {
+                    required: "真实姓名不能为空"
+                },
+                card: {
+                    required: "证件号不能为空"
+                },
+                username: {
+                    required: "用户名不能为空",
+                    maxlength: "用户名长度必须位于5到15位之间",
+                    minlength: "用户名长度必须位于5到15位之间"
+                },
+                password: {
+                    required: "密码不能为空",
+                    maxlength: "用户名长度必须位于5到15位之间",
+                    minlength: "用户名长度必须位于5到15位之间"
+                },
+                rpassword: {
+                    equalTo: "两次密码输入不一致"
                 }
             },
 
@@ -312,48 +322,71 @@ jQuery(document).ready(function () {
     //登录验证
     jQuery("#login_btn").off("click").on("click", function () {
         var form = jQuery("#login").serialize();
-        $.ajax({
-            type: "POST",  //提交方式
-            url: "/api/login/check",//路径
-            data: form,//数据，这里使用的是Json格式进行传输
-            success: function (result) {//返回数据根据结果进行相应的处理
-                var data = result.code;
-                codeState(data, {
-                    200: function () {
-                        alert("登陆成功");
-                    },
-                    502: function () {
-                        error("用户名或密码错误！");
-                    },
-                    504: function () {
-                        error("用户名不存在！");
-                    }
-                })
-            }
-        });
+        if ($('.login-form').valid()) {
+            $.ajax({
+                type: "POST",  //提交方式
+                url: "/api/login/check",//路径
+                data: form,//数据，这里使用的是Json格式进行传输
+                success: function (result) {//返回数据根据结果进行相应的处理
+                    var data = result.code;
+                    codeState(data, {
+                        200: function () {
+                            alert("登陆成功");
+
+                        },
+                        502: function () {
+                            error("用户名或密码错误！");
+                        },
+                        504: function () {
+                            error("用户名不存在！");
+                        }
+                    })
+                }
+            });
+        }
     });
     //重置密码
     jQuery("#reset_password").off("click").on("click", function () {
         var form = jQuery("#forget").serialize();
-        $.ajax({
-            type: "POST",  //提交方式
-            url: "/api/login/forget",//路径
-            data: form,//数据，这里使用的是Json格式进行传输
-            success: function (result) {//返回数据根据结果进行相应的处理
-                var data = result.code;
-                codeState(data, {
-                    200: function () {
-                        alert("密码重置成功，默认密码为" + result.default);
-                    },
-                    502: function () {
-                        error("当前证件号错误，请重新输入！");
-                    },
-                    504: function () {
-                        error("用户名不存在！");
-                    }
-                })
-            }
-        });
+        if ($('.forget-form').valid()) {
+            $.ajax({
+                type: "POST",  //提交方式
+                url: "/api/login/forget",//路径
+                data: form,//数据，这里使用的是Json格式进行传输
+                success: function (result) {//返回数据根据结果进行相应的处理
+                    var data = result.code;
+                    codeState(data, {
+                        200: function () {
+                            alert("密码重置成功，默认密码为" + result.default);
+                        },
+                        502: function () {
+                            error("当前证件号错误，请重新输入！");
+                        },
+                        504: function () {
+                            error("用户名不存在！");
+                        }
+                    })
+                }
+            });
+        }
+    });
 
+    jQuery("#register-submit-btn").off("click").on("click", function () {
+        var form = jQuery("#register-form").serialize();
+        if ($('.register-form').valid()) {
+            $.ajax({
+                type: "POST",  //提交方式
+                url: "/api/user/create",//路径
+                data: form,//数据，这里使用的是Json格式进行传输
+                success: function (result) {//返回数据根据结果进行相应的处理
+                    var data = result.code;
+                    codeState(data, {
+                        200: function () {
+                            alert("用户创建成功！");
+                        }
+                    })
+                }
+            });
+        }
     });
 });
