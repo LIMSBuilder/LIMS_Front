@@ -934,11 +934,13 @@
                 alwaysShow: true,
                 placement: 'centered-right'
             });
+
             $('#other').maxlength({
                 limitReachedClass: "label label-danger",
                 alwaysShow: true,
                 placement: 'centered-right'
             });
+            //时间选择器
             $('#defaultrange').daterangepicker({
                     opens: (App.isRTL() ? 'left' : 'right'),
                     format: 'YYYY/MM/DD',
@@ -958,9 +960,11 @@
                     $('#defaultrange input').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
                 }
             );
+            //选择客户信息窗口可拖拽
             $("#chooseCustomer").draggable({
                 handle: ".modal-header"
             });
+            //创建监测项目窗口可拖拽
             $("#createMonitor").draggable({
                 handle: ".modal-header"
             });
@@ -1525,10 +1529,9 @@
                         success.hide();
                         error.hide();
 
-//                        if (form.valid() == false) {
-//                            return false;
-//                        }
-
+                        if (form.valid() == false) {
+                            return false;
+                        }
                         handleTitle(tab, navigation, index);
                     },
                     onPrevious: function (tab, navigation, index) {

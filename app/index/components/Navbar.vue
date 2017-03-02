@@ -67,13 +67,18 @@
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-diamond"></i>
-                    <span class="title">合同起草</span>
+                    <span class="title">业务合同管理</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     <router-link :to="{ path: '/contract/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">监测业务合同</span>
+                            <span class="title">合同起草</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">合同列表</span>
                         </a>
                     </router-link>
                 </ul>

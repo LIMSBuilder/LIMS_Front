@@ -23,6 +23,9 @@ import 'mod／utils'
 import 'mod/jqueryUI'
 import 'mod/select2'
 
+import 'mod/datepicker'
+import 'mod/datepicker_locales'
+
 //===========导入Vue组件==============
 
 import Top from './components/Top.vue'
@@ -33,6 +36,7 @@ import Footer from './components/Footer.vue'
 //=============Bussiness============
 import Contract from './components/bussiness/contract/contract.vue'
 import Create_Contract from './components/bussiness/contract/create.vue'
+import Contract_List from './components/bussiness/contract/list.vue'
 
 //=============Basic================
 //Element
@@ -272,7 +276,7 @@ var routes = [
             },
             {
                 path: "list",
-                component: Project_List
+                component: Contract_List
             },
             {
                 path: "change",

@@ -59,6 +59,8 @@ module.exports = {
             'mod/moment': path.resolve(PluginsPath, 'moment.min'),
             'mod/maxlength': path.resolve(PluginsPath, 'bootstrap-maxlength/bootstrap-maxlength.js'),
             'mod/taginput': path.resolve(PluginsPath, 'bootstrap-tagsinput/bootstrap-tagsinput.js'),
+            'mod/datepicker': path.resolve(PluginsPath, 'bootstrap-datepicker/js/bootstrap-datepicker.min.js'),
+            'mod/datepicker_locales': path.resolve(PluginsPath, 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -88,6 +90,8 @@ module.exports = {
             'style/taginput': path.resolve(PluginsPath, 'bootstrap-tagsinput/bootstrap-tagsinput.css'),
 
             'style/login': path.resolve(StylePath, 'login.css'),
+
+            'style/contract_list': path.resolve(StylePath, 'contract_list.css'),
 
             'globalPath': path.resolve(GlobalPath)
         }
