@@ -5,88 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e13c4b-5f2f-4216-8e0d-52831df0a2cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.standalone.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ar.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.az.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.bg.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.bs.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ca.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.cs.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.cy.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.da.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.de.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.el.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.eo.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.et.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.eu.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fa.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fi.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fo.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.gl.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.he.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.hr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.hu.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.hy.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.id.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.is.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.it.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ka.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kh.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kk.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ko.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.lt.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.lv.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.me.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.mk.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.mn.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ms.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.nb.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.nl.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.no.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pl.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ro.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.rs.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sk.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sl.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sq.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sv.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sw.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.tr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.uk.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/style/contract_list.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Navbar.vue" afterPath="$PROJECT_DIR$/app/index/components/Navbar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/index.js" afterPath="$PROJECT_DIR$/app/index/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.config.js" afterPath="$PROJECT_DIR$/build/webpack.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -107,8 +27,8 @@
       <file leaf-file-name="create.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="1533" column="25" lean-forward="false" selection-start-line="1533" selection-start-column="25" selection-end-line="1533" selection-end-column="25" />
+            <state relative-caret-position="19350">
+              <caret line="1537" column="25" lean-forward="false" selection-start-line="1537" selection-start-column="25" selection-end-line="1537" selection-end-column="25" />
               <folding>
                 <element signature="n#ul#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
                 <element signature="e#20423#20429#0" expanded="true" />
@@ -127,23 +47,14 @@
                 <element signature="e#63950#63969#0" expanded="true" />
                 <element signature="e#64179#64203#0" expanded="true" />
                 <element signature="e#65904#66054#0" expanded="false" />
-                <element signature="e#66092#66242#0" expanded="false" />
-                <element signature="e#66312#66994#0" expanded="false" />
-                <element signature="e#67034#67166#0" expanded="false" />
-                <element signature="e#70834#71354#0" expanded="false" />
-                <element signature="e#71382#71994#0" expanded="false" />
-                <element signature="e#72032#73116#0" expanded="false" />
-                <element signature="e#74346#74967#0" expanded="false" />
-                <element signature="e#75003#76032#0" expanded="false" />
-                <element signature="e#76057#76601#0" expanded="false" />
-                <element signature="e#76628#76775#0" expanded="false" />
-                <element signature="e#76798#77032#0" expanded="false" />
-                <element signature="e#77062#77183#0" expanded="false" />
-                <element signature="e#77204#77355#0" expanded="false" />
-                <element signature="e#77381#77535#0" expanded="false" />
-                <element signature="e#77564#78298#0" expanded="false" />
-                <marker date="1488376070000" expanded="true" signature="79115:79121" ph=" " />
-                <marker date="1488376070000" expanded="true" signature="79121:79127" ph=" " />
+                <marker date="1488415136000" expanded="true" signature="91906:91989" ph="{...}" />
+                <marker date="1488415136000" expanded="true" signature="91906:92657" ph="{&quot;nextSelector&quot;: '.button-next'...}" />
+                <marker date="1488415136000" expanded="true" signature="91906:93136" ph="{...}" />
+                <marker date="1488415136000" expanded="true" signature="91906:93146" ph="{...}" />
+                <marker date="1488415136000" expanded="true" signature="92057:92220" ph="{...}" />
+                <marker date="1488415136000" expanded="true" signature="92287:92639" ph="{...}" />
+                <marker date="1488415136000" expanded="true" signature="92538:92615" ph="{...}" />
+                <marker date="1488415136000" expanded="true" signature="92960:93120" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -163,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/contract.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="30" />
+              <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -172,8 +83,8 @@
       <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="783">
-              <caret line="93" column="33" lean-forward="false" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="33" />
+            <state relative-caret-position="1395">
+              <caret line="97" column="6" lean-forward="false" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -182,32 +93,32 @@
       <file leaf-file-name="list.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="79" lean-forward="true" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="79" />
+            <state relative-caret-position="450">
+              <caret line="57" column="76" lean-forward="false" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
               <folding>
                 <element signature="e#1117#1123#0" expanded="true" />
-                <element signature="e#6884#6890#0" expanded="true" />
-                <element signature="e#12751#12757#0" expanded="true" />
-                <element signature="e#13999#14005#0" expanded="true" />
-                <element signature="e#16584#16590#0" expanded="true" />
-                <element signature="e#17582#17588#0" expanded="true" />
-                <element signature="e#20070#20076#0" expanded="true" />
-                <element signature="e#21604#21610#0" expanded="true" />
-                <element signature="e#21614#21620#0" expanded="true" />
-                <element signature="e#22183#22189#0" expanded="true" />
-                <element signature="e#22199#22205#0" expanded="true" />
-                <element signature="e#27681#27687#0" expanded="true" />
-                <element signature="e#27694#27700#0" expanded="true" />
-                <element signature="e#28026#28032#0" expanded="true" />
-                <element signature="e#29996#30002#0" expanded="true" />
-                <element signature="e#31696#31702#0" expanded="true" />
-                <element signature="e#31709#31715#0" expanded="true" />
-                <element signature="e#32037#32043#0" expanded="true" />
-                <element signature="e#34109#34115#0" expanded="true" />
-                <element signature="e#34122#34128#0" expanded="true" />
-                <element signature="e#34448#34454#0" expanded="true" />
-                <element signature="e#37675#37681#0" expanded="true" />
-                <element signature="e#37689#37695#0" expanded="true" />
+                <element signature="e#6838#6844#0" expanded="true" />
+                <element signature="e#12705#12711#0" expanded="true" />
+                <element signature="e#13953#13959#0" expanded="true" />
+                <element signature="e#16538#16544#0" expanded="true" />
+                <element signature="e#17536#17542#0" expanded="true" />
+                <element signature="e#20024#20030#0" expanded="true" />
+                <element signature="e#21558#21564#0" expanded="true" />
+                <element signature="e#21568#21574#0" expanded="true" />
+                <element signature="e#22137#22143#0" expanded="true" />
+                <element signature="e#22153#22159#0" expanded="true" />
+                <element signature="e#27635#27641#0" expanded="true" />
+                <element signature="e#27648#27654#0" expanded="true" />
+                <element signature="e#27980#27986#0" expanded="true" />
+                <element signature="e#29950#29956#0" expanded="true" />
+                <element signature="e#31650#31656#0" expanded="true" />
+                <element signature="e#31663#31669#0" expanded="true" />
+                <element signature="e#31991#31997#0" expanded="true" />
+                <element signature="e#34063#34069#0" expanded="true" />
+                <element signature="e#34076#34082#0" expanded="true" />
+                <element signature="e#34402#34408#0" expanded="true" />
+                <element signature="e#37629#37635#0" expanded="true" />
+                <element signature="e#37643#37649#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -216,8 +127,8 @@
       <file leaf-file-name="Navbar.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+            <state relative-caret-position="1020">
+              <caret line="68" column="48" lean-forward="false" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -226,12 +137,10 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+            <state relative-caret-position="105">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="e#34#55#0" expanded="true" />
-                <element signature="e#842#909#0" expanded="true" />
-                <element signature="e#3295#3319#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -241,7 +150,7 @@
         <entry file="file://$PROJECT_DIR$/app/index/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
-              <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+              <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -251,7 +160,7 @@
         <entry file="file://$PROJECT_DIR$/build/webpack.dev.conf.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+              <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -393,8 +302,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="y" value="23" />
+    <option name="width" value="1920" />
+    <option name="height" value="989" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -412,7 +322,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -665,6 +574,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -676,7 +586,6 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="FullScreen" value="true" />
     <property name="SearchEverywhereHistoryKey" value="webpa&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;webpack&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;Nav&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;index.j&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;index&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.html&#10;webpac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/webpack.config.js&#10;contract/cr&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/contract/create.vue&#10;moment&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;mom&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;ran&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-daterangepicker/daterangepicker.js&#10;ind&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;mome&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;webp&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;w&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiza&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;ser&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/dev-server.js&#10;wiz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;project/l&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/basic/project/list.vue&#10;web&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.dev.conf.js&#10;in&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;Na&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;Navb&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;dropz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/dropzone/dropzone.css&#10;change&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/system/role/change.vue&#10;Blo&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;iziToast-buttons &#9;null&#9;null&#10;izi&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/iziToast/dist/js/iziToast.js&#10;datatables&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/datatables/datatables.min.js&#10;Blog&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
@@ -775,14 +684,15 @@
       <workItem from="1488173384193" duration="33852000" />
       <workItem from="1488367891214" duration="1344000" />
       <workItem from="1488375933674" duration="2239000" />
+      <workItem from="1488415151765" duration="585000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130046000" />
+    <option name="totallyTimeSpent" value="130631000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="989" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -790,18 +700,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -835,9 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="84" column="32" lean-forward="false" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
-          <folding>
-            <element signature="e#107#2051#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1027,7 +934,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1070,7 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,10 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4215">
           <caret line="338" column="31" lean-forward="false" selection-start-line="338" selection-start-column="31" selection-end-line="338" selection-end-column="31" />
-          <folding>
-            <element signature="e#34#55#0" expanded="true" />
-            <element signature="e#956#2805#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1089,9 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2430">
           <caret line="162" column="96" lean-forward="false" selection-start-line="162" selection-start-column="89" selection-end-line="162" selection-end-column="96" />
-          <folding>
-            <element signature="e#2324#2330#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1099,7 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1114,7 +1011,7 @@
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/contract.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="30" />
+          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1122,7 +1019,7 @@
     <entry file="file://$PROJECT_DIR$/app/index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1131,14 +1028,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+        <state relative-caret-position="1020">
+          <caret line="68" column="48" lean-forward="false" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -1146,7 +1042,7 @@
     <entry file="file://$PROJECT_DIR$/build/webpack.dev.conf.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1161,20 +1057,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        <state relative-caret-position="105">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="e#34#55#0" expanded="true" />
-            <element signature="e#842#909#0" expanded="true" />
-            <element signature="e#3295#3319#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="93" column="33" lean-forward="false" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="33" />
+        <state relative-caret-position="1395">
+          <caret line="97" column="6" lean-forward="false" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1183,14 +1077,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="72" column="0" lean-forward="true" selection-start-line="45" selection-start-column="4" selection-end-line="72" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="1533" column="25" lean-forward="false" selection-start-line="1533" selection-start-column="25" selection-end-line="1533" selection-end-column="25" />
+        <state relative-caret-position="19350">
+          <caret line="1537" column="25" lean-forward="false" selection-start-line="1537" selection-start-column="25" selection-end-line="1537" selection-end-column="25" />
           <folding>
             <element signature="n#ul#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="e#20423#20429#0" expanded="true" />
@@ -1209,55 +1102,46 @@
             <element signature="e#63950#63969#0" expanded="true" />
             <element signature="e#64179#64203#0" expanded="true" />
             <element signature="e#65904#66054#0" expanded="false" />
-            <element signature="e#66092#66242#0" expanded="false" />
-            <element signature="e#66312#66994#0" expanded="false" />
-            <element signature="e#67034#67166#0" expanded="false" />
-            <element signature="e#70834#71354#0" expanded="false" />
-            <element signature="e#71382#71994#0" expanded="false" />
-            <element signature="e#72032#73116#0" expanded="false" />
-            <element signature="e#74346#74967#0" expanded="false" />
-            <element signature="e#75003#76032#0" expanded="false" />
-            <element signature="e#76057#76601#0" expanded="false" />
-            <element signature="e#76628#76775#0" expanded="false" />
-            <element signature="e#76798#77032#0" expanded="false" />
-            <element signature="e#77062#77183#0" expanded="false" />
-            <element signature="e#77204#77355#0" expanded="false" />
-            <element signature="e#77381#77535#0" expanded="false" />
-            <element signature="e#77564#78298#0" expanded="false" />
-            <marker date="1488376070000" expanded="true" signature="79115:79121" ph=" " />
-            <marker date="1488376070000" expanded="true" signature="79121:79127" ph=" " />
+            <marker date="1488415136000" expanded="true" signature="91906:91989" ph="{...}" />
+            <marker date="1488415136000" expanded="true" signature="91906:92657" ph="{&quot;nextSelector&quot;: '.button-next'...}" />
+            <marker date="1488415136000" expanded="true" signature="91906:93136" ph="{...}" />
+            <marker date="1488415136000" expanded="true" signature="91906:93146" ph="{...}" />
+            <marker date="1488415136000" expanded="true" signature="92057:92220" ph="{...}" />
+            <marker date="1488415136000" expanded="true" signature="92287:92639" ph="{...}" />
+            <marker date="1488415136000" expanded="true" signature="92538:92615" ph="{...}" />
+            <marker date="1488415136000" expanded="true" signature="92960:93120" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="79" lean-forward="true" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="79" />
+        <state relative-caret-position="450">
+          <caret line="57" column="76" lean-forward="false" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
           <folding>
             <element signature="e#1117#1123#0" expanded="true" />
-            <element signature="e#6884#6890#0" expanded="true" />
-            <element signature="e#12751#12757#0" expanded="true" />
-            <element signature="e#13999#14005#0" expanded="true" />
-            <element signature="e#16584#16590#0" expanded="true" />
-            <element signature="e#17582#17588#0" expanded="true" />
-            <element signature="e#20070#20076#0" expanded="true" />
-            <element signature="e#21604#21610#0" expanded="true" />
-            <element signature="e#21614#21620#0" expanded="true" />
-            <element signature="e#22183#22189#0" expanded="true" />
-            <element signature="e#22199#22205#0" expanded="true" />
-            <element signature="e#27681#27687#0" expanded="true" />
-            <element signature="e#27694#27700#0" expanded="true" />
-            <element signature="e#28026#28032#0" expanded="true" />
-            <element signature="e#29996#30002#0" expanded="true" />
-            <element signature="e#31696#31702#0" expanded="true" />
-            <element signature="e#31709#31715#0" expanded="true" />
-            <element signature="e#32037#32043#0" expanded="true" />
-            <element signature="e#34109#34115#0" expanded="true" />
-            <element signature="e#34122#34128#0" expanded="true" />
-            <element signature="e#34448#34454#0" expanded="true" />
-            <element signature="e#37675#37681#0" expanded="true" />
-            <element signature="e#37689#37695#0" expanded="true" />
+            <element signature="e#6838#6844#0" expanded="true" />
+            <element signature="e#12705#12711#0" expanded="true" />
+            <element signature="e#13953#13959#0" expanded="true" />
+            <element signature="e#16538#16544#0" expanded="true" />
+            <element signature="e#17536#17542#0" expanded="true" />
+            <element signature="e#20024#20030#0" expanded="true" />
+            <element signature="e#21558#21564#0" expanded="true" />
+            <element signature="e#21568#21574#0" expanded="true" />
+            <element signature="e#22137#22143#0" expanded="true" />
+            <element signature="e#22153#22159#0" expanded="true" />
+            <element signature="e#27635#27641#0" expanded="true" />
+            <element signature="e#27648#27654#0" expanded="true" />
+            <element signature="e#27980#27986#0" expanded="true" />
+            <element signature="e#29950#29956#0" expanded="true" />
+            <element signature="e#31650#31656#0" expanded="true" />
+            <element signature="e#31663#31669#0" expanded="true" />
+            <element signature="e#31991#31997#0" expanded="true" />
+            <element signature="e#34063#34069#0" expanded="true" />
+            <element signature="e#34076#34082#0" expanded="true" />
+            <element signature="e#34402#34408#0" expanded="true" />
+            <element signature="e#37629#37635#0" expanded="true" />
+            <element signature="e#37643#37649#0" expanded="true" />
           </folding>
         </state>
       </provider>
