@@ -10,67 +10,33 @@
                                 <span class="caption-subject font-green-sharp bold uppercase">合同进展 </span>
                                 <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看合同进展</span>
                             </div>
-                            <div class="actions">
-                                <div class="btn-group">
-                                    <a class="btn green btn-circle btn-outline btn-sm todo-projects-config"
-                                       href="javascript:;" data-toggle="dropdown" data-hover="dropdown"
-                                       data-close-others="true">
-                                        <i class="icon-settings"></i> &nbsp;
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li>
-                                            <a href="javascript:;"> New Project </a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="javascript:;"> Pending
-                                                <span class="badge badge-danger"> 4 </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;"> Completed
-                                                <span class="badge badge-success"> 12 </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;"> Overdue
-                                                <span class="badge badge-warning"> 9 </span>
-                                            </a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="javascript:;"> Archived Projects </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                           
                         </div>
                         <div class="portlet-body todo-project-list-content">
                             <div class="todo-project-list">
                                 <ul class="nav nav-stacked">
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="javascript:;" @click="searchByProcess('total')">
                                             <span class="badge badge-default"> 6 </span> 所有 </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="javascript:;" @click="searchByProcess(0)">
                                             <span class="badge badge-warning"> 6 </span> 草稿 </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="javascript:;" @click="searchByProcess(1)">
                                             <span class="badge badge-info"> 2 </span> 待审核 </a>
                                     </li>
                                     <li class="active">
-                                        <a href="javascript:;">
+                                        <a href="javascript:;" @click="searchByProcess(2)">
                                             <span class="badge badge-primary"> 3 </span> 待执行</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="javascript:;" @click="searchByProcess(3)">
                                             <span class="badge badge-success"> 14 </span> 已执行 </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="javascript:;" @click="searchByProcess(-1)">
                                             <span class="badge badge-danger"> 6 </span> 已中止 </a>
                                     </li>
                                 </ul>
@@ -85,7 +51,7 @@
                             </div>
                             <div class="actions">
                                 <div class="actions">
-                                    <a class="btn btn-circle grey-salsa btn-outline btn-sm" href="javascript:;">
+                                    <a class="btn btn-circle grey-salsa btn-outline btn-sm" href="/type/create">
                                         <i class="fa fa-plus"></i> 新增 </a>
                                 </div>
                             </div>
@@ -95,8 +61,9 @@
                                 <ul class="nav nav-pills nav-stacked">
                                     <template v-for="item in typeList">
                                         <li>
-                                            <a href="javascript:;">
-                                                <span class="badge badge-success"> 14 </span> {{item.name}} </a>
+                                            <a href="javascript:;" @click="searchByType(item.id)">
+                                                <span class="badge badge-success"> {{item.contract_count}} </span>
+                                                {{item.name}} </a>
                                         </li>
                                     </template>
                                 </ul>
@@ -112,38 +79,35 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="icon-bar-chart font-green-sharp hide"></i>
-                                <span class="caption-helper">GlobalEx Tasks:</span> &nbsp;
-                                <span class="caption-subject font-green-sharp bold uppercase">Tune Website</span>
+                                <span class="caption-subject font-green-sharp bold uppercase">合同列表</span>
                             </div>
                             <div class="actions">
                                 <div class="btn-group">
                                     <a class="btn green btn-circle btn-sm" href="javascript:;" data-toggle="dropdown"
-                                       data-hover="dropdown" data-close-others="true"> MANAGE
+                                       data-hover="dropdown" data-close-others="true"> 操 作
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
                                         <li>
-                                            <a href="javascript:;"> New Task </a>
+                                            <a href="javascript:;"> 创建新合同 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"> 作为模板合同创建 </a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a href="javascript:;"> Pending
-                                                <span class="badge badge-danger"> 4 </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;"> Completed
+                                            <a href="javascript:;"> 导出合同
                                                 <span class="badge badge-success"> 12 </span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;"> Overdue
+                                            <a href="javascript:;"> 中止合同
                                                 <span class="badge badge-warning"> 9 </span>
                                             </a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a href="javascript:;"> Delete Project </a>
+                                            <a href="javascript:;"> 删除合同 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -154,204 +118,365 @@
                             <div class="row">
                                 <div class="col-md-5 col-sm-4">
                                     <div class="todo-tasklist">
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-green">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Slider Redesign</div>
-                                            <div class="todo-tasklist-item-text"> Lorem dolor sit amet ipsum dolor sit
-                                                consectetuer dolore.
-                                            </div>
-                                            <div class="todo-tasklist-controls pull-left">
+                                        <template v-for="item in contractList">
+                                            <div @click="viewDetails(item)"
+                                                 :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
+                                                <div class="todo-userpic pull-left" style="margin-right: 10px;"><i
+                                                        style="width: 27px;height: 27px;"
+                                                        class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
+                                                </div>
+                                                <div class="todo-tasklist-item-title"> {{item.name}}</div>
+                                                <div class="todo-tasklist-item-text"> {{item.aim}}
+                                                </div>
+                                                <div class="todo-tasklist-controls pull-left">
                                                                     <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 21 Sep 2014 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Urgent</span>
-                                            </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-red">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Homepage Alignments to adjust</div>
-                                            <div class="todo-tasklist-item-text"> Lorem ipsum dolor sit amet,
-                                                consectetuer dolore dolor sit amet.
-                                            </div>
-                                            <div class="todo-tasklist-controls pull-left">
+                                                                        <i class="fa fa-calendar"></i> {{item.create_time}} </span>
+                                                    <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
+                                                </div>
+                                                <div class="todo-tasklist-controls pull-left">
                                                                     <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 14 Sep 2014 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Important</span>
+                                                                        <i class="fa fa-home"></i> {{item.client_unit}} </span>
+                                                    <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
+                                                </div>
+                                                <div class="todo-tasklist-controls pull-right">
+                                                    <span class="label label-sm label-danger" v-if="item.process==-1">已中止</span>
+                                                    <span class="label label-sm label-warning" v-if="item.process==0">草稿合同</span>
+                                                    <span class="label label-sm label-info"
+                                                          v-if="item.process==1">待审核</span>
+                                                    <span class="label label-sm label-primary" v-if="item.process==2">待执行</span>
+                                                    <span class="label label-sm label-success" v-if="item.process==3">已执行</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-green">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Slider Redesign</div>
-                                            <div class="todo-tasklist-controls pull-left">
-                                                                    <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 10 Feb 2015 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Important</span>&nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-blue">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Contact Us Map Location changes</div>
-                                            <div class="todo-tasklist-item-text"> Lorem ipsum amet, consectetuer dolore
-                                                dolor sit amet.
-                                            </div>
-                                            <div class="todo-tasklist-controls pull-left">
-                                                                    <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 04 Oct 2014 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Postponed</span>&nbsp;
-                                                <span class="todo-tasklist-badge badge badge-roundless">Test</span>
-                                            </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-purple">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Projects list new Forms</div>
-                                            <div class="todo-tasklist-item-text"> Lorem ipsum dolor sit amet,
-                                                consectetuer dolore psum dolor sit.
-                                            </div>
-                                            <div class="todo-tasklist-controls pull-left">
-                                                                    <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 19 Dec 2014 </span>
-                                            </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-yellow">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> New Search Keywords</div>
-                                            <div class="todo-tasklist-item-text"> Lorem ipsum dolor sit amet,
-                                                consectetuer sit amet ipsum dolor, consectetuer ipsum consectetuer sit
-                                                amet dolore.
-                                            </div>
-                                            <div class="todo-tasklist-controls pull-left">
-                                                                    <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 02 Feb 2015 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Postponed</span>&nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-green">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Slider Redesign</div>
-                                            <div class="todo-tasklist-controls pull-left">
-                                                                    <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 10 Feb 2015 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Important</span>&nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-red">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Homepage Alignments to adjust</div>
-                                            <div class="todo-tasklist-item-text"> Lorem ipsum dolor sit amet,
-                                                consectetuer dolore psum dolor sit.
-                                            </div>
-                                            <div class="todo-tasklist-controls pull-left">
-                                                                    <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 14 Sep 2014 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Important</span>
-                                            </div>
-                                        </div>
-                                        <div class="todo-tasklist-item todo-tasklist-item-border-blue">
-                                            <img class="todo-userpic pull-left"
-                                                 src="../../../images/avatar/avatar1.jpg" width="27px"
-                                                 height="27px">
-                                            <div class="todo-tasklist-item-title"> Contact Us Improvement</div>
-                                            <div class="todo-tasklist-item-text"> Lorem ipsum amet, psum dolor sit
-                                                consectetuer dolore.
-                                            </div>
-                                            <div class="todo-tasklist-controls pull-left">
-                                                                    <span class="todo-tasklist-date">
-                                                                        <i class="fa fa-calendar"></i> 21 Feb 2015 </span>
-                                                <span class="todo-tasklist-badge badge badge-roundless">Postponed</span>&nbsp;
-                                                <span class="todo-tasklist-badge badge badge-roundless">Primary</span>
-                                            </div>
-                                        </div>
+                                        </template>
+
                                     </div>
+                                    <!-- Pagination -->
+                                    <div class="pagination pull-right">
+                                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                                    </div>
+                                    <!-- End Pagination -->
                                 </div>
                                 <div class="todo-tasklist-devider"></div>
                                 <div class="col-md-7 col-sm-8">
                                     <form action="#" class="form-horizontal">
                                         <!-- TASK HEAD -->
-                                        <div class="form">
+                                        <div class="form" style="margin-bottom: 40px;">
                                             <div class="form-group">
                                                 <div class="col-md-8 col-sm-8">
                                                     <div class="todo-taskbody-user">
-                                                        <img class="todo-userpic pull-left"
-                                                             src="../../../images/avatar/avatar1.jpg" width="50px"
-                                                             height="50px">
-                                                        <span class="todo-username pull-left">Vanessa Bond</span>
+                                                        <div class="todo-userpic pull-left" style="margin-right: 10px;">
+                                                            <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
+                                                        </div>
+                                                        <span class="todo-username pull-left">{{contract.name}}</span>
                                                         <button type="button"
                                                                 class="todo-username-btn btn btn-circle btn-default btn-sm">
-                                                            &nbsp;edit&nbsp;</button>
+                                                            &nbsp;编 辑&nbsp;</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
                                                     <div class="todo-taskbody-date pull-right">
                                                         <button type="button"
                                                                 class="todo-username-btn btn btn-circle btn-default btn-sm">
-                                                            &nbsp; Complete &nbsp;</button>
+                                                            &nbsp; 导 出 &nbsp;</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- END TASK HEAD -->
-                                            <!-- TASK TITLE -->
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control todo-taskbody-tasktitle"
-                                                           placeholder="Task Title..."></div>
-                                            </div>
-                                            <!-- TASK DESC -->
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <textarea class="form-control todo-taskbody-taskdesc" rows="8"
-                                                              placeholder="Task Description..."></textarea>
+
+                                            <div class="tabbable-line">
+                                                <ul class="nav nav-tabs ">
+                                                    <li class="active">
+                                                        <a href="#page_1" data-toggle="tab"> 甲方信息 </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#page_2" data-toggle="tab"> 乙方信息 </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#page_3" data-toggle="tab"> 合同内容 </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#page_4" data-toggle="tab"> 监测项目 </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#page_5" data-toggle="tab"> 其他约定 </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="page_1">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">委托单位
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.client_unit}}</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">邮政编码
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.client_code}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">联系地址
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.client_address}}</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">联系电话
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.client_tel}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">联系人
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.client}}</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">传真号码
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.client_fax}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="page_2">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">受托单位
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.trustee_unit}}</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">邮政编码
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.trustee_code}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">联系地址
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.client_address}}</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">联系电话
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.trustee_tel}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">联系人
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.trustee.name}}</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label col-md-4">传真号码
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.trustee_fax}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="page_3">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">项目名称
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">
+                                                                        {{contract.name}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">监测目的
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">{{contract.aim}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">检测方式
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label" v-if="contract.way==1">以我单位通过计量认证、国家实验室认可的方法进行检测。</label>
+                                                                    <label class="control-label" v-if="contract.way==2">客户指定的方法：{{contract.wayDesp}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">客户要求
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label"
+                                                                           v-if="contract.in_room==1">客户需要进入实验室监视与本次委托有关的检测活动。</label>
+                                                                    <label class="control-label"
+                                                                           v-if="contract.secret==1">客户需要本实验室对本次委托有关资料保密。</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">分包单位
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">{{contract.package_unit}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="page_4">
+                                                        <div class="table-scrollable table-scrollable-borderless">
+                                                            <table class="table table-hover table-light">
+                                                                <thead>
+                                                                <tr class="uppercase">
+                                                                    <th> 序号</th>
+                                                                    <th> 公司、道路名称</th>
+                                                                    <th> 环境要素</th>
+                                                                    <th> 监测点（个）</th>
+                                                                    <th> 监测项目</th>
+                                                                    <th> 监测频次</th>
+                                                                    <th> 是否分包</th>
+                                                                    <th> 备注</th>
+                                                                    <th> 操作</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <template v-for="(item,index) in items">
+                                                                    <tr>
+                                                                        <td class="text-center">{{index+1}}</td>
+                                                                        <td class="text-center">{{item.company}}</td>
+                                                                        <td class="text-center">{{item.element.name}}
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            {{item.point}}
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            <template
+                                                                                    v-for="(project,index) in item.project">
+                                                                                {{project.project.name}}
+                                                                                <template
+                                                                                        v-if="index+1!=item.project.length">
+                                                                                    ,
+                                                                                </template>
+                                                                            </template>
+                                                                        </td>
+                                                                        <td class="text-center">{{item.frequency.total}}
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            v-if="item.is_package==1">是
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            v-if="item.is_package==0">否
+                                                                        </td>
+                                                                        <td class="text-center">{{item.other}}</td>
+                                                                        <td class="text-center">
+                                                                            <a href="javascript:;"
+                                                                               class="btn btn-icon-only red"
+                                                                               @click="deleteItem(item)">
+                                                                                <i class="fa fa-trash-o"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </template>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="page_5">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">交付方式
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">{{contract.paymentWay}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">完成时间
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">{{contract.finish_time}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">监测费用
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">{{contract.payment}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-2">其他约定
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <label class="control-label">{{contract.other}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- END TASK DESC -->
-                                            <!-- TASK DUE DATE -->
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <div class="input-icon">
-                                                        <i class="fa fa-calendar"></i>
-                                                        <input type="text" class="form-control todo-taskbody-due"
-                                                               placeholder="Due Date..."></div>
-                                                </div>
-                                            </div>
-                                            <!-- TASK TAGS -->
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <select class="form-control todo-taskbody-tags">
-                                                        <option value="Pending">Pending</option>
-                                                        <option value="Completed">Completed</option>
-                                                        <option value="Testing">Testing</option>
-                                                        <option value="Approved">Approed</option>
-                                                        <option value="Rejected">Rejected</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- TASK TAGS -->
-                                            <div class="form-actions right todo-form-actions">
-                                                <button class="btn btn-circle btn-sm green">Save Changes</button>
-                                                <button class="btn btn-circle btn-sm btn-default">Cancel</button>
-                                            </div>
+
                                         </div>
+
+
                                         <div class="tabbable-line">
                                             <ul class="nav nav-tabs ">
                                                 <li class="active">
-                                                    <a href="#tab_1" data-toggle="tab"> Comments </a>
+                                                    <a href="#tab_1" data-toggle="tab"> 评 论 </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#tab_2" data-toggle="tab"> History </a>
+                                                    <a href="#tab_2" data-toggle="tab"> 流 程 </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content">
@@ -364,7 +489,10 @@
                                                                     <a class="pull-left" href="javascript:;">
                                                                         <img class="todo-userpic"
                                                                              src="../../../images/avatar/avatar8.jpg"
-                                                                             width="27px" height="27px"> </a>
+                                                                             width="27px" height="27px">
+                                                                    </a>
+
+
                                                                     <div class="media-body todo-comment">
                                                                         <button type="button"
                                                                                 class="todo-comment-btn btn btn-circle btn-default btn-sm">
@@ -522,10 +650,19 @@
 </template>
 <script>
     import 'style/contract_list'
+    import 'style/socicon'
     module.exports = {
         data: function () {
             return {
-                typeList: []
+                typeList: [],
+                currentPage: 1,
+                condition: "",
+                contractList: [],
+                contract: {
+                    trustee: {},
+                    type: {}
+                },
+                items: []
             }
         },
         mounted(){
@@ -533,15 +670,26 @@
             me._initComponents();
             me._handleProjectListMenu();
             me.init();
+            me.getData();
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
 
+            jQuery(".todo-tasklist").off("click").on("click", function (e) {
+                var dom = jQuery(e.target);
+                while (!dom.hasClass("todo-tasklist-item") && dom[0].tagName != "body") {
+                    dom = dom.parents(".todo-tasklist-item");
+                }
+                if (dom.hasClass("todo-tasklist-item")) {
+                    jQuery(".todo-tasklist-item").removeClass("active");
+                    dom.addClass('active');
+                }
+            })
         },
         methods: {
             init: function () {
                 var me = this;
-                me.$http.get("/api/type/total").then(function (response) {
+                me.$http.get("/api/type/contract_total").then(function (response) {
                     var data = response.data;
                     me.typeList = data.results;
                 }, function (response) {
@@ -564,6 +712,93 @@
                 } else {
                     $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
                 }
+            },
+            fetchData(pageNum, rowCount){
+                var me = this;
+                this.$http.get('/api/contract/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: pageNum,
+                        condition: this.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    me.contractList = data.results;
+                }, (response) => {
+                    serverErrorInfo();
+                });
+            },
+            fetchPages(rowCount){
+                var me = this;
+                this.$http.get('/api/contract/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: 1,
+                        condition: me.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    jQuery(".M-box").pagination({
+                        pageCount: data.totalPage || 1,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (data) {
+                            me.fetchData(data.getCurrent(), rowCount, me.condition);
+                            me.currentPage = data.getCurrent();
+                        }
+                    });
+                }, (response) => {
+                    serverErrorInfo();
+                });
+            },
+            fetchItems(id){
+                var me = this;
+                me.$http.get("/api/contract/getItems", {
+                    params: {
+                        contract_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.items = data.items;
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            getData(){
+                var me = this;
+                me.fetchData(me.currentPage, rowCount);
+                me.fetchPages(rowCount);
+            },
+            viewDetails(item){
+                var me = this;
+                me.contract = item;
+                me.fetchItems(item.id);
+            },
+            search(){
+                var me = this;
+                me.currentPage = 1;
+                me.condition = "";
+                me.getData();
+            },
+            searchByType(id){
+                var me = this;
+                me.currentPage = 1;
+                me.condition = "type=" + id;
+                me.getData();
+            },
+            searchByProcess(step){
+                var me = this;
+                me.currentPage = 1;
+                if (step != "total") {
+                    me.condition = "process=" + step;
+                } else {
+                    me.condition = "";
+                }
+                me.getData();
+
             }
         }
     }

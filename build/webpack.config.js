@@ -92,6 +92,7 @@ module.exports = {
             'style/login': path.resolve(StylePath, 'login.css'),
 
             'style/contract_list': path.resolve(StylePath, 'contract_list.css'),
+            'style/socicon':path.resolve(PluginsPath,'socicon/socicon.css'),
 
             'globalPath': path.resolve(GlobalPath)
         }
