@@ -51,27 +51,27 @@
                                 <ul class="nav nav-stacked">
                                     <li>
                                         <a href="javascript:;">
-                                            <span class="badge badge-info"> 6 </span> AirAsia Ads </a>
+                                            <span class="badge badge-default"> 6 </span> 所有 </a>
                                     </li>
                                     <li>
                                         <a href="javascript:;">
-                                            <span class="badge badge-success"> 2 </span> HSBC Promo </a>
+                                            <span class="badge badge-warning"> 6 </span> 草稿 </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge badge-info"> 2 </span> 待审核 </a>
                                     </li>
                                     <li class="active">
                                         <a href="javascript:;">
-                                            <span class="badge badge-success"> 3 </span> GlobalEx</a>
+                                            <span class="badge badge-primary"> 3 </span> 待执行</a>
                                     </li>
                                     <li>
                                         <a href="javascript:;">
-                                            <span class="badge badge-default"> 14 </span> Empire City </a>
+                                            <span class="badge badge-success"> 14 </span> 已执行 </a>
                                     </li>
                                     <li>
                                         <a href="javascript:;">
-                                            <span class="badge badge-info"> 6 </span> AirAsia Ads </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="badge badge-danger"> 2 </span> Loop Inc Promo </a>
+                                            <span class="badge badge-danger"> 6 </span> 已中止 </a>
                                     </li>
                                 </ul>
                             </div>
