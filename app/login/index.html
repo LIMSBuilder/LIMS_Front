@@ -20,7 +20,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
     <a href="index.html">
-        <img src="../global/img/boncontact.png" alt=""/>
+        <img src="" id="logo" style="width: 300px" alt=""/>
     </a>
 </div>
 <!-- END LOGO -->
@@ -81,6 +81,22 @@
                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="证件号"
                        name="card"/></div>
         </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">新密码</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="new_password"
+                       placeholder="请输入新密码" name="password"/></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">重复密码</label>
+            <div class="controls">
+                <div class="input-icon">
+                    <i class="fa fa-check"></i>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off"
+                           placeholder="请再次输入密码" name="rpassword"/></div>
+            </div>
+        </div>
         <div class="form-actions">
             <button type="button" id="back-btn" class="btn red btn-outline">返 回</button>
             <button type="button" class="btn green pull-right" id="reset_password"> 重 置</button>
@@ -95,14 +111,14 @@
             <label class="control-label visible-ie8 visible-ie9">真实姓名</label>
             <div class="input-icon">
                 <i class="fa fa-font"></i>
-                <input class="form-control placeholder-no-fix" type="text" placeholder="请输入真实姓名" name="fullname"/>
+                <input class="form-control placeholder-no-fix" type="text" placeholder="请输入真实姓名" name="name"/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">证件号</label>
             <div class="input-icon">
                 <i class="fa fa-credit-card"></i>
-                <input class="form-control placeholder-no-fix" type="text" placeholder="请输入证件号" name="card"/>
+                <input class="form-control placeholder-no-fix" type="text" placeholder="请输入证件号" name="cardId"/>
             </div>
         </div>
         <p> 填写您的账户信息: </p>
@@ -111,7 +127,7 @@
             <div class="input-icon">
                 <i class="fa fa-user"></i>
                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入用户名"
-                       name="username"/></div>
+                       name="nick"/></div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">密码</label>
@@ -131,7 +147,7 @@
         </div>
         <div class="form-actions">
             <button id="register-back-btn" type="button" class="btn red btn-outline"> 返 回</button>
-            <button type="button" id="register-submit-btn" class="btn green pull-right" > 注 册</button>
+            <button type="button" id="register-submit-btn" class="btn green pull-right"> 注 册</button>
         </div>
     </form>
     <!-- END REGISTRATION FORM -->
