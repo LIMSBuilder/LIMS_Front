@@ -37,7 +37,10 @@ import bg2 from 'globalPath/img/bg/2.jpg'
 import bg3 from 'globalPath/img/bg/3.jpg'
 import bg4 from 'globalPath/img/bg/4.jpg'
 
+import logo from 'globalPath/img/boncontact.png'
+
 var Login = function () {
+
 
     var handleLogin = function () {
         $('.login-form').validate({
@@ -110,6 +113,14 @@ var Login = function () {
                 },
                 card: {
                     required: true
+                },
+                password: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 15
+                },
+                rpassword: {
+                    equalTo: "#new_password"
                 }
             },
 
@@ -119,6 +130,14 @@ var Login = function () {
                 },
                 card: {
                     required: "证件号不能为空"
+                },
+                password: {
+                    required: "密码不能为空",
+                    maxlength: "用户名长度必须位于5到15位之间",
+                    minlength: "用户名长度必须位于5到15位之间"
+                },
+                rpassword: {
+                    equalTo: "两次密码输入不一致"
                 }
             },
 
@@ -179,24 +198,6 @@ var Login = function () {
             return $state;
         }
 
-        if (jQuery().select2 && $('#country_list').size() > 0) {
-            $("#country_list").select2({
-                placeholder: '<i class="fa fa-map-marker"></i>&nbsp;Select a Country',
-                templateResult: format,
-                templateSelection: format,
-                width: 'auto',
-                escapeMarkup: function (m) {
-                    return m;
-                }
-            });
-
-
-            $('#country_list').change(function () {
-                $('.register-form').validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
-            });
-        }
-
-
         $('.register-form').validate({
             errorElement: 'span', //default input error message container
             errorClass: 'help-block', // default input error message class
@@ -204,13 +205,13 @@ var Login = function () {
             ignore: "",
             rules: {
 
-                fullname: {
+                name: {
                     required: true
                 },
-                card: {
+                cardId: {
                     required: true
                 },
-                username: {
+                nick: {
                     required: true,
                     minlength: 5,
                     maxlength: 15
@@ -226,13 +227,13 @@ var Login = function () {
             },
 
             messages: { // custom messages for radio buttons and checkboxes
-                fullname: {
+                name: {
                     required: "真实姓名不能为空"
                 },
-                card: {
+                cardId: {
                     required: "证件号不能为空"
                 },
-                username: {
+                nick: {
                     required: "用户名不能为空",
                     maxlength: "用户名长度必须位于5到15位之间",
                     minlength: "用户名长度必须位于5到15位之间"
@@ -320,6 +321,7 @@ var Login = function () {
 jQuery(document).ready(function () {
     Login.init();
     //登录验证
+    jQuery("#logo").attr('src', logo);
     jQuery("#login_btn").off("click").on("click", function () {
         var form = jQuery("#login").serialize();
         if ($('.login-form').valid()) {
@@ -357,7 +359,8 @@ jQuery(document).ready(function () {
                     var data = result.code;
                     codeState(data, {
                         200: function () {
-                            alert("密码重置成功，默认密码为" + result.default);
+                            alert("密码重置成功，请使用新密码登录！");
+                            jQuery("#forget")[0].reset();
                         },
                         502: function () {
                             error("当前证件号错误，请重新输入！");
@@ -376,13 +379,14 @@ jQuery(document).ready(function () {
         if ($('.register-form').valid()) {
             $.ajax({
                 type: "POST",  //提交方式
-                url: "/api/user/create",//路径
+                url: "/api/login/register",//路径
                 data: form,//数据，这里使用的是Json格式进行传输
                 success: function (result) {//返回数据根据结果进行相应的处理
                     var data = result.code;
                     codeState(data, {
                         200: function () {
                             alert("用户创建成功！");
+                            jQuery("#register-form")[0].reset();
                         }
                     })
                 }
