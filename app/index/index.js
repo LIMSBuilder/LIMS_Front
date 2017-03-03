@@ -87,6 +87,11 @@ import User from './components/system/user/user.vue'
 import Create_User from './components/system/user/create.vue'
 import User_List from './components/system/user/list.vue'
 import Change_User from './components/system/user/change.vue'
+
+//Function
+import page_404 from './components/system/function/404.vue'
+import page_403 from './components/system/function/403.vue'
+import page_500 from './components/system/function/500.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -116,6 +121,21 @@ Vue.http.options.emulateJSON = true;
 
 
 var routes = [
+    {
+        path: "/404",
+        name: "404",
+        component: page_404
+    },
+    {
+        path: "/403",
+        name: "403",
+        component: page_403
+    },
+    {
+        path: "/500",
+        name: "500",
+        component: page_500
+    },
     {
         path: "/department",
         name: "department",

@@ -46,6 +46,30 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-diamond"></i>
+                    <span class="title">测试页面</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/404' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">页面不存在</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/403' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">禁止访问</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/500' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">服务器异常</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
             <li class="heading">
                 <h3 class="uppercase">通信</h3>
             </li>
