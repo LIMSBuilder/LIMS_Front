@@ -35,7 +35,7 @@
                         <!-- END SIDEBAR USER TITLE -->
                         <!-- SIDEBAR BUTTONS -->
                         <div class="profile-userbuttons">
-                            <button type="button" class="btn btn-circle green btn-sm">个人设置</button>
+                            <button type="button" class="btn btn-circle green btn-sm">签 到</button>
                             <button type="button" class="btn btn-circle red btn-sm">退出登录</button>
                         </div>
                         <!-- END SIDEBAR BUTTONS -->
@@ -280,7 +280,10 @@
         data: function () {
             return {
                 user: {
-                    role: {}
+                    name:"",
+                    role: {
+                        name:""
+                    }
                 }
             }
         },

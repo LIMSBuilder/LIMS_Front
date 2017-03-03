@@ -2,119 +2,671 @@
     <div class="profile-content">
         <div class="row">
             <div class="col-md-6">
+                <div class="portlet light bordered">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-bar-chart theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">业务流程</span>
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_actions_pending" data-toggle="tab"> 待您处理 </a>
+                            </li>
+                            <li>
+                                <a href="#tab_actions_completed" data-toggle="tab"> 已处理 </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_actions_pending">
+                                <!-- BEGIN: Actions -->
+                                <div class="mt-actions">
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar10.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class="icon-magnet"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Natasha Kim</span>
+                                                        <p class="mt-action-desc">Dummy text of the printing</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-green"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar3.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class=" icon-bubbles"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Gavin Bond</span>
+                                                        <p class="mt-action-desc">pending for approval</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-red"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar2.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class="icon-call-in"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Diana Berri</span>
+                                                        <p class="mt-action-desc">Lorem Ipsum is simply dummy text</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-green"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar7.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class=" icon-bell"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">John Clark</span>
+                                                        <p class="mt-action-desc">Text of the printing and typesetting industry</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-red"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar8.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class="icon-magnet"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Donna Clarkson </span>
+                                                        <p class="mt-action-desc">Simply dummy text of the printing</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-green"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar9.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class="icon-magnet"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Tom Larson</span>
+                                                        <p class="mt-action-desc">Lorem Ipsum is simply dummy text</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-green"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END: Actions -->
+                            </div>
+                            <div class="tab-pane" id="tab_actions_completed">
+                                <!-- BEGIN:Completed-->
+                                <div class="mt-actions">
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar1.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class="icon-action-redo"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Frank Cameron</span>
+                                                        <p class="mt-action-desc">Lorem Ipsum is simply dummy</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-red"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar8.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class="icon-cup"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Ella Davidson </span>
+                                                        <p class="mt-action-desc">Text of the printing and typesetting industry</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-green"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar5.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class=" icon-graduation"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Jason Dickens </span>
+                                                        <p class="mt-action-desc">Dummy text of the printing and typesetting industry</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-red"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-action">
+                                        <div class="mt-action-img">
+                                            <img src="../../images/avatar/avatar2.jpg" /> </div>
+                                        <div class="mt-action-body">
+                                            <div class="mt-action-row">
+                                                <div class="mt-action-info ">
+                                                    <div class="mt-action-icon ">
+                                                        <i class="icon-badge"></i>
+                                                    </div>
+                                                    <div class="mt-action-details ">
+                                                        <span class="mt-action-author">Jan Kim</span>
+                                                        <p class="mt-action-desc">Lorem Ipsum is simply dummy</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-action-datetime ">
+                                                    <span class="mt-action-date">3 jun</span>
+                                                    <span class="mt-action-dot bg-green"></span>
+                                                    <span class="mt=action-time">9:30-13:00</span>
+                                                </div>
+                                                <div class="mt-action-buttons ">
+                                                    <div class="btn-group btn-group-circle">
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END: Completed -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PORTLET -->
+            </div>
+
+            <div class="col-md-6">
+                <div class="portlet light calendar bordered">
+                    <div class="portlet-title ">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">日程安排</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+                <!-- END PORTLET-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <!-- BEGIN PORTLET -->
-                <div class="portlet light ">
+                <div class="portlet light  tasks-widget">
                     <div class="portlet-title">
                         <div class="caption caption-md">
                             <i class="icon-bar-chart theme-font hide"></i>
-                            <span class="caption-subject font-blue-madison bold uppercase">Your Activity</span>
-                            <span class="caption-helper hide">weekly stats...</span>
+                            <span class="caption-subject font-blue-madison bold uppercase">待办事项列表</span>
+                            <span class="caption-helper">16项未完成</span>
                         </div>
-                        <div class="actions">
-                            <div class="btn-group btn-group-devided" data-toggle="buttons">
-                                <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
-                                    <input type="radio" name="options" class="toggle"
-                                           id="option1">Today</label>
-                                <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-                                    <input type="radio" name="options" class="toggle"
-                                           id="option2">Week</label>
-                                <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-                                    <input type="radio" name="options" class="toggle"
-                                           id="option2">Month</label>
+                        <div class="inputs">
+                            <div class="portlet-input input-small input-inline">
+                                <div class="input-icon right">
+                                    <i class="icon-magnifier"></i>
+                                    <input type="text" class="form-control form-control-solid"
+                                           placeholder="search..."></div>
                             </div>
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <div class="row number-stats margin-bottom-30">
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <div class="stat-left">
-                                    <div class="stat-chart">
-                                        <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
-                                        <div id="sparkline_bar"></div>
-                                    </div>
-                                    <div class="stat-number">
-                                        <div class="title"> Total</div>
-                                        <div class="number"> 2460</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <div class="stat-right">
-                                    <div class="stat-chart">
-                                        <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
-                                        <div id="sparkline_bar2"></div>
-                                    </div>
-                                    <div class="stat-number">
-                                        <div class="title"> New</div>
-                                        <div class="number"> 719</div>
-                                    </div>
-                                </div>
+                        <div class="task-content">
+                            <div class="scroller" style="height: 282px;" data-always-visible="1"
+                                 data-rail-visible1="0" data-handle-color="#D7DCE2">
+                                <!-- START TASK LIST -->
+                                <ul class="task-list">
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="hidden" value="1" name="test"/>
+                                            <input type="checkbox" class="liChild" value="2" name="test"/>
+                                        </div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> Present 2013 Year IPO Statistics at Board Meeting </span>
+                                            <span class="label label-sm label-success">Company</span>
+                                            <span class="task-bell">
+                                                                            <i class="fa fa-bell-o"></i>
+                                                                        </span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> Hold An Interview for Marketing Manager Position </span>
+                                            <span class="label label-sm label-danger">Marketing</span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> AirAsia Intranet System Project Internal Meeting </span>
+                                            <span class="label label-sm label-success">AirAsia</span>
+                                            <span class="task-bell">
+                                                                            <i class="fa fa-bell-o"></i>
+                                                                        </span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> Technical Management Meeting </span>
+                                            <span class="label label-sm label-warning">Company</span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> Kick-off Company CRM Mobile App Development </span>
+                                            <span class="label label-sm label-info">Internal Products</span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> Prepare Commercial Offer For SmartVision Website Rewamp </span>
+                                            <span class="label label-sm label-danger">SmartVision</span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> Sign-Off The Comercial Agreement With AutoSmart </span>
+                                            <span class="label label-sm label-default">AutoSmart</span>
+                                            <span class="task-bell">
+                                                                            <i class="fa fa-bell-o"></i>
+                                                                        </span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> Company Staff Meeting </span>
+                                            <span class="label label-sm label-success">Cruise</span>
+                                            <span class="task-bell">
+                                                                            <i class="fa fa-bell-o"></i>
+                                                                        </span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="last-line">
+                                        <div class="task-checkbox">
+                                            <input type="checkbox" class="liChild" value=""/></div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp"> KeenThemes Investment Discussion </span>
+                                            <span class="label label-sm label-warning">KeenThemes </span>
+                                        </div>
+                                        <div class="task-config">
+                                            <div class="task-config-btn btn-group">
+                                                <a class="btn btn-sm default" href="javascript:;"
+                                                   data-toggle="dropdown" data-hover="dropdown"
+                                                   data-close-others="true">
+                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-check"></i> Complete </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-pencil"></i> Edit </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-trash-o"></i> Cancel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- END START TASK LIST -->
                             </div>
                         </div>
-                        <div class="table-scrollable table-scrollable-borderless">
-                            <table class="table table-hover table-light">
-                                <thead>
-                                <tr class="uppercase">
-                                    <th colspan="2"> MEMBER</th>
-                                    <th> Earnings</th>
-                                    <th> CASES</th>
-                                    <th> CLOSED</th>
-                                    <th> RATE</th>
-                                </tr>
-                                </thead>
-                                <tr>
-                                    <td class="fit">
-                                        <img class="user-pic" src="../../images/avatar/avatar4.jpg"></td>
-                                    <td>
-                                        <a href="javascript:;" class="primary-link">Brain</a>
-                                    </td>
-                                    <td> $345</td>
-                                    <td> 45</td>
-                                    <td> 124</td>
-                                    <td>
-                                        <span class="bold theme-font">80%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fit">
-                                        <img class="user-pic" src="../../images/avatar/avatar5.jpg"></td>
-                                    <td>
-                                        <a href="javascript:;" class="primary-link">Nick</a>
-                                    </td>
-                                    <td> $560</td>
-                                    <td> 12</td>
-                                    <td> 24</td>
-                                    <td>
-                                        <span class="bold theme-font">67%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fit">
-                                        <img class="user-pic" src="../../images/avatar/avatar6.jpg"></td>
-                                    <td>
-                                        <a href="javascript:;" class="primary-link">Tim</a>
-                                    </td>
-                                    <td> $1,345</td>
-                                    <td> 450</td>
-                                    <td> 46</td>
-                                    <td>
-                                        <span class="bold theme-font">98%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fit">
-                                        <img class="user-pic" src="../../images/avatar/avatar7.jpg"></td>
-                                    <td>
-                                        <a href="javascript:;" class="primary-link">Tom</a>
-                                    </td>
-                                    <td> $645</td>
-                                    <td> 50</td>
-                                    <td> 89</td>
-                                    <td>
-                                        <span class="bold theme-font">58%</span>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="task-footer">
+                            <div class="btn-arrow-link pull-right">
+                                <a href="javascript:;">显示全部</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -126,7 +678,7 @@
                     <div class="portlet-title tabbable-line">
                         <div class="caption caption-md">
                             <i class="icon-globe theme-font hide"></i>
-                            <span class="caption-subject font-blue-madison bold uppercase">Feeds</span>
+                            <span class="caption-subject font-blue-madison bold uppercase">最新消息</span>
                         </div>
                         <ul class="nav nav-tabs">
                             <li class="active">
@@ -696,493 +1248,124 @@
                 <!-- END PORTLET -->
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <!-- BEGIN PORTLET -->
-                <div class="portlet light ">
-                    <div class="portlet-title">
-                        <div class="caption caption-md">
-                            <i class="icon-bar-chart theme-font hide"></i>
-                            <span class="caption-subject font-blue-madison bold uppercase">Customer Support</span>
-                            <span class="caption-helper">45 pending</span>
-                        </div>
-                        <div class="inputs">
-                            <div class="portlet-input input-inline input-small ">
-                                <div class="input-icon right">
-                                    <i class="icon-magnifier"></i>
-                                    <input type="text" class="form-control form-control-solid"
-                                           placeholder="search..."></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="scroller" style="height: 305px;" data-always-visible="1"
-                             data-rail-visible1="0" data-handle-color="#D7DCE2">
-                            <div class="general-item-list">
-                                <div class="item">
-                                    <div class="item-head">
-                                        <div class="item-details">
-                                            <img class="item-pic" src="../../images/avatar/avatar4.jpg">
-                                            <a href="" class="item-name primary-link">Nick Larson</a>
-                                            <span class="item-label">3 hrs ago</span>
-                                        </div>
-                                        <span class="item-status">
-                                                                        <span class="badge badge-empty badge-success"></span> Open</span>
-                                    </div>
-                                    <div class="item-body"> Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                                        dolore magna aliquam erat volutpat.
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="item-head">
-                                        <div class="item-details">
-                                            <img class="item-pic" src="../../images/avatar/avatar3.jpg">
-                                            <a href="" class="item-name primary-link">Mark</a>
-                                            <span class="item-label">5 hrs ago</span>
-                                        </div>
-                                        <span class="item-status">
-                                                                        <span class="badge badge-empty badge-warning"></span> Pending</span>
-                                    </div>
-                                    <div class="item-body"> Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                                        dolore magna aliquam erat volutpat tincidunt ut laoreet.
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="item-head">
-                                        <div class="item-details">
-                                            <img class="item-pic" src="../../images/avatar/avatar6.jpg">
-                                            <a href="" class="item-name primary-link">Nick Larson</a>
-                                            <span class="item-label">8 hrs ago</span>
-                                        </div>
-                                        <span class="item-status">
-                                                                        <span class="badge badge-empty badge-primary"></span> Closed</span>
-                                    </div>
-                                    <div class="item-body"> Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, sed diam nonummy nibh.
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="item-head">
-                                        <div class="item-details">
-                                            <img class="item-pic" src="../../images/avatar/avatar7.jpg">
-                                            <a href="" class="item-name primary-link">Nick Larson</a>
-                                            <span class="item-label">12 hrs ago</span>
-                                        </div>
-                                        <span class="item-status">
-                                                                        <span class="badge badge-empty badge-danger"></span> Pending</span>
-                                    </div>
-                                    <div class="item-body"> Consectetuer adipiscing elit Lorem ipsum dolor
-                                        sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="item-head">
-                                        <div class="item-details">
-                                            <img class="item-pic" src="../../images/avatar/avatar9.jpg">
-                                            <a href="" class="item-name primary-link">Richard Stone</a>
-                                            <span class="item-label">2 days ago</span>
-                                        </div>
-                                        <span class="item-status">
-                                                                        <span class="badge badge-empty badge-danger"></span> Open</span>
-                                    </div>
-                                    <div class="item-body"> Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, ut laoreet dolore magna aliquam erat volutpat.
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="item-head">
-                                        <div class="item-details">
-                                            <img class="item-pic" src="../../images/avatar/avatar8.jpg">
-                                            <a href="" class="item-name primary-link">Dan</a>
-                                            <span class="item-label">3 days ago</span>
-                                        </div>
-                                        <span class="item-status">
-                                                                        <span class="badge badge-empty badge-warning"></span> Pending</span>
-                                    </div>
-                                    <div class="item-body"> Lorem ipsum dolor sit amet, sed diam nonummy
-                                        nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                                        volutpat.
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="item-head">
-                                        <div class="item-details">
-                                            <img class="item-pic" src="../../images/avatar/avatar2.jpg">
-                                            <a href="" class="item-name primary-link">Larry</a>
-                                            <span class="item-label">4 hrs ago</span>
-                                        </div>
-                                        <span class="item-status">
-                                                                        <span class="badge badge-empty badge-success"></span> Open</span>
-                                    </div>
-                                    <div class="item-body"> Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                                        dolore magna aliquam erat volutpat.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END PORTLET -->
-            </div>
-            <div class="col-md-6">
-                <!-- BEGIN PORTLET -->
-                <div class="portlet light  tasks-widget">
-                    <div class="portlet-title">
-                        <div class="caption caption-md">
-                            <i class="icon-bar-chart theme-font hide"></i>
-                            <span class="caption-subject font-blue-madison bold uppercase">Tasks</span>
-                            <span class="caption-helper">16 pending</span>
-                        </div>
-                        <div class="inputs">
-                            <div class="portlet-input input-small input-inline">
-                                <div class="input-icon right">
-                                    <i class="icon-magnifier"></i>
-                                    <input type="text" class="form-control form-control-solid"
-                                           placeholder="search..."></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="task-content">
-                            <div class="scroller" style="height: 282px;" data-always-visible="1"
-                                 data-rail-visible1="0" data-handle-color="#D7DCE2">
-                                <!-- START TASK LIST -->
-                                <ul class="task-list">
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="hidden" value="1" name="test"/>
-                                            <input type="checkbox" class="liChild" value="2" name="test"/>
-                                        </div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> Present 2013 Year IPO Statistics at Board Meeting </span>
-                                            <span class="label label-sm label-success">Company</span>
-                                            <span class="task-bell">
-                                                                            <i class="fa fa-bell-o"></i>
-                                                                        </span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> Hold An Interview for Marketing Manager Position </span>
-                                            <span class="label label-sm label-danger">Marketing</span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> AirAsia Intranet System Project Internal Meeting </span>
-                                            <span class="label label-sm label-success">AirAsia</span>
-                                            <span class="task-bell">
-                                                                            <i class="fa fa-bell-o"></i>
-                                                                        </span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> Technical Management Meeting </span>
-                                            <span class="label label-sm label-warning">Company</span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> Kick-off Company CRM Mobile App Development </span>
-                                            <span class="label label-sm label-info">Internal Products</span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> Prepare Commercial Offer For SmartVision Website Rewamp </span>
-                                            <span class="label label-sm label-danger">SmartVision</span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> Sign-Off The Comercial Agreement With AutoSmart </span>
-                                            <span class="label label-sm label-default">AutoSmart</span>
-                                            <span class="task-bell">
-                                                                            <i class="fa fa-bell-o"></i>
-                                                                        </span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> Company Staff Meeting </span>
-                                            <span class="label label-sm label-success">Cruise</span>
-                                            <span class="task-bell">
-                                                                            <i class="fa fa-bell-o"></i>
-                                                                        </span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="last-line">
-                                        <div class="task-checkbox">
-                                            <input type="checkbox" class="liChild" value=""/></div>
-                                        <div class="task-title">
-                                            <span class="task-title-sp"> KeenThemes Investment Discussion </span>
-                                            <span class="label label-sm label-warning">KeenThemes </span>
-                                        </div>
-                                        <div class="task-config">
-                                            <div class="task-config-btn btn-group">
-                                                <a class="btn btn-sm default" href="javascript:;"
-                                                   data-toggle="dropdown" data-hover="dropdown"
-                                                   data-close-others="true">
-                                                    <i class="fa fa-cog"></i>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-check"></i> Complete </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-pencil"></i> Edit </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-trash-o"></i> Cancel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <!-- END START TASK LIST -->
-                            </div>
-                        </div>
-                        <div class="task-footer">
-                            <div class="btn-arrow-link pull-right">
-                                <a href="javascript:;">See All Tasks</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END PORTLET -->
-            </div>
-        </div>
+
 
     </div>
 </template>
 <script>
     import 'mod/sparkline'
+    import 'mod/fullcalendar'
+    import 'mod/fullcalendar_zh_CN'
+    import 'style/fullcalendar'
     module.exports = {
         data: function () {
-            return {
-            }
+            return {}
         },
         mounted(){
             var me = this;
             me.initMiniCharts();
+            me.initCalendar();
         },
         methods: {
+            initCalendar: function () {
+                if (!jQuery().fullCalendar) {
+                    return;
+                }
+
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+
+                var h = {};
+
+                if ($('#calendar').width() <= 400) {
+                    $('#calendar').addClass("mobile");
+                    h = {
+                        left: 'title, prev, next',
+                        center: '',
+                        right: 'today,month,agendaWeek,agendaDay'
+                    };
+                } else {
+                    $('#calendar').removeClass("mobile");
+                    if (App.isRTL()) {
+                        h = {
+                            right: 'title',
+                            center: '',
+                            left: 'prev,next,today,month,agendaWeek,agendaDay'
+                        };
+                    } else {
+                        h = {
+                            left: 'title',
+                            center: '',
+                            right: 'prev,next,today,month,agendaWeek,agendaDay'
+                        };
+                    }
+                }
+
+
+                $('#calendar').fullCalendar('destroy'); // destroy the calendar
+                $('#calendar').fullCalendar({ //re-initialize the calendar
+
+                    disableDragging: false,
+                    header: h,
+                    editable: true,
+                    selectable: true,
+                    dayClick: function (date, allDay, jsEvent, view) {
+                        console.log('a day has been clicked!');
+                    },
+                    eventClick: function (event, jsEvent, view) {
+                        console.log(event);
+                        console.log(jsEvent);
+                        console.log(view)
+                    },
+                    select: function (startDate, endDate, allDay, jsEvent, view) {
+
+                    },
+                    events: [{
+                        title: '全天事件',
+                        start: new Date(y, m, 1),
+                        backgroundColor: App.getBrandColor('yellow')
+                    }, {
+                        title: '长事件',
+                        start: new Date(y, m, d - 5),
+                        end: new Date(y, m, d - 2),
+                        backgroundColor: App.getBrandColor('blue')
+                    }, {
+                        title: 'Repeating Event',
+                        start: new Date(y, m, d - 3, 16, 0),
+                        allDay: false,
+                        backgroundColor: App.getBrandColor('red')
+                    }, {
+                        title: 'Repeating Event',
+                        start: new Date(y, m, d + 6, 16, 0),
+                        allDay: false,
+                        backgroundColor: App.getBrandColor('green')
+                    }, {
+                        title: 'Meeting',
+                        start: new Date(y, m, d + 9, 10, 30),
+                        allDay: false
+                    }, {
+                        title: 'Lunch',
+                        start: new Date(y, m, d, 14, 0),
+                        end: new Date(y, m, d, 14, 0),
+                        backgroundColor: App.getBrandColor('grey'),
+                        allDay: false
+                    }, {
+                        title: 'Birthday',
+                        start: new Date(y, m, d + 1, 19, 0),
+                        end: new Date(y, m, d + 1, 22, 30),
+                        backgroundColor: App.getBrandColor('purple'),
+                        allDay: false
+                    }, {
+                        title: 'Click for Google',
+                        start: new Date(y, m, 28),
+                        end: new Date(y, m, 29),
+                        backgroundColor: App.getBrandColor('yellow'),
+                        url: 'http://google.com/'
+                    }]
+                });
+            },
             initMiniCharts: function () {
 
                 // IE8 Fix: function.bind polyfill

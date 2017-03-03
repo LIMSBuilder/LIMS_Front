@@ -5,8 +5,110 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e13c4b-5f2f-4216-8e0d-52831df0a2cd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/animated-overlay.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_flat_15_cd0a0a_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_100_e4f1fb_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_50_3baae3_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_80_d7ebf9_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-hard_70_000000_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-soft_100_deedf7_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_2694e8_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_2e83ff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_3d80b3_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_72a7cf_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_ffffff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/changelog.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/agenda-views.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/background-events.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/basic-views.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/external-dragging.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/gcal.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/json.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/json/events.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/languages.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/php/get-events.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/php/get-timezones.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/php/utils.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/selectable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/theme.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/timezones.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.print.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/gcal.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang-all.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar-ma.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar-sa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar-tn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/bg.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/cs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/da.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/de-at.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/de.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/el.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/en-au.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/en-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/en-gb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/es.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fr-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/he.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/hi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/hr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/hu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/is.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/it.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ja.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ko.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/lt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/lv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/nb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/nl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/pl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/pt-br.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/pt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ro.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ru.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sr-cyrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/th.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/tr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/uk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/vi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/zh-cn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/zh-tw.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/jquery-ui.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/jquery-ui.custom.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/moment.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/license.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Navbar.vue" afterPath="$PROJECT_DIR$/app/index/components/Navbar.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/setting.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/setting.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/index.html" afterPath="$PROJECT_DIR$/app/index/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.config.js" afterPath="$PROJECT_DIR$/build/webpack.config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,11 +126,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Dashboard.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dashboard.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="97" lean-forward="false" selection-start-line="27" selection-start-column="97" selection-end-line="27" selection-end-column="97" />
+            <state relative-caret-position="-705">
+              <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -36,10 +138,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/login/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1320">
+              <caret line="88" column="40" lean-forward="false" selection-start-line="88" selection-start-column="40" selection-end-line="88" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Container.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/Container.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="-390">
               <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
               <folding />
             </state>
@@ -59,27 +171,40 @@
       <file leaf-file-name="setting.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/setting.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4575">
-              <caret line="306" column="66" lean-forward="false" selection-start-line="306" selection-start-column="53" selection-end-line="306" selection-end-column="66" />
+            <state relative-caret-position="-495">
+              <caret line="84" column="72" lean-forward="false" selection-start-line="84" selection-start-column="72" selection-end-line="84" selection-end-column="72" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#td#1;n#tr#2;n#table#0;n#form#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#12265#12288#0" expanded="true" />
+                <element signature="e#12671#15503#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="overview.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Navbar.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-690">
+              <caret line="11" column="62" lean-forward="false" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="overview.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/overview.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="1185" column="40" lean-forward="true" selection-start-line="1185" selection-start-column="40" selection-end-line="1185" selection-end-column="40" />
+            <state relative-caret-position="221">
+              <caret line="302" column="48" lean-forward="true" selection-start-line="302" selection-start-column="48" selection-end-line="302" selection-end-column="48" />
               <folding>
-                <element signature="n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#87798#87820#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,8 +213,18 @@
       <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="24" />
+            <state relative-caret-position="-527">
+              <caret line="66" column="36" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-765">
+              <caret line="20" column="100" lean-forward="false" selection-start-line="20" selection-start-column="100" selection-end-line="20" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -98,24 +233,14 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="144" column="27" lean-forward="false" selection-start-line="144" selection-start-column="27" selection-end-line="144" selection-end-column="27" />
+            <state relative-caret-position="1273">
+              <caret line="180" column="5" lean-forward="true" selection-start-line="180" selection-start-column="5" selection-end-line="180" selection-end-column="5" />
               <folding>
                 <element signature="e#34#55#0" expanded="true" />
                 <element signature="e#3285#3344#0" expanded="true" />
                 <element signature="e#3478#3538#0" expanded="true" />
                 <element signature="e#3741#3765#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/global/style/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -133,26 +258,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;template&gt;</find>
-      <find>todo-tasklist-d</find>
-      <find>&lt;template</find>
-      <find>#659be0</find>
-      <find>GlobalEx Tasks:</find>
-      <find>todo-tasklist-item</find>
-      <find>template</find>
-      <find>Vanessa Bon{}</find>
-      <find>total</find>
-      <find>.todo-username</find>
-      <find>name</find>
-      <find>Comment</find>
-      <find>$('.forget-form')</find>
-      <find>forget-f</find>
       <find>证件号</find>
       <find>page-content-wrapper</find>
       <find>page-content</find>
       <find>min</find>
       <find>country_list</find>
-      <find>../assets/pages/media/users/</find>
       <find>80_2</find>
       <find>profile_user.jpg</find>
       <find>TIMELINE</find>
@@ -163,6 +273,21 @@
       <find>PROFILE ACCOUNT</find>
       <find>NOTE</find>
       <find>new_password</find>
+      <find>boundFn</find>
+      <find>name</find>
+      <find>.name</find>
+      <find>Anim pariatur cliche reprehenderit, enim eiusmod high</find>
+      <find>touchspin</find>
+      <find>.</find>
+      <find>.table</find>
+      <find>touchspin_7</find>
+      <find>变 更</find>
+      <find>FEEDS</find>
+      <find>See All Tasks</find>
+      <find>../assets/pages/media/users/</find>
+      <find>QUICK ACTIONS</find>
+      <find>&gt;Reject</find>
+      <find>不再提醒</find>
     </findStrings>
     <replaceStrings>
       <replace>user_add</replace>
@@ -175,6 +300,10 @@
       <replace>../../../images/avatar/avatar</replace>
       <replace>department_list</replace>
       <replace>../../images/avatar/</replace>
+      <replace>跳 转</replace>
+      <replace>不再提醒</replace>
+      <replace>&gt;不再提醒</replace>
+      <replace>关 闭</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -186,7 +315,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/index/components/system/user/change.vue" />
         <option value="$PROJECT_DIR$/app/index/components/system/role/change.vue" />
         <option value="$PROJECT_DIR$/app/index/components/system/department/list.vue" />
         <option value="$PROJECT_DIR$/app/index/components/system/role/list.vue" />
@@ -228,15 +356,16 @@
         <option value="$PROJECT_DIR$/app/index/components/system/function/500.vue" />
         <option value="$PROJECT_DIR$/app/login/index.html" />
         <option value="$PROJECT_DIR$/app/login/index.js" />
-        <option value="$PROJECT_DIR$/app/index/components/Navbar.vue" />
-        <option value="$PROJECT_DIR$/build/webpack.config.js" />
         <option value="$PROJECT_DIR$/app/global/style/main.css" />
         <option value="$PROJECT_DIR$/app/index/index.js" />
         <option value="$PROJECT_DIR$/app/index/components/Container.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/help.vue" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/setting.vue" />
+        <option value="$PROJECT_DIR$/build/webpack.config.js" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" />
+        <option value="$PROJECT_DIR$/app/index/index.html" />
+        <option value="$PROJECT_DIR$/app/index/components/Navbar.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" />
       </list>
     </option>
   </component>
@@ -301,6 +430,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="login" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,6 +516,84 @@
               <option name="myItemId" value="global" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="global" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fullcalendar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="global" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fullcalendar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="global" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -397,7 +608,7 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="SearchEverywhereHistoryKey" value="webp&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;web&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;webpa&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;Na&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;index&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;contrac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;contract&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;ser&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/dev-server.js&#10;webpack&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;Nav&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;index.j&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;webpac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/webpack.config.js&#10;contract/cr&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/contract/create.vue&#10;moment&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;mom&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;ran&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-daterangepicker/daterangepicker.js&#10;ind&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;mome&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;w&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiza&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;project/l&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/basic/project/list.vue&#10;in&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;Navb&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;dropz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/dropzone/dropzone.css&#10;change&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/system/role/change.vue&#10;Blo&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;iziToast-buttons &#9;null&#9;null&#10;izi&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/iziToast/dist/js/iziToast.js&#10;datatables&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/datatables/datatables.min.js&#10;Blog&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js" />
+    <property name="SearchEverywhereHistoryKey" value="Na&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;webp&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;web&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;webpa&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;index&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;contrac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;contract&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;ser&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/dev-server.js&#10;webpack&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;Nav&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;index.j&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;webpac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/webpack.config.js&#10;contract/cr&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/contract/create.vue&#10;moment&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;mom&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;ran&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-daterangepicker/daterangepicker.js&#10;ind&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;mome&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;w&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiza&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;project/l&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/basic/project/list.vue&#10;in&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;Navb&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;dropz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/dropzone/dropzone.css&#10;change&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/system/role/change.vue&#10;Blo&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;iziToast-buttons &#9;null&#9;null&#10;izi&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/iziToast/dist/js/iziToast.js&#10;datatables&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/datatables/datatables.min.js&#10;Blog&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="FullScreen" value="true" />
   </component>
@@ -503,7 +714,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164952000" />
+    <option name="totallyTimeSpent" value="174168000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -512,7 +723,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3010967" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3010967" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -541,27 +752,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/index/components/system/department/change.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="77" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/basic/customer/change.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="113" column="26" lean-forward="false" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/basic/customer/list.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="66" lean-forward="false" selection-start-line="68" selection-start-column="60" selection-end-line="68" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/system/department/list.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
@@ -672,6 +862,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1305">
           <caret line="87" column="43" lean-forward="false" selection-start-line="83" selection-start-column="20" selection-end-line="87" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -804,16 +995,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="88" column="40" lean-forward="false" selection-start-line="88" selection-start-column="40" selection-end-line="88" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/system/role/change.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -830,14 +1011,6 @@
             <marker date="1475481330000" expanded="true" signature="1149:1165" ph="..." />
             <marker date="1475481330000" expanded="true" signature="1167:1174" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,35 +1050,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="53" column="26" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="53" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="144" column="27" lean-forward="false" selection-start-line="144" selection-start-column="27" selection-end-line="144" selection-end-column="27" />
-          <folding>
-            <element signature="e#34#55#0" expanded="true" />
-            <element signature="e#3285#3344#0" expanded="true" />
-            <element signature="e#3478#3538#0" expanded="true" />
-            <element signature="e#3741#3765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/Container.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/help.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -930,20 +1074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/overview.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="1185" column="40" lean-forward="true" selection-start-line="1185" selection-start-column="40" selection-end-line="1185" selection-end-column="40" />
-          <folding>
-            <element signature="n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/login/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -954,31 +1084,117 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/Container.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-390">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/zh-cn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1273">
+          <caret line="180" column="5" lean-forward="true" selection-start-line="180" selection-start-column="5" selection-end-line="180" selection-end-column="5" />
+          <folding>
+            <element signature="e#34#55#0" expanded="true" />
+            <element signature="e#3285#3344#0" expanded="true" />
+            <element signature="e#3478#3538#0" expanded="true" />
+            <element signature="e#3741#3765#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="24" />
+        <state relative-caret-position="-527">
+          <caret line="66" column="36" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/setting.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4575">
-          <caret line="306" column="66" lean-forward="false" selection-start-line="306" selection-start-column="53" selection-end-line="306" selection-end-column="66" />
+        <state relative-caret-position="-495">
+          <caret line="84" column="72" lean-forward="false" selection-start-line="84" selection-start-column="72" selection-end-line="84" selection-end-column="72" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#td#1;n#tr#2;n#table#0;n#form#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#12265#12288#0" expanded="true" />
+            <element signature="e#12671#15503#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/login/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="88" column="40" lean-forward="false" selection-start-line="88" selection-start-column="40" selection-end-line="88" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-765">
+          <caret line="20" column="100" lean-forward="false" selection-start-line="20" selection-start-column="100" selection-end-line="20" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690">
+          <caret line="11" column="62" lean-forward="false" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="97" lean-forward="false" selection-start-line="27" selection-start-column="97" selection-end-line="27" selection-end-column="97" />
+        <state relative-caret-position="-705">
+          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/overview.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="302" column="48" lean-forward="true" selection-start-line="302" selection-start-column="48" selection-end-line="302" selection-end-column="48" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#87798#87820#0" expanded="true" />
           </folding>
         </state>
       </provider>

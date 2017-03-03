@@ -9,9 +9,9 @@
         <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="true" data-auto-scroll="true"
-            data-auto-speed="400"
-            data-slide-speed="400" style="padding-top: 20px">
+        <ul class="page-sidebar-menu  page-sidebar-menu-closed  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true"
+            data-auto-speed="100"
+            data-slide-speed="100" data-close-others="true" style="padding-top: 20px">
             <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
             <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
             <li class="sidebar-toggler-wrapper hide">

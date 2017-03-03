@@ -62,6 +62,9 @@ module.exports = {
             'mod/datepicker': path.resolve(PluginsPath, 'bootstrap-datepicker/js/bootstrap-datepicker.min.js'),
             'mod/datepicker_locales': path.resolve(PluginsPath, 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js'),
             'mod/sparkline': path.resolve(PluginsPath, 'jquery.sparkline.min.js'),
+            'mod/touchspin': path.resolve(PluginsPath, 'bootstrap-touchspin/bootstrap.touchspin.js'),
+            'mod/fullcalendar':path.resolve(PluginsPath,'fullcalendar/fullcalendar.js'),
+            'mod/fullcalendar_zh_CN':path.resolve(PluginsPath,'fullcalendar/lang/zh-cn.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -94,7 +97,9 @@ module.exports = {
 
             'style/contract_list': path.resolve(StylePath, 'contract_list.css'),
             'style/socicon': path.resolve(PluginsPath, 'socicon/socicon.css'),
+            'style/touchspin': path.resolve(PluginsPath, 'bootstrap-touchspin/bootstrap.touchspin.css'),
 
+            'style/fullcalendar':path.resolve(PluginsPath,'fullcalendar/fullcalendar.css'),
             'style/main': path.resolve(StylePath, 'main.css'),
 
             'globalPath': path.resolve(GlobalPath)

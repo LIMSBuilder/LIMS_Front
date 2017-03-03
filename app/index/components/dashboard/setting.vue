@@ -29,33 +29,30 @@
                             <div class="tab-pane active" id="tab_1_1">
                                 <form role="form" action="#">
                                     <div class="form-group">
-                                        <label class="control-label">First Name</label>
-                                        <input type="text" placeholder="John" class="form-control"/></div>
+                                        <label class="control-label">真实姓名</label>
+                                        <input type="text" placeholder="请输入真实姓名" v-model="changeInfo.name" name="name"
+                                               class="form-control"/></div>
                                     <div class="form-group">
-                                        <label class="control-label">Last Name</label>
-                                        <input type="text" placeholder="Doe" class="form-control"/></div>
-                                    <div class="form-group">
-                                        <label class="control-label">Mobile Number</label>
-                                        <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
+                                        <label class="control-label">手机号码</label>
+                                        <input type="text" placeholder="请输入联系方式" v-model="changeInfo.tel" name="tel"
+                                               class="form-control"/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Interests</label>
-                                        <input type="text" placeholder="Design, Web etc." class="form-control"/></div>
+                                        <label class="control-label">电子邮箱</label>
+                                        <input type="text" placeholder="请输入电子邮箱" v-model="changeInfo.mail" name="mail"
+                                               class="form-control"/></div>
                                     <div class="form-group">
-                                        <label class="control-label">Occupation</label>
-                                        <input type="text" placeholder="Web Developer" class="form-control"/></div>
+                                        <label class="control-label">家庭住址</label>
+                                        <input type="text" placeholder="请输入家庭住址" v-model="changeInfo.address"
+                                               name="address"
+                                               class="form-control"/></div>
                                     <div class="form-group">
-                                        <label class="control-label">About</label>
-                                        <textarea class="form-control" rows="3"
-                                                  placeholder="We are KeenThemes!!!"></textarea>
+                                        <label class="control-label">关于本人</label>
+                                        <textarea class="form-control" v-model="changeInfo.desp" rows="3" name="desp"
+                                                  placeholder="描述一下自己吧"></textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Website Url</label>
-                                        <input type="text" placeholder="http://www.mywebsite.com" class="form-control"/>
-                                    </div>
-                                    <div class="margiv-top-10">
-                                        <a href="javascript:;" class="btn green"> Save Changes </a>
-                                        <a href="javascript:;" class="btn default"> Cancel </a>
+                                    <div class="margiv-top-10 text-right">
+                                        <a href="javascript:;" class="btn green" @click="changeInfoBtn"> 保 存 </a>
                                     </div>
                                 </form>
                             </div>
@@ -85,9 +82,8 @@
                                             <span> 图片上传功能仅支持最新版Firefox, Chrome, Opera, Safari and Internet Explorer 10及以上。 </span>
                                         </div>
                                     </div>
-                                    <div class="margin-top-10">
+                                    <div class="margin-top-10 text-right">
                                         <a href="javascript:;" class="btn green" @click="savePortait"> 保 存 </a>
-                                        <a href="javascript:;" class="btn default"> 取 消 </a>
                                     </div>
                                 </form>
                             </div>
@@ -106,9 +102,8 @@
                                     <div class="form-group">
                                         <label class="control-label">重复密码</label>
                                         <input type="password" name="repeat_password" class="form-control"/></div>
-                                    <div class="margin-top-10">
-                                        <a href="javascript:;" class="btn green" @click="changePwdFun"> 变 更 </a>
-                                        <a href="javascript:;" class="btn default"> 取 消 </a>
+                                    <div class="margin-top-10 text-right">
+                                        <a href="javascript:;" class="btn green" @click="changePwdFun"> 保 存 </a>
                                     </div>
                                 </form>
                             </div>
@@ -116,81 +111,64 @@
                             <!-- PRIVACY SETTINGS TAB -->
                             <div class="tab-pane" id="tab_1_4">
                                 <form action="#">
-                                    <table class="table table-light table-hover">
+                                    <table class="table table-light table-hover" id="setting_table">
                                         <tr>
-                                            <td> Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                accusamus..
+                                            <td> 消息实时推送功能
                                             </td>
                                             <td>
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios1" value="option1"/> Yes
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios1" value="option2"
-                                                               checked/> No
-                                                        <span></span>
-                                                    </label>
+                                                <div class="text-right">
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="isNotice" value="1"
+                                                                   v-model="settingInfo.isNotice"> 开启
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="isNotice" value="0"
+                                                                   v-model="settingInfo.isNotice"> 关闭
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
                                                 </div>
+
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon
+                                            <td> 登录显示"欢迎"界面
                                             </td>
                                             <td>
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios11" value="option1"/> Yes
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios11" value="option2"
-                                                               checked/> No
-                                                        <span></span>
-                                                    </label>
+                                                <div class="text-right">
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="showWelcome" value="1"
+                                                                   v-model="settingInfo.showWelcome"> 开启
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio">
+                                                            <input type="radio" name="showWelcome" value="0"
+                                                                   v-model="settingInfo.showWelcome"> 关闭
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
                                                 </div>
+
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon
+                                            <td> 每页显示记录条数
                                             </td>
                                             <td>
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios21" value="option1"/> Yes
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios21" value="option2"
-                                                               checked/> No
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon
-                                            </td>
-                                            <td>
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios31" value="option1"/> Yes
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="optionsRadios31" value="option2"
-                                                               checked/> No
-                                                        <span></span>
-                                                    </label>
+                                                <div class="text-right pull-right">
+                                                    <input id="rowCount" type="text" v-model="settingInfo.rowCount"
+                                                           style="width: 70px;"
+                                                           name="demo_vertical">
                                                 </div>
                                             </td>
                                         </tr>
                                     </table>
                                     <!--end profile-settings-->
-                                    <div class="margin-top-10">
-                                        <a href="javascript:;" class="btn red"> Save Changes </a>
-                                        <a href="javascript:;" class="btn default"> Cancel </a>
+                                    <div class="margin-top-10 text-right">
+                                        <a href="javascript:;" class="btn green" @click="changeSettingInfo"> 保 存 </a>
                                     </div>
                                 </form>
                             </div>
@@ -202,16 +180,28 @@
         </div>
     </div>
 </template>
+<style>
+    .table .btn {
+        margin-right: 0;
+    }
+
+</style>
 <script>
+    import  'mod/touchspin'
+    import  'style/touchspin'
     module.exports = {
         data: function () {
             return {
-                changePWD: {}
+                changePWD: {},
+                changeInfo: {},
+                settingInfo: {}
             }
         },
         mounted(){
             var me = this;
             me._form_vaild();
+            me.fetchData();
+
         },
         methods: {
             _form_vaild(){
@@ -319,6 +309,64 @@
                 }, response => {
                     serverErrorInfo();
                 });
+            },
+            changeInfoBtn(){
+                var me = this;
+                me.$http.post("/api/user/changeInfo", me.changeInfo).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("个人信息修改完成！");
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo();
+                });
+
+            },
+            changeSettingInfo(){
+                var me = this;
+                me.$http.post("/api/user/changeSetting", me.settingInfo).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("个性化设置修改完成！");
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            fetchData(){
+                var me = this;
+                me.$http.get("/api/login/getLogin").then(response => {
+                    var data = response.data;
+                    me.changeInfo = {
+                        name: data.name,
+                        mail: data.mail,
+                        address: data.address,
+                        desp: data.desp,
+                        tel: data.tel
+                    };
+                    me.settingInfo = {
+                        showWelcome: data.showWelcome,
+                        rowCount: data.rowCount,
+                        isNotice: data.isNotice
+                    }
+                    me.$nextTick(function () {
+                        $("#rowCount").TouchSpin({
+                            min: 1,
+                            max: 30
+                        });
+
+                        jQuery("#rowCount").on("change", function (e) {
+//                            console.log(e.target.value);
+                            me.settingInfo.rowCount = e.target.value;
+                        });
+                    })
+                }, response => {
+                    serverErrorInfo();
+                })
             }
         }
     }
