@@ -4,7 +4,7 @@ import VueRouter from 'mod/vue-router'
 import VueResource from 'vue-resource'
 import 'mod/jquery'
 import 'mod/bootstrap'
-import 'mod/cookie'
+import Cookies from 'mod/cookie'
 import 'mod/slimscorll'
 import 'mod/switch'
 import 'mod/blockui'
@@ -92,6 +92,12 @@ import Change_User from './components/system/user/change.vue'
 import page_404 from './components/system/function/404.vue'
 import page_403 from './components/system/function/403.vue'
 import page_500 from './components/system/function/500.vue'
+
+//DashBoard
+import dashboard from './components/dashboard/Dashboard.vue'
+import overview from './components/dashboard/overview.vue'
+import setting from './components/dashboard/setting.vue'
+import help from './components/dashboard/help.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -114,13 +120,32 @@ import 'style/fileinput'
 import 'style/select'
 import 'style/pagination'
 import 'style/jqueryUI'
+import 'style/main'
 Vue.config.debug = true;//开启错误提示
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true;
 
-
+window.Cookies = Cookies;
 var routes = [
+    {
+        path: "/",
+        name: "/",
+        component: dashboard,
+        children: [{
+            path: "overview",
+            component: overview
+
+        }, {
+            path: "setting",
+            component: setting
+
+        }, {
+            path: "help",
+            component: help
+
+        }]
+    },
     {
         path: "/404",
         name: "404",
@@ -320,7 +345,21 @@ new Vue({
 new Vue({
     el: '#container',
     router,
-    render: h => h(Container)
+    render: h => h(Container),
+    watch: {
+        '$route': "autoRouter"
+    },
+    created(){
+        this.autoRouter();
+    },
+    methods: {
+        autoRouter(){
+            //当前路径为/或者/index.html -> /blog/list
+            if (router.history.current.path == "/" || router.history.current.path == "/index.html") {
+                router.push("/overview");
+            }
+        }
+    }
 });
 
 new Vue({
