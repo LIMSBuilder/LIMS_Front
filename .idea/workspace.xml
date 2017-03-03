@@ -1,114 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/index/components/Navbar.vue" description="&lt;router-link :to=&quot;{ path:'/role/list'}&quot; tag=&quot;li&quot; a..." line="277" />
+    <bookmark url="file://$PROJECT_DIR$/app/index/components/Navbar.vue" description="&lt;router-link :to=&quot;{ path:'/role/list'}&quot; tag=&quot;li&quot; a..." line="254" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e13c4b-5f2f-4216-8e0d-52831df0a2cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/animated-overlay.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_flat_15_cd0a0a_40x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_100_e4f1fb_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_50_3baae3_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_80_d7ebf9_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-hard_70_000000_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-soft_100_deedf7_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-soft_25_ffef8f_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_2694e8_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_2e83ff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_3d80b3_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_72a7cf_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_ffffff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/LICENSE.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/changelog.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/agenda-views.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/background-events.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/basic-views.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/default.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/external-dragging.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/gcal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/json.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/json/events.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/languages.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/php/get-events.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/php/get-timezones.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/php/utils.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/selectable.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/theme.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/demos/timezones.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/fullcalendar.print.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/gcal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang-all.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar-ma.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar-sa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar-tn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/bg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/cs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/da.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/de-at.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/de.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/el.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/en-au.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/en-ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/en-gb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fr-ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/fr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/he.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/hi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/hr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/hu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/id.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/is.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/it.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ja.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ko.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/lt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/lv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/nb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/nl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/pt-br.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/pt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/ru.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sr-cyrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/sv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/th.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/tr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/uk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/vi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/zh-cn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lang/zh-tw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/cupertino/jquery-ui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/jquery-ui.custom.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/lib/moment.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/fullcalendar/license.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/calendar/calendar.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Navbar.vue" afterPath="$PROJECT_DIR$/app/index/components/Navbar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/setting.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/setting.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/index.html" afterPath="$PROJECT_DIR$/app/index/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.config.js" afterPath="$PROJECT_DIR$/build/webpack.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/index.js" afterPath="$PROJECT_DIR$/app/index/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -148,26 +48,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Container.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/Container.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-390">
-              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="help.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/help.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="525" column="43" lean-forward="true" selection-start-line="525" selection-start-column="43" selection-end-line="525" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="setting.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/setting.vue">
           <provider selected="true" editor-type-id="text-editor">
@@ -187,18 +67,40 @@
       <file leaf-file-name="Navbar.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-690">
-              <caret line="11" column="62" lean-forward="false" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+            <state relative-caret-position="259">
+              <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="overview.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calendar.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/index/components/calendar/calendar.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="591">
+              <caret line="162" column="55" lean-forward="false" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
+              <folding>
+                <element signature="e#3218#3243#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Top.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/components/Top.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-795">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="overview.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/overview.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="302" column="48" lean-forward="true" selection-start-line="302" selection-start-column="48" selection-end-line="302" selection-end-column="48" />
+            <state relative-caret-position="581">
+              <caret line="1413" column="5" lean-forward="true" selection-start-line="1259" selection-start-column="4" selection-end-line="1413" selection-end-column="5" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -210,21 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-527">
-              <caret line="66" column="36" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-765">
-              <caret line="20" column="100" lean-forward="false" selection-start-line="20" selection-start-column="100" selection-end-line="20" selection-end-column="100" />
+            <state relative-caret-position="49">
+              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="91" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -233,13 +125,13 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1273">
-              <caret line="180" column="5" lean-forward="true" selection-start-line="180" selection-start-column="5" selection-end-line="180" selection-end-column="5" />
+            <state relative-caret-position="373">
+              <caret line="153" column="24" lean-forward="false" selection-start-line="153" selection-start-column="16" selection-end-line="153" selection-end-column="24" />
               <folding>
                 <element signature="e#34#55#0" expanded="true" />
                 <element signature="e#3285#3344#0" expanded="true" />
                 <element signature="e#3478#3538#0" expanded="true" />
-                <element signature="e#3741#3765#0" expanded="true" />
+                <element signature="e#3812#3836#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -258,8 +150,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>证件号</find>
-      <find>page-content-wrapper</find>
       <find>page-content</find>
       <find>min</find>
       <find>country_list</find>
@@ -288,6 +178,8 @@
       <find>QUICK ACTIONS</find>
       <find>&gt;Reject</find>
       <find>不再提醒</find>
+      <find>drag</find>
+      <find>CALENDAR</find>
     </findStrings>
     <replaceStrings>
       <replace>user_add</replace>
@@ -315,8 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/index/components/system/role/change.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/system/department/list.vue" />
         <option value="$PROJECT_DIR$/app/index/components/system/role/list.vue" />
         <option value="$PROJECT_DIR$/app/index/components/basic/project/project.vue" />
         <option value="$PROJECT_DIR$/app/index/components/system/user/list.vue" />
@@ -357,15 +247,17 @@
         <option value="$PROJECT_DIR$/app/login/index.html" />
         <option value="$PROJECT_DIR$/app/login/index.js" />
         <option value="$PROJECT_DIR$/app/global/style/main.css" />
-        <option value="$PROJECT_DIR$/app/index/index.js" />
         <option value="$PROJECT_DIR$/app/index/components/Container.vue" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/help.vue" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/setting.vue" />
         <option value="$PROJECT_DIR$/build/webpack.config.js" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" />
         <option value="$PROJECT_DIR$/app/index/index.html" />
-        <option value="$PROJECT_DIR$/app/index/components/Navbar.vue" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/calendar;/calendar.vue" />
+        <option value="$PROJECT_DIR$/app/index/index.js" />
+        <option value="$PROJECT_DIR$/app/index/components/Navbar.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/calendar/calendar.vue" />
       </list>
     </option>
   </component>
@@ -473,7 +365,89 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dashboard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="calendar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bussiness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contract" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -496,84 +470,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fullcalendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fullcalendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lang" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -714,7 +610,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174168000" />
+    <option name="totallyTimeSpent" value="177346000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -723,7 +619,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3010967" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3010967" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -752,20 +648,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/index/components/system/department/list.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="69" column="30" lean-forward="false" selection-start-line="35" selection-start-column="24" selection-end-line="69" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/basic/element/create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/basic/frequency/create.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -897,34 +779,6 @@
             <marker date="1488464140000" expanded="true" signature="57908:57922" ph="{...}" />
             <marker date="1488464140000" expanded="true" signature="57908:57932" ph="{...}" />
             <marker date="1488464140000" expanded="true" signature="57908:57938" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2775">
-          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding>
-            <element signature="n#ul#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#20423#20429#0" expanded="true" />
-            <element signature="e#20429#20435#0" expanded="true" />
-            <element signature="e#22418#22424#0" expanded="true" />
-            <element signature="e#22424#22430#0" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#6;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#7;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#63950#63969#0" expanded="true" />
-            <element signature="e#64179#64203#0" expanded="true" />
-            <element signature="e#65904#66054#0" expanded="false" />
-            <marker date="1488464122000" expanded="true" signature="79115:79121" ph=" " />
-            <marker date="1488464122000" expanded="true" signature="79121:79127" ph=" " />
           </folding>
         </state>
       </provider>
@@ -1116,19 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1273">
-          <caret line="180" column="5" lean-forward="true" selection-start-line="180" selection-start-column="5" selection-end-line="180" selection-end-column="5" />
-          <folding>
-            <element signature="e#34#55#0" expanded="true" />
-            <element signature="e#3285#3344#0" expanded="true" />
-            <element signature="e#3478#3538#0" expanded="true" />
-            <element signature="e#3741#3765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-527">
@@ -1159,19 +1000,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/index.html">
+    <entry file="file://$PROJECT_DIR$/app/index/components/Top.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="20" column="100" lean-forward="false" selection-start-line="20" selection-start-column="100" selection-end-line="20" selection-end-column="100" />
+        <state relative-caret-position="-795">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
+    <entry file="file://$PROJECT_DIR$/app/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-690">
-          <caret line="11" column="62" lean-forward="false" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+        <state relative-caret-position="373">
+          <caret line="153" column="24" lean-forward="false" selection-start-line="153" selection-start-column="16" selection-end-line="153" selection-end-column="24" />
+          <folding>
+            <element signature="e#34#55#0" expanded="true" />
+            <element signature="e#3285#3344#0" expanded="true" />
+            <element signature="e#3478#3538#0" expanded="true" />
+            <element signature="e#3812#3836#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/overview.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="1413" column="5" lean-forward="true" selection-start-line="1259" selection-start-column="4" selection-end-line="1413" selection-end-column="5" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#87798#87820#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="91" selection-end-column="6" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="965" column="15" lean-forward="true" selection-start-line="963" selection-start-column="12" selection-end-line="965" selection-end-column="15" />
+          <folding>
+            <element signature="n#ul#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="e#20423#20429#0" expanded="true" />
+            <element signature="e#20429#20435#0" expanded="true" />
+            <element signature="e#22418#22424#0" expanded="true" />
+            <element signature="e#22424#22430#0" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#6;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#7;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#63950#63969#0" expanded="true" />
+            <element signature="e#64179#64203#0" expanded="true" />
+            <element signature="e#65904#66054#0" expanded="false" />
+            <marker date="1488464122000" expanded="true" signature="79115:79121" ph=" " />
+            <marker date="1488464122000" expanded="true" signature="79121:79127" ph=" " />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1185,16 +1081,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/dashboard/overview.vue">
+    <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="302" column="48" lean-forward="true" selection-start-line="302" selection-start-column="48" selection-end-line="302" selection-end-column="48" />
+        <state relative-caret-position="259">
+          <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/calendar/calendar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="162" column="55" lean-forward="false" selection-start-line="162" selection-start-column="55" selection-end-line="162" selection-end-column="55" />
           <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#87798#87820#0" expanded="true" />
+            <element signature="e#3218#3243#0" expanded="true" />
           </folding>
         </state>
       </provider>

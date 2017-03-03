@@ -98,6 +98,10 @@ import dashboard from './components/dashboard/Dashboard.vue'
 import overview from './components/dashboard/overview.vue'
 import setting from './components/dashboard/setting.vue'
 import help from './components/dashboard/help.vue'
+
+//Calendar
+import calendar from './components/calendar/calendar.vue'
+
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -145,6 +149,11 @@ var routes = [
             component: help
 
         }]
+    },
+    {
+        path: "/calendar",
+        name: "/calendar",
+        component: calendar
     },
     {
         path: "/404",
