@@ -40,12 +40,18 @@
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
-            <li class="nav-item start active">
+            <!--<li class="nav-item start active">-->
+                <!--<a href="javascript:;" class="nav-link nav-toggle">-->
+                    <!--<i class="icon-home"></i>-->
+                    <!--<span class="title">Dashboard</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <router-link :to="{ path: '/' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
                 </a>
-            </li>
+            </router-link>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-diamond"></i>

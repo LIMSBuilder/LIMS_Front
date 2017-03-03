@@ -31,7 +31,7 @@ module.exports = {
             'mod/vue-resource': path.resolve(PluginsPath, 'vue-resource.min'),
             'mod/vue-router': path.resolve(PluginsPath, 'vue-router'),
             'mod/jquery': path.resolve(JsPath, 'jquery-vendor.js'),
-            'mod/cookie': path.resolve(PluginsPath, 'js.cookie.min.js'),
+            'mod/cookie': path.resolve(PluginsPath, 'js.cookie.js'),
             'mod/blockui': path.resolve(PluginsPath, 'jquery.blockui.min.js'),
             'mod/slimscorll': path.resolve(PluginsPath, 'jquery-slimscroll/jquery.slimscroll.js'),
             'mod/bootstrap': path.resolve(PluginsPath, 'bootstrap/js/bootstrap.min.js'),
@@ -61,6 +61,7 @@ module.exports = {
             'mod/taginput': path.resolve(PluginsPath, 'bootstrap-tagsinput/bootstrap-tagsinput.js'),
             'mod/datepicker': path.resolve(PluginsPath, 'bootstrap-datepicker/js/bootstrap-datepicker.min.js'),
             'mod/datepicker_locales': path.resolve(PluginsPath, 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js'),
+            'mod/sparkline': path.resolve(PluginsPath, 'jquery.sparkline.min.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -92,7 +93,9 @@ module.exports = {
             'style/login': path.resolve(StylePath, 'login.css'),
 
             'style/contract_list': path.resolve(StylePath, 'contract_list.css'),
-            'style/socicon':path.resolve(PluginsPath,'socicon/socicon.css'),
+            'style/socicon': path.resolve(PluginsPath, 'socicon/socicon.css'),
+
+            'style/main': path.resolve(StylePath, 'main.css'),
 
             'globalPath': path.resolve(GlobalPath)
         }

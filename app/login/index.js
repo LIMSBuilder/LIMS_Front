@@ -334,7 +334,7 @@ jQuery(document).ready(function () {
                     codeState(data, {
                         200: function () {
                             alert("登陆成功");
-
+                            window.location.href = "/";
                         },
                         502: function () {
                             error("用户名或密码错误！");
