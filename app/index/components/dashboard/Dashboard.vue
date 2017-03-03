@@ -24,7 +24,8 @@
                     <div class="portlet light profile-sidebar-portlet ">
                         <!-- SIDEBAR USERPIC -->
                         <div class="profile-userpic">
-                            <img src="../../../global/img/profile_user.jpg" class="img-responsive" alt=""></div>
+                            <img :src="user.portrait?user.portrait:'../../../global/img/profile_user.jpg'"
+                                 class="img-responsive" alt="" style="width: 150px;height: 150px;"></div>
                         <!-- END SIDEBAR USERPIC -->
                         <!-- SIDEBAR USER TITLE -->
                         <div class="profile-usertitle">

@@ -63,7 +63,7 @@
                             <!-- CHANGE AVATAR TAB -->
                             <div class="tab-pane" id="tab_1_2">
                                 <p> 您设置的头像将会出现在本系统公共访问区域，其他用户可以通过访问您的个人主页、通讯录等页面查看您头像。 </p>
-                                <form action="#" role="form">
+                                <form action="" role="form" enctype="multipart/form-data" id="portrait_form">
                                     <div class="form-group">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -73,11 +73,11 @@
                                                  style="max-width: 200px; max-height: 150px;"></div>
                                             <div>
                                                                             <span class="btn default btn-file">
-                                                                                <span class="fileinput-new"> Select image </span>
-                                                                                <span class="fileinput-exists"> Change </span>
-                                                                                <input type="file" name="..."> </span>
+                                                                                <span class="fileinput-new"> 选择图片 </span>
+                                                                                <span class="fileinput-exists"> 变更 </span>
+                                                                                <input type="file" name="file"> </span>
                                                 <a href="javascript:;" class="btn default fileinput-exists"
-                                                   data-dismiss="fileinput"> Remove </a>
+                                                   data-dismiss="fileinput"> 删除 </a>
                                             </div>
                                         </div>
                                         <div class="clearfix margin-top-10">
@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
                                     <div class="margin-top-10">
-                                        <a href="javascript:;" class="btn green"> 保 存 </a>
+                                        <a href="javascript:;" class="btn green" @click="savePortait"> 保 存 </a>
                                         <a href="javascript:;" class="btn default"> 取 消 </a>
                                     </div>
                                 </form>
@@ -296,6 +296,29 @@
                         serverErrorInfo();
                     })
                 }
+            },
+            savePortait(){
+                var me = this;
+                var formData = new FormData($("#portrait_form")[0]);
+                me.$http.post("/api/file/upload", formData).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            me.$http.post("/api/user/changePortait", {
+                                path: data.path
+                            }).then(response => {
+                                var data = response.data;
+                                codeState(data.code, {
+                                    200: "头像上传成功！"
+                                })
+                            }, response => {
+                                serverErrorInfo();
+                            });
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo();
+                });
             }
         }
     }
