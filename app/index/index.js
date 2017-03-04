@@ -106,6 +106,9 @@ import calendar from './components/calendar/calendar.vue'
 import mail from './components/mail/mail.vue'
 import inbox from './components/mail/inbox.vue'
 import compose from './components/mail/compose.vue'
+import star from './components/mail/star.vue'
+import trash from './components/mail/trash.vue'
+import view from './components/mail/view.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -165,6 +168,16 @@ var routes = [
             }, {
                 path: "compose",
                 component: compose
+            },
+            {
+                path: "star",
+                component: star
+            }, {
+                path: "trash",
+                component: trash
+            }, {
+                path: "view",
+                component: view
             }
         ]
     },

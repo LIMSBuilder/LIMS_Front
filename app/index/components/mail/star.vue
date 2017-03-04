@@ -1,10 +1,10 @@
 <template>
     <div class="inbox-body">
         <div class="inbox-header">
-            <h1 class="pull-left">收件箱</h1>
+            <h1 class="pull-left">星标邮件</h1>
             <div class="form-inline pull-right">
                 <div class="input-group input-medium">
-                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在收件箱中搜索">
+                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在星标邮件中搜索">
                     <span class="input-group-btn">
                                                         <button type="button" class="btn green" @click="search">
                                                             <i class="fa fa-search"></i>
@@ -27,8 +27,7 @@
 
                     </th>
                     <th class="pagination-control" colspan="4">
-                        <button type="button" class="btn green btn-outline" @click="changeState(1)">标为已读</button>
-                        <button type="button" class="btn yellow btn-outline" @click="changeState(2)">设置星标</button>
+                        <button type="button" class="btn yellow btn-outline" @click="changeState(1)">取消星标</button>
                         <button type="button" class="btn red btn-outline" @click="changeState(3)">删 除</button>
                     </th>
                 </tr>
@@ -72,7 +71,7 @@
             return {
                 mailList: [],
                 currentPage: 1,
-                condition: "type=inbox",
+                condition: "type=star",
                 selected: []
             }
         },
@@ -133,9 +132,9 @@
                 var value = jQuery("#searchKey").val();
                 me.currentPage = 1;
                 if (value) {
-                    me.condition = "type=inbox&&title=" + encodeURI(value);
+                    me.condition = "type=star&&title=" + encodeURI(value);
                 } else {
-                    me.condition = "type=inbox";
+                    me.condition = "type=star";
                 }
                 me.getData();
 
@@ -156,7 +155,7 @@
                     return;
                 }
                 confirm({
-                    content: "是否将选中邮件" + (type == 2 ? "设置为星标邮件？" : type == 3 ? "移至回收站？" : "设置为已读邮件？"),
+                    content: "是否将选中邮件" + (type == 3 ? "移至回收站？" : "还原为普通邮件？"),
                     success: function () {
                         me.$http.get("/api/mail/changeState", {
                             params: {
@@ -181,7 +180,7 @@
             changeStateSingle(type, id){
                 var me = this;
                 confirm({
-                    content: "是否将该邮件" + (type == 1 ? "还原为普通邮件？" : type == 2 ? "设置为星标邮件？" : "移至回收站？"),
+                    content: "是否将该邮件" + (type == 1 ? "还原为普通邮件？" : "移至回收站？"),
                     success: function () {
                         me.$http.get("/api/mail/changeState", {
                             params: {

@@ -1,10 +1,10 @@
 <template>
     <div class="inbox-body">
         <div class="inbox-header">
-            <h1 class="pull-left">收件箱</h1>
+            <h1 class="pull-left">回收站</h1>
             <div class="form-inline pull-right">
                 <div class="input-group input-medium">
-                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在收件箱中搜索">
+                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在回收站中搜索">
                     <span class="input-group-btn">
                                                         <button type="button" class="btn green" @click="search">
                                                             <i class="fa fa-search"></i>
@@ -27,9 +27,9 @@
 
                     </th>
                     <th class="pagination-control" colspan="4">
-                        <button type="button" class="btn green btn-outline" @click="changeState(1)">标为已读</button>
+                        <button type="button" class="btn green btn-outline" @click="changeState(1)">还原普通邮件</button>
                         <button type="button" class="btn yellow btn-outline" @click="changeState(2)">设置星标</button>
-                        <button type="button" class="btn red btn-outline" @click="changeState(3)">删 除</button>
+                        <button type="button" class="btn red btn-outline" @click="deleteTotal">彻底删除</button>
                     </th>
                 </tr>
                 </thead>
@@ -48,7 +48,7 @@
                         </td>
                         <td class="view-message hidden-xs"> {{item.mail.sender.name}}</td>
                         <td class="view-message "> {{item.mail.title}}</td>
-                        <td class="view-message inbox-small-cells" @click="changeStateSingle(3,item.id)">
+                        <td class="view-message inbox-small-cells" @click="deleteSignle(item.id)">
                             <i class="fa fa-trash-o"></i>
                         </td>
                         <td class="view-message text-right"> {{item.mail.create_desp}}</td>
@@ -72,7 +72,7 @@
             return {
                 mailList: [],
                 currentPage: 1,
-                condition: "type=inbox",
+                condition: "type=trash",
                 selected: []
             }
         },
@@ -133,9 +133,9 @@
                 var value = jQuery("#searchKey").val();
                 me.currentPage = 1;
                 if (value) {
-                    me.condition = "type=inbox&&title=" + encodeURI(value);
+                    me.condition = "type=trash&&title=" + encodeURI(value);
                 } else {
-                    me.condition = "type=inbox";
+                    me.condition = "type=trash";
                 }
                 me.getData();
 
@@ -156,7 +156,7 @@
                     return;
                 }
                 confirm({
-                    content: "是否将选中邮件" + (type == 2 ? "设置为星标邮件？" : type == 3 ? "移至回收站？" : "设置为已读邮件？"),
+                    content: "是否将选中邮件" + (type == 1 ? "还原为普通邮件？" : "还原为星标邮件？"),
                     success: function () {
                         me.$http.get("/api/mail/changeState", {
                             params: {
@@ -181,7 +181,7 @@
             changeStateSingle(type, id){
                 var me = this;
                 confirm({
-                    content: "是否将该邮件" + (type == 1 ? "还原为普通邮件？" : type == 2 ? "设置为星标邮件？" : "移至回收站？"),
+                    content: "是否将该邮件" + (type == 1 ? "还原为普通邮件？" : "还原为星标邮件？"),
                     success: function () {
                         me.$http.get("/api/mail/changeState", {
                             params: {
@@ -193,6 +193,54 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("邮件操作成功！");
+                                    me.getData();
+                                }
+                            });
+                            me.getData();
+                        }, response => {
+                            serverErrorInfo();
+                        })
+                    }
+                });
+            },
+            deleteTotal(){
+                var me = this;
+                confirm({
+                    content: "是否彻底删除所有选中的邮件？",
+                    success: function () {
+                        me.$http.get("/api/mail/delete", {
+                            params: {
+                                selected: me.selected
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("邮件删除成功！");
+                                    me.getData();
+                                }
+                            });
+                            me.getData();
+                        }, response => {
+                            serverErrorInfo();
+                        })
+                    }
+                });
+            },
+            deleteSignle(id){
+                var me = this;
+                confirm({
+                    content: "是否彻底删除当前邮件？",
+                    success: function () {
+                        me.$http.get("/api/mail/delete", {
+                            params: {
+                                selected: [id]
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("邮件删除成功！");
                                     me.getData();
                                 }
                             });
