@@ -22,6 +22,36 @@
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">
                     <!-- BEGIN NOTIFICATION DROPDOWN -->
+                    <li class="dropdown dropdown-extended dropdown-notification">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <i class="fa fa-bug"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external">
+                                <h3>
+                                    <span class="bold">测试阶段</span> 快速工具</h3>
+                            </li>
+                            <li>
+                                <ul class="dropdown-menu-list scroller" style="height: 250px;"
+                                    data-handle-color="#637283">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-sm green btn-outline"
+                                                        @click="bug_login">执 行
+                                                </button>
+                                            </div>
+                                            <span class="details">
+                                                        <span class="label label-sm label-icon label-success">
+                                                            <i class="fa fa-plus"></i>
+                                                        </span> 登陆Admin账号 </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                            data-close-others="true">
@@ -390,10 +420,40 @@
     <!-- END HEADER -->
 </template>
 <style>
-    .page-header.navbar .page-logo .logo-default{
+    .page-header.navbar .page-logo .logo-default {
         margin: 2px auto 0 auto;
     }
 </style>
 <script>
-
+    module.exports = {
+        data: function () {
+            return {
+                eve: {
+                    all_day: 1,
+                    backgroundColor: '#0088cc',
+                    start: "",
+                    end: ""
+                }
+            }
+        },
+        mounted(){
+        },
+        methods: {
+            bug_login(){
+                var me = this;
+                me.$http.get("/api/login/check", {
+                    params: {
+                        username: "admin",
+                        password: "admin1"
+                    }
+                }).then(response => {
+                    codeState(response.data.code, {
+                        200: "调试模式登陆成功！"
+                    })
+                }, response => {
+                    serverErrorInfo();
+                })
+            }
+        }
+    }
 </script>

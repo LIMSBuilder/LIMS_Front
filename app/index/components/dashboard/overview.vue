@@ -24,7 +24,7 @@
                                 <div class="mt-actions">
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar10.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar10.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -43,8 +43,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,7 +54,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar3.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar3.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -71,8 +73,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +84,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar2.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar2.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -99,8 +103,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,7 +114,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar7.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar7.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -117,7 +123,8 @@
                                                     </div>
                                                     <div class="mt-action-details ">
                                                         <span class="mt-action-author">John Clark</span>
-                                                        <p class="mt-action-desc">Text of the printing and typesetting industry</p>
+                                                        <p class="mt-action-desc">Text of the printing and typesetting
+                                                            industry</p>
                                                     </div>
                                                 </div>
                                                 <div class="mt-action-datetime ">
@@ -127,8 +134,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,7 +145,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar8.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar8.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -155,8 +164,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,7 +175,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar9.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar9.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -183,8 +194,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +211,7 @@
                                 <div class="mt-actions">
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar1.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar1.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -217,8 +230,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -226,7 +241,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar8.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar8.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -235,7 +250,8 @@
                                                     </div>
                                                     <div class="mt-action-details ">
                                                         <span class="mt-action-author">Ella Davidson </span>
-                                                        <p class="mt-action-desc">Text of the printing and typesetting industry</p>
+                                                        <p class="mt-action-desc">Text of the printing and typesetting
+                                                            industry</p>
                                                     </div>
                                                 </div>
                                                 <div class="mt-action-datetime ">
@@ -245,8 +261,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,7 +272,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar5.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar5.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -263,7 +281,8 @@
                                                     </div>
                                                     <div class="mt-action-details ">
                                                         <span class="mt-action-author">Jason Dickens </span>
-                                                        <p class="mt-action-desc">Dummy text of the printing and typesetting industry</p>
+                                                        <p class="mt-action-desc">Dummy text of the printing and
+                                                            typesetting industry</p>
                                                     </div>
                                                 </div>
                                                 <div class="mt-action-datetime ">
@@ -273,8 +292,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -282,7 +303,7 @@
                                     </div>
                                     <div class="mt-action">
                                         <div class="mt-action-img">
-                                            <img src="../../images/avatar/avatar2.jpg" /> </div>
+                                            <img src="../../images/avatar/avatar2.jpg"/></div>
                                         <div class="mt-action-body">
                                             <div class="mt-action-row">
                                                 <div class="mt-action-info ">
@@ -301,8 +322,10 @@
                                                 </div>
                                                 <div class="mt-action-buttons ">
                                                     <div class="btn-group btn-group-circle">
-                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转</button>
-                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭</button>
+                                                        <button type="button" class="btn btn-outline green btn-sm">跳 转
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline red btn-sm">关 闭
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1249,6 +1272,47 @@
             </div>
         </div>
 
+        <div class="modal fade draggable-modal" id="calendarInfo_modal" tabindex="-1"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">查看日程计划</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="name">事件名称</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label">{{info.title}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="desp">事件描述</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label">{{info.desp}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="name">日程时间</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label">{{info.start}} 至 {{info.end}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                        <button type="button" class="btn red" @click="removeEvent">删除行程</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
     </div>
 </template>
@@ -1259,7 +1323,9 @@
     import 'style/fullcalendar'
     module.exports = {
         data: function () {
-            return {}
+            return {
+                info: {}
+            }
         },
         mounted(){
             var me = this;
@@ -1267,7 +1333,28 @@
             me.initCalendar();
         },
         methods: {
+            removeEvent: function () {
+                var me = this;
+                me.$http.get("/api/calendar/delete", {
+                    params: {
+                        id: me.info.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("日程计划删除成功！");
+                            jQuery("#calendarInfo_modal").modal("hide");
+                            $('#calendar').fullCalendar("refetchEvents");
+
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
             initCalendar: function () {
+                var me = this;
                 if (!jQuery().fullCalendar) {
                     return;
                 }
@@ -1306,64 +1393,27 @@
 
                 $('#calendar').fullCalendar('destroy'); // destroy the calendar
                 $('#calendar').fullCalendar({ //re-initialize the calendar
-
                     disableDragging: false,
                     header: h,
-                    editable: true,
-                    selectable: true,
-                    dayClick: function (date, allDay, jsEvent, view) {
-                        console.log('a day has been clicked!');
-                    },
                     eventClick: function (event, jsEvent, view) {
-                        console.log(event);
-                        console.log(jsEvent);
-                        console.log(view)
+                        me.info = {
+                            id: event.id,
+                            title: event.title,
+                            start: event.start.format('YYYY-MM-DD HH:mm'),
+                            end: event.end.format('YYYY-MM-DD HH:mm'),
+                            desp: event.desp
+                        };
+                        jQuery("#calendarInfo_modal").modal("show");
                     },
-                    select: function (startDate, endDate, allDay, jsEvent, view) {
-
-                    },
-                    events: [{
-                        title: '全天事件',
-                        start: new Date(y, m, 1),
-                        backgroundColor: App.getBrandColor('yellow')
-                    }, {
-                        title: '长事件',
-                        start: new Date(y, m, d - 5),
-                        end: new Date(y, m, d - 2),
-                        backgroundColor: App.getBrandColor('blue')
-                    }, {
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d - 3, 16, 0),
-                        allDay: false,
-                        backgroundColor: App.getBrandColor('red')
-                    }, {
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d + 6, 16, 0),
-                        allDay: false,
-                        backgroundColor: App.getBrandColor('green')
-                    }, {
-                        title: 'Meeting',
-                        start: new Date(y, m, d + 9, 10, 30),
-                        allDay: false
-                    }, {
-                        title: 'Lunch',
-                        start: new Date(y, m, d, 14, 0),
-                        end: new Date(y, m, d, 14, 0),
-                        backgroundColor: App.getBrandColor('grey'),
-                        allDay: false
-                    }, {
-                        title: 'Birthday',
-                        start: new Date(y, m, d + 1, 19, 0),
-                        end: new Date(y, m, d + 1, 22, 30),
-                        backgroundColor: App.getBrandColor('purple'),
-                        allDay: false
-                    }, {
-                        title: 'Click for Google',
-                        start: new Date(y, m, 28),
-                        end: new Date(y, m, 29),
-                        backgroundColor: App.getBrandColor('yellow'),
-                        url: 'http://google.com/'
-                    }]
+                    events: function (start, end, timezone, callback) {
+                        me.$http.get("/api/calendar/list").then(response => {
+                            var data = response.data;
+                            var events = data.results;
+                            callback(events);
+                        }, response => {
+                            serverErrorInfo();
+                        });
+                    }
                 });
             },
             initMiniCharts: function () {

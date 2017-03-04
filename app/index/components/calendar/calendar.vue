@@ -9,13 +9,13 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>日程安排</span>
+                    <span>日程计划</span>
                 </li>
             </ul>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h1 class="page-title"> 日程安排
+        <h1 class="page-title"> 日程计划
             <small> / Calendar</small>
         </h1>
         <!-- END PAGE TITLE-->
@@ -47,39 +47,112 @@
                         <h4 class="modal-title" id="modal_title">添加事件</h4>
                     </div>
                     <div class="modal-body">
-
-                        <form role="form">
+                        <form role="form" class="form-horizontal">
                             <div class="form-body">
                                 <div class="form-group form-md-line-input">
-                                    <input type="text" class="form-control" id="form_control_1" placeholder="请输入事件名称">
-                                    <label for="form_control_1">事件名称</label>
+                                    <label class="col-md-2 control-label" for="name">事件名称</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" v-model="eve.title" id="name"
+                                               placeholder="请输入日程事件名称">
+                                        <div class="form-control-focus"></div>
+                                    </div>
                                 </div>
                                 <div class="form-group form-md-line-input">
-                                    <textarea class="form-control" rows="3" placeholder="请输入事件描述"></textarea>
-                                    <label for="form_control_1">事件描述</label>
+                                    <label class="col-md-2 control-label" for="desp">事件描述</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" rows="3" v-model="eve.desp" placeholder="描述该事件"
+                                                  id="desp"></textarea>
+                                        <div class="form-control-focus"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="color">日程颜色</label>
+                                    <div class="col-md-8">
+                                        <input type="text" v-model="eve.backgroundColor" style="padding-left: 44px;"
+                                               id="color"
+                                               class="form-control demo"
+                                               data-position="bottom left">
+                                    </div>
+                                </div>
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="name">日程时间</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label">{{eve.start}} 至 {{eve.end}}</label>
+                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green">确 认</button>
+                        <button type="button" class="btn green" @click="addEvent">确 认</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
         </div>
-    </div>
+        <div class="modal fade draggable-modal" id="calendarInfo_modal" tabindex="-1"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">查看日程计划</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="name">事件名称</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label">{{info.title}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="desp">事件描述</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label">{{info.desp}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-md-line-input">
+                                    <label class="col-md-2 control-label" for="name">日程时间</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label">{{info.start}} 至 {{info.end}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                        <button type="button" class="btn red" @click="removeEvent">删除行程</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 </template>
 
 <script>
     import 'mod/fullcalendar'
     import 'mod/fullcalendar_zh_CN'
+    import 'mod/minicolors'
+    import 'style/minicolors'
     import 'style/fullcalendar'
     module.exports = {
         data: function () {
-            return {}
+            return {
+                eve: {
+                    backgroundColor: '#0088cc',
+                    start: "",
+                    end: ""
+                },
+                info: {
+                    desp: ""
+                }
+            }
         },
         mounted(){
             var me = this;
@@ -87,9 +160,63 @@
             $("#calendar_modal").draggable({
                 handle: ".modal-header"
             });
+            $("#color").minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                defaultValue: $(this).attr('data-defaultValue') || '',
+                inline: $(this).attr('data-inline') === 'true',
+                letterCase: $(this).attr('data-letterCase') || 'lowercase',
+                opacity: $(this).attr('data-opacity'),
+                position: $(this).attr('data-position') || 'bottom left',
+                change: function (hex, opacity) {
+                    if (!hex) return;
+                    if (opacity) hex += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(hex);
+                    }
+                },
+                theme: 'bootstrap'
+            });
         },
         methods: {
+            addEvent: function () {
+                var me = this;
+                me.eve.backgroundColor = jQuery("#color").val();
+                me.$http.post("/api/calendar/create", me.eve).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("日程计划添加成功！");
+                            jQuery("#calendar_modal").modal("hide");
+                            $('#calendar').fullCalendar("refetchEvents");
+
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            removeEvent: function () {
+                var me = this;
+                me.$http.get("/api/calendar/delete", {
+                    params: {
+                        id: me.info.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("日程计划删除成功！");
+                            jQuery("#calendarInfo_modal").modal("hide");
+                            $('#calendar').fullCalendar("refetchEvents");
+
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
             initCalendar: function () {
+                var me = this;
                 if (!jQuery().fullCalendar) {
                     return;
                 }
@@ -133,88 +260,79 @@
                     header: h,
                     editable: true,
                     selectable: true,
-                    dayClick: function (date, allDay, jsEvent, view) {
-                        console.log('dayClick触发的时间为：', date.format());
-                    },
                     eventClick: function (event, jsEvent, view) {
-                        console.log('eventClick中选中Event的id属性值为：', event.id);
-                        console.log('eventClick中选中Event的title属性值为：', event.title);
-                        console.log('eventClick中选中Event的start属性值为：', event.start.format('YYYY-MM-DD HH:mm'));
-//                        console.log('eventClick中选中Event的end属性值为：', event.end.format('YYYY-MM-DD HH:mm'));
-                        console.log('eventClick中选中Event的color属性值为：', event.color);
-                        console.log('eventClick中选中Event的className属性值为：', event.className);
+                        me.info = {
+                            id: event.id,
+                            title: event.title,
+                            start: event.start.format('YYYY-MM-DD HH:mm'),
+                            end: event.end.format('YYYY-MM-DD HH:mm'),
+                            desp: event.desp
+                        };
+                        jQuery("#calendarInfo_modal").modal("show");
+
+
                     },
                     select: function (startDate, endDate, allDay, jsEvent, view) {
-                        console.log('select触发的开始时间为：', startDate.format());
-                        console.log('select触发的结束时间为：', endDate.format());
+                        me.eve = {
+                            backgroundColor: '#0088cc',
+                            start: startDate.format(),
+                            end: endDate.format()
+                        };
                         jQuery("#calendar_modal").modal("show");
 
 
                     },
-                    eventDrop : function( event, dayDelta, revertFunc ) {
-                        //do something here...
-                        console.log('eventDrop --- start ---');
-                        console.log('eventDrop被执行，Event的title属性值为：', event.title);
-                        if(dayDelta._days != 0){
-                            console.log('eventDrop被执行，Event的start和end时间改变了：', dayDelta._days+'天！');
-                        }else if(dayDelta._milliseconds != 0){
-                            console.log('eventDrop被执行，Event的start和end时间改变了：', dayDelta._milliseconds/1000+'秒！');
-                        }else{
-                            console.log('eventDrop被执行，Event的start和end时间没有改变！');
-                        }
-                        //revertFunc();
-                        console.log('eventDrop --- end ---');
-                        // ...
+                    eventDrop: function (event, dayDelta, revertFunc) {
+                        me.$http.get("/api/calendar/drop", {
+                            params: {
+                                id: event.id,
+                                start: event.start.format(),
+                                end: event.end.format()
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("日程计划修改成功！");
+                                    $('#calendar').fullCalendar("refetchEvents");
+
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo();
+                        });
+                    },
+                    eventResize: function (event, dayDelta, revertFunc) {
+                        me.$http.get("/api/calendar/drop", {
+                            params: {
+                                id: event.id,
+                                start: event.start.format(),
+                                end: event.end.format()
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("日程计划修改成功！");
+                                    $('#calendar').fullCalendar("refetchEvents");
+
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo();
+                        });
                     },
                     unselectAuto: true,
                     selectHelper: true,
-                    events: [{
-                        id:1,
-                        title: '全天事件',
-                        start: new Date(y, m, 1),
-                        backgroundColor: App.getBrandColor('yellow')
-                    }, {
-                        id:2,
-                        title: '长事件',
-                        start: new Date(y, m, d - 5),
-                        end: new Date(y, m, d - 2),
-                        backgroundColor: App.getBrandColor('blue')
-                    }, {
-                        id:3,
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d - 3, 16, 0),
-                        allDay: false,
-                        backgroundColor: App.getBrandColor('red')
-                    }, {
-                        id:4,
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d + 6, 16, 0),
-                        allDay: false,
-                        backgroundColor: App.getBrandColor('green')
-                    }, {
-                        id:5,
-                        title: 'Meeting',
-                        start: new Date(y, m, d + 9, 10, 30),
-                        allDay: false
-                    }, {
-                        title: 'Lunch',
-                        start: new Date(y, m, d, 14, 0),
-                        end: new Date(y, m, d, 14, 0),
-                        backgroundColor: App.getBrandColor('grey'),
-                        allDay: false
-                    }, {
-                        title: 'Birthday',
-                        start: new Date(y, m, d + 1, 19, 0),
-                        end: new Date(y, m, d + 1, 22, 30),
-                        backgroundColor: App.getBrandColor('purple'),
-                        allDay: false
-                    }, {
-                        title: 'Click for Google',
-                        start: new Date(y, m, 28),
-                        end: new Date(y, m, 29),
-                        backgroundColor: App.getBrandColor('yellow'),
-                        url: 'http://google.com/'
-                    }]
+                    events: function (start, end, timezone, callback) {
+                        me.$http.get("/api/calendar/list").then(response => {
+                            var data = response.data;
+                            var events = data.results;
+                            callback(events);
+                        }, response => {
+                            serverErrorInfo();
+                        });
+                    }
                 });
             }
         }

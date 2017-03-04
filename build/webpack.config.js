@@ -65,6 +65,7 @@ module.exports = {
             'mod/touchspin': path.resolve(PluginsPath, 'bootstrap-touchspin/bootstrap.touchspin.js'),
             'mod/fullcalendar':path.resolve(PluginsPath,'fullcalendar/fullcalendar.js'),
             'mod/fullcalendar_zh_CN':path.resolve(PluginsPath,'fullcalendar/lang/zh-cn.js'),
+            'mod/minicolors':path.resolve(PluginsPath,'jquery-minicolors/jquery.minicolors.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -100,6 +101,7 @@ module.exports = {
             'style/touchspin': path.resolve(PluginsPath, 'bootstrap-touchspin/bootstrap.touchspin.css'),
 
             'style/fullcalendar':path.resolve(PluginsPath,'fullcalendar/fullcalendar.css'),
+            'style/minicolors':path.resolve(PluginsPath,'jquery-minicolors/jquery.minicolors.css'),
             'style/main': path.resolve(StylePath, 'main.css'),
 
             'globalPath': path.resolve(GlobalPath)

@@ -65,7 +65,7 @@
             <router-link :to="{ path: '/calendar' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-calendar"></i>
-                    <span class="title">日程安排</span>
+                    <span class="title">日程计划</span>
                 </a>
             </router-link>
             <li class="heading">
