@@ -50,18 +50,12 @@
             <li class="heading">
                 <h3 class="uppercase">个人中心</h3>
             </li>
-            <li class="nav-item start">
+            <router-link :to="{ path: '/mail/inbox' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-envelope"></i>
-                    <span class="title">Email</span>
+                    <span class="title">EMail</span>
                 </a>
-            </li>
-            <li class="nav-item start">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-bullhorn"></i>
-                    <span class="title">公告</span>
-                </a>
-            </li>
+            </router-link>
             <router-link :to="{ path: '/calendar' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-calendar"></i>

@@ -102,6 +102,10 @@ import help from './components/dashboard/help.vue'
 //Calendar
 import calendar from './components/calendar/calendar.vue'
 
+//Mail
+import mail from './components/mail/mail.vue'
+import inbox from './components/mail/inbox.vue'
+import compose from './components/mail/compose.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -149,6 +153,20 @@ var routes = [
             component: help
 
         }]
+    },
+    {
+        path: "/mail",
+        name: "/mail",
+        component: mail,
+        children: [
+            {
+                path: "inbox",
+                component: inbox
+            }, {
+                path: "compose",
+                component: compose
+            }
+        ]
     },
     {
         path: "/calendar",
