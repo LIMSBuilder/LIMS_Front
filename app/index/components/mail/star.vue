@@ -4,7 +4,7 @@
             <h1 class="pull-left">星标邮件</h1>
             <div class="form-inline pull-right">
                 <div class="input-group input-medium">
-                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在收件箱中搜索">
+                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在星标邮件中搜索">
                     <span class="input-group-btn">
                                                         <button type="button" class="btn green" @click="search">
                                                             <i class="fa fa-search"></i>
@@ -42,13 +42,13 @@
                                 <span></span>
                             </label>
                         </td>
-                        <td class="inbox-small-cells">
+                        <td class="inbox-small-cells" @click="changeStateSingle(item.state==2?1:2,item.id)">
                             <i :class="item.state==2?'fa fa-star inbox-started':'fa fa-star'"></i>
                         </td>
                         <td class="view-message hidden-xs"> {{item.mail.sender.name}}</td>
                         <td class="view-message "> {{item.mail.title}}</td>
-                        <td class="view-message inbox-small-cells">
-                            <i class="fa fa-paperclip" v-if="item.mail.path.length!=0"></i>
+                        <td class="view-message inbox-small-cells" @click="changeStateSingle(3,item.id)">
+                            <i class="fa fa-trash-o"></i>
                         </td>
                         <td class="view-message text-right"> {{item.mail.create_desp}}</td>
                     </tr>
@@ -71,7 +71,7 @@
             return {
                 mailList: [],
                 currentPage: 1,
-                condition: "type=inbox",
+                condition: "type=star",
                 selected: []
             }
         },
@@ -132,9 +132,9 @@
                 var value = jQuery("#searchKey").val();
                 me.currentPage = 1;
                 if (value) {
-                    me.condition = "type=inbox&title=" + encodeURI(value);
+                    me.condition = "type=star&&title=" + encodeURI(value);
                 } else {
-                    me.condition = "type=inbox";
+                    me.condition = "type=star";
                 }
                 me.getData();
 
@@ -150,23 +150,57 @@
             },
             changeState(type){
                 var me = this;
-                me.$http.get("/api/mail/changeState", {
-                    params: {
-                        selected: me.selected,
-                        state: type
-                    }
-                }).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("邮件操作成功！");
+                if (me.selected.length == 0) {
+                    error("至少需要选择一个邮件！");
+                    return;
+                }
+                confirm({
+                    content: "是否将选中邮件" + (type == 3 ? "移至回收站？" : "还原为普通邮件？"),
+                    success: function () {
+                        me.$http.get("/api/mail/changeState", {
+                            params: {
+                                selected: me.selected,
+                                state: type
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("邮件操作成功！");
+                                    me.getData();
+                                }
+                            });
                             me.getData();
-                        }
-                    });
-                    me.getData();
-                }, response => {
-                    serverErrorInfo();
-                })
+                        }, response => {
+                            serverErrorInfo();
+                        })
+                    }
+                });
+            },
+            changeStateSingle(type, id){
+                var me = this;
+                confirm({
+                    content: "是否将该邮件" + (type == 1 ? "还原为普通邮件？" : "移至回收站？"),
+                    success: function () {
+                        me.$http.get("/api/mail/changeState", {
+                            params: {
+                                selected: [id],
+                                state: type
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("邮件操作成功！");
+                                    me.getData();
+                                }
+                            });
+                            me.getData();
+                        }, response => {
+                            serverErrorInfo();
+                        })
+                    }
+                });
             }
         }
     }

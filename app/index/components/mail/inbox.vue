@@ -133,7 +133,7 @@
                 var value = jQuery("#searchKey").val();
                 me.currentPage = 1;
                 if (value) {
-                    me.condition = "type=inbox&title=" + encodeURI(value);
+                    me.condition = "type=inbox&&title=" + encodeURI(value);
                 } else {
                     me.condition = "type=inbox";
                 }
