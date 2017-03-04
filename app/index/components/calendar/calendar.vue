@@ -133,6 +133,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+    </div>
 </template>
 
 <script>

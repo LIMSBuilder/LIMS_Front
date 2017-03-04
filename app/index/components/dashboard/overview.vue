@@ -362,8 +362,8 @@
                     <div class="portlet-title">
                         <div class="caption caption-md">
                             <i class="icon-bar-chart theme-font hide"></i>
-                            <span class="caption-subject font-blue-madison bold uppercase">待办事项列表</span>
-                            <span class="caption-helper">16项未完成</span>
+                            <span class="caption-subject font-blue-madison bold uppercase">邮件列表</span>
+                            <span class="caption-helper">16封未读</span>
                         </div>
                         <div class="inputs">
                             <div class="portlet-input input-small input-inline">
