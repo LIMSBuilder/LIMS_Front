@@ -9,7 +9,8 @@
         <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-        <ul class="page-sidebar-menu  page-sidebar-menu-closed  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true"
+        <ul class="page-sidebar-menu  page-sidebar-menu-closed  page-header-fixed " data-keep-expanded="false"
+            data-auto-scroll="true"
             data-auto-speed="100"
             data-slide-speed="100" data-close-others="true" style="padding-top: 20px">
             <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
@@ -40,57 +41,33 @@
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
-            <!--<li class="nav-item start active">-->
-                <!--<a href="javascript:;" class="nav-link nav-toggle">-->
-                    <!--<i class="icon-home"></i>-->
-                    <!--<span class="title">Dashboard</span>-->
-                <!--</a>-->
-            <!--</li>-->
-            <router-link :to="{ path: '/' }" tag="li" active-class="active">
+            <router-link :to="{ path: '/overview' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
                 </a>
             </router-link>
-            <li class="nav-item">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-diamond"></i>
-                    <span class="title">测试页面</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <router-link :to="{ path: '/404' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">页面不存在</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/403' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">禁止访问</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/500' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">服务器异常</span>
-                        </a>
-                    </router-link>
-                </ul>
-            </li>
             <li class="heading">
-                <h3 class="uppercase">通信</h3>
+                <h3 class="uppercase">个人中心</h3>
             </li>
             <li class="nav-item start">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
+                    <i class="fa fa-envelope"></i>
                     <span class="title">Email</span>
                 </a>
             </li>
             <li class="nav-item start">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
+                    <i class="fa fa-bullhorn"></i>
                     <span class="title">公告</span>
                 </a>
             </li>
+            <router-link :to="{ path: '/calendar' }" tag="li" active-class="active">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-calendar"></i>
+                    <span class="title">日程计划</span>
+                </a>
+            </router-link>
             <li class="heading">
                 <h3 class="uppercase">业务</h3>
             </li>
@@ -307,6 +284,30 @@
                     <router-link :to="{ path: '/user/change' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">更新用户信息</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-bug"></i>
+                    <span class="title">测试页面</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/404' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">页面不存在</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/403' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">禁止访问</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/500' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">服务器异常</span>
                         </a>
                     </router-link>
                 </ul>
