@@ -1,7 +1,7 @@
 <template>
     <div class="inbox-body">
         <div class="inbox-header">
-            <h1 class="pull-left">收件箱</h1>
+            <h1 class="pull-left">星标邮件</h1>
             <div class="form-inline pull-right">
                 <div class="input-group input-medium">
                     <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在收件箱中搜索">
@@ -27,8 +27,7 @@
 
                     </th>
                     <th class="pagination-control" colspan="4">
-                        <button type="button" class="btn green btn-outline" @click="changeState(1)">标为已读</button>
-                        <button type="button" class="btn yellow btn-outline" @click="changeState(2)">设置星标</button>
+                        <button type="button" class="btn yellow btn-outline" @click="changeState(1)">取消星标</button>
                         <button type="button" class="btn red btn-outline" @click="changeState(3)">删 除</button>
                     </th>
                 </tr>
@@ -43,13 +42,13 @@
                                 <span></span>
                             </label>
                         </td>
-                        <td class="inbox-small-cells" @click="changeStateSingle(item.state==2?1:2,item.id)">
+                        <td class="inbox-small-cells">
                             <i :class="item.state==2?'fa fa-star inbox-started':'fa fa-star'"></i>
                         </td>
                         <td class="view-message hidden-xs"> {{item.mail.sender.name}}</td>
                         <td class="view-message "> {{item.mail.title}}</td>
-                        <td class="view-message inbox-small-cells" @click="changeStateSingle(3,item.id)">
-                            <i class="fa fa-trash-o"></i>
+                        <td class="view-message inbox-small-cells">
+                            <i class="fa fa-paperclip" v-if="item.mail.path.length!=0"></i>
                         </td>
                         <td class="view-message text-right"> {{item.mail.create_desp}}</td>
                     </tr>
@@ -151,57 +150,23 @@
             },
             changeState(type){
                 var me = this;
-                if (me.selected.length == 0) {
-                    error("至少需要选择一个邮件！");
-                    return;
-                }
-                confirm({
-                    content: "是否将选中邮件" + (type == 2 ? "设置为星标邮件？" : type == 3 ? "移至回收站？" : "设置为已读邮件？"),
-                    success: function () {
-                        me.$http.get("/api/mail/changeState", {
-                            params: {
-                                selected: me.selected,
-                                state: type
-                            }
-                        }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("邮件操作成功！");
-                                    me.getData();
-                                }
-                            });
-                            me.getData();
-                        }, response => {
-                            serverErrorInfo();
-                        })
+                me.$http.get("/api/mail/changeState", {
+                    params: {
+                        selected: me.selected,
+                        state: type
                     }
-                });
-            },
-            changeStateSingle(type, id){
-                var me = this;
-                confirm({
-                    content: "是否将该邮件" + (type == 1 ? "还原为普通邮件？" : type == 2 ? "设置为星标邮件？" : "移至回收站？"),
-                    success: function () {
-                        me.$http.get("/api/mail/changeState", {
-                            params: {
-                                selected: [id],
-                                state: type
-                            }
-                        }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("邮件操作成功！");
-                                    me.getData();
-                                }
-                            });
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("邮件操作成功！");
                             me.getData();
-                        }, response => {
-                            serverErrorInfo();
-                        })
-                    }
-                });
+                        }
+                    });
+                    me.getData();
+                }, response => {
+                    serverErrorInfo();
+                })
             }
         }
     }

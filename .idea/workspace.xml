@@ -5,48 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e13c4b-5f2f-4216-8e0d-52831df0a2cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.ar-AR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.bg-BG.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.ca-CT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.cs-CZ.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.da-DK.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.de-DE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.el-GR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.es-AR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.es-ES.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.fr-FR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.hr-HR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.it-IT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.ja-JP.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.ko-KR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.lt-LT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.mo-MD.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.nb-NB.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.nl-NL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.pl-PL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.pt-BR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.ru-RU.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.sk-SK.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.sv-SE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.tr-TR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.ua-UA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.zh-CN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.zh-TW.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/mail/compose.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/mail/inbox.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/mail/mail.vue" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/mail/star.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Navbar.vue" afterPath="$PROJECT_DIR$/app/index/components/Navbar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/calendar/calendar.vue" afterPath="$PROJECT_DIR$/app/index/components/calendar/calendar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/overview.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/index.js" afterPath="$PROJECT_DIR$/app/index/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.config.js" afterPath="$PROJECT_DIR$/build/webpack.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/mail/inbox.vue" afterPath="$PROJECT_DIR$/app/index/components/mail/inbox.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/mail/mail.vue" afterPath="$PROJECT_DIR$/app/index/components/mail/mail.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,117 +26,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mail.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="star.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/components/mail/star.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mail.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/mail/mail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="52" column="94" lean-forward="false" selection-start-line="52" selection-start-column="94" selection-end-line="52" selection-end-column="94" />
+            <state relative-caret-position="-285">
+              <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="compose.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/mail/compose.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="45" lean-forward="false" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
-              <folding>
-                <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#3094#3113#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/basic/element/create.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="78" selection-end-column="27" />
-              <folding>
-                <element signature="e#3047#3082#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
-              <folding>
-                <marker date="1488464140000" expanded="true" signature="57908:57922" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/system/role/list.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="110" column="10" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="110" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="979" column="15" lean-forward="true" selection-start-line="971" selection-start-column="12" selection-end-line="979" selection-end-column="15" />
-              <folding>
-                <element signature="n#ul#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="e#20423#20429#0" expanded="true" />
-                <element signature="e#20429#20435#0" expanded="true" />
-                <element signature="e#22418#22424#0" expanded="true" />
-                <element signature="e#22424#22430#0" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#6;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#7;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#63950#63969#0" expanded="true" />
-                <element signature="e#64179#64203#0" expanded="true" />
-                <element signature="e#65904#66054#0" expanded="false" />
-                <marker date="1488464122000" expanded="true" signature="79115:79121" ph=" " />
-                <marker date="1488464122000" expanded="true" signature="79121:79127" ph=" " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="105" column="29" lean-forward="false" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inbox.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inbox.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index/components/mail/inbox.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="63" column="91" lean-forward="false" selection-start-line="63" selection-start-column="91" selection-end-line="63" selection-end-column="91" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/login/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3675">
-              <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+            <state relative-caret-position="396">
+              <caret line="154" column="41" lean-forward="false" selection-start-line="154" selection-start-column="41" selection-end-line="154" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -193,9 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>name</find>
-      <find>.name</find>
-      <find>Anim pariatur cliche reprehenderit, enim eiusmod high</find>
       <find>touchspin</find>
       <find>.</find>
       <find>.table</find>
@@ -223,6 +96,9 @@
       <find>selectpicker</find>
       <find>remove</find>
       <find>30</find>
+      <find>selectAll</find>
+      <find>selected</find>
+      <find>condition</find>
     </findStrings>
     <replaceStrings>
       <replace>user_add</replace>
@@ -252,7 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/index/components/basic/element/change.vue" />
         <option value="$PROJECT_DIR$/app/index/components/basic/project/list.vue" />
         <option value="$PROJECT_DIR$/app/index/components/basic/project/change.vue" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/contract.vue" />
@@ -301,8 +176,9 @@
         <option value="$PROJECT_DIR$/app/index/index.js" />
         <option value="$PROJECT_DIR$/build/webpack.config.js" />
         <option value="$PROJECT_DIR$/app/index/components/mail/compose.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/mail/inbox.vue" />
         <option value="$PROJECT_DIR$/app/index/components/mail/mail.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/mail/star.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/mail/inbox.vue" />
       </list>
     </option>
   </component>
@@ -488,6 +364,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="role" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mail" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -712,11 +614,11 @@
       <recent name="$PROJECT_DIR$/app/index" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/index/components/mail" />
       <recent name="$PROJECT_DIR$/app/global/plugins" />
       <recent name="$PROJECT_DIR$/app/global/img" />
       <recent name="$PROJECT_DIR$/app/index/images/avatar" />
       <recent name="$PROJECT_DIR$/app/global/style" />
-      <recent name="$PROJECT_DIR$/app/login/style" />
     </key>
   </component>
   <component name="RunManager">
@@ -803,12 +705,12 @@
       <workItem from="1488415151765" duration="2092000" />
       <workItem from="1488418121642" duration="6816000" />
       <workItem from="1488429812188" duration="9298000" />
-      <workItem from="1488583576135" duration="19404000" />
+      <workItem from="1488583576135" duration="23150000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196846000" />
+    <option name="totallyTimeSpent" value="200592000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -846,20 +748,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/global/style/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/npm-debug.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/dev-client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1014,6 +902,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="101" column="5" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="101" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1132,20 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="165" column="30" lean-forward="false" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="30" />
-          <folding>
-            <element signature="e#34#55#0" expanded="true" />
-            <element signature="e#3285#3344#0" expanded="true" />
-            <element signature="e#3478#3538#0" expanded="true" />
-            <element signature="e#3784#3829#0" expanded="true" />
-            <element signature="e#3965#3989#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2964">
@@ -1159,8 +1034,8 @@
         <state relative-caret-position="-1965">
           <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="135" selection-end-column="10" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#7220#7245#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="e#7220#7245#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1177,14 +1052,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="105" column="29" lean-forward="false" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/login/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3675">
-          <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1216,16 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
-          <folding>
-            <marker date="1488464140000" expanded="true" signature="57908:57922" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/basic/element/create.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1244,6 +1101,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/login/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3375">
+          <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="363" column="18" lean-forward="false" selection-start-line="363" selection-start-column="11" selection-end-line="363" selection-end-column="18" />
+          <folding>
+            <element signature="e#34#55#0" expanded="false" />
+            <element signature="e#3285#3344#0" expanded="false" />
+            <element signature="e#3478#3538#0" expanded="false" />
+            <element signature="e#3784#3829#0" expanded="false" />
+            <element signature="e#3965#3989#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/mail/compose.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1255,26 +1134,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/system/role/list.vue">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/phrase.rnc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="110" column="10" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="110" selection-end-column="10" />
+        <state relative-caret-position="1105">
+          <caret line="316" column="16" lean-forward="true" selection-start-line="316" selection-start-column="16" selection-end-line="316" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/mail/inbox.vue">
+    <entry file="file://$PROJECT_DIR$/app/index/components/system/role/list.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" column="91" lean-forward="false" selection-start-line="63" selection-start-column="91" selection-end-line="63" selection-end-column="91" />
+        <state relative-caret-position="335">
+          <caret line="216" column="40" lean-forward="false" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10794">
+          <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
+          <folding>
+            <marker date="1488464140000" expanded="true" signature="57908:57922" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/mail/star.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/mail/mail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="52" column="94" lean-forward="false" selection-start-line="52" selection-start-column="94" selection-end-line="52" selection-end-column="94" />
+        <state relative-caret-position="-285">
+          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/mail/inbox.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="154" column="41" lean-forward="false" selection-start-line="154" selection-start-column="41" selection-end-line="154" selection-end-column="41" />
           <folding />
         </state>
       </provider>
