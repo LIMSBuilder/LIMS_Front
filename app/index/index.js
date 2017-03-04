@@ -107,6 +107,7 @@ import mail from './components/mail/mail.vue'
 import inbox from './components/mail/inbox.vue'
 import compose from './components/mail/compose.vue'
 import star from './components/mail/star.vue'
+import trash from './components/mail/trash.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -170,6 +171,9 @@ var routes = [
             {
                 path: "star",
                 component: star
+            }, {
+                path: "trash",
+                component: trash
             }
         ]
     },

@@ -49,7 +49,7 @@
                             </router-link>
 
                             <li class="divider"></li>
-                            <router-link :to="{ path: '/mail/draft' }" tag="li" active-class="active">
+                            <router-link :to="{ path: '/mail/trash' }" tag="li" active-class="active">
                                 <a href="javascript:;" data-type="inbox" data-title="垃圾箱"> 回收站
                                     <span class="badge badge-danger">3</span>
                                 </a>
