@@ -36,7 +36,7 @@
                 <tbody>
                 <span v-if="mailList.length==0">当前分类无邮件。</span>
                 <template v-for="item in mailList">
-                    <tr :class="item.state==0?'unread':''">
+                    <tr :class="item.state==0?'unread':''" @click="viewDetail(item.id)">
                         <td class="inbox-small-cells">
                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                 <input type="checkbox" :value="item.id" v-model="selected" class="mail-checkbox"/>
@@ -202,6 +202,10 @@
                         })
                     }
                 });
+            },
+            viewDetail(id){
+                var me = this;
+                router.push("/mail/view?id=" + id);
             }
         }
     }
