@@ -69,6 +69,10 @@ import Create_Customer from './components/basic/customer/create.vue'
 import Customer_List from "./components/basic/customer/list.vue"
 import Change_Customer from './components/basic/customer/change.vue'
 
+//Basic
+import Basic from './components/basic/basic/basic.vue'
+import Default from './components/basic/basic/default.vue'
+
 //=============System===============
 //Department
 import Department from './components/system/department/department.vue'
@@ -111,6 +115,7 @@ import trash from './components/mail/trash.vue'
 import view from './components/mail/view.vue'
 import outbox from './components/mail/outbox.vue'
 import viewSend from './components/mail/viewSend.vue'
+
 
 //==========导入CSS文件===============
 import 'style/font_sans'
@@ -356,6 +361,17 @@ var routes = [
             {
                 path: "change",
                 component: Change_Customer
+            }
+        ]
+    },
+    {
+        path: "/basic",
+        name: "basic",
+        component: Basic,
+        children: [
+            {
+                path: "default",
+                component: Default
             }
         ]
     },
