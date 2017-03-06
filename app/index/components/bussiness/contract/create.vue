@@ -5,7 +5,7 @@
         </h1>
         <div class="row">
             <div class="col-md-12">
-                <div class="portlet light bordered" id="form_wizard_1">
+                <div class="portlet light bordered" id="contract_wizard">
                     <div class="portlet-title">
                         <div class="caption">
                             <span class="caption-subject bold uppercase"> 合同生成流程 -
@@ -92,7 +92,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="client_code">邮政编码
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
 
@@ -108,7 +108,7 @@
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="client_address">联系地址
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
 
@@ -123,7 +123,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="client_tel">联系电话
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -139,7 +139,7 @@
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="client">联系人
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
 
@@ -155,7 +155,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="client_fax">传真号码
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -189,7 +189,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="trustee_code">邮政编码
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -204,7 +204,7 @@
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="trustee_address">联系地址
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -218,7 +218,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="trustee_tel">联系电话
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -235,18 +235,23 @@
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <select class="form-control" name="trustee"
+                                                        <select class="form-control" data-live-search="true"
+                                                                name="trustee"
                                                                 v-model="contract.trustee" id="trustee">
-                                                            <option value="">请选择联系人</option>
+                                                            <option></option>
                                                             <template v-for="item in userList">
-                                                                <option :value="item.id">{{item.name}}</option>
+                                                                <optgroup :label="item.name">
+                                                                    <template v-for="user in item.user.results">
+                                                                        <option :value="user.id">{{user.name}}</option>
+                                                                    </template>
+                                                                </optgroup>
                                                             </template>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="trustee_fax">传真号码
-                                                        <span class="required"> * </span>
+                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -288,7 +293,8 @@
                                                 </label>
                                                 <div class="col-md-10">
                                                     <select class="bs-select form-control" name="projectType"
-                                                            v-model="contract.type" id="projectType">
+                                                            v-model="contract.type" id="projectType"
+                                                            data-live-search="true">
                                                         <option>请选择监测类别</option>
                                                         <template v-for="item in typeList">
                                                             <option :value="item.id">{{item.name}}</option>
@@ -492,135 +498,270 @@
                                         </div>
                                         <div class="tab-pane" id="tab4">
                                             <h3 class="block">确认您的合同信息</h3>
-                                            <span>暂时不显示</span>
-                                            <!--<h4 class="form-section">甲方信息</h4>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_unit">委托单位-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.client_unit}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_code">邮政编码-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.client_code}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_address">联系地址-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label">-->
-                                            <!--{{contract.client_address}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_tel">联系电话-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.client_tel}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client">联系人-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.client}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_fax">传真号码-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.client_fax}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<h4 class="form-section">乙方信息</h4>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_unit">受托单位-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.trustee_unit}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_code">邮政编码-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.trustee_code}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_address">联系地址-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label">-->
-                                            <!--{{contract.client_address}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_tel">联系电话-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.trustee_tel}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client">联系人-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.trustee}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="form-group col-md-6">-->
-                                            <!--<label class="control-label col-md-4" for="client_fax">传真号码-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.trustee_fax}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<h4 class="form-section">合同详情</h4>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-12">-->
-                                            <!--<label class="control-label col-md-2" for="client">项目名称-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.name}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-12">-->
-                                            <!--<label class="control-label col-md-2" for="client">监测目的-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.aim}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="row">-->
-                                            <!--<div class="form-group col-md-12">-->
-                                            <!--<label class="control-label col-md-2" for="client">监测类别-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-8">-->
-                                            <!--<label class="control-label"> {{contract.type}}</label>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
+                                            <h4 class="form-section">甲方信息</h4>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_unit">委托单位
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.client_unit}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_code">邮政编码
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.client_code}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_address">联系地址
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">
+                                                            {{contract.client_address}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_tel">联系电话
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.client_tel}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client">联系人
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.client}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_fax">传真号码
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.client_fax}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="form-section">乙方信息</h4>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_unit">受托单位
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.trustee_unit}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_code">邮政编码
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.trustee_code}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_address">联系地址
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">
+                                                            {{contract.client_address}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_tel">联系电话
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.trustee_tel}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client">联系人
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{tag.trustee}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label col-md-4" for="client_fax">传真号码
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.trustee_fax}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="form-section">合同详情</h4>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2" for="client">项目名称
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.name}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2" for="client">监测目的
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.aim}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2" for="client">监测类别
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{tag.type}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2" for="client">检测方式
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label" v-if="contract.way==1">
+                                                            以我单位通过计量认证、国家实验室认可的方法进行检测 </label>
+                                                        <label class="control-label" v-if="contract.way==0">
+                                                            客户指定的方法:{{contract.wayDesp}} </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2" for="client">检测项目
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <div class="table-scrollable table-scrollable-borderless">
+                                                            <table class="table table-hover table-light">
+                                                                <thead>
+                                                                <tr class="uppercase">
+                                                                    <th> 序号</th>
+                                                                    <th> 公司、道路名称</th>
+                                                                    <th> 环境要素</th>
+                                                                    <th> 监测点（个）</th>
+                                                                    <th> 监测项目</th>
+                                                                    <th> 监测频次</th>
+                                                                    <th> 是否分包</th>
+                                                                    <th> 备注</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <template v-for="(item,index) in contract.item">
+                                                                    <tr>
+                                                                        <td class="text-center">{{index+1}}</td>
+                                                                        <td class="text-center">{{item.company}}</td>
+                                                                        <td class="text-center">{{item.element.name}}
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            <template
+                                                                                    v-for="(point,index) in item.point">
+                                                                                {{point}}
+                                                                                <template
+                                                                                        v-if="index+1!=item.point.length">
+                                                                                    ,
+                                                                                </template>
+                                                                            </template>
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            <template
+                                                                                    v-for="(project,index) in item.project">
+                                                                                {{project.name}}
+                                                                                <template
+                                                                                        v-if="index+1!=item.project.length">
+                                                                                    ,
+                                                                                </template>
+                                                                            </template>
+                                                                        </td>
+                                                                        <td class="text-center">{{item.frequency.total}}
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            v-if="item.is_package==1">是
+                                                                        </td>
+                                                                        <td class="text-center"
+                                                                            v-if="item.is_package==0">否
+                                                                        </td>
+                                                                        <td class="text-center">{{item.other}}</td>
+                                                                    </tr>
+                                                                </template>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2" for="client">分包单位
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label"> {{contract.package_unit}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">客户要求
+                                                        <span class="required">  </span>
+                                                    </label>
+                                                    <div class="col-md-10">
+                                                        <div class="mt-checkbox-list">
+                                                            <label class="control-label"
+                                                                   v-if="contract.in_room==1">客户需要进入实验室监视与本次委托有关的检测活动。</label>
+                                                            <label class="control-label"
+                                                                   v-if="contract.secret==1">客户需要本实验室对本次委托有关资料保密。</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="form-section">其他约定</h4>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2">交付方式
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">{{contract.paymentWay}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2">完成时间
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">{{contract.finish_time}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2">监测费用
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">{{contract.payment}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label col-md-2">其他约定
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <label class="control-label">{{contract.other}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -893,11 +1034,15 @@
                     trustee_fax: "",
                     way: 1,
                     wayDesp: "",
+                    finish_time: "",
+                    payment: "",
                     paymentWay: "客户自取",
                     in_room: false,
                     secret: false,
                     item: [],
-                    project_items: []
+                    project_items: [],
+                    other: "",
+                    type: ""
                 },
                 typeList: [],
                 customerList: [],
@@ -916,18 +1061,22 @@
                 elementList: [],
                 frequencyList: [],
                 projectList: [],
-                userList: []
+                userList: [],
+                tag: {
+                    trustee: "",
+                    type: ""
+                }
             }
         },
         mounted(){
             var me = this;
-            me.init();
+
             me.fetchType();
             me.fetchFrequency();
             me.getCustomer();
             me.fetchElement();
-            me.fetchUser();
-
+            //me.fetchUser();
+            me._init();
             moment.locale('zh-cn');
             $('#projectAim').maxlength({
                 limitReachedClass: "label label-danger",
@@ -951,7 +1100,7 @@
                         '今日完成': [moment(), moment()],
                         '未来七天完成': [moment(), moment().add('days', 6)],
                         '未来一月完成': [moment(), moment().add('days', 29)],
-                        '本月完成': [moment().startOf('month'), moment().endOf('month')]
+                        '本月完成': [moment(), moment().endOf('month')]
                     },
                     minDate: '01/01/2012',
                     maxDate: '12/31/2018'
@@ -960,6 +1109,11 @@
                     $('#defaultrange input').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
                 }
             );
+            $('#defaultrange').on('apply.daterangepicker', function (ev, picker) {
+                var str = picker.startDate.format('YYYY-MM-DD') + "至" + picker.endDate.format('YYYY-MM-DD');
+                me.contract.finish_time = str;
+            });
+
             //选择客户信息窗口可拖拽
             $("#chooseCustomer").draggable({
                 handle: ".modal-header"
@@ -979,7 +1133,46 @@
 
             });
         },
+        watch: {
+            "contract.trustee": function () {
+                this.tag.trustee = jQuery("#trustee option:selected").html();
+            },
+            "contract.type": function () {
+                console.log("type")
+                this.tag.type = jQuery("#projectType option:selected").html();
+            }
+        },
         methods: {
+            _init(){
+                var me = this;
+                me.fetchUser();
+                me.wizard();
+            },
+            fetchUser(){
+                //加载乙方联系人信息，默认选中为当前登录人员
+                var me = this;
+                me.$http.get("/api/user/listByDepartment").then(function (response) {
+                    var data = response.data;
+                    me.userList = data.results;
+                    me.$nextTick(function () {
+                        $('#trustee').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            noneSelectedText: "请选择联系人"
+
+                        });
+                        me.$http.get("/api/login/getLogin").then(function (response) {
+                            var data = response.data;
+                            $('#trustee').selectpicker("val", data.id);
+                            me.contract.trustee = data.id;
+                        }, function (response) {
+                            serverErrorInfo();
+                        })
+                    })
+                }, function (response) {
+                    serverErrorInfo();
+                });
+            },
             addMonitor(){
                 //新增一项监测内容
                 var me = this;
@@ -987,22 +1180,25 @@
                     me.monitor.point = jQuery("#monitor_point").tagsinput("items");
                     me.$http.get("/api/project/details", {
                         params: me.monitor
-                    }).then(response => {
-                        var data = response.data;
-                        codeState(data.code, {
-                            200: function () {
-                                alert("监测项目创建成功！");
-                                me.contract.item.push(data);
-                            }
-                        })
-                    }, response => {
-                        serverErrorInfo();
-                    });
+                    }).then(function (response) {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("监测项目创建成功！");
+                                    me.contract.item.push(data);
+                                }
+                            })
+                        }
+                        , function (response) {
+                            serverErrorInfo();
+                        });
                 }
             },
             deleteItem(item){
                 var me = this;
-                me.contract.item.splice(me.contract.item.find(t => t.id === item.id), 1);
+                me.contract.item.splice(me.contract.item.find(function (t) {
+                    return t.id === item.id;
+                }), 1);
             },
             deleteAllItem(){
                 var me = this;
@@ -1035,7 +1231,6 @@
             create(){
                 var me = this;
                 me.contract.finish_time = jQuery("#finish_time").val();
-
                 var items = me.contract.item;
                 me.contract.project_items = [];
                 for (var i = 0; i < items.length; i++) {
@@ -1043,15 +1238,17 @@
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
 
-                me.$http.post("/api/contract/create", me.contract).then(response => {
+                me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
-                        200: "合同创建成功！"
+                        200: function () {
+                            alert("合同创建成功！");
+                            router.push("/contract/list");
+                        }
                     })
-                }, response => {
+                }, function (response) {
                     serverErrorInfo();
-                });
-//                console.log(JSON.parse(JSON.stringify(me.contract)));
+                })
             },
             fetchCustomer(pageNum, rowCount){
                 var me = this;
@@ -1061,17 +1258,17 @@
                         currentPage: pageNum,
                         condition: this.condition
                     }
-                }).then(response => {
+                }).then(function (response) {
                     var data = response.data;
                     me.customerList = data.results;
 
-                }, response => {
+                }, function (response) {
                     serverErrorInfo();
                 });
             },
             fetchElement(){
                 var me = this;
-                me.$http.get("/api/element/total").then(response => {
+                me.$http.get("/api/element/total").then(function (response) {
                     var me = this;
                     me.elementList = response.data.results;
                     me.$nextTick(function () {
@@ -1081,7 +1278,7 @@
                             noneSelectedText: "请选择环境要素"
                         });
                     })
-                }, response => {
+                }, function (response) {
                     serverErrorInfo();
                 });
             },
@@ -1092,25 +1289,27 @@
                     params: {
                         element_id: value
                     }
-                }).then(response => {
-                    var data = response.data;
-                    me.projectList = data.results;
-                    me.$nextTick(function () {
-                        //销毁监测项目选择框
-                        $('#monitor_project').selectpicker('destroy');
-                        //初始化监测项目选择框
-                        $('#monitor_project').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check',
-                            countSelectedText: "count",
-                            deselectAllText: "取消选择",
-                            selectAllText: "选择全部",
-                            noneSelectedText: "请选择监测项目"
-                        });
-                    })
-                }, resposne => {
-                    serverErrorInfo();
-                })
+                }).then(function (response) {
+                        var data = response.data;
+                        me.projectList = data.results;
+                        me.$nextTick(function () {
+                            //销毁监测项目选择框
+                            $('#monitor_project').selectpicker('destroy');
+                            //初始化监测项目选择框
+                            $('#monitor_project').selectpicker({
+                                iconBase: 'fa',
+                                tickIcon: 'fa-check',
+                                countSelectedText: "count",
+                                deselectAllText: "取消选择",
+                                selectAllText: "选择全部",
+                                noneSelectedText: "请选择监测项目"
+                            });
+                        })
+                    }
+                    , function (response) {
+                        serverErrorInfo();
+                    }
+                )
             },
             fetchProjectByValue(value, selected){
                 var me = this;
@@ -1118,43 +1317,46 @@
                     params: {
                         element_id: value
                     }
-                }).then(response => {
-                    var data = response.data;
-                    me.projectList = data.results;
-                    me.$nextTick(function () {
-                        //销毁监测项目选择框
-                        $('#monitor_project').selectpicker('destroy');
-                        //初始化监测项目选择框
-                        $('#monitor_project').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check',
-                            countSelectedText: "count",
-                            deselectAllText: "取消选择",
-                            selectAllText: "选择全部",
-                            noneSelectedText: "请选择监测项目"
-                        });
-                        debugger
-                        $('#monitor_project').selectpicker("val", selected);
-                    })
-                }, resposne => {
-                    serverErrorInfo();
-                })
+                }).then(function (response) {
+                        var data = response.data;
+                        me.projectList = data.results;
+                        me.$nextTick(function () {
+                            //销毁监测项目选择框
+                            $('#monitor_project').selectpicker('destroy');
+                            //初始化监测项目选择框
+                            $('#monitor_project').selectpicker({
+                                iconBase: 'fa',
+                                tickIcon: 'fa-check',
+                                countSelectedText: "count",
+                                deselectAllText: "取消选择",
+                                selectAllText: "选择全部",
+                                noneSelectedText: "请选择监测项目"
+                            });
+                            debugger
+                            $('#monitor_project').selectpicker("val", selected);
+                        })
+                    }
+                    , function (response) {
+                        serverErrorInfo();
+                    }
+                )
             },
             fetchFrequency(){
                 var me = this;
-                me.$http.get("/api/frequency/total").then(response => {
-                    var data = response.data;
-                    me.frequencyList = data.results;
-                    me.$nextTick(function () {
-                        $('#monitor_frequency').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check',
-                            noneSelectedText: "请选择监测频率"
+                me.$http.get("/api/frequency/total").then(function (response) {
+                        var data = response.data;
+                        me.frequencyList = data.results;
+                        me.$nextTick(function () {
+                            $('#monitor_frequency').selectpicker({
+                                iconBase: 'fa',
+                                tickIcon: 'fa-check',
+                                noneSelectedText: "请选择监测频率"
+                            });
                         });
+                    }
+                    , function (response) {
+                        serverErrorInfo();
                     });
-                }, response => {
-                    serverErrorInfo();
-                });
             },
             fetchPages (rowCount) {
                 var me = this;
@@ -1164,38 +1366,24 @@
                         currentPage: 1,
                         condition: me.condition
                     }
-                }).then((response) => {
-                    var data = response.data;
-                    jQuery(".M-box").pagination({
-                        pageCount: data.totalPage || 1,
-                        coping: true,
-                        homePage: '首页',
-                        endPage: '末页',
-                        prevContent: '上页',
-                        nextContent: '下页',
-                        callback: function (data) {
-                            me.fetchCustomer(data.getCurrent(), rowCount, me.condition);
-                            me.currentPage = data.getCurrent();
-                        }
-                    });
-                }, (response) => {
-                    serverErrorInfo();
-                });
-            },
-            fetchUser(){
-                var me = this;
-                me.$http.get("/api/user/total").then(response => {
-                    var data = response.data;
-                    me.userList = data.results;
-                    me.$nextTick(function () {
-                        $('#trustee').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check'
+                }).then(function (response) {
+                        var data = response.data;
+                        jQuery(".M-box").pagination({
+                            pageCount: data.totalPage || 1,
+                            coping: true,
+                            homePage: '首页',
+                            endPage: '末页',
+                            prevContent: '上页',
+                            nextContent: '下页',
+                            callback: function (data) {
+                                me.fetchCustomer(data.getCurrent(), rowCount, me.condition);
+                                me.currentPage = data.getCurrent();
+                            }
                         });
+                    }
+                    , function (response) {
+                        serverErrorInfo();
                     });
-                }, response => {
-                    serverErrorInfo();
-                });
             },
             getCustomer(){
                 var me = this;
@@ -1244,30 +1432,31 @@
             },
             fetchType(){
                 var me = this;
-                me.$http.get("/api/type/total").then(response => {
+                me.$http.get("/api/type/total").then(function (response) {
                     var data = response.data;
                     me.typeList = data.results;
                     me.$nextTick(function () {
-                        $('.bs-select').selectpicker({
+//                        $('.bs-select').selectpicker({
+//                            iconBase: 'fa',
+//                            tickIcon: 'fa-check'
+//                        });
+                        $('#projectType').selectpicker({
                             iconBase: 'fa',
-                            tickIcon: 'fa-check'
+                            tickIcon: 'fa-check',
+                            noneSelectedText: "请选择联系人"
+
                         });
                     })
-                }, response => {
+                }, function (response) {
                     serverErrorInfo();
                 });
             },
-            init(){
-                function format(state) {
-                    if (!state.id) return state.text; // optgroup
-                    return "<img class='flag' src='../../assets/global/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
-                }
-
+            wizard(){
+                //wizard插件和表单验证序列化
                 var form = $('#submit_form');
                 var error = $('.alert-danger', form);
                 var success = $('.alert-success', form);
-
-                form.validate({
+                jQuery('#submit_form').validate({
                     doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
                     errorElement: 'span', //default input error message container
                     errorClass: 'help-block help-block-error', // default input error message class
@@ -1276,37 +1465,10 @@
                         client_unit: {
                             required: true
                         },
-                        client: {
-                            required: true
-                        },
-                        client_tel: {
-                            required: true
-                        },
-                        client_address: {
-                            required: true
-                        },
-                        client_fax: {
-                            required: true
-                        },
-                        client_code: {
-                            required: true
-                        },
                         trustee_unit: {
                             required: true
                         },
                         trustee: {
-                            required: true
-                        },
-                        trustee_tel: {
-                            required: true
-                        },
-                        trustee_address: {
-                            required: true
-                        },
-                        trustee_fax: {
-                            required: true
-                        },
-                        trustee_code: {
                             required: true
                         },
                         projectName: {
@@ -1379,8 +1541,6 @@
                     }
 
                 });
-
-
                 jQuery("#item_add").validate({
                     doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
                     errorElement: 'span', //default input error message container
@@ -1454,7 +1614,6 @@
                     }
 
                 });
-
                 var displayConfirm = function () {
                     $('#tab4 .form-control-static', form).each(function () {
                         var input = $('[name="' + $(this).attr("data-display") + '"]', form);
@@ -1476,38 +1635,35 @@
                         }
                     });
                 }
-
                 var handleTitle = function (tab, navigation, index) {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     // set wizard title
-                    $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                    $('.step-title', $('#contract_wizard')).text('Step ' + (index + 1) + ' of ' + total);
                     // set done steps
-                    jQuery('li', $('#form_wizard_1')).removeClass("done");
+                    jQuery('li', $('#contract_wizard')).removeClass("done");
                     var li_list = navigation.find('li');
                     for (var i = 0; i < index; i++) {
                         jQuery(li_list[i]).addClass("done");
                     }
 
                     if (current == 1) {
-                        $('#form_wizard_1').find('.button-previous').hide();
+                        $('#contract_wizard').find('.button-previous').hide();
                     } else {
-                        $('#form_wizard_1').find('.button-previous').show();
+                        $('#contract_wizard').find('.button-previous').show();
                     }
 
                     if (current >= total) {
-                        $('#form_wizard_1').find('.button-next').hide();
-                        $('#form_wizard_1').find('.button-submit').show();
+                        $('#contract_wizard').find('.button-next').hide();
+                        $('#contract_wizard').find('.button-submit').show();
                         displayConfirm();
                     } else {
-                        $('#form_wizard_1').find('.button-next').show();
-                        $('#form_wizard_1').find('.button-submit').hide();
+                        $('#contract_wizard').find('.button-next').show();
+                        $('#contract_wizard').find('.button-submit').hide();
                     }
                     App.scrollTo($('.page-title'));
                 }
-
-// default form wizard
-                $('#form_wizard_1').bootstrapWizard({
+                $('#contract_wizard').bootstrapWizard({
                     'nextSelector': '.button-next',
                     'previousSelector': '.button-previous',
                     onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -1540,15 +1696,13 @@
                         var total = navigation.find('li').length;
                         var current = index + 1;
                         var $percent = (current / total) * 100;
-                        $('#form_wizard_1').find('.progress-bar').css({
+                        $('#contract_wizard').find('.progress-bar').css({
                             width: $percent + '%'
                         });
                     }
                 });
-
-                $('#form_wizard_1').find('.button-previous').hide();
-                $('#form_wizard_1').find('.button-submit').hide();
-//apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.
+                $('#contract_wizard').find('.button-previous').hide();
+                $('#contract_wizard').find('.button-submit').hide();
                 $('#country_list', form).change(function () {
                     form.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
                 });
