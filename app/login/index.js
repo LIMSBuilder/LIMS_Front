@@ -90,16 +90,7 @@ var Login = function () {
                 form.submit();
             }
         });
-
-        $('.login-form input').keypress(function (e) {
-            if (e.which == 13) {
-                if ($('.login-form').validate().form()) {
-                    $('.login-form').submit();
-                }
-                return false;
-            }
-        });
-    }
+    };
 
     var handleForgetPassword = function () {
         $('.forget-form').validate({
@@ -320,9 +311,25 @@ var Login = function () {
 
 jQuery(document).ready(function () {
     Login.init();
+
+    var user_str = localStorage.getItem("user");
+    if (user_str) {
+        var obj = JSON.parse(user_str);
+        jQuery("#username").val(obj.username);
+        jQuery("#password").val(obj.password);
+        jQuery("#remember").prop("checked", true);
+    }
+
     //登录验证
     jQuery("#logo").attr('src', logo);
-    jQuery("#login_btn").off("click").on("click", function () {
+    jQuery("#login_btn").off("click").on("click", loginCheck);
+    $("#password").keyup(function () {
+        if (event.keyCode == 13) {
+            loginCheck();
+            return;
+        }
+    });
+    function loginCheck() {
         var form = jQuery("#login").serialize();
         if ($('.login-form').valid()) {
             $.ajax({
@@ -334,6 +341,17 @@ jQuery(document).ready(function () {
                     codeState(data, {
                         200: function () {
                             alert("登陆成功");
+                            if (jQuery("#remember").prop("checked")) {
+                                //记住密码到本地
+                                var info = {
+                                    username: jQuery("#username").val(),
+                                    password: jQuery("#password").val()
+                                };
+                                localStorage.setItem("user", JSON.stringify(info));
+                            } else {
+                                //忘记密码
+                                localStorage.removeItem("user");
+                            }
                             window.location.href = "/";
                         },
                         502: function () {
@@ -346,7 +364,8 @@ jQuery(document).ready(function () {
                 }
             });
         }
-    });
+    }
+
     //重置密码
     jQuery("#reset_password").off("click").on("click", function () {
         var form = jQuery("#forget").serialize();
