@@ -404,6 +404,7 @@ var router = new VueRouter({
 window.router = router;
 new Vue({
     el: '#header',
+    router,
     render: h => h(Top)
 });
 

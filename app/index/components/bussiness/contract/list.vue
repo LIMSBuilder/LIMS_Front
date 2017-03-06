@@ -10,7 +10,7 @@
                                 <span class="caption-subject font-green-sharp bold uppercase">合同进展 </span>
                                 <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看合同进展</span>
                             </div>
-                           
+
                         </div>
                         <div class="portlet-body todo-project-list-content">
                             <div class="todo-project-list">
@@ -70,6 +70,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content-tags">
+                                <span class="caption-subject font-blue bold uppercase">搜索 </span>
+                            </div>
+                        </div>
+                        <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
+                            <div class="form-group form-md-line-input form-md-floating-label"
+                                 style="padding-top: 0;">
+                                <div class="input-icon right">
+                                    <input type="text" class="form-control" @keyup.enter="searchKey($event)">
+                                    <span class="help-block">支持委托单位、合同编号和项目名称查询。</span>
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- END TODO SIDEBAR -->
                 <!-- BEGIN TODO CONTENT -->
@@ -125,7 +142,9 @@
                                                         style="width: 27px;height: 27px;"
                                                         class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                 </div>
-                                                <div class="todo-tasklist-item-title"> {{item.name}}</div>
+                                                <div class="todo-tasklist-item-title"> {{item.name}} /
+                                                    {{item.identify}}
+                                                </div>
                                                 <div class="todo-tasklist-item-text"> {{item.aim}}
                                                 </div>
                                                 <div class="todo-tasklist-controls pull-left">
@@ -381,7 +400,6 @@
                                                                     <th> 监测频次</th>
                                                                     <th> 是否分包</th>
                                                                     <th> 备注</th>
-                                                                    <th> 操作</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -404,7 +422,8 @@
                                                                                 </template>
                                                                             </template>
                                                                         </td>
-                                                                        <td class="text-center">{{item.frequency.total}}
+                                                                        <td class="text-center">
+                                                                            {{item.frequency?item.frequency.total:''}}
                                                                         </td>
                                                                         <td class="text-center"
                                                                             v-if="item.is_package==1">是
@@ -413,13 +432,6 @@
                                                                             v-if="item.is_package==0">否
                                                                         </td>
                                                                         <td class="text-center">{{item.other}}</td>
-                                                                        <td class="text-center">
-                                                                            <a href="javascript:;"
-                                                                               class="btn btn-icon-only red"
-                                                                               @click="deleteItem(item)">
-                                                                                <i class="fa fa-trash-o"></i>
-                                                                            </a>
-                                                                        </td>
                                                                     </tr>
                                                                 </template>
                                                                 </tbody>
@@ -473,10 +485,10 @@
                                         <div class="tabbable-line">
                                             <ul class="nav nav-tabs ">
                                                 <li class="active">
-                                                    <a href="#tab_1" data-toggle="tab"> 评 论 </a>
+                                                    <a href="#tab_1" data-toggle="tab"> 相 关 </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#tab_2" data-toggle="tab"> 流 程 </a>
+                                                    <a href="#tab_2" data-toggle="tab"> 日 志 </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content">
@@ -602,36 +614,15 @@
                                                 </div>
                                                 <div class="tab-pane" id="tab_2">
                                                     <ul class="todo-task-history">
-                                                        <li>
-                                                            <div class="todo-task-history-date"> 20 Jun, 2014 at
-                                                                11:35am
-                                                            </div>
-                                                            <div class="todo-task-history-desc"> Task created</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="todo-task-history-date"> 21 Jun, 2014 at
-                                                                10:35pm
-                                                            </div>
-                                                            <div class="todo-task-history-desc"> Task category status
-                                                                changed to "Top Priority"
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="todo-task-history-date"> 22 Jun, 2014 at
-                                                                11:35am
-                                                            </div>
-                                                            <div class="todo-task-history-desc"> Task owner changed to
-                                                                "Nick Larson"
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="todo-task-history-date"> 30 Jun, 2014 at
-                                                                8:09am
-                                                            </div>
-                                                            <div class="todo-task-history-desc"> Task completed by "Nick
-                                                                Larson"
-                                                            </div>
-                                                        </li>
+                                                        <template v-for="item in log">
+                                                            <li>
+                                                                <div class="todo-task-history-date">
+                                                                    {{item.log_time}}
+                                                                </div>
+                                                                <div class="todo-task-history-desc"> {{item.log_msg}}
+                                                                </div>
+                                                            </li>
+                                                        </template>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -662,7 +653,8 @@
                     trustee: {},
                     type: {}
                 },
-                items: []
+                items: [],
+                log: []
             }
         },
         mounted(){
@@ -767,6 +759,20 @@
                     serverErrorInfo();
                 });
             },
+            fetchLog(id){
+                var me = this;
+                me.$http.get("/api/log/contractLog", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                        var data = response.data;
+                        me.log = data;
+                    }, response => {
+                        serverErrorInfo();
+                    }
+                );
+            },
             getData(){
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
@@ -776,6 +782,7 @@
                 var me = this;
                 me.contract = item;
                 me.fetchItems(item.id);
+                me.fetchLog(item.id);
             },
             search(){
                 var me = this;
@@ -799,6 +806,12 @@
                 }
                 me.getData();
 
+            },
+            searchKey(e){
+                var me = this;
+                me.condition = "keyWords=" + encodeURI(e.target.value);
+                me.currentPage = 1;
+                me.getData();
             }
         }
     }

@@ -37,7 +37,6 @@ import bg2 from 'globalPath/img/bg/2.jpg'
 import bg3 from 'globalPath/img/bg/3.jpg'
 import bg4 from 'globalPath/img/bg/4.jpg'
 
-import logo from 'globalPath/img/boncontact.png'
 
 var Login = function () {
 
@@ -321,7 +320,6 @@ jQuery(document).ready(function () {
     }
 
     //登录验证
-    jQuery("#logo").attr('src', logo);
     jQuery("#login_btn").off("click").on("click", loginCheck);
     $("#password").keyup(function () {
         if (event.keyCode == 13) {
