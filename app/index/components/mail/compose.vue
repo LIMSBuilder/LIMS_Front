@@ -182,7 +182,7 @@
                         me.mail.path.push(me.transmitPath[i].file_path);
                     }
                 }
-                me.$http.post("/api/mail/create", me.mail).then(response => {
+                me.$http.post("/api/mail/create", me.mail).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
@@ -199,11 +199,14 @@
                             }
                         }
                     })
-                }, response => {
+                }, function () {
                     serverErrorInfo();
                 });
             });
             me.fetchTransmit();
+        },
+        watch: {
+            '$route.query': "fetchReceiver"
         },
         methods: {
             fetchTransmit(){
@@ -227,6 +230,13 @@
                     })
                 }
             },
+            fetchReceiver(){
+                var me = this;
+                var value = me.$route.query.receiver;
+                if (value) {
+                    $('#receiver').selectpicker("val", value);
+                }
+            },
             sendTo(){
                 var me = this;
                 confirm({
@@ -238,7 +248,7 @@
             },
             fetchUser: function () {
                 var me = this;
-                me.$http.get("/api/user/listByDepartment").then(response => {
+                me.$http.get("/api/user/listByDepartment").then(function (response) {
                     var data = response.data;
                     me.userList = data.results;
                     me.$nextTick(function () {
@@ -251,10 +261,11 @@
                             noneSelectedText: "请选择收件人"
 
                         });
+                        me.fetchReceiver();
                     })
-                }, response => {
+                }, function (response) {
                     serverErrorInfo();
-                });
+                })
             },
             removePath(item){
                 var me = this;
