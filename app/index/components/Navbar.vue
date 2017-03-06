@@ -67,8 +67,8 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-diamond"></i>
-                    <span class="title">业务合同管理</span>
+                    <i class="fa fa-file-word-o"></i>
+                    <span class="title">合同管理</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -113,7 +113,7 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-balance-scale"></i>
+                    <i class="fa fa-recycle"></i>
                     <span class="title">监测频次</span>
                     <span class="arrow"></span>
                 </a>
@@ -137,8 +137,8 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-balance-scale"></i>
-                    <span class="title">监测项目测试</span>
+                    <i class="fa fa-eyedropper"></i>
+                    <span class="title">监测项目</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -185,7 +185,7 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-balance-scale"></i>
+                    <i class="fa fa-share-alt"></i>
                     <span class="title">客户管理</span>
                     <span class="arrow"></span>
                 </a>
@@ -203,6 +203,20 @@
                     <router-link :to="{ path: '/customer/change' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">更新客户信息</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-cogs"></i>
+                    <span class="title">基础信息维护</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/basic/default' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">合同预设信息</span>
                         </a>
                     </router-link>
                 </ul>

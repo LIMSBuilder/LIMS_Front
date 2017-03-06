@@ -1231,18 +1231,14 @@
                 confirm({
                     content: "是否导入预设的乙方联系信息？",
                     success: function () {
-                        var demo = {
-                            trustee: "张全蛋",
-                            trustee_code: "000000",
-                            trustee_address: "江苏省常州市",
-                            trustee_tel: "1234567890",
-                            trustee_unit: "常州某坑货公司",
-                            trustee_fax: "09821331"
-                        };
-                        for (var key in demo) {
-                            me.contract[key] = demo[key];
-                        }
-
+                        me.$http.get("/api/contract/fetchDefault").then(function (response) {
+                            var data = response.data;
+                            for (var key in data) {
+                                me.contract[key] = data[key];
+                            }
+                        }, function (response) {
+                            serverErrorInfo();
+                        });
                     }
                 })
             },
