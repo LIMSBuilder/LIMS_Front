@@ -109,6 +109,9 @@ import compose from './components/mail/compose.vue'
 import star from './components/mail/star.vue'
 import trash from './components/mail/trash.vue'
 import view from './components/mail/view.vue'
+import outbox from './components/mail/outbox.vue'
+import viewSend from './components/mail/viewSend.vue'
+
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -178,6 +181,12 @@ var routes = [
             }, {
                 path: "view",
                 component: view
+            }, {
+                path: "outbox",
+                component: outbox
+            }, {
+                path: "viewSend",
+                component: viewSend
             }
         ]
     },

@@ -1,10 +1,10 @@
 <template>
     <div class="inbox-body">
         <div class="inbox-header">
-            <h1 class="pull-left">回收站</h1>
+            <h1 class="pull-left">发件箱</h1>
             <div class="form-inline pull-right">
                 <div class="input-group input-medium">
-                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在回收站中搜索">
+                    <input type="text" class="form-control" @keyup.enter="search" id="searchKey" placeholder="在发件箱中搜索">
                     <span class="input-group-btn">
                                                         <button type="button" class="btn green" @click="search">
                                                             <i class="fa fa-search"></i>
@@ -27,31 +27,30 @@
 
                     </th>
                     <th class="pagination-control" colspan="4">
-                        <button type="button" class="btn green btn-outline" @click="changeState(1)">还原普通邮件</button>
-                        <button type="button" class="btn yellow btn-outline" @click="changeState(2)">设置星标</button>
-                        <button type="button" class="btn red btn-outline" @click="deleteTotal">彻底删除</button>
+                        <button type="button" class="btn red btn-outline" @click="deleteMail">删 除</button>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <span v-if="mailList.length==0">当前分类无邮件。</span>
                 <template v-for="item in mailList">
-                    <tr :class="item.state==0?'unread':''" @click="viewDetail(item.id)">
+                    <tr @click="viewDetail(item.id)">
                         <td class="inbox-small-cells">
                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                 <input type="checkbox" :value="item.id" v-model="selected" class="mail-checkbox"/>
                                 <span></span>
                             </label>
                         </td>
-                        <td class="inbox-small-cells" @click="changeStateSingle(item.state==2?1:2,item.id)">
-                            <i :class="item.state==2?'fa fa-star inbox-started':'fa fa-star'"></i>
+                        <td class="view-message inbox-small-cells">
+                            <a href="javascript:;" @click="viewOuterReceiver(item)">
+                                <i class="fa fa-send-o"></i>
+                            </a>
                         </td>
-                        <td class="view-message hidden-xs"> {{item.mail.sender.name}}</td>
-                        <td class="view-message "> {{item.mail.title}}</td>
-                        <td class="view-message inbox-small-cells" @click="deleteSignle(item.id)">
+                        <td class="view-message "> {{item.title}}</td>
+                        <td class="view-message inbox-small-cells" @click="deleteMailSingle(item.id)">
                             <i class="fa fa-trash-o"></i>
                         </td>
-                        <td class="view-message text-right"> {{item.mail.create_desp}}</td>
+                        <td class="view-message text-right"> {{item.create_desp}}</td>
                     </tr>
                 </template>
                 </tbody>
@@ -63,17 +62,66 @@
             <!-- End Pagination -->
             <div class="clearfix"></div>
         </div>
+        <div class="modal fade draggable-modal" id="receiver" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">收件人列表</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="receiver_tag">
+                            <template v-for="item in receiverList">
+                                <li class="uppercase">
+                                    <a href="javascript:;">{{item.name}}</a>
+                                </li>
+                            </template>
+                        </ul>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 
 </template>
+<style>
+    .receiver_tag {
+        text-align: left;
+        padding: 0;
+        margin: 20px 0 0;
+    }
+
+    .receiver_tag li {
+        list-style: none;
+        display: inline-block;
+        margin: 0 5px 20px 0;
+    }
+
+    .receiver_tag li > a {
+        background-color: #f4f6f8;
+        color: #a0a9b4;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 7px 10px;
+
+    }
+</style>
 <script>
     module.exports = {
         data: function () {
             return {
                 mailList: [],
                 currentPage: 1,
-                condition: "type=trash",
-                selected: []
+                condition: "",
+                selected: [],
+                receiverList: []
             }
         },
         mounted(){
@@ -81,9 +129,14 @@
             me.getData();
         },
         methods: {
+            viewOuterReceiver(item){
+                var me = this;
+                me.receiverList = item.receiver;
+                jQuery("#receiver").modal("show");
+            },
             fetchData (pageNum, rowCount) {
                 var me = this;
-                this.$http.get('/api/mail/list', {
+                this.$http.get('/api/mail/outList', {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -92,6 +145,7 @@
                 }).then((response) => {
                     var data = response.data;
                     me.mailList = data.results;
+
                 }, (response) => {
                     serverErrorInfo();
                 });
@@ -99,7 +153,7 @@
             //渲染页码
             fetchPages (rowCount) {
                 var me = this;
-                this.$http.get('/api/mail/list', {
+                this.$http.get('/api/mail/outList', {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
@@ -133,9 +187,9 @@
                 var value = jQuery("#searchKey").val();
                 me.currentPage = 1;
                 if (value) {
-                    me.condition = "type=trash&&title=" + encodeURI(value);
+                    me.condition = "title=" + encodeURI(value);
                 } else {
-                    me.condition = "type=trash";
+                    me.condition = "";
                 }
                 me.getData();
 
@@ -149,16 +203,16 @@
                     })
                 }
             },
-            changeState(type){
+            deleteMail(type){
                 var me = this;
                 if (me.selected.length == 0) {
                     error("至少需要选择一个邮件！");
                     return;
                 }
                 confirm({
-                    content: "是否将选中邮件" + (type == 1 ? "还原为普通邮件？" : "还原为星标邮件？"),
+                    content: "是否删除所有选中的邮件？",
                     success: function () {
-                        me.$http.get("/api/mail/changeState", {
+                        me.$http.get("/api/mail/deleteMail", {
                             params: {
                                 selected: me.selected,
                                 state: type
@@ -178,61 +232,12 @@
                     }
                 });
             },
-            changeStateSingle(type, id){
+            deleteMailSingle(id){
                 var me = this;
                 confirm({
-                    content: "是否将该邮件" + (type == 1 ? "还原为普通邮件？" : "还原为星标邮件？"),
+                    content: "是否删除该邮件?",
                     success: function () {
-                        me.$http.get("/api/mail/changeState", {
-                            params: {
-                                selected: [id],
-                                state: type
-                            }
-                        }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("邮件操作成功！");
-                                    me.getData();
-                                }
-                            });
-                            me.getData();
-                        }, response => {
-                            serverErrorInfo();
-                        })
-                    }
-                });
-            },
-            deleteTotal(){
-                var me = this;
-                confirm({
-                    content: "是否彻底删除所有选中的邮件？",
-                    success: function () {
-                        me.$http.get("/api/mail/delete", {
-                            params: {
-                                selected: me.selected
-                            }
-                        }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("邮件删除成功！");
-                                    me.getData();
-                                }
-                            });
-                            me.getData();
-                        }, response => {
-                            serverErrorInfo();
-                        })
-                    }
-                });
-            },
-            deleteSignle(id){
-                var me = this;
-                confirm({
-                    content: "是否彻底删除当前邮件？",
-                    success: function () {
-                        me.$http.get("/api/mail/delete", {
+                        me.$http.get("/api/mail/deleteMail", {
                             params: {
                                 selected: [id]
                             }
@@ -253,7 +258,7 @@
             },
             viewDetail(id){
                 var me = this;
-                router.push("/mail/view?id=" + id);
+                router.push("/mail/viewSend?id=" + id);
             }
         }
     }

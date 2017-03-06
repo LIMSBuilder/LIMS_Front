@@ -44,6 +44,48 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group" v-if="mail.isTransmit==1">
+                    <label class="col-md-1 control-label" for="myId">转发附件</label>
+                    <div class="col-md-10">
+                        <div class="alert alert-success">
+                            <strong>Note：</strong> 下方为原始邮件中所包含的附件信息，附件将随邮件一并转发。
+                        </div>
+                        <label class="control-label" v-if="transmitPath.length==0">
+                            无转发附件
+                        </label>
+                        <div class="inbox-attached">
+                            <template v-for="item in  transmitPath">
+                                <div class="margin-bottom-25">
+                                    <div style="float: left;margin-right: 20px;">
+                                        <img style="width: 120px" src="../../../global/img/file/doc.png"
+                                             v-if="item.file_path.split('.')[1]=='doc'||item.file_path.split('.')[1]=='docx'">
+                                        <img style="width: 120px" src="../../../global/img/file/xls.png"
+                                             v-if="item.file_path.split('.')[1]=='xls'||item.file_path.split('.')[1]=='xlsx'">
+                                        <img style="width: 120px" src="../../../global/img/file/jpg.png"
+                                             v-if="item.file_path.split('.')[1]=='jpg'">
+                                        <img style="width: 120px" src="../../../global/img/file/pdf.png"
+                                             v-if="item.file_path.split('.')[1]=='pdf'">
+                                        <img style="width: 120px" src="../../../global/img/file/png.png"
+                                             v-if="item.file_path.split('.')[1]=='png'">
+                                        <img style="width: 120px" src="../../../global/img/file/rar.png"
+                                             v-if="item.file_path.split('.')[1]=='rar'">
+                                        <img style="width: 120px" src="../../../global/img/file/zip.png"
+                                             v-if="item.file_path.split('.')[1]=='zip'">
+                                        <img style="width: 120px" src="../../../global/img/file/other.png"
+                                             v-if="item.file_path.split('.')[1]!='zip'&&item.file_path.split('.')[1]!='rar'&&item.file_path.split('.')[1]!='png'&&item.file_path.split('.')[1]!='pdf'&&item.file_path.split('.')[1]!='jpg'&&item.file_path.split('.')[1]!='xls'&&item.file_path.split('.')[1]!='xlsx'&&item.file_path.split('.')[1]!='doc'&&item.file_path.split('.')[1]!='docx'">
+
+                                        <div style="width: 120px;text-align: center">
+                                            <strong style="margin: 10px 0">{{item.file_path.split("/upload\\")[1]}}</strong>
+                                            <a :href="item.file_path" class="btn btn-sm green btn-outline">下 载</a>
+                                            <a href="javascript:;" class="btn btn-sm red btn-outline"
+                                               @click="removePath(item)">删 除</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-actions noborder text-right">
                 <button type="button" class="btn blue" @click="sendTo">发 送</button>
@@ -85,8 +127,10 @@
                     receiver: [],
                     path: [],
                     content: "",
-                    title: ""
-                }
+                    title: "",
+                    isTransmit: 0
+                },
+                transmitPath: []
             }
         },
         mounted: function () {
@@ -132,8 +176,13 @@
             myDropzone.on("queuecomplete", function () {
                 //完成全部文件的上传工作
                 me.mail.content = editor.$txt.html();
-                console.log(JSON.parse(JSON.stringify(me.mail)));
-                me.$http.post("/api/mail/create", me.mail).then(response => {
+                if (me.mail.isTransmit == 1) {
+                    //是转发
+                    for (var i = 0; i < me.transmitPath.length; i++) {
+                        me.mail.path.push(me.transmitPath[i].file_path);
+                    }
+                }
+                me.$http.post("/api/mail/create", me.mail).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
@@ -145,16 +194,49 @@
                                 receiver: [],
                                 path: [],
                                 content: "",
-                                title: ""
+                                title: "",
+                                isTransmit: me.$route.query.transmit ? 1 : 0
                             }
                         }
                     })
-                }, response => {
+                }, function () {
                     serverErrorInfo();
                 });
             });
+            me.fetchTransmit();
+        },
+        watch: {
+            '$route.query': "fetchReceiver"
         },
         methods: {
+            fetchTransmit(){
+                var me = this;
+                var value = me.$route.query.transmit;
+                if (value) {
+                    me.$http.get("/api/mail/findMailById", {
+                        params: {
+                            id: value
+                        }
+                    }).then(response => {
+                        var data = response.data;
+                        console.log(data);
+                        me.mail.isTransmit = 1;//定义为转发
+                        me.mail.title = "转发" + data.sender.name + "的邮件：" + data.title;
+                        me.mail.content = data.content;
+                        editor.$txt.html(data.content);
+                        me.transmitPath = data.path;
+                    }, response => {
+                        serverErrorInfo();
+                    })
+                }
+            },
+            fetchReceiver(){
+                var me = this;
+                var value = me.$route.query.receiver;
+                if (value) {
+                    $('#receiver').selectpicker("val", value);
+                }
+            },
             sendTo(){
                 var me = this;
                 confirm({
@@ -166,7 +248,7 @@
             },
             fetchUser: function () {
                 var me = this;
-                me.$http.get("/api/user/listByDepartment").then(response => {
+                me.$http.get("/api/user/listByDepartment").then(function (response) {
                     var data = response.data;
                     me.userList = data.results;
                     me.$nextTick(function () {
@@ -179,10 +261,16 @@
                             noneSelectedText: "请选择收件人"
 
                         });
+                        me.fetchReceiver();
                     })
-                }, response => {
+                }, function (response) {
                     serverErrorInfo();
-                });
+                })
+            },
+            removePath(item){
+                var me = this;
+                me.transmitPath.splice(me.transmitPath.indexOf(item), 1);
+//                me.transmitPath.$remove(item);
             }
         }
     }

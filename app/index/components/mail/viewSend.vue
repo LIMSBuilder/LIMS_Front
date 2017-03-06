@@ -2,11 +2,7 @@
     <div>
         <!--<item :model="tree"></item>-->
         <div class="inbox-header inbox-view-header">
-            <h1 class="pull-left">{{mail.mail.title}}
-                <span class="badge badge-info badge-roundless" v-if="mail.state==0||mail.state==1"> 普通 </span>
-                <span class="badge badge-warning badge-roundless" v-if="mail.state==2"> 星标 </span>
-                <span class="badge badge-danger badge-roundless" v-if="mail.state==3"> 已删除 </span>
-            </h1>
+            <h1 class="pull-left">{{mail.title}}</h1>
             <div class="pull-right">
                 <a href="javascript:;" class="btn btn-icon-only dark btn-outline">
                     <i class="fa fa-print"></i>
@@ -16,10 +12,10 @@
         <div class="inbox-view-info">
             <div class="row">
                 <div class="col-md-7">
-                    <img :src="mail.mail.sender.portrait" style="width: 45px;height: 45px;" class="inbox-author">
-                    <span class="sbold">{{mail.mail.sender.name}} </span>
-                    <span>&#60; {{mail.mail.sender.role.department.name}}:{{mail.mail.sender.role.name}} &#62; </span>
-                    <span class="sbold"> 发送于 </span> {{mail.mail.create_time}}
+                    <img :src="mail.sender.portrait" style="width: 45px;height: 45px;" class="inbox-author">
+                    <span class="sbold">{{mail.sender.name}} </span>
+                    <span>&#60; {{mail.sender.role.department.name}}:{{mail.sender.role.name}} &#62; </span>
+                    <span class="sbold"> 发送于 </span> {{mail.create_time}}
                 </div>
                 <div class="col-md-5 inbox-info-btn">
                     <div class="btn-group">
@@ -64,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="inbox-view" v-html="mail.mail.content">
+        <div class="inbox-view" v-html="mail.content">
         </div>
         <hr>
         <div class="inbox-attached">
@@ -72,7 +68,7 @@
                 <span> 附件列表 </span>
             </div>
             <div class="margin-bottom-25">
-                <template v-for="item in mail.mail.path">
+                <template v-for="item in mail.path">
                     <div class="margin-bottom-25">
                         <div style="float: left;margin-right: 20px;">
                             <img style="width: 120px" src="../../../global/img/file/doc.png"
@@ -102,41 +98,6 @@
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="inbox-view-info" style="border-top: none;padding-top: 30px;margin-bottom: 20px;" id="replyMail">
-            <h3> 回复邮件</h3>
-        </div>
-        <form class="form-horizontal" id="compose_send" action="#" method="POST"
-              enctype="multipart/form-data">
-            <div class="form-body">
-                <div class="form-group">
-                    <label class="col-md-1 control-label" for="title">邮件主题</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="title" v-model="reply.title" placeholder="输入邮件主题">
-                        <div class="form-control-focus"></div>
-                    </div>
-                </div>
-                <div class="form-group form-md-line-input">
-                    <label class="col-md-1 control-label" for="content">邮件正文</label>
-                    <div class="col-md-10">
-                        <textarea class="inbox-editor  form-control" name="content" id="content" rows="12"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-1 control-label" for="myId">附件上传</label>
-                    <div class="col-md-10">
-                        <div id="myId" class="dropzone">
-                            <div class="dz-message">
-                                将文件拖至此处或点击上传.<br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-actions noborder text-right">
-                <button type="button" class="btn blue" @click="sendTo">发 送</button>
-                <button type="reset" class="btn default">取 消</button>
-            </div>
-        </form>
     </div>
 </template>
 <style>
@@ -162,23 +123,17 @@
     import 'wangeditor'
     import Dropzone from 'mod/dropzone'
     import 'style/dropzone'
-//    import item from './subMail.vue'
     module.exports = {
-//        components: {
-//            "item": item
-//        },
         data: function () {
             return {
                 mail: {
-                    mail: {
-                        sender: {
-                            role: {
-                                department: {}
-                            }
-                        },
-                        content: "",
-                        title: ""
-                    }
+                    sender: {
+                        role: {
+                            department: {}
+                        }
+                    },
+                    content: "",
+                    title: ""
                 },
                 reply: {
                     title: "",
@@ -192,82 +147,20 @@
         },
         mounted(){
             var me = this;
-            var textarea = document.getElementById('content');
-            var reply = window.reply = new wangEditor(textarea);
-            reply.config.uploadImgUrl = '/api/file/upload';
-            reply.config.menus = $.map(wangEditor.config.menus, function (item, key) {
-                if (item === 'location') {
-                    return null;
-                }
-                return item;
-            });
-            reply.create();
             me.fetchData();
-            var replyDropzone = window.replyDropzone = new Dropzone("div#myId", {
-                url: "/api/file/upload",
-                paramName: "file",
-                maxFilesize: 1000, // MB
-                uploadMultiple: false,
-                addRemoveLinks: true,
-                previewsContainer: null,
-                dictInvalidFileType: "文件类型不匹配",
-                dictRemoveFile: "取消上传",
-                dictRemoveLinks: "x",
-                dictCancelUpload: "x",
-                autoProcessQueue: false,
-                maxFiles: null,
-                parallelUploads: 100,
-                dictMaxFilesExceeded: "最多同时支持一百个文件上传"
-            });
-            replyDropzone.on("success", function (file, finished) {
-                codeState(finished.code, {
-                    200: function () {
-                        me.reply.path.push(finished.path);
-                    }
-                })
-            });
-            replyDropzone.on("queuecomplete", function () {
-                //完成全部文件的上传工作
-                me.reply.content = reply.$txt.html();
-                console.log(JSON.parse(JSON.stringify(me.reply)));
-                me.$http.post("/api/mail/create", me.reply).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("发送成功！");
-                            myDropzone.removeAllFiles();
-                            editor.$txt.html('<p><br></p>');
-                            jQuery("#receiver").selectpicker('deselectAll');
-                            me.reply.path = [];
-                            me.reply.content = "";
-                        }
-                    })
-                }, response => {
-                    serverErrorInfo();
-                });
-            });
         },
         methods: {
             fetchData(){
                 var me = this;
                 var id = me.$route.query.id;
                 if (id) {
-                    me.$http.get("/api/mail/findById", {
+                    me.$http.get("/api/mail/findMailById", {
                         params: {
                             id: id
                         }
                     }).then(response => {
                         var data = response.data;
-                        codeState(data.code, {
-                            200: function () {
-                                console.log(data);
-                                me.mail = data;
-                                me.reply.title = "回复" + me.mail.mail.sender.name + "邮件：\"" + me.mail.mail.title + "\"";
-                                me.reply.reply = me.mail.mail.id;
-                                me.reply.receiver.push(me.mail.mail.sender.id);
-                                //me.transmit();
-                            }
-                        })
+                        me.mail = data;
                     }, response => {
                         serverErrorInfo();
                     })
@@ -358,10 +251,10 @@
             },
             transmit(){
                 var me = this;
-                router.push("/mail/compose?transmit=" + me.mail.mail.id);
+                router.push("/mail/compose?transmit=" + me.mail.id);
 //                me.$http.get("/api/mail/getMailTree", {
 //                    params: {
-//                        id: me.mail.mail.id
+//                        id: me.mail.id
 //                    }
 //                }).then(response => {
 //                    var data = response.data;
