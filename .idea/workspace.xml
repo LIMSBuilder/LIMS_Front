@@ -58,8 +58,8 @@
       <file leaf-file-name="review.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="842">
-              <caret line="855" column="29" lean-forward="false" selection-start-line="855" selection-start-column="29" selection-end-line="855" selection-end-column="29" />
+            <state relative-caret-position="632">
+              <caret line="844" column="28" lean-forward="true" selection-start-line="844" selection-start-column="28" selection-end-line="844" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#12258#12264#0" expanded="true" />
@@ -72,9 +72,9 @@
                 <element signature="e#60964#61396#0" expanded="false" />
                 <element signature="e#61419#61562#0" expanded="false" />
                 <element signature="e#61593#62056#0" expanded="false" />
-                <element signature="e#62703#62991#0" expanded="false" />
-                <element signature="e#63018#63197#0" expanded="false" />
-                <element signature="e#63227#63638#0" expanded="false" />
+                <element signature="e#62813#63101#0" expanded="false" />
+                <element signature="e#63128#63307#0" expanded="false" />
+                <element signature="e#63337#63748#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -904,12 +904,12 @@
       <workItem from="1488429812188" duration="9298000" />
       <workItem from="1488583576135" duration="38120000" />
       <workItem from="1488718677988" duration="15677000" />
-      <workItem from="1488778547534" duration="24737000" />
+      <workItem from="1488778547534" duration="25178000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255976000" />
+    <option name="totallyTimeSpent" value="256417000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1412,8 +1412,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="842">
-          <caret line="855" column="29" lean-forward="false" selection-start-line="855" selection-start-column="29" selection-end-line="855" selection-end-column="29" />
+        <state relative-caret-position="632">
+          <caret line="844" column="28" lean-forward="true" selection-start-line="844" selection-start-column="28" selection-end-line="844" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#12258#12264#0" expanded="true" />
@@ -1426,9 +1426,9 @@
             <element signature="e#60964#61396#0" expanded="false" />
             <element signature="e#61419#61562#0" expanded="false" />
             <element signature="e#61593#62056#0" expanded="false" />
-            <element signature="e#62703#62991#0" expanded="false" />
-            <element signature="e#63018#63197#0" expanded="false" />
-            <element signature="e#63227#63638#0" expanded="false" />
+            <element signature="e#62813#63101#0" expanded="false" />
+            <element signature="e#63128#63307#0" expanded="false" />
+            <element signature="e#63337#63748#0" expanded="false" />
           </folding>
         </state>
       </provider>

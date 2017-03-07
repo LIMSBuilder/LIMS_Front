@@ -839,9 +839,12 @@
             },
             searchKey(){
                 var me = this;
-                me.condition = "";
                 if (me.search.key != "") {
-                    me.condition = "keyWords=" + encodeURI(me.search.key);
+                    if (me.condition != "") {
+                        me.condition = "&&keyWords=" + encodeURI(me.search.key);
+                    } else {
+                        me.condition = "keyWords=" + encodeURI(me.search.key);
+                    }
                 }
                 if (me.search.onlyMe) {
                     if (me.condition != "") {
@@ -852,7 +855,6 @@
 
                 }
                 me.currentPage = 1;
-//                me.condition = "";
                 me.getData();
             },
             searchByProcess(step){
