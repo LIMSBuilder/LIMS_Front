@@ -154,10 +154,10 @@
                                         <!-- End Pagination -->
                                     </div>
                                     <div class="todo-tasklist-devider"></div>
-                                    <div class="col-md-7 col-sm-8" v-if="!contract.id">
+                                    <div class="col-md-7 col-sm-8" v-show="!contract.id">
                                         <h1 class="text-center">暂无合同信息</h1>
                                     </div>
-                                    <div class="col-md-7 col-sm-8" id="detail_desp" v-else>
+                                    <div class="col-md-7 col-sm-8" id="detail_desp" v-show="contract.id">
                                         <form action="#" class="form-horizontal">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
