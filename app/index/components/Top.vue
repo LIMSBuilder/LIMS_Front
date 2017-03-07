@@ -398,7 +398,7 @@
                                     <i class="icon-lock"></i> 账户锁定 </a>
                             </li>
                             <li>
-                                <a href="page_user_login_1.html">
+                                <a href="javascript:;" @click="exitLogin">
                                     <i class="icon-key"></i> 退出登陆 </a>
                             </li>
                         </ul>
@@ -461,6 +461,17 @@
                 }, function (response) {
                     serverErrorInfo();
                 });
+            },
+            exitLogin(){
+                var me = this;
+                confirm({
+                    content: "是否退出登录？",
+                    success: function () {
+                        me.$http.get("/api/login/exitLogin").then(function (response) {
+                            window.location.href = "/login.html";
+                        });
+                    }
+                })
             }
         }
     }
