@@ -63,10 +63,11 @@ module.exports = {
             'mod/datepicker_locales': path.resolve(PluginsPath, 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js'),
             'mod/sparkline': path.resolve(PluginsPath, 'jquery.sparkline.min.js'),
             'mod/touchspin': path.resolve(PluginsPath, 'bootstrap-touchspin/bootstrap.touchspin.js'),
-            'mod/fullcalendar':path.resolve(PluginsPath,'fullcalendar/fullcalendar.js'),
-            'mod/fullcalendar_zh_CN':path.resolve(PluginsPath,'fullcalendar/lang/zh-cn.js'),
-            'mod/minicolors':path.resolve(PluginsPath,'jquery-minicolors/jquery.minicolors.js'),
-            'mod/wysihtml5':path.resolve(PluginsPath,'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
+            'mod/fullcalendar': path.resolve(PluginsPath, 'fullcalendar/fullcalendar.js'),
+            'mod/fullcalendar_zh_CN': path.resolve(PluginsPath, 'fullcalendar/lang/zh-cn.js'),
+            'mod/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.js'),
+            'mod/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
+            'mod/editable':path.resolve(PluginsPath,'bootstrap-editable/bootstrap-editable/js/bootstrap-editable.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -101,9 +102,10 @@ module.exports = {
             'style/socicon': path.resolve(PluginsPath, 'socicon/socicon.css'),
             'style/touchspin': path.resolve(PluginsPath, 'bootstrap-touchspin/bootstrap.touchspin.css'),
 
-            'style/fullcalendar':path.resolve(PluginsPath,'fullcalendar/fullcalendar.css'),
-            'style/minicolors':path.resolve(PluginsPath,'jquery-minicolors/jquery.minicolors.css'),
-            'style/wysihtml5':path.resolve(PluginsPath,'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
+            'style/fullcalendar': path.resolve(PluginsPath, 'fullcalendar/fullcalendar.css'),
+            'style/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.css'),
+            'style/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
+            'style/editable':path.resolve(PluginsPath,'bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css'),
             'style/main': path.resolve(StylePath, 'main.css'),
 
             'globalPath': path.resolve(GlobalPath)
@@ -129,6 +131,10 @@ module.exports = {
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
                 loader: 'url-loader?limit=50000&name=[path][name].[ext]'
+            },
+            {
+                test: /\.(htm|html)$/i,
+                loader: 'html-withimg-loader'
             }
         ]
     },

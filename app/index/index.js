@@ -37,6 +37,7 @@ import Footer from './components/Footer.vue'
 import Contract from './components/bussiness/contract/contract.vue'
 import Create_Contract from './components/bussiness/contract/create.vue'
 import Contract_List from './components/bussiness/contract/list.vue'
+import Contract_Review from './components/bussiness/contract/review.vue'
 
 //=============Basic================
 //Element
@@ -391,6 +392,10 @@ var routes = [
             {
                 path: "change",
                 component: Change_Project
+            },
+            {
+                path: "review",
+                component: Contract_Review
             }
         ]
     }
@@ -404,6 +409,7 @@ var router = new VueRouter({
 window.router = router;
 new Vue({
     el: '#header',
+    router,
     render: h => h(Top)
 });
 
@@ -431,3 +437,5 @@ new Vue({
     el: '#footer',
     render: h => h(Footer)
 });
+
+

@@ -23,38 +23,19 @@
             <div class="page-quick-sidebar">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Users
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> 在 线
                             <span class="badge badge-danger">2</span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab"> Alerts
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab"> 所 有
                             <span class="badge badge-success">7</span>
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> More
-                            <i class="fa fa-angle-down"></i>
+                    <li>
+                        <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab"> 设 置
+                            <span class="badge badge-success">7</span>
                         </a>
-                        <ul class="dropdown-menu pull-right">
-                            <li>
-                                <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-bell"></i> Alerts </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-info"></i> Notifications </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-speech"></i> Activities </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
-                                    <i class="icon-settings"></i> Settings </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -165,7 +146,7 @@
                             <div class="page-quick-sidebar-chat-user">
                                 <div class="page-quick-sidebar-nav">
                                     <a href="javascript:;" class="page-quick-sidebar-back-to-list">
-                                        <i class="icon-arrow-left"></i>Back</a>
+                                        <i class="icon-arrow-left"></i> 返回</a>
                                 </div>
                                 <div class="page-quick-sidebar-chat-user-messages">
                                     <div class="post out">
@@ -177,15 +158,7 @@
                                             <span class="body"> When could you send me the report ? </span>
                                         </div>
                                     </div>
-                                    <div class="post in">
-                                        <img class="avatar" alt="" src="../images/avatar/avatar2.jpg"/>
-                                        <div class="message">
-                                            <span class="arrow"></span>
-                                            <a href="javascript:;" class="name">Ella Wong</a>
-                                            <span class="datetime">20:15</span>
-                                            <span class="body"> Its almost done. I will be sending it shortly </span>
-                                        </div>
-                                    </div>
+
                                     <div class="post out">
                                         <img class="avatar" alt="" src="../images/avatar/avatar3.jpg"/>
                                         <div class="message">
@@ -547,45 +520,45 @@
                     </div>
                     <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
                         <div class="page-quick-sidebar-settings-list">
-                            <h3 class="list-heading">General Settings</h3>
+                            <h3 class="list-heading">通用设置</h3>
                             <ul class="list-items borderless">
-                                <li> Enable Notifications
+                                <li> 消息推送
                                     <input type="checkbox" class="make-switch" checked data-size="small"
                                            data-on-color="success" data-on-text="ON" data-off-color="default"
                                            data-off-text="OFF"></li>
-                                <li> Allow Tracking
+                                <li> 允许访问
                                     <input type="checkbox" class="make-switch" data-size="small" data-on-color="info"
                                            data-on-text="ON" data-off-color="default" data-off-text="OFF"></li>
-                                <li> Log Errors
+                                <li> 日志记录
                                     <input type="checkbox" class="make-switch" checked data-size="small"
                                            data-on-color="danger" data-on-text="ON" data-off-color="default"
                                            data-off-text="OFF"></li>
-                                <li> Auto Sumbit Issues
+                                <li> 静默反馈
                                     <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning"
                                            data-on-text="ON" data-off-color="default" data-off-text="OFF"></li>
-                                <li> Enable SMS Alerts
+                                <li> 短信提醒
                                     <input type="checkbox" class="make-switch" checked data-size="small"
                                            data-on-color="success" data-on-text="ON" data-off-color="default"
                                            data-off-text="OFF"></li>
                             </ul>
-                            <h3 class="list-heading">System Settings</h3>
+                            <h3 class="list-heading">系统设置</h3>
                             <ul class="list-items borderless">
-                                <li> Security Level
+                                <li> 安全级别
                                     <select class="form-control input-inline input-sm input-small">
                                         <option value="1">Normal</option>
                                         <option value="2" selected>Medium</option>
                                         <option value="e">High</option>
                                     </select>
                                 </li>
-                                <li> Failed Email Attempts
+                                <li> 断线重连
                                     <input class="form-control input-inline input-sm input-small" value="5"/></li>
-                                <li> Secondary SMTP Port
+                                <li> 二级SMTP端口
                                     <input class="form-control input-inline input-sm input-small" value="3560"/></li>
-                                <li> Notify On System Error
+                                <li> 系统错误通知
                                     <input type="checkbox" class="make-switch" checked data-size="small"
                                            data-on-color="danger" data-on-text="ON" data-off-color="default"
                                            data-off-text="OFF"></li>
-                                <li> Notify On SMTP Error
+                                <li> SMTP错误通知
                                     <input type="checkbox" class="make-switch" checked data-size="small"
                                            data-on-color="warning" data-on-text="ON" data-off-color="default"
                                            data-off-text="OFF"></li>

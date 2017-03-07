@@ -82,6 +82,11 @@
                             <span class="title">合同列表</span>
                         </a>
                     </router-link>
+                    <router-link :to="{ path: '/contract/review' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">合同审核</span>
+                        </a>
+                    </router-link>
                 </ul>
             </li>
             <li class="heading">

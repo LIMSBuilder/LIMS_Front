@@ -6,7 +6,8 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="index.html">
-                    <img src="../images/logo/logo-light.png" alt="logo" class="logo-default"/> </a>
+                    <img src="../../global/img/boncontact_w.png" style="width: 125px;height: 45px;" alt="logo"
+                         class="logo-default"/> </a>
                 <div class="menu-toggler sidebar-toggler">
                     <span></span>
                 </div>
@@ -366,19 +367,19 @@
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                            data-close-others="true">
-                            <img alt="" class="img-circle" src="../images/avatar/avatar1.jpg"/>
-                            <span class="username username-hide-on-mobile"> 瞿龙俊 </span>
+                            <img alt="" class="img-circle" :src="user.portrait"/>
+                            <span class="username username-hide-on-mobile"> {{user.name}} </span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
-                            <li>
-                                <a href="page_user_profile_1.html">
+                            <router-link :to="{ path: '/setting'}" tag="li">
+                                <a href="javascript:;">
                                     <i class="icon-user"></i> 个人资料 </a>
-                            </li>
-                            <li>
-                                <a href="app_calendar.html">
-                                    <i class="icon-calendar"></i> 日程安排 </a>
-                            </li>
+                            </router-link>
+                            <router-link :to="{ path: '/calendar'}" tag="li">
+                                <a href="javascript:;">
+                                    <i class="icon-calendar"></i> 日程计划 </a>
+                            </router-link>
                             <li>
                                 <a href="app_inbox.html">
                                     <i class="icon-envelope-open"></i> 站内信
@@ -397,7 +398,7 @@
                                     <i class="icon-lock"></i> 账户锁定 </a>
                             </li>
                             <li>
-                                <a href="page_user_login_1.html">
+                                <a href="javascript:;" @click="exitLogin">
                                     <i class="icon-key"></i> 退出登陆 </a>
                             </li>
                         </ul>
@@ -428,15 +429,12 @@
     module.exports = {
         data: function () {
             return {
-                eve: {
-                    all_day: 1,
-                    backgroundColor: '#0088cc',
-                    start: "",
-                    end: ""
-                }
+                user: {}
             }
         },
         mounted(){
+            var me = this;
+            me.fetchLogin();
         },
         methods: {
             bug_login(){
@@ -446,12 +444,33 @@
                         username: "admin",
                         password: "admin1"
                     }
-                }).then(response => {
+                }).then(function (response) {
                     codeState(response.data.code, {
                         200: "调试模式登陆成功！"
                     })
-                }, response => {
+                }, function (response) {
                     serverErrorInfo();
+                });
+            },
+            fetchLogin(){
+                var me = this;
+                me.$http.get('/api/login/getLogin',).then(function (response) {
+                    var data = response.data;
+                    me.user = data;
+
+                }, function (response) {
+                    serverErrorInfo();
+                });
+            },
+            exitLogin(){
+                var me = this;
+                confirm({
+                    content: "是否退出登录？",
+                    success: function () {
+                        me.$http.get("/api/login/exitLogin").then(function (response) {
+                            window.location.href = "/login.html";
+                        });
+                    }
                 })
             }
         }

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同列表
-            <small>／List</small>
+        <h1 class="page-title"> 合同审核
+            <small>／Review</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -11,8 +11,7 @@
                         <div class="portlet light ">
                             <div class="portlet-title">
                                 <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同进展 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看合同进展</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">当前进度 </span>
                                 </div>
 
                             </div>
@@ -20,57 +19,18 @@
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('total')">
-                                                <span class="badge badge-default"> 6 </span> 所有 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(0)">
-                                                <span class="badge badge-warning"> 6 </span> 草稿 </a>
+                                            <a href="javascript:;" @click="searchByProcess('total')">所有 </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(1)">
                                                 <span class="badge badge-info"> 2 </span> 待审核 </a>
                                         </li>
-                                        <li class="active">
-                                            <a href="javascript:;" @click="searchByProcess(2)">
-                                                <span class="badge badge-primary"> 3 </span> 待执行</a>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('after_receive')">已通过 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(3)">
-                                                <span class="badge badge-success"> 14 </span> 已执行 </a>
+                                            <a href="javascript:;" @click="searchByProcess(-1)">待修改 </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(-1)">
-                                                <span class="badge badge-danger"> 6 </span> 已中止 </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
-                                    <span class="caption-subject font-red bold uppercase">监测类别 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
-                                </div>
-                                <div class="actions">
-                                    <div class="actions">
-                                        <a class="btn btn-circle grey-salsa btn-outline btn-sm" href="/type/create">
-                                            <i class="fa fa-plus"></i> 新增 </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
-                                <div class="todo-project-list">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <template v-for="item in typeList">
-                                            <li>
-                                                <a href="javascript:;" @click="searchByType(item.id)">
-                                                    <span class="badge badge-success"> {{item.contract_count}} </span>
-                                                    {{item.name}} </a>
-                                            </li>
-                                        </template>
                                     </ul>
                                 </div>
                             </div>
@@ -86,11 +46,25 @@
                                 <div class="form-group form-md-line-input form-md-floating-label"
                                      style="padding-top: 0;">
                                     <div class="input-icon right">
-                                        <input type="text" class="form-control" @keyup.enter="searchKey($event)">
+                                        <input type="text" class="form-control" v-model="search.key">
                                         <span class="help-block">支持委托单位、合同编号和项目名称查询。</span>
                                         <i class="fa fa-search"></i>
                                     </div>
                                 </div>
+                                <div class="md-checkbox-list">
+                                    <div class="md-checkbox has-info">
+                                        <input type="checkbox" id="checkbox9" class="md-check" v-model="search.onlyMe">
+                                        <label for="checkbox9">
+                                            <span class="inc"></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 显示本人 </label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-actions text-center">
+                                    <button type="button" class="btn green text-center" @click="searchKey">搜 索</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -112,13 +86,6 @@
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="javascript:;"> 创建新合同 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 作为模板合同创建 </a>
-                                            </li>
-                                            <li class="divider"></li>
                                             <li>
                                                 <a href="javascript:;"> 导出合同
                                                     <span class="badge badge-success"> 12 </span>
@@ -166,9 +133,9 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <span class="label label-sm label-danger"
-                                                              v-if="item.process==-1">已中止</span>
+                                                              v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-warning"
-                                                              v-if="item.process==0">草稿合同</span>
+                                                              v-if="item.process==-1">待修改</span>
                                                         <span class="label label-sm label-info"
                                                               v-if="item.process==1">待审核</span>
                                                         <span class="label label-sm label-primary"
@@ -187,8 +154,8 @@
                                         <!-- End Pagination -->
                                     </div>
                                     <div class="todo-tasklist-devider"></div>
-                                    <div class="col-md-7 col-sm-8">
-                                        <form action="#" class="form-horizontal form-bordered form-row-stripped">
+                                    <div class="col-md-7 col-sm-8" id="detail_desp">
+                                        <form action="#" class="form-horizontal">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
                                                 <div class="form-group">
@@ -199,9 +166,10 @@
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
                                                             <span class="todo-username pull-left">{{contract.name}}</span>
-                                                            <button type="button"
-                                                                    class="todo-username-btn btn btn-circle btn-default btn-sm">
-                                                                &nbsp;编 辑&nbsp;</button>
+                                                            <a href="#write_review"
+                                                               class="todo-username-btn btn btn-circle btn-default btn-sm"
+                                                               v-if="contract.process==1">
+                                                                &nbsp;审 核</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
@@ -216,19 +184,16 @@
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
-                                                            <a href="#page_1" data-toggle="tab"> 甲方信息 </a>
+                                                            <a href="#page_1" data-toggle="tab"> 合同信息 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_2" data-toggle="tab"> 乙方信息 </a>
+                                                            <a href="#page_2" data-toggle="tab"> 检测项目 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_3" data-toggle="tab"> 合同内容 </a>
+                                                            <a href="#page_3" data-toggle="tab"> 审核记录 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_4" data-toggle="tab"> 监测项目 </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#page_5" data-toggle="tab"> 其他约定 </a>
+                                                            <a href="#page_4" data-toggle="tab"> 日志 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -239,15 +204,27 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.client_unit}}</p>
+                                                                            {{contract.client_unit}}
+                                                                            <a href="javascript:;" data-type="委托单位"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">邮政编码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.client_code}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.client_code}}
+                                                                            <a href="javascript:;" data-type="邮政编码"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -256,16 +233,28 @@
                                                                     <label class="control-label col-md-4">联系地址
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.client_address}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.client_address}}
+                                                                            <a href="javascript:;" data-type="联系地址"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">联系电话
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.client_tel}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.client_tel}}
+                                                                            <a href="javascript:;" data-type="联系电话"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -274,36 +263,59 @@
                                                                     <label class="control-label col-md-4">联系人
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.client}}</p>
+                                                                        <p class="form-control-static"
+                                                                           v-if="contract.process==1">
+                                                                            {{contract.client}}
+                                                                            <a href="javascript:;" data-type="联系人"
+                                                                               @click="add_review($event)">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">传真号码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.client_fax}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.client_fax}}
+                                                                            <a href="javascript:;" data-type="传真号码"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="page_2">
+                                                            <hr>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">受托单位
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.trustee_unit}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.trustee_unit}}
+                                                                            <a href="javascript:;" data-type="受托单位"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">邮政编码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.trustee_code}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.trustee_code}}
+                                                                            <a href="javascript:;" data-type="邮政编码"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -312,16 +324,28 @@
                                                                     <label class="control-label col-md-4">联系地址
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.client_address}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.client_address}}
+                                                                            <a href="javascript:;" data-type="联系地址"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">联系电话
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.trustee_tel}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.trustee_tel}}
+                                                                            <a href="javascript:;" data-type="联系电话"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -330,28 +354,45 @@
                                                                     <label class="control-label col-md-4">联系人
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.trustee.name}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.trustee.name}}
+                                                                            <a href="javascript:;" data-type="联系人"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">传真号码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.trustee_fax}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.trustee_fax}}
+                                                                            <a href="javascript:;" data-type="传真号码"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="page_3">
+                                                            <hr>
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
                                                                     <label class="control-label col-md-2">项目名称
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
-                                                                            {{contract.name}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.name}}
+                                                                            <a href="javascript:;" data-type="项目名称"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -360,7 +401,14 @@
                                                                     <label class="control-label col-md-2">监测目的
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.aim}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.aim}}
+                                                                            <a href="javascript:;" data-type="监测目的"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -373,9 +421,23 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.way==1">以我单位通过计量认证、国家实验室认可的方法进行检测。</p>
+                                                                           v-if="contract.way==1">
+                                                                            以我单位通过计量认证、国家实验室认可的方法进行检测。
+                                                                            <a href="javascript:;" data-type="检测方式"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.way==2">客户指定的方法：{{contract.wayDesp}}</p>
+                                                                           v-if="contract.way==2">
+                                                                            客户指定的方法：{{contract.wayDesp}}
+                                                                            <a href="javascript:;" data-type="检测方式"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -385,9 +447,23 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.in_room==1">客户需要进入实验室监视与本次委托有关的检测活动。</p>
+                                                                           v-if="contract.in_room==1">
+                                                                            客户需要进入实验室监视与本次委托有关的检测活动。
+                                                                            <a href="javascript:;" data-type="客户要求"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.secret==1">客户需要本实验室对本次委托有关资料保密。</p>
+                                                                           v-if="contract.secret==1">
+                                                                            客户需要本实验室对本次委托有关资料保密。
+                                                                            <a href="javascript:;" data-type="客户要求"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -396,12 +472,85 @@
                                                                     <label class="control-label col-md-2">分包单位
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.package_unit}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.package_unit}}
+                                                                            <a href="javascript:;" data-type="分包单位"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-2">交付方式
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static">
+                                                                            {{contract.paymentWay}}
+                                                                            <a href="javascript:;" data-type="交付方式"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-2">完成时间
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static">
+                                                                            {{contract.finish_time}}
+                                                                            <a href="javascript:;" data-type="完成时间"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-2">监测费用
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static">
+                                                                            {{contract.payment}}
+                                                                            <a href="javascript:;" data-type="监测费用"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-2">其他约定
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static">
+                                                                            {{contract.other}}
+                                                                            <a href="javascript:;" data-type="其他约定"
+                                                                               @click="add_review($event)"
+                                                                               v-if="contract.process==1">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
-                                                        <div class="tab-pane" id="page_4">
+                                                        <div class="tab-pane" id="page_2">
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
                                                                     <thead>
@@ -454,205 +603,40 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane" id="page_5">
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">交付方式
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.paymentWay}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">完成时间
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.finish_time}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">监测费用
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.payment}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">其他约定
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.other}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                        <div class="tab-pane" id="page_3">
+
+                                                        </div>
+                                                        <div class="tab-pane" id="page_4">
+                                                            <ul class="todo-task-history">
+                                                                <template v-for="item in log">
+                                                                    <li>
+                                                                        <div class="todo-task-history-date">
+                                                                            {{item.log_time}}
+                                                                        </div>
+                                                                        <div class="todo-task-history-desc">
+                                                                            {{item.log_msg}}
+                                                                        </div>
+                                                                    </li>
+                                                                </template>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                            </div>
-
-
-                                            <div class="tabbable-line">
-                                                <ul class="nav nav-tabs ">
-                                                    <li class="active">
-                                                        <a href="#tab_1" data-toggle="tab"> 相 关 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tab_2" data-toggle="tab"> 日 志 </a>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="tab_1">
-                                                        <!-- TASK COMMENTS -->
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar8.jpg"
-                                                                                 width="27px" height="27px">
-                                                                        </a>
-
-
-                                                                        <div class="media-body todo-comment">
-                                                                            <button type="button"
-                                                                                    class="todo-comment-btn btn btn-circle btn-default btn-sm">
-                                                                                &nbsp; Reply &nbsp;</button>
-                                                                            <p class="todo-comment-head">
-                                                                                <span class="todo-comment-username">Christina Aguilera</span>
-                                                                                &nbsp;
-                                                                                <span class="todo-comment-date">17 Sep 2014 at 2:05pm</span>
-                                                                            </p>
-                                                                            <p class="todo-text-color"> Cras sit amet
-                                                                                nibh
-                                                                                libero, in gravida nulla. Nulla vel
-                                                                                metus
-                                                                                scelerisque ante sollicitudin commodo.
-                                                                                Cras
-                                                                                purus odio, vestibulum in vulputate at,
-                                                                                tempus viverra
-                                                                                turpis. </p>
-                                                                            <!-- Nested media object -->
-                                                                            <div class="media">
-                                                                                <a class="pull-left"
-                                                                                   href="javascript:;">
-                                                                                    <img class="todo-userpic"
-                                                                                         src="../../../images/avatar/avatar4.jpg"
-                                                                                         width="27px" height="27px">
-                                                                                </a>
-                                                                                <div class="media-body">
-                                                                                    <p class="todo-comment-head">
-                                                                                        <span class="todo-comment-username">Carles Puyol</span>
-                                                                                        &nbsp;
-                                                                                        <span class="todo-comment-date">17 Sep 2014 at 4:30pm</span>
-                                                                                    </p>
-                                                                                    <p class="todo-text-color"> Thanks
-                                                                                        so
-                                                                                        much my dear! </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar5.jpg"
-                                                                                 width="27px" height="27px"> </a>
-                                                                        <div class="media-body todo-comment">
-                                                                            <button type="button"
-                                                                                    class="todo-comment-btn btn btn-circle btn-default btn-sm">
-                                                                                &nbsp; Reply &nbsp;</button>
-                                                                            <p class="todo-comment-head">
-                                                                                <span class="todo-comment-username">Andres Iniesta</span>
-                                                                                &nbsp;
-                                                                                <span class="todo-comment-date">18 Sep 2014 at 9:22am</span>
-                                                                            </p>
-                                                                            <p class="todo-text-color"> Cras sit amet
-                                                                                nibh
-                                                                                libero, in gravida nulla. Scelerisque
-                                                                                ante
-                                                                                sollicitudin commodo Nulla vel metus
-                                                                                scelerisque ante sollicitudin commodo.
-                                                                                Cras
-                                                                                purus odio, vestibulum
-                                                                                in vulputate at, tempus viverra turpis.
-                                                                                <br></p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar6.jpg"
-                                                                                 width="27px" height="27px"> </a>
-                                                                        <div class="media-body todo-comment">
-                                                                            <button type="button"
-                                                                                    class="todo-comment-btn btn btn-circle btn-default btn-sm">
-                                                                                &nbsp; Reply &nbsp;</button>
-                                                                            <p class="todo-comment-head">
-                                                                                <span class="todo-comment-username">Olivia Wilde</span>
-                                                                                &nbsp;
-                                                                                <span class="todo-comment-date">18 Sep 2014 at 11:50am</span>
-                                                                            </p>
-                                                                            <p class="todo-text-color"> Cras sit amet
-                                                                                nibh
-                                                                                libero, in gravida nulla. Scelerisque
-                                                                                ante
-                                                                                sollicitudin commodo Nulla vel metus
-                                                                                scelerisque ante sollicitudin commodo.
-                                                                                Cras
-                                                                                purus odio, vestibulum
-                                                                                in vulputate at, tempus viverra turpis.
-                                                                                <br></p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END TASK COMMENTS -->
-                                                        <!-- TASK COMMENT FORM -->
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar4.jpg"
-                                                                                 width="27px" height="27px"> </a>
-                                                                        <div class="media-body">
-                                                                        <textarea
-                                                                                class="form-control todo-taskbody-taskdesc"
-                                                                                rows="4"
-                                                                                placeholder="Type comment..."></textarea>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                                <button type="button"
-                                                                        class="pull-right btn btn-sm btn-circle green">
-                                                                    &nbsp; Submit &nbsp; </button>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END TASK COMMENT FORM -->
+                                                <div class="tabbable-line" id="write_review"
+                                                     v-show="contract.process==1">
+                                                    <h3 class="form-section">合同审核</h3>
+                                                    <div class="alert alert-success alert-dismissable">
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                                aria-hidden="true"></button>
+                                                        <strong>小技巧：</strong> 点击"合同信息"内的编辑图标可以快速添加审核意见抬头。
                                                     </div>
-                                                    <div class="tab-pane" id="tab_2">
-                                                        <ul class="todo-task-history">
-                                                            <template v-for="item in log">
-                                                                <li>
-                                                                    <div class="todo-task-history-date">
-                                                                        {{item.log_time}}
-                                                                    </div>
-                                                                    <div class="todo-task-history-desc">
-                                                                        {{item.log_msg}}
-                                                                    </div>
-                                                                </li>
-                                                            </template>
-                                                        </ul>
+                                                    <textarea class="inbox-editor  form-control"
+                                                              name="content" style="height: 250px;"
+                                                              id="content"></textarea>
+                                                    <div class="form-actions text-right">
+                                                        <button type="button" class="btn green btn-outline">审核通过
+                                                        </button>
+                                                        <button type="button" class="btn red btn-outline">审核拒绝</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -667,15 +651,40 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
+        <div class="modal fade draggable-modal" id="review_modal" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">追加审核意见</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>对"{{review_info.type}}"的审核意见：</label>
+                            <textarea class="form-control" rows="5" v-model="review_info.content"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" @click="add_review_btn">确 认</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 </template>
 <script>
+    //    import 'mod/editable'
+    //    import 'style/editable'
+    import 'wangeditor'
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
         data: function () {
             return {
-                typeList: [],
                 currentPage: 1,
                 condition: "",
                 contractList: [],
@@ -684,14 +693,21 @@
                     type: {}
                 },
                 items: [],
-                log: []
+                log: [],
+                review_info: {
+                    type: "",
+                    content: ""
+                },
+                dear_count: 0,
+                search: {
+                    key: "",
+                    onlyMe: false
+                }
             }
         },
         mounted(){
             var me = this;
-            me._initComponents();
             me._handleProjectListMenu();
-            me.init();
             me.getData();
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
@@ -706,28 +722,20 @@
                     jQuery(".todo-tasklist-item").removeClass("active");
                     dom.addClass('active');
                 }
-            })
+            });
+
+            var textarea = document.getElementById('content');
+            var contract_editor = window.contract_editor = new wangEditor(textarea);
+            contract_editor.config.uploadImgUrl = '/api/file/upload';
+            contract_editor.config.menus = $.map(wangEditor.config.menus, function (item, key) {
+                if (item === 'location') {
+                    return null;
+                }
+                return item;
+            });
+            contract_editor.create();
         },
         methods: {
-            init: function () {
-                var me = this;
-                me.$http.get("/api/type/contract_total").then(function (response) {
-                    var data = response.data;
-                    me.typeList = data.results;
-                }, function (response) {
-                    serverErrorInfo();
-                })
-            },
-            _initComponents: function () {
-                $('.todo-taskbody-due').datepicker({
-                    rtl: App.isRTL(),
-                    orientation: "left",
-                    autoclose: true
-                });
-                $(".todo-taskbody-tags").select2({
-                    placeholder: 'Status'
-                });
-            },
             _handleProjectListMenu: function () {
                 if (App.getViewPort().width <= 992) {
                     $('.todo-project-list-content').addClass("collapse");
@@ -817,20 +825,36 @@
             },
             viewDetails(item){
                 var me = this;
+                App.blockUI({
+                    target: '#detail_desp',
+                    animate: true
+                });
                 me.contract = item;
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
+                me.$nextTick(function () {
+                    App.unblockUI('#detail_desp');
+                    contract_editor.$txt.html('<p><br></p>');
+                })
             },
-            search(){
+            searchKey(){
                 var me = this;
+                if (me.search.key != "") {
+                    if (me.condition != "") {
+                        me.condition = "&&keyWords=" + encodeURI(me.search.key);
+                    } else {
+                        me.condition = "keyWords=" + encodeURI(me.search.key);
+                    }
+                }
+                if (me.search.onlyMe) {
+                    if (me.condition != "") {
+                        me.condition += "&&review_me=1";
+                    } else {
+                        me.condition = "review_me=1";
+                    }
+
+                }
                 me.currentPage = 1;
-                me.condition = "";
-                me.getData();
-            },
-            searchByType(id){
-                var me = this;
-                me.currentPage = 1;
-                me.condition = "type=" + id;
                 me.getData();
             },
             searchByProcess(step){
@@ -844,11 +868,18 @@
                 me.getData();
 
             },
-            searchKey(e){
+            add_review(e){
                 var me = this;
-                me.condition = "keyWords=" + encodeURI(e.target.value);
-                me.currentPage = 1;
-                me.getData();
+                me.review_info.type = jQuery(e.target).parent().data("type");
+                jQuery("#review_modal").modal("show");
+            },
+            add_review_btn(){
+                var me = this;
+                var stt = "<blockquote><p><u><font size='4'>" + me.review_info.type + "的审核意见：</font></u>：</p><p>" + me.review_info.content + "</p></blockquote><p><br></p>";
+                contract_editor.$txt.append(stt);
+                me.review_info.content = "";
+                me.review_info.type = "";
+                jQuery("#review_modal").modal("hide");
             }
         }
     }
