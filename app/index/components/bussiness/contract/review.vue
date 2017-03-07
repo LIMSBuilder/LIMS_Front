@@ -110,7 +110,7 @@
                                     <div class="col-md-5 col-sm-4">
                                         <div class="todo-tasklist" id="contract_list">
                                             <template v-for="item in contractList">
-                                                <div @click="viewDetails(item)"
+                                                <div @click="viewDetails(item.id)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
                                                     <div class="todo-userpic pull-left" style="margin-right: 10px;"><i
                                                             style="width: 27px;height: 27px;"
@@ -634,9 +634,12 @@
                                                               name="content" style="height: 250px;"
                                                               id="content"></textarea>
                                                     <div class="form-actions text-right">
-                                                        <button type="button" class="btn green btn-outline">审核通过
+                                                        <button type="button" class="btn green btn-outline"
+                                                                @click="accept">审核通过
                                                         </button>
-                                                        <button type="button" class="btn red btn-outline">审核拒绝</button>
+                                                        <button type="button" class="btn red btn-outline"
+                                                                @click="reject">审核拒绝
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -804,6 +807,19 @@
                     serverErrorInfo();
                 });
             },
+            fetchContract(id){
+                var me = this;
+                me.$http.get("/api/contract/findById", {
+                    params: {
+                        id: id
+                    }
+                }).then(function (response) {
+                    var data = response.data;
+                    me.contract = data;
+                }, function () {
+                    serverErrorInfo();
+                })
+            },
             fetchLog(id){
                 var me = this;
                 me.$http.get("/api/log/contractLog", {
@@ -818,20 +834,34 @@
                     }
                 );
             },
+            fetchReviewList(id){
+                var me = this;
+                me.$http.get("/api/contract/getReviewList", {
+                    params: {
+                        id: id
+                    }
+                }).then(function (response) {
+                    var data = response.data;
+                    console.log(data);
+                }, function (response) {
+                    serverErrorInfo();
+                })
+            },
             getData(){
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
             },
-            viewDetails(item){
+            viewDetails(id){
                 var me = this;
                 App.blockUI({
                     target: '#detail_desp',
                     animate: true
                 });
-                me.contract = item;
-                me.fetchItems(item.id);
-                me.fetchLog(item.id);
+                me.fetchContract(id)
+                me.fetchItems(id);
+                me.fetchLog(id);
+                me.fetchReviewList(id);
                 me.$nextTick(function () {
                     App.unblockUI('#detail_desp');
                     contract_editor.$txt.html('<p><br></p>');
@@ -880,6 +910,55 @@
                 me.review_info.content = "";
                 me.review_info.type = "";
                 jQuery("#review_modal").modal("hide");
+            },
+            accept(){
+                var me = this;
+                confirm({
+                    content: "是否审核通过合同【" + me.contract.name + "】？",
+                    success: function () {
+                        me.$http.get("/api/contract/review", {
+                            params: {
+                                id: me.contract.id,
+                                result: 1
+                            }
+                        }).then(function (response) {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("合同审核完成！");
+                                    me.viewDetails(me.contract.id);
+                                }
+                            })
+                        }, function (response) {
+                            serverErrorInfo();
+                        })
+                    }
+                })
+            },
+            reject(){
+                var me = this;
+                confirm({
+                    content: "是否审核拒绝合同【" + me.contract.name + "】，合同创建人员会收到该合同修改的通知。",
+                    success: function () {
+                        me.$http.get("/api/contract/review", {
+                            params: {
+                                id: me.contract.id,
+                                result: 0,
+                                msg: contract_editor.$txt.html()
+                            }
+                        }).then(function (response) {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("合同审核完成！");
+                                    me.viewDetails(me.contract.id);
+                                }
+                            })
+                        }, function (response) {
+                            serverErrorInfo();
+                        })
+                    }
+                })
             }
         }
     }
