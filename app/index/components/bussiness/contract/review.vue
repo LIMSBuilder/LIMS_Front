@@ -46,20 +46,25 @@
                                 <div class="form-group form-md-line-input form-md-floating-label"
                                      style="padding-top: 0;">
                                     <div class="input-icon right">
-                                        <input type="text" class="form-control" @keyup.enter="searchKey($event)">
+                                        <input type="text" class="form-control" v-model="search.key">
                                         <span class="help-block">支持委托单位、合同编号和项目名称查询。</span>
                                         <i class="fa fa-search"></i>
                                     </div>
                                 </div>
                                 <div class="md-checkbox-list">
                                     <div class="md-checkbox has-info">
-                                        <input type="checkbox" id="checkbox9" class="md-check">
+                                        <input type="checkbox" id="checkbox9" class="md-check" v-model="search.onlyMe">
                                         <label for="checkbox9">
                                             <span class="inc"></span>
                                             <span class="check"></span>
                                             <span class="box"></span> 显示本人 </label>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="form-actions text-center">
+                                    <button type="button" class="btn green text-center" @click="searchKey">搜 索</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -162,7 +167,8 @@
                                                             </div>
                                                             <span class="todo-username pull-left">{{contract.name}}</span>
                                                             <a href="#write_review"
-                                                               class="todo-username-btn btn btn-circle btn-default btn-sm">
+                                                               class="todo-username-btn btn btn-circle btn-default btn-sm"
+                                                               v-if="contract.process==1">
                                                                 &nbsp;审 核</a>
                                                         </div>
                                                     </div>
@@ -692,7 +698,11 @@
                     type: "",
                     content: ""
                 },
-                dear_count: 0
+                dear_count: 0,
+                search: {
+                    key: "",
+                    onlyMe: false
+                }
             }
         },
         mounted(){
@@ -827,10 +837,22 @@
                     contract_editor.$txt.html('<p><br></p>');
                 })
             },
-            search(){
+            searchKey(){
                 var me = this;
-                me.currentPage = 1;
                 me.condition = "";
+                if (me.search.key != "") {
+                    me.condition = "keyWords=" + encodeURI(me.search.key);
+                }
+                if (me.search.onlyMe) {
+                    if (me.condition != "") {
+                        me.condition += "&&review_me=1";
+                    } else {
+                        me.condition = "review_me=1";
+                    }
+
+                }
+                me.currentPage = 1;
+//                me.condition = "";
                 me.getData();
             },
             searchByProcess(step){
@@ -843,12 +865,6 @@
                 }
                 me.getData();
 
-            },
-            searchKey(e){
-                var me = this;
-                me.condition = "keyWords=" + encodeURI(e.target.value);
-                me.currentPage = 1;
-                me.getData();
             },
             add_review(e){
                 var me = this;
