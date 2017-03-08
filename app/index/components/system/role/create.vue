@@ -70,7 +70,7 @@
             var me = this;
             me.fetchDepartment();
             handleValidation1();
-
+            handleSidebarAndContentHeight();
         },
         methods: {
             fetchDepartment(){

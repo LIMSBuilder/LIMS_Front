@@ -2,7 +2,7 @@
     <!-- BEGIN CONTENT BODY -->
     <div>
         <h1 class="page-title"> 创建新部门
-            <small>／Department</small>
+            <small>／New Department</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">
@@ -10,6 +10,7 @@
                 <!-- BEGIN FORM-->
                 <form action="#" class="form-horizontal" id="department_add">
                     <div class="form-body">
+                        <h3 class="form-section">部门信息</h3>
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
@@ -20,7 +21,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="title" v-model="name" placeholder=""
-                                       name="title">
+                                       name="title" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入部门名称，必需字段。</span>
                             </div>
@@ -42,7 +43,7 @@
     </div>
     <!-- END CONTENT BODY -->
 </template>
-<script>
+<script type="es6">
     module.exports = {
         data: function () {
             return {
@@ -50,74 +51,33 @@
             }
         },
         mounted(){
-            handleValidation1();
+            BlogUtils.formValid(jQuery("#department_add"));
+            handleSidebarAndContentHeight();
         },
         methods: {
             create(){
                 var me = this;
                 if (jQuery("#department_add").valid()) {
-                    me.$http.post("/api/department/create", {
-                        name: me.name
-                    }).then(response => {
-                        var data = response.data;
-                        codeState(data.code, {
-                            200: "部门信息创建成功！"
-                        });
-                    }, response => {
-                        serverErrorInfo();
-                    });
+                    confirm({
+                        content: "是否创建新部门【" + me.name + "】？",
+                        success: function () {
+                            me.$http.post("/api/department/create", {
+                                name: me.name
+                            }).then(response => {
+                                var data = response.data;
+                                codeState(data.code, {
+                                    200: function () {
+                                        alert("新部门创建成功！");
+                                        me.name = ""
+                                    }
+                                });
+                            }, response => {
+                                serverErrorInfo();
+                            });
+                        }
+                    })
                 }
             }
         }
-    }
-
-    var handleValidation1 = function () {
-        var form1 = $('#department_add');
-        var error1 = $('.alert-danger', form1);
-        form1.validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block help-block-error', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            ignore: "", // validate all fields including form hidden input
-            messages: {
-                title: {
-                    required: "部门名称不能为空"
-                }
-            },
-            rules: {
-                title: {
-                    required: true
-                }
-            },
-            invalidHandler: function (event, validator) { //display error alert on form submit
-                //success1.hide();
-                error1.show();
-                App.scrollTo(error1, -200);
-            },
-            errorPlacement: function (error, element) {
-                if (element.is(':checkbox')) {
-                    error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
-                } else if (element.is(':radio')) {
-                    error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
-                } else {
-                    error.insertAfter(element); // for other inputs, just perform default behavior
-                }
-            },
-            highlight: function (element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-            unhighlight: function (element) { // revert the change done by hightlight
-                $(element)
-                    .closest('.form-group').removeClass('has-error'); // set error class to the control group
-            },
-            success: function (label) {
-                label
-                    .closest('.form-group').removeClass('has-error'); // set success class to the control group
-            },
-            submitHandler: function (form) {
-                error1.hide();
-            }
-        });
     };
 </script>

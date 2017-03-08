@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="page-title"> 部门信息维护
-            <small>／Department</small>
+            <small>／Department List</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -13,7 +13,7 @@
                                 <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
+                                <a href="javascript:;" class="btn btn-sm btn-info" id="selectChange"> 选 择
                                     <i class="fa fa-check-square-o"></i>
                                 </a>
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
@@ -67,21 +67,23 @@
                                 </template>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <div class="pagination pull-right">
+                                <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                            </div>
+                            <!-- End Pagination -->
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!-- Pagination -->
-                    <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
-                    </div>
-                    <!-- End Pagination -->
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
 
         </div>
+    </div>
 </template>
 
-<script>
+<script type="es6">
     module.exports = {
         data(){
             return {
@@ -94,6 +96,8 @@
         mounted(){
             var me = this;
             me.getData();
+            handleSidebarAndContentHeight();
+            BlogUtils.selectAll("select", jQuery("#selectChange"));
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -138,6 +142,11 @@
                     serverErrorInfo();
                 });
             },
+            getData(){
+                var me = this;
+                me.fetchData(me.currentPage, rowCount);
+                me.fetchPages(rowCount);
+            },
             search(e){
                 var me = this;
                 var value = e.target.value;
@@ -172,17 +181,11 @@
                 })
             },
             edit(item){
-                var me = this;
                 router.push("/department/change?id=" + item.id);
-            },
-            getData(){
-                var me = this;
-                me.fetchData(me.currentPage, rowCount);
-                me.fetchPages(rowCount);
             },
             removeAll(){
                 var me = this;
-                if (me.selected.length == 0) {
+                if (BlogUtils.getSelect("select").length == 0) {
                     error("至少需要选择一个部门信息");
                     return;
                 }
@@ -194,26 +197,21 @@
                                 selected: me.selected
                             }
                         }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("部门信息删除成功！");
-                                    me.getData();
-                                    closeConfirm();
-                                }
-                            });
-                        }, response => {
-                            serverErrorInfo();
-                        });
+                                var data = response.data;
+                                codeState(data.code, {
+                                    200: function () {
+                                        alert("部门信息删除成功！");
+                                        me.getData();
+                                        closeConfirm();
+                                    }
+                                });
+                            },
+                            response => {
+                                serverErrorInfo();
+                            }
+                        );
                     }
                 });
-            },
-            selectAll(){
-                var me = this;
-                me.selected = [];
-                me.departmentList.forEach(function (item, index) {
-                    me.selected.push(item.id);
-                })
             },
             total(){
                 var me = this;

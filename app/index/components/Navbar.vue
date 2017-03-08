@@ -298,12 +298,7 @@
                     </router-link>
                     <router-link :to="{ path: '/department/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">部门信息维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/department/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新部门信息</span>
+                            <span class="title">部门信息列表</span>
                         </a>
                     </router-link>
                 </ul>
