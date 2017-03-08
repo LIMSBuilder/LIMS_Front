@@ -67,7 +67,9 @@ module.exports = {
             'mod/fullcalendar_zh_CN': path.resolve(PluginsPath, 'fullcalendar/lang/zh-cn.js'),
             'mod/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.js'),
             'mod/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
-            'mod/editable':path.resolve(PluginsPath,'bootstrap-editable/bootstrap-editable/js/bootstrap-editable.js'),
+            'mod/editable': path.resolve(PluginsPath, 'bootstrap-editable/bootstrap-editable/js/bootstrap-editable.js'),
+
+            'mod/pushlet': path.resolve(JsPath, 'ajax-pushlet-client.js'),
 
             'style/font_sans': path.resolve(StylePath, 'font_sans.css'),
             'style/font_awesome': path.resolve(PluginsPath, 'font-awesome/css/font-awesome.min.css'),
@@ -105,7 +107,7 @@ module.exports = {
             'style/fullcalendar': path.resolve(PluginsPath, 'fullcalendar/fullcalendar.css'),
             'style/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.css'),
             'style/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
-            'style/editable':path.resolve(PluginsPath,'bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css'),
+            'style/editable': path.resolve(PluginsPath, 'bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css'),
             'style/main': path.resolve(StylePath, 'main.css'),
 
             'globalPath': path.resolve(GlobalPath)

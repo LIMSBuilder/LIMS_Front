@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-md-offset-5 col-md-9">
                                 <button type="button" class="btn green" @click="create">保 存</button>
-                                <button type="reset" class="btn default">重 置</button>
+                                <button type="reset" class="btn default" @click="resetAll">重 置</button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
         mounted(){
             var me = this;
             handleValidation1();
-            var myDropzone = new Dropzone("div#myId", {
+            var elementDropzone = window.elementDropzone= new Dropzone("div#myId", {
                 url: "/api/file/upload",
                 paramName: "file", // The name that will be used to transfer the file
                 maxFilesize: 2, // MB
@@ -125,6 +125,9 @@
                         serverErrorInfo();
                     });
                 }
+            },
+            resetAll(){
+                elementDropzone.removeAllFiles();
             }
         }
     }

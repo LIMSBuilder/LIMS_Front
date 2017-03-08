@@ -19,7 +19,7 @@
                             <div class="portlet-body todo-project-list-content">
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
-                                        <li>
+                                        <li class="active">
                                             <a href="javascript:;" @click="searchByProcess('total')">
                                                 <span class="badge badge-default"> 6 </span> 所有 </a>
                                         </li>
@@ -31,7 +31,7 @@
                                             <a href="javascript:;" @click="searchByProcess(1)">
                                                 <span class="badge badge-info"> 2 </span> 待审核 </a>
                                         </li>
-                                        <li class="active">
+                                        <li>
                                             <a href="javascript:;" @click="searchByProcess(2)">
                                                 <span class="badge badge-primary"> 3 </span> 待执行</a>
                                         </li>
@@ -187,7 +187,10 @@
                                         <!-- End Pagination -->
                                     </div>
                                     <div class="todo-tasklist-devider"></div>
-                                    <div class="col-md-7 col-sm-8">
+                                    <div class="col-md-7 col-sm-8" v-show="!contract.id">
+                                        <h1 class="text-center">暂无合同信息</h1>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8" v-show="contract.id">
                                         <form action="#" class="form-horizontal form-bordered form-row-stripped">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
@@ -206,9 +209,12 @@
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
                                                         <div class="todo-taskbody-date pull-right">
-                                                            <button type="button"
-                                                                    class="todo-username-btn btn btn-circle btn-default btn-sm">
-                                                                &nbsp; 导 出 &nbsp;</button>
+                                                            <!--<button type="button"-->
+                                                            <!--class="todo-username-btn btn btn-circle btn-default btn-sm">-->
+                                                            <!--&nbsp; 导 出 &nbsp;</button>-->
+
+                                                            <span class="todo-username pull-left"
+                                                                  style="font-size: 14px;">编号：{{contract.identify}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -246,7 +252,7 @@
                                                                     <label class="control-label col-md-4">邮政编码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.client_code}}</p>
                                                                     </div>
                                                                 </div>
@@ -256,7 +262,7 @@
                                                                     <label class="control-label col-md-4">联系地址
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.client_address}}</p>
                                                                     </div>
                                                                 </div>
@@ -264,7 +270,7 @@
                                                                     <label class="control-label col-md-4">联系电话
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.client_tel}}</p>
                                                                     </div>
                                                                 </div>
@@ -274,7 +280,7 @@
                                                                     <label class="control-label col-md-4">联系人
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.client}}</p>
                                                                     </div>
                                                                 </div>
@@ -282,7 +288,7 @@
                                                                     <label class="control-label col-md-4">传真号码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.client_fax}}</p>
                                                                     </div>
                                                                 </div>
@@ -294,7 +300,7 @@
                                                                     <label class="control-label col-md-4">受托单位
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.trustee_unit}}</p>
                                                                     </div>
                                                                 </div>
@@ -302,7 +308,7 @@
                                                                     <label class="control-label col-md-4">邮政编码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.trustee_code}}</p>
                                                                     </div>
                                                                 </div>
@@ -312,7 +318,7 @@
                                                                     <label class="control-label col-md-4">联系地址
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.client_address}}</p>
                                                                     </div>
                                                                 </div>
@@ -320,7 +326,7 @@
                                                                     <label class="control-label col-md-4">联系电话
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.trustee_tel}}</p>
                                                                     </div>
                                                                 </div>
@@ -330,7 +336,7 @@
                                                                     <label class="control-label col-md-4">联系人
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.trustee.name}}</p>
                                                                     </div>
                                                                 </div>
@@ -338,7 +344,7 @@
                                                                     <label class="control-label col-md-4">传真号码
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.trustee_fax}}</p>
                                                                     </div>
                                                                 </div>
@@ -350,7 +356,7 @@
                                                                     <label class="control-label col-md-2">项目名称
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">
+                                                                        <p class="form-control-static">
                                                                             {{contract.name}}</p>
                                                                     </div>
                                                                 </div>
@@ -360,7 +366,8 @@
                                                                     <label class="control-label col-md-2">监测目的
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.aim}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.aim}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -373,9 +380,11 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.way==1">以我单位通过计量认证、国家实验室认可的方法进行检测。</p>
+                                                                           v-if="contract.way==1">
+                                                                            以我单位通过计量认证、国家实验室认可的方法进行检测。</p>
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.way==2">客户指定的方法：{{contract.wayDesp}}</p>
+                                                                           v-if="contract.way==2">
+                                                                            客户指定的方法：{{contract.wayDesp}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -385,9 +394,11 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.in_room==1">客户需要进入实验室监视与本次委托有关的检测活动。</p>
+                                                                           v-if="contract.in_room==1">
+                                                                            客户需要进入实验室监视与本次委托有关的检测活动。</p>
                                                                         <p class="form-control-static"
-                                                                               v-if="contract.secret==1">客户需要本实验室对本次委托有关资料保密。</p>
+                                                                           v-if="contract.secret==1">
+                                                                            客户需要本实验室对本次委托有关资料保密。</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -396,7 +407,8 @@
                                                                     <label class="control-label col-md-2">分包单位
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.package_unit}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.package_unit}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -460,7 +472,8 @@
                                                                     <label class="control-label col-md-2">交付方式
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.paymentWay}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.paymentWay}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -469,7 +482,8 @@
                                                                     <label class="control-label col-md-2">完成时间
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.finish_time}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.finish_time}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -478,7 +492,8 @@
                                                                     <label class="control-label col-md-2">监测费用
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.payment}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.payment}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -487,7 +502,8 @@
                                                                     <label class="control-label col-md-2">其他约定
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                         <p class="form-control-static">{{contract.other}}</p>
+                                                                        <p class="form-control-static">
+                                                                            {{contract.other}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -509,136 +525,31 @@
                                                 </ul>
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="tab_1">
-                                                        <!-- TASK COMMENTS -->
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar8.jpg"
-                                                                                 width="27px" height="27px">
-                                                                        </a>
+                                                        <table class="table table-hover">
+                                                            <tr>
+                                                                <td>
+                                                                    导出该合同
 
-
-                                                                        <div class="media-body todo-comment">
-                                                                            <button type="button"
-                                                                                    class="todo-comment-btn btn btn-circle btn-default btn-sm">
-                                                                                &nbsp; Reply &nbsp;</button>
-                                                                            <p class="todo-comment-head">
-                                                                                <span class="todo-comment-username">Christina Aguilera</span>
-                                                                                &nbsp;
-                                                                                <span class="todo-comment-date">17 Sep 2014 at 2:05pm</span>
-                                                                            </p>
-                                                                            <p class="todo-text-color"> Cras sit amet
-                                                                                nibh
-                                                                                libero, in gravida nulla. Nulla vel
-                                                                                metus
-                                                                                scelerisque ante sollicitudin commodo.
-                                                                                Cras
-                                                                                purus odio, vestibulum in vulputate at,
-                                                                                tempus viverra
-                                                                                turpis. </p>
-                                                                            <!-- Nested media object -->
-                                                                            <div class="media">
-                                                                                <a class="pull-left"
-                                                                                   href="javascript:;">
-                                                                                    <img class="todo-userpic"
-                                                                                         src="../../../images/avatar/avatar4.jpg"
-                                                                                         width="27px" height="27px">
-                                                                                </a>
-                                                                                <div class="media-body">
-                                                                                    <p class="todo-comment-head">
-                                                                                        <span class="todo-comment-username">Carles Puyol</span>
-                                                                                        &nbsp;
-                                                                                        <span class="todo-comment-date">17 Sep 2014 at 4:30pm</span>
-                                                                                    </p>
-                                                                                    <p class="todo-text-color"> Thanks
-                                                                                        so
-                                                                                        much my dear! </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar5.jpg"
-                                                                                 width="27px" height="27px"> </a>
-                                                                        <div class="media-body todo-comment">
-                                                                            <button type="button"
-                                                                                    class="todo-comment-btn btn btn-circle btn-default btn-sm">
-                                                                                &nbsp; Reply &nbsp;</button>
-                                                                            <p class="todo-comment-head">
-                                                                                <span class="todo-comment-username">Andres Iniesta</span>
-                                                                                &nbsp;
-                                                                                <span class="todo-comment-date">18 Sep 2014 at 9:22am</span>
-                                                                            </p>
-                                                                            <p class="todo-text-color"> Cras sit amet
-                                                                                nibh
-                                                                                libero, in gravida nulla. Scelerisque
-                                                                                ante
-                                                                                sollicitudin commodo Nulla vel metus
-                                                                                scelerisque ante sollicitudin commodo.
-                                                                                Cras
-                                                                                purus odio, vestibulum
-                                                                                in vulputate at, tempus viverra turpis.
-                                                                                <br></p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar6.jpg"
-                                                                                 width="27px" height="27px"> </a>
-                                                                        <div class="media-body todo-comment">
-                                                                            <button type="button"
-                                                                                    class="todo-comment-btn btn btn-circle btn-default btn-sm">
-                                                                                &nbsp; Reply &nbsp;</button>
-                                                                            <p class="todo-comment-head">
-                                                                                <span class="todo-comment-username">Olivia Wilde</span>
-                                                                                &nbsp;
-                                                                                <span class="todo-comment-date">18 Sep 2014 at 11:50am</span>
-                                                                            </p>
-                                                                            <p class="todo-text-color"> Cras sit amet
-                                                                                nibh
-                                                                                libero, in gravida nulla. Scelerisque
-                                                                                ante
-                                                                                sollicitudin commodo Nulla vel metus
-                                                                                scelerisque ante sollicitudin commodo.
-                                                                                Cras
-                                                                                purus odio, vestibulum
-                                                                                in vulputate at, tempus viverra turpis.
-                                                                                <br></p>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END TASK COMMENTS -->
-                                                        <!-- TASK COMMENT FORM -->
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <ul class="media-list">
-                                                                    <li class="media">
-                                                                        <a class="pull-left" href="javascript:;">
-                                                                            <img class="todo-userpic"
-                                                                                 src="../../../images/avatar/avatar4.jpg"
-                                                                                 width="27px" height="27px"> </a>
-                                                                        <div class="media-body">
-                                                                        <textarea
-                                                                                class="form-control todo-taskbody-taskdesc"
-                                                                                rows="4"
-                                                                                placeholder="Type comment..."></textarea>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                                <button type="button"
-                                                                        class="pull-right btn btn-sm btn-circle green">
-                                                                    &nbsp; Submit &nbsp; </button>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END TASK COMMENT FORM -->
+                                                                </td>
+                                                                <td style="text-align: right">
+                                                                    <button type="button"
+                                                                            class="btn green btn-outline"
+                                                                            style="margin: 5px;">导 出
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    合同历史审核记录
+                                                                </td>
+                                                                <td style="text-align: right">
+                                                                    <button type="button"
+                                                                            class="btn green btn-outline"
+                                                                            style="margin: 5px;">导 出
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
                                                     <div class="tab-pane" id="tab_2">
                                                         <ul class="todo-task-history">
@@ -684,7 +595,8 @@
                     type: {}
                 },
                 items: [],
-                log: []
+                log: [],
+                total_count: {}
             }
         },
         mounted(){
