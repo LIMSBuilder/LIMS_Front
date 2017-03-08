@@ -26,6 +26,8 @@ import 'mod/select2'
 import 'mod/datepicker'
 import 'mod/datepicker_locales'
 
+
+import 'mod/pushlet'
 //===========导入Vue组件==============
 
 import Top from './components/Top.vue'
@@ -145,6 +147,9 @@ Vue.config.debug = true;//开启错误提示
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true;
+
+
+console.log(PL);
 
 window.Cookies = Cookies;
 var routes = [
@@ -406,6 +411,15 @@ var router = new VueRouter({
     routes, // （缩写）相当于 routes: routes
     mode: 'history'
 });
+
+router.afterEach(function () {
+    console.log("之心了这个");
+    handleSidebarAndContentHeight();
+});
+router.beforeEach((to, from, next) => {
+
+    next();
+});
 window.router = router;
 new Vue({
     el: '#header',
@@ -437,5 +451,14 @@ new Vue({
     el: '#footer',
     render: h => h(Footer)
 });
-
-
+//
+//
+// PL._init();
+// //PL.setDebug(true);
+// PL.joinListen('/cuige/he');
+// function onData(event) {
+//     console.log(event.get("mess"));
+// //            alert(event.get("mess"));
+//     // 离开
+//     // PL.leave();
+// }

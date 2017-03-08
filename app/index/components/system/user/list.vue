@@ -1,220 +1,299 @@
 <template>
-    <!-- BEGIN CONTENT BODY -->
     <div>
-        <h1 class="page-title"> 创建新监测项目
+        <h1 class="page-title"> 用户信息维护
             <small>／User</small>
         </h1>
-        <!-- BEGIN PAGE HEADER-->
-        <div class="portlet light portlet-fit portlet-form ">
-            <div class="portlet-body">
-                <!-- BEGIN FORM-->
-                <form action="#" class="form-horizontal" id="user_add">
-                    <div class="form-body">
-                        <div class="alert alert-danger display-hide">
-                            <button class="close" data-close="alert"></button>
-                            表单尚未填写完整。
-                        </div>
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="nick">项目名称
-                                <span class="required">*</span>
-                            </label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" id="nick" v-model="user.nick" placeholder=""
-                                       name="nick">
-                                <div class="form-control-focus"></div>
-                                <span class="help-block">请输入项目名称，必需字段。</span>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN BORDERED TABLE PORTLET-->
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <div class="clearfix">
+                                <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
+                                    <i class="fa fa-check-square-o"></i>
+                                </a>
+                                <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                                <a href="javascript:;" @click="total" class="btn btn-sm default"> 全 部
+                                    <i class="fa fa-list"></i>
+                                </a>
                             </div>
                         </div>
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="name">项目描述
-                            </label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" id="name" v-model="user.name" placeholder=""
-                                       name="name">
-                                <div class="form-control-focus"></div>
-                                <span class="help-block">请对项目进行简要描述。</span>
+                        <div class="actions">
+                            <div class="input-icon right">
+                                <i class="fa fa-search"></i>
+                                <input type="text" class="form-control" placeholder="搜索..."
+                                       @keyup.enter="search($event)">
                             </div>
                         </div>
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="roleId">所属要素
-                                <span class="required">*</span>
-                            </label>
-                            <div class="col-md-7">
-                                <select class="form-control" name="roleId" id="roleId"
-                                        v-model="user.roleId">
-                                    <option value></option>
-                                    <template v-for="item in role_list">
-                                        <option :value="item.id">{{item.name}}</option>
-                                    </template>
-                                </select>
-                                <div class="form-control-focus"></div>
-                            </div>
+                        <div class="actions" style="min-width: 200px;margin-right: 10px;">
+                            <select class="form-control" @click="findByRole($event)">
+                                <option value>请选择岗位</option>
+                                <template v-for="item in roleList">
+                                    <option :value="item.id">{{item.name}}</option>
+                                </template>
+                            </select>
                         </div>
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="departmentId">承接部门
-                                <span class="required">*</span>
-                            </label>
-                            <div class="col-md-7">
-                                <select class="form-control" name="departmentId" id="departmentId"
-                                        v-model="user.departmentId" @change="fetchRole($event)">
-                                    <option value></option>
-                                    <template v-for="item in department_list">
-                                        <option :value="item.id">{{item.name}}</option>
-                                    </template>
-                                </select>
-                                <div class="form-control-focus"></div>
-                            </div>
+                        <div class="actions" style="min-width: 200px;margin-right: 10px;">
+                            <select class="form-control" @click="findByDepartment($event)">
+                                <option value>请选择部门</option>
+                                <template v-for="item in departmentList">
+                                    <option :value="item.id">{{item.name}}</option>
+                                </template>
+                            </select>
                         </div>
                     </div>
-
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-offset-5 col-md-9">
-                                <button type="button" class="btn green" @click="create">保 存</button>
-                                <button type="reset" class="btn default">重 置</button>
-                            </div>
+                    <div>
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                <tr class="uppercase">
+                                    <th> 选择</th>
+                                    <th> 编号</th>
+                                    <th> 用户昵称</th>
+                                    <th> 真实姓名</th>
+                                    <th> 证件号码</th>
+                                    <th> 所属部门</th>
+                                    <th> 担任岗位</th>
+                                    <th> 操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template v-for="(item,index) in userList">
+                                    <tr>
+                                        <td class="text-center">
+                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                <input type="checkbox" :value="item.id" name="select"
+                                                       v-model="selected">
+                                                <span></span>
+                                            </label>
+                                        </td>
+                                        <td class="text-center"> {{index+1}}</td>
+                                        <td class="text-center">{{item.nick}}</td>
+                                        <td class="text-center">{{item.name}}</td>
+                                        <td class="text-center">{{item.cardId}}</td>
+                                        <td class="text-center">{{item.department.name}}</td>
+                                        <td class="text-center">{{item.role.name}}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-sm blue btn-outline"
+                                                    @click="edit(item)">编 辑
+                                            </button>
+                                            <button type="button" class="btn btn-sm red btn-outline"
+                                                    @click="remove(item.id)">删 除
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </form>
-                <!-- END FORM-->
+                    <!-- Pagination -->
+                    <div class="pagination pull-right">
+                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                    </div>
+                    <!-- End Pagination -->
+                </div>
+                <!-- END BORDERED TABLE PORTLET-->
             </div>
+
         </div>
-    </div>
-    <!-- END CONTENT BODY -->
 </template>
+
 <script>
     module.exports = {
-        data: function () {
+        data(){
             return {
-                user: {},
-                department_list: [],
-                role_list: []
+                departmentList: [],
+                roleList: [],
+                currentPage: 1,
+                condition: "",
+                selected: [],
+                userList: []
             }
         },
         mounted(){
             var me = this;
+            me.getData();
             me.fetchDepartment();
-            handleValidation1();
-
         },
         methods: {
+            fetchData (pageNum, rowCount) {
+                var me = this;
+                this.$http.get('/api/user/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: pageNum,
+                        condition: this.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    me.userList = data.results;
+                }, (response) => {
+                    serverErrorInfo();
+                });
+            },
             fetchDepartment(){
                 var me = this;
-                me.$http.get("/api/department/total").then(function (response) {
-                        var data = response.data;
-                        me.department_list = data.results;
-                    }, function (response) {
-                        serverErrorInfo();
-                    }
-                );
+                this.$http.get('/api/department/total').then((response) => {
+                    var data = response.data;
+                    me.departmentList = data.results;
+                }, (response) => {
+                    serverErrorInfo();
+                });
             },
-            create(){
+            findByDepartment(e){
                 var me = this;
-                if (jQuery("#user_add").valid()) {
-                    me.$http.post("/api/user/create", me.user).then(function (response) {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: "新用户创建成功"
-                            });
-                        }, function (response) {
-                            serverErrorInfo();
-                        }
-                    )
+                var id = e.target.value;
+                if (id) {
+                    me.fetchRole(id);
+                    me.currentPag = 1;
+                    me.condition = "departmentId=" + id;
+                    me.getData();
+                } else {
+                    me.roleList = [];
+                    me.total();
                 }
             },
-            fetchRole(e){
+            findByRole(e){
+                var me = this;
+                var id = e.target.value;
+                if (id) {
+                    me.currentPag = 1;
+                    me.condition = "roleId=" + id;
+                    me.getData();
+                } else {
+                    me.total();
+                }
+            },
+            fetchRole(department_id){
+                var me = this;
+                me.$http.get("/api/role/findByDepartment", {
+                    params: {
+                        department_id: department_id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.roleList = data.results;
+                }, response => {
+                    serverErrorInfo();
+                });
+            },
+            //渲染页码
+            fetchPages (rowCount) {
+                var me = this;
+                this.$http.get('/api/user/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: 1,
+                        condition: me.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    jQuery(".M-box").pagination({
+                        pageCount: data.totalPage || 1,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (data) {
+                            me.fetchData(data.getCurrent(), rowCount, me.condition);
+                            me.currentPage = data.getCurrent();
+                        }
+                    });
+                }, (response) => {
+                    serverErrorInfo();
+                });
+            },
+            search(e){
                 var me = this;
                 var value = e.target.value;
-                if (value) {
-                    me.$http.get("/api/role/findByDepartment", {
-                        params: {
-                            department_id: value
-                        }
-                    }).then(function (response) {
+                me.currentPag = 1;
+                me.condition = value ? "keyword=" + encodeURI(value) : "";
+                me.getData();
+            },
+            create(){
+                router.push("/role/create");
+            },
+            remove(id){
+                var me = this;
+                confirm({
+                    content: "是否删除当前用户信息？",
+                    success: function () {
+                        me.$http.get("/api/user/delete", {
+                            params: {
+                                id: id
+                            }
+                        }).then(response => {
                             var data = response.data;
-                            me.role_list = data.results;
-                        }, function (response) {
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("用户信息删除成功！");
+                                    me.getData();
+                                }
+                            })
+                        }, response => {
                             serverErrorInfo();
-                        }
-                    )
-                } else {
-                    me.role_list = [];
+                        });
+                    }
+                })
+            },
+            edit(item){
+                var me = this;
+                router.push("/user/change?id=" + item.id);
+            },
+            getData(){
+                var me = this;
+                me.fetchData(me.currentPage, rowCount);
+                me.fetchPages(rowCount);
+            },
+            removeAll(){
+                var me = this;
+                if (me.selected.length == 0) {
+                    error("至少需要选择一个用户信息");
+                    return;
                 }
+                confirm({
+                    content: "是否删除当前选中用户信息？",
+                    success: function () {
+                        me.$http.get("/api/user/deleteAll", {
+                            params: {
+                                selected: me.selected
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("用户信息删除成功！");
+                                    me.getData();
+                                    closeConfirm();
+                                }
+                            });
+                        }, response => {
+                            serverErrorInfo();
+                        });
+                    }
+                });
+            },
+            selectAll(){
+                var me = this;
+                me.selected = [];
+                me.userList.forEach(function (item, index) {
+                    me.selected.push(item.id);
+                })
+            },
+            total(){
+                var me = this;
+                me.condition = "";
+                me.currentPage = 1;
+                me.getData();
             }
         }
     }
-
-    var handleValidation1 = function () {
-        var form1 = $('#user_add');
-        var error1 = $('.alert-danger', form1);
-        form1.validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block help-block-error', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            ignore: "", // validate all fields including form hidden input
-            messages: {
-                nick: {
-                    required: "用户昵称不能为空"
-                },
-                name: {
-                    required: "真实姓名不能为空"
-                },
-                cardId: {
-                    required: "证件号不能为空"
-                },
-                departmentId: {
-                    required: "所属部门不能为空"
-                },
-                roleId: {
-                    required: "所属岗位不能为空"
-                }
-            },
-            rules: {
-                nick: {
-                    required: true
-                },
-                name: {
-                    required: true
-                },
-                cardId: {
-                    required: true
-                },
-                departmentId: {
-                    required: true
-                },
-                roleId: {
-                    required: true
-                }
-            },
-            invalidHandler: function (event, validator) { //display error alert on form submit
-                //success1.hide();
-                error1.show();
-                App.scrollTo(error1, -200);
-            },
-            errorPlacement: function (error, element) {
-                if (element.is(':checkbox')) {
-                    error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
-                } else if (element.is(':radio')) {
-                    error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
-                } else {
-                    error.insertAfter(element); // for other inputs, just perform default behavior
-                }
-            },
-            highlight: function (element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-            unhighlight: function (element) { // revert the change done by hightlight
-                $(element)
-                    .closest('.form-group').removeClass('has-error'); // set error class to the control group
-            },
-            success: function (label) {
-                label
-                    .closest('.form-group').removeClass('has-error'); // set success class to the control group
-            },
-            submitHandler: function (form) {
-                error1.hide();
-            }
-        });
-    };
 </script>

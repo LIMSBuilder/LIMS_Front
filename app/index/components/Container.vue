@@ -44,40 +44,43 @@
                              data-wrapper-class="page-quick-sidebar-list">
                             <h3 class="list-heading">Staff</h3>
                             <ul class="media-list list-items">
-                                <li class="media">
-                                    <div class="media-status">
-                                        <span class="badge badge-success">8</span>
-                                    </div>
-                                    <img class="media-object" src="../images/avatar/avatar3.jpg" alt="...">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Bob Nilson</h4>
-                                        <div class="media-heading-sub"> Project Manager</div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="media-object" src="../images/avatar/avatar1.jpg" alt="...">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Nick Larson</h4>
-                                        <div class="media-heading-sub"> Art Director</div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <div class="media-status">
-                                        <span class="badge badge-danger">3</span>
-                                    </div>
-                                    <img class="media-object" src="../images/avatar/avatar4.jpg" alt="...">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Deon Hubert</h4>
-                                        <div class="media-heading-sub"> CTO</div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="media-object" src="../images/avatar/avatar2.jpg" alt="...">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Ella Wong</h4>
-                                        <div class="media-heading-sub"> CEO</div>
-                                    </div>
-                                </li>
+                                <template v-for="item in online_user">
+                                    <li class="media">
+                                        <div class="media-status">
+                                            <span class="badge badge-success">8</span>
+                                        </div>
+                                        <img class="media-object" :src="item.portrait" alt="...">
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{item.name}}</h4>
+                                            <div class="media-heading-sub"> Project Manager</div>
+                                        </div>
+                                    </li>
+                                </template>
+
+                                <!--<li class="media">-->
+                                    <!--<img class="media-object" src="../images/avatar/avatar1.jpg" alt="...">-->
+                                    <!--<div class="media-body">-->
+                                        <!--<h4 class="media-heading">Nick Larson</h4>-->
+                                        <!--<div class="media-heading-sub"> Art Director</div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <!--<li class="media">-->
+                                    <!--<div class="media-status">-->
+                                        <!--<span class="badge badge-danger">3</span>-->
+                                    <!--</div>-->
+                                    <!--<img class="media-object" src="../images/avatar/avatar4.jpg" alt="...">-->
+                                    <!--<div class="media-body">-->
+                                        <!--<h4 class="media-heading">Deon Hubert</h4>-->
+                                        <!--<div class="media-heading-sub"> CTO</div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <!--<li class="media">-->
+                                    <!--<img class="media-object" src="../images/avatar/avatar2.jpg" alt="...">-->
+                                    <!--<div class="media-body">-->
+                                        <!--<h4 class="media-heading">Ella Wong</h4>-->
+                                        <!--<div class="media-heading-sub"> CEO</div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
                             </ul>
                             <h3 class="list-heading">Customers</h3>
                             <ul class="media-list list-items">
@@ -240,27 +243,8 @@
                         <div class="page-quick-sidebar-alerts-list">
                             <h3 class="list-heading">General</h3>
                             <ul class="feeds list-items">
-                                <li>
-                                    <div class="col1">
-                                        <div class="cont">
-                                            <div class="cont-col1">
-                                                <div class="label label-sm label-info">
-                                                    <i class="fa fa-check"></i>
-                                                </div>
-                                            </div>
-                                            <div class="cont-col2">
-                                                <div class="desc"> You have 4 pending tasks.
-                                                    <span class="label label-sm label-warning "> Take action
-                                                                <i class="fa fa-share"></i>
-                                                            </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="date"> Just now</div>
-                                    </div>
-                                </li>
+
+
                                 <li>
                                     <a href="javascript:;">
                                         <div class="col1">
@@ -581,6 +565,26 @@
     export default{
         components: {
             navbar
+        },
+        data: function () {
+            return {
+                online_user: []
+            }
+        },
+        mounted(){
+            var me = this;
+            me.fetchLoginUser();
+        },
+        methods: {
+            fetchLoginUser(){
+                var me = this;
+                me.$http.get("/api/login/getLoginList").then(function (response) {
+                    var data = response.data;
+                    me.online_user = data;
+                }, function (response) {
+                    serverErrorInfo();
+                })
+            }
         }
     }
 </script>
