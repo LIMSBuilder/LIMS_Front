@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="page-title"> 部门信息维护
-            <small>／Department List</small>
+            <small>／Department</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -96,7 +96,6 @@
         mounted(){
             var me = this;
             me.getData();
-            handleSidebarAndContentHeight();
             BlogUtils.selectAll("select", jQuery("#selectChange"));
         },
         methods: {

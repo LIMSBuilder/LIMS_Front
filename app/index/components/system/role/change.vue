@@ -10,6 +10,7 @@
                 <!-- BEGIN FORM-->
                 <form action="#" class="form-horizontal" id="role_add">
                     <div class="form-body">
+                        <h3 class="form-section">岗位信息</h3>
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
@@ -47,7 +48,6 @@
                             <div class="col-md-offset-5 col-md-9">
                                 <button type="button" class="btn blue" @click="back">返回列表</button>
                                 <button type="button" class="btn green" @click="create">保 存</button>
-                                <button type="reset" class="btn default">重 置</button>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
     </div>
     <!-- END CONTENT BODY -->
 </template>
-<script>
+<script type="es6">
     module.exports = {
         data: function () {
             return {
@@ -94,7 +94,7 @@
                 })
             }
             me.fetchDepartment();
-            handleValidation1();
+            BlogUtils.formValid(jQuery("#role_add"));
 
         },
         methods: {
@@ -129,60 +129,4 @@
             }
         }
     }
-
-    var handleValidation1 = function () {
-        var form1 = $('#role_add');
-        var error1 = $('.alert-danger', form1);
-        form1.validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block help-block-error', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            ignore: "", // validate all fields including form hidden input
-            messages: {
-                title: {
-                    required: "岗位名称不能为空"
-                },
-                departmentId: {
-                    required: "部门类型不能为空"
-                }
-            },
-            rules: {
-                title: {
-                    required: true
-                },
-                departmentId: {
-                    required: true
-                }
-            },
-            invalidHandler: function (event, validator) { //display error alert on form submit
-                //success1.hide();
-                error1.show();
-                App.scrollTo(error1, -200);
-            },
-            errorPlacement: function (error, element) {
-                if (element.is(':checkbox')) {
-                    error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
-                } else if (element.is(':radio')) {
-                    error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
-                } else {
-                    error.insertAfter(element); // for other inputs, just perform default behavior
-                }
-            },
-            highlight: function (element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-            unhighlight: function (element) { // revert the change done by hightlight
-                $(element)
-                    .closest('.form-group').removeClass('has-error'); // set error class to the control group
-            },
-            success: function (label) {
-                label
-                    .closest('.form-group').removeClass('has-error'); // set success class to the control group
-            },
-            submitHandler: function (form) {
-                error1.hide();
-            }
-        });
-    };
 </script>

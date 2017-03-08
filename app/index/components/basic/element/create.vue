@@ -100,7 +100,7 @@
                 dictRemoveLinks: "x",
                 dictCancelUpload: "x"
             });
-            myDropzone.on("success", function (file, finished) {
+            elementDropzone.on("success", function (file, finished) {
                 codeState(finished.code, {
                     200: function () {
                         me.path = finished.path;
