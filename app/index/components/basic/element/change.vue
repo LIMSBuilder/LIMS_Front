@@ -87,7 +87,7 @@
         background: white;
     }
 </style>
-<script>
+<script type="es6">
     import Dropzone from 'mod/dropzone'
     import 'style/dropzone'
     module.exports = {
@@ -150,7 +150,7 @@
             create(){
                 var me = this;
                 if (jQuery("#element_add").valid()) {
-                    me.$http.post("/api/element/create", {
+                    me.$http.post("/api/element/change", {
                         name: me.name,
                         path: me.path,
                         id: me.id

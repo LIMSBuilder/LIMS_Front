@@ -224,7 +224,7 @@ var routes = [
     {
         path: "/department",
         name: "department",
-        component: Role,
+        component: Department,
         children: [
             {
                 path: "create",

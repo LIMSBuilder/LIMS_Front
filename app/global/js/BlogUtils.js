@@ -57,6 +57,66 @@ var BlogUtils = {
             return false;
         }
         document.body.removeChild(textArea);
+    },
+    formValid(form, rules, messages){
+        //var form1 = $('#department_add');
+        if (!rules) rules = {};
+        if (!messages) messages = {};
+        var error1 = $('.alert-danger', form);
+        form.validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block help-block-error', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "", // validate all fields including form hidden input
+            messages: messages,
+            rules: rules,
+            invalidHandler: function (event, validator) { //display error alert on form submit
+                error1.show();
+                App.scrollTo(error1, -200);
+            },
+            errorPlacement: function (error, element) {
+                if (element.is(':checkbox')) {
+                    error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
+                } else if (element.is(':radio')) {
+                    error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
+                } else {
+                    error.insertAfter(element); // for other inputs, just perform default behavior
+                }
+            },
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+            unhighlight: function (element) { // revert the change done by hightlight
+                $(element)
+                    .closest('.form-group').removeClass('has-error'); // set error class to the control group
+            },
+            success: function (label) {
+                label
+                    .closest('.form-group').removeClass('has-error'); // set success class to the control group
+            },
+            submitHandler: function (form) {
+                error1.hide();
+            }
+        });
+    },
+    selectAll(name, handle){
+        handle.off("click").on("click", function () {
+            var oCheckBox = jQuery("[type=checkbox][name=" + name + "]");
+            for (var i = 0; i < oCheckBox.length; i++) {
+                jQuery(oCheckBox[i]).prop("checked", !jQuery(oCheckBox[i]).prop("checked"));
+            }
+            //jQuery("[type=checkbox][name=" + name + "]").prop("checked", true);
+        });
+    },
+    getSelect(name){
+        var oCheckBox = jQuery("[type=checkbox][name=" + name + "]:checked");
+        var temp = [];
+        for (var i = 0; i < oCheckBox.length; i++) {
+            temp.push(oCheckBox[i].value);
+        }
+        console.log(temp);
+        return temp;
     }
 };
 var rowCount = window.rowCount = localStorage.getItem("rowCount") || 10;
@@ -204,7 +264,7 @@ window.codeState = function (code, opt) {
             error(opt[503]);
             return;
         }
-        opt[503] ? opt[503]() : error('数据库中已存在当前值,不能重复操作！');
+        opt[503] ? opt[503]() : error('当前记录值已经存在，请尝试更换其他值！');
     }
     if (code == 504) {
         if (opt[504] && typeof opt[504] == "string") {
