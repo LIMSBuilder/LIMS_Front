@@ -576,6 +576,7 @@
         mounted: function () {
             var me = this;
             me.fetchCount();
+            handleSidebarAndContentHeight();
         },
         methods: {
             compose(){
