@@ -11,6 +11,9 @@
                 <form action="#" class="form-horizontal" id="element_add">
                     <div class="form-body">
                         <h3 class="form-section">环境要素</h3>
+                        <div class="alert alert-success">
+                            <strong>小技巧：</strong> 使用标签处理过的模板能减少重复工作，提升工作效率。点击<a href="javascript:;">此处</a>查看标签模板制作方法。
+                        </div>
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
