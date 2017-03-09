@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 监测类别维护
+        <h1 class="page-title"> 监测类别列表
             <small>／Type</small>
         </h1>
         <div class="row">
