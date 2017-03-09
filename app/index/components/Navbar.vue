@@ -252,17 +252,12 @@
                 <ul class="sub-menu">
                     <router-link :to="{ path: '/customer/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">创建客户信息</span>
+                            <span class="title">创建新客户</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/customer/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">客户信息维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/customer/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新客户信息</span>
+                            <span class="title">客户信息列表</span>
                         </a>
                     </router-link>
                 </ul>

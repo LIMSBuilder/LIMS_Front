@@ -10,6 +10,7 @@
                 <!-- BEGIN FORM-->
                 <form action="#" class="form-horizontal" id="department_add">
                     <div class="form-body">
+                        <h3 class="form-section">合同预设信息</h3>
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
@@ -78,7 +79,7 @@
                         <div class="row">
                             <div class="col-md-offset-5 col-md-9">
                                 <button type="button" class="btn green" @click="create">保 存</button>
-                                <button type="reset" class="btn default">重 置</button>
+                                <button type="reset" class="btn default" @click="resetAll">重 置</button>
                             </div>
                         </div>
                     </div>
@@ -120,6 +121,10 @@
                 }, response => {
                     serverErrorInfo();
                 });
+            },
+            resetAll(){
+                var me = this;
+                me.client = {};
             }
         }
     }
