@@ -24,3 +24,10 @@
         <router-view transition transition-mode="out-in"></router-view>
     </div>
 </template>
+<script type="es6">
+    module.exports = {
+        mounted(){
+            handleSidebarAndContentHeight();
+        }
+    };
+</script>

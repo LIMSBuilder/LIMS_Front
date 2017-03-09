@@ -161,12 +161,7 @@
                     </router-link>
                     <router-link :to="{ path: '/element/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">环境要素维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/element/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新要素信息</span>
+                            <span class="title">环境要素列表</span>
                         </a>
                     </router-link>
                 </ul>
@@ -188,11 +183,6 @@
                             <span class="title">监测频次维护</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/frequency/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新要素信息</span>
-                        </a>
-                    </router-link>
                 </ul>
             </li>
             <li class="nav-item">
@@ -212,11 +202,6 @@
                             <span class="title">监测项目维护</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/project/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新监测项目</span>
-                        </a>
-                    </router-link>
                 </ul>
             </li>
             <li class="nav-item">
@@ -233,12 +218,7 @@
                     </router-link>
                     <router-link :to="{ path: '/type/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">监测类别维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/type/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新监测类别</span>
+                            <span class="title">监测类别列表</span>
                         </a>
                     </router-link>
                 </ul>

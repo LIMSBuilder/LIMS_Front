@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 监测频次维护
+        <h1 class="page-title"> 监测频次列表
             <small>／Frequency</small>
         </h1>
         <div class="row">
@@ -13,7 +13,7 @@
                                 <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
+                                <a href="javascript:;" class="btn btn-sm btn-info" id="selectChange"> 选 择
                                     <i class="fa fa-check-square-o"></i>
                                 </a>
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
@@ -42,6 +42,7 @@
                                     <th> 周期执行次数</th>
                                     <th> 周期单位数</th>
                                     <th> 周期单位</th>
+                                    <th> 循环提醒</th>
                                     <th> 操作</th>
                                 </tr>
                                 </thead>
@@ -58,7 +59,16 @@
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.count}}</td>
                                         <td class="text-center"> {{item.times}}</td>
-                                        <td class="text-center"> {{item.unit}}</td>
+                                        <td class="text-center" v-if="item.unit=='one'"> 仅一次</td>
+                                        <td class="text-center" v-if="item.unit=='minute'"> 分钟</td>
+                                        <td class="text-center" v-if="item.unit=='hour'"> 小时</td>
+                                        <td class="text-center" v-if="item.unit=='day'"> 天数</td>
+                                        <td class="text-center" v-if="item.unit=='week'"> 星期</td>
+                                        <td class="text-center" v-if="item.unit=='month'"> 月份</td>
+                                        <td class="text-center" v-if="item.unit=='quarter'"> 季度</td>
+                                        <td class="text-center" v-if="item.unit=='year'"> 年份</td>
+                                        <td class="text-center" v-if="item.notice==1"> 开启</td>
+                                        <td class="text-center" v-if="item.notice==0"> 关闭</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">修 改
@@ -71,21 +81,23 @@
                                 </template>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <div class="pagination pull-right">
+                                <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                            </div>
+                            <!-- End Pagination -->
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!-- Pagination -->
-                    <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
-                    </div>
-                    <!-- End Pagination -->
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
 
         </div>
+    </div>
 </template>
 
-<script>
+<script type="es6">
     module.exports = {
         data(){
             return {
@@ -98,6 +110,7 @@
         mounted(){
             var me = this;
             me.getData();
+            BlogUtils.selectAll("select", jQuery("#selectChange"));
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -214,13 +227,6 @@
                         closeConfirm();
                     }
                 });
-            },
-            selectAll(){
-                var me = this;
-                me.selected = [];
-                me.frequencyList.forEach(function (item, index) {
-                    me.selected.push(item.id);
-                })
             },
             total(){
                 var me = this;

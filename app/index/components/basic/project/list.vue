@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 监测项目信息维护
+        <h1 class="page-title"> 监测项目信息列表
             <small>／Project</small>
         </h1>
         <div class="row">
@@ -73,12 +73,8 @@
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
-                                        <td class="text-center"><a href="javascript:;"
-                                                                   @click="showSameDepartment(item.department.id)">{{item.department.name}}</a>
-                                        </td>
-                                        <td class="text-center"><a href="javascript:;"
-                                                                   @click="showSameDepartment(item.department.id)">{{item.department.name}}</a>
-                                        </td>
+                                        <td class="text-center"> <a href="javascript:;" @click="showSameElement(item.element.id)">{{item.element.name}}</a></td>
+                                        <td class="text-center"> <a href="javascript:;" @click="showSameDepartment(item.department.id)">{{item.department.name}}</a></td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">修 改
@@ -91,13 +87,14 @@
                                 </template>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <div class="pagination pull-right">
+                                <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                            </div>
+                            <!-- End Pagination -->
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!-- Pagination -->
-                    <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
-                    </div>
-                    <!-- End Pagination -->
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
@@ -105,7 +102,7 @@
         </div>
 </template>
 
-<script>
+<script type="es6">
     module.exports = {
         data(){
             return {
@@ -134,7 +131,8 @@
                     }
                 }).then(response => {
                         var data = response.data;
-                        me.roleList = data.results;
+
+                        me.projectList = data.results;
                     },
                     response => {
                         serverErrorInfo();
@@ -273,7 +271,7 @@
                 var me = this;
                 var id = e.target.value;
                 if (id) {
-                    me.condition = "departmentId=" + id;
+                    me.condition = "department_id=" + id;
                     me.currentPage = 1;
                     me.getData();
                 } else {
@@ -284,7 +282,7 @@
                 var me = this;
                 var id = e.target.value;
                 if (id) {
-                    me.condition = "elementId=" + id;
+                    me.condition = "element_id=" + id;
                     me.currentPage = 1;
                     me.getData();
                 } else {
@@ -294,7 +292,17 @@
             showSameDepartment(id){
                 var me = this;
                 if (id) {
-                    me.condition = "departmentId=" + id;
+                    me.condition = "department_id=" + id;
+                    me.currentPage = 1;
+                    me.getData();
+                } else {
+                    me.total();
+                }
+            },
+            showSameElement(id){
+                var me = this;
+                if (id) {
+                    me.condition = "element_id=" + id;
                     me.currentPage = 1;
                     me.getData();
                 } else {

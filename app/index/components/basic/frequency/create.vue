@@ -10,6 +10,10 @@
                 <!-- BEGIN FORM-->
                 <form action="#" class="form-horizontal" id="frequency_add">
                     <div class="form-body">
+                        <h3 class="form-section">监测频次</h3>
+                        <div class="alert alert-success">
+                            <strong>小技巧：</strong> 开启循环提示，到达固定循环节点时会收到相应的消息推送提醒。
+                        </div>
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
@@ -24,7 +28,7 @@
                                         <input type="number" class="form-control" min="0" placeholder="周期监测次数"
                                                id="count"
                                                name="count"
-                                               v-model="frequency.count">
+                                               v-model="frequency.count" required>
                                         <div class="form-control-focus"></div>
                                         <span class="help-block">每周期内进行监测的次数。</span>
                                         <span class="input-group-addon">次</span>
@@ -36,14 +40,14 @@
                                         <input type="number" class="form-control" min="0" placeholder="周期单位长度"
                                                id="times"
                                                name="times"
-                                               v-model="frequency.times">
+                                               v-model="frequency.times" required>
                                         <div class="form-control-focus"></div>
                                         <span class="help-block">每周期包含的周期单位个数。</span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <select class="form-control" id="unit" name="unit" v-model="frequency.unit"
-                                            @change="unitChange($event)">
+                                            @change="unitChange($event)" required>
                                         <option value="">选择周期单位</option>
                                         <option value="one">仅一次</option>
                                         <option value="minute">分钟</option>
@@ -113,7 +117,7 @@
         },
         mounted(){
             var me = this;
-            handleValidation1();
+            BlogUtils.formValid(jQuery("#frequency_add"));
         },
         methods: {
             create(){
@@ -142,76 +146,4 @@
             }
         }
     }
-
-    var handleValidation1 = function () {
-        var form1 = $('#frequency_add');
-        var error3 = $('.alert-danger', form1);
-        form1.validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block help-block-error', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            ignore: "", // validate all fields including form hidden input
-            rules: {
-
-                times: {
-                    required: true,
-                    min: 0
-                },
-                count: {
-                    required: true,
-                    min: 0
-                }
-            },
-            errorPlacement: function (error, element) { // render error placement for each input type
-                if (element.parents('.mt-radio-list') || element.parents('.mt-checkbox-list')) {
-                    if (element.parents('.mt-radio-list')[0]) {
-                        error.appendTo(element.parents('.mt-radio-list')[0]);
-                    }
-                    if (element.parents('.mt-checkbox-list')[0]) {
-                        error.appendTo(element.parents('.mt-checkbox-list')[0]);
-                    }
-                } else if (element.parents('.mt-radio-inline') || element.parents('.mt-checkbox-inline')) {
-                    if (element.parents('.mt-radio-inline')[0]) {
-                        error.appendTo(element.parents('.mt-radio-inline')[0]);
-                    }
-                    if (element.parents('.mt-checkbox-inline')[0]) {
-                        error.appendTo(element.parents('.mt-checkbox-inline')[0]);
-                    }
-                } else if (element.parent(".input-group").size() > 0) {
-                    error.insertAfter(element.parent(".input-group"));
-                } else if (element.attr("data-error-container")) {
-                    error.appendTo(element.attr("data-error-container"));
-                } else {
-                    error.insertAfter(element); // for other inputs, just perform default behavior
-                }
-            },
-
-            invalidHandler: function (event, validator) { //display error alert on form submit
-                error3.show();
-                App.scrollTo(error3, -200);
-            },
-
-            highlight: function (element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-
-            unhighlight: function (element) { // revert the change done by hightlight
-                $(element)
-                    .closest('.form-group').removeClass('has-error'); // set error class to the control group
-            },
-
-            success: function (label) {
-                label
-                    .closest('.form-group').removeClass('has-error'); // set success class to the control group
-            },
-
-            submitHandler: function (form) {
-                error3.hide();
-                form[0].submit(); // submit the form
-            }
-
-        });
-
-    };
 </script>

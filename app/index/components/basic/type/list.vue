@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 监测类别维护
+        <h1 class="page-title"> 监测类别列表
             <small>／Type</small>
         </h1>
         <div class="row">
@@ -13,7 +13,7 @@
                                 <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
+                                <a href="javascript:;" class="btn btn-sm btn-info" id="selectChange"> 选 择
                                     <i class="fa fa-check-square-o"></i>
                                 </a>
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
@@ -69,13 +69,14 @@
                                 </template>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <div class="pagination pull-right">
+                                <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                            </div>
+                            <!-- End Pagination -->
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!-- Pagination -->
-                    <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
-                    </div>
-                    <!-- End Pagination -->
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
@@ -96,6 +97,7 @@
         mounted(){
             var me = this;
             me.getData();
+            BlogUtils.selectAll("select", jQuery("#selectChange"));
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -209,13 +211,6 @@
                         });
                     }
                 });
-            },
-            selectAll(){
-                var me = this;
-                me.selected = [];
-                me.typeList.forEach(function (item, index) {
-                    me.selected.push(item.id);
-                })
             },
             total(){
                 var me = this;
