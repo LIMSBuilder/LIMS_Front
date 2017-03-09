@@ -10,17 +10,22 @@
                 <!-- BEGIN FORM-->
                 <form action="#" class="form-horizontal" id="type_add">
                     <div class="form-body">
+                        <h3 class="form-section">类别信息</h3>
+                        <div class="alert alert-success">
+                            <strong>小技巧：</strong> 样品标识符可以用来区分不同类别的样品信息。
+                        </div>
                         <div class="alert alert-danger display-hide">
                             <button class="close" data-close="alert"></button>
                             表单尚未填写完整。
                         </div>
+
                         <div class="form-group form-md-line-input">
                             <label class="col-md-3 control-label" for="title">类别名称
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="title" v-model="name" placeholder=""
-                                       name="name">
+                                       name="name" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入类别名称，必需字段。</span>
                             </div>
@@ -32,7 +37,7 @@
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="identifier" v-model="identifier"
                                        placeholder=""
-                                       name="identifier">
+                                       name="identifier" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入样品标识符，必需字段。</span>
                             </div>
@@ -63,7 +68,7 @@
             }
         },
         mounted(){
-            handleValidation1();
+            BlogUtils.formValid(jQuery("#type_add"));
         },
         methods: {
             create(){
@@ -83,61 +88,5 @@
                 }
             }
         }
-    }
-
-    var handleValidation1 = function () {
-        var form1 = $('#type_add');
-        var error1 = $('.alert-danger', form1);
-        form1.validate({
-            errorElement: 'span', //default input error message container
-            errorClass: 'help-block help-block-error', // default input error message class
-            focusInvalid: false, // do not focus the last invalid input
-            ignore: "", // validate all fields including form hidden input
-            messages: {
-                name: {
-                    required: "类别名称不能为空"
-                },
-                identifier: {
-                    required: "样品标识不能为空"
-                }
-            },
-            rules: {
-                name: {
-                    required: true
-                },
-                identifier: {
-                    required: true
-                }
-            },
-            invalidHandler: function (event, validator) { //display error alert on form submit
-                //success1.hide();
-                error1.show();
-                App.scrollTo(error1, -200);
-            },
-            errorPlacement: function (error, element) {
-                if (element.is(':checkbox')) {
-                    error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
-                } else if (element.is(':radio')) {
-                    error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
-                } else {
-                    error.insertAfter(element); // for other inputs, just perform default behavior
-                }
-            },
-            highlight: function (element) { // hightlight error inputs
-                $(element)
-                    .closest('.form-group').addClass('has-error'); // set error class to the control group
-            },
-            unhighlight: function (element) { // revert the change done by hightlight
-                $(element)
-                    .closest('.form-group').removeClass('has-error'); // set error class to the control group
-            },
-            success: function (label) {
-                label
-                    .closest('.form-group').removeClass('has-error'); // set success class to the control group
-            },
-            submitHandler: function (form) {
-                error1.hide();
-            }
-        });
     };
 </script>
