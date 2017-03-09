@@ -34,7 +34,7 @@
                 <tbody>
                 <span v-if="mailList.length==0">当前分类无邮件。</span>
                 <template v-for="item in mailList">
-                    <tr @click="viewDetail(item.id)">
+                    <tr>
                         <td class="inbox-small-cells">
                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                 <input type="checkbox" :value="item.id" v-model="selected" class="mail-checkbox"/>
@@ -46,7 +46,7 @@
                                 <i class="fa fa-send-o"></i>
                             </a>
                         </td>
-                        <td class="view-message "> {{item.title}}</td>
+                        <td class="view-message " @click="viewDetail(item.id)"> {{item.title}}</td>
                         <td class="view-message inbox-small-cells" @click="deleteMailSingle(item.id)">
                             <i class="fa fa-trash-o"></i>
                         </td>
@@ -147,7 +147,7 @@
                     me.mailList = data.results;
 
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -174,7 +174,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             getData(){
@@ -227,7 +227,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -251,7 +251,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });

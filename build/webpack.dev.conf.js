@@ -24,6 +24,12 @@ config.plugins = [
         inject: true,
         chunks: ['login']
     }),
+    new HtmlWebpackPlugin({
+        filename: 'lock.html',
+        template: path.resolve(__dirname, '../app/lockScreen/index.html'),
+        inject: true,
+        chunks: ['lock']
+    }),
     // new ExtractTextPlugin("styles.css")
     new ExtractTextPlugin("[name].css")
 ];

@@ -243,7 +243,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             });
         },
@@ -269,7 +269,7 @@
                             }
                         })
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     })
                 }
             },
@@ -283,7 +283,7 @@
                     var data = response.data;
                     console.log(data);
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             downAll(){
@@ -327,7 +327,7 @@
                             });
                             me.fetchData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -351,7 +351,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -367,7 +367,7 @@
 //                    var data = response.data;
 //                    me.tree = data;
 //                }, response => {
-//                    serverErrorInfo();
+//                    serverErrorInfo(response);
 //                })
             }
         }

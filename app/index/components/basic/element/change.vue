@@ -124,7 +124,7 @@
                     me.path = data.path;
                     me.id = data.id;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
             var elementDropzone = me.elementDropzone = new Dropzone("div#myId", {
@@ -163,7 +163,7 @@
                             200: "环境要素创建成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },
@@ -186,7 +186,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             back(){

@@ -117,7 +117,7 @@
                     var data = response.data;
                     me.customerList = data.results;
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -144,7 +144,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             search(e){
@@ -175,7 +175,7 @@
                                 }
                             })
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 })
@@ -212,7 +212,7 @@
                                 }
                             });
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 });

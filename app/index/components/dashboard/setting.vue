@@ -283,7 +283,7 @@
                             503: "当前密码不正确，无法修改密码！"
                         })
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     })
                 }
             },
@@ -302,12 +302,12 @@
                                     200: "头像上传成功！"
                                 })
                             }, response => {
-                                serverErrorInfo();
+                                serverErrorInfo(response);
                             });
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             changeInfoBtn(){
@@ -320,7 +320,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
 
             },
@@ -334,7 +334,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchData(){
@@ -365,7 +365,7 @@
                         });
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
         }

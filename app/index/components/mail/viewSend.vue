@@ -13,9 +13,7 @@
             <div class="row">
                 <div class="col-md-7">
                     <img :src="mail.sender.portrait" style="width: 45px;height: 45px;" class="inbox-author">
-                    <span class="sbold">{{mail.sender.name}} </span>
-                    <span>&#60; {{mail.sender.role.department.name}}:{{mail.sender.role.name}} &#62; </span>
-                    <span class="sbold"> 发送于 </span> {{mail.create_time}}
+                    <span class="sbold"> 发送时间： </span> {{mail.create_time}}
                 </div>
                 <div class="col-md-5 inbox-info-btn">
                     <div class="btn-group">
@@ -54,7 +52,7 @@
                                     <i class="fa fa-trash"></i> 彻底删除 </a>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-default" style="margin-left: 10px;" >邮件树
+                        <button type="button" class="btn btn-default" style="margin-left: 10px;">邮件树
                         </button>
                     </div>
                 </div>
@@ -98,6 +96,22 @@
             </div>
         </div>
         <div class="clearfix"></div>
+        <hr>
+        <div class="inbox-attached">
+            <div class="margin-bottom-15">
+                <span> 收件人列表 </span>
+            </div>
+            <div class="margin-bottom-25">
+                <ul class="receiver_tag">
+                    <template v-for="item in receiverList">
+                        <li class="uppercase">
+                            <a href="javascript:;">{{item.name}}</a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
 </template>
 <style>
@@ -118,8 +132,28 @@
         border-radius: 5px;
         background: white;
     }
+    .receiver_tag {
+        text-align: left;
+        padding: 0;
+        margin: 20px 0 0;
+    }
+
+    .receiver_tag li {
+        list-style: none;
+        display: inline-block;
+        margin: 0 5px 20px 0;
+    }
+
+    .receiver_tag li > a {
+        background-color: #f4f6f8;
+        color: #a0a9b4;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 7px 10px;
+
+    }
 </style>
-<script>
+<script type="es6">
     import 'wangeditor'
     import Dropzone from 'mod/dropzone'
     import 'style/dropzone'
@@ -142,7 +176,8 @@
                     receiver: [],
                     reply: ""
                 },
-                tree: {}
+                tree: {},
+                receiverList: []
             }
         },
         mounted(){
@@ -162,7 +197,19 @@
                         var data = response.data;
                         me.mail = data;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
+                    });
+
+                    me.$http.get("/api/mail/getReceiverList", {
+                        params: {
+                            id: id
+                        }
+                    }).then(response => {
+                        var data = response.data;
+                        console.log(data.results);
+                        me.receiverList = data.results;
+                    }, response => {
+                        serverErrorInfo(response);
                     })
                 }
             },
@@ -176,7 +223,7 @@
                     var data = response.data;
                     console.log(data);
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             downAll(){
@@ -220,7 +267,7 @@
                             });
                             me.fetchData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -244,7 +291,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -260,7 +307,7 @@
 //                    var data = response.data;
 //                    me.tree = data;
 //                }, response => {
-//                    serverErrorInfo();
+//                    serverErrorInfo(response);
 //                })
             }
         }

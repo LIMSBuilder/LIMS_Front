@@ -110,7 +110,7 @@
                         var data = response.data;
                         me.department_list = data.results;
                     }, function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },
@@ -120,7 +120,7 @@
                         var data = response.data;
                         me.elementList = data.results;
                     }, function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },
@@ -133,7 +133,7 @@
                                 200: "新监测项目创建成功"
                             });
                         }, function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         }
                     )
                 }

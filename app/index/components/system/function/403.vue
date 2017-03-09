@@ -20,21 +20,13 @@
             <div class="col-md-12 page-404">
                 <div class="number font-red"> 403</div>
                 <div class="details">
-                    <h3>You're Forbidden.</h3>
-                    <p> 您无权访问该页面...
-                        <br/>
-                        <a href="index.html"> 回到首页 </a> 或检索想要的内容。 </p>
-                    <form action="#">
-                        <div class="input-group input-medium">
-                            <input type="text" class="form-control" placeholder="关键词...">
-                            <span class="input-group-btn">
-                                                <button type="submit" class="btn green">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </form>
+                    <h1>禁止访问</h1>
+                    <p> 您可能尚未登录或无权访问当前页。
+                    </p>
+                    <p>
+                        <a href="/login.html" class="btn red btn-outline">点此登录</a> 或
+                        <a href="/login.html" class="btn  green btn-outline">联系我们</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -51,8 +43,8 @@
     }
 
     .page-404 .number {
-        position: relative;
-        top: 35px;
+        /*position: relative;*/
+        /*top: 35px;*/
         display: inline-block;
         letter-spacing: -10px;
         margin-top: 0px;
@@ -89,7 +81,7 @@
     .page-500 .details {
         margin-left: 40px;
         display: inline-block;
-        text-align: left;
+        text-align: center;
     }
 
     /* 404 page option #2*/

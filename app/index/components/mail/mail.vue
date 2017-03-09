@@ -576,6 +576,7 @@
         mounted: function () {
             var me = this;
             me.fetchCount();
+            handleSidebarAndContentHeight();
         },
         methods: {
             compose(){
@@ -592,7 +593,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             relatedLink(id){

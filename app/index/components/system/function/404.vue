@@ -51,8 +51,8 @@
     }
 
     .page-404 .number {
-        position: relative;
-        top: 35px;
+        /*position: relative;*/
+        /*top: 35px;*/
         display: inline-block;
         letter-spacing: -10px;
         margin-top: 0px;
@@ -68,7 +68,7 @@
         margin-left: 40px;
         display: inline-block;
         padding-top: 0px;
-        text-align: left;
+        text-align: center;
     }
 
     /* 500 page option #1 */

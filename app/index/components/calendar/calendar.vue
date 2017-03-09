@@ -193,7 +193,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             removeEvent: function () {
@@ -213,7 +213,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             initCalendar: function () {
@@ -300,7 +300,7 @@
                                 }
                             })
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     },
                     eventResize: function (event, dayDelta, revertFunc) {
@@ -320,7 +320,7 @@
                                 }
                             })
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     },
                     unselectAuto: true,
@@ -331,7 +331,7 @@
                             var events = data.results;
                             callback(events);
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 });

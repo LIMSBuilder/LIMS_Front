@@ -90,7 +90,7 @@
                     me.name = data.name;
                     me.departmentId = data.department.id;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
             me.fetchDepartment();
@@ -104,7 +104,7 @@
                     var data = response.data;
                     me.department_list = data.results;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             create(){
@@ -120,7 +120,7 @@
                             200: "岗位信息更新成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },

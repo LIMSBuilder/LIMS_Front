@@ -627,7 +627,7 @@
                     var data = response.data;
                     me.typeList = data.results;
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             _initComponents: function () {
@@ -666,7 +666,7 @@
                         App.unblockUI('#contract_list');
                     })
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchPages(rowCount){
@@ -692,7 +692,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchItems(id){
@@ -705,7 +705,7 @@
                     var data = response.data;
                     me.items = data.items;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchLog(id){
@@ -718,7 +718,7 @@
                         var data = response.data;
                         me.log = data;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },

@@ -36,7 +36,7 @@
                 <tbody>
                 <span v-if="mailList.length==0">当前分类无邮件。</span>
                 <template v-for="item in mailList">
-                    <tr :class="item.state==0?'unread':''" @click="viewDetail(item.id)">
+                    <tr :class="item.state==0?'unread':''" >
                         <td class="inbox-small-cells">
                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                 <input type="checkbox" :value="item.id" v-model="selected" class="mail-checkbox"/>
@@ -47,7 +47,7 @@
                             <i :class="item.state==2?'fa fa-star inbox-started':'fa fa-star'"></i>
                         </td>
                         <td class="view-message hidden-xs"> {{item.mail.sender.name}}</td>
-                        <td class="view-message "> {{item.mail.title}}</td>
+                        <td class="view-message " @click="viewDetail(item.id)"> {{item.mail.title}}</td>
                         <td class="view-message inbox-small-cells" @click="deleteSignle(item.id)">
                             <i class="fa fa-trash-o"></i>
                         </td>
@@ -93,7 +93,7 @@
                     var data = response.data;
                     me.mailList = data.results;
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -120,7 +120,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             getData(){
@@ -173,7 +173,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -198,7 +198,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -222,7 +222,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -246,7 +246,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });

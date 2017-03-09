@@ -582,7 +582,7 @@
                     var data = response.data;
                     me.online_user = data;
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
         }

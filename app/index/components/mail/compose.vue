@@ -200,7 +200,7 @@
                         }
                     })
                 }, function () {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             });
             me.fetchTransmit();
@@ -226,7 +226,7 @@
                         editor.$txt.html(data.content);
                         me.transmitPath = data.path;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     })
                 }
             },
@@ -264,7 +264,7 @@
                         me.fetchReceiver();
                     })
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             removePath(item){
