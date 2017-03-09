@@ -208,7 +208,7 @@
             },
             removeAll(){
                 var me = this;
-                if (me.selected.length == 0) {
+                if (BlogUtils.getSelect("select").length == 0) {
                     error("至少需要选择一个岗位信息");
                     return;
                 }
