@@ -2,7 +2,7 @@
     <!-- BEGIN CONTENT BODY -->
     <div>
         <h1 class="page-title"> 创建新部门
-            <small>／New Department</small>
+            <small>／Department</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">
@@ -52,7 +52,6 @@
         },
         mounted(){
             BlogUtils.formValid(jQuery("#department_add"));
-            handleSidebarAndContentHeight();
         },
         methods: {
             create(){

@@ -2,7 +2,7 @@
     <!-- BEGIN CONTENT BODY -->
     <div>
         <h1 class="page-title"> 更新部门信息
-            <small>／Edit Department</small>
+            <small>／Department</small>
         </h1>
         <!-- BEGIN PAGE HEADER-->
         <div class="portlet light portlet-fit portlet-form ">

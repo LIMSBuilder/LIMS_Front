@@ -252,17 +252,12 @@
                 <ul class="sub-menu">
                     <router-link :to="{ path: '/customer/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">创建客户信息</span>
+                            <span class="title">创建新客户</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/customer/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">客户信息维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/customer/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新客户信息</span>
+                            <span class="title">客户信息列表</span>
                         </a>
                     </router-link>
                 </ul>
@@ -317,19 +312,14 @@
                     </router-link>
                     <router-link :to="{ path:'/role/list'}" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">岗位信息维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/role/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新岗位信息</span>
+                            <span class="title">岗位信息列表</span>
                         </a>
                     </router-link>
                 </ul>
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-user-plus"></i>
                     <span class="title">用户管理</span>
                     <span class="arrow"></span>
                 </a>
@@ -342,11 +332,6 @@
                     <router-link :to="{ path:'/user/list'}" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">用户信息维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/user/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新用户信息</span>
                         </a>
                     </router-link>
                 </ul>

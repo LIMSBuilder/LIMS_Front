@@ -13,7 +13,7 @@
                                 <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
+                                <a href="javascript:;" class="btn btn-sm btn-info" id="selectChange"> 选 择
                                     <i class="fa fa-check-square-o"></i>
                                 </a>
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
@@ -79,21 +79,23 @@
                                 </template>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <div class="pagination pull-right">
+                                <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                            </div>
+                            <!-- End Pagination -->
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!-- Pagination -->
-                    <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
-                    </div>
-                    <!-- End Pagination -->
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
 
         </div>
+    </div>
 </template>
 
-<script>
+<script type="es6">
     module.exports = {
         data(){
             return {
@@ -108,6 +110,7 @@
             var me = this;
             me.getData();
             me.fetchDepartment();
+            BlogUtils.selectAll("select", jQuery("#selectChange"));
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -205,7 +208,7 @@
             },
             removeAll(){
                 var me = this;
-                if (me.selected.length == 0) {
+                if (BlogUtils.getSelect("select").length == 0) {
                     error("至少需要选择一个岗位信息");
                     return;
                 }
@@ -230,13 +233,6 @@
                         });
                     }
                 });
-            },
-            selectAll(){
-                var me = this;
-                me.selected = [];
-                me.roleList.forEach(function (item, index) {
-                    me.selected.push(item.id);
-                })
             },
             findByDepartment(e){
                 var me = this;

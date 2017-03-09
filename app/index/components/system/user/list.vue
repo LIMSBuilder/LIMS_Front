@@ -13,7 +13,7 @@
                                 <a href="javascript:;" @click="create" class="btn btn-sm green"> 创 建
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="javascript:;" class="btn btn-sm btn-info" @click="selectAll"> 全 选
+                                <a href="javascript:;" class="btn btn-sm btn-info" id="selectChange"> 选 择
                                     <i class="fa fa-check-square-o"></i>
                                 </a>
                                 <a href="javascript:;" @click="removeAll" class="btn btn-sm red"> 删 除
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="actions" style="min-width: 200px;margin-right: 10px;">
-                            <select class="form-control" @click="findByRole($event)">
+                            <select class="form-control" @change="findByRole($event)">
                                 <option value>请选择岗位</option>
                                 <template v-for="item in roleList">
                                     <option :value="item.id">{{item.name}}</option>
@@ -40,7 +40,7 @@
                             </select>
                         </div>
                         <div class="actions" style="min-width: 200px;margin-right: 10px;">
-                            <select class="form-control" @click="findByDepartment($event)">
+                            <select class="form-control" @change="findByDepartment($event)">
                                 <option value>请选择部门</option>
                                 <template v-for="item in departmentList">
                                     <option :value="item.id">{{item.name}}</option>
@@ -91,13 +91,15 @@
                                 </template>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <div class="pagination pull-right">
+                                <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                            </div>
+                            <!-- End Pagination -->
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!-- Pagination -->
-                    <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
-                    </div>
-                    <!-- End Pagination -->
+
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
@@ -121,6 +123,7 @@
             var me = this;
             me.getData();
             me.fetchDepartment();
+            BlogUtils.selectAll("select", jQuery("#selectChange"));
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -255,7 +258,7 @@
             },
             removeAll(){
                 var me = this;
-                if (me.selected.length == 0) {
+                if (BlogUtils.getSelect("select").length == 0) {
                     error("至少需要选择一个用户信息");
                     return;
                 }
@@ -280,13 +283,6 @@
                         });
                     }
                 });
-            },
-            selectAll(){
-                var me = this;
-                me.selected = [];
-                me.userList.forEach(function (item, index) {
-                    me.selected.push(item.id);
-                })
             },
             total(){
                 var me = this;
