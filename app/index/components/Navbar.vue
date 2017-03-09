@@ -324,7 +324,7 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-user-plus"></i>
                     <span class="title">用户管理</span>
                     <span class="arrow"></span>
                 </a>
@@ -337,11 +337,6 @@
                     <router-link :to="{ path:'/user/list'}" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">用户信息维护</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/user/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">更新用户信息</span>
                         </a>
                     </router-link>
                 </ul>
