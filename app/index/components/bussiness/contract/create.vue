@@ -1166,11 +1166,11 @@
                             $('#trustee').selectpicker("val", data.id);
                             me.contract.trustee = data.id;
                         }, function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     })
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             addMonitor(){
@@ -1190,7 +1190,7 @@
                             })
                         }
                         , function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                 }
             },
@@ -1247,7 +1247,7 @@
                         }
                     })
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             fetchCustomer(pageNum, rowCount){
@@ -1263,7 +1263,7 @@
                     me.customerList = data.results;
 
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchElement(){
@@ -1279,7 +1279,7 @@
                         });
                     })
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchProjectByElement(e){
@@ -1307,7 +1307,7 @@
                         })
                     }
                     , function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 )
             },
@@ -1337,7 +1337,7 @@
                         })
                     }
                     , function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 )
             },
@@ -1355,7 +1355,7 @@
                         });
                     }
                     , function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
             },
             fetchPages (rowCount) {
@@ -1382,7 +1382,7 @@
                         });
                     }
                     , function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
             },
             getCustomer(){
@@ -1425,7 +1425,7 @@
                                 me.contract[key] = data[key];
                             }
                         }, function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 })
@@ -1448,7 +1448,7 @@
                         });
                     })
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             wizard(){

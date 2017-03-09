@@ -110,7 +110,7 @@
                         200: "合同预设信息保存成功！"
                     });
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchDefault(){
@@ -119,7 +119,7 @@
                     var data = response.data;
                     me.client = data;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             resetAll(){

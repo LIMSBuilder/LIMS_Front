@@ -127,7 +127,7 @@
                     me.user.id = query.id;
                     me.getRole(data.departmentId, data.roleId);
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             }
             me.fetchDepartment();
@@ -140,7 +140,7 @@
                     var data = response.data;
                     me.department_list = data.results;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             create(){
@@ -152,7 +152,7 @@
                             200: "用户信息修改成功"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },
@@ -168,7 +168,7 @@
                         var data = response.data;
                         me.role_list = data.results;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     })
                 } else {
                     me.role_list = [];
@@ -186,7 +186,7 @@
                         me.role_list = data.results;
                         me.user.roleId = roleId;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     })
                 } else {
                     me.role_list = [];

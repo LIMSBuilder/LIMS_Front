@@ -815,7 +815,7 @@
                         App.unblockUI('#contract_list');
                     })
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchPages(rowCount){
@@ -841,7 +841,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchItems(id){
@@ -854,7 +854,7 @@
                     var data = response.data;
                     me.items = data.items;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchContract(id){
@@ -867,7 +867,7 @@
                     var data = response.data;
                     me.contract = data;
                 }, function () {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             fetchLog(id){
@@ -880,7 +880,7 @@
                         var data = response.data;
                         me.log = data;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },
@@ -894,7 +894,7 @@
                     var data = response.data;
                     me.reviewList = data;
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             getData(){
@@ -981,7 +981,7 @@
                                 }
                             })
                         }, function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 })
@@ -1007,7 +1007,7 @@
                                 }
                             })
                         }, function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 })
@@ -1023,7 +1023,7 @@
                     var data = response.data;
                     me.dear_count = data.count;
                 }, function () {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
         }

@@ -15,6 +15,7 @@ module.exports = {
             path.resolve(__dirname, '../app/index/index.js')
         ],
         login: path.resolve(__dirname, '../app/login/index.js'),
+        lock: path.resolve(__dirname, '../app/lockScreen/index.js'),
     },
     // 输出配置
     output: {

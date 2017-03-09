@@ -197,7 +197,7 @@
                         var data = response.data;
                         me.mail = data;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
 
                     me.$http.get("/api/mail/getReceiverList", {
@@ -209,7 +209,7 @@
                         console.log(data.results);
                         me.receiverList = data.results;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     })
                 }
             },
@@ -223,7 +223,7 @@
                     var data = response.data;
                     console.log(data);
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             },
             downAll(){
@@ -267,7 +267,7 @@
                             });
                             me.fetchData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -291,7 +291,7 @@
                             });
                             me.getData();
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                     }
                 });
@@ -307,7 +307,7 @@
 //                    var data = response.data;
 //                    me.tree = data;
 //                }, response => {
-//                    serverErrorInfo();
+//                    serverErrorInfo(response);
 //                })
             }
         }

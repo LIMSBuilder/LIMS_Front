@@ -90,7 +90,7 @@
                     me.name = data.name;
                     me.identifier = data.identifier;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
 
@@ -110,7 +110,7 @@
                             200: "环境监测类别更新成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },

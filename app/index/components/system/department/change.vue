@@ -72,7 +72,7 @@
                     var data = response.data;
                     me.name = data.name;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
             BlogUtils.formValid(jQuery("#department_change"));
@@ -90,7 +90,7 @@
                             200: "部门信息修改成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },

@@ -124,7 +124,7 @@
                     var data = response.data;
                     me.elementList = data.results;
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -151,7 +151,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             search(e){
@@ -182,7 +182,7 @@
                                 }
                             })
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 })
@@ -219,7 +219,7 @@
                                 }
                             });
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 });
@@ -252,7 +252,7 @@
                                 }
                             })
                         }, function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         })
                         closeConfirm();
                     }

@@ -116,7 +116,7 @@
                         200: "客户信息创建成功！"
                     });
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             }
         }

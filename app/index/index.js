@@ -417,8 +417,10 @@ router.afterEach(function () {
     handleSidebarAndContentHeight();
 });
 router.beforeEach((to, from, next) => {
-
-    next();
+    if (localStorage.getItem("locked")) {
+        window.location.href = "/lock.html";
+    } else
+        next();
 });
 window.router = router;
 new Vue({

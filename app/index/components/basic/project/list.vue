@@ -135,7 +135,7 @@
                         me.projectList = data.results;
                     },
                     response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },
@@ -145,7 +145,7 @@
                         var data = response.data;
                         me.departmentList = data.results;
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },
@@ -155,7 +155,7 @@
                     var data = response.data;
                     me.elementList = data.results;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -182,7 +182,7 @@
                             }
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 )
                 ;
@@ -215,7 +215,7 @@
                                     }
                                 })
                             }, response => {
-                                serverErrorInfo();
+                                serverErrorInfo(response);
                             }
                         );
                     }
@@ -254,7 +254,7 @@
                                 });
                             },
                             response => {
-                                serverErrorInfo();
+                                serverErrorInfo(response);
                             }
                         );
                     }

@@ -1350,7 +1350,7 @@
                         }
                     })
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             initCalendar: function () {
@@ -1411,7 +1411,7 @@
                             var events = data.results;
                             callback(events);
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 });

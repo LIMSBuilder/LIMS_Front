@@ -125,7 +125,7 @@
                             200: "环境要素创建成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },

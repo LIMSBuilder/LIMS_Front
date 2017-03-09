@@ -111,7 +111,7 @@
                     var data = response.data;
                     me.departmentList = data.results;
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -138,7 +138,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             getData(){
@@ -174,7 +174,7 @@
                                 }
                             })
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 })
@@ -206,7 +206,7 @@
                                 });
                             },
                             response => {
-                                serverErrorInfo();
+                                serverErrorInfo(response);
                             }
                         );
                     }

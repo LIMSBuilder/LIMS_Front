@@ -125,7 +125,7 @@
                     var data = response.data;
                     me.roleList = data.results;
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchDepartment(){
@@ -134,7 +134,7 @@
                     var data = response.data;
                     me.departmentList = data.results;
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -161,7 +161,7 @@
                         }
                     });
                 }, (response) => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             search(e){
@@ -192,7 +192,7 @@
                                 }
                             })
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 })
@@ -229,7 +229,7 @@
                                 }
                             });
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                     }
                 });

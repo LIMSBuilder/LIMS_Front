@@ -79,7 +79,7 @@
                     var data = response.data;
                     me.department_list = data.results;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             create(){
@@ -98,7 +98,7 @@
                             }
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             }

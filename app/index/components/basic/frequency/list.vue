@@ -125,7 +125,7 @@
                     var data = response.data;
                     me.frequencyList = data.results;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             //渲染页码
@@ -152,7 +152,7 @@
                         }
                     });
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             search(e){
@@ -184,7 +184,7 @@
                                 }
                             })
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                         closeConfirm();
                     }
@@ -222,7 +222,7 @@
                                 }
                             });
                         }, response => {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         });
                         closeConfirm();
                     }

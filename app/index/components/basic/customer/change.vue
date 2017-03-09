@@ -131,7 +131,7 @@
                     var data = response.data;
                     me.client = data;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
         },
@@ -145,7 +145,7 @@
                             200: "客户信息修改成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },

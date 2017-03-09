@@ -300,7 +300,7 @@
                         me.user = data;
                     }
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
         }

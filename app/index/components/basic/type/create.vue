@@ -83,7 +83,7 @@
                             200: "环境监测类别创建成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             }

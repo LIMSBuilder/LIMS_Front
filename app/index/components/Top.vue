@@ -394,7 +394,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="page_user_lock_1.html">
+                                <a href="/lock.html">
                                     <i class="icon-lock"></i> 账户锁定 </a>
                             </li>
                             <li>
@@ -449,7 +449,7 @@
                         200: "调试模式登陆成功！"
                     })
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             fetchLogin(){
@@ -459,7 +459,7 @@
                     me.user = data;
 
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             },
             exitLogin(){

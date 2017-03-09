@@ -135,7 +135,7 @@
                     var data = response.data;
                     me.frequency = data;
                 }, response => {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 })
             }
             BlogUtils.formValid(jQuery("#frequency_add"));
@@ -150,7 +150,7 @@
                             200: "监测频次修改成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },

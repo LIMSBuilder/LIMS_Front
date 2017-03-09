@@ -129,7 +129,7 @@
                             200: "监测频次创建成功！"
                         });
                     }, response => {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     });
                 }
             },

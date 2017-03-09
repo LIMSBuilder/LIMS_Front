@@ -147,8 +147,14 @@ window.confirm = function (option) {
 window.closeConfirm = function () {
     jQuery("#confirm").modal("hide");
 }
-window.serverErrorInfo = function () {
-    error("服务器错误")
+window.serverErrorInfo = function (response) {
+
+    if (response.status == 403) {
+        router.push("/403");
+    }
+    if (response.status == 500) {
+        error("服务器错误")
+    }
 };
 window.modal = function (option) {
     // var defaultValue = {

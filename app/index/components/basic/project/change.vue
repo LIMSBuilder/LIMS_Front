@@ -119,7 +119,7 @@
                     var data = response.data;
                     me.project = data;
                 }, function (response) {
-                    serverErrorInfo();
+                    serverErrorInfo(response);
                 });
             }
             BlogUtils.formValid(jQuery("#project_add"))
@@ -131,7 +131,7 @@
                         var data = response.data;
                         me.department_list = data.results;
                     }, function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },
@@ -141,7 +141,7 @@
                         var data = response.data;
                         me.elementList = data.results;
                     }, function (response) {
-                        serverErrorInfo();
+                        serverErrorInfo(response);
                     }
                 );
             },
@@ -154,7 +154,7 @@
                                 200: "监测项目修改成功"
                             });
                         }, function (response) {
-                            serverErrorInfo();
+                            serverErrorInfo(response);
                         }
                     )
                 }
