@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e13c4b-5f2f-4216-8e0d-52831df0a2cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/create.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/task.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Navbar.vue" afterPath="$PROJECT_DIR$/app/index/components/Navbar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/contract/contract.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/contract.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/index.js" afterPath="$PROJECT_DIR$/app/index/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lockScreen/components/Lock.vue" afterPath="$PROJECT_DIR$/app/lockScreen/components/Lock.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/task/create.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/create.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,15 +27,15 @@
       <file leaf-file-name="create.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/create.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="827">
-              <caret line="2106" column="41" lean-forward="false" selection-start-line="2106" selection-start-column="41" selection-end-line="2106" selection-end-column="41" />
+            <state relative-caret-position="403">
+              <caret line="1488" column="21" lean-forward="false" selection-start-line="1488" selection-start-column="21" selection-end-line="1488" selection-end-column="21" />
               <folding>
                 <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="e#111668#111687#0" expanded="true" />
-                <element signature="e#126097#129175#0" expanded="false" />
-                <element signature="e#129223#133027#0" expanded="false" />
-                <element signature="e#133079#134294#0" expanded="false" />
-                <element signature="e#134363#135688#0" expanded="false" />
+                <element signature="e#102249#102268#0" expanded="true" />
+                <element signature="e#118030#121108#0" expanded="false" />
+                <element signature="e#121156#124960#0" expanded="false" />
+                <element signature="e#125012#126227#0" expanded="false" />
+                <element signature="e#126296#127621#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -100,9 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>src</find>
-      <find>form</find>
-      <find>form&gt;</find>
       <find>&lt;form</find>
       <find>me.monitor.point = jQuery(&quot;#monitor_point&quot;).tagsinput(&quot;items&quot;);</find>
       <find>monitor_point</find>
@@ -125,11 +116,14 @@
       <find>操 作</find>
       <find>导 出</find>
       <find>fetchItems</find>
-      <find>联系人</find>
       <find>请选择联系人</find>
-      <find>监测类别</find>
       <find>selectpicker</find>
       <find>任务数据</find>
+      <find>合同列表</find>
+      <find>联系人</find>
+      <find>:dis</find>
+      <find>监测类别</find>
+      <find>create</find>
     </findStrings>
     <replaceStrings>
       <replace>user_add</replace>
@@ -581,12 +575,12 @@
       <workItem from="1488583576135" duration="38120000" />
       <workItem from="1488718677988" duration="15677000" />
       <workItem from="1488778547534" duration="67128000" />
-      <workItem from="1489110201421" duration="6494000" />
+      <workItem from="1489110201421" duration="10009000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304861000" />
+    <option name="totallyTimeSpent" value="308376000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -990,15 +984,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/create.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="2106" column="41" lean-forward="false" selection-start-line="2106" selection-start-column="41" selection-end-line="2106" selection-end-column="41" />
+        <state relative-caret-position="403">
+          <caret line="1488" column="21" lean-forward="false" selection-start-line="1488" selection-start-column="21" selection-end-line="1488" selection-end-column="21" />
           <folding>
             <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#111668#111687#0" expanded="true" />
-            <element signature="e#126097#129175#0" expanded="false" />
-            <element signature="e#129223#133027#0" expanded="false" />
-            <element signature="e#133079#134294#0" expanded="false" />
-            <element signature="e#134363#135688#0" expanded="false" />
+            <element signature="e#102249#102268#0" expanded="true" />
+            <element signature="e#118030#121108#0" expanded="false" />
+            <element signature="e#121156#124960#0" expanded="false" />
+            <element signature="e#125012#126227#0" expanded="false" />
+            <element signature="e#126296#127621#0" expanded="false" />
           </folding>
         </state>
       </provider>

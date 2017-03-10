@@ -111,7 +111,7 @@
                                                             <i class="fa fa-building-o"></i>
                                                             <input type="text" class="form-control" name="client_unit"
                                                                    v-model="task.client_unit"
-                                                                   id="client_unit" required/>
+                                                                   id="client_unit" required :disabled="contract_type"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -125,7 +125,7 @@
                                                             <i class="fa fa-send"></i>
                                                             <input type="text" class="form-control" name="client_code"
                                                                    v-model="task.client_code"
-                                                                   id="client_code"/>
+                                                                   id="client_code" :disabled="contract_type"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -142,7 +142,8 @@
                                                             <input type="text" class="form-control"
                                                                    name="client_address"
                                                                    id="client_address"
-                                                                   v-model="task.client_address"/>
+                                                                   v-model="task.client_address"
+                                                                   :disabled="contract_type"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,7 +156,7 @@
                                                             <i class="fa fa-phone"></i>
                                                             <input type="text" class="form-control" name="client_tel"
                                                                    v-model="task.client_tel"
-                                                                   id="client_tel"/>
+                                                                   id="client_tel" :disabled="contract_type"/>
                                                         </div>
 
                                                     </div>
@@ -172,7 +173,7 @@
                                                             <i class="fa fa-user"></i>
                                                             <input type="text" class="form-control" name="client"
                                                                    id="client"
-                                                                   v-model="task.client"/>
+                                                                   v-model="task.client" :disabled="contract_type"/>
                                                         </div>
 
 
@@ -187,7 +188,7 @@
                                                             <i class="fa fa-fax"></i>
                                                             <input type="text" class="form-control" name="client_fax"
                                                                    v-model="task.client_fax"
-                                                                   id="client_fax"/>
+                                                                   id="client_fax" :disabled="contract_type"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -202,7 +203,7 @@
                                                 <div class="col-md-10">
                                                     <input type="text" class="form-control" name="projectName"
                                                            v-model="task.name"
-                                                           id="projectName" required/>
+                                                           id="projectName" :disabled="contract_type" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -213,7 +214,7 @@
                                                     <textarea class="form-control" maxlength="500" rows="3"
                                                               name="projectAim"
                                                               v-model="task.aim"
-                                                              id="projectAim"></textarea>
+                                                              id="projectAim" :disabled="contract_type"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -223,10 +224,12 @@
                                                 <div class="col-md-10">
                                                     <select class="bs-select form-control" name="projectType"
                                                             v-model="task.type" id="projectType"
-                                                            data-live-search="true" required>
+                                                            data-live-search="true" required :disabled="contract_type">
                                                         <option>请选择监测类别</option>
                                                         <template v-for="item in typeList">
-                                                            <option :value="item.id">{{item.name}}</option>
+                                                            <option :value="item.id" :disabled="contract_type">
+                                                                {{item.name}}
+                                                            </option>
                                                         </template>
                                                     </select>
                                                 </div>
@@ -239,13 +242,15 @@
                                                     <div class="mt-radio-inline">
                                                         <label class="mt-radio">
                                                             <input type="radio" name="projectWay" id="projectWay1"
-                                                                   value="1" v-model="task.way">
+                                                                   value="1" v-model="task.way"
+                                                                   :disabled="contract_type">
                                                             以我单位通过计量认证、国家实验室认可的方法进行检测
                                                             <span></span>
                                                         </label>
                                                         <label class="mt-radio">
                                                             <input type="radio" name="projectWay" id="projectWay2"
-                                                                   value="2" v-model="task.way"> 客户指定的方法
+                                                                   value="2" v-model="task.way"
+                                                                   :disabled="contract_type"> 客户指定的方法
                                                             <span></span>
                                                         </label>
                                                     </div>
@@ -258,7 +263,7 @@
                                                 <div class="col-md-10">
                                                     <input type="text" class="form-control" name="wayDesp"
                                                            v-model="task.wayDesp"
-                                                           id="wayDesp"/>
+                                                           id="wayDesp" :disabled="contract_type"/>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
@@ -404,7 +409,7 @@
                                                     <textarea class="form-control" maxlength="500" rows="5"
                                                               name="other"
                                                               v-model="task.other"
-                                                              id="other"></textarea>
+                                                              id="other" :disabled="contract_type"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -946,10 +951,6 @@
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
                                                             <span class="todo-username pull-left">{{contract.name}}</span>
-                                                            <a href="#write_review"
-                                                               class="todo-username-btn btn btn-circle btn-default btn-sm"
-                                                               v-if="contract.process==1">
-                                                                &nbsp;审 核</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1034,10 +1035,6 @@
                                                                         <p class="form-control-static"
                                                                            v-if="contract.process==1">
                                                                             {{contract.client}}
-                                                                            <a href="javascript:;" data-type="联系人"
-                                                                               @click="add_review($event)">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1047,11 +1044,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_fax}}
-                                                                            <a href="javascript:;" data-type="传真号码"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1064,11 +1056,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_unit}}
-                                                                            <a href="javascript:;" data-type="受托单位"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1078,11 +1065,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_code}}
-                                                                            <a href="javascript:;" data-type="邮政编码"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1094,11 +1076,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_address}}
-                                                                            <a href="javascript:;" data-type="联系地址"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1108,11 +1085,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_tel}}
-                                                                            <a href="javascript:;" data-type="联系电话"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1124,11 +1096,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee.name}}
-                                                                            <a href="javascript:;" data-type="联系人"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1138,11 +1105,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_fax}}
-                                                                            <a href="javascript:;" data-type="传真号码"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1155,11 +1117,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.name}}
-                                                                            <a href="javascript:;" data-type="项目名称"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1171,11 +1128,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.aim}}
-                                                                            <a href="javascript:;" data-type="监测目的"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1191,20 +1143,10 @@
                                                                         <p class="form-control-static"
                                                                            v-if="contract.way==1">
                                                                             以我单位通过计量认证、国家实验室认可的方法进行检测。
-                                                                            <a href="javascript:;" data-type="检测方式"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                         <p class="form-control-static"
                                                                            v-if="contract.way==2">
                                                                             客户指定的方法：{{contract.wayDesp}}
-                                                                            <a href="javascript:;" data-type="检测方式"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1217,20 +1159,10 @@
                                                                         <p class="form-control-static"
                                                                            v-if="contract.in_room==1">
                                                                             客户需要进入实验室监视与本次委托有关的检测活动。
-                                                                            <a href="javascript:;" data-type="客户要求"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                         <p class="form-control-static"
                                                                            v-if="contract.secret==1">
                                                                             客户需要本实验室对本次委托有关资料保密。
-                                                                            <a href="javascript:;" data-type="客户要求"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1242,11 +1174,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.package_unit}}
-                                                                            <a href="javascript:;" data-type="分包单位"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1259,11 +1186,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.paymentWay}}
-                                                                            <a href="javascript:;" data-type="交付方式"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1275,11 +1197,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.finish_time}}
-                                                                            <a href="javascript:;" data-type="完成时间"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1291,11 +1208,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.payment}}
-                                                                            <a href="javascript:;" data-type="监测费用"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1307,11 +1219,6 @@
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.other}}
-                                                                            <a href="javascript:;" data-type="其他约定"
-                                                                               @click="add_review($event)"
-                                                                               v-if="contract.process==1">
-                                                                                <i class="fa fa-edit"></i>
-                                                                            </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -1574,18 +1481,47 @@
                     console.log(JSON.stringify(items[i]))
                     me.task.project_items.push(JSON.stringify(items[i]))
                 }
-
-                me.$http.post("/api/task/create", me.task).then(function (response) {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("任务创建成功！");
-                            router.push("/task/list");
-                        }
+                console.log(JSON.parse(JSON.stringify(me.task)));
+                if (me.contract_type) {
+                    //是根据合同创建的任务
+                    me.$http.post("/api/task/createByContract",{
+                        "contract_id": me.contract.id
+                    }).then(function (response) {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("任务创建成功！");
+                                router.push("/task/list");
+                            }
+                        })
+                    }, function (response) {
+                        serverErrorInfo(response);
                     })
-                }, function (response) {
-                    serverErrorInfo(response);
-                })
+                } else {
+                    //是自定义创建的任务
+                    me.$http.post("/api/task/create", me.task).then(function (response) {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("任务创建成功！");
+                                router.push("/task/list");
+                            }
+                        })
+                    }, function (response) {
+                        serverErrorInfo(response);
+                    })
+                }
+//                me.$http.post("/api/task/create", me.task).then(function (response) {
+//                    var data = response.data;
+//                    codeState(data.code, {
+//                        200: function () {
+//                            alert("任务创建成功！");
+//                            router.push("/task/list");
+//                        }
+//                    })
+//                }, function (response) {
+//                    serverErrorInfo(response);
+//                })
             },
             fetchCustomer(pageNum, rowCount){
                 var me = this;
