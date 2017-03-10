@@ -9,7 +9,7 @@
                 <h4>{{user.name}}</h4>
                 <div class="form-group">
                     <input class="form-control placeholder-no-fix" type="password" autocomplete="off"
-                           placeholder="请输入密码" name="password" v-model="password" @keyup.enter="backLogin"></div>
+                           placeholder="请输入密码" name="password" v-model="password" @keyup.enter="checkPwd"></div>
                 <div class="form-actions">
                     <button type="button" class="btn red uppercase" @click="checkPwd">登 录
                     </button>
