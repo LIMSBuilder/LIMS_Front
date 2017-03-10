@@ -13,7 +13,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>合同管理</span>
+                    <span>任务管理</span>
                 </li>
             </ul>
         </div>

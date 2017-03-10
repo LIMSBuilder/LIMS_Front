@@ -41,6 +41,8 @@ import Create_Contract from './components/bussiness/contract/create.vue'
 import Contract_List from './components/bussiness/contract/list.vue'
 import Contract_Review from './components/bussiness/contract/review.vue'
 
+import Task from './components/bussiness/task/task.vue'
+import Create_Task from './components/bussiness/task/create.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -401,6 +403,17 @@ var routes = [
             {
                 path: "review",
                 component: Contract_Review
+            }
+        ]
+    },
+    {
+        path: "/task",
+        name: "task",
+        component: Task,
+        children: [
+            {
+                path: "create",
+                component: Create_Task
             }
         ]
     }

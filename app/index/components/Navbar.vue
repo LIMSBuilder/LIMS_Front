@@ -89,6 +89,7 @@
                     </router-link>
                 </ul>
             </li>
+
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-tasks"></i>
@@ -96,17 +97,17 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/contract/create' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/task/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">创建新任务</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/contract/list' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/task/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">任务列表</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/contract/review' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/task/review' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">流程调整</span>
                         </a>
