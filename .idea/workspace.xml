@@ -27,15 +27,15 @@
       <file leaf-file-name="create.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/create.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="1488" column="21" lean-forward="false" selection-start-line="1488" selection-start-column="21" selection-end-line="1488" selection-end-column="21" />
+            <state relative-caret-position="857">
+              <caret line="2035" column="63" lean-forward="false" selection-start-line="2035" selection-start-column="63" selection-end-line="2035" selection-end-column="63" />
               <folding>
                 <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
                 <element signature="e#102249#102268#0" expanded="true" />
-                <element signature="e#118030#121108#0" expanded="false" />
-                <element signature="e#121156#124960#0" expanded="false" />
-                <element signature="e#125012#126227#0" expanded="false" />
-                <element signature="e#126296#127621#0" expanded="false" />
+                <element signature="e#117533#120611#0" expanded="false" />
+                <element signature="e#120659#124463#0" expanded="false" />
+                <element signature="e#124515#125730#0" expanded="false" />
+                <element signature="e#125799#127124#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -575,12 +575,12 @@
       <workItem from="1488583576135" duration="38120000" />
       <workItem from="1488718677988" duration="15677000" />
       <workItem from="1488778547534" duration="67128000" />
-      <workItem from="1489110201421" duration="10009000" />
+      <workItem from="1489110201421" duration="10592000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308376000" />
+    <option name="totallyTimeSpent" value="308959000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -984,15 +984,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/create.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="1488" column="21" lean-forward="false" selection-start-line="1488" selection-start-column="21" selection-end-line="1488" selection-end-column="21" />
+        <state relative-caret-position="857">
+          <caret line="2035" column="63" lean-forward="false" selection-start-line="2035" selection-start-column="63" selection-end-line="2035" selection-end-column="63" />
           <folding>
             <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="e#102249#102268#0" expanded="true" />
-            <element signature="e#118030#121108#0" expanded="false" />
-            <element signature="e#121156#124960#0" expanded="false" />
-            <element signature="e#125012#126227#0" expanded="false" />
-            <element signature="e#126296#127621#0" expanded="false" />
+            <element signature="e#117533#120611#0" expanded="false" />
+            <element signature="e#120659#124463#0" expanded="false" />
+            <element signature="e#124515#125730#0" expanded="false" />
+            <element signature="e#125799#127124#0" expanded="false" />
           </folding>
         </state>
       </provider>

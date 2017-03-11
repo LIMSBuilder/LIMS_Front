@@ -1511,17 +1511,6 @@
                         serverErrorInfo(response);
                     })
                 }
-//                me.$http.post("/api/task/create", me.task).then(function (response) {
-//                    var data = response.data;
-//                    codeState(data.code, {
-//                        200: function () {
-//                            alert("任务创建成功！");
-//                            router.push("/task/list");
-//                        }
-//                    })
-//                }, function (response) {
-//                    serverErrorInfo(response);
-//                })
             },
             fetchCustomer(pageNum, rowCount){
                 var me = this;
@@ -2041,6 +2030,10 @@
                     type: ""
                 };
                 me.contract_type = false;
+                jQuery("#contract_wizard").bootstrapWizard("show",0);
+                $('#contract_wizard').find('.button-previous').hide();
+                $('#contract_wizard').find('.button-submit').hide();
+                $('#contract_wizard').find('.button-next').show();
             }
         }
     }
