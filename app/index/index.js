@@ -43,6 +43,11 @@ import Contract_Review from './components/bussiness/contract/review.vue'
 
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
+import Task_List from './components/bussiness/task/list.vue'
+
+
+import Sample from './components/bussiness/sample/sample.vue'
+import Apply_Sample from './components/bussiness/sample/apply.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -414,7 +419,26 @@ var routes = [
             {
                 path: "create",
                 component: Create_Task
-            }
+            },
+            {
+                path: "list",
+                component: Task_List
+            },
+        ]
+    },
+    {
+        path: "/sample",
+        name: "sample",
+        component: Sample,
+        children: [
+            {
+                path: "apply",
+                component: Apply_Sample
+            },
+            {
+                path: "list",
+                component: Task_List
+            },
         ]
     }
 ];
@@ -426,14 +450,21 @@ var router = new VueRouter({
 });
 
 router.afterEach(function () {
-    console.log("之心了这个");
     handleSidebarAndContentHeight();
 });
 router.beforeEach((to, from, next) => {
     if (localStorage.getItem("locked")) {
         window.location.href = "/lock.html";
-    } else
+    } else {
+        // Vue.http.get("/api/login/getLogin").then(response => {
+        //     var data = response.data;
+        //     next();
+        // }, response => {
+        //     serverErrorInfo();
+        // });
         next();
+    }
+
 });
 window.router = router;
 new Vue({

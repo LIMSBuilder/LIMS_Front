@@ -115,6 +115,21 @@
                 </ul>
             </li>
 
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-leaf"></i>
+                    <span class="title">样品管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">样品号申请</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+
 
             <li class="heading">
                 <h3 class="uppercase">数据统计</h3>

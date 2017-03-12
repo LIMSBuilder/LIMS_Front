@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同列表
-            <small>／Contract</small>
+        <h1 class="page-title"> 任务列表
+            <small>／Task</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -11,8 +11,8 @@
                         <div class="portlet light ">
                             <div class="portlet-title">
                                 <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同进展 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看合同进展</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">任务进展 </span>
+                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看任务进展</span>
                                 </div>
 
                             </div>
@@ -22,26 +22,6 @@
                                         <li class="active">
                                             <a href="javascript:;" @click="searchByProcess('total')">
                                                 <span class="badge badge-default"> 6 </span> 所有 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(0)">
-                                                <span class="badge badge-warning"> 6 </span> 草稿 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(1)">
-                                                <span class="badge badge-info"> 2 </span> 待审核 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(2)">
-                                                <span class="badge badge-primary"> 3 </span> 待执行</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(3)">
-                                                <span class="badge badge-success"> 14 </span> 已执行 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(-1)">
-                                                <span class="badge badge-danger"> 6 </span> 已中止 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -79,6 +59,29 @@
                             <div class="portlet-title">
                                 <div class="caption" data-toggle="collapse"
                                      data-target=".todo-project-list-content-tags">
+                                    <span class="caption-subject font-yellow bold uppercase">采样类型 </span>
+                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
+                                <div class="todo-project-list">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li>
+                                            <a href="javascript:;" @click="searchByType(item.id)">
+                                                单位自送样 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByType(item.id)">
+                                                现场送样 </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption" data-toggle="collapse"
+                                     data-target=".todo-project-list-content-tags">
                                     <span class="caption-subject font-blue bold uppercase">搜索 </span>
                                 </div>
                             </div>
@@ -102,7 +105,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同列表</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">任务列表</span>
                                 </div>
                                 <div class="actions">
                                     <div class="btn-group">
@@ -113,25 +116,25 @@
                                         </a>
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <a href="javascript:;"> 创建新合同 </a>
+                                                <a href="javascript:;"> 创建新任务 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> 作为模板合同创建 </a>
+                                                <a href="javascript:;"> 作为模板任务创建 </a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="javascript:;"> 导出合同
+                                                <a href="javascript:;"> 导出任务
                                                     <span class="badge badge-success"> 12 </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> 中止合同
+                                                <a href="javascript:;"> 中止任务
                                                     <span class="badge badge-warning"> 9 </span>
                                                 </a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="javascript:;"> 删除合同 </a>
+                                                <a href="javascript:;"> 删除任务 </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -141,8 +144,8 @@
                             <div class="portlet-body">
                                 <div class="row">
                                     <div class="col-md-5 col-sm-4">
-                                        <div class="todo-tasklist" id="contract_list">
-                                            <template v-for="item in contractList">
+                                        <div class="todo-tasklist" id="task_list">
+                                            <template v-for="item in taskList">
                                                 <div @click="viewDetails(item)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
                                                     <div class="todo-userpic pull-left" style="margin-right: 10px;"><i
@@ -187,10 +190,10 @@
                                         <!-- End Pagination -->
                                     </div>
                                     <div class="todo-tasklist-devider"></div>
-                                    <div class="col-md-7 col-sm-8" v-show="!contract.id">
-                                        <h1 class="text-center">暂无合同信息</h1>
+                                    <div class="col-md-7 col-sm-8" v-show="!task.id">
+                                        <h1 class="text-center">暂无任务信息</h1>
                                     </div>
-                                    <div class="col-md-7 col-sm-8" v-show="contract.id">
+                                    <div class="col-md-7 col-sm-8" v-show="task.id">
                                         <form action="#" class="form-horizontal form-bordered form-row-stripped">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
@@ -201,7 +204,7 @@
                                                                  style="margin-right: 10px;">
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
-                                                            <span class="todo-username pull-left">{{contract.name}}</span>
+                                                            <span class="todo-username pull-left">{{task.name}}</span>
                                                             <button type="button"
                                                                     class="todo-username-btn btn btn-circle btn-default btn-sm">
                                                                 &nbsp;编 辑&nbsp;</button>
@@ -214,7 +217,7 @@
                                                             <!--&nbsp; 导 出 &nbsp;</button>-->
 
                                                             <span class="todo-username pull-left"
-                                                                  style="font-size: 14px;">编号：{{contract.identify}}</span>
+                                                                  style="font-size: 14px;">编号：{{task.identify}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -222,19 +225,10 @@
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
-                                                            <a href="#page_1" data-toggle="tab"> 甲方信息 </a>
+                                                            <a href="#page_1" data-toggle="tab"> 任务详情 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_2" data-toggle="tab"> 乙方信息 </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#page_3" data-toggle="tab"> 合同内容 </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#page_4" data-toggle="tab"> 监测项目 </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#page_5" data-toggle="tab"> 其他约定 </a>
+                                                            <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -245,7 +239,7 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.client_unit}}</p>
+                                                                            {{task.client_unit}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
@@ -253,7 +247,7 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.client_code}}</p>
+                                                                            {{task.client_code}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -263,7 +257,7 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.client_address}}</p>
+                                                                            {{task.client_address}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
@@ -271,7 +265,7 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.client_tel}}</p>
+                                                                            {{task.client_tel}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -281,7 +275,7 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.client}}</p>
+                                                                            {{task.client}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
@@ -289,75 +283,18 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.client_fax}}</p>
+                                                                            {{task.client_fax}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="page_2">
-                                                            <div class="row">
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">受托单位
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.trustee_unit}}</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">邮政编码
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.trustee_code}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系地址
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.client_address}}</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系电话
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.trustee_tel}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系人
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.trustee.name}}</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">传真号码
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.trustee_fax}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="page_3">
+                                                            <hr>
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
                                                                     <label class="control-label col-md-2">项目名称
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.name}}</p>
+                                                                            {{task.name}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -367,12 +304,19 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.aim}}</p>
+                                                                            {{task.aim}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-2">监测类别
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static">
+                                                                            {{task.type.name}}</p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
@@ -380,40 +324,16 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static"
-                                                                           v-if="contract.way==1">
+                                                                           v-if="task.way==1">
                                                                             以我单位通过计量认证、国家实验室认可的方法进行检测。</p>
                                                                         <p class="form-control-static"
-                                                                           v-if="contract.way==2">
-                                                                            客户指定的方法：{{contract.wayDesp}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">客户要求
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static"
-                                                                           v-if="contract.in_room==1">
-                                                                            客户需要进入实验室监视与本次委托有关的检测活动。</p>
-                                                                        <p class="form-control-static"
-                                                                           v-if="contract.secret==1">
-                                                                            客户需要本实验室对本次委托有关资料保密。</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">分包单位
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.package_unit}}</p>
+                                                                           v-if="task.way==2">
+                                                                            客户指定的方法：{{task.wayDesp}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane" id="page_4">
+                                                        <div class="tab-pane" id="page_2">
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
                                                                     <thead>
@@ -464,48 +384,6 @@
                                                                     </template>
                                                                     </tbody>
                                                                 </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="page_5">
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">交付方式
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.paymentWay}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">完成时间
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.finish_time}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">监测费用
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.payment}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-2">其他约定
-                                                                    </label>
-                                                                    <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.other}}</p>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -589,9 +467,8 @@
                 typeList: [],
                 currentPage: 1,
                 condition: "",
-                contractList: [],
-                contract: {
-                    trustee: {},
+                taskList: [],
+                task: {
                     type: {}
                 },
                 items: [],
@@ -601,8 +478,8 @@
         },
         mounted(){
             var me = this;
-            me._initComponents();
-            me._handleProjectListMenu();
+            //me._initComponents();
+            //me._handleProjectListMenu();
             me.init();
             me.getData();
             App.addResizeHandler(function () {
@@ -630,30 +507,20 @@
                     serverErrorInfo(response);
                 })
             },
-            _initComponents: function () {
-                $('.todo-taskbody-due').datepicker({
-                    rtl: App.isRTL(),
-                    orientation: "left",
-                    autoclose: true
-                });
-                $(".todo-taskbody-tags").select2({
-                    placeholder: 'Status'
-                });
-            },
-            _handleProjectListMenu: function () {
-                if (App.getViewPort().width <= 992) {
-                    $('.todo-project-list-content').addClass("collapse");
-                } else {
-                    $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
-                }
-            },
+//            _handleProjectListMenu: function () {
+//                if (App.getViewPort().width <= 992) {
+//                    $('.todo-project-list-content').addClass("collapse");
+//                } else {
+//                    $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
+//                }
+//            },
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.blockUI({
-                    target: '#contract_list',
+                    target: '#task_list',
                     animate: true
                 });
-                this.$http.get('/api/contract/list', {
+                this.$http.get('/api/task/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -661,9 +528,9 @@
                     }
                 }).then((response) => {
                     var data = response.data;
-                    me.contractList = data.results;
+                    me.taskList = data.results;
                     me.$nextTick(function () {
-                        App.unblockUI('#contract_list');
+                        App.unblockUI('#task_list');
                     })
                 }, (response) => {
                     serverErrorInfo(response);
@@ -671,7 +538,7 @@
             },
             fetchPages(rowCount){
                 var me = this;
-                this.$http.get('/api/contract/list', {
+                this.$http.get('/api/task/list', {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
@@ -697,9 +564,9 @@
             },
             fetchItems(id){
                 var me = this;
-                me.$http.get("/api/contract/getItems", {
+                me.$http.get("/api/task/getItems", {
                     params: {
-                        contract_id: id
+                        task_id: id
                     }
                 }).then(response => {
                     var data = response.data;
@@ -729,9 +596,9 @@
             },
             viewDetails(item){
                 var me = this;
-                me.contract = item;
+                me.task = item;
                 me.fetchItems(item.id);
-                me.fetchLog(item.id);
+                //me.fetchLog(item.id);
             },
             search(){
                 var me = this;
