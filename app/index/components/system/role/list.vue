@@ -71,6 +71,9 @@
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">修 改
                                             </button>
+                                            <button type="button" class="btn btn-sm green btn-outline"
+                                                    @click="power(item)">权限管理
+                                            </button>
                                             <button type="button" class="btn btn-sm red btn-outline"
                                                     @click="remove(item.id)">删 除
                                             </button>
@@ -90,7 +93,25 @@
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
+        </div>
 
+
+        <div class="modal fade bs-modal-lg" id="powerSetting" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">权限设置</h4>
+                    </div>
+                    <div class="modal-body"> Modal body goes here</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green">保存设置</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
     </div>
 </template>
@@ -111,6 +132,9 @@
             me.getData();
             me.fetchDepartment();
             BlogUtils.selectAll("select", jQuery("#selectChange"));
+            $("#powerSetting").draggable({
+                handle: ".modal-header"
+            });
         },
         methods: {
             fetchData (pageNum, rowCount) {
@@ -260,6 +284,10 @@
                 me.condition = "";
                 me.currentPage = 1;
                 me.getData();
+            },
+            power(item){
+                console.log(item);
+                jQuery("#powerSetting").modal("show");
             }
         }
     }

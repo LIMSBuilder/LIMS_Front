@@ -429,7 +429,11 @@
     module.exports = {
         data: function () {
             return {
-                user: {}
+                user: {
+                    role: {
+                        department: {}
+                    }
+                }
             }
         },
         mounted(){
@@ -457,7 +461,6 @@
                 me.$http.get('/api/login/getLogin',).then(function (response) {
                     var data = response.data;
                     me.user = data;
-
                 }, function (response) {
                     serverErrorInfo(response);
                 });

@@ -274,15 +274,15 @@
 
 
 </style>
-<script>
+<script type="es6">
     import 'mod/sparkline'
     module.exports = {
         data: function () {
             return {
                 user: {
-                    name:"",
+                    name: "",
                     role: {
-                        name:""
+                        name: ""
                     }
                 }
             }
@@ -298,6 +298,9 @@
                     var data = response.data;
                     if (data.name) {
                         me.user = data;
+                        if (!data.role) {
+                            me.user.role = {};
+                        }
                     }
                 }, response => {
                     serverErrorInfo(response);
