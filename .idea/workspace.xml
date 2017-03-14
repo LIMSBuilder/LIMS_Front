@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e13c4b-5f2f-4216-8e0d-52831df0a2cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/sample/sample.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/list.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/dispatch.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/global/js/BlogUtils.js" afterPath="$PROJECT_DIR$/app/global/js/BlogUtils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Container.vue" afterPath="$PROJECT_DIR$/app/index/components/Container.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Navbar.vue" afterPath="$PROJECT_DIR$/app/index/components/Navbar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/Top.vue" afterPath="$PROJECT_DIR$/app/index/components/Top.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" afterPath="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/system/role/list.vue" afterPath="$PROJECT_DIR$/app/index/components/system/role/list.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/task/create.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/create.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/task/list.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/task/list.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/index.js" afterPath="$PROJECT_DIR$/app/index/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -34,56 +31,69 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="44" column="27" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="477" column="11" lean-forward="true" selection-start-line="477" selection-start-column="11" selection-end-line="477" selection-end-column="11" />
+            <state relative-caret-position="343">
+              <caret line="433" column="38" lean-forward="false" selection-start-line="433" selection-start-column="23" selection-end-line="433" selection-end-column="38" />
               <folding>
+                <element signature="e#34#55#0" expanded="true" />
                 <element signature="e#703#741#0" expanded="true" />
                 <element signature="e#877#944#0" expanded="true" />
-                <element signature="e#2588#2651#0" expanded="true" />
+                <element signature="e#2730#2793#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/basic/customer/list.vue">
+      <file leaf-file-name="apply.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+            <state relative-caret-position="9345">
+              <caret line="624" column="9" lean-forward="false" selection-start-line="624" selection-start-column="9" selection-end-line="624" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
+      <file leaf-file-name="dispatch.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/dispatch.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="466" column="66" lean-forward="true" selection-start-line="416" selection-start-column="60" selection-end-line="466" selection-end-column="66" />
+            <state relative-caret-position="120">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/list.vue">
+      <file leaf-file-name="dispatchSetting.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="921">
-              <caret line="386" column="66" lean-forward="false" selection-start-line="386" selection-start-column="66" selection-end-line="386" selection-end-column="66" />
+            <state relative-caret-position="381">
+              <caret line="77" column="73" lean-forward="true" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="73" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="change.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/components/system/department/change.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="34" selection-end-column="100" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="922" column="103" lean-forward="false" selection-start-line="922" selection-start-column="55" selection-end-line="922" selection-end-column="103" />
+              <folding>
+                <element signature="e#75586#75605#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,18 +101,8 @@
       <file leaf-file-name="create.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/system/department/create.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index/components/system/department/list.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-480">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="12" column="58" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="12" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -111,8 +111,8 @@
       <file leaf-file-name="mail.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/mail/mail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="68" column="83" lean-forward="true" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="83" />
+            <state relative-caret-position="1020">
+              <caret line="68" column="83" lean-forward="false" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -121,8 +121,8 @@
       <file leaf-file-name="Container.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/Container.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-255">
-              <caret line="0" column="9" lean-forward="true" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+            <state relative-caret-position="0">
+              <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
               <folding>
                 <element signature="e#40218#40224#0" expanded="true" />
                 <element signature="e#40224#40230#0" expanded="true" />
@@ -149,24 +149,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>currentP</find>
-      <find>viewDetails</find>
-      <find>contract</find>
-      <find>reviewList</find>
-      <find>操 作</find>
-      <find>导 出</find>
-      <find>fetchItems</find>
-      <find>请选择联系人</find>
-      <find>selectpicker</find>
-      <find>任务数据</find>
-      <find>合同列表</find>
-      <find>联系人</find>
-      <find>:dis</find>
-      <find>监测类别</find>
-      <find>create</find>
-      <find>name</find>
-      <find>format</find>
-      <find>step-title</find>
       <find>Provide your account details</find>
       <find>/403</find>
       <find>todo-taskbody-due</find>
@@ -179,6 +161,24 @@
       <find>.name</find>
       <find>监测</find>
       <find>类别</find>
+      <find>log</find>
+      <find>create</find>
+      <find>searchByProcess</find>
+      <find>nav-stacked</find>
+      <find>todo-project-list</find>
+      <find>todo-tasklist</find>
+      <find>searchByType</find>
+      <find>me.condition</find>
+      <find>编 辑</find>
+      <find>typeList</find>
+      <find>bs-select</find>
+      <find>bs-se</find>
+      <find>selectpicker</find>
+      <find>monitor_project</find>
+      <find>fetchItems</find>
+      <find>disPatchSetting</find>
+      <find>dispath_body</find>
+      <find>item.slav</find>
     </findStrings>
     <replaceStrings>
       <replace>user_add</replace>
@@ -222,8 +222,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/index/components/basic/type/create.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/basic/type/change.vue" />
         <option value="$PROJECT_DIR$/app/index/components/basic/type/list.vue" />
         <option value="$PROJECT_DIR$/app/global/plugins/dropzone/dropzone-amd-module.js" />
         <option value="$PROJECT_DIR$/app/index/components/basic/frequency/create.vue" />
@@ -260,19 +258,21 @@
         <option value="$PROJECT_DIR$/app/index/components/bussiness/task/task.vue" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/contract.vue" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/bussiness/task/create.vue" />
         <option value="$PROJECT_DIR$/app/index/components/dashboard/Dashboard.vue" />
         <option value="$PROJECT_DIR$/app/index/components/Top.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/sample/sample.vue" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/sample/create.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/Navbar.vue" />
         <option value="$PROJECT_DIR$/app/global/js/BlogUtils.js" />
         <option value="$PROJECT_DIR$/app/index/components/Container.vue" />
         <option value="$PROJECT_DIR$/app/index/components/system/role/list.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue" />
-        <option value="$PROJECT_DIR$/app/index/index.js" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/task/list.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/bussiness/task/create.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/Navbar.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" />
+        <option value="$PROJECT_DIR$/app/index/index.js" />
+        <option value="$PROJECT_DIR$/app/index/components/bussiness/task/dispatch.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue" />
       </list>
     </option>
   </component>
@@ -312,8 +312,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -549,40 +549,6 @@
               <option name="myItemId" value="bussiness" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LIMS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="index" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bussiness" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="contract" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -611,14 +577,14 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="SearchEverywhereHistoryKey" value="mai&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/mail/mail.vue&#10;index&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;task/cr&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/task/create.vue&#10;Blog&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;Blo&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;Nav&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;Na&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;in&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;Dash&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/dashboard/Dashboard.vue&#10;Top&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Top.vue&#10;web&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;lock.c&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/lockScreen/style/lock.css&#10;loc&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/lockScreen/style/lock.css&#10;lock&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/lockScreen/script/lock.js&#10;webp&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;403&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/system/function/403.vue&#10;B&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;codeState&#9;null&#9;null&#10;dev-s&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/dev-server.js&#10;we&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;drop-am&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/dropzone/dropzone-amd-module.js&#10;dropz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/dropzone/dropzone.js&#10;BlogU&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;app.js&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/app.js&#10;webpa&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;dev&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/dev-server.js&#10;edit&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css&#10;ind&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;main&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/style/main.css&#10;webpack&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;contrac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;contract&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;ser&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/dev-server.js&#10;index.j&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;webpac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/webpack.config.js&#10;contract/cr&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/contract/create.vue&#10;moment&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;mom&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;ran&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-daterangepicker/daterangepicker.js&#10;mome&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;w&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiza&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;project/l&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/basic/project/list.vue&#10;Navb&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;change&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/system/role/change.vue&#10;iziToast-buttons &#9;null&#9;null&#10;izi&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/iziToast/dist/js/iziToast.js&#10;datatables&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/datatables/datatables.min.js" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/task/dispatch.vue&#10;index&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;inde&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;mai&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/mail/mail.vue&#10;task/cr&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/task/create.vue&#10;Blog&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;Blo&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;Nav&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;Na&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;in&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;Dash&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/dashboard/Dashboard.vue&#10;Top&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Top.vue&#10;web&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;lock.c&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/lockScreen/style/lock.css&#10;loc&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/lockScreen/style/lock.css&#10;lock&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/lockScreen/script/lock.js&#10;webp&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;403&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/system/function/403.vue&#10;B&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;codeState&#9;null&#9;null&#10;dev-s&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/dev-server.js&#10;we&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;drop-am&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/dropzone/dropzone-amd-module.js&#10;dropz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/dropzone/dropzone.js&#10;BlogU&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/BlogUtils.js&#10;app.js&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/js/app.js&#10;webpa&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;dev&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/dev-server.js&#10;edit&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css&#10;ind&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;main&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/style/main.css&#10;webpack&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/build/webpack.config.js&#10;contrac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;contract&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/app/global/style/contract_list.css&#10;ser&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/dev-server.js&#10;index.j&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/index.js&#10;webpac&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS_Front/build/webpack.config.js&#10;contract/cr&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/bussiness/contract/create.vue&#10;moment&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;mom&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;ran&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-daterangepicker/daterangepicker.js&#10;mome&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/node_modules/moment/moment.js&#10;w&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiza&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;wiz&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js&#10;project/l&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/basic/project/list.vue&#10;Navb&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/Navbar.vue&#10;change&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/index/components/system/role/change.vue&#10;iziToast-buttons &#9;null&#9;null&#10;izi&#9;FILE&#9;file:///Users/qulongjun/Project/LIMS/app/global/plugins/iziToast/dist/js/iziToast.js" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/index/components/bussiness/sample" />
       <recent name="$PROJECT_DIR$/app/index/components/bussiness/task" />
+      <recent name="$PROJECT_DIR$/app/index/components/bussiness/sample" />
       <recent name="$PROJECT_DIR$/app/global/img" />
       <recent name="$PROJECT_DIR$/app/lockScreen/script" />
       <recent name="$PROJECT_DIR$/app/lockScreen/style" />
@@ -718,20 +684,23 @@
       <workItem from="1488583576135" duration="38120000" />
       <workItem from="1488718677988" duration="15677000" />
       <workItem from="1488778547534" duration="67128000" />
-      <workItem from="1489110201421" duration="24819000" />
+      <workItem from="1489110201421" duration="25107000" />
+      <workItem from="1489303776841" duration="7282000" />
+      <workItem from="1489457654758" duration="8339000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323186000" />
+    <option name="totallyTimeSpent" value="339095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16190477" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30029154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -744,7 +713,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30029154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -761,28 +729,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/index/components/basic/frequency/list.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="70" column="89" lean-forward="false" selection-start-line="70" selection-start-column="89" selection-end-line="70" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/basic/project/change.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="62" column="80" lean-forward="false" selection-start-line="62" selection-start-column="80" selection-end-line="62" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/basic/project/create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="47" column="67" lean-forward="false" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/basic/type/type.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -801,7 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
           <caret line="48" column="78" lean-forward="false" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -809,7 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
           <caret line="49" column="78" lean-forward="false" selection-start-line="49" selection-start-column="78" selection-end-line="49" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -817,7 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-120">
           <caret line="49" column="78" lean-forward="false" selection-start-line="49" selection-start-column="78" selection-end-line="49" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -825,7 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="113" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -903,7 +845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
           <caret line="126" column="20" lean-forward="false" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="827">
           <caret line="156" column="98" lean-forward="false" selection-start-line="156" selection-start-column="24" selection-end-line="156" selection-end-column="98" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -963,7 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -979,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="838">
           <caret line="301" column="46" lean-forward="false" selection-start-line="301" selection-start-column="46" selection-end-line="301" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -987,7 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,7 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="662">
           <caret line="465" column="19" lean-forward="true" selection-start-line="459" selection-start-column="16" selection-end-line="465" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1003,17 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="1006" column="23" lean-forward="true" selection-start-line="1006" selection-start-column="3" selection-end-line="1006" selection-end-column="23" />
-          <folding>
-            <element signature="e#75815#75839#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,7 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="842">
           <caret line="151" column="13" lean-forward="true" selection-start-line="134" selection-start-column="12" selection-end-line="151" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,15 +953,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="119" column="40" lean-forward="false" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1045,7 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1770">
           <caret line="118" column="18" lean-forward="true" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1064,45 +978,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1620">
           <caret line="108" column="68" lean-forward="false" selection-start-line="108" selection-start-column="68" selection-end-line="108" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/basic/customer/list.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/system/department/list.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="27" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/Navbar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="111" column="52" lean-forward="false" selection-start-line="111" selection-start-column="52" selection-end-line="111" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/list.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2421">
+          <caret line="594" column="25" lean-forward="false" selection-start-line="594" selection-start-column="25" selection-end-line="594" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="9345">
+          <caret line="624" column="9" lean-forward="false" selection-start-line="624" selection-start-column="9" selection-end-line="624" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/create.vue">
+    <entry file="file://$PROJECT_DIR$/app/index/components/mail/mail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="1411" column="30" lean-forward="true" selection-start-line="1411" selection-start-column="30" selection-end-line="1411" selection-end-column="30" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#102249#102268#0" expanded="true" />
-            <element signature="e#117533#120611#0" expanded="false" />
-            <element signature="e#120659#124463#0" expanded="false" />
-            <element signature="e#124515#125730#0" expanded="false" />
-            <element signature="e#125799#127124#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="44" column="27" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="27" />
+        <state relative-caret-position="1020">
+          <caret line="68" column="83" lean-forward="false" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="83" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/Container.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="0" column="9" lean-forward="true" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
           <folding>
             <element signature="e#40218#40224#0" expanded="true" />
             <element signature="e#40224#40230#0" expanded="true" />
@@ -1115,62 +1059,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/mail/mail.vue">
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="68" column="83" lean-forward="true" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/system/department/list.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="440">
+          <caret line="922" column="103" lean-forward="false" selection-start-line="922" selection-start-column="55" selection-end-line="922" selection-end-column="103" />
+          <folding>
+            <element signature="e#75586#75605#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="477" column="11" lean-forward="true" selection-start-line="477" selection-start-column="11" selection-end-line="477" selection-end-column="11" />
+        <state relative-caret-position="343">
+          <caret line="433" column="38" lean-forward="false" selection-start-line="433" selection-start-column="23" selection-end-line="433" selection-end-column="38" />
           <folding>
+            <element signature="e#34#55#0" expanded="true" />
             <element signature="e#703#741#0" expanded="true" />
             <element signature="e#877#944#0" expanded="true" />
-            <element signature="e#2588#2651#0" expanded="true" />
+            <element signature="e#2730#2793#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/dispatch.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20430">
+          <caret line="1493" column="38" lean-forward="false" selection-start-line="1493" selection-start-column="38" selection-end-line="1493" selection-end-column="38" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="e#102601#102620#0" expanded="false" />
+            <element signature="e#117983#121061#0" expanded="false" />
+            <element signature="e#121109#124913#0" expanded="false" />
+            <element signature="e#124965#126180#0" expanded="false" />
+            <element signature="e#126249#127574#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/system/department/create.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/basic/customer/list.vue">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <caret line="12" column="58" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="12" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
+    <entry file="file://$PROJECT_DIR$/app/index/components/system/department/change.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="466" column="66" lean-forward="true" selection-start-line="416" selection-start-column="60" selection-end-line="466" selection-end-column="66" />
+        <state relative-caret-position="390">
+          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="34" selection-end-column="100" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/list.vue">
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="921">
-          <caret line="386" column="66" lean-forward="false" selection-start-line="386" selection-start-column="66" selection-end-line="386" selection-end-column="66" />
+        <state relative-caret-position="381">
+          <caret line="77" column="73" lean-forward="true" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="73" />
           <folding />
         </state>
       </provider>

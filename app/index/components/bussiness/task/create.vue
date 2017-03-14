@@ -642,7 +642,12 @@
                                             <a href="javascript:;" class="btn btn-outline green button-next"> 下一步
                                                 <i class="fa fa-angle-right"></i>
                                             </a>
-                                            <a href="javascript:;" class="btn green button-submit" @click="create"> 提交
+                                            <a href="javascript:;" class="btn green button-submit" @click="create(0)">
+                                                自送样提交
+                                                <i class="fa fa-check"></i>
+                                            </a>
+                                            <a href="javascript:;" class="btn blue button-submit" @click="create(1)">
+                                                现场采样提交
                                                 <i class="fa fa-check"></i>
                                             </a>
                                         </div>
@@ -1473,7 +1478,7 @@
                     jQuery("#monitor_point").tagsinput("add", item.point[p]);
                 }
             },
-            create(){
+            create(type){
                 var me = this;
                 var items = me.task.item;
                 me.task.project_items = [];
@@ -1484,8 +1489,9 @@
                 console.log(JSON.parse(JSON.stringify(me.task)));
                 if (me.contract_type) {
                     //是根据合同创建的任务
-                    me.$http.post("/api/task/createByContract",{
-                        "contract_id": me.contract.id
+                    me.$http.post("/api/task/createByContract", {
+                        "contract_id": me.contract.id,
+                        "sample_type": type
                     }).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {
@@ -1499,6 +1505,7 @@
                     })
                 } else {
                     //是自定义创建的任务
+                    me.task.sample_type = type;
                     me.$http.post("/api/task/create", me.task).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {
@@ -2030,7 +2037,7 @@
                     type: ""
                 };
                 me.contract_type = false;
-                jQuery("#contract_wizard").bootstrapWizard("show",0);
+                jQuery("#contract_wizard").bootstrapWizard("show", 0);
                 $('#contract_wizard').find('.button-previous').hide();
                 $('#contract_wizard').find('.button-submit').hide();
                 $('#contract_wizard').find('.button-next').show();

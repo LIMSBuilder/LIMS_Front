@@ -406,19 +406,8 @@
                                                         <table class="table table-hover">
                                                             <tr>
                                                                 <td>
-                                                                    导出该合同
+                                                                    导出该任务
 
-                                                                </td>
-                                                                <td style="text-align: right">
-                                                                    <button type="button"
-                                                                            class="btn green btn-outline"
-                                                                            style="margin: 5px;">导 出
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    合同历史审核记录
                                                                 </td>
                                                                 <td style="text-align: right">
                                                                     <button type="button"
@@ -577,7 +566,7 @@
             },
             fetchLog(id){
                 var me = this;
-                me.$http.get("/api/log/contractLog", {
+                me.$http.get("/api/log/taskLog", {
                     params: {
                         id: id
                     }
@@ -598,7 +587,7 @@
                 var me = this;
                 me.task = item;
                 me.fetchItems(item.id);
-                //me.fetchLog(item.id);
+                me.fetchLog(item.id);
             },
             search(){
                 var me = this;

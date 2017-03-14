@@ -44,6 +44,8 @@ import Contract_Review from './components/bussiness/contract/review.vue'
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
 import Task_List from './components/bussiness/task/list.vue'
+import DisPatch from './components/bussiness/task/dispatch.vue'
+import DisPatchSetting from './components/bussiness/task/dispatchSetting.vue'
 
 
 import Sample from './components/bussiness/sample/sample.vue'
@@ -424,6 +426,14 @@ var routes = [
                 path: "list",
                 component: Task_List
             },
+            {
+                path: "disPatch",
+                component: DisPatch
+            },
+            {
+                path: "disPatchSetting",
+                component: DisPatchSetting
+            }
         ]
     },
     {

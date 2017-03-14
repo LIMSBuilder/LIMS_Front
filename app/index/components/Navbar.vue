@@ -107,9 +107,9 @@
                             <span class="title">任务列表</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/task/review' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/task/disPatch' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">流程调整</span>
+                            <span class="title">任务派遣</span>
                         </a>
                     </router-link>
                 </ul>
