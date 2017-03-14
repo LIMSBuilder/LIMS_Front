@@ -19,7 +19,7 @@
                             <div class="portlet-body todo-project-list-content">
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
-                                        <li class="active">
+                                        <li>
                                             <a href="javascript:;" @click="searchByProcess('total')">
                                                 <span class="badge badge-default"> 6 </span> 所有 </a>
                                         </li>
