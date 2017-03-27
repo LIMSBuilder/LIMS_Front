@@ -939,53 +939,45 @@
                             <div class="form-body">
                                 <div class="form-group form-md-radios">
                                     <label class="col-md-10 control-label" style="text-align: left">客户要求与合同内容相符</label>
-                                    <span>是</span>
+                                    <span v-if="advice.same==1">是</span>
+                                    <span v-if="advice.same==0">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
                                     <label class="col-md-10 control-label" style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
-                                    <span>是</span>
+                                    <span v-if="advice.contract==1">是</span>
+                                    <span v-if="advice.contract==0">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
                                     <label class="col-md-10 control-label" style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
-                                    <span>是</span>
+                                    <span v-if="advice.guest==1">是</span>
+                                    <span v-if="advice.guest==0">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
                                     <label class="col-md-10 control-label" style="text-align: left">是否有分包内容</label>
-                                    <span>否</span>
+                                    <span v-if="advice.package==1"> 有</span>
+                                    <span v-if="advice.package==0"> 无</span>
                                 </div>
                                 <div class="form-group form-md-radios">
                                     <label class="col-md-10 control-label" style="text-align: left">分包单位评审是否合格</label>
-                                    <span>是</span>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
                                     <label class="col-md-10 control-label"
                                            style="text-align: left">合同额是否满足工作量要求 </label>
-                                    <span>是</span>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
                                     <label class="col-md-10 control-label" style="text-align: left">提交报告时间是否合适 </label>
-                                    <span>是</span>
+                                    <span v-if="advice.time==1">是</span>
+                                    <span v-if="advice.time==0">否</span>
                                 </div>
                             </div>
                         </form>
                         <hr>
-                        <!--<div class="col-md-12" style="padding-top: 16px">-->
-                        <!--<div class="portlet light bordered">-->
-                        <!--<div class="portlet-body" style="display: block;">-->
-                        <!--<div v-html="advice.msg">-->
-
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
                         <h3 class="form-section">审核意见</h3>
-
-                        <div v-html="advice.msg" >
-
-                        </div>
-
-
-                        <!--<div ></div>-->
+                        <div v-html="advice.msg"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
@@ -1319,8 +1311,18 @@
             },
             viewReviewAdvice(item){
                 var me = this;
-                me.advice = item;
                 jQuery("#showReviewAdvice").modal("show");
+                me.$http.get("/api/contract/reviewDetail", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(function (response) {
+                    var data = response.data;
+                    console.log(data);
+                    me.advice = data;
+                }, function (response) {
+                    serverErrorInfo(response);
+                })
             },
             fetchDearCount(){
                 var me = this;
