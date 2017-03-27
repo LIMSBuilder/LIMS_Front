@@ -878,16 +878,16 @@
                                                             <textarea class="inbox-editor  form-control"
                                                                       name="content" style="height: 250px;"
                                                                       id="content"></textarea>
-                                                            <div class="form-actions text-right">
-
-                                                                <button type="button" class="btn green btn-outline"
-                                                                        @click="review_confirm(1)">审核通过
-                                                                </button>
-                                                                <button type="button" class="btn red btn-outline"
-                                                                        @click="review_confirm(0)">审核拒绝
-                                                                </button>
-                                                            </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-actions text-right">
+
+                                                        <button type="button" class="btn green btn-outline"
+                                                                @click="review_confirm(1)">审核通过
+                                                        </button>
+                                                        <button type="button" class="btn red btn-outline"
+                                                                @click="review_confirm(0)">审核拒绝
+                                                        </button>
                                                     </div>
 
                                                 </div>
