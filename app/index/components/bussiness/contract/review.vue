@@ -623,15 +623,20 @@
                                                                         </div>
                                                                     </li>
                                                                 </template>
-                                                                <li v-if="reviewList.accept">
-                                                                    <div class="todo-task-history-date">
-
-                                                                    </div>
-                                                                    <div class="todo-task-history-desc">
-                                                                        {{reviewList.accept.reviewer.name}} 于
-                                                                        {{reviewList.accept.review_time}}【审核通过】了合同
-                                                                    </div>
-                                                                </li>
+                                                                <template v-for="item in reviewList.result">
+                                                                    <li v-if="reviewList.accept">
+                                                                        <div class="todo-task-history-date">
+                                                                            <button type="button"
+                                                                                    class="btn green btn-outline"
+                                                                                    @click="viewReviewAdvice(item)">审核意见
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="todo-task-history-desc">
+                                                                            {{reviewList.accept.reviewer.name}} 于
+                                                                            {{reviewList.accept.review_time}}【审核通过】了合同
+                                                                        </div>
+                                                                    </li>
+                                                                </template>
                                                             </ul>
                                                         </div>
                                                         <div class="tab-pane" id="page_4">
@@ -1318,7 +1323,7 @@
                     }
                 }).then(function (response) {
                     var data = response.data;
-                    console.log(data);
+//                    console.log(data);
                     me.advice = data;
                 }, function (response) {
                     serverErrorInfo(response);
