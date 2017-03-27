@@ -933,8 +933,59 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">审核日志</h4>
                     </div>
-                    <div class="modal-body" v-html="advice.msg">
+                    <div class="modal-body">
+                        <h3 class="form-section">审核内容</h3>
+                        <form class="form-horizontal" action="#" method="POST">
+                            <div class="form-body">
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">客户要求与合同内容相符</label>
+                                    <span>是</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
+                                    <span>是</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
+                                    <span>是</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">是否有分包内容</label>
+                                    <span>否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">分包单位评审是否合格</label>
+                                    <span>是</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label"
+                                           style="text-align: left">合同额是否满足工作量要求 </label>
+                                    <span>是</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">提交报告时间是否合适 </label>
+                                    <span>是</span>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                        <!--<div class="col-md-12" style="padding-top: 16px">-->
+                        <!--<div class="portlet light bordered">-->
+                        <!--<div class="portlet-body" style="display: block;">-->
+                        <!--<div v-html="advice.msg">-->
 
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <h3 class="form-section">审核意见</h3>
+
+                        <div v-html="advice.msg" >
+
+                        </div>
+
+
+                        <!--<div ></div>-->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
