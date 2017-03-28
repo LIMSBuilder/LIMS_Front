@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d4e13c4b-5f2f-4216-8e0d-52831df0a2cd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue" afterPath="$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +27,8 @@
       <file leaf-file-name="review.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="621" column="94" lean-forward="false" selection-start-line="621" selection-start-column="83" selection-end-line="621" selection-end-column="94" />
+            <state relative-caret-position="527">
+              <caret line="1152" column="28" lean-forward="false" selection-start-line="1152" selection-start-column="28" selection-end-line="1152" selection-end-column="28" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
@@ -55,15 +55,24 @@
                 <element signature="e#86139#86158#0" expanded="true" />
                 <element signature="e#89590#90623#0" expanded="false" />
                 <element signature="e#90651#91073#0" expanded="false" />
-                <element signature="e#91104#91521#0" expanded="false" />
-                <element signature="e#92020#92452#0" expanded="false" />
-                <element signature="e#92475#92618#0" expanded="false" />
-                <element signature="e#93166#93863#0" expanded="false" />
-                <element signature="e#93898#94186#0" expanded="false" />
-                <element signature="e#94213#94392#0" expanded="false" />
-                <element signature="e#94422#94833#0" expanded="false" />
-                <element signature="e#97046#98157#0" expanded="false" />
+                <element signature="e#92410#92842#0" expanded="false" />
+                <element signature="e#92865#93008#0" expanded="false" />
+                <element signature="e#93556#94253#0" expanded="false" />
+                <element signature="e#94288#94576#0" expanded="false" />
+                <element signature="e#94603#94782#0" expanded="false" />
+                <element signature="e#94812#95223#0" expanded="false" />
+                <element signature="e#97436#98547#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dispatchSetting.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="666">
+              <caret line="202" column="47" lean-forward="true" selection-start-line="202" selection-start-column="47" selection-end-line="202" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="list.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7775">
-              <caret line="730" column="30" lean-forward="false" selection-start-line="730" selection-start-column="30" selection-end-line="730" selection-end-column="30" />
+            <state relative-caret-position="710">
+              <caret line="740" column="18" lean-forward="true" selection-start-line="731" selection-start-column="15" selection-end-line="740" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -133,7 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>todo-project-list</find>
       <find>todo-tasklist</find>
       <find>searchByType</find>
       <find>me.condition</find>
@@ -163,6 +171,7 @@
       <find>/api/contract/list</find>
       <find>contractList</find>
       <find>viewDetails</find>
+      <find>viewDeta</find>
     </findStrings>
     <replaceStrings>
       <replace>user_add</replace>
@@ -254,9 +263,9 @@
         <option value="$PROJECT_DIR$/app/index/index.js" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/task/dispatch.vue" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue" />
-        <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue" />
         <option value="$PROJECT_DIR$/build/dev-server.js" />
         <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue" />
+        <option value="$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue" />
       </list>
     </option>
   </component>
@@ -395,6 +404,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LIMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bussiness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="task" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -592,12 +631,12 @@
       <workItem from="1490489173356" duration="11423000" />
       <workItem from="1490577809936" duration="1554000" />
       <workItem from="1490592452350" duration="11507000" />
-      <workItem from="1490669432915" duration="1511000" />
+      <workItem from="1490669432915" duration="3434000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="370798000" />
+    <option name="totallyTimeSpent" value="372721000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -874,13 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/sample/apply.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9360">
@@ -968,10 +1000,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build/dev-server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="51" lean-forward="false" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="29" column="55" lean-forward="false" selection-start-line="27" selection-start-column="24" selection-end-line="29" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="710">
+          <caret line="740" column="18" lean-forward="true" selection-start-line="731" selection-start-column="15" selection-end-line="740" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/review.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="621" column="94" lean-forward="false" selection-start-line="621" selection-start-column="83" selection-end-line="621" selection-end-column="94" />
+        <state relative-caret-position="527">
+          <caret line="1152" column="28" lean-forward="false" selection-start-line="1152" selection-start-column="28" selection-end-line="1152" selection-end-column="28" />
           <folding>
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
@@ -998,41 +1056,22 @@
             <element signature="e#86139#86158#0" expanded="true" />
             <element signature="e#89590#90623#0" expanded="false" />
             <element signature="e#90651#91073#0" expanded="false" />
-            <element signature="e#91104#91521#0" expanded="false" />
-            <element signature="e#92020#92452#0" expanded="false" />
-            <element signature="e#92475#92618#0" expanded="false" />
-            <element signature="e#93166#93863#0" expanded="false" />
-            <element signature="e#93898#94186#0" expanded="false" />
-            <element signature="e#94213#94392#0" expanded="false" />
-            <element signature="e#94422#94833#0" expanded="false" />
-            <element signature="e#97046#98157#0" expanded="false" />
+            <element signature="e#92410#92842#0" expanded="false" />
+            <element signature="e#92865#93008#0" expanded="false" />
+            <element signature="e#93556#94253#0" expanded="false" />
+            <element signature="e#94288#94576#0" expanded="false" />
+            <element signature="e#94603#94782#0" expanded="false" />
+            <element signature="e#94812#95223#0" expanded="false" />
+            <element signature="e#97436#98547#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/dev-server.js">
+    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/task/dispatchSetting.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="51" lean-forward="false" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="51" />
+        <state relative-caret-position="666">
+          <caret line="202" column="47" lean-forward="true" selection-start-line="202" selection-start-column="47" selection-end-line="202" selection-end-column="47" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/create.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="29" column="55" lean-forward="false" selection-start-line="27" selection-start-column="24" selection-end-line="29" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index/components/bussiness/contract/list.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7775">
-          <caret line="730" column="30" lean-forward="false" selection-start-line="730" selection-start-column="30" selection-end-line="730" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
