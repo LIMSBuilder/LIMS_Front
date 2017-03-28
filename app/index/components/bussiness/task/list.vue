@@ -477,7 +477,7 @@
 
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
-                while (!dom.hasClass("todo-tasklist-item") && dom[0].tagName != "body") {
+                while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
                     dom = dom.parents(".todo-tasklist-item");
                 }
                 if (dom.hasClass("todo-tasklist-item")) {
