@@ -1138,14 +1138,24 @@
             },
             fetchContract(id){
                 var me = this;
-                me.$http.get("/api/contract/findById", {
+//                me.$http.get("/api/contract/findById", {
+//                    params: {
+//                        id: id
+//                    }
+//                }).then(function (response) {
+//                    var data = response.data;
+//                    me.contract = data;
+//                }, function () {
+//                    serverErrorInfo(response);
+//                })
+                me.$http.get("/api/contract/contractDetails", {
                     params: {
                         id: id
                     }
-                }).then(function (response) {
+                }).then(response => {
                     var data = response.data;
                     me.contract = data;
-                }, function () {
+                }, response => {
                     serverErrorInfo(response);
                 })
             },
