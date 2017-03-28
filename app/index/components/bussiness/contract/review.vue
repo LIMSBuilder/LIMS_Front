@@ -619,19 +619,28 @@
                                                                         </div>
                                                                         <div class="todo-task-history-desc">
                                                                             {{item.reviewer.name}} 于
-                                                                            {{item.review_time}}【审核拒绝】了合同
+                                                                            {{item.review_time}}【
+                                                                            <template v-if="item.result==1">审核通过
+                                                                            </template>
+                                                                            <template v-else>审核拒绝</template>
+                                                                            】了合同
                                                                         </div>
                                                                     </li>
                                                                 </template>
-                                                                <li v-if="reviewList.accept">
-                                                                    <div class="todo-task-history-date">
-
-                                                                    </div>
-                                                                    <div class="todo-task-history-desc">
-                                                                        {{reviewList.accept.reviewer.name}} 于
-                                                                        {{reviewList.accept.review_time}}【审核通过】了合同
-                                                                    </div>
-                                                                </li>
+                                                                <!--<template v-for="item in reviewList.result">-->
+                                                                <!--<li v-if="reviewList.accept">-->
+                                                                <!--<div class="todo-task-history-date">-->
+                                                                <!--<button type="button"-->
+                                                                <!--class="btn green btn-outline"-->
+                                                                <!--@click="viewReviewAdvice(item)">审核意见-->
+                                                                <!--</button>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="todo-task-history-desc">-->
+                                                                <!--{{reviewList.accept.reviewer.name}} 于-->
+                                                                <!--{{reviewList.accept.review_time}}【审核通过】了合同-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--</template>-->
                                                             </ul>
                                                         </div>
                                                         <div class="tab-pane" id="page_4">
@@ -652,25 +661,245 @@
                                                 </div>
                                                 <div class="tabbable-line" id="write_review"
                                                      v-show="contract.process==1">
-                                                    <h3 class="form-section">合同审核</h3>
-                                                    <div class="alert alert-success alert-dismissable">
-                                                        <button type="button" class="close" data-dismiss="alert"
-                                                                aria-hidden="true"></button>
-                                                        <strong>小技巧：</strong> 点击"合同信息"内的编辑图标可以快速添加审核意见抬头。
+                                                    <h3>合同审核</h3>
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active">
+                                                            <a href="#page_5" data-toggle="tab">审核内容</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#page_6" data-toggle="tab">审核意见</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="page_5">
+                                                            <form class="form-horizontal" action="#" id="submit_form"
+                                                                  method="POST">
+                                                                <div class="form-body">
+                                                                    <div class="form-group form-md-radios">
+                                                                        <label class="col-md-8 control-label"
+                                                                               style="text-align: left">客户要求与合同内容相符</label>
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="same1"
+                                                                                       name="same"
+                                                                                       v-model="review_info.same"
+                                                                                       value="1" class="md-radiobtn">
+                                                                                <label for="same1">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 是 </label>
+                                                                            </div>
+                                                                            <div class="md-radio has-error">
+                                                                                <input type="radio" id="same2"
+                                                                                       name="same"
+                                                                                       v-model="review_info.same"
+                                                                                       value="0" class="md-radiobtn">
+                                                                                <label for="same2">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 否 </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-radios">
+                                                                        <label class="col-md-8 control-label"
+                                                                               style="text-align: left">人力、物力、信息资源等条
+                                                                            件均可以满足合同中的要求 </label>
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="contract1"
+                                                                                       name="contract"
+                                                                                       v-model="review_info.contract"
+                                                                                       value="1"
+                                                                                       class="md-radiobtn">
+                                                                                <label for="contract1">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 是 </label>
+                                                                            </div>
+                                                                            <div class="md-radio has-error">
+                                                                                <input type="radio" id="contract2"
+                                                                                       name="contract"
+                                                                                       v-model="review_info.contract"
+                                                                                       value="0" class="md-radiobtn"
+                                                                                >
+                                                                                <label for="contract2">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 否 </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-radios">
+                                                                        <label class="col-md-8 control-label"
+                                                                               style="text-align: left">确定的监测方案与测试方法
+                                                                            是否可以满足客户的要求 </label>
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="guest1"
+                                                                                       name="guest"
+                                                                                       v-model="review_info.guest"
+                                                                                       value="1"
+                                                                                       class="md-radiobtn">
+                                                                                <label for="guest1">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 是 </label>
+                                                                            </div>
+                                                                            <div class="md-radio has-error">
+                                                                                <input type="radio" id="guest2"
+                                                                                       name="guest"
+                                                                                       v-model="review_info.guest"
+                                                                                       value="0"
+                                                                                       class="md-radiobtn"
+                                                                                >
+                                                                                <label for="guest2">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 否 </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-radios">
+                                                                        <label class="col-md-8 control-label"
+                                                                               style="text-align: left">是否有分包内容</label>
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="package1"
+                                                                                       name="package"
+                                                                                       class="md-radiobtn"
+                                                                                       v-model="review_info.package"
+                                                                                       value="1">
+                                                                                <label for="package1">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 有 </label>
+                                                                            </div>
+                                                                            <div class="md-radio has-error">
+                                                                                <input type="radio" id="package2"
+                                                                                       name="package"
+                                                                                       class="md-radiobtn"
+                                                                                       v-model="review_info.package"
+                                                                                       value="0">
+                                                                                <label for="package2">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 无 </label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-radios">
+                                                                        <label class="col-md-8 control-label"
+                                                                               style="text-align: left">分包单位评审是否合格</label>
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="company1"
+                                                                                       name="company"
+                                                                                       v-model="review_info.company"
+                                                                                       value="1"
+                                                                                       class="md-radiobtn">
+                                                                                <label for="company1">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 是 </label>
+                                                                            </div>
+                                                                            <div class="md-radio has-error">
+                                                                                <input type="radio" id="company2"
+                                                                                       name="company"
+                                                                                       class="md-radiobtn"
+                                                                                       v-model="review_info.company"
+                                                                                       value="0">
+                                                                                <label for="company2">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 否 </label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-radios">
+                                                                        <label class="col-md-8 control-label"
+                                                                               style="text-align: left">合同额是否满足工作量要求 </label>
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="money1"
+                                                                                       name="money"
+                                                                                       class="md-radiobtn"
+                                                                                       v-model="review_info.money"
+                                                                                       value="1">
+                                                                                <label for="money1">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 是 </label>
+                                                                            </div>
+                                                                            <div class="md-radio has-error">
+                                                                                <input type="radio" id="money2"
+                                                                                       name="money" class="md-radiobtn"
+                                                                                       v-model="review_info.money"
+                                                                                       value="0">
+                                                                                <label for="money2">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 否 </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-radios">
+                                                                        <label class="col-md-8 control-label"
+                                                                               style="text-align: left">提交报告时间是否合适 </label>
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="time1"
+                                                                                       name="time"
+                                                                                       class="md-radiobtn"
+                                                                                       v-model="review_info.time"
+                                                                                       value="1">
+                                                                                <label for="time1">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 是 </label>
+                                                                            </div>
+                                                                            <div class="md-radio has-error">
+                                                                                <input type="radio" id="time2"
+                                                                                       name="time" class="md-radiobtn"
+                                                                                       v-model="review_info.time"
+                                                                                       value="0">
+                                                                                <label for="time2">
+                                                                                    <span class="inc"></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> 否</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                        <div class="tab-pane" id="page_6">
+
+                                                            <div class="alert alert-success alert-dismissable">
+                                                                <button type="button" class="close"
+                                                                        data-dismiss="alert"
+                                                                        aria-hidden="true"></button>
+                                                                <strong>小技巧：</strong> 点击"合同信息"内的编辑图标可以快速添加审核意见抬头。
+                                                            </div>
+                                                            <textarea class="inbox-editor  form-control"
+                                                                      name="content" style="height: 250px;"
+                                                                      id="content"></textarea>
+                                                        </div>
                                                     </div>
-                                                    <textarea class="inbox-editor  form-control"
-                                                              name="content" style="height: 250px;"
-                                                              id="content"></textarea>
                                                     <div class="form-actions text-right">
+
                                                         <button type="button" class="btn green btn-outline"
-                                                                @click="accept">审核通过
+                                                                @click="review_confirm(1)">审核通过
                                                         </button>
                                                         <button type="button" class="btn red btn-outline"
-                                                                @click="reject">审核拒绝
+                                                                @click="review_confirm(0)">审核拒绝
                                                         </button>
                                                     </div>
-                                                </div>
 
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -713,8 +942,51 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">审核日志</h4>
                     </div>
-                    <div class="modal-body" v-html="advice.msg">
-
+                    <div class="modal-body">
+                        <h3 class="form-section">审核内容</h3>
+                        <form class="form-horizontal" action="#" method="POST">
+                            <div class="form-body">
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">客户要求与合同内容相符</label>
+                                    <span v-if="advice.same==1">是</span>
+                                    <span v-if="advice.same==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
+                                    <span v-if="advice.contract==1">是</span>
+                                    <span v-if="advice.contract==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
+                                    <span v-if="advice.guest==1">是</span>
+                                    <span v-if="advice.guest==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">是否有分包内容</label>
+                                    <span v-if="advice.package==1"> 有</span>
+                                    <span v-if="advice.package==0"> 无</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">分包单位评审是否合格</label>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label"
+                                           style="text-align: left">合同额是否满足工作量要求 </label>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">提交报告时间是否合适 </label>
+                                    <span v-if="advice.time==1">是</span>
+                                    <span v-if="advice.time==0">否</span>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                        <h3 class="form-section">审核意见</h3>
+                        <div v-html="advice.msg"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
@@ -745,6 +1017,13 @@
                 items: [],
                 log: [],
                 review_info: {
+                    same: "1",
+                    contract: "1",
+                    guest: "1",
+                    package: "1",
+                    company: "1",
+                    money: "1",
+                    time: "1",
                     type: "",
                     content: ""
                 },
@@ -961,6 +1240,33 @@
                 me.review_info.type = "";
                 jQuery("#review_modal").modal("hide");
             },
+            review_confirm(result){
+                var me = this;
+                var response = me.review_info;
+                response.msg = contract_editor.$txt.html();
+                response.result = result;
+                response.id = me.contract.id;
+
+                confirm({
+                    content: "是否审核通过合同【" + me.contract.name + "】？",
+                    success: function () {
+                        me.$http.get("/api/contract/review", {
+                            params: response
+                        }).then(function (response) {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("合同审核完成！");
+                                    me.viewDetails(me.contract.id);
+                                    me.getData();
+                                }
+                            })
+                        }, function (response) {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
+            },
             accept(){
                 var me = this;
                 confirm({
@@ -1014,8 +1320,18 @@
             },
             viewReviewAdvice(item){
                 var me = this;
-                me.advice = item;
                 jQuery("#showReviewAdvice").modal("show");
+                me.$http.get("/api/contract/reviewDetail", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(function (response) {
+                    var data = response.data;
+//                    console.log(data);
+                    me.advice = data;
+                }, function (response) {
+                    serverErrorInfo(response);
+                })
             },
             fetchDearCount(){
                 var me = this;
