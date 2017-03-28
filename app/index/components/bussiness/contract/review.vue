@@ -619,24 +619,28 @@
                                                                         </div>
                                                                         <div class="todo-task-history-desc">
                                                                             {{item.reviewer.name}} 于
-                                                                            {{item.review_time}}【审核拒绝】了合同
+                                                                            {{item.review_time}}【
+                                                                            <template v-if="item.result==1">审核通过
+                                                                            </template>
+                                                                            <template v-else>审核拒绝</template>
+                                                                            】了合同
                                                                         </div>
                                                                     </li>
                                                                 </template>
-                                                                <template v-for="item in reviewList.result">
-                                                                    <li v-if="reviewList.accept">
-                                                                        <div class="todo-task-history-date">
-                                                                            <button type="button"
-                                                                                    class="btn green btn-outline"
-                                                                                    @click="viewReviewAdvice(item)">审核意见
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="todo-task-history-desc">
-                                                                            {{reviewList.accept.reviewer.name}} 于
-                                                                            {{reviewList.accept.review_time}}【审核通过】了合同
-                                                                        </div>
-                                                                    </li>
-                                                                </template>
+                                                                <!--<template v-for="item in reviewList.result">-->
+                                                                <!--<li v-if="reviewList.accept">-->
+                                                                <!--<div class="todo-task-history-date">-->
+                                                                <!--<button type="button"-->
+                                                                <!--class="btn green btn-outline"-->
+                                                                <!--@click="viewReviewAdvice(item)">审核意见-->
+                                                                <!--</button>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="todo-task-history-desc">-->
+                                                                <!--{{reviewList.accept.reviewer.name}} 于-->
+                                                                <!--{{reviewList.accept.review_time}}【审核通过】了合同-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--</template>-->
                                                             </ul>
                                                         </div>
                                                         <div class="tab-pane" id="page_4">
