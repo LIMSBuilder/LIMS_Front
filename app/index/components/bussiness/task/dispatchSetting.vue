@@ -80,9 +80,9 @@
                                             <div class="col-md-12">
                                                 <select class="bs-select form-control" multiple
                                                         data-actions-box="true"
-                                                        data-live-search="true" >
-                                                    <!--v-model="item.slave"-->
+                                                        data-live-search="true" v-model="item.slave">
                                                     <template v-for="department in userList">
+                                                        debugger
                                                         <optgroup :label="department.name">
                                                             <template v-for="user in department.user.results">
                                                                 <option :value="user.id">{{user.name}}</option>
@@ -147,7 +147,7 @@
                 id: "",
                 items: [],
                 userList: [],
-                projectName:[]
+                projectName: []
             }
         },
         mounted(){
@@ -164,8 +164,20 @@
             } else {
                 me.id = query.id;
                 me.fetchItems(me.id);
-                me.fetchUser();
             }
+//            me.$nextTick(function () {
+//                App.unblockUI("#dispath_body");
+//                $('.bs-select').selectpicker('destroy');
+//                $('.bs-select').selectpicker({
+//                    iconBase: 'fa',
+//                    tickIcon: 'fa-check',
+//                    countSelectedText: "count",
+//                    deselectAllText: "取消选择",
+//                    selectAllText: "选择全部",
+//                    noneSelectedText: "请选择人员"
+//                });
+//            })
+
         },
         methods: {
             fetchItems(id){
@@ -181,6 +193,24 @@
                 }).then(response => {
                     var data = response.data;
                     me.items = data.items;
+                    for (var i = 0; i < me.items.length; i++) {
+                        var item = me.items[i];
+                        item.master = "";
+                        item.slave = [];
+                    }
+                    me.$nextTick(function () {
+                        me.fetchUser();
+                    });
+                }, response => {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchUser(){
+                var me = this;
+                me.$http.get("/api/user/listByDepartment").then(response => {
+                    var data = response.data;
+                    me.userList = data.results;
+//                    console.log(JSON.parse(JSON.stringify(me.userList)));
                     me.$nextTick(function () {
                         App.unblockUI("#dispath_body");
                         $('.bs-select').selectpicker('destroy');
@@ -193,16 +223,6 @@
                             noneSelectedText: "请选择人员"
                         });
                     })
-                }, response => {
-                    serverErrorInfo(response);
-                });
-            },
-            fetchUser(){
-                var me = this;
-                me.$http.get("/api/user/listByDepartment").then(response => {
-                    var data = response.data;
-                    me.userList = data.results;
-                    console.log(JSON.parse(JSON.stringify(me.userList)));
                 }, response => {
                     serverErrorInfo(response);
                 })
@@ -219,10 +239,10 @@
                     });
                 }
                 console.log(results);
+
             },
             back(){
                 router.push("/task/disPatch");
-                //router.push("/task/disPatch");
             },
             showProjectName(id){
                 var me = this;

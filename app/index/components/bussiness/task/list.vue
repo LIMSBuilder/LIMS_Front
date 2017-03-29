@@ -371,7 +371,7 @@
                                                                                 <!--</template>-->
                                                                                 <button type="button"
                                                                                         class="btn green btn-outline"
-                                                                                        @click="showProjectName(item.name)">
+                                                                                        @click="showProjectName(item.id)">
                                                                                     查看详情
                                                                                 </button>
                                                                             </td>
@@ -494,7 +494,7 @@
                 items: [],
                 log: [],
                 total_count: {},
-                projectName:[]
+                projectName: []
             }
         },
         mounted(){
@@ -521,7 +521,7 @@
         methods: {
             init: function () {
                 var me = this;
-                me.$http.get("/api/type/contract_total").then(function (response) {
+                me.$http.get("/api/type/task_total").then(function (response) {
                     var data = response.data;
                     me.typeList = data.results;
                 }, function (response) {
