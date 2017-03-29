@@ -361,14 +361,19 @@
                                                                                 {{item.point}}
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                <template
-                                                                                        v-for="(project,index) in item.project">
-                                                                                    {{project.project.name}}
-                                                                                    <template
-                                                                                            v-if="index+1!=item.project.length">
-                                                                                        ,
-                                                                                    </template>
-                                                                                </template>
+                                                                                <!--<template-->
+                                                                                <!--v-for="(project,index) in item.project">-->
+                                                                                <!--{{project.project.name}}-->
+                                                                                <!--<template-->
+                                                                                <!--v-if="index+1!=item.project.length">-->
+                                                                                <!--,-->
+                                                                                <!--</template>-->
+                                                                                <!--</template>-->
+                                                                                <button type="button"
+                                                                                        class="btn green btn-outline"
+                                                                                        @click="showProjectName(item.id)">
+                                                                                    查看详情
+                                                                                </button>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
@@ -444,6 +449,32 @@
                 </div>
             </div>
             <!-- END PAGE CONTENT-->
+            <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
+                        </div>
+                        <div class="modal-body" id="modal_body">
+                            <!--<template v-for="(project,projectIndex) in item.project">-->
+                            <!--{{project.project.name}}-->
+                            <!--</template>-->
+                            <ul class="receiver_tag">
+                                <template v-for="names in projectName">
+                                    <li class="uppercase"><a href="javascript:;" style="line-height: 30px">{{names.name}}</a></li>
+                                </template>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
         </div>
     </div>
 </template>
@@ -462,7 +493,8 @@
                 },
                 items: [],
                 log: [],
-                total_count: {}
+                total_count: {},
+                projectName: []
             }
         },
         mounted(){
@@ -477,7 +509,7 @@
 
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
-                while (!dom.hasClass("todo-tasklist-item") && dom[0].tagName != "body") {
+                while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
                     dom = dom.parents(".todo-tasklist-item");
                 }
                 if (dom.hasClass("todo-tasklist-item")) {
@@ -489,7 +521,7 @@
         methods: {
             init: function () {
                 var me = this;
-                me.$http.get("/api/type/contract_total").then(function (response) {
+                me.$http.get("/api/type/task_total").then(function (response) {
                     var data = response.data;
                     me.typeList = data.results;
                 }, function (response) {
@@ -617,6 +649,23 @@
                 me.condition = "keyWords=" + encodeURI(e.target.value);
                 me.currentPage = 1;
                 me.getData();
+            },
+            showProjectName(id){
+                var me = this;
+                me.$http.get("/api/task/monitorItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.projectName = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProject").modal("show");
+
             }
         }
     }
