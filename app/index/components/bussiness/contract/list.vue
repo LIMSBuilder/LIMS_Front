@@ -18,32 +18,42 @@
                             </div>
                             <div class="portlet-body todo-project-list-content">
                                 <div class="todo-project-list">
+
                                     <ul class="nav nav-stacked">
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('total')">
-                                                <span class="badge badge-default"> 6 </span> 所有 </a>
+                                                <span class="badge badge-default">  {{countProcess.total}}</span>
+                                                所有 </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(0)">
-                                                <span class="badge badge-warning"> 6 </span> 草稿 </a>
+                                                <span class="badge badge-warning">{{countProcess.change}} </span>
+                                                草稿
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(1)">
-                                                <span class="badge badge-info"> 2 </span> 待审核 </a>
+                                                <span class="badge badge-info"> {{countProcess.review}} </span>
+                                                待审核 </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(2)">
-                                                <span class="badge badge-primary"> 3 </span> 待执行</a>
+                                                <span class="badge badge-primary"> {{countProcess.create}}</span>
+                                                待执行</a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(3)">
-                                                <span class="badge badge-success"> 14 </span> 已执行 </a>
+                                                <span class="badge badge-success"> {{countProcess.finish}}</span>
+                                                已执行
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(-1)">
-                                                <span class="badge badge-danger"> 6 </span> 已中止 </a>
+                                                <span class="badge badge-danger">{{countProcess.stop}} </span>
+                                                已中止 </a>
                                         </li>
                                     </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -441,14 +451,19 @@
                                                                                 {{item.point}}
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                <template
-                                                                                        v-for="(project,index) in item.project">
-                                                                                    {{project.project.name}}
-                                                                                    <template
-                                                                                            v-if="index+1!=item.project.length">
-                                                                                        ,
-                                                                                    </template>
-                                                                                </template>
+                                                                                <!--<template-->
+                                                                                <!--v-for="(project,index) in item.project">-->
+                                                                                <!--{{project.project.name}}-->
+                                                                                <!--<template-->
+                                                                                <!--v-if="index+1!=item.project.length">-->
+                                                                                <!--,-->
+                                                                                <!--</template>-->
+                                                                                <!--</template>-->
+                                                                                <button type="button"
+                                                                                        class="btn green btn-outline"
+                                                                                        @click="showProjectName(item.id)">
+                                                                                    查看详情
+                                                                                </button>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
@@ -577,6 +592,32 @@
                 </div>
             </div>
             <!-- END PAGE CONTENT-->
+
+            <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
+                        </div>
+                        <div class="modal-body" id="modal_body">
+                            <!--<template v-for="(project,projectIndex) in item.project">-->
+                            <!--{{project.project.name}}-->
+                            <!--</template>-->
+                            <ul class="receiver_tag">
+                                <template v-for="names in projectName">
+                                    <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                                </template>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
         </div>
     </div>
 </template>
@@ -596,7 +637,9 @@
                 },
                 items: [],
                 log: [],
-                total_count: {}
+                total_count: {},
+                countProcess: [],
+                projectName: []
             }
         },
         mounted(){
@@ -618,7 +661,8 @@
                     jQuery(".todo-tasklist-item").removeClass("active");
                     dom.addClass('active');
                 }
-            })
+            });
+            me.fetchCount();
         },
         methods: {
             init: function () {
@@ -770,7 +814,35 @@
                 me.condition = "keyWords=" + encodeURI(e.target.value);
                 me.currentPage = 1;
                 me.getData();
+            },
+            fetchCount(){
+                var me = this;
+                me.$http.get("/api/contract/countProcess").then(
+                    response => {
+                        var data = response.data;
+                        me.countProcess = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    });
+            },
+            showProjectName(id){
+                var me = this;
+                me.$http.get("/api/task/monitorItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.projectName = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProject").modal("show");
+
             }
+
         }
     }
 
