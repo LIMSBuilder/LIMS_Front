@@ -23,6 +23,14 @@
                                             <a href="javascript:;" @click="searchByProcess('total')">
                                                 <span class="badge badge-default"> 6 </span> 所有 </a>
                                         </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('total')">
+                                                <span class="badge badge-default"> 6 </span> 待申请 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('total')">
+                                                <span class="badge badge-default"> 6 </span> 已申请 </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -205,9 +213,6 @@
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
                                                             <span class="todo-username pull-left">{{task.name}}</span>
-                                                            <button type="button"
-                                                                    class="todo-username-btn btn btn-circle btn-default btn-sm">
-                                                                &nbsp;编 辑&nbsp;</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
@@ -401,48 +406,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tabbable-line">
-                                                <ul class="nav nav-tabs ">
-                                                    <li class="active">
-                                                        <a href="#tab_1" data-toggle="tab"> 相 关 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tab_2" data-toggle="tab"> 日 志 </a>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="tab_1">
-                                                        <table class="table table-hover">
-                                                            <tr>
-                                                                <td>
-                                                                    导出该任务
-
-                                                                </td>
-                                                                <td style="text-align: right">
-                                                                    <button type="button"
-                                                                            class="btn green btn-outline"
-                                                                            style="margin: 5px;">导 出
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="tab-pane" id="tab_2">
-                                                        <ul class="todo-task-history">
-                                                            <template v-for="item in log">
-                                                                <li>
-                                                                    <div class="todo-task-history-date">
-                                                                        {{item.log_time}}
-                                                                    </div>
-                                                                    <div class="todo-task-history-desc">
-                                                                        {{item.log_msg}}
-                                                                    </div>
-                                                                </li>
-                                                            </template>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -559,13 +522,6 @@
                     serverErrorInfo(response);
                 })
             },
-//            _handleProjectListMenu: function () {
-//                if (App.getViewPort().width <= 992) {
-//                    $('.todo-project-list-content').addClass("collapse");
-//                } else {
-//                    $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
-//                }
-//            },
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.blockUI({
