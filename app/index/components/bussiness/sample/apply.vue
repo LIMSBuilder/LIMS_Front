@@ -23,6 +23,14 @@
                                             <a href="javascript:;" @click="searchByProcess('total')">
                                                 <span class="badge badge-default"> 6 </span> 所有 </a>
                                         </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('total')">
+                                                <span class="badge badge-default"> 6 </span> 待申请 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('total')">
+                                                <span class="badge badge-default"> 6 </span> 已申请 </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -449,13 +457,6 @@
                     serverErrorInfo(response);
                 })
             },
-//            _handleProjectListMenu: function () {
-//                if (App.getViewPort().width <= 992) {
-//                    $('.todo-project-list-content').addClass("collapse");
-//                } else {
-//                    $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
-//                }
-//            },
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.blockUI({
