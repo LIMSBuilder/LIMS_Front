@@ -619,19 +619,28 @@
                                                                         </div>
                                                                         <div class="todo-task-history-desc">
                                                                             {{item.reviewer.name}} 于
-                                                                            {{item.review_time}}【审核拒绝】了合同
+                                                                            {{item.review_time}}【
+                                                                            <template v-if="item.result==1">审核通过
+                                                                            </template>
+                                                                            <template v-else>审核拒绝</template>
+                                                                            】了合同
                                                                         </div>
                                                                     </li>
                                                                 </template>
-                                                                <li v-if="reviewList.accept">
-                                                                    <div class="todo-task-history-date">
-
-                                                                    </div>
-                                                                    <div class="todo-task-history-desc">
-                                                                        {{reviewList.accept.reviewer.name}} 于
-                                                                        {{reviewList.accept.review_time}}【审核通过】了合同
-                                                                    </div>
-                                                                </li>
+                                                                <!--<template v-for="item in reviewList.result">-->
+                                                                <!--<li v-if="reviewList.accept">-->
+                                                                <!--<div class="todo-task-history-date">-->
+                                                                <!--<button type="button"-->
+                                                                <!--class="btn green btn-outline"-->
+                                                                <!--@click="viewReviewAdvice(item)">审核意见-->
+                                                                <!--</button>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="todo-task-history-desc">-->
+                                                                <!--{{reviewList.accept.reviewer.name}} 于-->
+                                                                <!--{{reviewList.accept.review_time}}【审核通过】了合同-->
+                                                                <!--</div>-->
+                                                                <!--</li>-->
+                                                                <!--</template>-->
                                                             </ul>
                                                         </div>
                                                         <div class="tab-pane" id="page_4">
@@ -933,8 +942,51 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">审核日志</h4>
                     </div>
-                    <div class="modal-body" v-html="advice.msg">
-
+                    <div class="modal-body">
+                        <h3 class="form-section">审核内容</h3>
+                        <form class="form-horizontal" action="#" method="POST">
+                            <div class="form-body">
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">客户要求与合同内容相符</label>
+                                    <span v-if="advice.same==1">是</span>
+                                    <span v-if="advice.same==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
+                                    <span v-if="advice.contract==1">是</span>
+                                    <span v-if="advice.contract==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
+                                    <span v-if="advice.guest==1">是</span>
+                                    <span v-if="advice.guest==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">是否有分包内容</label>
+                                    <span v-if="advice.package==1"> 有</span>
+                                    <span v-if="advice.package==0"> 无</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">分包单位评审是否合格</label>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label"
+                                           style="text-align: left">合同额是否满足工作量要求 </label>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label class="col-md-10 control-label" style="text-align: left">提交报告时间是否合适 </label>
+                                    <span v-if="advice.time==1">是</span>
+                                    <span v-if="advice.time==0">否</span>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                        <h3 class="form-section">审核意见</h3>
+                        <div v-html="advice.msg"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
@@ -1086,14 +1138,24 @@
             },
             fetchContract(id){
                 var me = this;
-                me.$http.get("/api/contract/findById", {
+//                me.$http.get("/api/contract/findById", {
+//                    params: {
+//                        id: id
+//                    }
+//                }).then(function (response) {
+//                    var data = response.data;
+//                    me.contract = data;
+//                }, function () {
+//                    serverErrorInfo(response);
+//                })
+                me.$http.get("/api/contract/contractDetails", {
                     params: {
                         id: id
                     }
-                }).then(function (response) {
+                }).then(response => {
                     var data = response.data;
                     me.contract = data;
-                }, function () {
+                }, response => {
                     serverErrorInfo(response);
                 })
             },
@@ -1268,8 +1330,18 @@
             },
             viewReviewAdvice(item){
                 var me = this;
-                me.advice = item;
                 jQuery("#showReviewAdvice").modal("show");
+                me.$http.get("/api/contract/reviewDetail", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(function (response) {
+                    var data = response.data;
+//                    console.log(data);
+                    me.advice = data;
+                }, function (response) {
+                    serverErrorInfo(response);
+                })
             },
             fetchDearCount(){
                 var me = this;

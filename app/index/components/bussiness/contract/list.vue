@@ -580,7 +580,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="es6">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -729,7 +729,16 @@
             },
             viewDetails(item){
                 var me = this;
-                me.contract = item;
+                me.$http.get("/api/contract/contractDetails", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.contract = data;
+                }, response => {
+                    serverErrorInfo(response);
+                })
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
             },
