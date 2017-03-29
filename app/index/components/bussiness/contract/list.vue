@@ -26,19 +26,19 @@
                                                 所有 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(0)">
+                                            <a href="javascript:;" @click="searchByProcess(-1)">
                                                 <span class="badge badge-warning">{{countProcess.change}} </span>
-                                                草稿
+                                                待修改
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(1)">
-                                                <span class="badge badge-info"> {{countProcess.review}} </span>
+                                                <span class="badge badge-info"> {{countProcess.create}} </span>
                                                 待审核 </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(2)">
-                                                <span class="badge badge-primary"> {{countProcess.create}}</span>
+                                                <span class="badge badge-primary"> {{countProcess.review}}</span>
                                                 待执行</a>
                                         </li>
                                         <li>
@@ -48,7 +48,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(-1)">
+                                            <a href="javascript:;" @click="searchByProcess(-2)">
                                                 <span class="badge badge-danger">{{countProcess.stop}} </span>
                                                 已中止 </a>
                                         </li>
@@ -725,7 +725,8 @@
                             <!--</template>-->
                             <ul class="receiver_tag">
                                 <template v-for="names in projectName">
-                                    <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                                    <li class="uppercase "><a href="javascript:;" style="line-height: 30px">{{names.name}}</a>
+                                    </li>
                                 </template>
                             </ul>
                         </div>

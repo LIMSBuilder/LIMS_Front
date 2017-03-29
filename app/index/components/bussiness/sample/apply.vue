@@ -230,14 +230,14 @@
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
-                                                            <a href="#page_1" data-toggle="tab"> 任务详情 </a>
+                                                            <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_2" data-toggle="tab"> 监测项目 </a>
+                                                            <a href="#page_1" data-toggle="tab"> 任务详情 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
-                                                        <div class="tab-pane active" id="page_1">
+                                                        <div class="tab-pane " id="page_1">
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">委托单位
@@ -338,7 +338,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane" id="page_2">
+                                                        <div class="tab-pane active" id="page_2">
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
                                                                     <thead>
@@ -351,6 +351,7 @@
                                                                         <th> 监测频次</th>
                                                                         <th> 是否分包</th>
                                                                         <th> 备注</th>
+                                                                        <th>样品号</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -366,14 +367,19 @@
                                                                                 {{item.point}}
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                <template
-                                                                                        v-for="(project,index) in item.project">
-                                                                                    {{project.project.name}}
-                                                                                    <template
-                                                                                            v-if="index+1!=item.project.length">
-                                                                                        ,
-                                                                                    </template>
-                                                                                </template>
+                                                                                <!--<template-->
+                                                                                <!--v-for="(project,index) in item.project">-->
+                                                                                <!--{{project.project.name}}-->
+                                                                                <!--<template-->
+                                                                                <!--v-if="index+1!=item.project.length">-->
+                                                                                <!--,-->
+                                                                                <!--</template>-->
+                                                                                <!--</template>-->
+                                                                                <button type="button"
+                                                                                        class="btn green btn-outline"
+                                                                                        @click="showProjectName(item.id)">
+                                                                                    查看详情
+                                                                                </button>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
@@ -385,6 +391,12 @@
                                                                                 v-if="item.is_package==0">否
                                                                             </td>
                                                                             <td class="text-center">{{item.other}}</td>
+                                                                            <td class="text-center">
+                                                                                <button type="button"
+                                                                                        class="btn green btn-outline" @click="showSample">
+                                                                                查看详情
+                                                                                </button>
+                                                                            </td>
                                                                         </tr>
                                                                     </template>
                                                                     </tbody>
@@ -405,10 +417,62 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
+        <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body" id="modal_body">
+                        <!--<template v-for="(project,projectIndex) in item.project">-->
+                        <!--{{project.project.name}}-->
+                        <!--</template>-->
+                        <ul class="receiver_tag">
+                            <template v-for="names in projectName">
+                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                            </template>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade draggable-modal" id="showsample" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title" >检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body" >
+                        <!--<template v-for="(project,projectIndex) in item.project">-->
+                        <!--{{project.project.name}}-->
+                        <!--</template>-->
+                        <ul class="receiver_tag">
+                            <!--<template v-for="names in projectName">-->
+                                <!--<li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>-->
+                            <!--</template>-->
+                            样品详情。。。。。。。。
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 </template>
 
-<script>
+<script type="es6">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -423,7 +487,8 @@
                 },
                 items: [],
                 log: [],
-                total_count: {}
+                total_count: {},
+                projectName: []
             }
         },
         mounted(){
@@ -571,6 +636,26 @@
                 me.condition = "keyWords=" + encodeURI(e.target.value);
                 me.currentPage = 1;
                 me.getData();
+            },
+            showProjectName(id){
+                var me = this;
+                me.$http.get("/api/task/monitorItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.projectName = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProject").modal("show");
+
+            },
+            showSample(){
+                jQuery("#showsample").modal("show");
             }
         }
     }

@@ -25,10 +25,12 @@
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('before_dispath')">
-                                                <span class="badge badge-default"> 6 </span> 未派遣任务 </a>
+                                                <span class="badge badge-default"> {{countProcess}} </span> 未派遣任务
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('after_dispath')"> 已派遣任务 </a>
+                                            <a href="javascript:;" @click="searchByProcess('after_dispath')">
+                                                已派遣任务 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -417,7 +419,7 @@
     </div>
 </template>
 
-<script>
+<script type="es6">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -432,7 +434,8 @@
                 },
                 items: [],
                 total_count: {},
-                userList: []
+                userList: [],
+                countProcess: 0
             }
         },
         mounted(){
@@ -445,10 +448,11 @@
             });
 
             me.fetchUser();
+            me.fetchCount();
 
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
-                while (!dom.hasClass("todo-tasklist-item") && dom[0]&& dom[0].tagName != "body") {
+                while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
                     dom = dom.parents(".todo-tasklist-item");
                 }
                 if (dom.hasClass("todo-tasklist-item")) {
@@ -456,6 +460,7 @@
                     dom.addClass('active');
                 }
             })
+
 
         },
         methods: {
@@ -552,6 +557,7 @@
                     serverErrorInfo(response);
                 });
             },
+            /*抓取数据*/
             getData(){
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
@@ -611,6 +617,17 @@
                 }, response => {
                     serverErrorInfo(response);
                 })
+            },
+            fetchCount(){
+                var me = this;
+                me.$http.get('/api/task/countProcess').then(
+                    response => {
+                        var data = response.data;
+                        me.countProcess = data.create;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
             }
         }
     }
