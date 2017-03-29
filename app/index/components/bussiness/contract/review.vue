@@ -1014,7 +1014,7 @@
                         <!--</template>-->
                         <ul class="receiver_tag">
                             <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                                <li class="uppercase"><a href="javascript:;" style="line-height: 30px">{{names.name}}</a></li>
                             </template>
                         </ul>
                     </div>

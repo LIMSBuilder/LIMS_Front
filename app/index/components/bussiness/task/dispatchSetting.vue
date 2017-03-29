@@ -126,7 +126,7 @@
                         <!--</template>-->
                         <ul class="receiver_tag">
                             <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                                <li class="uppercase"><a href="javascript:;" style="line-height: 30px">{{names.name}}</a></li>
                             </template>
                         </ul>
                     </div>
@@ -227,17 +227,36 @@
                     serverErrorInfo(response);
                 })
             },
+            /*分发任务给指定的人员*/
             create(){
                 var me = this;
-                var results = [];
+                var results = {};
+                var temp = [];
                 var items = me.items;
                 for (var i = 0; i < items.length; i++) {
-                    results.push({
+                    temp.push({
                         id: items[i].id,
                         charge: items[i].master,
                         belongs: items[i].slave
                     });
                 }
+                results.result = JSON.stringify(temp);
+                results.id = me.id;
+                console.log(JSON.stringify(results))
+                me.$http.get("/api/task/delivery", {
+                    params: results
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("任务派遣成功！");
+                            router.push("/task/dispatch");
+
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
                 console.log(results);
 
             },
