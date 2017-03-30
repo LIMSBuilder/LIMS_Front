@@ -75,9 +75,7 @@
                                     <ul class="nav nav-pills nav-stacked">
                                         <template v-for="item in typeList">
                                             <li>
-                                                <a href="javascript:;" @click="searchByType(item.id)">
-                                                    <span class="badge badge-success"> {{item.contract_count}} </span>
-                                                    {{item.name}} </a>
+                                                <a href="javascript:;" @click="searchByType(item.id)">{{item.name}} </a>
                                             </li>
                                         </template>
                                     </ul>
@@ -113,7 +111,7 @@
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">合同列表</span>
                                 </div>
-                                <div class="actions" v-if="!contract.id">
+                                <div class="actions" v-if="contract.id">
                                     <div class="btn-group">
                                         <a class="btn green btn-circle btn-sm" href="javascript:;"
                                            data-toggle="dropdown"
@@ -132,11 +130,11 @@
                                                 <a href="javascript:;"> 导出合同</a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> 中止合同</a>
+                                                <a href="javascript:;" @click="stopContract"> 中止合同</a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="javascript:;"> 删除合同 </a>
+                                                <a href="javascript:;" @click="deleteContract"> 删除合同 </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -588,12 +586,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
+                            <h4 class="modal-title">检测项目详情列表</h4>
                         </div>
-                        <div class="modal-body" id="modal_body">
-                            <!--<template v-for="(project,projectIndex) in item.project">-->
-                            <!--{{project.project.name}}-->
-                            <!--</template>-->
+                        <div class="modal-body">
                             <ul class="receiver_tag">
                                 <template v-for="names in projectName">
                                     <li class="uppercase "><a href="javascript:;" style="line-height: 30px">{{names.name}}</a>
@@ -763,6 +758,10 @@
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
+                me.contract = {
+                    trustee: {},
+                    type: {}
+                }
             },
             viewDetails(item){
                 var me = this;
@@ -834,6 +833,56 @@
                 );
                 jQuery("#showProject").modal("show");
 
+            },
+            stopContract(){
+                var me = this;
+                confirm({
+                    title: "<span><i class='font-red font-lg fa fa-warning'></i> 警告！危险操作</span>",
+                    content: "您正在中止合同【" + me.contract.name + "】，该操作将同时中止当前任务流程且无法撤销，是否继续？",
+                    success(){
+                        console.log(me.contract.id);
+                        me.$http.get("/api/contract/stopContract", {
+                            params: {
+                                id: me.contract.id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("合同中止成功！");
+                                    me.getData();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
+            },
+            deleteContract(){
+                var me = this;
+                confirm({
+                    title: "<span><i class='font-red font-lg fa fa-warning'></i> 警告！危险操作</span>",
+                    content: "<span class='font-red'>【不推荐】</span>您正在删除合同【" + me.contract.name + "】，该操作将同时删除当前任务流程且无法撤销，是否继续？",
+                    success(){
+                        console.log(me.contract.id);
+                        me.$http.get("/api/contract/deleteContract", {
+                            params: {
+                                id: me.contract.id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("合同删除成功！");
+                                    me.getData();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
             }
 
         }
