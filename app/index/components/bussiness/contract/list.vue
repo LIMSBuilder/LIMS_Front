@@ -22,7 +22,6 @@
                                     <ul class="nav nav-stacked">
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('total')">
-                                                <span class="badge badge-default">  {{countProcess.total}}</span>
                                                 所有 </a>
                                         </li>
                                         <li>
@@ -169,9 +168,9 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <span class="label label-sm label-danger"
-                                                              v-if="item.process==-1">已中止</span>
+                                                              v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-warning"
-                                                              v-if="item.process==0">草稿合同</span>
+                                                              v-if="item.process==-1">待修改</span>
                                                         <span class="label label-sm label-info"
                                                               v-if="item.process==1">待审核</span>
                                                         <span class="label label-sm label-primary"
@@ -741,6 +740,11 @@
         </div>
     </div>
 </template>
+<style>
+    a {
+        text-decoration: none !important;
+    }
+</style>
 <script type="es6">
     import 'style/contract_list'
     import 'style/socicon'

@@ -480,7 +480,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "",
+                condition: "process=apply_sample",
                 taskList: [],
                 task: {
                     type: {}
