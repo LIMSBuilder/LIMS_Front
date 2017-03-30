@@ -482,10 +482,7 @@
             },
             fetchData(pageNum, rowCount){
                 var me = this;
-                App.blockUI({
-                    target: '#task_list',
-                    animate: true
-                });
+                App.startPageLoading({animate: true});
                 this.$http.get('/api/task/list', {
                     params: {
                         rowCount: rowCount,
@@ -496,7 +493,7 @@
                     var data = response.data;
                     me.taskList = data.results;
                     me.$nextTick(function () {
-                        App.unblockUI('#task_list');
+                        App.stopPageLoading();
                     })
                 }, (response) => {
                     serverErrorInfo(response);
@@ -542,7 +539,7 @@
                     var data = response.data;
                     me.items = data.items;
                     me.$nextTick(function () {
-                        App.unblockUI("#dispath_body");
+                        App.stopPageLoading();
                         $('.bs-select').selectpicker('destroy');
                         $('.bs-select').selectpicker({
                             iconBase: 'fa',

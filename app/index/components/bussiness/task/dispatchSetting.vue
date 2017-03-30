@@ -166,27 +166,11 @@
                 me.id = query.id;
                 me.fetchItems(me.id);
             }
-//            me.$nextTick(function () {
-//                App.unblockUI("#dispath_body");
-//                $('.bs-select').selectpicker('destroy');
-//                $('.bs-select').selectpicker({
-//                    iconBase: 'fa',
-//                    tickIcon: 'fa-check',
-//                    countSelectedText: "count",
-//                    deselectAllText: "取消选择",
-//                    selectAllText: "选择全部",
-//                    noneSelectedText: "请选择人员"
-//                });
-//            })
-
         },
         methods: {
             fetchItems(id){
                 var me = this;
-                App.blockUI({
-                    target: '#dispath_body',
-                    animate: true
-                });//为了防止页面刷新慢，在用户等待的时候出现一些等待动画效果
+                App.startPageLoading({animate: true});//为了防止页面刷新慢，在用户等待的时候出现一些等待动画效果
                 me.$http.get("/api/task/getItems", {
                     params: {
                         task_id: id
@@ -213,7 +197,7 @@
                     me.userList = data.results;
                     //console.log(JSON.parse(JSON.stringify(me.userList)));在console里面输出me.userList
                     me.$nextTick(function () {
-                        App.unblockUI("#dispath_body")//去除这个等待动画效果
+                        App.stopPageLoading();
                         $('.bs-select').selectpicker('destroy');
                         $('.bs-select').selectpicker({
                             iconBase: 'fa',
