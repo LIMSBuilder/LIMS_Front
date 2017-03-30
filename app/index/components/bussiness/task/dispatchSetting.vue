@@ -191,7 +191,7 @@
                     params: {
                         task_id: id
                     }
-                }).then(response => {
+                }).then(response => {;
                     var data = response.data;
                     me.items = data.items;
                     for (var i = 0; i < me.items.length; i++) {
