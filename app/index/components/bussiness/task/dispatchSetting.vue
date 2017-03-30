@@ -126,7 +126,8 @@
                         <!--</template>-->
                         <ul class="receiver_tag">
                             <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;" style="line-height: 30px">{{names.name}}</a></li>
+                                <li class="uppercase"><a href="javascript:;"
+                                                         style="line-height: 30px">{{names.name}}</a></li>
                             </template>
                         </ul>
                     </div>
@@ -185,7 +186,7 @@
                 App.blockUI({
                     target: '#dispath_body',
                     animate: true
-                });
+                });//为了防止页面刷新慢，在用户等待的时候出现一些等待动画效果
                 me.$http.get("/api/task/getItems", {
                     params: {
                         task_id: id
@@ -210,9 +211,9 @@
                 me.$http.get("/api/user/listByDepartment").then(response => {
                     var data = response.data;
                     me.userList = data.results;
-//                    console.log(JSON.parse(JSON.stringify(me.userList)));
+                    //console.log(JSON.parse(JSON.stringify(me.userList)));在console里面输出me.userList
                     me.$nextTick(function () {
-                        App.unblockUI("#dispath_body");
+                        App.unblockUI("#dispath_body")//去除这个等待动画效果
                         $('.bs-select').selectpicker('destroy');
                         $('.bs-select').selectpicker({
                             iconBase: 'fa',
@@ -240,7 +241,7 @@
                         belongs: items[i].slave
                     });
                 }
-                results.result = JSON.stringify(temp);
+                results.result = JSON.stringify(temp);//将数据以字符串的形式存储
                 results.id = me.id;
                 console.log(JSON.stringify(results))
                 me.$http.get("/api/task/delivery", {
