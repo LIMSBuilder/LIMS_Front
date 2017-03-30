@@ -10,8 +10,8 @@
                     <div class="todo-sidebar">
                         <div class="portlet light ">
                             <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同进展 </span>
+                                <div class="caption">
+                                    <span class="caption-subject font-green-sharp bold uppercase">合同流程 </span>
                                     <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看合同进展</span>
                                 </div>
 
@@ -42,13 +42,11 @@
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(3)">
-                                                <span class="badge badge-success"> {{countProcess.finish}}</span>
                                                 已执行
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(-2)">
-                                                <span class="badge badge-danger">{{countProcess.stop}} </span>
                                                 已中止 </a>
                                         </li>
                                     </ul>
@@ -58,14 +56,13 @@
                         </div>
                         <div class="portlet light ">
                             <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
+                                <div class="caption">
                                     <span class="caption-subject font-red bold uppercase">监测类别 </span>
                                     <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
                                 </div>
                                 <div class="actions">
                                     <div class="actions">
-                                        <a class="btn btn-circle grey-salsa btn-outline btn-sm" href="/type/create">
+                                        <a class="btn btn-circle green btn-outline btn-sm" href="/type/create">
                                             <i class="fa fa-plus"></i> 新增 </a>
                                     </div>
                                 </div>
@@ -120,10 +117,11 @@
                                         </a>
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <a href="javascript:;"> 创建新合同 </a>
+                                                <!--<a href="javascript:;" > 创建新合同 </a>-->
+                                                <router-link to="/contract/create"> 创建新合同</router-link>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> 编辑修改 </a>
+                                                <a href="javascript:;" @click="changeContract"> 编辑修改 </a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
@@ -224,10 +222,10 @@
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_3" data-toggle="tab"> 相 关 </a>
+                                                            <a href="#page_3" data-toggle="tab"> 相关文档 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_4" data-toggle="tab"> 日 志 </a>
+                                                            <a href="#page_4" data-toggle="tab"> 操作日志 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -883,8 +881,11 @@
                         })
                     }
                 })
+            },
+            changeContract(){
+                var me = this;
+                router.push("/contract/change?id=" + me.contract.id);
             }
-
         }
     }
 

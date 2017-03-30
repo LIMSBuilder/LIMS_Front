@@ -40,6 +40,7 @@ import Contract from './components/bussiness/contract/contract.vue'
 import Create_Contract from './components/bussiness/contract/create.vue'
 import Contract_List from './components/bussiness/contract/list.vue'
 import Contract_Review from './components/bussiness/contract/review.vue'
+import Change_Contract from './components/bussiness/contract/change.vue'
 
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
@@ -405,7 +406,7 @@ var routes = [
             },
             {
                 path: "change",
-                component: Change_Project
+                component: Change_Contract
             },
             {
                 path: "review",
