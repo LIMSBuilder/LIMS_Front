@@ -2076,10 +2076,7 @@
             },
             fetchData(pageNum, rowCount){
                 var me = this;
-                App.blockUI({
-                    target: '#contract_list',
-                    animate: true
-                });
+                App.startPageLoading({animate: true});
                 this.$http.get('/api/contract/list', {
                     params: {
                         rowCount: rowCount,
@@ -2090,7 +2087,7 @@
                     var data = response.data;
                     me.contractList = data.results;
                     me.$nextTick(function () {
-                        App.unblockUI('#contract_list');
+                        App.stopPageLoading();
                     })
                 }, (response) => {
                     serverErrorInfo(response);

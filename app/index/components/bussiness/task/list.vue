@@ -539,10 +539,7 @@
 //            },
             fetchData(pageNum, rowCount){
                 var me = this;
-                App.blockUI({
-                    target: '#task_list',
-                    animate: true
-                });
+                App.startPageLoading({animate: true});
                 this.$http.get('/api/task/list', {
                     params: {
                         rowCount: rowCount,
@@ -553,7 +550,7 @@
                     var data = response.data;
                     me.taskList = data.results;
                     me.$nextTick(function () {
-                        App.unblockUI('#task_list');
+                        App.stopPageLoading();
                     })
                 }, (response) => {
                     serverErrorInfo(response);
