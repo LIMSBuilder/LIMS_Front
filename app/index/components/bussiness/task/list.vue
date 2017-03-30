@@ -21,7 +21,7 @@
                                     <ul class="nav nav-stacked">
                                         <li class="active">
                                             <a href="javascript:;" @click="searchByProcess('total')">
-                                                <span class="badge badge-default"> 6 </span> 所有 </a>
+                                                <span class="badge badge-default"> {{countProcess.total}}</span> 所有 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -462,7 +462,7 @@
                             <!--</template>-->
                             <ul class="receiver_tag">
                                 <template v-for="names in projectName">
-                                    <li class="uppercase"><a href="javascript:;" style="line-height: 30px">{{names.name}}</a></li>
+                                    <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
                                 </template>
                             </ul>
                         </div>
@@ -478,7 +478,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="es6">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -494,7 +494,8 @@
                 items: [],
                 log: [],
                 total_count: {},
-                projectName: []
+                projectName: [],
+                countProcess: ""
             }
         },
         mounted(){
@@ -506,6 +507,7 @@
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
+            me.fetchCount();
 
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
@@ -650,6 +652,7 @@
                 me.currentPage = 1;
                 me.getData();
             },
+            //task/list检测项目查看详情
             showProjectName(id){
                 var me = this;
                 me.$http.get("/api/task/monitorItem", {
@@ -666,6 +669,18 @@
                 );
                 jQuery("#showProject").modal("show");
 
+            },
+            //获取task/list合同进展个数
+            fetchCount(){
+                var me = this;
+                me.$http.get("/api/task/countTotal").then(
+                    response => {
+                        var data = response.data;
+                        me.countProcess = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
             }
         }
     }
