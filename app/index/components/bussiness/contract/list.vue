@@ -222,10 +222,10 @@
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_3" data-toggle="tab"> 相 关 </a>
+                                                            <a href="#page_3" data-toggle="tab"> 相关文档 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_4" data-toggle="tab"> 日 志 </a>
+                                                            <a href="#page_4" data-toggle="tab"> 操作日志 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
