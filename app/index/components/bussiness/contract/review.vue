@@ -19,7 +19,7 @@
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('total')">所有 </a>
+                                            <a href="javascript:;" @click="searchByProcess('total')">全部 </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess(1)">

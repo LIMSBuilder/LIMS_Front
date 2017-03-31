@@ -25,7 +25,8 @@
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('before_dispath')">
-                                                <span class="badge badge-default"> {{countProcess}} </span> 未派遣任务
+                                                <span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>
+                                                未派遣任务
                                             </a>
                                         </li>
                                         <li>
@@ -56,7 +57,6 @@
                                         <template v-for="item in typeList">
                                             <li>
                                                 <a href="javascript:;" @click="searchByType(item.id)">
-                                                    <span class="badge badge-success"> {{item.contract_count}} </span>
                                                     {{item.name}} </a>
                                             </li>
                                         </template>
@@ -106,10 +106,10 @@
                                                             style="width: 27px;height: 27px;"
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
-                                                    <div class="todo-tasklist-item-title"> {{item.name}} /
+                                                    <div class="todo-tasklist-item-title">
                                                         {{item.identify}}
                                                     </div>
-                                                    <div class="todo-tasklist-item-text"> {{item.aim}}
+                                                    <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-left">
                                                                     <span class="todo-tasklist-date">
@@ -120,6 +120,21 @@
                                                                     <span class="todo-tasklist-date">
                                                                         <i class="fa fa-home"></i> {{item.client_unit}} </span>
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
+                                                    </div>
+                                                    <div class="todo-tasklist-controls pull-right">
+                                                        <span class="label label-sm label-info"
+                                                              v-if="item.sample_type==0">自送样</span>
+                                                        <span class="label label-sm label-info"
+                                                              v-if="item.sample_type==1">现场采样</span>
+
+                                                        <span class="label label-sm label-danger"
+                                                              v-if="item.process==-2">已中止</span>
+                                                        <span class="label label-sm label-info"
+                                                              v-if="item.process==1">未派遣</span>
+                                                        <span class="label label-sm label-primary"
+                                                              v-if="item.process==2">待执行</span>
+
+
                                                     </div>
                                                 </div>
                                             </template>
@@ -150,13 +165,21 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
-                                                        <div class="todo-taskbody-date pull-right">
-                                                            <!--<button type="button"-->
-                                                            <!--class="todo-username-btn btn btn-circle btn-default btn-sm">-->
-                                                            <!--&nbsp; 导 出 &nbsp;</button>-->
-
-                                                            <span class="todo-username pull-left"
-                                                                  style="font-size: 14px;">编号：{{task.identify}}</span>
+                                                        <div class="todo-taskbody-date pull-right"
+                                                             v-if="task.process==1">
+                                                            <button type="button"
+                                                                    class="btn green btn-outline"
+                                                                    @click="dispathBtn(task.id)">
+                                                                派 遣
+                                                            </button>
+                                                        </div>
+                                                        <div class="todo-taskbody-date pull-right"
+                                                             v-if="task.process!=1">
+                                                            <button type="button"
+                                                                    class="btn blue btn-outline"
+                                                                    @click="dispathBtn(task.id)">
+                                                                查 看
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -165,6 +188,9 @@
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
                                                             <a href="#page_1" data-toggle="tab"> 任务详情 </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -268,19 +294,55 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <hr/>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <button type="button"
-                                                                            class="btn green btn-outline"
-                                                                            data-toggle="modal" data-target="#dispatch"
-                                                                            @click="dispathBtn(task.id)">
-                                                                        任务派遣
-                                                                    </button>
-                                                                    <button type="button" class="btn blue btn-outline">
-                                                                        派遣单
-                                                                    </button>
-                                                                </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="page_2">
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 公司、道路名称</th>
+                                                                        <th> 环境要素</th>
+                                                                        <th> 监测点（个）</th>
+                                                                        <th> 监测项目</th>
+                                                                        <th> 监测频次</th>
+                                                                        <th> 是否分包</th>
+                                                                        <th> 备注</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="(item,index) in items">
+                                                                        <tr>
+                                                                            <td class="text-center">{{index+1}}</td>
+                                                                            <td class="text-center">{{item.company}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{item.element.name}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{item.point}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <button type="button"
+                                                                                        class="btn green btn-outline"
+                                                                                        @click="showProjectName(item.id)">
+                                                                                    查看详情
+                                                                                </button>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{item.frequency?item.frequency.total:''}}
+                                                                            </td>
+                                                                            <td class="text-center"
+                                                                                v-if="item.is_package==1">是
+                                                                            </td>
+                                                                            <td class="text-center"
+                                                                                v-if="item.is_package==0">否
+                                                                            </td>
+                                                                            <td class="text-center">{{item.other}}</td>
+                                                                        </tr>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -416,6 +478,29 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+
+        <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="receiver_tag">
+                            <template v-for="names in projectName">
+                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                            </template>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 </template>
 
@@ -427,7 +512,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "sample_type=1",
+                condition: "sample_type=1&&process=total_dispatch",
                 taskList: [],
                 task: {
                     type: {}
@@ -435,6 +520,7 @@
                 items: [],
                 total_count: {},
                 userList: [],
+                projectName: [],
                 countProcess: 0
             }
         },
@@ -562,8 +648,32 @@
             },
             viewDetails(item){
                 var me = this;
-                me.task = item;
-                //me.fetchItems(item.id);
+                me.$http.get("/api/task/taskDetails", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.task = data;
+                }, response => {
+                    serverErrorInfo(response);
+                });
+                me.fetchItems(item.id);
+                me.fetchLog(item.id);
+            },
+            fetchLog(id){
+                var me = this;
+                me.$http.get("/api/log/taskLog", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                        var data = response.data;
+                        me.log = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
             },
             search(){
                 var me = this;
@@ -574,7 +684,7 @@
             searchByType(id){
                 var me = this;
                 me.currentPage = 1;
-                me.condition = "sample_type=1&&type=" + id;
+                me.condition = "sample_type=1&&process=total_dispatch&&type=" + id;
                 me.getData();
             },
             searchByProcess(step){
@@ -582,7 +692,7 @@
                 me.currentPage = 1;
                 switch (step) {
                     case "total":
-                        me.condition = "sample_type=1";
+                        me.condition = "sample_type=1&&process=total_dispatch";
                         break;
                     case "before_dispath":
                         me.condition = "process=before_dispath";
@@ -625,7 +735,24 @@
                         serverErrorInfo(response);
                     }
                 );
-            }
+            },
+            showProjectName(id){
+                var me = this;
+                me.$http.get("/api/task/monitorItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.projectName = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProject").modal("show");
+
+            },
         }
     }
 
