@@ -149,10 +149,10 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}
-                                                        <span class="label label-sm label-info"
+                                                        {{item.identify}} /
+                                                        <span class="label label-sm label-default"
                                                               v-if="item.sample_type==0">自送样</span>
-                                                        <span class="label label-sm label-info"
+                                                        <span class="label label-sm label-default"
                                                               v-if="item.sample_type==1">现场采样</span>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
