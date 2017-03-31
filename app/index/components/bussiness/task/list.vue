@@ -150,6 +150,10 @@
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
                                                         {{item.identify}}
+                                                        <span class="label label-sm label-info"
+                                                              v-if="item.sample_type==0">自送样</span>
+                                                        <span class="label label-sm label-info"
+                                                              v-if="item.sample_type==1">现场采样</span>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -164,11 +168,6 @@
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
-                                                        <span class="label label-sm label-info"
-                                                              v-if="item.sample_type==0">自送样</span>
-                                                        <span class="label label-sm label-info"
-                                                              v-if="item.sample_type==1">现场采样</span>
-
                                                         <span class="label label-sm label-danger"
                                                               v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-info"

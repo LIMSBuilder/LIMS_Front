@@ -537,27 +537,32 @@
                         <form class="form-horizontal" action="#" method="POST">
                             <div class="form-body">
                                 <div class="form-group form-md-radios">
-                                    <label :class="advice.same==0?'col-md-10 control-label font-red':'col-md-10 control-label'" style="text-align: left">客户要求与合同内容相符</label>
+                                    <label :class="advice.same==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">客户要求与合同内容相符</label>
                                     <span v-if="advice.same==1">是</span>
                                     <span v-if="advice.same==0" class="font-red">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
-                                    <label :class="advice.contract==0?'col-md-10 control-label font-red':'col-md-10 control-label'" style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
+                                    <label :class="advice.contract==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
                                     <span v-if="advice.contract==1">是</span>
                                     <span v-if="advice.contract==0" class="font-red">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
-                                    <label :class="advice.guest==0?'col-md-10 control-label font-red':'col-md-10 control-label'" style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
+                                    <label :class="advice.guest==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
                                     <span v-if="advice.guest==1">是</span>
                                     <span v-if="advice.guest==0" class="font-red">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
-                                    <label :class="advice.package==0?'col-md-10 control-label font-red':'col-md-10 control-label'" style="text-align: left">是否有分包内容</label>
+                                    <label :class="advice.package==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">是否有分包内容</label>
                                     <span v-if="advice.package==1"> 有</span>
                                     <span v-if="advice.package==0" class="font-red"> 无</span>
                                 </div>
                                 <div class="form-group form-md-radios">
-                                    <label :class="advice.company==0?'col-md-10 control-label font-red':'col-md-10 control-label'" style="text-align: left">分包单位评审是否合格</label>
+                                    <label :class="advice.company==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">分包单位评审是否合格</label>
                                     <span v-if="advice.company==1">是</span>
                                     <span v-if="advice.company==0" class="font-red">否</span>
                                 </div>
@@ -568,7 +573,8 @@
                                     <span v-if="advice.company==0" class="font-red">否</span>
                                 </div>
                                 <div class="form-group form-md-radios">
-                                    <label :class="advice.time==0?'col-md-10 control-label font-red':'col-md-10 control-label'" style="text-align: left">提交报告时间是否合适 </label>
+                                    <label :class="advice.time==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">提交报告时间是否合适 </label>
                                     <span v-if="advice.time==1">是</span>
                                     <span v-if="advice.time==0" class="font-red">否</span>
                                 </div>
