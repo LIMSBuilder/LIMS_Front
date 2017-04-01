@@ -65,9 +65,12 @@
                             }).then(response => {
                                 var data = response.data;
                                 codeState(data.code, {
-                                    200: function () {
+                                    200() {
                                         alert("新部门创建成功！");
                                         me.name = ""
+                                    },
+                                    503(){
+                                        alert("当前部门已存在，请更换新的部门名称！");
                                     }
                                 });
                             }, response => {

@@ -87,7 +87,8 @@
                     }).then(response => {
                         var data = response.data;
                         codeState(data.code, {
-                            200: "部门信息修改成功！"
+                            200: "部门信息修改成功！",
+                            503: "当前部门已存在，请更换新的部门名称！"
                         });
                     }, response => {
                         serverErrorInfo(response);
