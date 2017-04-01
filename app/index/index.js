@@ -51,6 +51,9 @@ import DisPatchSetting from './components/bussiness/task/dispatchSetting.vue'
 
 import Sample from './components/bussiness/sample/sample.vue'
 import Apply_Sample from './components/bussiness/sample/apply.vue'
+import Register_Sample from './components/bussiness/sample/register.vue'
+
+
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -450,6 +453,10 @@ var routes = [
                 path: "list",
                 component: Task_List
             },
+            {
+                path:"register",
+                compose
+            }
         ]
     }
 ];
