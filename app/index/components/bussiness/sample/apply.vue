@@ -657,7 +657,7 @@
                 var me = this;
                 me.$http.get("/api/sample/findByTask", {
                     params: {
-                        id: id
+                        task_id: id
                     }
                 }).then(response => {
                     var data = response.data;
@@ -683,7 +683,7 @@
                 var me = this;
                 me.$http.get("/api/sample/findByItem", {
                     params: {
-                        id: id
+                        item_id: id
                     }
                 }).then(response => {
                     var data = response.data;
