@@ -454,8 +454,8 @@ var routes = [
                 component: Task_List
             },
             {
-                path:"register",
-                compose
+                path: "register",
+                component: Register_Sample
             }
         ]
     }

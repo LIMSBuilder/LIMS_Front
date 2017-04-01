@@ -91,38 +91,6 @@
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">任务列表</span>
                                 </div>
-                                <div class="actions">
-                                    <div class="btn-group">
-                                        <a class="btn green btn-circle btn-sm" href="javascript:;"
-                                           data-toggle="dropdown"
-                                           data-hover="dropdown" data-close-others="true"> 操 作
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="javascript:;"> 创建新任务 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 作为模板任务创建 </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="javascript:;"> 导出任务
-                                                    <span class="badge badge-success"> 12 </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 中止任务
-                                                    <span class="badge badge-warning"> 9 </span>
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="javascript:;"> 删除任务 </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
@@ -326,7 +294,8 @@
                                                                     </thead>
                                                                     <tbody>
                                                                     <template v-for="(item,index) in items">
-                                                                        <tr :class="sample.item_id==item.id?'active':''">
+                                                                        <tr :class="sample.item_id==item.id?'active':''"
+                                                                            @click="fetchSampleByItems(item.id)">
                                                                             <td class="text-center">{{index+1}}</td>
                                                                             <td class="text-center">{{item.company}}
                                                                             </td>
@@ -455,20 +424,34 @@
                                                                     <tr class="uppercase">
                                                                         <th> 序号</th>
                                                                         <th> 样品编号</th>
-                                                                        <th> 样品类别</th>
-                                                                        <th> 分析项目</th>
-                                                                        <th> 监测项目</th>
-                                                                        <th> 监测频次</th>
-                                                                        <th> 备注</th>
-                                                                        <th> 申请</th>
+                                                                        <th> 操作</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
+                                                                    <template v-for="(item,index) in sampleList">
+                                                                        <tr>
+                                                                            <td>{{index+1}}</td>
+                                                                            <td>{{item.identify}}</td>
+                                                                            <td>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm green btn-outline">
+                                                                                    二维码
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm green btn-outline">
+                                                                                    平行样
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </template>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane " id="tab_2"></div>
+                                                        <div class="tab-pane " id="tab_2">
+
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -561,7 +544,9 @@
                     prefix: 0,
                     prefix_text: "",
                     count: 0
-                }
+                },
+                sampleList: [],
+                logList: []
             }
         },
         mounted(){
@@ -668,6 +653,46 @@
                     }
                 );
             },
+            fetchSample(id){
+                var me = this;
+                me.$http.get("/api/sample/findByTask", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.sampleList = data.results;
+                }, response => {
+                    serverErrorInfo(response)
+                })
+            },
+            fetchApplyLog(id){
+                var me = this;
+                me.$http.get("/api/sample/applyLog", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.logList = data.results;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            fetchSampleByItems(id){
+                var me = this;
+                me.$http.get("/api/sample/findByItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.sampleList = data.results;
+                }, response => {
+                    serverErrorInfo(response)
+                });
+                me.fetchApplyLog(id);
+            },
             getData(){
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
@@ -687,6 +712,7 @@
                 });
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
+                me.fetchSample(item.id);
             },
             search(){
                 var me = this;

@@ -128,6 +128,16 @@
                             <span class="title">样品号申请</span>
                         </a>
                     </router-link>
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">现场采样信息补录</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">自送样信息登记</span>
+                        </a>
+                    </router-link>
                 </ul>
             </li>
 
