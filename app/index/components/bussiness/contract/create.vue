@@ -1013,57 +1013,54 @@
                                 <tbody>
                                 <!--<template v-for="(item,index) in items">-->
                                 <tr>
-                                    <td class="text-center" rowspan="2">人民路
+                                    <td class="text-center" rowspan="3">人民路
                                     </td>
-                                    <td class="text-center">水
+                                    <td class="text-center" rowspan="2">污水
                                     </td>
                                     <td class="text-center">ph值
                                     </td>
-                                    <!--<td class="text-center"-->
-                                    <!--v-if="item.is_package==1">是-->
-                                    <!--</td>-->
-                                    <!--<td class="text-center"-->
-                                    <!--v-if="item.is_package==0">否-->
-                                    <!--</td>-->
                                     <td class="text-center">
-                                        <div class="md-radio-inline">
-                                            <div class="md-radio">
-                                                <input type="radio" id=""
-                                                       name=""
-                                                       class="md-radiobtn"
-                                                       value="1">
-                                                <label for="">
-                                                    <span class="inc"></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> 是 </label>
-                                            </div>
-                                            <div class="md-radio has-error">
-                                                <input type="radio" id=""
-                                                       name="" class="md-radiobtn"
-                                                       value="0">
-                                                <label for="">
-                                                    <span class="inc"></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> 否</label>
-                                            </div>
-                                        </div>
+                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
+                                                                                              name="inRoom">
+                                            <span></span></label>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">2</td>
-                                    <td class="text-center">3</td>
+                                    <td class="text-center">化学需要</td>
+                                    <td class="text-center">
+                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
+                                                                                              name="inRoom">
+                                            <span></span></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" rowspan="">无组织废气
+                                    </td>
+                                    <td class="text-center">臭气
+                                    </td>
+                                    <td class="text-center">
+                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
+                                                                                              name="inRoom">
+                                            <span></span></label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="text-center" rowspan="2">建设路</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">2</td>
-                                    <td class="text-center">3</td>
+                                    <td class="text-center" rowspan="2">污水</td>
+                                    <td class="text-center">PH</td>
+                                    <td class="text-center">
+                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
+                                                                                              name="inRoom">
+                                            <span></span></label>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">2</td>
-                                    <td class="text-center">3</td>
+                                    <td class="text-center">化学需氧量</td>
+                                    <td class="text-center">
+                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
+                                                                                              name="inRoom">
+                                            <span></span></label>
+                                    </td>
                                 </tr>
                                 <!--</template>-->
                                 </tbody>
@@ -1072,15 +1069,15 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                            <button type="button" class="btn green" @click="addMonitor">添 加</button>
+                            <button type="button" class="btn green" @click="">添 加</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
             </div>
-
         </div>
+    </div>
 </template>
 
 <script>
@@ -1269,12 +1266,9 @@
                         params: me.monitor
                     }).then(function (response) {
                             var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("监测项目创建成功！");
-                                    me.contract.item.push(data);
-                                }
-                            })
+                            alert("监测项目创建成功！");
+                            me.contract.item.push(data);
+//                            console.log(JSON.parse(JSON.stringify(me.contract)));
                         }
                         , function (response) {
                             serverErrorInfo(response);
