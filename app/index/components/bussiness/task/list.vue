@@ -598,7 +598,7 @@
                     }
                 }).then(response => {
                     var data = response.data;
-                    debugger
+//                    debugger
                     me.task = data;
                 }, response => {
                     serverErrorInfo(response);

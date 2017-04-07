@@ -123,7 +123,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="client_tel">联系电话
-                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
+                                                        <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -139,18 +139,15 @@
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="client">联系人
-                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
+                                                        <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-8">
-
                                                         <div class="input-icon right">
                                                             <i class="fa fa-user"></i>
                                                             <input type="text" class="form-control" name="client"
                                                                    id="client"
                                                                    v-model="contract.client"/>
                                                         </div>
-
-
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
@@ -218,7 +215,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4" for="trustee_tel">联系电话
-                                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
+                                                        <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="input-icon right">
@@ -342,12 +339,12 @@
                                                             <thead>
                                                             <tr class="uppercase">
                                                                 <th> 序号</th>
-                                                                <th> 公司、道路名称</th>
+                                                                <!--<th> 公司、道路名称</th>-->
                                                                 <th> 环境要素</th>
                                                                 <th> 监测点（个）</th>
                                                                 <th> 监测项目</th>
                                                                 <th> 监测频次</th>
-                                                                <th> 是否分包</th>
+                                                                <!--<th> 是否分包</th>-->
                                                                 <th> 备注</th>
                                                                 <th> 操作</th>
                                                             </tr>
@@ -356,17 +353,10 @@
                                                             <template v-for="(item,index) in contract.item">
                                                                 <tr>
                                                                     <td class="text-center">{{index+1}}</td>
-                                                                    <td class="text-center">{{item.company}}</td>
+                                                                    <!--<td class="text-center">{{item.company}}</td>-->
                                                                     <td class="text-center">{{item.element.name}}
                                                                     </td>
-                                                                    <td class="text-center">
-                                                                        <template v-for="(point,index) in item.point">
-                                                                            {{point}}
-                                                                            <template
-                                                                                    v-if="index+1!=item.point.length">
-                                                                                ,
-                                                                            </template>
-                                                                        </template>
+                                                                    <td class="text-center">{{item.point}}
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <template
@@ -380,12 +370,12 @@
                                                                     </td>
                                                                     <td class="text-center">{{item.frequency.total}}
                                                                     </td>
-                                                                    <td class="text-center"
-                                                                        v-if="item.is_package==1">是
-                                                                    </td>
-                                                                    <td class="text-center"
-                                                                        v-if="item.is_package==0">否
-                                                                    </td>
+                                                                    <!--<td class="text-center"-->
+                                                                    <!--v-if="item.is_package==1">是-->
+                                                                    <!--</td>-->
+                                                                    <!--<td class="text-center"-->
+                                                                    <!--v-if="item.is_package==0">否-->
+                                                                    <!--</td>-->
                                                                     <td class="text-center">{{item.other}}</td>
                                                                     <td class="text-center">
                                                                         <a href="javascript:;"
@@ -407,6 +397,8 @@
                                                         </button>
                                                         <button type="button" class="btn yellow btn-outline">读取模板
                                                         </button>
+                                                        <a href="#isPackage" data-toggle="modal"
+                                                           class="btn blue btn-outline">选择分包</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -481,6 +473,18 @@
                                                         <i class="fa fa-cny"></i>
                                                         <input type="text" class="form-control" name="payment"
                                                                id="payment" v-model="contract.payment"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2" for="payment">大写
+                                                    <!--<span class="required"> * </span>-->
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <div class="input-icon right">
+                                                        <i class="fa fa-cny"></i>
+                                                        <input type="text" class="form-control" name="payment"
+                                                               id="" v-model="contract.payment"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -648,12 +652,12 @@
                                                                 <thead>
                                                                 <tr class="uppercase">
                                                                     <th> 序号</th>
-                                                                    <th> 公司、道路名称</th>
+                                                                    <!--<th> 公司、道路名称</th>-->
                                                                     <th> 环境要素</th>
                                                                     <th> 监测点（个）</th>
                                                                     <th> 监测项目</th>
                                                                     <th> 监测频次</th>
-                                                                    <th> 是否分包</th>
+                                                                    <!--<th> 是否分包</th>-->
                                                                     <th> 备注</th>
                                                                 </tr>
                                                                 </thead>
@@ -661,18 +665,11 @@
                                                                 <template v-for="(item,index) in contract.item">
                                                                     <tr>
                                                                         <td class="text-center">{{index+1}}</td>
-                                                                        <td class="text-center">{{item.company}}</td>
+                                                                        <!--<td class="text-center">{{item.company}}</td>-->
                                                                         <td class="text-center">{{item.element.name}}
                                                                         </td>
                                                                         <td class="text-center">
-                                                                            <template
-                                                                                    v-for="(point,index) in item.point">
-                                                                                {{point}}
-                                                                                <template
-                                                                                        v-if="index+1!=item.point.length">
-                                                                                    ,
-                                                                                </template>
-                                                                            </template>
+                                                                            {{item.point}}
                                                                         </td>
                                                                         <td class="text-center">
                                                                             <template
@@ -686,12 +683,12 @@
                                                                         </td>
                                                                         <td class="text-center">{{item.frequency.total}}
                                                                         </td>
-                                                                        <td class="text-center"
-                                                                            v-if="item.is_package==1">是
-                                                                        </td>
-                                                                        <td class="text-center"
-                                                                            v-if="item.is_package==0">否
-                                                                        </td>
+                                                                        <!--<td class="text-center"-->
+                                                                        <!--v-if="item.is_package==1">是-->
+                                                                        <!--</td>-->
+                                                                        <!--<td class="text-center"-->
+                                                                        <!--v-if="item.is_package==0">否-->
+                                                                        <!--</td>-->
                                                                         <td class="text-center">{{item.other}}</td>
                                                                     </tr>
                                                                 </template>
@@ -884,17 +881,17 @@
                                             <button class="close" data-close="alert"></button>
                                             表单尚未填写完整。
                                         </div>
-                                        <div class="form-group" style="padding-bottom: 10px">
-                                            <label class="col-md-2 control-label" for="monitor_company">监测企业或路段
-                                                <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="monitor_company"
-                                                       v-model="monitor.company"
-                                                       placeholder=""
-                                                       name="monitor_company">
-                                            </div>
-                                        </div>
+                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
+                                        <!--<label class="col-md-2 control-label" for="monitor_company">监测企业或路段-->
+                                        <!--<span class="required">*</span>-->
+                                        <!--</label>-->
+                                        <!--<div class="col-md-9">-->
+                                        <!--<input type="text" class="form-control" id="monitor_company"-->
+                                        <!--v-model="monitor.company"-->
+                                        <!--placeholder=""-->
+                                        <!--name="monitor_company">-->
+                                        <!--</div>-->
+                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
                                                 <span class="required">*</span>
@@ -928,9 +925,6 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <!--</div>-->
-
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_frequency">监测频次
                                                 <span class="required">*</span>
@@ -951,30 +945,29 @@
                                                 <span class="required"> </span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control input-large"
-                                                       v-model="monitor.point" name="monitor_point"
-                                                       data-role="tagsinput" id="monitor_point">
+                                                <input type="number" class="form-control input-large"
+                                                       v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
-                                        <div class="form-group" style="padding-bottom: 10px">
-                                            <label class="col-md-2 control-label">是否外包
-                                                <span class="required">  </span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="is_package"
-                                                               v-model="monitor.is_package" value="0"> 否
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="is_package"
-                                                               v-model="monitor.is_package" value="1"> 是
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
+                                        <!--<label class="col-md-2 control-label">是否外包-->
+                                        <!--<span class="required">  </span>-->
+                                        <!--</label>-->
+                                        <!--<div class="col-md-9">-->
+                                        <!--<div class="mt-radio-inline">-->
+                                        <!--<label class="mt-radio">-->
+                                        <!--<input type="radio" name="is_package"-->
+                                        <!--v-model="monitor.is_package" value="0"> 否-->
+                                        <!--<span></span>-->
+                                        <!--</label>-->
+                                        <!--<label class="mt-radio">-->
+                                        <!--<input type="radio" name="is_package"-->
+                                        <!--v-model="monitor.is_package" value="1"> 是-->
+                                        <!--<span></span>-->
+                                        <!--</label>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_other">备注
                                                 <span class="required">  </span>
@@ -999,8 +992,95 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <div class="modal fade bs-modal-lg" id="isPackage" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">分包项目</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                <tr class="uppercase">
+                                    <th> 检测企业或路段</th>
+                                    <th> 环境要素</th>
+                                    <th> 监测项目</th>
+                                    <th> 是否分包</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--<template v-for="(item,index) in items">-->
+                                <tr>
+                                    <td class="text-center" rowspan="2">人民路
+                                    </td>
+                                    <td class="text-center">水
+                                    </td>
+                                    <td class="text-center">ph值
+                                    </td>
+                                    <!--<td class="text-center"-->
+                                    <!--v-if="item.is_package==1">是-->
+                                    <!--</td>-->
+                                    <!--<td class="text-center"-->
+                                    <!--v-if="item.is_package==0">否-->
+                                    <!--</td>-->
+                                    <td class="text-center">
+                                        <div class="md-radio-inline">
+                                            <div class="md-radio">
+                                                <input type="radio" id=""
+                                                       name=""
+                                                       class="md-radiobtn"
+                                                       value="1">
+                                                <label for="">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span> 是 </label>
+                                            </div>
+                                            <div class="md-radio has-error">
+                                                <input type="radio" id=""
+                                                       name="" class="md-radiobtn"
+                                                       value="0">
+                                                <label for="">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span> 否</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" rowspan="2">建设路</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">3</td>
+                                </tr>
+                                <!--</template>-->
+                                </tbody>
 
-    </div>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                            <button type="button" class="btn green" @click="addMonitor">添 加</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+        </div>
 </template>
 
 <script>
@@ -1036,9 +1116,9 @@
                     wayDesp: "",
                     finish_time: "",
                     payment: "",
-                    paymentWay: "客户自取",
+                    paymentWay: "挂号邮寄",
                     in_room: false,
-                    secret: false,
+                    secret: true,
                     item: [],
                     project_items: [],
                     other: "",
@@ -1054,9 +1134,10 @@
                     element: "",
                     point: "",
                     frequency: "",
-                    company: "",
-                    is_package: 0,
-                    other: ""
+//                    company: "",
+//                    is_package: 0,
+                    other: "",
+                    isHand: ""
                 },
                 elementList: [],
                 frequencyList: [],
@@ -1122,6 +1203,10 @@
             $("#createMonitor").draggable({
                 handle: ".modal-header"
             });
+            //创建选择分包窗口可拖拽
+            $("#isPackage").draggable({
+                handle: ".modal-header"
+            });
             //初始化监测项目选择框
             $('#monitor_project').selectpicker({
                 iconBase: 'fa',
@@ -1147,7 +1232,7 @@
                 var me = this;
                 me.fetchUser();
                 me.wizard();
-                jQuery("#monitor_point").tagsinput();
+//                jQuery("#monitor_point").tagsinput();
             },
             fetchUser(){
                 //加载乙方联系人信息，默认选中为当前登录人员
@@ -1178,7 +1263,8 @@
                 //新增一项监测内容
                 var me = this;
                 if (jQuery("#item_add").valid()) {
-                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
+//                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
+//                    me.monitor.isHand = 0;
                     me.$http.get("/api/project/details", {
                         params: me.monitor
                     }).then(function (response) {
@@ -1214,8 +1300,8 @@
                 var data = {
                     element: item.element.id,
                     frequency: item.frequency.id,
-                    company: item.company,
-                    is_package: item.is_package,
+//                    company: item.company,
+//                    is_package: item.is_package,
                     point: item.point,
                     other: item.other,
                     project: temp
@@ -1238,7 +1324,6 @@
                     console.log(JSON.stringify(items[i]))
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
-
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
@@ -1466,7 +1551,16 @@
                         client_unit: {
                             required: true
                         },
+                        client: {
+                            required: true
+                        },
+                        client_tel: {
+                            required: true
+                        },
                         trustee_unit: {
+                            required: true
+                        },
+                        trustee_tel: {
                             required: true
                         },
                         trustee: {
@@ -1475,13 +1569,13 @@
                         projectName: {
                             required: true
                         },
-                        projectAim: {
-                            required: true
-                        },
                         projectType: {
                             required: true
                         },
                         payWay: {
+                            required: true
+                        },
+                        wayDesp: {
                             required: true
                         },
                         payment: {
@@ -1548,9 +1642,9 @@
                     errorClass: 'help-block help-block-error', // default input error message class
                     focusInvalid: false, // do not focus the last invalid input
                     rules: {
-                        monitor_company: {
-                            required: true
-                        },
+//                        monitor_company: {
+//                            required: true
+//                        },
                         monitor_element: {
                             required: true
                         },
@@ -1708,6 +1802,35 @@
                     form.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
                 });
             }
+//            intToChinese (str) {
+//                str = str + '';
+//                var len = str.length - 1;
+//                var idxs = ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万', '十', '百', '千', '亿'];
+//                var num = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+//                return str.replace(/([1-9]|0+)/g, function ($, $1, idx, full) {
+//                    var pos = 0;
+//                    if ($1[0] != '0') {
+//                        pos = len - idx;
+//                        if (idx == 0 && $1[0] == 1 && idxs[len - idx] == '十') {
+//                            return idxs[len - idx];
+//                        }
+//                        return num[$1[0]] + idxs[len - idx];
+//                    } else {
+//                        var left = len - idx;
+//                        var right = len - idx + $1.length;
+//                        if (Math.floor(right / 4) - Math.floor(left / 4) > 0) {
+//                            pos = left - left % 4;
+//                        }
+//                        if (pos) {
+//                            return idxs[pos] + num[$1[0]];
+//                        } else if (idx + $1.length >= len) {
+//                            return '';
+//                        } else {
+//                            return num[$1[0]]
+//                        }
+//                    }
+//                });
+//            }
         }
     }
 </script>
