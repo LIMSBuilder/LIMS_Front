@@ -25,7 +25,8 @@
                         </div>
                     </div>
                     <div class="portlet-body form">
-                        <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                        <form class="form-horizontal" action="#" id="submit_form" method="POST"
+                              enctype="multipart/form-data">
                             <div class="form-wizard">
                                 <div class="form-body">
                                     <ul class="nav nav-pills nav-justified steps">
@@ -395,11 +396,25 @@
                                                         <button type="button" class="btn red btn-outline"
                                                                 @click="deleteAllItem">删除全部
                                                         </button>
-                                                        <button type="button" class="btn yellow btn-outline">读取模板
-                                                        </button>
                                                         <a href="#isPackage" data-toggle="modal"
                                                            class="btn blue btn-outline">选择分包</a>
                                                     </p>
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                        <div class="input-group input-large">
+                                                            <div class="form-control uneditable-input input-fixed input-medium"
+                                                                 data-trigger="fileinput">
+                                                                <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                                <span class="fileinput-filename"> </span>
+                                                            </div>
+                                                            <span class="input-group-addon btn default btn-file">
+                                                                    <span class="fileinput-new"> 选择模板 </span>
+                                                                <span class="fileinput-exists"> 变更 </span>
+                                                                    <input type="file" name="..."> </span>
+                                                            <a href="javascript:;"
+                                                               class="input-group-addon btn red fileinput-exists"
+                                                               data-dismiss="fileinput"> 删 除 </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -1077,6 +1092,8 @@
     //    import 'mod/moment'
     import  'style/taginput'
     import moment from 'moment'
+
+    import '../../../script/bootstrap-fileinput'
 
     export default{
         data(){
