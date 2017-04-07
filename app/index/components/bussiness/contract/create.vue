@@ -942,7 +942,7 @@
                                         </div>
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_point">监测点
-                                                <span class="required"> </span>
+                                                <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
                                                 <input type="number" class="form-control input-large"
@@ -1011,65 +1011,50 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--<template v-for="(item,index) in items">-->
-                                <tr>
-                                    <td class="text-center" rowspan="3">人民路
-                                    </td>
-                                    <td class="text-center" rowspan="2">污水
-                                    </td>
-                                    <td class="text-center">ph值
-                                    </td>
-                                    <td class="text-center">
-                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
-                                                                                              name="inRoom">
-                                            <span></span></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">化学需要</td>
-                                    <td class="text-center">
-                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
-                                                                                              name="inRoom">
-                                            <span></span></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center" rowspan="">无组织废气
-                                    </td>
-                                    <td class="text-center">臭气
-                                    </td>
-                                    <td class="text-center">
-                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
-                                                                                              name="inRoom">
-                                            <span></span></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center" rowspan="2">建设路</td>
-                                    <td class="text-center" rowspan="2">污水</td>
-                                    <td class="text-center">PH</td>
-                                    <td class="text-center">
-                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
-                                                                                              name="inRoom">
-                                            <span></span></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">化学需氧量</td>
-                                    <td class="text-center">
-                                        <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox"
-                                                                                              name="inRoom">
-                                            <span></span></label>
-                                    </td>
-                                </tr>
-                                <!--</template>-->
+                                <template v-for="(item,index) in contract.item">
+                                    <tr>
+                                        <td class="text-center" rowspan="item.length">人民路
+                                        </td>
+                                        <td class="text-center" rowspan="item.project.length">{{item.element.name}}
+                                        </td>
+                                        <td class="text-center">
+                                            <table class="table table-hover table-light">
+                                                <tbody>
+                                                <template v-for="project in item.project">
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            {{project.name}}
+                                                        </td>
+                                                    </tr>
+                                                </template>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td class="text-center">
+                                            <table class="table table-hover table-light">
+                                                <tbody>
+                                                <template v-for="project in item.project">
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                                <input type="checkbox" v-model="project.id"
+                                                                       name="ispackage" :value="item.id+'/'+project.id">
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </template>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </template>
                                 </tbody>
-
                             </table>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                            <button type="button" class="btn green" @click="">添 加</button>
+                            <button type="button" class="btn green" @click="isPackges">添 加</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -1531,6 +1516,14 @@
                     serverErrorInfo(response);
                 });
             },
+            isPackges(){
+                var me = this;
+//                debugger
+//                console.log(JSON.parse(JSON.stringify(me.contract)));
+//                console.log(JSON.parse(JSON.stringify(me.contract.item[0].project[1].id)));
+//                console.log(JSON.parse(JSON.stringify(me.contract.item[1].project[0].id)));
+
+            },
             wizard(){
                 //wizard插件和表单验证序列化
                 var form = $('#submit_form');
@@ -1649,6 +1642,9 @@
                             required: true
                         },
                         monitor_frequency: {
+                            required: true
+                        },
+                        monitor_point: {
                             required: true
                         }
                     },
