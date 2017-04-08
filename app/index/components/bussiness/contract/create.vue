@@ -406,10 +406,14 @@
                                                                 <i class="fa fa-file fileinput-exists"></i>&nbsp;
                                                                 <span class="fileinput-filename"> </span>
                                                             </div>
+
                                                             <span class="input-group-addon btn default btn-file">
                                                                     <span class="fileinput-new"> 选择模板 </span>
-                                                                <span class="fileinput-exists"> 变更 </span>
+                                                                <span class="fileinput-exists"> 变 更 </span>
                                                                     <input type="file" name="..."> </span>
+                                                            <a href="javascript:;"
+                                                               class="input-group-addon btn green fileinput-exists"
+                                                               @click="readTemplate"> 读 取 </a>
                                                             <a href="javascript:;"
                                                                class="input-group-addon btn red fileinput-exists"
                                                                data-dismiss="fileinput"> 删 除 </a>
@@ -1232,6 +1236,29 @@
                 me.fetchUser();
                 me.wizard();
 //                jQuery("#monitor_point").tagsinput();
+            },
+            //读取外部监测文件
+            readTemplate(){
+                var me = this;
+                var formData = new FormData();
+                formData.append("file", jQuery("input[type=file]")[0].files[0]);
+                jQuery.ajax({
+                    url: '/api/file/upload',
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (returndata) {
+                        codeState(returndata.code, {
+                            200: function () {
+                                alert("让球球用PageOffice打开" + returndata.path);
+                                //这里调用球球的PageOffice页面，顺便把returndata.path传给球球
+                            }
+                        })
+                    }
+                });
             },
             fetchUser(){
                 //加载乙方联系人信息，默认选中为当前登录人员
