@@ -493,7 +493,8 @@
                                                                     <template v-for="(item,index) in items">
                                                                         <tr>
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.company}}
+                                                                            <!--<td class="text-center">{{item.company}}-->
+                                                                            <td class="text-center">路段
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.element.name}}
@@ -511,12 +512,13 @@
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==1">是
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==0">否
-                                                                            </td>
+                                                                            <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==1">是-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==0">否-->
+                                                                            <!--</td>-->
+                                                                            <td class="text-center">是</td>
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
                                                                     </template>
@@ -556,10 +558,10 @@
                                                                 <template v-for="item in log">
                                                                     <li>
                                                                         <div class="todo-task-history-date">
-                                                                            {{item.log_time}}
+                                                                            {{item.create_time}}
                                                                         </div>
                                                                         <div class="todo-task-history-desc">
-                                                                            {{item.log_msg}}
+                                                                            {{item.msg}}
                                                                         </div>
                                                                     </li>
                                                                 </template>
@@ -625,7 +627,7 @@
                     type: {}
                 },
                 items: [],
-                log: [],
+                log: {},
                 total_count: {},
                 countProcess: [],
                 projectName: []
@@ -746,7 +748,7 @@
                     }
                 }).then(response => {
                         var data = response.data;
-                        me.log = data;
+                        me.log = data.result;
                     }, response => {
                         serverErrorInfo(response);
                     }
