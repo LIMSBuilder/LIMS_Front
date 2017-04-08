@@ -1255,6 +1255,16 @@
                             200: function () {
                                 alert("让球球用PageOffice打开" + returndata.path);
                                 //这里调用球球的PageOffice页面，顺便把returndata.path传给球球
+                                me.$http.get("/api/contract/readItemFile", {
+                                    params: {
+                                        path: returndata.path
+                                    }
+                                }).then(response => {
+                                    var data = response.data;
+                                    console.log(data);
+                                }, response => {
+                                    serverErrorInfo(response);
+                                })
                             }
                         })
                     }
