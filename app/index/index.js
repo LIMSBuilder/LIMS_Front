@@ -160,7 +160,7 @@ Vue.config.debug = true;//开启错误提示
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true;
-Vue.http.heaers.post['Content-Type']="multipart/form-data";
+// Vue.http.heaers.post['Content-Type']="multipart/form-data";
 
 console.log(PL);
 

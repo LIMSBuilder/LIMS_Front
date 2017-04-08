@@ -1539,7 +1539,7 @@
 //                console.log(JSON.parse(JSON.stringify(me.contract)));
 //                console.log(JSON.parse(JSON.stringify(me.contract.item[0].project[1].id)));
 //                console.log(JSON.parse(JSON.stringify(me.contract.item[1].project[0].id)));
-
+                alert(123);
             },
             wizard(){
                 //wizard插件和表单验证序列化
