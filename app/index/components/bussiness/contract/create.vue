@@ -1521,6 +1521,7 @@
                 for (var key in item) {
                     me.contract[key] = item[key];
                 }
+                jQuery("#chooseCustomer").modal("hide");
             },
             importDefault(){
                 //导入预设
