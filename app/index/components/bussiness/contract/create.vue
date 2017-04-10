@@ -1698,9 +1698,6 @@
                         },
                         monitor_frequency: {
                             required: true
-                        },
-                        monitor_point: {
-                            required: true
                         }
                     },
 

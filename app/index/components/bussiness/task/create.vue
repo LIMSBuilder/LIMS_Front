@@ -281,12 +281,12 @@
                                                             <thead>
                                                             <tr class="uppercase">
                                                                 <th> 序号</th>
-                                                                <th> 公司、道路名称</th>
+                                                                <!--<th> 公司、道路名称</th>-->
                                                                 <th> 环境要素</th>
                                                                 <th> 监测点（个）</th>
                                                                 <th> 监测项目</th>
                                                                 <th> 监测频次</th>
-                                                                <th> 是否分包</th>
+                                                                <!--<th> 是否分包</th>-->
                                                                 <th> 备注</th>
                                                             </tr>
                                                             </thead>
@@ -294,8 +294,8 @@
                                                             <template v-for="(item,index) in items">
                                                                 <tr>
                                                                     <td class="text-center">{{index+1}}</td>
-                                                                    <td class="text-center">{{item.company}}
-                                                                    </td>
+                                                                    <!--<td class="text-center">{{item.company}}-->
+                                                                    <!--</td>-->
                                                                     <td class="text-center">
                                                                         {{item.element.name}}
                                                                     </td>
@@ -315,12 +315,12 @@
                                                                     <td class="text-center">
                                                                         {{item.frequency?item.frequency.total:''}}
                                                                     </td>
-                                                                    <td class="text-center"
-                                                                        v-if="item.is_package==1">是
-                                                                    </td>
-                                                                    <td class="text-center"
-                                                                        v-if="item.is_package==0">否
-                                                                    </td>
+                                                                    <!--<td class="text-center"-->
+                                                                        <!--v-if="item.is_package==1">是-->
+                                                                    <!--</td>-->
+                                                                    <!--<td class="text-center"-->
+                                                                        <!--v-if="item.is_package==0">否-->
+                                                                    <!--</td>-->
                                                                     <td class="text-center">{{item.other}}</td>
                                                                 </tr>
                                                             </template>
@@ -333,12 +333,12 @@
                                                             <thead>
                                                             <tr class="uppercase">
                                                                 <th> 序号</th>
-                                                                <th> 公司、道路名称</th>
+                                                                <!--<th> 公司、道路名称</th>-->
                                                                 <th> 环境要素</th>
                                                                 <th> 监测点（个）</th>
                                                                 <th> 监测项目</th>
                                                                 <th> 监测频次</th>
-                                                                <th> 是否分包</th>
+                                                                <!--<th> 是否分包</th>-->
                                                                 <th> 备注</th>
                                                                 <th> 操作</th>
                                                             </tr>
@@ -347,17 +347,11 @@
                                                             <template v-for="(item,index) in task.item">
                                                                 <tr>
                                                                     <td class="text-center">{{index+1}}</td>
-                                                                    <td class="text-center">{{item.company}}</td>
+                                                                    <!--<td class="text-center">{{item.company}}</td>-->
                                                                     <td class="text-center">{{item.element.name}}
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <template v-for="(point,index) in item.point">
-                                                                            {{point}}
-                                                                            <template
-                                                                                    v-if="index+1!=item.point.length">
-                                                                                ,
-                                                                            </template>
-                                                                        </template>
+                                                                        {{item.point}}
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <template
@@ -371,12 +365,12 @@
                                                                     </td>
                                                                     <td class="text-center">{{item.frequency.total}}
                                                                     </td>
-                                                                    <td class="text-center"
-                                                                        v-if="item.is_package==1">是
-                                                                    </td>
-                                                                    <td class="text-center"
-                                                                        v-if="item.is_package==0">否
-                                                                    </td>
+                                                                    <!--<td class="text-center"-->
+                                                                        <!--v-if="item.is_package==1">是-->
+                                                                    <!--</td>-->
+                                                                    <!--<td class="text-center"-->
+                                                                        <!--v-if="item.is_package==0">否-->
+                                                                    <!--</td>-->
                                                                     <td class="text-center">{{item.other}}</td>
                                                                     <td class="text-center">
                                                                         <a href="javascript:;"
@@ -516,12 +510,12 @@
                                                                 <thead>
                                                                 <tr class="uppercase">
                                                                     <th> 序号</th>
-                                                                    <th> 公司、道路名称</th>
+                                                                    <!--<th> 公司、道路名称</th>-->
                                                                     <th> 环境要素</th>
                                                                     <th> 监测点（个）</th>
                                                                     <th> 监测项目</th>
                                                                     <th> 监测频次</th>
-                                                                    <th> 是否分包</th>
+                                                                    <!--<th> 是否分包</th>-->
                                                                     <th> 备注</th>
                                                                 </tr>
                                                                 </thead>
@@ -529,8 +523,8 @@
                                                                 <template v-for="(item,index) in items">
                                                                     <tr>
                                                                         <td class="text-center">{{index+1}}</td>
-                                                                        <td class="text-center">{{item.company}}
-                                                                        </td>
+                                                                        <!--<td class="text-center">{{item.company}}-->
+                                                                        <!--</td>-->
                                                                         <td class="text-center">
                                                                             {{item.element.name}}
                                                                         </td>
@@ -550,12 +544,12 @@
                                                                         <td class="text-center">
                                                                             {{item.frequency?item.frequency.total:''}}
                                                                         </td>
-                                                                        <td class="text-center"
-                                                                            v-if="item.is_package==1">是
-                                                                        </td>
-                                                                        <td class="text-center"
-                                                                            v-if="item.is_package==0">否
-                                                                        </td>
+                                                                        <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==1">是-->
+                                                                        <!--</td>-->
+                                                                        <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==0">否-->
+                                                                        <!--</td>-->
                                                                         <td class="text-center">{{item.other}}</td>
                                                                     </tr>
                                                                 </template>
@@ -568,12 +562,12 @@
                                                                 <thead>
                                                                 <tr class="uppercase">
                                                                     <th> 序号</th>
-                                                                    <th> 公司、道路名称</th>
+                                                                    <!--<th> 公司、道路名称</th>-->
                                                                     <th> 环境要素</th>
                                                                     <th> 监测点（个）</th>
                                                                     <th> 监测项目</th>
                                                                     <th> 监测频次</th>
-                                                                    <th> 是否分包</th>
+                                                                    <!--<th> 是否分包</th>-->
                                                                     <th> 备注</th>
                                                                 </tr>
                                                                 </thead>
@@ -581,18 +575,11 @@
                                                                 <template v-for="(item,index) in task.item">
                                                                     <tr>
                                                                         <td class="text-center">{{index+1}}</td>
-                                                                        <td class="text-center">{{item.company}}</td>
+                                                                        <!--<td class="text-center">{{item.company}}</td>-->
                                                                         <td class="text-center">{{item.element.name}}
                                                                         </td>
                                                                         <td class="text-center">
-                                                                            <template
-                                                                                    v-for="(point,index) in item.point">
-                                                                                {{point}}
-                                                                                <template
-                                                                                        v-if="index+1!=item.point.length">
-                                                                                    ,
-                                                                                </template>
-                                                                            </template>
+                                                                            {{item.point}}
                                                                         </td>
                                                                         <td class="text-center">
                                                                             <template
@@ -606,12 +593,12 @@
                                                                         </td>
                                                                         <td class="text-center">{{item.frequency.total}}
                                                                         </td>
-                                                                        <td class="text-center"
-                                                                            v-if="item.is_package==1">是
-                                                                        </td>
-                                                                        <td class="text-center"
-                                                                            v-if="item.is_package==0">否
-                                                                        </td>
+                                                                        <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==1">是-->
+                                                                        <!--</td>-->
+                                                                        <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==0">否-->
+                                                                        <!--</td>-->
                                                                         <td class="text-center">{{item.other}}</td>
                                                                     </tr>
                                                                 </template>
@@ -758,17 +745,17 @@
                                             <button class="close" data-close="alert"></button>
                                             表单尚未填写完整。
                                         </div>
-                                        <div class="form-group" style="padding-bottom: 10px">
-                                            <label class="col-md-2 control-label" for="monitor_company">监测企业或路段
-                                                <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="monitor_company"
-                                                       v-model="monitor.company"
-                                                       placeholder=""
-                                                       name="monitor_company">
-                                            </div>
-                                        </div>
+                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
+                                            <!--<label class="col-md-2 control-label" for="monitor_company">监测企业或路段-->
+                                                <!--<span class="required">*</span>-->
+                                            <!--</label>-->
+                                            <!--<div class="col-md-9">-->
+                                                <!--<input type="text" class="form-control" id="monitor_company"-->
+                                                       <!--v-model="monitor.company"-->
+                                                       <!--placeholder=""-->
+                                                       <!--name="monitor_company">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
                                                 <span class="required">*</span>
@@ -822,33 +809,32 @@
                                         </div>
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_point">监测点
-                                                <span class="required"> </span>
+                                                <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control input-large"
-                                                       v-model="monitor.point" name="monitor_point"
-                                                       data-role="tagsinput" id="monitor_point">
+                                                <input type="number" class="form-control input-large"
+                                                       v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
-                                        <div class="form-group" style="padding-bottom: 10px">
-                                            <label class="col-md-2 control-label">是否外包
-                                                <span class="required">  </span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="is_package"
-                                                               v-model="monitor.is_package" value="0"> 否
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="is_package"
-                                                               v-model="monitor.is_package" value="1"> 是
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
+                                            <!--<label class="col-md-2 control-label">是否外包-->
+                                                <!--<span class="required">  </span>-->
+                                            <!--</label>-->
+                                            <!--<div class="col-md-9">-->
+                                                <!--<div class="mt-radio-inline">-->
+                                                    <!--<label class="mt-radio">-->
+                                                        <!--<input type="radio" name="is_package"-->
+                                                               <!--v-model="monitor.is_package" value="0"> 否-->
+                                                        <!--<span></span>-->
+                                                    <!--</label>-->
+                                                    <!--<label class="mt-radio">-->
+                                                        <!--<input type="radio" name="is_package"-->
+                                                               <!--v-model="monitor.is_package" value="1"> 是-->
+                                                        <!--<span></span>-->
+                                                    <!--</label>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_other">备注
                                                 <span class="required">  </span>
@@ -1565,7 +1551,7 @@
             _init(){
                 var me = this;
                 me.wizard();
-                jQuery("#monitor_point").tagsinput();
+//                jQuery("#monitor_point").tagsinput();
             },
             createByContract(){
                 var me = this;
@@ -1576,17 +1562,13 @@
                 //新增一项监测内容
                 var me = this;
                 if (jQuery("#item_add").valid()) {
-                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
+//                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
                     me.$http.get("/api/project/details", {
                         params: me.monitor
                     }).then(function (response) {
                             var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("监测项目创建成功！");
-                                    me.task.item.push(data);
-                                }
-                            })
+                            alert("监测项目创建成功！");
+                            me.task.item.push(data);
                         }
                         , function (response) {
                             serverErrorInfo(response);
@@ -1816,6 +1798,7 @@
                 me.getCustomer();
             },
             createCustomer(){
+//                jQuery("#chooseCustomer").modal("hide");
                 jQuery("#chooseCustomer").modal("hide");
                 router.push("/customer/create");
             },
