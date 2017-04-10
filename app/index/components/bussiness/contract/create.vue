@@ -496,14 +496,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-2" for="payment">大写
+                                                <label class="control-label col-md-2" for="paymentCap">大写
                                                     <!--<span class="required"> * </span>-->
                                                 </label>
                                                 <div class="col-md-10">
                                                     <div class="input-icon right">
                                                         <i class="fa fa-cny"></i>
-                                                        <input type="text" class="form-control" name="payment"
-                                                               id="" v-model="contract.payment"/>
+                                                        <input type="text" class="form-control" name="paymentCap"
+                                                               id="paymentCap" v-model="paymentCap" disabled/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1128,6 +1128,7 @@
                     type: ""
                 },
                 typeList: [],
+                paymentCap: "",
                 customerList: [],
                 currentPage: 1,
                 condition: "",
@@ -1228,6 +1229,9 @@
             "contract.type": function () {
                 console.log("type")
                 this.tag.type = jQuery("#projectType option:selected").html();
+            },
+            'contract.payment': function (currentValue) {
+                this.paymentCap = BlogUtils.atoc(currentValue);
             }
         },
         methods: {
