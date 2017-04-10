@@ -40,6 +40,7 @@ import Contract from './components/bussiness/contract/contract.vue'
 import Create_Contract from './components/bussiness/contract/create.vue'
 import Contract_List from './components/bussiness/contract/list.vue'
 import Contract_Review from './components/bussiness/contract/review.vue'
+import Change_Contract from './components/bussiness/contract/change.vue'
 
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
@@ -50,6 +51,9 @@ import DisPatchSetting from './components/bussiness/task/dispatchSetting.vue'
 
 import Sample from './components/bussiness/sample/sample.vue'
 import Apply_Sample from './components/bussiness/sample/apply.vue'
+import Register_Sample from './components/bussiness/sample/register.vue'
+
+
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -156,7 +160,6 @@ Vue.config.debug = true;//开启错误提示
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true;
-
 
 console.log(PL);
 
@@ -405,7 +408,7 @@ var routes = [
             },
             {
                 path: "change",
-                component: Change_Project
+                component: Change_Contract
             },
             {
                 path: "review",
@@ -449,6 +452,10 @@ var routes = [
                 path: "list",
                 component: Task_List
             },
+            {
+                path: "register",
+                component: Register_Sample
+            }
         ]
     }
 ];

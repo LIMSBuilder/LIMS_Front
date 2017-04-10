@@ -10,7 +10,7 @@
                     <div class="todo-sidebar">
                         <div class="portlet light ">
                             <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
+                                <div class="caption">
                                     <span class="caption-subject font-green-sharp bold uppercase">任务进展 </span>
                                     <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看任务进展</span>
                                 </div>
@@ -19,9 +19,11 @@
                             <div class="portlet-body todo-project-list-content">
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
-                                        <li class="active">
-                                            <a href="javascript:;" @click="searchByProcess('total')">
-                                                <span class="badge badge-default"> 6 </span> 所有 </a>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('total')">全部 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('before_dispath')">待派遣 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -29,8 +31,7 @@
                         </div>
                         <div class="portlet light ">
                             <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
+                                <div class="caption">
                                     <span class="caption-subject font-red bold uppercase">监测类别 </span>
                                     <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
                                 </div>
@@ -47,7 +48,6 @@
                                         <template v-for="item in typeList">
                                             <li>
                                                 <a href="javascript:;" @click="searchByType(item.id)">
-                                                    <span class="badge badge-success"> {{item.contract_count}} </span>
                                                     {{item.name}} </a>
                                             </li>
                                         </template>
@@ -57,8 +57,7 @@
                         </div>
                         <div class="portlet light ">
                             <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
+                                <div class="caption">
                                     <span class="caption-subject font-yellow bold uppercase">采样类型 </span>
                                     <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
                                 </div>
@@ -67,11 +66,11 @@
                                 <div class="todo-project-list">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByType(item.id)">
-                                                单位自送样 </a>
+                                            <a href="javascript:;" @click="searchBySampleType(0)">
+                                                自送样 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByType(item.id)">
+                                            <a href="javascript:;" @click="searchBySampleType(1)">
                                                 现场送样 </a>
                                         </li>
                                     </ul>
@@ -80,8 +79,7 @@
                         </div>
                         <div class="portlet light ">
                             <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
+                                <div class="caption">
                                     <span class="caption-subject font-blue bold uppercase">搜索 </span>
                                 </div>
                             </div>
@@ -128,9 +126,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> 中止任务
-                                                    <span class="badge badge-warning"> 9 </span>
-                                                </a>
+                                                <a href="javascript:;" @click="stopTask"> 中止任务</a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
@@ -152,10 +148,14 @@
                                                             style="width: 27px;height: 27px;"
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
-                                                    <div class="todo-tasklist-item-title"> {{item.name}} /
-                                                        {{item.identify}}
+                                                    <div class="todo-tasklist-item-title">
+                                                        {{item.identify}} /
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==0">自送样</span>
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==1">现场采样</span>
                                                     </div>
-                                                    <div class="todo-tasklist-item-text"> {{item.aim}}
+                                                    <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-left">
                                                                     <span class="todo-tasklist-date">
@@ -169,15 +169,14 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <span class="label label-sm label-danger"
-                                                              v-if="item.process==-1">已中止</span>
-                                                        <span class="label label-sm label-warning"
-                                                              v-if="item.process==0">草稿合同</span>
+                                                              v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-info"
-                                                              v-if="item.process==1">待审核</span>
+                                                              v-if="item.process==1">未派遣</span>
                                                         <span class="label label-sm label-primary"
                                                               v-if="item.process==2">待执行</span>
-                                                        <span class="label label-sm label-success"
-                                                              v-if="item.process==3">已执行</span>
+
+
+
                                                     </div>
                                                 </div>
                                             </template>
@@ -205,9 +204,6 @@
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
                                                             <span class="todo-username pull-left">{{task.name}}</span>
-                                                            <button type="button"
-                                                                    class="todo-username-btn btn btn-circle btn-default btn-sm">
-                                                                &nbsp;编 辑&nbsp;</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
@@ -229,6 +225,12 @@
                                                         </li>
                                                         <li>
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#page_3" data-toggle="tab"> 相关文件 </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#page_4" data-toggle="tab"> 操作日志 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -361,14 +363,11 @@
                                                                                 {{item.point}}
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                <template
-                                                                                        v-for="(project,index) in item.project">
-                                                                                    {{project.project.name}}
-                                                                                    <template
-                                                                                            v-if="index+1!=item.project.length">
-                                                                                        ,
-                                                                                    </template>
-                                                                                </template>
+                                                                                <button type="button"
+                                                                                        class="btn green btn-outline"
+                                                                                        @click="showProjectName(item.id)">
+                                                                                    查看详情
+                                                                                </button>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
@@ -386,51 +385,36 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                        <div class="tab-pane" id="page_3">
+                                                            <table class="table table-hover">
+                                                                <tr>
+                                                                    <td>
+                                                                        导出该任务
 
-                                            </div>
-
-
-                                            <div class="tabbable-line">
-                                                <ul class="nav nav-tabs ">
-                                                    <li class="active">
-                                                        <a href="#tab_1" data-toggle="tab"> 相 关 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tab_2" data-toggle="tab"> 日 志 </a>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="tab_1">
-                                                        <table class="table table-hover">
-                                                            <tr>
-                                                                <td>
-                                                                    导出该任务
-
-                                                                </td>
-                                                                <td style="text-align: right">
-                                                                    <button type="button"
-                                                                            class="btn green btn-outline"
-                                                                            style="margin: 5px;">导 出
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="tab-pane" id="tab_2">
-                                                        <ul class="todo-task-history">
-                                                            <template v-for="item in log">
-                                                                <li>
-                                                                    <div class="todo-task-history-date">
-                                                                        {{item.log_time}}
-                                                                    </div>
-                                                                    <div class="todo-task-history-desc">
-                                                                        {{item.log_msg}}
-                                                                    </div>
-                                                                </li>
-                                                            </template>
-                                                        </ul>
+                                                                    </td>
+                                                                    <td style="text-align: right">
+                                                                        <button type="button"
+                                                                                class="btn green btn-outline"
+                                                                                style="margin: 5px;">导 出
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="tab-pane" id="page_4">
+                                                            <ul class="todo-task-history">
+                                                                <template v-for="item in log">
+                                                                    <li>
+                                                                        <div class="todo-task-history-date">
+                                                                            {{item.log_time}}
+                                                                        </div>
+                                                                        <div class="todo-task-history-desc">
+                                                                            {{item.log_msg}}
+                                                                        </div>
+                                                                    </li>
+                                                                </template>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -444,10 +428,33 @@
                 </div>
             </div>
             <!-- END PAGE CONTENT-->
+            <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">检测项目详情列表</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="receiver_tag">
+                                <template v-for="names in projectName">
+                                    <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                                </template>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
         </div>
     </div>
 </template>
-<script>
+<script type="es6">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -462,7 +469,9 @@
                 },
                 items: [],
                 log: [],
-                total_count: {}
+                total_count: {},
+                projectName: [],
+                countProcess: ""
             }
         },
         mounted(){
@@ -474,10 +483,11 @@
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
+            me.fetchCount();
 
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
-                while (!dom.hasClass("todo-tasklist-item") && dom[0].tagName != "body") {
+                while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
                     dom = dom.parents(".todo-tasklist-item");
                 }
                 if (dom.hasClass("todo-tasklist-item")) {
@@ -489,7 +499,7 @@
         methods: {
             init: function () {
                 var me = this;
-                me.$http.get("/api/type/contract_total").then(function (response) {
+                me.$http.get("/api/type/task_total").then(function (response) {
                     var data = response.data;
                     me.typeList = data.results;
                 }, function (response) {
@@ -505,10 +515,7 @@
 //            },
             fetchData(pageNum, rowCount){
                 var me = this;
-                App.blockUI({
-                    target: '#task_list',
-                    animate: true
-                });
+                App.startPageLoading({animate: true});
                 this.$http.get('/api/task/list', {
                     params: {
                         rowCount: rowCount,
@@ -519,7 +526,7 @@
                     var data = response.data;
                     me.taskList = data.results;
                     me.$nextTick(function () {
-                        App.unblockUI('#task_list');
+                        App.stopPageLoading();
                     })
                 }, (response) => {
                     serverErrorInfo(response);
@@ -585,7 +592,17 @@
             },
             viewDetails(item){
                 var me = this;
-                me.task = item;
+                me.$http.get("/api/task/taskDetails", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+//                    debugger
+                    me.task = data;
+                }, response => {
+                    serverErrorInfo(response);
+                });
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
             },
@@ -599,6 +616,12 @@
                 var me = this;
                 me.currentPage = 1;
                 me.condition = "type=" + id;
+                me.getData();
+            },
+            searchBySampleType(id){
+                var me = this;
+                me.currentPage = 1;
+                me.condition = "sample_type=" + id;
                 me.getData();
             },
             searchByProcess(step){
@@ -617,6 +640,60 @@
                 me.condition = "keyWords=" + encodeURI(e.target.value);
                 me.currentPage = 1;
                 me.getData();
+            },
+            //task/list检测项目查看详情
+            showProjectName(id){
+                var me = this;
+                me.$http.get("/api/task/monitorItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.projectName = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProject").modal("show");
+
+            },
+            //获取task/list合同进展个数
+            fetchCount(){
+                var me = this;
+                me.$http.get("/api/task/countTotal").then(
+                    response => {
+                        var data = response.data;
+                        me.countProcess = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+            },
+            stopTask(){
+                var me = this;
+                confirm({
+                    title: "<span><i class='font-red font-lg fa fa-warning'></i> 警告！危险操作</span>",
+                    content: "您正在中止任务【" + me.task.name + "】，该操作将同时中止当前任务流程与对应的合同（若有）且无法撤销，是否继续？",
+                    success(){
+                        me.$http.get("/api/task/stopTask", {
+                            params: {
+                                id: me.task.id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("任务中止成功！");
+                                    me.getData();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
             }
         }
     }

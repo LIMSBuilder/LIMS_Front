@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="page-title"> 样品号申请
-            <small>／Sample</small>
+            <small>／Apply</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -20,8 +20,16 @@
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
                                         <li class="active">
-                                            <a href="javascript:;" @click="searchByProcess('total')">
-                                                <span class="badge badge-default"> 6 </span> 所有 </a>
+                                            <a href="javascript:;" @click="searchByProcess('apply_sample')"> 全部</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('before_apply_sample')">
+                                                <span class="badge badge-info"
+                                                      v-if="countProcess!=0"> {{countProcess}} </span> 待申请 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"
+                                               @click="searchByProcess('after_apply_sample')">已申请 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -47,33 +55,9 @@
                                         <template v-for="item in typeList">
                                             <li>
                                                 <a href="javascript:;" @click="searchByType(item.id)">
-                                                    <span class="badge badge-success"> {{item.contract_count}} </span>
                                                     {{item.name}} </a>
                                             </li>
                                         </template>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
-                                    <span class="caption-subject font-yellow bold uppercase">采样类型 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
-                                </div>
-                            </div>
-                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
-                                <div class="todo-project-list">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li>
-                                            <a href="javascript:;" @click="searchByType(item.id)">
-                                                单位自送样 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByType(item.id)">
-                                                现场送样 </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -107,38 +91,6 @@
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">任务列表</span>
                                 </div>
-                                <div class="actions">
-                                    <div class="btn-group">
-                                        <a class="btn green btn-circle btn-sm" href="javascript:;"
-                                           data-toggle="dropdown"
-                                           data-hover="dropdown" data-close-others="true"> 操 作
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="javascript:;"> 创建新任务 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 作为模板任务创建 </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="javascript:;"> 导出任务
-                                                    <span class="badge badge-success"> 12 </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 中止任务
-                                                    <span class="badge badge-warning"> 9 </span>
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="javascript:;"> 删除任务 </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
@@ -152,10 +104,10 @@
                                                             style="width: 27px;height: 27px;"
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
-                                                    <div class="todo-tasklist-item-title"> {{item.name}} /
+                                                    <div class="todo-tasklist-item-title">
                                                         {{item.identify}}
                                                     </div>
-                                                    <div class="todo-tasklist-item-text"> {{item.aim}}
+                                                    <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-left">
                                                                     <span class="todo-tasklist-date">
@@ -169,15 +121,11 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <span class="label label-sm label-danger"
-                                                              v-if="item.process==-1">已中止</span>
-                                                        <span class="label label-sm label-warning"
-                                                              v-if="item.process==0">草稿合同</span>
+                                                              v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-info"
-                                                              v-if="item.process==1">待审核</span>
+                                                              v-if="item.process==1">未派遣</span>
                                                         <span class="label label-sm label-primary"
                                                               v-if="item.process==2">待执行</span>
-                                                        <span class="label label-sm label-success"
-                                                              v-if="item.process==3">已执行</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -205,9 +153,6 @@
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
                                                             <span class="todo-username pull-left">{{task.name}}</span>
-                                                            <button type="button"
-                                                                    class="todo-username-btn btn btn-circle btn-default btn-sm">
-                                                                &nbsp;编 辑&nbsp;</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
@@ -221,18 +166,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
-                                                            <a href="#page_1" data-toggle="tab"> 任务详情 </a>
+                                                            <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_2" data-toggle="tab"> 监测项目 </a>
+                                                            <a href="#page_1" data-toggle="tab"> 任务详情 </a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
-                                                        <div class="tab-pane active" id="page_1">
+                                                        <div class="tab-pane" id="page_1">
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">委托单位
@@ -333,7 +277,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane" id="page_2">
+                                                        <div class="tab-pane active" id="page_2">
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
                                                                     <thead>
@@ -344,13 +288,14 @@
                                                                         <th> 监测点（个）</th>
                                                                         <th> 监测项目</th>
                                                                         <th> 监测频次</th>
-                                                                        <th> 是否分包</th>
                                                                         <th> 备注</th>
+                                                                        <th> 申请</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                     <template v-for="(item,index) in items">
-                                                                        <tr>
+                                                                        <tr :class="sample.item_id==item.id?'active':''"
+                                                                            @click="fetchSampleByItems(item.id)">
                                                                             <td class="text-center">{{index+1}}</td>
                                                                             <td class="text-center">{{item.company}}
                                                                             </td>
@@ -361,25 +306,23 @@
                                                                                 {{item.point}}
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                <template
-                                                                                        v-for="(project,index) in item.project">
-                                                                                    {{project.project.name}}
-                                                                                    <template
-                                                                                            v-if="index+1!=item.project.length">
-                                                                                        ,
-                                                                                    </template>
-                                                                                </template>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm green btn-outline"
+                                                                                        @click="showProjectName(item.id)">
+                                                                                    查 看
+                                                                                </button>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==1">是
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==0">否
-                                                                            </td>
                                                                             <td class="text-center">{{item.other}}</td>
+                                                                            <td class="text-center">
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm red btn-outline"
+                                                                                        @click="applyBtn(item,$event)">
+                                                                                    申 请
+                                                                                </button>
+                                                                            </td>
                                                                         </tr>
                                                                     </template>
                                                                     </tbody>
@@ -388,49 +331,127 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                            </div>
-
-
-                                            <div class="tabbable-line">
-                                                <ul class="nav nav-tabs ">
-                                                    <li class="active">
-                                                        <a href="#tab_1" data-toggle="tab"> 相 关 </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tab_2" data-toggle="tab"> 日 志 </a>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="tab_1">
-                                                        <table class="table table-hover">
-                                                            <tr>
-                                                                <td>
-                                                                    导出该任务
-
-                                                                </td>
-                                                                <td style="text-align: right">
-                                                                    <button type="button"
-                                                                            class="btn green btn-outline"
-                                                                            style="margin: 5px;">导 出
+                                                <hr>
+                                                <div class="tabbable-line" v-if="sample.item_id">
+                                                    <form class="form-horizontal" role="form">
+                                                        <div class="form-body">
+                                                            <h3 class="form-section">样品编号申请</h3>
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12 form-md-radios">
+                                                                    <label class="control-label col-md-3">编号前缀</label>
+                                                                    <div class="md-radio-inline col-md-9">
+                                                                        <div class="md-radio">
+                                                                            <input type="radio" id="default"
+                                                                                   name="prefix"
+                                                                                   class="md-radiobtn"
+                                                                                   v-model="sample.prefix" value="0">
+                                                                            <label for="default">
+                                                                                <span class="inc"></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span>
+                                                                                默认：{{task.type.name}}({{task.type.identifier}})
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="md-radio">
+                                                                            <input type="radio" id="customer"
+                                                                                   name="prefix"
+                                                                                   class="md-radiobtn"
+                                                                                   v-model="sample.prefix" value="1">
+                                                                            <label for="customer">
+                                                                                <span class="inc"></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span> 自定义
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12 form-md-line-input "
+                                                                     v-if="sample.prefix==1">
+                                                                    <label class="control-label col-md-3"
+                                                                           for="customer_prefix">自定义前缀</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" min="0" class="form-control"
+                                                                               id="customer_prefix"
+                                                                               placeholder="请输入样品前缀"
+                                                                               v-model="sample.prefix_text">
+                                                                        <span class="help-block">自定义前缀仅对本次申请有效。</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12 form-md-line-input ">
+                                                                    <label class="control-label col-md-3"
+                                                                           for="sample_count">样品数量</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="number" min="0"
+                                                                               class="form-control" id="sample_count"
+                                                                               placeholder="请输入样品数量"
+                                                                               v-model="sample.count">
+                                                                        <span class="help-block">生成规则：样品前缀+四位流水号</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-actions">
+                                                            <div class="row">
+                                                                <div class="col-md-12 text-right">
+                                                                    <button type="button" class="btn  green"
+                                                                            @click="applySample">
+                                                                        <i class="fa fa-pencil"></i> 申 请
                                                                     </button>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="tab-pane" id="tab_2">
-                                                        <ul class="todo-task-history">
-                                                            <template v-for="item in log">
-                                                                <li>
-                                                                    <div class="todo-task-history-date">
-                                                                        {{item.log_time}}
-                                                                    </div>
-                                                                    <div class="todo-task-history-desc">
-                                                                        {{item.log_msg}}
-                                                                    </div>
-                                                                </li>
-                                                            </template>
-                                                        </ul>
+                                                                    <button type="button" class="btn default"
+                                                                            @click="closeApply">
+                                                                        取 消
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <div class="tabbable-line" style="margin-top: 50px;">
+                                                    <ul class="nav nav-tabs ">
+                                                        <li class="active">
+                                                            <a href="#tab_1" data-toggle="tab"> 样品编号 </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab_2" data-toggle="tab"> 申请记录 </a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="tab_1">
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 样品编号</th>
+                                                                        <th> 操作</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="(item,index) in sampleList">
+                                                                        <tr>
+                                                                            <td>{{index+1}}</td>
+                                                                            <td>{{item.identify}}</td>
+                                                                            <td>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm green btn-outline">
+                                                                                    二维码
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm green btn-outline">
+                                                                                    平行样
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane " id="tab_2">
+
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -445,10 +466,62 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
+        <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body" id="modal_body">
+                        <!--<template v-for="(project,projectIndex) in item.project">-->
+                        <!--{{project.project.name}}-->
+                        <!--</template>-->
+                        <ul class="receiver_tag">
+                            <template v-for="names in projectName">
+                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                            </template>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade draggable-modal" id="showsample" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--<template v-for="(project,projectIndex) in item.project">-->
+                        <!--{{project.project.name}}-->
+                        <!--</template>-->
+                        <ul class="receiver_tag">
+                            <!--<template v-for="names in projectName">-->
+                            <!--<li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>-->
+                            <!--</template>-->
+                            样品详情。。。。。。。。
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 </template>
 
-<script>
+<script type="es6">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -456,14 +529,24 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "",
+                condition: "process=apply_sample",
                 taskList: [],
                 task: {
                     type: {}
                 },
                 items: [],
                 log: [],
-                total_count: {}
+                total_count: {},
+                projectName: [],
+                countProcess: 0,
+                sample: {
+                    item_id: "",
+                    prefix: 0,
+                    prefix_text: "",
+                    count: 0
+                },
+                sampleList: [],
+                logList: []
             }
         },
         mounted(){
@@ -472,13 +555,14 @@
             //me._handleProjectListMenu();
             me.init();
             me.getData();
+            me.fetchCount();
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
 
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
-                while (!dom.hasClass("todo-tasklist-item") && dom[0].tagName != "body") {
+                while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
                     dom = dom.parents(".todo-tasklist-item");
                 }
                 if (dom.hasClass("todo-tasklist-item")) {
@@ -497,19 +581,9 @@
                     serverErrorInfo(response);
                 })
             },
-//            _handleProjectListMenu: function () {
-//                if (App.getViewPort().width <= 992) {
-//                    $('.todo-project-list-content').addClass("collapse");
-//                } else {
-//                    $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
-//                }
-//            },
             fetchData(pageNum, rowCount){
                 var me = this;
-                App.blockUI({
-                    target: '#task_list',
-                    animate: true
-                });
+                App.startPageLoading({animate: true});
                 this.$http.get('/api/task/list', {
                     params: {
                         rowCount: rowCount,
@@ -520,7 +594,7 @@
                     var data = response.data;
                     me.taskList = data.results;
                     me.$nextTick(function () {
-                        App.unblockUI('#task_list');
+                        App.stopPageLoading();
                     })
                 }, (response) => {
                     serverErrorInfo(response);
@@ -579,6 +653,46 @@
                     }
                 );
             },
+            fetchSample(id){
+                var me = this;
+                me.$http.get("/api/sample/findByTask", {
+                    params: {
+                        task_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.sampleList = data.results;
+                }, response => {
+                    serverErrorInfo(response)
+                })
+            },
+            fetchApplyLog(id){
+                var me = this;
+                me.$http.get("/api/sample/applyLog", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.logList = data.results;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            fetchSampleByItems(id){
+                var me = this;
+                me.$http.get("/api/sample/findByItem", {
+                    params: {
+                        item_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.sampleList = data.results;
+                }, response => {
+                    serverErrorInfo(response)
+                });
+                me.fetchApplyLog(id);
+            },
             getData(){
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
@@ -586,38 +700,109 @@
             },
             viewDetails(item){
                 var me = this;
-                me.task = item;
+                me.$http.get("/api/task/taskDetails", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.task = data;
+                }, response => {
+                    serverErrorInfo(response);
+                });
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
+                me.fetchSample(item.id);
             },
             search(){
                 var me = this;
                 me.currentPage = 1;
-                me.condition = "";
+                me.condition = "process=apply_sample";
                 me.getData();
             },
             searchByType(id){
                 var me = this;
                 me.currentPage = 1;
-                me.condition = "type=" + id;
+                me.condition = "process=apply_sample&&type=" + id;
                 me.getData();
             },
             searchByProcess(step){
                 var me = this;
                 me.currentPage = 1;
-                if (step != "total") {
-                    me.condition = "process=" + step;
-                } else {
-                    me.condition = "";
-                }
+                me.condition = "process=" + step;
                 me.getData();
 
             },
             searchKey(e){
                 var me = this;
-                me.condition = "keyWords=" + encodeURI(e.target.value);
+                me.condition = "process=apply_sample&&keyWords=" + encodeURI(e.target.value);
                 me.currentPage = 1;
                 me.getData();
+            },
+            showProjectName(id){
+                var me = this;
+                me.$http.get("/api/task/monitorItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.projectName = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProject").modal("show");
+
+            },
+            showSample(){
+                jQuery("#showsample").modal("show");
+            },
+            fetchCount(){
+                var me = this;
+                me.$http.get('/api/sample/countProcess').then(
+                    response => {
+                        var data = response.data;
+                        me.countProcess = data.create;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+            },
+            applyBtn(item){
+                var me = this;
+                me.sample.item_id = item.id;
+            },
+            applySample(){
+                var me = this;
+                me.$http.get("/api/sample/apply", {
+                    params: {
+                        task_id: me.task.id,
+                        item_id: me.sample.item_id,
+                        prefix: me.sample.prefix,
+                        prefix_text: me.sample.prefix_text,
+                        count: me.sample.count
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("样品编号申请成功！");
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response)
+                })
+            },
+            closeApply(){
+                var me = this;
+                me.sample = {
+                    item_id: "",
+                    prefix: 0,
+                    prefix_text: "",
+                    count: 0
+                }
             }
         }
     }

@@ -9,7 +9,8 @@
         <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-        <ul class="page-sidebar-menu  page-sidebar-menu-closed  page-header-fixed " data-keep-expanded="false"
+        <!--page-sidebar-menu-closed-->
+        <ul class="page-sidebar-menu    page-header-fixed " data-keep-expanded="false"
             data-auto-scroll="true"
             data-auto-speed="100"
             data-slide-speed="100" data-close-others="true" style="padding-top: 20px">
@@ -125,6 +126,16 @@
                     <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">样品号申请</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">现场采样信息补录</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">自送样信息登记</span>
                         </a>
                     </router-link>
                 </ul>
