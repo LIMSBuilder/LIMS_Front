@@ -560,12 +560,6 @@
                                                                         <span>{{item.user.name}}</span>
                                                                         <span>{{item.create_time}}</span>
                                                                         <span>{{item.msg}}</span>
-                                                                        <div class="todo-task-history-data">
-                                                                        </div>
-                                                                        <div class="todo-task-history-date">
-                                                                        </div>
-                                                                        <div class="todo-task-history-desc">
-                                                                        </div>
                                                                     </li>
                                                                 </template>
                                                             </ul>
