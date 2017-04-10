@@ -44,7 +44,7 @@ app.use('/api', proxy({target: 'http://192.168.1.102:8080', changeOrigin: true})
 app.use('/upload', proxy({target: 'http://192.168.1.102:8080', changeOrigin: true}));
 app.use('/pushlet.srv', proxy({target: 'http://192.168.1.102:8080', changeOrigin: true}));
 
-//
+
 // app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 // app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 // app.use('/pushlet.srv', proxy({target: 'http://localhost:8080', changeOrigin: true}));
@@ -54,5 +54,5 @@ app.listen(8889, function (err) {
         console.log(err)
         return
     }
-    console.log('Listening at http://localhost:8888')
+    console.log('Listening at http://localhost:8889')
 })
