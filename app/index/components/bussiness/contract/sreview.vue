@@ -671,7 +671,7 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=reviewSmall",
+                condition: "process=waitReviewSmall",
                 contractList: [],
                 contract: {
                     trustee: {},
