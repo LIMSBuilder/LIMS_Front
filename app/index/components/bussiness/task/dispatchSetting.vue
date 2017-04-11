@@ -12,15 +12,15 @@
                             <thead>
                             <tr class="uppercase">
                                 <th> 序号</th>
-                                <th> 公司、道路名称</th>
+                                <!--<th> 公司、道路名称</th>-->
                                 <th> 环境要素</th>
                                 <th> 监测点（个）</th>
                                 <th> 监测项目</th>
                                 <th> 监测频次</th>
-                                <th> 是否分包</th>
+                                <!--<th> 是否分包</th>-->
                                 <th> 备注</th>
                                 <tH> 负责人</tH>
-                                <th> 参与者</th>
+                                <!--<th> 参与者</th>-->
                             </tr>
                             </thead>
                             <tbody>
@@ -30,9 +30,9 @@
                                     <td class="text-center">
                                         {{index+1}}
                                     </td>
-                                    <td class="text-center">
-                                        {{item.company}}
-                                    </td>
+                                    <!--<td class="text-center">-->
+                                        <!--{{item.company}}-->
+                                    <!--</td>-->
                                     <td class="text-center">
                                         {{item.element.name}}
                                     </td>
@@ -49,12 +49,12 @@
                                     <td class="text-center">
                                         {{item.frequency?item.frequency.total:''}}
                                     </td>
-                                    <td class="text-center"
-                                        v-if="item.is_package==1">是
-                                    </td>
-                                    <td class="text-center"
-                                        v-if="item.is_package==0">否
-                                    </td>
+                                    <!--<td class="text-center"-->
+                                        <!--v-if="item.is_package==1">是-->
+                                    <!--</td>-->
+                                    <!--<td class="text-center"-->
+                                        <!--v-if="item.is_package==0">否-->
+                                    <!--</td>-->
                                     <td class="text-center">
                                         {{item.other}}
                                     </td>
@@ -75,24 +75,24 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <select class="bs-select form-control" multiple
-                                                        data-actions-box="true"
-                                                        data-live-search="true" v-model="item.slave">
-                                                    <template v-for="department in userList">
-                                                        debugger
-                                                        <optgroup :label="department.name">
-                                                            <template v-for="user in department.user.results">
-                                                                <option :value="user.id">{{user.name}}</option>
-                                                            </template>
-                                                        </optgroup>
-                                                    </template>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <!--<td>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<div class="col-md-12">-->
+                                                <!--<select class="bs-select form-control" multiple-->
+                                                        <!--data-actions-box="true"-->
+                                                        <!--data-live-search="true" v-model="item.slave">-->
+                                                    <!--<template v-for="department in userList">-->
+                                                        <!--debugger-->
+                                                        <!--<optgroup :label="department.name">-->
+                                                            <!--<template v-for="user in department.user.results">-->
+                                                                <!--<option :value="user.id">{{user.name}}</option>-->
+                                                            <!--</template>-->
+                                                        <!--</optgroup>-->
+                                                    <!--</template>-->
+                                                <!--</select>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
                                 </tr>
                                 <!--</template>-->
                             </template>
