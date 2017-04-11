@@ -77,7 +77,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同审核</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">大额审核</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
