@@ -445,7 +445,7 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">完成时间
+                                                                    <label class="control-label col-md-2">完成时间
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
@@ -456,18 +456,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">监测费用
+                                                                    <label class="control-label col-md-2">监测费用
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.payment}}
+                                                                            {{contract.payment}}￥
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">其他约定
+                                                                    <label class="control-label col-md-2">其他约定
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">

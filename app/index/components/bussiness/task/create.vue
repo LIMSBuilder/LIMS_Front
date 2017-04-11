@@ -1481,8 +1481,8 @@
                     element: "",
                     point: "",
                     frequency: "",
-                    company: "",
-                    is_package: 0,
+//                    company: "",
+//                    is_package: 0,
                     other: ""
                 },
                 elementList: [],
