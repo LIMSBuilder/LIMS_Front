@@ -695,6 +695,10 @@
                                                                                     v-for="(project,index) in item.project">
                                                                                 {{project.name}}
                                                                                 <template
+                                                                                        v-if="project.isPackage==true">
+                                                                                    <span style="color: red;">[分包]</span>
+                                                                                </template>
+                                                                                <template
                                                                                         v-if="index+1!=item.project.length">
                                                                                     ,
                                                                                 </template>
@@ -1037,7 +1041,8 @@
                                 <tbody>
                                 <template v-for="(item,index) in contract.item">
                                     <tr>
-                                        <td class="text-center" rowspan="item.length">人民路
+                                        <td class="text-center" rowspan="item.length">
+                                            {{item.company==null?'无':item.company}}
                                         </td>
                                         <td class="text-center" rowspan="item.project.length">{{item.element.name}}
                                         </td>
@@ -1061,8 +1066,10 @@
                                                     <tr>
                                                         <td class="text-center">
                                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                                <input type="checkbox" v-model="project.id"
-                                                                       name="ispackage" :value="item.id+'/'+project.id">
+                                                                <!--<input type="checkbox" v-model="project.id"-->
+                                                                <!--name="ispackage" :value="item.id+'/'+project.id">-->
+                                                                <input type="checkbox" v-model="project.isPackage"
+                                                                       name="ispackage" value="1">
                                                                 <span></span>
                                                             </label>
                                                         </td>
@@ -1582,11 +1589,12 @@
             },
             isPackges(){
                 var me = this;
-//                debugger
-//                console.log(JSON.parse(JSON.stringify(me.contract)));
-//                console.log(JSON.parse(JSON.stringify(me.contract.item[0].project[1].id)));
-//                console.log(JSON.parse(JSON.stringify(me.contract.item[1].project[0].id)));
-                alert(123);
+                confirm({
+                    content: "是否将选中项目设置为分包项目？分包项目将不参与后续流程！",
+                    success: function () {
+                        jQuery("#isPackage").modal("hide");
+                    }
+                })
             },
             wizard(){
                 //wizard插件和表单验证序列化
