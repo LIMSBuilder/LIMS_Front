@@ -316,10 +316,10 @@
                                                                         {{item.frequency?item.frequency.total:''}}
                                                                     </td>
                                                                     <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==1">是-->
+                                                                    <!--v-if="item.is_package==1">是-->
                                                                     <!--</td>-->
                                                                     <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==0">否-->
+                                                                    <!--v-if="item.is_package==0">否-->
                                                                     <!--</td>-->
                                                                     <td class="text-center">{{item.other}}</td>
                                                                 </tr>
@@ -366,10 +366,10 @@
                                                                     <td class="text-center">{{item.frequency.total}}
                                                                     </td>
                                                                     <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==1">是-->
+                                                                    <!--v-if="item.is_package==1">是-->
                                                                     <!--</td>-->
                                                                     <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==0">否-->
+                                                                    <!--v-if="item.is_package==0">否-->
                                                                     <!--</td>-->
                                                                     <td class="text-center">{{item.other}}</td>
                                                                     <td class="text-center">
@@ -545,10 +545,10 @@
                                                                             {{item.frequency?item.frequency.total:''}}
                                                                         </td>
                                                                         <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==1">是-->
+                                                                        <!--v-if="item.is_package==1">是-->
                                                                         <!--</td>-->
                                                                         <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==0">否-->
+                                                                        <!--v-if="item.is_package==0">否-->
                                                                         <!--</td>-->
                                                                         <td class="text-center">{{item.other}}</td>
                                                                     </tr>
@@ -594,10 +594,10 @@
                                                                         <td class="text-center">{{item.frequency.total}}
                                                                         </td>
                                                                         <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==1">是-->
+                                                                        <!--v-if="item.is_package==1">是-->
                                                                         <!--</td>-->
                                                                         <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==0">否-->
+                                                                        <!--v-if="item.is_package==0">否-->
                                                                         <!--</td>-->
                                                                         <td class="text-center">{{item.other}}</td>
                                                                     </tr>
@@ -630,11 +630,13 @@
                                                 <i class="fa fa-angle-right"></i>
                                             </a>
                                             <a href="javascript:;" class="btn green button-submit" @click="create(0)">
-                                                自送样提交
+                                                <!--自送样提交-->
+                                                实验分析室
                                                 <i class="fa fa-check"></i>
                                             </a>
                                             <a href="javascript:;" class="btn blue button-submit" @click="create(1)">
-                                                现场采样提交
+                                                <!--现场采样提交-->
+                                                现场检测室
                                                 <i class="fa fa-check"></i>
                                             </a>
                                         </div>
@@ -746,15 +748,15 @@
                                             表单尚未填写完整。
                                         </div>
                                         <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                            <!--<label class="col-md-2 control-label" for="monitor_company">监测企业或路段-->
-                                                <!--<span class="required">*</span>-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-9">-->
-                                                <!--<input type="text" class="form-control" id="monitor_company"-->
-                                                       <!--v-model="monitor.company"-->
-                                                       <!--placeholder=""-->
-                                                       <!--name="monitor_company">-->
-                                            <!--</div>-->
+                                        <!--<label class="col-md-2 control-label" for="monitor_company">监测企业或路段-->
+                                        <!--<span class="required">*</span>-->
+                                        <!--</label>-->
+                                        <!--<div class="col-md-9">-->
+                                        <!--<input type="text" class="form-control" id="monitor_company"-->
+                                        <!--v-model="monitor.company"-->
+                                        <!--placeholder=""-->
+                                        <!--name="monitor_company">-->
+                                        <!--</div>-->
                                         <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
@@ -817,23 +819,23 @@
                                             </div>
                                         </div>
                                         <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                            <!--<label class="col-md-2 control-label">是否外包-->
-                                                <!--<span class="required">  </span>-->
-                                            <!--</label>-->
-                                            <!--<div class="col-md-9">-->
-                                                <!--<div class="mt-radio-inline">-->
-                                                    <!--<label class="mt-radio">-->
-                                                        <!--<input type="radio" name="is_package"-->
-                                                               <!--v-model="monitor.is_package" value="0"> 否-->
-                                                        <!--<span></span>-->
-                                                    <!--</label>-->
-                                                    <!--<label class="mt-radio">-->
-                                                        <!--<input type="radio" name="is_package"-->
-                                                               <!--v-model="monitor.is_package" value="1"> 是-->
-                                                        <!--<span></span>-->
-                                                    <!--</label>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
+                                        <!--<label class="col-md-2 control-label">是否外包-->
+                                        <!--<span class="required">  </span>-->
+                                        <!--</label>-->
+                                        <!--<div class="col-md-9">-->
+                                        <!--<div class="mt-radio-inline">-->
+                                        <!--<label class="mt-radio">-->
+                                        <!--<input type="radio" name="is_package"-->
+                                        <!--v-model="monitor.is_package" value="0"> 否-->
+                                        <!--<span></span>-->
+                                        <!--</label>-->
+                                        <!--<label class="mt-radio">-->
+                                        <!--<input type="radio" name="is_package"-->
+                                        <!--v-model="monitor.is_package" value="1"> 是-->
+                                        <!--<span></span>-->
+                                        <!--</label>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
                                         <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_other">备注
@@ -942,9 +944,6 @@
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
                                                             <span class="todo-username pull-left">{{contract.name}}</span>
-                                                            <button type="button"
-                                                                    class="todo-username-btn btn btn-circle green btn-outline btn-sm">
-                                                                &nbsp;编 辑&nbsp;</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
@@ -1336,12 +1335,12 @@
                                                                     <thead>
                                                                     <tr class="uppercase">
                                                                         <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
+                                                                        <!--<th> 公司、道路名称</th>-->
                                                                         <th> 环境要素</th>
                                                                         <th> 监测点（个）</th>
                                                                         <th> 监测项目</th>
                                                                         <th> 监测频次</th>
-                                                                        <th> 是否分包</th>
+                                                                        <!--<th> 是否分包</th>-->
                                                                         <th> 备注</th>
                                                                     </tr>
                                                                     </thead>
@@ -1349,8 +1348,8 @@
                                                                     <template v-for="(item,index) in items">
                                                                         <tr>
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.company}}
-                                                                            </td>
+                                                                            <!--<td class="text-center">{{item.company}}-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">
                                                                                 {{item.element.name}}
                                                                             </td>
@@ -1375,12 +1374,12 @@
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==1">是
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==0">否
-                                                                            </td>
+                                                                            <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==1">是-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==0">否-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
                                                                     </template>
@@ -1813,6 +1812,7 @@
                 for (var key in item) {
                     me.task[key] = item[key];
                 }
+                jQuery("#chooseCustomer").modal("hide");
             },
             fetchType(){
                 var me = this;

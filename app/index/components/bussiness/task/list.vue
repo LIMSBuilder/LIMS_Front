@@ -23,7 +23,14 @@
                                             <a href="javascript:;" @click="searchByProcess('total')">全部 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('before_dispath')">待派遣 </a>
+                                            <a href="javascript:;" @click="searchByProcess('before_dispath')">
+                                                <span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>
+                                                未派遣任务
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('after_dispath')">
+                                                已派遣任务 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -151,9 +158,9 @@
                                                     <div class="todo-tasklist-item-title">
                                                         {{item.identify}} /
                                                         <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==0">自送样</span>
+                                                              v-if="item.sample_type==0">实验室分析室--自送样</span>
                                                         <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==1">现场采样</span>
+                                                              v-if="item.sample_type==1">现场检测室--现场采样</span>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -174,7 +181,6 @@
                                                               v-if="item.process==1">未派遣</span>
                                                         <span class="label label-sm label-primary"
                                                               v-if="item.process==2">待执行</span>
-
 
 
                                                     </div>
@@ -341,12 +347,12 @@
                                                                     <thead>
                                                                     <tr class="uppercase">
                                                                         <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
+                                                                        <!--<th> 公司、道路名称</th>-->
                                                                         <th> 环境要素</th>
                                                                         <th> 监测点（个）</th>
                                                                         <th> 监测项目</th>
                                                                         <th> 监测频次</th>
-                                                                        <th> 是否分包</th>
+                                                                        <!--<th> 是否分包</th>-->
                                                                         <th> 备注</th>
                                                                     </tr>
                                                                     </thead>
@@ -354,8 +360,8 @@
                                                                     <template v-for="(item,index) in items">
                                                                         <tr>
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.company}}
-                                                                            </td>
+                                                                            <!--<td class="text-center">{{item.company}}-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">
                                                                                 {{item.element.name}}
                                                                             </td>
@@ -372,12 +378,12 @@
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==1">是
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==0">否
-                                                                            </td>
+                                                                            <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==1">是-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center"-->
+                                                                            <!--v-if="item.is_package==0">否-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
                                                                     </template>
@@ -462,7 +468,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "",
+                condition: "sample_type=1&&process=before_dispath",
                 taskList: [],
                 task: {
                     type: {}
@@ -471,7 +477,7 @@
                 log: [],
                 total_count: {},
                 projectName: [],
-                countProcess: ""
+                countProcess: 0
             }
         },
         mounted(){
@@ -662,10 +668,10 @@
             //获取task/list合同进展个数
             fetchCount(){
                 var me = this;
-                me.$http.get("/api/task/countTotal").then(
+                me.$http.get("/api/task/countProcess").then(
                     response => {
                         var data = response.data;
-                        me.countProcess = data;
+                        me.countProcess = data.create;
                     }, response => {
                         serverErrorInfo(response);
                     }

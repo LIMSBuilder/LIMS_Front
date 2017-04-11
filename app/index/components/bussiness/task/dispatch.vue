@@ -296,12 +296,12 @@
                                                                     <thead>
                                                                     <tr class="uppercase">
                                                                         <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
+                                                                        <!--<th> 公司、道路名称</th>-->
                                                                         <th> 环境要素</th>
                                                                         <th> 监测点（个）</th>
                                                                         <th> 监测项目</th>
                                                                         <th> 监测频次</th>
-                                                                        <th> 是否分包</th>
+                                                                        <!--<th> 是否分包</th>-->
                                                                         <th> 备注</th>
                                                                     </tr>
                                                                     </thead>
@@ -309,8 +309,8 @@
                                                                     <template v-for="(item,index) in items">
                                                                         <tr>
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.company}}
-                                                                            </td>
+                                                                            <!--<td class="text-center">{{item.company}}-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">
                                                                                 {{item.element.name}}
                                                                             </td>
@@ -327,12 +327,12 @@
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==1">是
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==0">否
-                                                                            </td>
+                                                                            <!--<td class="text-center"-->
+                                                                                <!--v-if="item.is_package==1">是-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center"-->
+                                                                                <!--v-if="item.is_package==0">否-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
                                                                     </template>
@@ -367,7 +367,7 @@
                                 <thead>
                                 <tr class="uppercase">
                                     <th> 序号</th>
-                                    <th> 公司、道路名称</th>
+                                    <!--<th> 公司、道路名称</th>-->
                                     <th> 环境要素</th>
                                     <th> 监测点（个）</th>
                                     <th> 监测项目</th>
@@ -388,11 +388,11 @@
                                                 :rowspan="item.project.length">
                                                 {{index+1}}
                                             </td>
-                                            <td class="text-center"
-                                                v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                {{item.company}}
-                                            </td>
+                                            <!--<td class="text-center"-->
+                                                <!--v-if="projectIndex==0"-->
+                                                <!--:rowspan="item.project.length">-->
+                                                <!--{{item.company}}-->
+                                            <!--</td>-->
                                             <td class="text-center"
                                                 v-if="projectIndex==0"
                                                 :rowspan="item.project.length">
@@ -473,7 +473,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
         <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -507,7 +506,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "sample_type=1&&process=total_dispatch",
+                condition: "sample_type=1&&process=before_dispath",
                 taskList: [],
                 task: {
                     type: {}
