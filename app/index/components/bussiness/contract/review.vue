@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同审核
+        <h1 class="page-title"> 大额审核
             <small>／Review</small>
         </h1>
         <div class="row">
@@ -19,18 +19,18 @@
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('total')">全部 </a>
+                                            <a href="javascript:;" @click="searchByProcess('reviewBig')">全部 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(1)">
+                                            <a href="javascript:;" @click="searchByProcess('waitReviewBig')">
                                                 <span class="badge badge-info"
                                                       v-if="dear_count!=0"> {{dear_count}} </span> 待审核 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('after_receive')">已通过 </a>
+                                            <a href="javascript:;" @click="searchByProcess('afterReviewBig')">已通过 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(-1)">待修改 </a>
+                                            <a href="javascript:;" @click="searchByProcess('beforeReviewBig')">待修改 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -616,8 +616,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
-
         <div class="modal fade bs-modal-lg" id="reviewContract" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -868,7 +866,7 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=review",
+                condition: "process=reviewBig",
                 contractList: [],
                 contract: {
                     trustee: {},
@@ -1065,11 +1063,7 @@
             searchByProcess(step){
                 var me = this;
                 me.currentPage = 1;
-                if (step != "total") {
-                    me.condition = "process=" + step;
-                } else {
-                    me.condition = "process=review";
-                }
+                me.condition = "process=" + step;
                 me.getData();
 
             },
@@ -1078,7 +1072,7 @@
                 var response = me.review_info;
                 response.result = result;
                 response.id = me.contract.id;
-
+                debugger
                 confirm({
                     content: "是否审核" + (result == 0 ? "<span class='font-red'>拒绝</span>" : "<span class='font-green'>通过</span>") + "合同【" + me.contract.name + "】？",
                     success: function () {
@@ -1086,6 +1080,7 @@
                             params: response
                         }).then(function (response) {
                             var data = response.data;
+//                            debugger
                             codeState(data.code, {
                                 200: function () {
                                     alert("合同审核完成！");
@@ -1120,7 +1115,7 @@
                 me.$http.get("/api/contract/getWaitReviewCount").then(function (response) {
                     var data = response.data;
                     me.dear_count = data.count;
-                }, function () {
+                }, function (response) {
                     serverErrorInfo(response);
                 })
             },

@@ -765,7 +765,12 @@
                                                     <label class="control-label col-md-2">监测费用
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <label class="control-label">{{contract.payment}}</label>
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">{{contract.payment}}￥</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">{{paymentCap}}</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1227,7 +1232,7 @@
                 this.tag.trustee = jQuery("#trustee option:selected").html();
             },
             "contract.type": function () {
-                console.log("type")
+                console.log("type");
                 this.tag.type = jQuery("#projectType option:selected").html();
             },
             'contract.payment': function (currentValue) {

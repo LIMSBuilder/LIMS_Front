@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同列表
-            <small>／Contract</small>
+        <h1 class="page-title"> 小额审核
+            <small>／Review</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -10,71 +10,29 @@
                     <div class="todo-sidebar">
                         <div class="portlet light ">
                             <div class="portlet-title">
-                                <div class="caption">
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同流程 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看合同进展</span>
+                                <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
+                                    <span class="caption-subject font-green-sharp bold uppercase">当前进度 </span>
                                 </div>
 
                             </div>
                             <div class="portlet-body todo-project-list-content">
                                 <div class="todo-project-list">
-
                                     <ul class="nav nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('total')">
-                                                全部 </a>
+                                            <a href="javascript:;" @click="searchByProcess('reviewSmall')">全部 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(-1)">
-                                                <span class="badge badge-warning">{{countProcess.change}} </span>
-                                                待修改
-                                            </a>
+                                            <a href="javascript:;" @click="searchByProcess('waitReviewSmall')">
+                                                <span class="badge badge-info"
+                                                      v-if="dear_count!=0"> {{dear_count}} </span> 待审核 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(1)">
-                                                <span class="badge badge-info"> {{countProcess.create}} </span>
-                                                待审核 </a>
+                                            <a href="javascript:;" @click="searchByProcess('afterReviewSmall')">已通过 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(2)">
-                                                <span class="badge badge-primary"> {{countProcess.review}}</span>
-                                                待执行</a>
+                                            <a href="javascript:;"
+                                               @click="searchByProcess('beforeReviewSmall')">待修改 </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(3)">
-                                                已执行
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(-2)">
-                                                已中止 </a>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <span class="caption-subject font-red bold uppercase">监测类别 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
-                                </div>
-                                <div class="actions">
-                                    <div class="actions">
-                                        <a class="btn btn-circle green btn-outline btn-sm" href="/type/create">
-                                            <i class="fa fa-plus"></i> 新增 </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
-                                <div class="todo-project-list">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <template v-for="item in typeList">
-                                            <li>
-                                                <a href="javascript:;" @click="searchByType(item.id)">{{item.name}} </a>
-                                            </li>
-                                        </template>
                                     </ul>
                                 </div>
                             </div>
@@ -90,11 +48,25 @@
                                 <div class="form-group form-md-line-input form-md-floating-label"
                                      style="padding-top: 0;">
                                     <div class="input-icon right">
-                                        <input type="text" class="form-control" @keyup.enter="searchKey($event)">
+                                        <input type="text" class="form-control" v-model="search.key">
                                         <span class="help-block">支持委托单位、合同编号和项目名称查询。</span>
                                         <i class="fa fa-search"></i>
                                     </div>
                                 </div>
+                                <div class="md-checkbox-list">
+                                    <div class="md-checkbox has-info">
+                                        <input type="checkbox" id="checkbox9" class="md-check" v-model="search.onlyMe">
+                                        <label for="checkbox9">
+                                            <span class="inc"></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 显示本人 </label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-actions text-center">
+                                    <button type="button" class="btn green text-center" @click="searchKey">搜 索</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -106,36 +78,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同列表</span>
-                                </div>
-                                <div class="actions" v-if="contract.id">
-                                    <div class="btn-group">
-                                        <a class="btn green btn-circle btn-sm" href="javascript:;"
-                                           data-toggle="dropdown"
-                                           data-hover="dropdown" data-close-others="true"> 操 作
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <!--<a href="javascript:;" > 创建新合同 </a>-->
-                                                <router-link to="/contract/create"> 创建新合同</router-link>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" @click="changeContract"> 编辑修改 </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="javascript:;"> 导出合同</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" @click="stopContract"> 中止合同</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="javascript:;" @click="deleteContract"> 删除合同 </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <span class="caption-subject font-green-sharp bold uppercase">合同审核</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -145,7 +88,7 @@
                                         <div class="todo-tasklist" id="contract_list">
                                             <span v-if="contractList.length==0">暂无合同。</span>
                                             <template v-for="item in contractList">
-                                                <div @click="viewDetails(item)"
+                                                <div @click="viewDetails(item.id)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
                                                     <div class="todo-userpic pull-left" style="margin-right: 10px;"><i
                                                             style="width: 27px;height: 27px;"
@@ -191,8 +134,8 @@
                                     <div class="col-md-7 col-sm-8" v-show="!contract.id">
                                         <h1 class="text-center">暂无合同信息</h1>
                                     </div>
-                                    <div class="col-md-7 col-sm-8" v-show="contract.id">
-                                        <form action="#" class="form-horizontal form-bordered form-row-stripped">
+                                    <div class="col-md-7 col-sm-8" id="detail_desp" v-show="contract.id">
+                                        <form action="#" class="form-horizontal">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
                                                 <div class="form-group">
@@ -207,22 +150,24 @@
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
                                                         <div class="todo-taskbody-date pull-right">
-                                                            <span class="todo-username pull-left"
-                                                                  style="font-size: 14px;">合同编号：{{contract.identify}}</span>
+                                                            <a href="#reviewContract" data-toggle="modal"
+                                                               class="btn green btn-outline" v-if="contract.process==1">审
+                                                                核</a>
                                                         </div>
                                                     </div>
                                                 </div>
 
+
                                                 <div class="tabbable-line">
-                                                    <ul class="nav nav-tabs ">
+                                                    <ul class="nav nav-tabs">
                                                         <li class="active">
-                                                            <a href="#page_1" data-toggle="tab"> 合同详情 </a>
+                                                            <a href="#page_1" data-toggle="tab"> 合同信息 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_2" data-toggle="tab"> 监测项目 </a>
+                                                            <a href="#page_2" data-toggle="tab"> 检测项目 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_3" data-toggle="tab"> 相关文档 </a>
+                                                            <a href="#page_3" data-toggle="tab"> 审核历史 </a>
                                                         </li>
                                                         <li>
                                                             <a href="#page_4" data-toggle="tab"> 操作日志 </a>
@@ -232,18 +177,18 @@
                                                         <div class="tab-pane active" id="page_1">
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">委托单位
+                                                                    <label class="control-label col-md-4">委托单位
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_unit}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">邮政编码
+                                                                    <label class="control-label col-md-4">邮政编码
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_code}}
                                                                         </p>
@@ -252,18 +197,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">联系地址
+                                                                    <label class="control-label col-md-4">联系地址
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_address}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">联系电话
+                                                                    <label class="control-label col-md-4">联系电话
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_tel}}
                                                                         </p>
@@ -272,18 +217,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">联系人
+                                                                    <label class="control-label col-md-4">联系人
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">传真号码
+                                                                    <label class="control-label col-md-4">传真号码
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_fax}}
                                                                         </p>
@@ -293,18 +238,18 @@
                                                             <hr>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">受托单位
+                                                                    <label class="control-label col-md-4">受托单位
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_unit}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">邮政编码
+                                                                    <label class="control-label col-md-4">邮政编码
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_code}}
                                                                         </p>
@@ -313,18 +258,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">联系地址
+                                                                    <label class="control-label col-md-4">联系地址
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_address}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">联系电话
+                                                                    <label class="control-label col-md-4">联系电话
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_tel}}
                                                                         </p>
@@ -333,18 +278,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">联系人
+                                                                    <label class="control-label col-md-4">联系人
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee.name}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-5">传真号码
+                                                                    <label class="control-label col-md-4">传真号码
                                                                     </label>
-                                                                    <div class="col-md-7">
+                                                                    <div class="col-md-8">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_fax}}
                                                                         </p>
@@ -493,8 +438,7 @@
                                                                     <template v-for="(item,index) in items">
                                                                         <tr>
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <!--<td class="text-center">{{item.company}}-->
-                                                                            <td class="text-center">路段
+                                                                            <td class="text-center">{{item.company}}
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.element.name}}
@@ -506,19 +450,18 @@
                                                                                 <button type="button"
                                                                                         class="btn green btn-outline"
                                                                                         @click="showProjectName(item.id)">
-                                                                                    详情
+                                                                                    查看详情
                                                                                 </button>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
-                                                                            <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==1">是-->
-                                                                            <!--</td>-->
-                                                                            <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==0">否-->
-                                                                            <!--</td>-->
-                                                                            <td class="text-center">是</td>
+                                                                            <td class="text-center"
+                                                                                v-if="item.is_package==1">是
+                                                                            </td>
+                                                                            <td class="text-center"
+                                                                                v-if="item.is_package==0">否
+                                                                            </td>
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
                                                                     </template>
@@ -527,39 +470,37 @@
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="page_3">
-                                                            <table class="table table-hover">
-                                                                <tr>
-                                                                    <td>
-                                                                        导出该合同
-
-                                                                    </td>
-                                                                    <td style="text-align: right">
-                                                                        <button type="button"
-                                                                                class="btn green btn-outline"
-                                                                                style="margin: 5px;">导 出
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        合同历史审核记录
-                                                                    </td>
-                                                                    <td style="text-align: right">
-                                                                        <button type="button"
-                                                                                class="btn green btn-outline"
-                                                                                style="margin: 5px;">导 出
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
+                                                            <ul class="todo-task-history">
+                                                                <template v-for="item in reviewList.result">
+                                                                    <li>
+                                                                        <div class="todo-task-history-date">
+                                                                            <button type="button"
+                                                                                    class="btn green btn-outline"
+                                                                                    @click="viewReviewAdvice(item)">审核意见
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="todo-task-history-desc">
+                                                                            {{item.reviewer.name}} 于
+                                                                            {{item.review_time}}【
+                                                                            <template v-if="item.result==1">审核通过
+                                                                            </template>
+                                                                            <template v-else>审核拒绝</template>
+                                                                            】了合同
+                                                                        </div>
+                                                                    </li>
+                                                                </template>
+                                                            </ul>
                                                         </div>
                                                         <div class="tab-pane" id="page_4">
                                                             <ul class="todo-task-history">
                                                                 <template v-for="item in log">
-                                                                    <li style="list-style: none">
-                                                                        <span>{{item.user.name}}</span>
-                                                                        <span>{{item.create_time}}</span>
-                                                                        <span>{{item.msg}}</span>
+                                                                    <li>
+                                                                        <div class="todo-task-history-date">
+                                                                            {{item.log_time}}
+                                                                        </div>
+                                                                        <div class="todo-task-history-desc">
+                                                                            {{item.log_msg}}
+                                                                        </div>
                                                                     </li>
                                                                 </template>
                                                             </ul>
@@ -577,69 +518,398 @@
                 </div>
             </div>
             <!-- END PAGE CONTENT-->
-
-            <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title">检测项目详情列表</h4>
-                        </div>
-                        <div class="modal-body">
-                            <ul class="receiver_tag">
-                                <template v-for="names in projectName">
-                                    <li class="uppercase "><a href="javascript:;" style="line-height: 30px">{{names.name}}</a>
-                                    </li>
-                                </template>
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        </div>
+        </div>
+        <div class="modal fade draggable-modal" id="showReviewAdvice" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">审核日志</h4>
                     </div>
-                    <!-- /.modal-content -->
+                    <div class="modal-body">
+                        <h4>审核结论</h4>
+                        <hr>
+                        <div>
+                            <span class="label label-danger" v-if="advice.result==0"> 审核拒绝 </span>
+                            <span class="label label-success" v-if="advice.result==1"> 审核通过 </span>
+                        </div>
+                        <h4 class="margin-top-30">审核项</h4>
+                        <hr>
+                        <form class="form-horizontal" action="#" method="POST">
+                            <div class="form-body">
+                                <div class="form-group form-md-radios">
+                                    <label :class="advice.same==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">客户要求与合同内容相符</label>
+                                    <span v-if="advice.same==1">是</span>
+                                    <span v-if="advice.same==0" class="font-red">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label :class="advice.contract==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
+                                    <span v-if="advice.contract==1">是</span>
+                                    <span v-if="advice.contract==0" class="font-red">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label :class="advice.guest==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
+                                    <span v-if="advice.guest==1">是</span>
+                                    <span v-if="advice.guest==0" class="font-red">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label :class="advice.package==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">是否有分包内容</label>
+                                    <span v-if="advice.package==1"> 有</span>
+                                    <span v-if="advice.package==0" class="font-red"> 无</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label :class="advice.company==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">分包单位评审是否合格</label>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0" class="font-red">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label :class="advice.company==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">合同额是否满足工作量要求 </label>
+                                    <span v-if="advice.company==1">是</span>
+                                    <span v-if="advice.company==0" class="font-red">否</span>
+                                </div>
+                                <div class="form-group form-md-radios">
+                                    <label :class="advice.time==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
+                                           style="text-align: left">提交报告时间是否合适 </label>
+                                    <span v-if="advice.time==1">是</span>
+                                    <span v-if="advice.time==0" class="font-red">否</span>
+                                </div>
+                            </div>
+                        </form>
+                        <h4 class="margin-top-30">审核意见</h4>
+                        <hr>
+                        <p v-html="advice.msg"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn green btn-outline">导 出</button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
                 </div>
-                <!-- /.modal-dialog -->
+                <!-- /.modal-content -->
             </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="receiver_tag">
+                            <template v-for="names in projectName">
+                                <li class="uppercase"><a href="javascript:;"
+                                                         style="line-height: 30px">{{names.name}}</a></li>
+                            </template>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+
+        <div class="modal fade bs-modal-lg" id="reviewContract" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">审核合同：{{contract.name}}</h4>
+                    </div>
+                    <div class="modal-body form">
+                        <form class="form-horizontal" action="#" id="submit_form"
+                              method="POST">
+                            <div class="form-body">
+                                <!--<div class="form-group form-md-radios">-->
+                                <!--<label class="col-md-8 control-label"-->
+                                <!--style="text-align: left">客户要求与合同内容相符</label>-->
+                                <!--<div class="md-radio-inline">-->
+                                <!--<div class="md-radio">-->
+                                <!--<input type="radio" id="same1"-->
+                                <!--name="same"-->
+                                <!--v-model="review_info.same"-->
+                                <!--value="1" class="md-radiobtn">-->
+                                <!--<label for="same1">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 是 </label>-->
+                                <!--</div>-->
+                                <!--<div class="md-radio has-error">-->
+                                <!--<input type="radio" id="same2"-->
+                                <!--name="same"-->
+                                <!--v-model="review_info.same"-->
+                                <!--value="0" class="md-radiobtn">-->
+                                <!--<label for="same2">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 否 </label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-md-radios">-->
+                                <!--<label class="col-md-8 control-label"-->
+                                <!--style="text-align: left">人力、物力、信息资源等条-->
+                                <!--件均可以满足合同中的要求 </label>-->
+                                <!--<div class="md-radio-inline">-->
+                                <!--<div class="md-radio">-->
+                                <!--<input type="radio" id="contract1"-->
+                                <!--name="contract"-->
+                                <!--v-model="review_info.contract"-->
+                                <!--value="1"-->
+                                <!--class="md-radiobtn">-->
+                                <!--<label for="contract1">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 是 </label>-->
+                                <!--</div>-->
+                                <!--<div class="md-radio has-error">-->
+                                <!--<input type="radio" id="contract2"-->
+                                <!--name="contract"-->
+                                <!--v-model="review_info.contract"-->
+                                <!--value="0" class="md-radiobtn"-->
+                                <!--&gt;-->
+                                <!--<label for="contract2">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 否 </label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-md-radios">-->
+                                <!--<label class="col-md-8 control-label"-->
+                                <!--style="text-align: left">确定的监测方案与测试方法-->
+                                <!--是否可以满足客户的要求 </label>-->
+                                <!--<div class="md-radio-inline">-->
+                                <!--<div class="md-radio">-->
+                                <!--<input type="radio" id="guest1"-->
+                                <!--name="guest"-->
+                                <!--v-model="review_info.guest"-->
+                                <!--value="1"-->
+                                <!--class="md-radiobtn">-->
+                                <!--<label for="guest1">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 是 </label>-->
+                                <!--</div>-->
+                                <!--<div class="md-radio has-error">-->
+                                <!--<input type="radio" id="guest2"-->
+                                <!--name="guest"-->
+                                <!--v-model="review_info.guest"-->
+                                <!--value="0"-->
+                                <!--class="md-radiobtn"-->
+                                <!--&gt;-->
+                                <!--<label for="guest2">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 否 </label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-md-radios">-->
+                                <!--<label class="col-md-8 control-label"-->
+                                <!--style="text-align: left">是否有分包内容</label>-->
+                                <!--<div class="md-radio-inline">-->
+                                <!--<div class="md-radio">-->
+                                <!--<input type="radio" id="package1"-->
+                                <!--name="package"-->
+                                <!--class="md-radiobtn"-->
+                                <!--v-model="review_info.package"-->
+                                <!--value="1">-->
+                                <!--<label for="package1">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 有 </label>-->
+                                <!--</div>-->
+                                <!--<div class="md-radio has-error">-->
+                                <!--<input type="radio" id="package2"-->
+                                <!--name="package"-->
+                                <!--class="md-radiobtn"-->
+                                <!--v-model="review_info.package"-->
+                                <!--value="0">-->
+                                <!--<label for="package2">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 无 </label>-->
+                                <!--</div>-->
+
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-md-radios">-->
+                                <!--<label class="col-md-8 control-label"-->
+                                <!--style="text-align: left">分包单位评审是否合格</label>-->
+                                <!--<div class="md-radio-inline">-->
+                                <!--<div class="md-radio">-->
+                                <!--<input type="radio" id="company1"-->
+                                <!--name="company"-->
+                                <!--v-model="review_info.company"-->
+                                <!--value="1"-->
+                                <!--class="md-radiobtn">-->
+                                <!--<label for="company1">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 是 </label>-->
+                                <!--</div>-->
+                                <!--<div class="md-radio has-error">-->
+                                <!--<input type="radio" id="company2"-->
+                                <!--name="company"-->
+                                <!--class="md-radiobtn"-->
+                                <!--v-model="review_info.company"-->
+                                <!--value="0">-->
+                                <!--<label for="company2">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 否 </label>-->
+                                <!--</div>-->
+
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-md-radios">-->
+                                <!--<label class="col-md-8 control-label"-->
+                                <!--style="text-align: left">合同额是否满足工作量要求 </label>-->
+                                <!--<div class="md-radio-inline">-->
+                                <!--<div class="md-radio">-->
+                                <!--<input type="radio" id="money1"-->
+                                <!--name="money"-->
+                                <!--class="md-radiobtn"-->
+                                <!--v-model="review_info.money"-->
+                                <!--value="1">-->
+                                <!--<label for="money1">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 是 </label>-->
+                                <!--</div>-->
+                                <!--<div class="md-radio has-error">-->
+                                <!--<input type="radio" id="money2"-->
+                                <!--name="money" class="md-radiobtn"-->
+                                <!--v-model="review_info.money"-->
+                                <!--value="0">-->
+                                <!--<label for="money2">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 否 </label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group form-md-radios">-->
+                                <!--<label class="col-md-8 control-label"-->
+                                <!--style="text-align: left">提交报告时间是否合适 </label>-->
+                                <!--<div class="md-radio-inline">-->
+                                <!--<div class="md-radio">-->
+                                <!--<input type="radio" id="time1"-->
+                                <!--name="time"-->
+                                <!--class="md-radiobtn"-->
+                                <!--v-model="review_info.time"-->
+                                <!--value="1">-->
+                                <!--<label for="time1">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 是 </label>-->
+                                <!--</div>-->
+                                <!--<div class="md-radio has-error">-->
+                                <!--<input type="radio" id="time2"-->
+                                <!--name="time" class="md-radiobtn"-->
+                                <!--v-model="review_info.time"-->
+                                <!--value="0">-->
+                                <!--<label for="time2">-->
+                                <!--<span class="inc"></span>-->
+                                <!--<span class="check"></span>-->
+                                <!--<span class="box"></span> 否</label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<hr/>-->
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success alert-dismissable">
+                                            <button type="button" class="close"
+                                                    data-dismiss="alert"
+                                                    aria-hidden="true"></button>
+                                            <strong>小技巧：</strong>
+                                            您可以在文本框内详细描述您的审核意见及观点，内容将会被显示给合同修改人员查看。
+                                        </div>
+                                        <textarea class="inbox-editor  form-control"
+                                                  name="content" style="height: 100px;"
+                                                  v-model="review_info.msg"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn green btn-outline"
+                                @click="review_confirm(1)">审核通过
+                        </button>
+                        <button type="button" class="btn red btn-outline"
+                                @click="review_confirm(0)">审核拒绝
+                        </button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
     </div>
 </template>
-<style>
-    a {
-        text-decoration: none !important;
-    }
-</style>
-<script type="es6">
+<script>
+    import 'wangeditor'
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
         data: function () {
             return {
-                typeList: [],
                 currentPage: 1,
-                condition: "",
+                condition: "process=reviewSmall",
                 contractList: [],
                 contract: {
                     trustee: {},
                     type: {}
                 },
                 items: [],
-                log: {},
-                total_count: {},
-                countProcess: [],
+                log: [],
+                review_info: {
+//                    same: "1",
+//                    contract: "1",
+//                    guest: "1",
+//                    package: "1",
+//                    company: "1",
+//                    money: "1",
+//                    time: "1",
+                    type: "",
+                    content: ""
+                },
+                dear_count: 0,
+                search: {
+                    key: "",
+                    onlyMe: false
+                },
+                reviewList: {},
+                advice: {},
                 projectName: []
             }
         },
         mounted(){
             var me = this;
-            me._initComponents();
             me._handleProjectListMenu();
-            me.init();
+            me.fetchDearCount();
             me.getData();
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
 
+            $("#reviewContract").draggable({
+                handle: ".modal-header"
+            });
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
                 while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
@@ -650,28 +920,8 @@
                     dom.addClass('active');
                 }
             });
-            me.fetchCount();
         },
         methods: {
-            init: function () {
-                var me = this;
-                me.$http.get("/api/type/contract_total").then(function (response) {
-                    var data = response.data;
-                    me.typeList = data.results;
-                }, function (response) {
-                    serverErrorInfo(response);
-                })
-            },
-            _initComponents: function () {
-                $('.todo-taskbody-due').datepicker({
-                    rtl: App.isRTL(),
-                    orientation: "left",
-                    autoclose: true
-                });
-                $(".todo-taskbody-tags").select2({
-                    placeholder: 'Status'
-                });
-            },
             _handleProjectListMenu: function () {
                 if (App.getViewPort().width <= 992) {
                     $('.todo-project-list-content').addClass("collapse");
@@ -690,7 +940,6 @@
                     }
                 }).then((response) => {
                     var data = response.data;
-//                    debugger
                     me.contractList = data.results;
                     me.$nextTick(function () {
                         App.stopPageLoading();
@@ -738,6 +987,19 @@
                     serverErrorInfo(response);
                 });
             },
+            fetchContract(id){
+                var me = this;
+                me.$http.get("/api/contract/contractDetails", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.contract = data;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
             fetchLog(id){
                 var me = this;
                 me.$http.get("/api/log/contractLog", {
@@ -746,74 +1008,125 @@
                     }
                 }).then(response => {
                         var data = response.data;
-                        me.log = data.results;
+                        me.log = data;
                     }, response => {
                         serverErrorInfo(response);
                     }
                 );
             },
+            fetchReviewList(id){
+                var me = this;
+                me.$http.get("/api/contract/getReviewList", {
+                    params: {
+                        id: id
+                    }
+                }).then(function (response) {
+                    var data = response.data;
+                    me.reviewList = data;
+                }, function (response) {
+                    serverErrorInfo(response);
+                })
+            },
             getData(){
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
-                me.contract = {
-                    trustee: {},
-                    type: {}
-                }
             },
-            viewDetails(item){
+            viewDetails(id){
                 var me = this;
-                me.$http.get("/api/contract/contractDetails", {
-                    params: {
-                        id: item.id
-                    }
-                }).then(response => {
-                    var data = response.data;
-                    me.contract = data;
-                }, response => {
-                    serverErrorInfo(response);
+                App.startPageLoading({animate: true});
+                me.fetchContract(id)
+                me.fetchItems(id);
+                me.fetchLog(id);
+                me.fetchReviewList(id);
+                me.$nextTick(function () {
+                    App.stopPageLoading();
                 })
-                me.fetchItems(item.id);
-                me.fetchLog(item.id);
             },
-            search(){
+            searchKey(){
                 var me = this;
+                if (me.search.key != "") {
+                    if (me.condition != "") {
+                        me.condition = "&&keyWords=" + encodeURI(me.search.key);
+                    } else {
+                        me.condition = "keyWords=" + encodeURI(me.search.key);
+                    }
+                }
+                if (me.search.onlyMe) {
+                    if (me.condition != "") {
+                        me.condition += "&&review_me=1";
+                    } else {
+                        me.condition = "review_me=1";
+                    }
+
+                }
                 me.currentPage = 1;
-                me.condition = "";
-                me.getData();
-            },
-            searchByType(id){
-                var me = this;
-                me.currentPage = 1;
-                me.condition = "type=" + id;
                 me.getData();
             },
             searchByProcess(step){
                 var me = this;
                 me.currentPage = 1;
-                if (step != "total") {
-                    me.condition = "process=" + step;
-                } else {
-                    me.condition = "";
-                }
+                me.condition = "process=" + step;
+
+//                if (step != "total") {
+//                    me.condition = "process=" + step;
+//                } else {
+//                    me.condition = "process=reviewsmall";
+//                }
                 me.getData();
 
             },
-            searchKey(e){
+            review_confirm(result){
                 var me = this;
-                me.condition = "keyWords=" + encodeURI(e.target.value);
-                me.currentPage = 1;
-                me.getData();
+                var response = me.review_info;
+                response.result = result;
+                response.id = me.contract.id;
+
+                confirm({
+                    content: "是否审核" + (result == 0 ? "<span class='font-red'>拒绝</span>" : "<span class='font-green'>通过</span>") + "合同【" + me.contract.name + "】？",
+                    success: function () {
+                        me.$http.get("/api/contract/reviewsmall", {
+                            params: response
+                        }).then(function (response) {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("合同审核完成！");
+                                    me.viewDetails(me.contract.id);
+                                    me.getData();
+//                                    debugger
+                                    jQuery("#reviewContract").modal("hide");
+                                }
+                            })
+                        }, function (response) {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
             },
-            fetchCount(){
+            viewReviewAdvice(item){
                 var me = this;
-                me.$http.get("/api/contract/countProcess").then(
-                    response => {
-                        var data = response.data;
-                        me.countProcess = data;
-                    }, response => {
-                        serverErrorInfo(response);
-                    });
+                jQuery("#showReviewAdvice").modal("show");
+                me.$http.get("/api/contract/reviewDetail", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(function (response) {
+                    var data = response.data;
+//                    console.log(data);
+                    me.advice = data;
+                }, function (response) {
+                    serverErrorInfo(response);
+                })
+            },
+            fetchDearCount(){
+                var me = this;
+                me.$http.get("/api/contract/getWaitSmallReviewCount").then(function (response) {
+                    var data = response.data;
+                    me.dear_count = data.count;
+                }, function (response) {
+                    serverErrorInfo(response);
+                })
             },
             showProjectName(id){
                 var me = this;
@@ -831,60 +1144,6 @@
                 );
                 jQuery("#showProject").modal("show");
 
-            },
-            stopContract(){
-                var me = this;
-                confirm({
-                    title: "<span><i class='font-red font-lg fa fa-warning'></i> 警告！危险操作</span>",
-                    content: "您正在中止合同【" + me.contract.name + "】，该操作将同时中止当前任务流程且无法撤销，是否继续？",
-                    success(){
-                        console.log(me.contract.id);
-                        me.$http.get("/api/contract/stopContract", {
-                            params: {
-                                id: me.contract.id
-                            }
-                        }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("合同中止成功！");
-                                    me.getData();
-                                }
-                            })
-                        }, response => {
-                            serverErrorInfo(response);
-                        })
-                    }
-                })
-            },
-            deleteContract(){
-                var me = this;
-                confirm({
-                    title: "<span><i class='font-red font-lg fa fa-warning'></i> 警告！危险操作</span>",
-                    content: "<span class='font-red'>【不推荐】</span>您正在删除合同【" + me.contract.name + "】，该操作将同时删除当前任务流程且无法撤销，是否继续？",
-                    success(){
-                        console.log(me.contract.id);
-                        me.$http.get("/api/contract/deleteContract", {
-                            params: {
-                                id: me.contract.id
-                            }
-                        }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("合同删除成功！");
-                                    me.getData();
-                                }
-                            })
-                        }, response => {
-                            serverErrorInfo(response);
-                        })
-                    }
-                })
-            },
-            changeContract(){
-                var me = this;
-                router.push("/contract/change?id=" + me.contract.id);
             }
         }
     }
