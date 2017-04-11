@@ -425,12 +425,12 @@
                                                                     <thead>
                                                                     <tr class="uppercase">
                                                                         <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
+                                                                        <!--<th> 公司、道路名称</th>-->
                                                                         <th> 环境要素</th>
                                                                         <th> 监测点（个）</th>
                                                                         <th> 监测项目</th>
                                                                         <th> 监测频次</th>
-                                                                        <th> 是否分包</th>
+                                                                        <!--<th> 是否分包</th>-->
                                                                         <th> 备注</th>
                                                                     </tr>
                                                                     </thead>
@@ -438,8 +438,8 @@
                                                                     <template v-for="(item,index) in items">
                                                                         <tr>
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.company}}
-                                                                            </td>
+                                                                            <!--<td class="text-center">{{item.company}}-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">
                                                                                 {{item.element.name}}
                                                                             </td>
@@ -456,12 +456,12 @@
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==1">是
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==0">否
-                                                                            </td>
+                                                                            <!--<td class="text-center"-->
+                                                                                <!--v-if="item.is_package==1">是-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center"-->
+                                                                                <!--v-if="item.is_package==0">否-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
                                                                     </template>
@@ -470,6 +470,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="page_3">
+                                                            <div class="col-md-7 col-sm-8" v-show="!reviewList.result">
+                                                                <h1 class="text-center">尚未审核合同</h1>
+                                                            </div>
                                                             <ul class="todo-task-history">
                                                                 <template v-for="item in reviewList.result">
                                                                     <li>
@@ -494,13 +497,10 @@
                                                         <div class="tab-pane" id="page_4">
                                                             <ul class="todo-task-history">
                                                                 <template v-for="item in log">
-                                                                    <li>
-                                                                        <div class="todo-task-history-date">
-                                                                            {{item.log_time}}
-                                                                        </div>
-                                                                        <div class="todo-task-history-desc">
-                                                                            {{item.log_msg}}
-                                                                        </div>
+                                                                    <li style="list-style: none">
+                                                                        <span>{{item.user.name}}</span>
+                                                                        <span>{{item.create_time}}</span>
+                                                                        <span>{{item.msg}}</span>
                                                                     </li>
                                                                 </template>
                                                             </ul>
@@ -533,54 +533,7 @@
                             <span class="label label-danger" v-if="advice.result==0"> 审核拒绝 </span>
                             <span class="label label-success" v-if="advice.result==1"> 审核通过 </span>
                         </div>
-                        <h4 class="margin-top-30">审核项</h4>
                         <hr>
-                        <form class="form-horizontal" action="#" method="POST">
-                            <div class="form-body">
-                                <div class="form-group form-md-radios">
-                                    <label :class="advice.same==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
-                                           style="text-align: left">客户要求与合同内容相符</label>
-                                    <span v-if="advice.same==1">是</span>
-                                    <span v-if="advice.same==0" class="font-red">否</span>
-                                </div>
-                                <div class="form-group form-md-radios">
-                                    <label :class="advice.contract==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
-                                           style="text-align: left">人力、物力、信息资源等条件均可以满足合同中的要求 </label>
-                                    <span v-if="advice.contract==1">是</span>
-                                    <span v-if="advice.contract==0" class="font-red">否</span>
-                                </div>
-                                <div class="form-group form-md-radios">
-                                    <label :class="advice.guest==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
-                                           style="text-align: left">确定的监测方案与测试方法是否可以满足客户的要求 </label>
-                                    <span v-if="advice.guest==1">是</span>
-                                    <span v-if="advice.guest==0" class="font-red">否</span>
-                                </div>
-                                <div class="form-group form-md-radios">
-                                    <label :class="advice.package==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
-                                           style="text-align: left">是否有分包内容</label>
-                                    <span v-if="advice.package==1"> 有</span>
-                                    <span v-if="advice.package==0" class="font-red"> 无</span>
-                                </div>
-                                <div class="form-group form-md-radios">
-                                    <label :class="advice.company==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
-                                           style="text-align: left">分包单位评审是否合格</label>
-                                    <span v-if="advice.company==1">是</span>
-                                    <span v-if="advice.company==0" class="font-red">否</span>
-                                </div>
-                                <div class="form-group form-md-radios">
-                                    <label :class="advice.company==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
-                                           style="text-align: left">合同额是否满足工作量要求 </label>
-                                    <span v-if="advice.company==1">是</span>
-                                    <span v-if="advice.company==0" class="font-red">否</span>
-                                </div>
-                                <div class="form-group form-md-radios">
-                                    <label :class="advice.time==0?'col-md-10 control-label font-red':'col-md-10 control-label'"
-                                           style="text-align: left">提交报告时间是否合适 </label>
-                                    <span v-if="advice.time==1">是</span>
-                                    <span v-if="advice.time==0" class="font-red">否</span>
-                                </div>
-                            </div>
-                        </form>
                         <h4 class="margin-top-30">审核意见</h4>
                         <hr>
                         <p v-html="advice.msg"></p>
@@ -803,7 +756,7 @@
                     }
                 }).then(response => {
                         var data = response.data;
-                        me.log = data;
+                        me.log = data.results;
                     }, response => {
                         serverErrorInfo(response);
                     }
