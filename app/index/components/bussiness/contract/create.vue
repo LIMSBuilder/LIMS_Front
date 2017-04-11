@@ -973,7 +973,7 @@
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control input-large"
+                                                <input type="number" class="form-control"
                                                        v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
@@ -1373,12 +1373,14 @@
                     console.log(JSON.stringify(items[i]))
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
+                App.startPageLoading({animate: true});
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
                             alert("合同创建成功！");
                             router.push("/contract/list");
+                            App.stopPageLoading();
                         }
                     })
                 }, function (response) {
