@@ -1265,7 +1265,7 @@
                                     }
                                 }).then(response => {
                                     var data = response.data;
-                                    console.log(data);
+                                    me.contract.item = data;
                                 }, response => {
                                     serverErrorInfo(response);
                                 })
