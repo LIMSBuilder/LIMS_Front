@@ -410,13 +410,10 @@
                                                         <div class="tab-pane" id="page_4">
                                                             <ul class="todo-task-history">
                                                                 <template v-for="item in log">
-                                                                    <li>
-                                                                        <div class="todo-task-history-date">
-                                                                            {{item.log_time}}
-                                                                        </div>
-                                                                        <div class="todo-task-history-desc">
-                                                                            {{item.log_msg}}
-                                                                        </div>
+                                                                    <li style="list-style: none">
+                                                                        <span>{{item.user.name}}</span>
+                                                                        <span>{{item.create_time}}</span>
+                                                                        <span>{{item.msg}}</span>
                                                                     </li>
                                                                 </template>
                                                             </ul>
@@ -585,7 +582,7 @@
                     }
                 }).then(response => {
                         var data = response.data;
-                        me.log = data;
+                        me.log = data.results;
                     }, response => {
                         serverErrorInfo(response);
                     }
