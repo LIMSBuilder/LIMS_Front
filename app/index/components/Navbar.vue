@@ -63,6 +63,12 @@
                     <span class="title">日程计划</span>
                 </a>
             </router-link>
+            <router-link :to="{ path: '/address/list' }" tag="li" active-class="active">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="title">通讯录</span>
+                </a>
+            </router-link>
             <li class="heading">
                 <h3 class="uppercase">综合业务</h3>
             </li>
