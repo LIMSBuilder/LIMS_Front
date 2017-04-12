@@ -433,7 +433,8 @@
                     role: {
                         department: {}
                     }
-                }
+                },
+                noticeList: []
             }
         },
         mounted(){
@@ -453,6 +454,15 @@
                         200: "调试模式登陆成功！"
                     })
                 }, function (response) {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchNotice(){
+                var me = this;
+                me.$http.get("/api/message/notice").then(response => {
+                    var data = response.data;
+                    me.noticeList = data.results;
+                }, response => {
                     serverErrorInfo(response);
                 });
             },
