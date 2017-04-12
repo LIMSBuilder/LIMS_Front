@@ -440,8 +440,16 @@
                         </div>
                         <div class="modal-body">
                             <ul class="receiver_tag">
-                                <template v-for="names in projectName">
-                                    <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                                <template v-for="item in project">
+                                    <li class="uppercase ">
+                                        <a href="javascript:;" style="line-height: 30px">
+                                            {{item.name}}
+                                            <template
+                                                    v-if="item.isPackage==true">
+                                                <span style="color: red;">[分包]</span>
+                                            </template>
+                                        </a>
+                                    </li>
                                 </template>
                             </ul>
                         </div>
@@ -473,7 +481,7 @@
                 items: [],
                 log: [],
                 total_count: {},
-                projectName: [],
+                project: [],
                 countProcess: 0
             }
         },
@@ -654,7 +662,7 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }
