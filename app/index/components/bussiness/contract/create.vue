@@ -1269,7 +1269,7 @@
                     success: function (returndata) {
                         codeState(returndata.code, {
                             200: function () {
-                                alert("让球球用PageOffice打开" + returndata.path);
+                                alert("打开" + returndata.path);
                                 //这里调用球球的PageOffice页面，顺便把returndata.path传给球球
                                 me.$http.get("/api/contract/readItemFile", {
                                     params: {
