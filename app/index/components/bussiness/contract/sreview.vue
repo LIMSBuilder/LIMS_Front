@@ -450,17 +450,17 @@
                                                                                 <button type="button"
                                                                                         class="btn green btn-outline"
                                                                                         @click="showProjectName(item.id)">
-                                                                                    查看详情
+                                                                                    详情
                                                                                 </button>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
                                                                             <!--<td class="text-center"-->
-                                                                                <!--v-if="item.is_package==1">是-->
+                                                                            <!--v-if="item.is_package==1">是-->
                                                                             <!--</td>-->
                                                                             <!--<td class="text-center"-->
-                                                                                <!--v-if="item.is_package==0">否-->
+                                                                            <!--v-if="item.is_package==0">否-->
                                                                             <!--</td>-->
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
@@ -556,9 +556,16 @@
                     </div>
                     <div class="modal-body">
                         <ul class="receiver_tag">
-                            <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;"
-                                                         style="line-height: 30px">{{names.name}}</a></li>
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
                             </template>
                         </ul>
                     </div>
@@ -643,7 +650,7 @@
                 },
                 reviewList: {},
                 advice: {},
-                projectName: []
+                project: []
             }
         },
         mounted(){
@@ -885,7 +892,7 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }
