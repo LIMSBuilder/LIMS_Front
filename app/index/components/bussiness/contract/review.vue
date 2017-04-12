@@ -1072,7 +1072,25 @@
             searchByProcess(step){
                 var me = this;
                 me.currentPage = 1;
-                me.condition = "process=" + step;
+//                me.condition = "process=" + step;  //这两个办法都可以实现通过进程查找当前合同
+                switch (step) {
+                    case "reviewBig": {
+                        me.condition = "process=reviewBig";
+                        break;
+                    }
+                    case "waitReviewBig": {
+                        me.condition = "process=waitReviewBig";
+                        break;
+                    }
+                    case "afterReviewBig": {
+                        me.condition = "process=afterReviewBig";
+                        break;
+                    }
+                    case "beforeReviewBig": {
+                        me.condition = "process=beforeReviewBig";
+                        break;
+                    }
+                }
                 me.getData();
 
             },

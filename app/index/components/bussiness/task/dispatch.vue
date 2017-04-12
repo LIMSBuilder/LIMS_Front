@@ -328,10 +328,10 @@
                                                                                 {{item.frequency?item.frequency.total:''}}
                                                                             </td>
                                                                             <!--<td class="text-center"-->
-                                                                                <!--v-if="item.is_package==1">是-->
+                                                                            <!--v-if="item.is_package==1">是-->
                                                                             <!--</td>-->
                                                                             <!--<td class="text-center"-->
-                                                                                <!--v-if="item.is_package==0">否-->
+                                                                            <!--v-if="item.is_package==0">否-->
                                                                             <!--</td>-->
                                                                             <td class="text-center">{{item.other}}</td>
                                                                         </tr>
@@ -389,9 +389,9 @@
                                                 {{index+1}}
                                             </td>
                                             <!--<td class="text-center"-->
-                                                <!--v-if="projectIndex==0"-->
-                                                <!--:rowspan="item.project.length">-->
-                                                <!--{{item.company}}-->
+                                            <!--v-if="projectIndex==0"-->
+                                            <!--:rowspan="item.project.length">-->
+                                            <!--{{item.company}}-->
                                             <!--</td>-->
                                             <td class="text-center"
                                                 v-if="projectIndex==0"
@@ -482,8 +482,16 @@
                     </div>
                     <div class="modal-body">
                         <ul class="receiver_tag">
-                            <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
                             </template>
                         </ul>
                     </div>
@@ -514,7 +522,7 @@
                 items: [],
                 total_count: {},
                 userList: [],
-                projectName: [],
+                project: [],
                 countProcess: 0
             }
         },
@@ -684,6 +692,7 @@
             searchByProcess(step){
                 var me = this;
                 me.currentPage = 1;
+//                me.process = "process=" + step;
                 switch (step) {
                     case "total":
                         me.condition = "sample_type=1&&process=total_dispatch";
@@ -739,7 +748,7 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }

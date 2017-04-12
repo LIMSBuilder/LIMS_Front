@@ -31,7 +31,7 @@
                                         {{index+1}}
                                     </td>
                                     <!--<td class="text-center">-->
-                                        <!--{{item.company}}-->
+                                    <!--{{item.company}}-->
                                     <!--</td>-->
                                     <td class="text-center">
                                         {{item.element.name}}
@@ -43,17 +43,17 @@
                                         <!--{{project.project.name}}-->
                                         <button type="button" class="btn green btn-outline"
                                                 @click="showProjectName(item.id)">
-                                            查看详情
+                                            详情
                                         </button>
                                     </td>
                                     <td class="text-center">
                                         {{item.frequency?item.frequency.total:''}}
                                     </td>
                                     <!--<td class="text-center"-->
-                                        <!--v-if="item.is_package==1">是-->
+                                    <!--v-if="item.is_package==1">是-->
                                     <!--</td>-->
                                     <!--<td class="text-center"-->
-                                        <!--v-if="item.is_package==0">否-->
+                                    <!--v-if="item.is_package==0">否-->
                                     <!--</td>-->
                                     <td class="text-center">
                                         {{item.other}}
@@ -76,22 +76,22 @@
                                         </div>
                                     </td>
                                     <!--<td>-->
-                                        <!--<div class="form-group">-->
-                                            <!--<div class="col-md-12">-->
-                                                <!--<select class="bs-select form-control" multiple-->
-                                                        <!--data-actions-box="true"-->
-                                                        <!--data-live-search="true" v-model="item.slave">-->
-                                                    <!--<template v-for="department in userList">-->
-                                                        <!--debugger-->
-                                                        <!--<optgroup :label="department.name">-->
-                                                            <!--<template v-for="user in department.user.results">-->
-                                                                <!--<option :value="user.id">{{user.name}}</option>-->
-                                                            <!--</template>-->
-                                                        <!--</optgroup>-->
-                                                    <!--</template>-->
-                                                <!--</select>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<div class="col-md-12">-->
+                                    <!--<select class="bs-select form-control" multiple-->
+                                    <!--data-actions-box="true"-->
+                                    <!--data-live-search="true" v-model="item.slave">-->
+                                    <!--<template v-for="department in userList">-->
+                                    <!--debugger-->
+                                    <!--<optgroup :label="department.name">-->
+                                    <!--<template v-for="user in department.user.results">-->
+                                    <!--<option :value="user.id">{{user.name}}</option>-->
+                                    <!--</template>-->
+                                    <!--</optgroup>-->
+                                    <!--</template>-->
+                                    <!--</select>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
                                     <!--</td>-->
                                 </tr>
                                 <!--</template>-->
@@ -125,9 +125,16 @@
                         <!--{{project.project.name}}-->
                         <!--</template>-->
                         <ul class="receiver_tag">
-                            <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;"
-                                                         style="line-height: 30px">{{names.name}}</a></li>
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
                             </template>
                         </ul>
                     </div>
@@ -148,7 +155,7 @@
                 id: "",
                 items: [],
                 userList: [],
-                projectName: []
+                project: []
             }
         },
         mounted(){
@@ -175,7 +182,8 @@
                     params: {
                         task_id: id
                     }
-                }).then(response => {;
+                }).then(response => {
+                    ;
                     var data = response.data;
                     me.items = data.items;
                     for (var i = 0; i < me.items.length; i++) {
@@ -257,7 +265,7 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }
