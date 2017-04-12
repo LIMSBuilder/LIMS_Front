@@ -609,6 +609,7 @@
                                                 <div class="progress-bar progress-bar-success"></div>
                                             </div>
                                             <div class="tab-content">
+
                                                 <div class="alert alert-danger display-none">
                                                     <button class="close" data-dismiss="alert"></button>
                                                     部分属性值不能为空，请检查提交的表单。
@@ -704,7 +705,43 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="tab2">
-                                                    <h3 class="block">Provide your profile details</h3>
+                                                    <h3 class="block">设置您的头像</h3>
+                                                    <div class="text-center">
+                                                        <div class="col-md-12">
+                                                            <p> 您设置的头像将会出现在本系统公共访问区域，其他用户可以通过访问您的个人主页、通讯录等页面查看您头像。 </p>
+                                                            <div class="form-group">
+                                                                <div class="fileinput fileinput-new"
+                                                                     data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail"
+                                                                         style="width: 200px; height: 150px;">
+                                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                                             alt=""/></div>
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail"
+                                                                         style="max-width: 200px; max-height: 150px;"></div>
+                                                                    <div>
+                                                                            <span class="btn default btn-file">
+                                                                                <span class="fileinput-new"> 选择图片 </span>
+                                                                                <span class="fileinput-exists"> 变更 </span>
+                                                                                <input type="file" id="uploadPhone"
+                                                                                       name="file"> </span>
+                                                                        <a href="javascript:;" class="btn green fileinput-exists"
+                                                                           @click="savePortait"> 保 存 </a>
+                                                                        <a href="javascript:;"
+                                                                           class="btn red fileinput-exists"
+                                                                           data-dismiss="fileinput"> 删除 </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix margin-top-10">
+                                                                    <span class="label label-danger">警告! </span>
+                                                                    <span> 图片上传功能仅支持最新版Firefox, Chrome, Opera, Safari and Internet Explorer 10及以上。 </span>
+                                                                </div>
+                                                            </div>
+                                                            <!--<div class="margin-top-10 text-right">-->
+                                                                <!--<a href="javascript:;" class="btn green"-->
+                                                                   <!--@click="savePortait"> 保 存 </a>-->
+                                                            <!--</div>-->
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane" id="tab3">
                                                     <h3 class="block">Provide your billing and credit card
@@ -841,6 +878,30 @@
                 }, response => {
                     serverErrorInfo(response);
                 })
+            },
+            savePortait(){
+                var me = this;
+                var formData = new FormData();
+                formData.append("file", jQuery("#uploadPhone")[0].files[0]);
+                me.$http.post("/api/file/upload", formData).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            me.$http.post("/api/user/changePortait", {
+                                path: data.path
+                            }).then(response => {
+                                var data = response.data;
+                                codeState(data.code, {
+                                    200: "头像上传成功！"
+                                })
+                            }, response => {
+                                serverErrorInfo(response);
+                            });
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
             },
             init() {
                 if (!jQuery().bootstrapWizard) {
