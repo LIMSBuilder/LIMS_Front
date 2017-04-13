@@ -432,6 +432,7 @@
                                                                         <th> 测试项目</th>
                                                                         <th> 样品状态/颜色</th>
                                                                         <th> 是否完好</th>
+                                                                        <th> 操作</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -440,7 +441,8 @@
                                                                             <td class="text-center">{{index+1}}</td>
                                                                             <td class="text-center">{{item.name}}
                                                                             </td>
-                                                                            <td class="text-center">{{item.identify}}</td>
+                                                                            <td class="text-center">{{item.identify}}
+                                                                            </td>
                                                                             <td class="text-center">
                                                                                 <template v-for="item in item.project">
                                                                                     {{item.name}}&nbsp;
@@ -450,7 +452,15 @@
                                                                                 {{item.character}}
                                                                             </td>
                                                                             <td class="text-center">
-                                                                               {{item.condition==1?'是':'否'}}
+                                                                                {{item.condition==1?'是':'否'}}
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:;">
+                                                                                    <i class="fa fa-edit"></i>
+                                                                                </a>
+                                                                               <a href="javascript:;">
+                                                                                   <i class="fa fa-trash-o"></i>
+                                                                               </a>
                                                                             </td>
                                                                         </tr>
                                                                     </template>
@@ -459,42 +469,42 @@
                                                             </div>
                                                             <!--<hr>-->
                                                             <!--<div class="form-group col-md-12">-->
-                                                                <!--<label class="control-label col-md-3"-->
-                                                                       <!--style="text-align:left;">-->
-                                                                    <!--送样单位：-->
-                                                                <!--</label>-->
-                                                                <!--<div class="col-md-8">-->
-                                                                    <!--<p class="form-control-static">-->
-                                                                        <!--常州市新北区</p>-->
-                                                                <!--</div>-->
+                                                            <!--<label class="control-label col-md-3"-->
+                                                            <!--style="text-align:left;">-->
+                                                            <!--送样单位：-->
+                                                            <!--</label>-->
+                                                            <!--<div class="col-md-8">-->
+                                                            <!--<p class="form-control-static">-->
+                                                            <!--常州市新北区</p>-->
+                                                            <!--</div>-->
                                                             <!--</div>-->
                                                             <!--<div class="form-group col-md-12">-->
-                                                                <!--<label class="control-label col-md-3"-->
-                                                                       <!--style="text-align:left;">-->
-                                                                    <!--送样时间:-->
-                                                                <!--</label>-->
-                                                                <!--<div class="col-md-8">-->
-                                                                    <!--<p class="form-control-static">-->
-                                                                        <!--2017-0210</p>-->
-                                                                <!--</div>-->
+                                                            <!--<label class="control-label col-md-3"-->
+                                                            <!--style="text-align:left;">-->
+                                                            <!--送样时间:-->
+                                                            <!--</label>-->
+                                                            <!--<div class="col-md-8">-->
+                                                            <!--<p class="form-control-static">-->
+                                                            <!--2017-0210</p>-->
+                                                            <!--</div>-->
                                                             <!--</div>-->
                                                             <!--<div class="form-group col-md-12">-->
-                                                                <!--<label class="control-label col-md-3"-->
-                                                                       <!--style="text-align:left;">-->
-                                                                    <!--记  录  人:-->
-                                                                <!--</label>-->
-                                                                <!--<div class="col-md-8">-->
-                                                                    <!--<p class="form-control-static">-->
-                                                                        <!--ss</p>-->
-                                                                <!--</div>-->
+                                                            <!--<label class="control-label col-md-3"-->
+                                                            <!--style="text-align:left;">-->
+                                                            <!--记  录  人:-->
+                                                            <!--</label>-->
+                                                            <!--<div class="col-md-8">-->
+                                                            <!--<p class="form-control-static">-->
+                                                            <!--ss</p>-->
+                                                            <!--</div>-->
                                                             <!--</div>-->
                                                             <!--<div class="form-actions right todo-form-actions">-->
-                                                                <!--<button type="button" class="btn  green">-->
-                                                                    <!--<i class="fa fa-pencil"></i> 保 存-->
-                                                                <!--</button>-->
-                                                                <!--<button type="button" class="btn default">-->
-                                                                    <!--取 消-->
-                                                                <!--</button>-->
+                                                            <!--<button type="button" class="btn  green">-->
+                                                            <!--<i class="fa fa-pencil"></i> 保 存-->
+                                                            <!--</button>-->
+                                                            <!--<button type="button" class="btn default">-->
+                                                            <!--取 消-->
+                                                            <!--</button>-->
                                                             <!--</div>-->
                                                         </div>
                                                     </div>
@@ -826,16 +836,16 @@
                 )
             },
             fetchsampleList(id){
-                var me =this;
-                me.$http.get('/api/sample/getSelfSampleList',{
-                    params:{
-                        task_id:id
+                var me = this;
+                me.$http.get('/api/sample/getSelfSampleList', {
+                    params: {
+                        task_id: id
                     }
                 }).then(
                     response => {
-                        var data=response.data;
-                        me.sampleList=data.results;
-                    },response => {
+                        var data = response.data;
+                        me.sampleList = data.results;
+                    }, response => {
                         serverErrorInfo(response);
                     }
                 )
