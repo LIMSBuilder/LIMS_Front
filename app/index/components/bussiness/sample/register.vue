@@ -266,7 +266,7 @@
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
-                                                            <a href="#page_3" data-toggle="tab"> 样品信息 </a>
+                                                            <a href="#page_3" data-toggle="tab"> 自送样登记表 </a>
                                                         </li>
                                                         <li>
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
@@ -422,9 +422,38 @@
                                                         </div>
                                                         <div class="tab-pane active" id="page_3">
                                                             <span v-if="sampleList.length==0">暂无样品信息</span>
-                                                            <template v-for="item in sampleList">
-
-                                                            </template>
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 样品名称/编号</th>
+                                                                        <th> 实验室编号</th>
+                                                                        <th> 测试项目</th>
+                                                                        <th> 样品状态/颜色</th>
+                                                                        <th> 是否完好</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="(item,index) in sampleList">
+                                                                        <tr :class="sample.item_id==item.id?'active':''">
+                                                                            <td class="text-center">{{index+1}}</td>
+                                                                            <td class="text-center">{{item}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{item}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{item}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                               {{}}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                             <hr>
                                                             <div class="form-group col-md-12">
                                                                 <label class="control-label col-md-3"
@@ -723,7 +752,7 @@
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
                 me.fetchProjectByCategory(item.id);
-
+                me.fetchsampleList(item.id);
             },
             search(){
                 var me = this;
@@ -784,10 +813,26 @@
                         codeState(data.code, {
                             200: function () {
                                 alert("自送样创建成功！");
+                                me.fetchsampleList(me.task.id);
                                 router.push("/sample/register");
                             }
                         })
                     }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
+            },
+            fetchsampleList(id){
+                var me =this;
+                me.$http.get('',{
+                    params:{
+                        sample_id:id
+                    }
+                }).then(
+                    response => {
+                        var data=response.data;
+                        me.sampleList=data.results;
+                    },response => {
                         serverErrorInfo(response);
                     }
                 )
