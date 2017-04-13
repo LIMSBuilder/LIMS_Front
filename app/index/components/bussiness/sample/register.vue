@@ -196,10 +196,12 @@
                                                                 <label class="control-label col-md-3"
                                                                        for="sample_project">测试项目</label>
                                                                 <div class="col-md-9">
-                                                                    <select class="form-control" name="sample.project"
+                                                                    <select class="form-control"
+                                                                            v-model="sample.project"
+                                                                            name="sample.project"
                                                                             id="sample_project" multiple
                                                                             data-actions-box="true"
-                                                                            data-live-search="true" >
+                                                                            data-live-search="true">
                                                                         <template v-for="items in projectList">
                                                                             <optgroup :label="items.name">
                                                                                 <template
@@ -517,7 +519,7 @@
                     condition: 1,
                     character: "",
                     name: "",
-                    p: ""
+                    project: []
                 },
                 sampleList: [],
                 projectList: []
