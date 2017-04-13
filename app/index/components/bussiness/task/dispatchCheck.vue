@@ -44,8 +44,8 @@
                                     <td class="text-center">
                                         {{item.other}}
                                     </td>
-                                    <td>
-                                        {{item.charge}}
+                                    <td class="text-center">
+                                        {{item.charge.name}}
                                     </td>
                                 </tr>
                             </template>
@@ -127,6 +127,7 @@
                 }).then(response => {
                     var data = response.data;
                     me.items = data.items;
+                    App.stopPageLoading();
                 }, response => {
                     serverErrorInfo(response);
                 });

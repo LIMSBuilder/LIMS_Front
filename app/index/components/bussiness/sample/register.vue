@@ -142,46 +142,46 @@
                                                     <div class="form-body">
                                                         <h3 class="form-section" style="margin-top: 0">样品信息登记</h3>
                                                         <div class="row">
-                                                            <div class="form-group col-md-12 form-md-radios">
-                                                                <label class="control-label col-md-3">编号前缀</label>
-                                                                <div class="md-radio-inline col-md-9">
-                                                                    <div class="md-radio">
-                                                                        <input type="radio" id="default"
-                                                                               name="prefix"
-                                                                               class="md-radiobtn"
-                                                                               v-model="sample.prefix" value="0">
-                                                                        <label for="default">
-                                                                            <span class="inc"></span>
-                                                                            <span class="check"></span>
-                                                                            <span class="box"></span>
-                                                                            默认：{{task.type.name}}({{task.type.identifier}})
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="md-radio">
-                                                                        <input type="radio" id="customer"
-                                                                               name="prefix"
-                                                                               class="md-radiobtn"
-                                                                               v-model="sample.prefix" value="1">
-                                                                        <label for="customer">
-                                                                            <span class="inc"></span>
-                                                                            <span class="check"></span>
-                                                                            <span class="box"></span> 自定义
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-12 form-md-line-input "
-                                                                 v-if="sample.prefix==1">
-                                                                <label class="control-label col-md-3"
-                                                                       for="customer_prefix">自定义前缀</label>
-                                                                <div class="col-md-9">
-                                                                    <input type="text" min="0" class="form-control"
-                                                                           id="customer_prefix"
-                                                                           placeholder="请输入样品前缀"
-                                                                           v-model="sample.prefix_text">
-                                                                    <span class="help-block">自定义前缀仅对本次申请有效。</span>
-                                                                </div>
-                                                            </div>
+                                                            <!--<div class="form-group col-md-12 form-md-radios">-->
+                                                                <!--<label class="control-label col-md-3">编号前缀</label>-->
+                                                                <!--<div class="md-radio-inline col-md-9">-->
+                                                                    <!--<div class="md-radio">-->
+                                                                        <!--<input type="radio" id="default"-->
+                                                                               <!--name="prefix"-->
+                                                                               <!--class="md-radiobtn"-->
+                                                                               <!--v-model="sample.prefix" value="0">-->
+                                                                        <!--<label for="default">-->
+                                                                            <!--<span class="inc"></span>-->
+                                                                            <!--<span class="check"></span>-->
+                                                                            <!--<span class="box"></span>-->
+                                                                            <!--默认：{{task.type.name}}({{task.type.identifier}})-->
+                                                                        <!--</label>-->
+                                                                    <!--</div>-->
+                                                                    <!--<div class="md-radio">-->
+                                                                        <!--<input type="radio" id="customer"-->
+                                                                               <!--name="prefix"-->
+                                                                               <!--class="md-radiobtn"-->
+                                                                               <!--v-model="sample.prefix" value="1">-->
+                                                                        <!--<label for="customer">-->
+                                                                            <!--<span class="inc"></span>-->
+                                                                            <!--<span class="check"></span>-->
+                                                                            <!--<span class="box"></span> 自定义-->
+                                                                        <!--</label>-->
+                                                                    <!--</div>-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-group col-md-12 form-md-line-input "-->
+                                                                 <!--v-if="sample.prefix==1">-->
+                                                                <!--<label class="control-label col-md-3"-->
+                                                                       <!--for="customer_prefix">自定义前缀</label>-->
+                                                                <!--<div class="col-md-9">-->
+                                                                    <!--<input type="text" min="0" class="form-control"-->
+                                                                           <!--id="customer_prefix"-->
+                                                                           <!--placeholder="请输入样品前缀"-->
+                                                                           <!--v-model="sample.prefix_text">-->
+                                                                    <!--<span class="help-block">自定义前缀仅对本次申请有效。</span>-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
                                                             <div class="form-group col-md-12 form-md-line-input ">
                                                                 <label class="control-label col-md-3"
                                                                        for="sample_name">样品名称/编号</label>
@@ -383,7 +383,7 @@
                                                                     <thead>
                                                                     <tr class="uppercase">
                                                                         <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
+                                                                        <!--<th> 公司、道路名称</th>-->
                                                                         <th> 环境要素</th>
                                                                         <th> 监测点（个）</th>
                                                                         <th> 监测项目</th>
@@ -452,8 +452,16 @@
                         <!--{{project.project.name}}-->
                         <!--</template>-->
                         <ul class="receiver_tag">
-                            <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
                             </template>
                         </ul>
                     </div>
@@ -514,8 +522,8 @@
                 countProcess: 0,
                 sample: {
                     task_id: "",
-                    prefix: 0,
-                    prefix_text: "",
+//                    prefix: 0,
+//                    prefix_text: "",
                     condition: 1,
                     character: "",
                     name: "",
