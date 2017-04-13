@@ -133,7 +133,9 @@ import view from './components/mail/view.vue'
 import outbox from './components/mail/outbox.vue'
 import viewSend from './components/mail/viewSend.vue'
 
-
+//Address List
+import address from './components/address/address.vue'
+import address_list from './components/address/list.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -182,6 +184,14 @@ var routes = [
             path: "help",
             component: help
 
+        }]
+    }, {
+        path: "/address",
+        name: "/address",
+        component: address,
+        children: [{
+            path: "list",
+            component: address_list
         }]
     },
     {
