@@ -438,61 +438,64 @@
                                                                     <template v-for="(item,index) in sampleList">
                                                                         <tr :class="sample.item_id==item.id?'active':''">
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item}}
+                                                                            <td class="text-center">{{item.name}}
+                                                                            </td>
+                                                                            <td class="text-center">{{item.identify}}</td>
+                                                                            <td class="text-center">
+                                                                                <template v-for="item in item.project">
+                                                                                    {{item.name}}&nbsp;
+                                                                                </template>
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                {{item}}
+                                                                                {{item.character}}
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                {{item}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                               {{}}
+                                                                               {{item.condition==1?'是':'否'}}
                                                                             </td>
                                                                         </tr>
                                                                     </template>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            <hr>
-                                                            <div class="form-group col-md-12">
-                                                                <label class="control-label col-md-3"
-                                                                       style="text-align:left;">
-                                                                    送样单位：
-                                                                </label>
-                                                                <div class="col-md-8">
-                                                                    <p class="form-control-static">
-                                                                        常州市新北区</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-12">
-                                                                <label class="control-label col-md-3"
-                                                                       style="text-align:left;">
-                                                                    送样时间:
-                                                                </label>
-                                                                <div class="col-md-8">
-                                                                    <p class="form-control-static">
-                                                                        2017-0210</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-12">
-                                                                <label class="control-label col-md-3"
-                                                                       style="text-align:left;">
-                                                                    记  录  人:
-                                                                </label>
-                                                                <div class="col-md-8">
-                                                                    <p class="form-control-static">
-                                                                        ss</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-actions right todo-form-actions">
-                                                                <button type="button" class="btn  green">
-                                                                    <i class="fa fa-pencil"></i> 保 存
-                                                                </button>
-                                                                <button type="button" class="btn default">
-                                                                    取 消
-                                                                </button>
-                                                            </div>
+                                                            <!--<hr>-->
+                                                            <!--<div class="form-group col-md-12">-->
+                                                                <!--<label class="control-label col-md-3"-->
+                                                                       <!--style="text-align:left;">-->
+                                                                    <!--送样单位：-->
+                                                                <!--</label>-->
+                                                                <!--<div class="col-md-8">-->
+                                                                    <!--<p class="form-control-static">-->
+                                                                        <!--常州市新北区</p>-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-group col-md-12">-->
+                                                                <!--<label class="control-label col-md-3"-->
+                                                                       <!--style="text-align:left;">-->
+                                                                    <!--送样时间:-->
+                                                                <!--</label>-->
+                                                                <!--<div class="col-md-8">-->
+                                                                    <!--<p class="form-control-static">-->
+                                                                        <!--2017-0210</p>-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-group col-md-12">-->
+                                                                <!--<label class="control-label col-md-3"-->
+                                                                       <!--style="text-align:left;">-->
+                                                                    <!--记  录  人:-->
+                                                                <!--</label>-->
+                                                                <!--<div class="col-md-8">-->
+                                                                    <!--<p class="form-control-static">-->
+                                                                        <!--ss</p>-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-actions right todo-form-actions">-->
+                                                                <!--<button type="button" class="btn  green">-->
+                                                                    <!--<i class="fa fa-pencil"></i> 保 存-->
+                                                                <!--</button>-->
+                                                                <!--<button type="button" class="btn default">-->
+                                                                    <!--取 消-->
+                                                                <!--</button>-->
+                                                            <!--</div>-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -824,9 +827,9 @@
             },
             fetchsampleList(id){
                 var me =this;
-                me.$http.get('',{
+                me.$http.get('/api/sample/getSelfSampleList',{
                     params:{
-                        sample_id:id
+                        task_id:id
                     }
                 }).then(
                     response => {
