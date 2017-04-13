@@ -1373,14 +1373,15 @@
                     console.log(JSON.stringify(items[i]))
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
-                App.startPageLoading({animate: true});
+//                console.log(JSON.parse(JSON.stringify(me.contract)));
+                App.startPageLoading({animate: true});//loading条开始
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
                             alert("合同创建成功！");
                             router.push("/contract/list");
-                            App.stopPageLoading();
+                            App.stopPageLoading();//loading条结束
                         }
                     })
                 }, function (response) {

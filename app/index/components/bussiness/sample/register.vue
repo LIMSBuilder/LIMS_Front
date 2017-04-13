@@ -61,7 +61,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">任务列表</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">样品列表</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -196,14 +196,10 @@
                                                                 <label class="control-label col-md-3"
                                                                        for="sample_project">测试项目</label>
                                                                 <div class="col-md-9">
-                                                                    <!--<input type="text"-->
-                                                                    <!--class="form-control" id="sample_project"-->
-                                                                    <!--placeholder="请选择测试项目"-->
-                                                                    <!--v-model="sample.project">-->
                                                                     <select class="form-control" name="sample.project"
                                                                             id="sample_project" multiple
                                                                             data-actions-box="true"
-                                                                            data-live-search="true">
+                                                                            data-live-search="true" >
                                                                         <template v-for="items in projectList">
                                                                             <optgroup :label="items.name">
                                                                                 <template
@@ -214,7 +210,6 @@
                                                                                 </template>
                                                                             </optgroup>
                                                                         </template>
-
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -258,7 +253,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-actions right todo-form-actions">
-                                                        <button type="button" class="btn  green">
+                                                        <button type="button" class="btn  green" @click="create">
                                                             <i class="fa fa-pencil"></i> 保 存
                                                         </button>
                                                         <button type="button" class="btn default">
@@ -494,7 +489,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
     </div>
 </template>
 
@@ -522,7 +516,8 @@
                     prefix_text: "",
                     condition: 1,
                     character: "",
-                    name: ""
+                    name: "",
+                    p: ""
                 },
                 sampleList: [],
                 projectList: []
@@ -651,7 +646,7 @@
                             deselectAllText: "取消选择",
                             selectAllText: "选择全部",
                             noneSelectedText: "请选择监测项目",
-                            dropupAuto:false
+                            dropupAuto: false
                         });
                     })
                 }, response => {
@@ -730,6 +725,22 @@
                         serverErrorInfo(response);
                     }
                 );
+            },
+            create(){
+                var me = this;
+                me.$http.post("api/sample/selfCreate", me.sample).then(
+                    response => {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("自送样创建成功！");
+                                router.push("/sample/register");
+                            }
+                        })
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
             }
         }
     }
