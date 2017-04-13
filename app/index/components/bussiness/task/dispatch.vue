@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 任务派遣
+        <h1 class="page-title"> 任务下达
             <small>／Dispath</small>
         </h1>
         <div class="row">
@@ -26,12 +26,12 @@
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('before_dispath')">
                                                 <span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>
-                                                未派遣任务
+                                                未下达任务
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('after_dispath')">
-                                                已派遣任务 </a>
+                                                已下达任务 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -107,7 +107,11 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}
+                                                        {{item.identify}}/
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==0">实验室分析室--自送样</span>
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==1">现场检测室--现场采样</span>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -125,7 +129,7 @@
                                                         <span class="label label-sm label-danger"
                                                               v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-info"
-                                                              v-if="item.process==1">未派遣</span>
+                                                              v-if="item.process==1">未下达</span>
                                                         <span class="label label-sm label-primary"
                                                               v-if="item.process==2">待执行</span>
 
@@ -165,7 +169,7 @@
                                                             <button type="button"
                                                                     class="btn green btn-outline"
                                                                     @click="dispathBtn(task.id)">
-                                                                派 遣
+                                                                下  达
                                                             </button>
                                                         </div>
                                                         <div class="todo-taskbody-date pull-right"
@@ -514,7 +518,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "sample_type=1&&process=before_dispath",
+                condition: "process=before_dispath",
                 taskList: [],
                 task: {
                     type: {}
@@ -680,13 +684,13 @@
             search(){
                 var me = this;
                 me.currentPage = 1;
-                me.condition = "sample_type=1";
+                me.condition = "";
                 me.getData();
             },
             searchByType(id){
                 var me = this;
                 me.currentPage = 1;
-                me.condition = "sample_type=1&&process=total_dispatch&&type=" + id;
+                me.condition = "process=total_dispatch&&type=" + id;
                 me.getData();
             },
             searchByProcess(step){
@@ -695,7 +699,7 @@
 //                me.process = "process=" + step;
                 switch (step) {
                     case "total":
-                        me.condition = "sample_type=1&&process=total_dispatch";
+                        me.condition = "process=total_dispatch";
                         break;
                     case "before_dispath":
                         me.condition = "process=before_dispath";
@@ -709,7 +713,7 @@
             },
             searchKey(e){
                 var me = this;
-                me.condition = "sample_type=1&&keyWords=" + encodeURI(e.target.value);
+                me.condition = "keyWords=" + encodeURI(e.target.value);
                 me.currentPage = 1;
                 me.getData();
             },

@@ -1,13 +1,13 @@
 <template>
     <div>
-        <h1 class="page-title"> 设置任务派遣人员
+        <h1 class="page-title"> 设置任务下达人员
             <small>／Dispath</small>
         </h1>
         <div class="portlet light portlet-fit portlet-form ">
             <div class="portlet-body" id="dispath_body">
                 <form action="#" class="form-horizontal">
                     <div class="form-body">
-                        <h3 class="form-section">任务派遣</h3>
+                        <h3 class="form-section">任务下达</h3>
                         <table class="table table-hover table-light">
                             <thead>
                             <tr class="uppercase">
@@ -163,7 +163,7 @@
             var query = me.$route.query;
             if (!query.id) {
                 confirm({
-                    content: "请先选择需要进行派遣的任务信息！",
+                    content: "请先选择需要进行下达的任务信息！",
                     success: function () {
                         router.push("/task/disPatch");
                         closeConfirm();
@@ -242,7 +242,7 @@
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
-                            alert("任务派遣成功！");
+                            alert("任务下达成功！");
                             router.push("/task/dispatch");
 
                         }
