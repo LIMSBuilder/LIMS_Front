@@ -42,7 +42,8 @@
                         <template v-for="item in userList">
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                 <div class="mt-card-item">
-                                    <div class="mt-card-avatar mt-overlay-1" style="width: 240px;height: 240px;">
+                                    <div class="mt-card-avatar mt-overlay-1"
+                                         style="width: 240px;height: 240px;">
                                         <img :src="item.portrait"/>
                                         <div class="mt-overlay">
                                             <ul class="mt-info">
@@ -88,8 +89,14 @@
                             </div>
                         </template>
                     </div>
+                    <div>
+                        <template v-for="item in userList">
+                            <img :src="item.portrait" alt="" style="width: 200px; ">
+                        </template>
+                    </div>
                     <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                        <div class="M-box front pull-right" style="margin-top:10px; ">
+                        </div>
                     </div>
                     <!-- End Pagination -->
                     <div class="clearfix"></div>
@@ -178,7 +185,7 @@
     </div>
 </template>
 
-<script>
+<script type="es6">
     module.exports = {
         data(){
             return {
@@ -210,6 +217,8 @@
                 }).then((response) => {
                     var data = response.data;
                     me.userList = data.results;
+//                    console.log(JSON.parse(JSON.stringify(me.userList)));
+                    debugger
                 }, (response) => {
                     serverErrorInfo(response);
                 });
@@ -304,11 +313,13 @@
                 me.condition = "";
                 me.currentPage = 1;
                 me.getData();
+
             },
             viewDetails(item){
                 var me = this;
                 me.user = item;
                 jQuery("#showUserInfo").modal("show");
+                console.log(JSON.parse(JSON.stringify(me.user)));
             }
         }
     }
