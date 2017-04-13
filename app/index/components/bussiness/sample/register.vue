@@ -204,10 +204,10 @@
                                                                             id="sample_project" multiple
                                                                             data-actions-box="true"
                                                                             data-live-search="true">
-                                                                        <option>请选择测试项目</option>
                                                                         <template v-for="items in projectList">
                                                                             <optgroup :label="items.name">
-                                                                                <template v-for="project in items.project">
+                                                                                <template
+                                                                                        v-for="project in items.project">
                                                                                     <option :value="project.id">
                                                                                         {{project.name}}
                                                                                     </option>
@@ -640,6 +640,20 @@
                 }).then(response => {
                     var data = response.data;
                     me.projectList = data.results;
+                    me.$nextTick(function () {
+                        //销毁监测项目选择框
+                        $('#sample_project').selectpicker('destroy');
+                        //初始化监测项目选择框
+                        $('#sample_project').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            countSelectedText: "count",
+                            deselectAllText: "取消选择",
+                            selectAllText: "选择全部",
+                            noneSelectedText: "请选择监测项目",
+                            dropupAuto:false
+                        });
+                    })
                 }, response => {
                     serverErrorInfo(response);
                 })
@@ -664,7 +678,7 @@
                 });
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
-//                me.fetchProjectByCategory(item.id);
+                me.fetchProjectByCategory(item.id);
 
             },
             search(){
