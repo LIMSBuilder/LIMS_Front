@@ -425,6 +425,45 @@
                                                             <template v-for="item in sampleList">
 
                                                             </template>
+                                                            <hr>
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-3"
+                                                                       style="text-align:left;">
+                                                                    送样单位：
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <p class="form-control-static">
+                                                                        常州市新北区</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-3"
+                                                                       style="text-align:left;">
+                                                                    送样时间:
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <p class="form-control-static">
+                                                                        2017-0210</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-3"
+                                                                       style="text-align:left;">
+                                                                    记  录  人:
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <p class="form-control-static">
+                                                                        ss</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions right todo-form-actions">
+                                                                <button type="button" class="btn  green">
+                                                                    <i class="fa fa-pencil"></i> 保 存
+                                                                </button>
+                                                                <button type="button" class="btn default">
+                                                                    取 消
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
