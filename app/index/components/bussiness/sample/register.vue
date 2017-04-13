@@ -196,10 +196,26 @@
                                                                 <label class="control-label col-md-3"
                                                                        for="sample_project">测试项目</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text"
-                                                                           class="form-control" id="sample_project"
-                                                                           placeholder="请选择测试项目"
-                                                                           v-model="sample.project">
+                                                                    <!--<input type="text"-->
+                                                                    <!--class="form-control" id="sample_project"-->
+                                                                    <!--placeholder="请选择测试项目"-->
+                                                                    <!--v-model="sample.project">-->
+                                                                    <select class="form-control" name="sample.project"
+                                                                            id="sample_project" multiple
+                                                                            data-actions-box="true"
+                                                                            data-live-search="true">
+                                                                        <template v-for="items in projectList">
+                                                                            <optgroup :label="items.name">
+                                                                                <template
+                                                                                        v-for="project in items.project">
+                                                                                    <option :value="project.id">
+                                                                                        {{project.name}}
+                                                                                    </option>
+                                                                                </template>
+                                                                            </optgroup>
+                                                                        </template>
+
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-md-12 form-md-line-input ">
@@ -508,7 +524,8 @@
                     character: "",
                     name: ""
                 },
-                sampleList: []
+                sampleList: [],
+                projectList: []
             }
         },
         mounted(){
@@ -521,7 +538,6 @@
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
-
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
                 while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
@@ -609,11 +625,38 @@
                     }
                 }).then(response => {
                         var data = response.data;
-                        me.log = data;
+                        me.log = data.results;
                     }, response => {
                         serverErrorInfo(response);
                     }
                 );
+            },
+            fetchProjectByCategory(id){
+                var me = this;
+                me.$http.get('/api/sample/getProjectByCategory', {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.projectList = data.results;
+                    me.$nextTick(function () {
+                        //销毁监测项目选择框
+                        $('#sample_project').selectpicker('destroy');
+                        //初始化监测项目选择框
+                        $('#sample_project').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            countSelectedText: "count",
+                            deselectAllText: "取消选择",
+                            selectAllText: "选择全部",
+                            noneSelectedText: "请选择监测项目",
+                            dropupAuto:false
+                        });
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
             },
             getData(){
                 var me = this;
@@ -628,12 +671,15 @@
                     }
                 }).then(response => {
                     var data = response.data;
+//                    debugger
                     me.task = data;
                 }, response => {
                     serverErrorInfo(response);
                 });
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
+                me.fetchProjectByCategory(item.id);
+
             },
             search(){
                 var me = this;
@@ -663,7 +709,7 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }
@@ -676,7 +722,7 @@
             },
             fetchCount(){
                 var me = this;
-                me.$http.get('/api/sample/countProcess').then(
+                me.$http.get("/api/task/countProcess").then(
                     response => {
                         var data = response.data;
                         me.countProcess = data.create;
