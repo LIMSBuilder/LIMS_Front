@@ -205,9 +205,14 @@
                                                                             data-actions-box="true"
                                                                             data-live-search="true">
                                                                         <option>请选择测试项目</option>
-                                                                        <template v-for="item in projectList">
-                                                                            <option>{{item.name}}
-                                                                            </option>
+                                                                        <template v-for="items in projectList">
+                                                                            <optgroup :label="items.name">
+                                                                                <template v-for="project in items.project">
+                                                                                    <option :value="project.id">
+                                                                                        {{project.name}}
+                                                                                    </option>
+                                                                                </template>
+                                                                            </optgroup>
                                                                         </template>
 
                                                                     </select>
