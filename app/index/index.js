@@ -48,6 +48,7 @@ import Create_Task from './components/bussiness/task/create.vue'
 import Task_List from './components/bussiness/task/list.vue'
 import DisPatch from './components/bussiness/task/dispatch.vue'
 import DisPatchSetting from './components/bussiness/task/dispatchSetting.vue'
+import DisPatchCheck from './components/bussiness/task/dispatchCheck.vue'
 
 
 import Sample from './components/bussiness/sample/sample.vue'
@@ -451,6 +452,10 @@ var routes = [
             {
                 path: "disPatchSetting",
                 component: DisPatchSetting
+            },
+            {
+                path:"disPatchCheck",
+                component:DisPatchCheck
             }
         ]
     },
