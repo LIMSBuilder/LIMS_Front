@@ -777,7 +777,8 @@
             },
             create(){
                 var me = this;
-                me.$http.post("api/sample/selfCreate", me.sample).then(
+                me.sample.task_id = me.task.id;
+                me.$http.post("/api/sample/selfCreate", me.sample).then(
                     response => {
                         var data = response.data;
                         codeState(data.code, {
