@@ -168,15 +168,15 @@
                                                              v-if="task.process==1">
                                                             <button type="button"
                                                                     class="btn green btn-outline"
-                                                                    @click="dispathBtn(task.id)">
-                                                                下  达
+                                                                    @click="dispathSettingBtn(task.id)">
+                                                                下 达
                                                             </button>
                                                         </div>
                                                         <div class="todo-taskbody-date pull-right"
                                                              v-if="task.process!=1">
                                                             <button type="button"
                                                                     class="btn blue btn-outline"
-                                                                    @click="dispathBtn(task.id)">
+                                                                    @click="dispatchCheckBtn(task.id)">
                                                                 查 看
                                                             </button>
                                                         </div>
@@ -717,10 +717,14 @@
                 me.currentPage = 1;
                 me.getData();
             },
-            dispathBtn(id){
+            dispathSettingBtn(id){
                 var me = this;
                 //me.fetchItems(id);
                 router.push("/task/disPatchSetting?id=" + id);
+            },
+            dispatchCheckBtn(id){
+                var me = this;
+                router.push("/task/disPatchCheck?id=" + id);
             },
             fetchUser(){
                 var me = this;
