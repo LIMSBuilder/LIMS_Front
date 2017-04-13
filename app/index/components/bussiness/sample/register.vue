@@ -61,7 +61,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">任务列表</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">样品列表</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -142,46 +142,46 @@
                                                     <div class="form-body">
                                                         <h3 class="form-section" style="margin-top: 0">样品信息登记</h3>
                                                         <div class="row">
-                                                            <div class="form-group col-md-12 form-md-radios">
-                                                                <label class="control-label col-md-3">编号前缀</label>
-                                                                <div class="md-radio-inline col-md-9">
-                                                                    <div class="md-radio">
-                                                                        <input type="radio" id="default"
-                                                                               name="prefix"
-                                                                               class="md-radiobtn"
-                                                                               v-model="sample.prefix" value="0">
-                                                                        <label for="default">
-                                                                            <span class="inc"></span>
-                                                                            <span class="check"></span>
-                                                                            <span class="box"></span>
-                                                                            默认：{{task.type.name}}({{task.type.identifier}})
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="md-radio">
-                                                                        <input type="radio" id="customer"
-                                                                               name="prefix"
-                                                                               class="md-radiobtn"
-                                                                               v-model="sample.prefix" value="1">
-                                                                        <label for="customer">
-                                                                            <span class="inc"></span>
-                                                                            <span class="check"></span>
-                                                                            <span class="box"></span> 自定义
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-12 form-md-line-input "
-                                                                 v-if="sample.prefix==1">
-                                                                <label class="control-label col-md-3"
-                                                                       for="customer_prefix">自定义前缀</label>
-                                                                <div class="col-md-9">
-                                                                    <input type="text" min="0" class="form-control"
-                                                                           id="customer_prefix"
-                                                                           placeholder="请输入样品前缀"
-                                                                           v-model="sample.prefix_text">
-                                                                    <span class="help-block">自定义前缀仅对本次申请有效。</span>
-                                                                </div>
-                                                            </div>
+                                                            <!--<div class="form-group col-md-12 form-md-radios">-->
+                                                            <!--<label class="control-label col-md-3">编号前缀</label>-->
+                                                            <!--<div class="md-radio-inline col-md-9">-->
+                                                            <!--<div class="md-radio">-->
+                                                            <!--<input type="radio" id="default"-->
+                                                            <!--name="prefix"-->
+                                                            <!--class="md-radiobtn"-->
+                                                            <!--v-model="sample.prefix" value="0">-->
+                                                            <!--<label for="default">-->
+                                                            <!--<span class="inc"></span>-->
+                                                            <!--<span class="check"></span>-->
+                                                            <!--<span class="box"></span>-->
+                                                            <!--默认：{{task.type.name}}({{task.type.identifier}})-->
+                                                            <!--</label>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="md-radio">-->
+                                                            <!--<input type="radio" id="customer"-->
+                                                            <!--name="prefix"-->
+                                                            <!--class="md-radiobtn"-->
+                                                            <!--v-model="sample.prefix" value="1">-->
+                                                            <!--<label for="customer">-->
+                                                            <!--<span class="inc"></span>-->
+                                                            <!--<span class="check"></span>-->
+                                                            <!--<span class="box"></span> 自定义-->
+                                                            <!--</label>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-group col-md-12 form-md-line-input "-->
+                                                            <!--v-if="sample.prefix==1">-->
+                                                            <!--<label class="control-label col-md-3"-->
+                                                            <!--for="customer_prefix">自定义前缀</label>-->
+                                                            <!--<div class="col-md-9">-->
+                                                            <!--<input type="text" min="0" class="form-control"-->
+                                                            <!--id="customer_prefix"-->
+                                                            <!--placeholder="请输入样品前缀"-->
+                                                            <!--v-model="sample.prefix_text">-->
+                                                            <!--<span class="help-block">自定义前缀仅对本次申请有效。</span>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
                                                             <div class="form-group col-md-12 form-md-line-input ">
                                                                 <label class="control-label col-md-3"
                                                                        for="sample_name">样品名称/编号</label>
@@ -196,11 +196,9 @@
                                                                 <label class="control-label col-md-3"
                                                                        for="sample_project">测试项目</label>
                                                                 <div class="col-md-9">
-                                                                    <!--<input type="text"-->
-                                                                    <!--class="form-control" id="sample_project"-->
-                                                                    <!--placeholder="请选择测试项目"-->
-                                                                    <!--v-model="sample.project">-->
-                                                                    <select class="form-control" name="sample.project"
+                                                                    <select class="form-control"
+                                                                            v-model="sample.project"
+                                                                            name="sample.project"
                                                                             id="sample_project" multiple
                                                                             data-actions-box="true"
                                                                             data-live-search="true">
@@ -214,7 +212,6 @@
                                                                                 </template>
                                                                             </optgroup>
                                                                         </template>
-
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -258,7 +255,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-actions right todo-form-actions">
-                                                        <button type="button" class="btn  green">
+                                                        <button type="button" class="btn  green" @click="create">
                                                             <i class="fa fa-pencil"></i> 保 存
                                                         </button>
                                                         <button type="button" class="btn default">
@@ -269,7 +266,7 @@
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
-                                                            <a href="#page_3" data-toggle="tab"> 样品信息 </a>
+                                                            <a href="#page_3" data-toggle="tab"> 自送样登记表 </a>
                                                         </li>
                                                         <li>
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
@@ -386,7 +383,7 @@
                                                                     <thead>
                                                                     <tr class="uppercase">
                                                                         <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
+                                                                        <!--<th> 公司、道路名称</th>-->
                                                                         <th> 环境要素</th>
                                                                         <th> 监测点（个）</th>
                                                                         <th> 监测项目</th>
@@ -425,9 +422,90 @@
                                                         </div>
                                                         <div class="tab-pane active" id="page_3">
                                                             <span v-if="sampleList.length==0">暂无样品信息</span>
-                                                            <template v-for="item in sampleList">
-
-                                                            </template>
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 样品名称/编号</th>
+                                                                        <th> 实验室编号</th>
+                                                                        <th> 测试项目</th>
+                                                                        <th> 样品状态/颜色</th>
+                                                                        <th> 是否完好</th>
+                                                                        <th> 操作</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="(item,index) in sampleList">
+                                                                        <tr :class="sample.item_id==item.id?'active':''">
+                                                                            <td class="text-center">{{index+1}}</td>
+                                                                            <td class="text-center">{{item.name}}
+                                                                            </td>
+                                                                            <td class="text-center">{{item.identify}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <template v-for="item in item.project">
+                                                                                    {{item.name}}&nbsp;
+                                                                                </template>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{item.character}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                {{item.condition==1?'是':'否'}}
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:;">
+                                                                                    <i class="fa fa-edit"></i>
+                                                                                </a>
+                                                                               <a href="javascript:;">
+                                                                                   <i class="fa fa-trash-o"></i>
+                                                                               </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--<hr>-->
+                                                            <!--<div class="form-group col-md-12">-->
+                                                            <!--<label class="control-label col-md-3"-->
+                                                            <!--style="text-align:left;">-->
+                                                            <!--送样单位：-->
+                                                            <!--</label>-->
+                                                            <!--<div class="col-md-8">-->
+                                                            <!--<p class="form-control-static">-->
+                                                            <!--常州市新北区</p>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-group col-md-12">-->
+                                                            <!--<label class="control-label col-md-3"-->
+                                                            <!--style="text-align:left;">-->
+                                                            <!--送样时间:-->
+                                                            <!--</label>-->
+                                                            <!--<div class="col-md-8">-->
+                                                            <!--<p class="form-control-static">-->
+                                                            <!--2017-0210</p>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-group col-md-12">-->
+                                                            <!--<label class="control-label col-md-3"-->
+                                                            <!--style="text-align:left;">-->
+                                                            <!--记  录  人:-->
+                                                            <!--</label>-->
+                                                            <!--<div class="col-md-8">-->
+                                                            <!--<p class="form-control-static">-->
+                                                            <!--ss</p>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="form-actions right todo-form-actions">-->
+                                                            <!--<button type="button" class="btn  green">-->
+                                                            <!--<i class="fa fa-pencil"></i> 保 存-->
+                                                            <!--</button>-->
+                                                            <!--<button type="button" class="btn default">-->
+                                                            <!--取 消-->
+                                                            <!--</button>-->
+                                                            <!--</div>-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -455,8 +533,16 @@
                         <!--{{project.project.name}}-->
                         <!--</template>-->
                         <ul class="receiver_tag">
-                            <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
                             </template>
                         </ul>
                     </div>
@@ -494,7 +580,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
     </div>
 </template>
 
@@ -518,11 +603,12 @@
                 countProcess: 0,
                 sample: {
                     task_id: "",
-                    prefix: 0,
-                    prefix_text: "",
+//                    prefix: 0,
+//                    prefix_text: "",
                     condition: 1,
                     character: "",
-                    name: ""
+                    name: "",
+                    project: []
                 },
                 sampleList: [],
                 projectList: []
@@ -651,7 +737,7 @@
                             deselectAllText: "取消选择",
                             selectAllText: "选择全部",
                             noneSelectedText: "请选择监测项目",
-                            dropupAuto:false
+                            dropupAuto: false
                         });
                     })
                 }, response => {
@@ -679,7 +765,7 @@
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
                 me.fetchProjectByCategory(item.id);
-
+                me.fetchsampleList(item.id);
             },
             search(){
                 var me = this;
@@ -730,6 +816,39 @@
                         serverErrorInfo(response);
                     }
                 );
+            },
+            create(){
+                var me = this;
+                me.sample.task_id = me.task.id;
+                me.$http.post("/api/sample/selfCreate", me.sample).then(
+                    response => {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("自送样创建成功！");
+                                me.fetchsampleList(me.task.id);
+                                router.push("/sample/register");
+                            }
+                        })
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
+            },
+            fetchsampleList(id){
+                var me = this;
+                me.$http.get('/api/sample/getSelfSampleList', {
+                    params: {
+                        task_id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.sampleList = data.results;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
             }
         }
     }
