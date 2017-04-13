@@ -25,12 +25,12 @@
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('before_dispath')">
                                                 <span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>
-                                                未派遣任务
+                                                未下达任务
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" @click="searchByProcess('after_dispath')">
-                                                已派遣任务 </a>
+                                                已下达任务 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -178,7 +178,7 @@
                                                         <span class="label label-sm label-danger"
                                                               v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-info"
-                                                              v-if="item.process==1">未派遣</span>
+                                                              v-if="item.process==1">未下达</span>
                                                         <span class="label label-sm label-primary"
                                                               v-if="item.process==2">待执行</span>
 
@@ -408,6 +408,9 @@
                                                             </table>
                                                         </div>
                                                         <div class="tab-pane" id="page_4">
+                                                            <div class="col-md-7 col-sm-8" v-show="!log.msg">
+                                                                <h1 class="text-center">尚未下达任务</h1>
+                                                            </div>
                                                             <ul class="todo-task-history">
                                                                 <template v-for="item in log">
                                                                     <li style="list-style: none">
@@ -473,7 +476,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "sample_type=1&&process=before_dispath",
+                condition: "process=before_dispath",
                 taskList: [],
                 task: {
                     type: {}
