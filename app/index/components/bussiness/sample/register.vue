@@ -478,12 +478,12 @@
                                                             </div>
                                                             <hr>
                                                             <button type="button" class="btn default"
-                                                                    style="float: right;">
-                                                                导出表格
+                                                                    style="float: right;" @click="exportSample">
+                                                                导 出
                                                             </button>
                                                             <button type="button" class="btn  green "
                                                                     style="float: right;" @click="success">
-                                                                完成登记
+                                                                完 成
                                                             </button>
 
                                                             <!--<hr>-->
@@ -697,7 +697,7 @@
 //                log: [],
                 total_count: {},
                 projectName: [],
-                project:[],
+                project: [],
                 countProcess: 0,
                 sample: {
                     id: "",
@@ -1054,6 +1054,10 @@
                         serverErrorInfo(response);
                     }
                 );
+            },
+            exportSample(){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/sample/createSample?id=" + me.task.id);
             }
         }
     }
