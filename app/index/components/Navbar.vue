@@ -121,7 +121,7 @@
                     </router-link>
                     <router-link :to="{ path: '/task/disPatch' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">任务下达</span>
+                            <span class="title">任务派遣</span>
                         </a>
                     </router-link>
                 </ul>
