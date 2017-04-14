@@ -697,6 +697,7 @@
 //                log: [],
                 total_count: {},
                 projectName: [],
+                project:[],
                 countProcess: 0,
                 sample: {
                     id: "",
