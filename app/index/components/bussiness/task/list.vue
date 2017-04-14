@@ -585,6 +585,7 @@
                     serverErrorInfo(response);
                 });
             },
+            //获取操作日志
             fetchLog(id){
                 var me = this;
                 me.$http.get("/api/log/taskLog", {

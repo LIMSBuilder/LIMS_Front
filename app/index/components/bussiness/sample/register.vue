@@ -140,7 +140,7 @@
                                                 </div>
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-body">
-                                                        <h3 class="form-section" style="margin-top: 0">样品信息登记</h3>
+                                                        <h3 class="form-section" style="margin-top: 0">添加样品信息</h3>
                                                         <div class="row">
                                                             <!--<div class="form-group col-md-12 form-md-radios">-->
                                                             <!--<label class="control-label col-md-3">编号前缀</label>-->
@@ -256,7 +256,7 @@
                                                     </div>
                                                     <div class="form-actions right todo-form-actions">
                                                         <button type="button" class="btn  green" @click="create">
-                                                            <i class="fa fa-pencil"></i> 保 存
+                                                            <i class="fa fa-pencil"></i> 新增
                                                         </button>
                                                         <button type="button" class="btn default">
                                                             取 消
@@ -267,6 +267,9 @@
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
                                                             <a href="#page_3" data-toggle="tab"> 自送样登记表 </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#page_4" data-toggle="tab"> 打印表格 </a>
                                                         </li>
                                                         <li>
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
@@ -395,8 +398,8 @@
                                                                     <template v-for="(item,index) in items">
                                                                         <tr :class="sample.item_id==item.id?'active':''">
                                                                             <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.company}}
-                                                                            </td>
+                                                                            <!--<td class="text-center">{{item.company}}-->
+                                                                            <!--</td>-->
                                                                             <td class="text-center">
                                                                                 {{item.element.name}}
                                                                             </td>
@@ -422,7 +425,8 @@
                                                         </div>
                                                         <div class="tab-pane active" id="page_3">
                                                             <span v-if="sampleList.length==0">暂无样品信息</span>
-                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                            <div class="table-scrollable table-scrollable-borderless"
+                                                                 v-if="sampleList.length!=0">
                                                                 <table class="table table-hover table-light">
                                                                     <thead>
                                                                     <tr class="uppercase">
@@ -455,57 +459,137 @@
                                                                                 {{item.condition==1?'是':'否'}}
                                                                             </td>
                                                                             <td>
-                                                                                <a href="javascript:;">
+                                                                                <a href="javascript:;" >
                                                                                     <i class="fa fa-edit"></i>
                                                                                 </a>
-                                                                               <a href="javascript:;">
-                                                                                   <i class="fa fa-trash-o"></i>
-                                                                               </a>
+                                                                                <a href="javascript:;">
+                                                                                    <i class="fa fa-trash-o"></i>
+                                                                                </a>
                                                                             </td>
                                                                         </tr>
                                                                     </template>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            <!--<hr>-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3"-->
-                                                            <!--style="text-align:left;">-->
-                                                            <!--送样单位：-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-8">-->
-                                                            <!--<p class="form-control-static">-->
-                                                            <!--常州市新北区</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3"-->
-                                                            <!--style="text-align:left;">-->
-                                                            <!--送样时间:-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-8">-->
-                                                            <!--<p class="form-control-static">-->
-                                                            <!--2017-0210</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3"-->
-                                                            <!--style="text-align:left;">-->
-                                                            <!--记  录  人:-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-8">-->
-                                                            <!--<p class="form-control-static">-->
-                                                            <!--ss</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="form-actions right todo-form-actions">-->
-                                                            <!--<button type="button" class="btn  green">-->
-                                                            <!--<i class="fa fa-pencil"></i> 保 存-->
-                                                            <!--</button>-->
-                                                            <!--<button type="button" class="btn default">-->
-                                                            <!--取 消-->
-                                                            <!--</button>-->
-                                                            <!--</div>-->
+                                                            <hr>
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-3"
+                                                                       style="text-align:left;">
+                                                                    送样单位：
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <p class="form-control-static">
+                                                                        {{task.client_unit}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-3"
+                                                                       style="text-align:left;">
+                                                                    送样时间:
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <p class="form-control-static">
+                                                                        2017-0210</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label col-md-3"
+                                                                       style="text-align:left;">
+                                                                    记 录 人:
+                                                                </label>
+                                                                <div class="col-md-8">
+                                                                    <p class="form-control-static">
+                                                                        {{user.name}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions right todo-form-actions">
+                                                                <button type="button" class="btn  green">
+                                                                    <i class="fa fa-pencil"></i> 保 存
+                                                                </button>
+                                                                <button type="button" class="btn default">
+                                                                    取 消
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="page_4">
+                                                            <h3 class="form-section" style="margin-top: 0">样品委托、交接记录表</h3>
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label col-md-4">委托单位
+                                                                        </label>
+                                                                        <div class="col-md-8">
+                                                                            <p class="form-control-static">
+                                                                                {{task.client_unit}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label col-md-4">任务编号
+                                                                        </label>
+                                                                        <div class="col-md-8">
+                                                                            <p class="form-control-static">
+                                                                                {{task.identify}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label col-md-4">任务来源
+                                                                        </label>
+                                                                        <div class="col-md-8">
+                                                                            <p class="form-control-static">
+                                                                                {{task.client_unit}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label col-md-4">样品起止编号
+                                                                        </label>
+                                                                        <div class="col-md-8">
+                                                                            <p class="form-control-static">
+                                                                                {{task.identify}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label col-md-4">送样时间
+                                                                        </label>
+                                                                        <div class="col-md-8">
+                                                                            <p class="form-control-static">
+                                                                                {{task.client_unit}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label col-md-4">送样总件数
+                                                                        </label>
+                                                                        <div class="col-md-8">
+                                                                            <p class="form-control-static">
+                                                                                {{task.identify}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr class="uppercase">
+                                                                            <th> 序号</th>
+                                                                            <th> 样品类别</th>
+                                                                            <th> 分析项目</th>
+                                                                            <th> 件数</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td class="text-center">1</td>
+                                                                            <td class="text-center">污水</td>
+                                                                            <td class="text-center">化学需氧量</td>
+                                                                            <td class="text-center">4</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -529,9 +613,6 @@
                         <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
                     </div>
                     <div class="modal-body" id="modal_body">
-                        <!--<template v-for="(project,projectIndex) in item.project">-->
-                        <!--{{project.project.name}}-->
-                        <!--</template>-->
                         <ul class="receiver_tag">
                             <template v-for="item in project">
                                 <li class="uppercase ">
@@ -597,7 +678,7 @@
                     type: {}
                 },
                 items: [],
-                log: [],
+//                log: [],
                 total_count: {},
                 projectName: [],
                 countProcess: 0,
@@ -611,7 +692,13 @@
                     project: []
                 },
                 sampleList: [],
-                projectList: []
+                projectList: [],
+                project: [],
+                user: {
+                    role: {
+                        department: {}
+                    }
+                }
             }
         },
         mounted(){
@@ -647,7 +734,7 @@
             },
             fetchData(pageNum, rowCount){
                 var me = this;
-                App.startPageLoading({animate: true});
+                App.startPageLoading({animate: true});//用户等待时，提示的loading条
                 this.$http.get('/api/task/list', {
                     params: {
                         rowCount: rowCount,
@@ -658,7 +745,7 @@
                     var data = response.data;
                     me.taskList = data.results;
                     me.$nextTick(function () {
-                        App.stopPageLoading();
+                        App.stopPageLoading();//获取数据后，去掉loading条
                     })
                 }, (response) => {
                     serverErrorInfo(response);
@@ -703,20 +790,21 @@
                     serverErrorInfo(response);
                 });
             },
-            fetchLog(id){
-                var me = this;
-                me.$http.get("/api/log/taskLog", {
-                    params: {
-                        id: id
-                    }
-                }).then(response => {
-                        var data = response.data;
-                        me.log = data.results;
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                );
-            },
+//            fetchLog(id){
+//                var me = this;
+//                me.$http.get("/api/log/taskLog", {
+//                    params: {
+//                        id: id
+//                    }
+//                }).then(response => {
+//                        var data = response.data;
+//                        me.log = data.results;
+//                    }, response => {
+//                        serverErrorInfo(response);
+//                    }
+//                );
+//            },
+            //查找检测项目
             fetchProjectByCategory(id){
                 var me = this;
                 me.$http.get('/api/sample/getProjectByCategory', {
@@ -749,6 +837,7 @@
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
             },
+            //查看详细详信息
             viewDetails(item){
                 var me = this;
                 me.$http.get("/api/task/taskDetails", {
@@ -763,9 +852,10 @@
                     serverErrorInfo(response);
                 });
                 me.fetchItems(item.id);
-                me.fetchLog(item.id);
+//                me.fetchLog(item.id);
                 me.fetchProjectByCategory(item.id);
                 me.fetchsampleList(item.id);
+                me.fetchLogin();
             },
             search(){
                 var me = this;
@@ -778,7 +868,6 @@
                 me.currentPage = 1;
                 me.condition = "process=" + step;
                 me.getData();
-
             },
             searchKey(e){
                 var me = this;
@@ -800,7 +889,7 @@
                         serverErrorInfo(response);
                     }
                 );
-                jQuery("#showProject").modal("show");
+                jQuery("#showProject").modal("show");//弹出层显示
 
             },
             showSample(){
@@ -817,15 +906,17 @@
                     }
                 );
             },
+            //新增自送样项目
             create(){
                 var me = this;
                 me.sample.task_id = me.task.id;
+                me.sample.sample_type = 0;//自送样默认为0
                 me.$http.post("/api/sample/selfCreate", me.sample).then(
                     response => {
                         var data = response.data;
                         codeState(data.code, {
                             200: function () {
-                                alert("自送样创建成功！");
+                                alert("样品信息添加成功！");
                                 me.fetchsampleList(me.task.id);
                                 router.push("/sample/register");
                             }
@@ -835,6 +926,7 @@
                     }
                 )
             },
+            //获取自送样列表
             fetchsampleList(id){
                 var me = this;
                 me.$http.get('/api/sample/getSelfSampleList', {
@@ -849,7 +941,41 @@
                         serverErrorInfo(response);
                     }
                 )
-            }
+            },
+            fetchLogin(){
+                var me = this;
+                me.$http.get('/api/login/getLogin',).then(function (response) {
+                    var data = response.data;
+                    me.user = data;
+                }, function (response) {
+                    serverErrorInfo(response);
+                });
+            },
+            deleteSample(){
+                var me = this;
+                confirm({
+                    title: "<span><i class='font-red font-lg fa fa-warning'></i> 警告！危险操作</span>",
+                    content: "<span class='font-red'>【不推荐】</span>您正在删除样品信息【" + me.task.name + "】，该操作将同时删除当前任务流程且无法撤销，是否继续？",
+                    success(){
+                        console.log(me.task.id);
+//                        me.$http.get("", {
+//                            params: {
+//                                id: me.contract.id
+//                            }
+//                        }).then(response => {
+//                            var data = response.data;
+//                            codeState(data.code, {
+//                                200: function () {
+//                                    alert("样品删除成功！");
+//                                    me.getData();
+//                                }
+//                            })
+//                        }, response => {
+//                            serverErrorInfo(response);
+//                        })
+                    }
+                })
+            },
         }
     }
 
