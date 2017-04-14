@@ -89,15 +89,6 @@
                             </div>
                         </template>
                     </div>
-                    <div>
-                        <template v-for="item in userList">
-                            <img :src="item.portrait" alt="" style="width: 200px; ">
-                        </template>
-                    </div>
-                    <div class="pagination pull-right">
-                        <div class="M-box front pull-right" style="margin-top:10px; ">
-                        </div>
-                    </div>
                     <!-- End Pagination -->
                     <div class="clearfix"></div>
                 </div>

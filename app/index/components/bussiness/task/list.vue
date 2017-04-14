@@ -23,14 +23,22 @@
                                             <a href="javascript:;" @click="searchByProcess('total')">全部 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('before_dispath')">
+                                            <a href="javascript:;" @click="searchByProcess(1)">
                                                 <span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>
-                                                未下达任务
+                                                已下达
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('after_dispath')">
-                                                已下达任务 </a>
+                                            <a href="javascript:;" @click="searchByProcess(2)">
+                                                待样品登记 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess(3)">
+                                                样品已登记 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess(-2)">
+                                                中止 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -176,11 +184,11 @@
                                                         <span class="label label-sm label-danger"
                                                               v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-info"
-                                                              v-if="item.process==1">未下达</span>
+                                                              v-if="item.process==1">已下达</span>
                                                         <span class="label label-sm label-primary"
-                                                              v-if="item.process==2">待执行</span>
-
-
+                                                              v-if="item.process==2">待登记</span>
+                                                        <span class="label label-sm label-primary"
+                                                              v-if="item.process==3">已登记</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -406,9 +414,6 @@
                                                             </table>
                                                         </div>
                                                         <div class="tab-pane" id="page_4">
-                                                            <div class="col-md-7 col-sm-8" v-show="!log.msg">
-                                                                <h1 class="text-center">尚未下达任务</h1>
-                                                            </div>
                                                             <ul class="todo-task-history">
                                                                 <template v-for="item in log">
                                                                     <li style="list-style: none">
@@ -474,7 +479,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "process=before_dispath",
+                condition: "",
                 taskList: [],
                 task: {
                     type: {}

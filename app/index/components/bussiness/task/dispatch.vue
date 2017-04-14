@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 任务下达
+        <h1 class="page-title"> 任务派遣
             <small>／Dispath</small>
         </h1>
         <div class="row">
@@ -20,19 +20,27 @@
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('total')">
-                                                所有 </a>
+                                            <a href="javascript:;" @click="searchByProcess('totalDispatch')">
+                                                所有</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('before_dispath')">
-                                                <span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>
-                                                未下达任务
-                                            </a>
+                                            <a href="javascript:;" @click="searchByProcess(1)">
+                                                未派遣</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('after_dispath')">
-                                                已下达任务 </a>
+                                            <a href="javascript:;" @click="searchByProcess(2)">
+                                                已派遣 </a>
                                         </li>
+                                        <!--<li>-->
+                                        <!--<a href="javascript:;" @click="searchByProcess('before_dispath')">-->
+                                        <!--<span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>-->
+                                        <!--未下达任务-->
+                                        <!--</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                        <!--<a href="javascript:;" @click="searchByProcess('after_dispath')">-->
+                                        <!--已下达任务 </a>-->
+                                        <!--</li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -126,14 +134,10 @@
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
-                                                        <span class="label label-sm label-danger"
-                                                              v-if="item.process==-2">已中止</span>
                                                         <span class="label label-sm label-info"
-                                                              v-if="item.process==1">未下达</span>
-                                                        <span class="label label-sm label-primary"
-                                                              v-if="item.process==2">待执行</span>
-
-
+                                                              v-if="item.process==1">未派遣</span>
+                                                        <span class="label label-sm label-info"
+                                                              v-if="item.process==2">已派遣</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -169,13 +173,13 @@
                                                             <button type="button"
                                                                     class="btn green btn-outline"
                                                                     @click="dispathSettingBtn(task.id)">
-                                                                下 达
+                                                                派 遣
                                                             </button>
                                                         </div>
                                                         <div class="todo-taskbody-date pull-right"
-                                                             v-if="task.process!=1">
+                                                             v-if="task.process==2">
                                                             <button type="button"
-                                                                    class="btn blue btn-outline"
+                                                                    class="btn green btn-outline"
                                                                     @click="dispatchCheckBtn(task.id)">
                                                                 查 看
                                                             </button>
@@ -518,7 +522,7 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "process=before_dispath",
+                condition: "",
                 taskList: [],
                 task: {
                     type: {}
@@ -696,17 +700,10 @@
             searchByProcess(step){
                 var me = this;
                 me.currentPage = 1;
-//                me.process = "process=" + step;
-                switch (step) {
-                    case "total":
-                        me.condition = "process=total_dispatch";
-                        break;
-                    case "before_dispath":
-                        me.condition = "process=before_dispath";
-                        break;
-                    case "after_dispath":
-                        me.condition = "process=after_dispath";
-                        break;
+                if (step != "total") {
+                    me.condition = "process=" + step;
+                } else {
+                    me.condition = "";
                 }
                 me.getData();
 
