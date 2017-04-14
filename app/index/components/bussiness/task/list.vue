@@ -128,9 +128,7 @@
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="javascript:;"> 导出任务
-                                                    <span class="badge badge-success"> 12 </span>
-                                                </a>
+                                                <a href="javascript:;" @click="exportTask"> 导出任务</a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;" @click="stopTask"> 中止任务</a>
@@ -585,6 +583,7 @@
                     serverErrorInfo(response);
                 });
             },
+            //获取操作日志
             fetchLog(id){
                 var me = this;
                 me.$http.get("/api/log/taskLog", {
@@ -708,6 +707,10 @@
                         })
                     }
                 })
+            },
+            exportTask(){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/task/createTask?id=88");
             }
         }
     }
