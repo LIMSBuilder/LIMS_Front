@@ -396,8 +396,6 @@
                                                             <button type="button" class="btn red btn-outline"
                                                                     @click="deleteAllItem">删除全部
                                                             </button>
-                                                            <button type="button" class="btn yellow btn-outline">读取模板
-                                                            </button>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -835,7 +833,7 @@
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control input-large"
+                                                <input type="number" class="form-control"
                                                        v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
