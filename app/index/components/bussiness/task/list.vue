@@ -709,7 +709,7 @@
             },
             exportTask(){
                 var me = this;
-                window.open("http://" + window.location.hostname + ":8080/api/task/createTask?id=88");
+                window.open("http://" + window.location.hostname + ":8080/api/task/createTask?id="+me.task.id);
             }
         }
     }
