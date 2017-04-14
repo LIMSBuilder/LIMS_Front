@@ -303,14 +303,14 @@
                                                                         {{item.point}}
                                                                     </td>
                                                                     <!--<td class="text-center">-->
-                                                                        <!--<template-->
-                                                                                <!--v-for="(project,index) in item.project">-->
-                                                                            <!--{{project.project.name}}-->
-                                                                            <!--<template-->
-                                                                                    <!--v-if="index+1!=item.project.length">-->
-                                                                                <!--,-->
-                                                                            <!--</template>-->
-                                                                        <!--</template>-->
+                                                                    <!--<template-->
+                                                                    <!--v-for="(project,index) in item.project">-->
+                                                                    <!--{{project.project.name}}-->
+                                                                    <!--<template-->
+                                                                    <!--v-if="index+1!=item.project.length">-->
+                                                                    <!--,-->
+                                                                    <!--</template>-->
+                                                                    <!--</template>-->
                                                                     <!--</td>-->
                                                                     <td class="text-center">
                                                                         <button type="button"
@@ -411,6 +411,24 @@
                                                               name="other"
                                                               v-model="task.other"
                                                               id="other" :disabled="contract_type"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2" for="other">项目负责人
+                                                    <span class="required">  </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <select class="form-control" data-live-search="true"
+                                                            name="trustee" v-model="task.charge" id="trustee">
+                                                        <option></option>
+                                                        <template v-for="item in userList">
+                                                            <optgroup :label="item.name">
+                                                                <template v-for="user in item.user.results">
+                                                                    <option :value="user.id">{{user.name}}</option>
+                                                                </template>
+                                                            </optgroup>
+                                                        </template>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -539,14 +557,14 @@
                                                                             {{item.point}}
                                                                         </td>
                                                                         <!--<td class="text-center">-->
-                                                                            <!--<template-->
-                                                                                    <!--v-for="(project,index) in item.project">-->
-                                                                                <!--{{project.project.name}}-->
-                                                                                <!--<template-->
-                                                                                        <!--v-if="index+1!=item.project.length">-->
-                                                                                    <!--,-->
-                                                                                <!--</template>-->
-                                                                            <!--</template>-->
+                                                                        <!--<template-->
+                                                                        <!--v-for="(project,index) in item.project">-->
+                                                                        <!--{{project.project.name}}-->
+                                                                        <!--<template-->
+                                                                        <!--v-if="index+1!=item.project.length">-->
+                                                                        <!--,-->
+                                                                        <!--</template>-->
+                                                                        <!--</template>-->
                                                                         <!--</td>-->
                                                                         <td class="text-center">
                                                                             <button type="button"
@@ -761,17 +779,6 @@
                                             <button class="close" data-close="alert"></button>
                                             表单尚未填写完整。
                                         </div>
-                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                        <!--<label class="col-md-2 control-label" for="monitor_company">监测企业或路段-->
-                                        <!--<span class="required">*</span>-->
-                                        <!--</label>-->
-                                        <!--<div class="col-md-9">-->
-                                        <!--<input type="text" class="form-control" id="monitor_company"-->
-                                        <!--v-model="monitor.company"-->
-                                        <!--placeholder=""-->
-                                        <!--name="monitor_company">-->
-                                        <!--</div>-->
-                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
                                                 <span class="required">*</span>
@@ -1487,7 +1494,8 @@
                     item: [],
                     project_items: [],
                     other: "",
-                    type: ""
+                    type: "",
+                    charge: ""
                 },
                 contractList: [],
                 items: [],
@@ -1526,6 +1534,7 @@
             me.fetchFrequency();
             me.getCustomer();
             me.fetchElement();
+            me.fetchUser();
             //me.fetchUser();
             me._init();
             $('#projectAim').maxlength({
@@ -1573,6 +1582,24 @@
                 var me = this;
                 me.wizard();
 //                jQuery("#monitor_point").tagsinput();
+            },
+            fetchUser(){
+                //加载乙方联系人信息，默认选中为当前登录人员
+                var me = this;
+                me.$http.get("/api/user/listByDepartment").then(function (response) {
+                    var data = response.data;
+                    me.userList = data.results;
+                    me.$nextTick(function () {
+                        $('#trustee').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            noneSelectedText: "请选择联系人"
+
+                        });
+                    })
+                }, function (response) {
+                    serverErrorInfo(response);
+                });
             },
             createByContract(){
                 var me = this;
@@ -1643,7 +1670,8 @@
                     //是根据合同创建的任务
                     me.$http.post("/api/task/createByContract", {
                         "contract_id": me.contract.id,
-                        "sample_type": type
+                        "sample_type": type,
+                        "charge": me.task.charge
                     }).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {

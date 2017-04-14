@@ -600,6 +600,7 @@
                 log: [],
                 total_count: {},
                 projectName: [],
+                project:[],
                 countProcess: 0,
                 sample: {
                     task_id: "",
