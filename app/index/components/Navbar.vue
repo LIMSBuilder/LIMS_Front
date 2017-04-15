@@ -51,6 +51,12 @@
             <li class="heading">
                 <h3 class="uppercase">个人中心</h3>
             </li>
+            <router-link :to="{ path: '/task/myTask' }" tag="li" active-class="active">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-tasks"></i>
+                    <span class="title">我的任务</span>
+                </a>
+            </router-link>
             <router-link :to="{ path: '/mail/inbox' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-envelope"></i>
