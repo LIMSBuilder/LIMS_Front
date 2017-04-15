@@ -5,110 +5,190 @@
         </h1>
         <div class="portlet light portlet-fit portlet-form ">
             <div class="portlet-body" id="dispath_body">
-                <form action="#" class="form-horizontal">
-                    <div class="form-body">
-                        <h3 class="form-section">任务派遣</h3>
-                        <table class="table table-hover table-light">
-                            <thead>
-                            <tr class="uppercase">
-                                <th> 序号</th>
-                                <th> 公司、道路名称</th>
-                                <th> 环境要素</th>
-                                <th> 监测点（个）</th>
-                                <th> 监测项目</th>
-                                <th> 监测频次</th>
-                                <th> 是否分包</th>
-                                <th> 备注</th>
-                                <tH> 负责人</tH>
-                                <th> 参与者</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <template v-for="(item,index) in items">
-                                <!--<template v-for="(project,projectIndex) in item.project">-->
-                                <tr>
-                                    <td class="text-center">
-                                        {{index+1}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{item.company}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{item.element.name}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{item.point}}
-                                    </td>
-                                    <td class="text-center">
-                                        <!--{{project.project.name}}-->
-                                        <button type="button" class="btn green btn-outline"
-                                                @click="showProjectName(item.id)">
-                                            查看详情
-                                        </button>
-                                    </td>
-                                    <td class="text-center">
-                                        {{item.frequency?item.frequency.total:''}}
-                                    </td>
-                                    <td class="text-center"
-                                        v-if="item.is_package==1">是
-                                    </td>
-                                    <td class="text-center"
-                                        v-if="item.is_package==0">否
-                                    </td>
-                                    <td class="text-center">
-                                        {{item.other}}
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <select class="bs-select form-control" data-live-search="true"
-                                                        v-model="item.master">
-                                                    <option></option>
-                                                    <template v-for="department in userList">
-                                                        <optgroup :label="department.name">
-                                                            <template v-for="user in department.user.results">
-                                                                <option :value="user.id">{{user.name}}</option>
-                                                            </template>
-                                                        </optgroup>
-                                                    </template>
-                                                </select>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet light bordered" id="contract_wizard">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                            <span class="caption-subject bold uppercase">
+                                                任务派遣生成流程 -
+                                                <span class="step-title"> Step 1 of 4 </span>
+                                            </span>
+                                </div>
+                                <div class="actions">
+                                    <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                        <i class="icon-cloud-upload"></i>
+                                    </a>
+                                    <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                        <i class="icon-wrench"></i>
+                                    </a>
+                                    <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                        <i class="icon-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body form">
+                                <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                                    <div class="form-wizard">
+                                        <div class="form-body">
+                                            <ul class="nav nav-pills nav-justified steps">
+                                                <li>
+                                                    <a href="#tab1" data-toggle="tab" class="step">
+                                                        <span class="number"> 1 </span>
+                                                        <span class="desc">
+                                                                    <i class="fa fa-check"></i> 选择任务 </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab2" data-toggle="tab" class="step">
+                                                        <span class="number"> 2 </span>
+                                                        <span class="desc">
+                                                                    <i class="fa fa-check"></i> 分配人员 </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab3" data-toggle="tab" class="step active">
+                                                        <span class="number"> 3 </span>
+                                                        <span class="desc">
+                                                                    <i class="fa fa-check"></i> 3 </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab4" data-toggle="tab" class="step">
+                                                        <span class="number"> 4 </span>
+                                                        <span class="desc">
+                                                                    <i class="fa fa-check"></i> 4 </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                                <div class="progress-bar progress-bar-success"></div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <select class="bs-select form-control" multiple
-                                                        data-actions-box="true"
-                                                        data-live-search="true" v-model="item.slave">
-                                                    <template v-for="department in userList">
-                                                        debugger
-                                                        <optgroup :label="department.name">
-                                                            <template v-for="user in department.user.results">
-                                                                <option :value="user.id">{{user.name}}</option>
-                                                            </template>
-                                                        </optgroup>
-                                                    </template>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!--</template>-->
-                            </template>
-                            </tbody>
-                        </table>
-                    </div>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab1">
+                                                    <table class="table table-hover table-light">
+                                                        <thead>
+                                                        <tr class="uppercase">
+                                                            <th> 序号</th>
+                                                            <th> 公司、道路名称</th>
+                                                            <th> 环境要素</th>
+                                                            <th> 监测点（个）</th>
+                                                            <th> 监测项目</th>
+                                                            <th> 监测频次</th>
+                                                            <!--<th> 是否分包</th>-->
+                                                            <!--<th> 备注</th>-->
+                                                            <!--<tH> 负责人</tH>-->
+                                                            <!--<th> 参与者</th>-->
+                                                            <th>选择</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <template v-for="(item,index) in items">
+                                                            <!--<template v-for="(project,projectIndex) in item.project">-->
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    {{index+1}}
+                                                                </td>
+                                                                <!--<td class="text-center">-->
+                                                                <!--{{item.company}}-->
+                                                                <!--</td>-->
+                                                                <td class="text-center">
+                                                                    {{item.other}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.element.name}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.point}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <!--{{project.project.name}}-->
+                                                                    <button type="button"
+                                                                            class="btn green btn-outline"
+                                                                            @click="showProjectName(item.id)">
+                                                                        详情
+                                                                    </button>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.frequency?item.frequency.total:''}}
+                                                                </td>
+                                                                <!--<td class="text-center"-->
+                                                                <!--v-if="item.is_package==1">是-->
+                                                                <!--</td>-->
+                                                                <!--<td class="text-center"-->
+                                                                <!--v-if="item.is_package==0">否-->
+                                                                <!--</td>-->
 
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button type="button" class="btn blue" @click="back">返回列表</button>
-                                <button type="button" class="btn green" @click="create">保 存</button>
+                                                                <!--<td>-->
+                                                                <!--<div class="form-group">-->
+                                                                <!--<div class="col-md-12">-->
+                                                                <!--<select class="bs-select form-control" data-live-search="true"-->
+                                                                <!--v-model="item.master">-->
+                                                                <!--<option></option>-->
+                                                                <!--<template v-for="department in userList">-->
+                                                                <!--<optgroup :label="department.name">-->
+                                                                <!--<template v-for="user in department.user.results">-->
+                                                                <!--<option :value="user.id">{{user.name}}</option>-->
+                                                                <!--</template>-->
+                                                                <!--</optgroup>-->
+                                                                <!--</template>-->
+                                                                <!--</select>-->
+                                                                <!--</div>-->
+                                                                <!--</div>-->
+                                                                <!--</td>-->
+                                                                <!--<td>-->
+                                                                <!--<div class="form-group">-->
+                                                                <!--<div class="col-md-12">-->
+                                                                <!--<select class="bs-select form-control" multiple-->
+                                                                <!--data-actions-box="true"-->
+                                                                <!--data-live-search="true" v-model="item.slave">-->
+                                                                <!--<template v-for="department in userList">-->
+                                                                <!--debugger-->
+                                                                <!--<optgroup :label="department.name">-->
+                                                                <!--<template v-for="user in department.user.results">-->
+                                                                <!--<option :value="user.id">{{user.name}}</option>-->
+                                                                <!--</template>-->
+                                                                <!--</optgroup>-->
+                                                                <!--</template>-->
+                                                                <!--</select>-->
+                                                                <!--</div>-->
+                                                                <!--</div>-->
+                                                                <!--</td>-->
+                                                                <td class="text-center">
+                                                                    <label>
+                                                                        <input type="checkbox" class="icheck">
+                                                                    </label>
+                                                                    <label>
+                                                                </td>
+                                                            </tr>
+                                                            <!--</template>-->
+                                                        </template>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane active" id="tab2">2</div>
+                                                <div class="tab-pane active" id="tab3">3</div>
+                                                <div class="tab-pane active" id="tab4">4</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <a href="javascript:;" class="btn default button-previous">
+                                                        <i class="fa fa-angle-left"></i> 上一步 </a>
+                                                    <a href="javascript:;"
+                                                       class="btn btn-outline green button-next"> 下一步
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <!-- END PAGE CONTENT-->
         </div>
@@ -125,9 +205,16 @@
                         <!--{{project.project.name}}-->
                         <!--</template>-->
                         <ul class="receiver_tag">
-                            <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;"
-                                                         style="line-height: 30px">{{names.name}}</a></li>
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
                             </template>
                         </ul>
                     </div>
@@ -148,7 +235,7 @@
                 id: "",
                 items: [],
                 userList: [],
-                projectName: []
+                project: []
             }
         },
         mounted(){
@@ -156,7 +243,7 @@
             var query = me.$route.query;
             if (!query.id) {
                 confirm({
-                    content: "请先选择需要进行派遣的任务信息！",
+                    content: "请先选择需要进行下达的任务信息！",
                     success: function () {
                         router.push("/task/disPatch");
                         closeConfirm();
@@ -175,7 +262,8 @@
                     params: {
                         task_id: id
                     }
-                }).then(response => {;
+                }).then(response => {
+                    ;
                     var data = response.data;
                     me.items = data.items;
                     for (var i = 0; i < me.items.length; i++) {
@@ -257,7 +345,7 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }

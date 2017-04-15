@@ -496,14 +496,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-2" for="payment">大写
+                                                <label class="control-label col-md-2" for="paymentCap">大写
                                                     <!--<span class="required"> * </span>-->
                                                 </label>
                                                 <div class="col-md-10">
                                                     <div class="input-icon right">
                                                         <i class="fa fa-cny"></i>
-                                                        <input type="text" class="form-control" name="payment"
-                                                               id="" v-model="contract.payment"/>
+                                                        <input type="text" class="form-control" name="paymentCap"
+                                                               id="paymentCap" v-model="paymentCap" disabled/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -695,6 +695,10 @@
                                                                                     v-for="(project,index) in item.project">
                                                                                 {{project.name}}
                                                                                 <template
+                                                                                        v-if="project.isPackage==true">
+                                                                                    <span style="color: red;">[分包]</span>
+                                                                                </template>
+                                                                                <template
                                                                                         v-if="index+1!=item.project.length">
                                                                                     ,
                                                                                 </template>
@@ -765,7 +769,12 @@
                                                     <label class="control-label col-md-2">监测费用
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <label class="control-label">{{contract.payment}}</label>
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">{{contract.payment}}￥</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">{{paymentCap}}</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -964,7 +973,7 @@
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control input-large"
+                                                <input type="number" class="form-control"
                                                        v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
@@ -1032,7 +1041,8 @@
                                 <tbody>
                                 <template v-for="(item,index) in contract.item">
                                     <tr>
-                                        <td class="text-center" rowspan="item.length">人民路
+                                        <td class="text-center" rowspan="item.length">
+                                            {{item.company==null?'无':item.company}}
                                         </td>
                                         <td class="text-center" rowspan="item.project.length">{{item.element.name}}
                                         </td>
@@ -1056,8 +1066,10 @@
                                                     <tr>
                                                         <td class="text-center">
                                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                                <input type="checkbox" v-model="project.id"
-                                                                       name="ispackage" :value="item.id+'/'+project.id">
+                                                                <!--<input type="checkbox" v-model="project.id"-->
+                                                                <!--name="ispackage" :value="item.id+'/'+project.id">-->
+                                                                <input type="checkbox" v-model="project.isPackage"
+                                                                       name="ispackage" value="1">
                                                                 <span></span>
                                                             </label>
                                                         </td>
@@ -1128,6 +1140,7 @@
                     type: ""
                 },
                 typeList: [],
+                paymentCap: "",
                 customerList: [],
                 currentPage: 1,
                 condition: "",
@@ -1226,8 +1239,11 @@
                 this.tag.trustee = jQuery("#trustee option:selected").html();
             },
             "contract.type": function () {
-                console.log("type")
+                console.log("type");
                 this.tag.type = jQuery("#projectType option:selected").html();
+            },
+            'contract.payment': function (currentValue) {
+                this.paymentCap = BlogUtils.atoc(currentValue);
             }
         },
         methods: {
@@ -1253,8 +1269,18 @@
                     success: function (returndata) {
                         codeState(returndata.code, {
                             200: function () {
-                                alert("让球球用PageOffice打开" + returndata.path);
+                                alert("打开" + returndata.path);
                                 //这里调用球球的PageOffice页面，顺便把returndata.path传给球球
+                                me.$http.get("/api/contract/readItemFile", {
+                                    params: {
+                                        path: returndata.path
+                                    }
+                                }).then(response => {
+                                    var data = response.data;
+                                    me.contract.item = data;
+                                }, response => {
+                                    serverErrorInfo(response);
+                                })
                             }
                         })
                     }
@@ -1347,12 +1373,15 @@
                     console.log(JSON.stringify(items[i]))
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
+                console.log(JSON.parse(JSON.stringify(me.contract)));
+                App.startPageLoading({animate: true});
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
                             alert("合同创建成功！");
                             router.push("/contract/list");
+                            App.stopPageLoading();//loading条结束
                         }
                     })
                 }, function (response) {
@@ -1563,11 +1592,12 @@
             },
             isPackges(){
                 var me = this;
-//                debugger
-//                console.log(JSON.parse(JSON.stringify(me.contract)));
-//                console.log(JSON.parse(JSON.stringify(me.contract.item[0].project[1].id)));
-//                console.log(JSON.parse(JSON.stringify(me.contract.item[1].project[0].id)));
-                alert(123);
+                confirm({
+                    content: "是否将选中项目设置为分包项目？分包项目将不参与后续流程！",
+                    success: function () {
+                        jQuery("#isPackage").modal("hide");
+                    }
+                })
             },
             wizard(){
                 //wizard插件和表单验证序列化
@@ -1687,9 +1717,6 @@
                             required: true
                         },
                         monitor_frequency: {
-                            required: true
-                        },
-                        monitor_point: {
                             required: true
                         }
                     },

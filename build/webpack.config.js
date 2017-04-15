@@ -69,6 +69,7 @@ module.exports = {
             'mod/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.js'),
             'mod/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
             'mod/editable': path.resolve(PluginsPath, 'bootstrap-editable/bootstrap-editable/js/bootstrap-editable.js'),
+            'mod/jcrop':path.resolve(PluginsPath,'jcrop/js/jquery.Jcrop.js'),
 
             'mod/pushlet': path.resolve(JsPath, 'ajax-pushlet-client.js'),
 
@@ -109,7 +110,9 @@ module.exports = {
             'style/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.css'),
             'style/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
             'style/editable': path.resolve(PluginsPath, 'bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css'),
+            'style/jcrop':path.resolve(PluginsPath,'jcrop/css/jquery.Jcrop.css'),
             'style/main': path.resolve(StylePath, 'main.css'),
+
 
             'globalPath': path.resolve(GlobalPath)
         }

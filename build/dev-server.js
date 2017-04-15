@@ -39,15 +39,23 @@ app.use(hotMiddleware)
 // app.use('/api', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
 // app.use('/upload', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
 
-
-app.use('/api', proxy({target: 'http://192.168.1.102:8080', changeOrigin: true}));
-app.use('/upload', proxy({target: 'http://192.168.1.102:8080', changeOrigin: true}));
-app.use('/pushlet.srv', proxy({target: 'http://192.168.1.102:8080', changeOrigin: true}));
-
-
 // app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 // app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 // app.use('/pushlet.srv', proxy({target: 'http://localhost:8080', changeOrigin: true}));
+
+// app.use('/api', proxy({target: 'http://192.168.0.12:8080', changeOrigin: true}));
+// app.use('/upload', proxy({target: 'http://192.168.0.12:8080', changeOrigin: true}));
+// app.use('/pushlet.srv', proxy({target: 'http://192.168.0.12:8080', changeOrigin: true}));
+
+
+app.use('/api', proxy({target: 'http://192.168.1.103:8080', changeOrigin: true}));
+app.use('/upload', proxy({target: 'http://192.168.1.103:8080', changeOrigin: true}));
+app.use('/pushlet.srv', proxy({target: 'http://192.168.1.103:8080', changeOrigin: true}));
+
+// app.use('/api', proxy({target: 'http://192.168.1.106:8080', changeOrigin: true}));
+// app.use('/upload', proxy({target: 'http://192.168.1.106:8080', changeOrigin: true}));
+// app.use('/pushlet.srv', proxy({target: 'http://192.168.1.106:8080', changeOrigin: true}));
+
 // 监听 8888端口，开启服务器
 app.listen(8889, function (err) {
     if (err) {
