@@ -100,6 +100,7 @@ module.exports = {
             'style/datarangepicker': path.resolve(PluginsPath, 'bootstrap-daterangepicker/daterangepicker.css'),
             'style/taginput': path.resolve(PluginsPath, 'bootstrap-tagsinput/bootstrap-tagsinput.css'),
 
+            'style/datepicker':path.resolve(PluginsPath,'bootstrap-datepicker/css/bootstrap-datepicker3.css'),
             'style/login': path.resolve(StylePath, 'login.css'),
 
             'style/contract_list': path.resolve(StylePath, 'contract_list.css'),

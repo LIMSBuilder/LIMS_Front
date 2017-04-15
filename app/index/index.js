@@ -148,6 +148,7 @@ import 'style/switch'
 import 'style/iziToast'
 import 'style/iziModal'
 
+import 'style/datepicker'
 import 'style/component'
 import 'style/plugins'
 
