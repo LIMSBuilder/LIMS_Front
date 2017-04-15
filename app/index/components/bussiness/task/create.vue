@@ -397,6 +397,26 @@
                                                                     @click="deleteAllItem">删除全部
                                                             </button>
                                                         </p>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="input-group input-large">
+                                                                <div class="form-control uneditable-input input-fixed input-medium"
+                                                                     data-trigger="fileinput">
+                                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                                    <span class="fileinput-filename"> </span>
+                                                                </div>
+
+                                                                <span class="input-group-addon btn default btn-file">
+                                                                    <span class="fileinput-new"> 选择模板 </span>
+                                                                <span class="fileinput-exists"> 变 更 </span>
+                                                                    <input type="file" name="..."> </span>
+                                                                <a href="javascript:;"
+                                                                   class="input-group-addon btn green fileinput-exists"
+                                                                   @click="readTemplate"> 读 取 </a>
+                                                                <a href="javascript:;"
+                                                                   class="input-group-addon btn red fileinput-exists"
+                                                                   data-dismiss="fileinput"> 删 除 </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2245,6 +2265,39 @@
                 );
                 jQuery("#showProject").modal("show");
 
+            },
+            //读取外部监测文件
+            readTemplate(){
+                var me = this;
+                var formData = new FormData();
+                formData.append("file", jQuery("input[type=file]")[0].files[0]);
+                jQuery.ajax({
+                    url: '/api/file/upload',
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (returndata) {
+                        codeState(returndata.code, {
+                            200: function () {
+                                alert("打开" + returndata.path);
+                                //这里调用球球的PageOffice页面，顺便把returndata.path传给球球
+                                me.$http.get("/api/contract/readItemFile", {
+                                    params: {
+                                        path: returndata.path
+                                    }
+                                }).then(response => {
+                                    var data = response.data;
+                                    me.task.item = data;
+                                }, response => {
+                                    serverErrorInfo(response);
+                                })
+                            }
+                        })
+                    }
+                });
             }
         }
     }
