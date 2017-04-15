@@ -885,6 +885,7 @@
                     }
                 )
             },
+            //清空
             removeSample(){
                 var me = this;
 //                alert(123);

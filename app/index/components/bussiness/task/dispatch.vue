@@ -22,7 +22,7 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in taskList">
-                                                <div @click="viewDetails(item)"
+                                                <div @click="viewElementMonitor(item.id)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
                                                     <div class="todo-userpic pull-left" style="margin-right: 10px;"><i
                                                             style="width: 27px;height: 27px;"
@@ -55,243 +55,43 @@
                                     </div>
                                     <div class="todo-tasklist-devider"></div>
                                     <div class="col-md-4 col-sm-4 todo-container">
-                                        <!--<div class="" v-show="!task.id">-->
-                                        <!--<h4 class="text-center">监测项目分组信息</h4>-->
-                                        <!--<h4 class="text-center">点击左侧显示</h4>-->
-                                        <!--</div>-->
-                                        <!--<div class="todo-tasklist " v-show="task.id">-->
-                                        <!--<template v-for="item in items">-->
-                                        <!--<div class="col-md-12 " style="background-color:#f6fbfc; margin-bottom: 10px; padding: 10px;">-->
-                                        <!--<div class="todo-tasklist-item-title">-->
-                                        <!--{{item.other}}-->
-                                        <!--</div>-->
-                                        <!--<div class="todo-tasklist-item-text">-->
-                                        <!--<i class="fa fa-gg" style="margin-right: 10px"></i>-->
-                                        <!--{{item.element.name}}:-->
-                                        <!--<span>-->
-                                        <!--21 12 121 31 3131331-->
-                                        <!--</span>-->
-                                        <!--</div>-->
-                                        <!--<div class="todo-tasklist-item-text">-->
-                                        <!--<i class="fa fa-gg" style="margin-right: 10px"></i>-->
-                                        <!--{{item.element.name}}:-->
-                                        <!--<span>-->
-                                        <!--21 12 121 31 3131331-->
-                                        <!--</span>-->
-                                        <!--</div>-->
-                                        <!--<div class="todo-tasklist-item-text">-->
-                                        <!--<i class="fa fa-gg" style="margin-right: 10px"></i>-->
-                                        <!--{{item.element.name}}:-->
-                                        <!--<span>-->
-                                        <!--21 12 121 31 3131331-->
-                                        <!--</span>-->
-                                        <!--</div>-->
-                                        <!--<div class="right">-->
-                                        <!--<button type="button" class="btn green " style="float: right;">-->
-                                        <!--选 择-->
-                                        <!--</button>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
-                                        <!--</template>-->
+                                        <div class="todo-projects-item">
+                                            <ul class="todo-projects-container ">
+                                                <template v-for="item in elementMonitor">
+                                                    <li class="todo-projects-item ">
+                                                        <h4 :class="item.isActive==1?'font-blue':'font-grey-salsa'">
+                                                            {{item.company}}</h4>
+                                                        <ul class="receiver_tag">
+                                                            <template v-for="result in item.results">
+                                                                <li class="uppercase ">
+                                                                    <a href="javascript:;" style="line-height: 30px">
+                                                                        {{result.name}}
 
-                                        <!--</div>-->
-                                        <!-- Pagination -->
-                                        <!--<div class="pagination pull-right">-->
-                                        <!--<div class="M-box front pull-right" style="margin-top:10px; "></div>-->
-                                        <!--</div>-->
-                                        <!-- End Pagination -->
-
-
-                                        <ul class="todo-projects-container">
-
-                                            <li class="todo-projects-item ">
-                                                <h3 class="font-grey-salsa">邦达诚科技有限公司【未选中，默认】</h3>
-                                                <!--<p>Lorem dolor sit amet ipsum dolor sit consectetuer dolore. Lorem dolor-->
-                                                <!--sit amet ipsum dolor sit consectetuer dolore.</p>-->
-                                                <ul class="receiver_tag">
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目一</a>
+                                                                    </a>
+                                                                </li>
+                                                            </template>
+                                                        </ul>
+                                                        <div class="todo-project-item-foot">
+                                                            <p class="todo-red todo-inline">
+                                                                <a href="javascript:;" class="font-green"
+                                                                   @click="showProject(item.task_id,item.company)">查看详情</a>
+                                                            </p>
+                                                            <p class="todo-inline todo-float-r">
+                                                                <a href="javascript:;" class="font-grey-salsa">6
+                                                                    Members</a>
+                                                                <a class="todo-add-button" href="javascript:;"
+                                                                   @click="addProject(item)"
+                                                                   v-if="item.isActive!=1">+</a>
+                                                            </p>
+                                                        </div>
                                                     </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目二</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目三</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目四</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目五</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目六</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目七</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目八</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目九</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目十</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="todo-project-item-foot">
-                                                    <p class="todo-red todo-inline">
-                                                        <a href="javascript:;" class="font-green">查看详情</a>
-                                                    </p>
-                                                    <p class="todo-inline todo-float-r">
-                                                        <a href="javascript:;" class="font-grey-salsa">6 Members</a>
-                                                        <a class="todo-add-button" href="javascript:;">+</a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <div class="todo-projects-divider"></div>
-                                            <li class="todo-projects-item todo-active">
-                                                <h3 class="font-blue">邦达诚科技有限公司【已选中，蓝色】</h3>
-                                                <!--<p>Lorem dolor sit amet ipsum dolor sit consectetuer dolore. Lorem dolor-->
-                                                <!--sit amet ipsum dolor sit consectetuer dolore.</p>-->
-                                                <ul class="receiver_tag">
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目一</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目二</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目三</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目四</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目五</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目六</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目七</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目八</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目九</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目十</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="todo-project-item-foot">
-                                                    <p class="todo-red todo-inline">
-                                                        <a href="javascript:;" class="font-green">查看详情</a>
-                                                    </p>
-                                                    <p class="todo-inline todo-float-r">
-                                                        <a href="javascript:;" class="font-grey-salsa">6 Members</a>
-                                                        <a class="todo-add-button" href="javascript:;">+</a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <div class="todo-projects-divider"></div>
-                                            <li class="todo-projects-item ">
-                                                <h3 class="font-green">邦达诚科技有限公司【已成功，绿色】</h3>
-                                                <!--<p>Lorem dolor sit amet ipsum dolor sit consectetuer dolore. Lorem dolor-->
-                                                <!--sit amet ipsum dolor sit consectetuer dolore.</p>-->
-                                                <ul class="receiver_tag">
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目一</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目二</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目三</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目四</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目五</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目六</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目七</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目八</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目九</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目十</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="todo-project-item-foot">
-                                                    <p class="todo-red todo-inline">
-                                                        <a href="javascript:;" class="font-green">查看详情</a>
-                                                    </p>
-                                                    <p class="todo-inline todo-float-r">
-                                                        <a href="javascript:;" class="font-grey-salsa">6 Members</a>
-                                                        <a class="todo-add-button" href="javascript:;">+</a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <div class="todo-projects-divider"></div>
-                                            <li class="todo-projects-item ">
-                                                <h3 class="font-red">邦达诚科技有限公司【未完成，红色】</h3>
-                                                <!--<p>Lorem dolor sit amet ipsum dolor sit consectetuer dolore. Lorem dolor-->
-                                                <!--sit amet ipsum dolor sit consectetuer dolore.</p>-->
-                                                <ul class="receiver_tag">
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目一</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目二</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目三</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目四</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目五</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目六</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目七</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目八</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目九</a>
-                                                    </li>
-                                                    <li class="uppercase ">
-                                                        <a href="javascript:;" style="line-height: 30px">项目十</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="todo-project-item-foot">
-                                                    <p class="todo-red todo-inline">
-                                                        <a href="javascript:;" class="font-green">查看详情</a>
-                                                    </p>
-                                                    <p class="todo-inline todo-float-r">
-                                                        <a href="javascript:;" class="font-grey-salsa">6 Members</a>
-                                                        <a class="todo-add-button" href="javascript:;">+</a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                    <div class="todo-projects-divider"></div>
+                                                </template>
+                                                <li class="todo-projects-item " v-if="elementMonitor.length==0">
+                                                    暂无打开任务，点击左侧任务列表！
+                                                </li>
+                                            </ul>
+                                        </div>
                                         <!-- Pagination -->
                                         <div class="pagination pull-right">
                                             <div class="M-box front pull-right" style="margin-top:10px; "></div>
@@ -325,7 +125,9 @@
                                                                 <select class="bs-select form-control"
                                                                         name="charge"
                                                                         id="charge"
-                                                                        data-live-search="true" required>
+                                                                        data-live-search="true"
+                                                                        v-model="dispatch.charge_id"
+                                                                        required>
                                                                     <template v-for="item in userList">
                                                                         <optgroup :label="item.name">
                                                                             <template v-for="user in item.user.results">
@@ -340,14 +142,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3" for="join">参与人员
+                                                            <label class="control-label col-md-3" for="join"
+                                                            >参与人员
                                                                 <span class="required">  </span>
                                                             </label>
                                                             <div class="col-md-9">
                                                                 <select class="bs-select form-control"
-                                                                        name="charge"
+                                                                        name="join"
                                                                         id="join"
-                                                                        data-live-search="true" multiple>
+                                                                        data-live-search="true"
+                                                                        v-model="dispatch.join_id"
+                                                                        multiple>
                                                                     <template v-for="item in userList">
                                                                         <optgroup :label="item.name">
                                                                             <template v-for="user in item.user.results">
@@ -362,6 +167,45 @@
                                                             </div>
                                                         </div>
                                                     </form>
+                                                    <div class="form-group todo-container" style="padding: 10px 0px ">
+                                                        <h4>负责项目</h4>
+                                                        <hr>
+                                                        <ul class="todo-tasks-content" style="padding: 0px">
+                                                            <template v-for="item in addProjectList">
+                                                                <li class="todo-tasks-item"
+                                                                    style="list-style: none; padding: 10px 0 20px 0;">
+                                                                    <h4 class="todo-inline">
+                                                                        <a data-toggle="modal" href="#todo-task-modal"
+                                                                           @click="">
+                                                                            {{item.company}}
+                                                                        </a>
+                                                                    </h4>
+                                                                    <div class="todo-inline todo-float-r">
+                                                                        <button type="button" class="btn default"
+                                                                                @click="deleteItem(item)"
+                                                                                style="float: right; ">
+                                                                            取 消
+                                                                        </button>
+                                                                    </div>
+                                                                </li>
+                                                            </template>
+                                                            <li class="todo-tasks-item"
+                                                                style="list-style: none; padding: 10px 0 20px 0;"
+                                                                v-if="addProjectList.length==0">
+                                                                <h4 class="todo-inline">
+                                                                    <a data-toggle="modal" href="#todo-task-modal">
+                                                                        暂无任务,请选择任务！
+                                                                    </a>
+                                                                </h4>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <hr>
+                                                    <button type="button" class="btn green"
+                                                            @click="createDispatch"
+                                                            style="float: right; ">
+                                                        保存
+                                                    </button>
                                                 </div>
                                                 <div class="tab-pane" id="page_2">
                                                     bb
@@ -373,11 +217,6 @@
                                         </div>
 
 
-                                        <div class="form-group col-md-12 col-sm-12">
-                                            <h4>负责项目</h4>
-                                            <hr>
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -507,6 +346,94 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                <tr class="uppercase">
+                                    <th> 序号</th>
+                                    <th> 公司、道路名称</th>
+                                    <th> 环境要素</th>
+                                    <th> 监测点（个）</th>
+                                    <th> 监测项目</th>
+                                    <th> 监测频次</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template v-for="(item,index) in element">
+                                    <tr>
+                                        <td class="text-center">{{index+1}}</td>
+                                        <td class="text-center">{{item.other}}</td>
+                                        <td class="text-center">
+                                            {{item.element.name}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.point}}
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button"
+                                                    class="btn green btn-outline"
+                                                    @click="showProjectName(item.id)">
+                                                详情
+                                            </button>
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.frequency?item.frequency.total:''}}
+                                        </td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade draggable-modal" id="showProjectName" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">检测项目详情列表</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="receiver_tag">
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+
     </div>
 </template>
 
@@ -526,7 +453,14 @@
                 },
                 items: [],
                 userList: [],
-                project: []
+                element: [],
+                project: [],
+                elementMonitor: [],
+                addProjectList: [],
+                dispatch: {
+                    charge_id: "",
+                    join_id: []
+                }
             }
         },
         mounted(){
@@ -548,8 +482,18 @@
                     jQuery(".todo-tasklist-item").removeClass("active");
                     dom.addClass('active');
                 }
-            })
+            });
 
+            jQuery(".todo-projects-item").off("click").on("click", function (e) {
+                var dom = jQuery(e.target);
+                while (!dom.hasClass("todo-projects-item") && dom[0] && dom[0].tagName != "body") {
+                    dom = dom.parents(".todo-projects-item");
+                }
+                if (dom.hasClass("todo-projects-item")) {
+                    jQuery(".todo-projects-item").removeClass("todo-active");
+                    dom.addClass('todo-active ');
+                }
+            });
 
         },
         methods: {
@@ -620,6 +564,7 @@
                 }).then(response => {
                     var data = response.data;
                     me.task = data;
+//                    debugger
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -650,6 +595,94 @@
                 }, response => {
                     serverErrorInfo(response);
                 })
+            },
+            //点击获取任务书中的环境要素和监测项目
+            viewElementMonitor(id){
+                var me = this;
+                me.$http.get("/api/task/taskGetItems", {
+                    params: {
+                        task_id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        //me.elementMonitor = data;
+                        var projectList = me.addProjectList;
+                        for (var i = 0; i < data.length; i++) {
+                            for (var j = 0; j < projectList.length; j++) {
+                                if (data[i].task_id == projectList[j].task_id && data[i].company == projectList[j].company) {
+                                    data[i].isActive = 1;
+                                    break;
+                                } else {
+                                    data[i].isActive = 0;
+                                }
+                            }
+                        }
+                        me.elementMonitor = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
+            },
+            //查看详细的环境要素
+            showProject(id, company){
+                var me = this;
+                me.$http.get("/api/sample/DetailList", {
+                    params: {
+                        task_id: id,
+                        company: company
+                    }
+
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.element = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProject").modal("show");
+
+            },
+            //查看详细的检测项目
+            showProjectName(id){
+                var me = this;
+                me.$http.get("/api/task/monitorItem", {
+                    params: {
+                        id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.project = data;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                );
+                jQuery("#showProjectName").modal("show");
+            },
+            addProject(item){
+                var me = this;
+                item.isActive = 1;
+                me.addProjectList.push(item);
+                console.log(me.addProjectList);
+                console.log(me.addProjectList.length);
+            },
+            deleteItem(item){
+                var me = this;
+                me.addProjectList.splice(me.addProjectList.find(function (t) {
+                    return t.task_id === item.task_id && t.company == item.company;
+                }), 1);
+
+                //me.viewElementMonitor(item.task_id);
+                var obj = me.elementMonitor.find(function (t) {
+                    return t.task_id == item.task_id && t.company == item.company;
+                });
+                if (obj) obj.isActive = 0;
+            },
+            createDispatch(){
+                var me = this;
+                alert(1234);
             }
         }
     }
