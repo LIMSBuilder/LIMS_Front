@@ -17,7 +17,7 @@
                                 <th> 监测项目</th>
                                 <th> 监测频次</th>
                                 <th> 备注</th>
-                                <tH> 负责人</tH>
+                                <tH> 参与者</tH>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,7 +45,9 @@
                                         {{item.other}}
                                     </td>
                                     <td class="text-center">
-                                        {{item.charge.name}}
+                                        <template v-for="join in item.join">
+                                            {{join.name}}
+                                        </template>
                                     </td>
                                 </tr>
                             </template>
@@ -126,6 +128,7 @@
                     }
                 }).then(response => {
                     var data = response.data;
+//                    debugger
                     me.items = data.items;
                     App.stopPageLoading();
                 }, response => {

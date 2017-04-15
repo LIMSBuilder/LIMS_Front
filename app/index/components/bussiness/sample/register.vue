@@ -21,15 +21,15 @@
                                         <li class="active">
                                             <a href="javascript:;" @click="searchByProcess('apply_sample')"> 全部</a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess('before_apply_sample')">
-                                                <span class="badge badge-info"
-                                                      v-if="countProcess!=0"> {{countProcess}} </span> 待登记 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;"
-                                               @click="searchByProcess('after_apply_sample')">已登记 </a>
-                                        </li>
+                                        <!--<li>-->
+                                        <!--<a href="javascript:;" @click="searchByProcess('')">-->
+                                        <!--<span class="badge badge-info"-->
+                                        <!--v-if="countProcess!=0"> {{countProcess}} </span> 待登记 </a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                        <!--<a href="javascript:;"-->
+                                        <!--@click="searchByProcess('')">已登记 </a>-->
+                                        <!--</li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -77,7 +77,11 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}
+                                                        {{item.identify}}/
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==0">实验室分析室--自送样</span>
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==1">现场检测室--现场采样</span>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -93,7 +97,7 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <span class="label label-sm label-danger"
-                                                              v-if="item.process==-2">带登记</span>
+                                                              v-if="item.process==2">待登记</span>
                                                         <span class="label label-sm label-info"
                                                               v-if="item.process==1">已登记</span>
                                                     </div>
@@ -478,135 +482,14 @@
                                                             </div>
                                                             <hr>
                                                             <button type="button" class="btn default"
-                                                                    style="float: right;">
-                                                                导出表格
+                                                                    style="float: right;" @click="exportSample">
+                                                                导 出
                                                             </button>
                                                             <button type="button" class="btn  green "
                                                                     style="float: right;" @click="success">
-                                                                完成登记
+                                                                完 成
                                                             </button>
-
-                                                            <!--<hr>-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3"-->
-                                                            <!--style="text-align:left;">-->
-                                                            <!--送样单位：-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-8">-->
-                                                            <!--<p class="form-control-static">-->
-                                                            <!--{{task.client_unit}}</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3"-->
-                                                            <!--style="text-align:left;">-->
-                                                            <!--送样时间:-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-8">-->
-                                                            <!--<p class="form-control-static">-->
-                                                            <!--2017-0210</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3"-->
-                                                            <!--style="text-align:left;">-->
-                                                            <!--记 录 人:-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-8">-->
-                                                            <!--<p class="form-control-static">-->
-                                                            <!--{{user.name}}</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="form-actions right todo-form-actions">-->
-                                                            <!--<button type="button" class="btn  green">-->
-                                                            <!--<i class="fa fa-pencil"></i> 保 存-->
-                                                            <!--</button>-->
-                                                            <!--<button type="button" class="btn default">-->
-                                                            <!--取 消-->
-                                                            <!--</button>-->
-                                                            <!--</div>-->
                                                         </div>
-                                                        <!--<div class="tab-pane" id="page_4">-->
-                                                        <!--<h3 class="form-section" style="margin-top: 0">-->
-                                                        <!--样品委托、交接记录表</h3>-->
-                                                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                                                        <!--<div class="row">-->
-                                                        <!--<div class="form-group col-md-6">-->
-                                                        <!--<label class="control-label col-md-4">委托单位-->
-                                                        <!--</label>-->
-                                                        <!--<div class="col-md-8">-->
-                                                        <!--<p class="form-control-static">-->
-                                                        <!--{{task.client_unit}}</p>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--<div class="form-group col-md-6">-->
-                                                        <!--<label class="control-label col-md-4">任务编号-->
-                                                        <!--</label>-->
-                                                        <!--<div class="col-md-8">-->
-                                                        <!--<p class="form-control-static">-->
-                                                        <!--{{task.identify}}</p>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--<div class="row">-->
-                                                        <!--<div class="form-group col-md-6">-->
-                                                        <!--<label class="control-label col-md-4">任务来源-->
-                                                        <!--</label>-->
-                                                        <!--<div class="col-md-8">-->
-                                                        <!--<p class="form-control-static">-->
-                                                        <!--{{task.client_unit}}</p>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--<div class="form-group col-md-6">-->
-                                                        <!--<label class="control-label col-md-4">样品起止编号-->
-                                                        <!--</label>-->
-                                                        <!--<div class="col-md-8">-->
-                                                        <!--<p class="form-control-static">-->
-                                                        <!--{{task.identify}}</p>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--<div class="row">-->
-                                                        <!--<div class="form-group col-md-6">-->
-                                                        <!--<label class="control-label col-md-4">送样时间-->
-                                                        <!--</label>-->
-                                                        <!--<div class="col-md-8">-->
-                                                        <!--<p class="form-control-static">-->
-                                                        <!--{{task.client_unit}}</p>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--<div class="form-group col-md-6">-->
-                                                        <!--<label class="control-label col-md-4">送样总件数-->
-                                                        <!--</label>-->
-                                                        <!--<div class="col-md-8">-->
-                                                        <!--<p class="form-control-static">-->
-                                                        <!--{{task.identify}}</p>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
-                                                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                                                        <!--<table class="table table-hover table-light">-->
-                                                        <!--<thead>-->
-                                                        <!--<tr class="uppercase">-->
-                                                        <!--<th> 序号</th>-->
-                                                        <!--<th> 样品类别</th>-->
-                                                        <!--<th> 分析项目</th>-->
-                                                        <!--<th> 件数</th>-->
-                                                        <!--</tr>-->
-                                                        <!--</thead>-->
-                                                        <!--<tbody>-->
-                                                        <!--<tr>-->
-                                                        <!--<td class="text-center">1</td>-->
-                                                        <!--<td class="text-center">污水</td>-->
-                                                        <!--<td class="text-center">化学需氧量</td>-->
-                                                        <!--<td class="text-center">4</td>-->
-                                                        <!--</tr>-->
-                                                        <!--</tbody>-->
-                                                        <!--</table>-->
-                                                        <!--</div>-->
-
-                                                        <!--</div>-->
-                                                        <!--</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -697,7 +580,7 @@
 //                log: [],
                 total_count: {},
                 projectName: [],
-                project:[],
+                project: [],
                 countProcess: 0,
                 sample: {
                     id: "",
@@ -808,20 +691,6 @@
                     serverErrorInfo(response);
                 });
             },
-//            fetchLog(id){
-//                var me = this;
-//                me.$http.get("/api/log/taskLog", {
-//                    params: {
-//                        id: id
-//                    }
-//                }).then(response => {
-//                        var data = response.data;
-//                        me.log = data.results;
-//                    }, response => {
-//                        serverErrorInfo(response);
-//                    }
-//                );
-//            },
             //查找检测项目
             fetchProjectByCategory(id){
                 var me = this;
@@ -871,10 +740,8 @@
                     serverErrorInfo(response);
                 });
                 me.fetchItems(item.id);
-//                me.fetchLog(item.id);
                 me.fetchProjectByCategory(item.id);
                 me.fetchsampleList(item.id);
-//                me.fetchLogin();
             },
             search(){
                 var me = this;
@@ -962,15 +829,6 @@
                     }
                 )
             },
-//            fetchLogin(){
-//                var me = this;
-//                me.$http.get('/api/login/getLogin',).then(function (response) {
-//                    var data = response.data;
-//                    me.user = data;
-//                }, function (response) {
-//                    serverErrorInfo(response);
-//                });
-//            },
             deleteSampleItem(id){
                 var me = this;
                 me.$http.get("/api/sample/deleteSample", {
@@ -1054,6 +912,10 @@
                         serverErrorInfo(response);
                     }
                 );
+            },
+            exportSample(){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/sample/createSample?id=" + me.task.id);
             }
         }
     }

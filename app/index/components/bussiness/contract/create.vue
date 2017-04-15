@@ -1373,8 +1373,8 @@
                     console.log(JSON.stringify(items[i]))
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
-//                console.log(JSON.parse(JSON.stringify(me.contract)));
-                App.startPageLoading({animate: true});//loading条开始
+                console.log(JSON.parse(JSON.stringify(me.contract)));
+                App.startPageLoading({animate: true});
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {

@@ -412,12 +412,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-2" for="other">项目负责人
-                                                    <span class="required">  </span>
+                                                <label class="control-label col-md-2" for="trustee">项目负责人
+                                                    <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-10">
                                                     <select class="form-control" data-live-search="true"
-                                                            name="trustee" v-model="task.charge" id="trustee">
+                                                            name="trustee" v-model="task.charge" id="trustee" required>
                                                         <option></option>
                                                         <template v-for="item in userList">
                                                             <optgroup :label="item.name">
