@@ -49,6 +49,7 @@ import Task_List from './components/bussiness/task/list.vue'
 import DisPatch from './components/bussiness/task/dispatch.vue'
 import DisPatchSetting from './components/bussiness/task/dispatchSetting.vue'
 import DisPatchCheck from './components/bussiness/task/dispatchCheck.vue'
+import MyTask from './components/bussiness/task/myTask.vue'
 
 
 import Sample from './components/bussiness/sample/sample.vue'
@@ -147,6 +148,7 @@ import 'style/switch'
 import 'style/iziToast'
 import 'style/iziModal'
 
+import 'style/datepicker'
 import 'style/component'
 import 'style/plugins'
 
@@ -454,8 +456,12 @@ var routes = [
                 component: DisPatchSetting
             },
             {
-                path:"disPatchCheck",
-                component:DisPatchCheck
+                path: "disPatchCheck",
+                component: DisPatchCheck
+            },
+            {
+                path: "myTask",
+                component: MyTask
             }
         ]
     },
