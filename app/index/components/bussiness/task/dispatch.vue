@@ -59,7 +59,7 @@
                                             <ul class="todo-projects-container ">
                                                 <template v-for="item in elementMonitor">
                                                     <li class="todo-projects-item ">
-                                                        <h4 :class="item.isActive==1?'font-blue':'font-grey-salsa'">
+                                                        <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
                                                             {{item.company}}</h4>
                                                         <ul class="receiver_tag">
                                                             <template v-for="result in item.results">
@@ -87,8 +87,9 @@
                                                     </li>
                                                     <div class="todo-projects-divider"></div>
                                                 </template>
-                                                <li class="todo-projects-item " v-if="elementMonitor.length==0">
-                                                    暂无打开任务，点击左侧任务列表！
+                                                <li class="todo-projects-item " v-if="elementMonitor.length==0"
+                                                    style="height: 100px;">
+                                                    <h4>暂无打开任务，点击左侧任务列表！</h4>
                                                 </li>
                                             </ul>
                                         </div>
@@ -459,7 +460,8 @@
                 addProjectList: [],
                 dispatch: {
                     charge_id: "",
-                    join_id: []
+                    join_id: [],
+                    project: []
                 }
             }
         },
@@ -682,7 +684,34 @@
             },
             createDispatch(){
                 var me = this;
-                alert(1234);
+                var items = me.addProjectList;
+                console.log(me.addProjectList);
+                var obj = {};//对象
+                var arrayList = [];
+                for (var i = 0; i < items.length; i++) {
+//                    console.log(items[i].task_id);
+//                    console.log(items[i].company);
+                    obj.task_id = items[i].task_id;
+                    obj.company = items[i].company;
+                    arrayList.push(obj);
+                }
+                me.dispatch.project = JSON.stringify(arrayList);
+//                console.log(me.dispatch);
+                App.startPageLoading({animate: true});
+                me.$http.post("/api/dispatch/create", me.dispatch).then(
+                    response => {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("任务派遣成功！");
+//                                me.getData();
+                                App.stopPageLoading();
+                            }
+                        })
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
             }
         }
     }
