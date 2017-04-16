@@ -112,7 +112,7 @@
                                                     <a href="#page_3" data-toggle="tab"> 历史派遣 </a>
                                                 </li>
                                             </ul>
-                                            <div class="tab-content">
+                                            <div class="tab-content" id="dispatchWizard">
                                                 <div class="tab-pane active" id="page_1">
                                                     <form class="form-horizontal" action="#"
                                                           method="POST">
@@ -143,9 +143,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3" for="join"
-                                                            >参与人员
-                                                                <span class="required">  </span>
+                                                            <label class="control-label col-md-3" for="join">参与人员
+                                                                <span class="required"> </span>
                                                             </label>
                                                             <div class="col-md-9">
                                                                 <select class="bs-select form-control"
@@ -171,7 +170,7 @@
                                                     <div class="form-group todo-container" style="padding: 10px 0px ">
                                                         <h4>负责项目</h4>
                                                         <hr>
-                                                        <ul class="todo-tasks-content" style="padding: 0px">
+                                                        <ul class="todo-tasks-content" style="padding: 0px;">
                                                             <template v-for="item in addProjectList">
                                                                 <li class="todo-tasks-item"
                                                                     style="list-style: none; padding: 10px 0 20px 0;">
@@ -209,10 +208,173 @@
                                                     </button>
                                                 </div>
                                                 <div class="tab-pane" id="page_2">
-                                                    bb
+                                                    <div class="todo-container">
+                                                        <div class="row">
+                                                            <div class="todo-tasks-container" style="margin-bottom: 10px">
+                                                                <div class="todo-head">
+                                                                    <h3>
+                                                                        <span class="todo-grey">Task:</span>任务编号
+                                                                    </h3>
+                                                                    <p>2017-04-16</p>
+                                                                </div>
+                                                                <div class="todo-tasks-content">
+                                                                    <h4>参与人员:</h4>
+                                                                    <ul style="padding: 0px 0px 0px 20px">
+                                                                        <li class="todo-inline">
+                                                                            张三
+                                                                            <span v-show="1"
+                                                                                  style="color: red; font-size: 0.3em">[负责]</span>、
+                                                                        </li>
+                                                                        <li class="todo-inline">
+                                                                            李四、
+                                                                        </li>
+                                                                        <li class="todo-inline">
+                                                                            王五、
+                                                                        </li>
+                                                                    </ul>
+                                                                    <hr>
+                                                                    <h4>负责项目:</h4>
+                                                                    <ul class="todo-tasks-content" style="padding: 0px">
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;" @click="ddddd">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州金吉彩色电镀公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州市金霸王电源有限公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州市金霸王电源有限公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="todo-tasks-container" style="margin-bottom: 10px">
+                                                                <div class="todo-head">
+                                                                    <h3>
+                                                                        <span class="todo-grey">Task:</span>任务编号
+                                                                    </h3>
+                                                                    <p>2017-04-16</p>
+                                                                </div>
+                                                                <div class="todo-tasks-content">
+                                                                    <h4>参与人员:</h4>
+                                                                    <ul style="padding: 0px 0px 0px 20px">
+                                                                        <li class="todo-inline">
+                                                                            张三
+                                                                            <span v-show="1"
+                                                                                  style="color: red; font-size: 0.3em">[负责]</span>、
+                                                                        </li>
+                                                                        <li class="todo-inline">
+                                                                            李四、
+                                                                        </li>
+                                                                        <li class="todo-inline">
+                                                                            王五、
+                                                                        </li>
+                                                                    </ul>
+                                                                    <hr>
+                                                                    <h4>负责项目:</h4>
+                                                                    <ul class="todo-tasks-content" style="padding: 0px">
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州金吉彩色电镀公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州市金霸王电源有限公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州市金霸王电源有限公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="todo-tasks-container" style="margin-bottom: 10px;">
+                                                                <div class="todo-head">
+                                                                    <h3>
+                                                                        <span class="todo-grey">Task:</span>任务编号
+                                                                    </h3>
+                                                                    <p>2017-04-16</p>
+                                                                </div>
+                                                                <div class="todo-tasks-content">
+                                                                    <h4>参与人员:</h4>
+                                                                    <ul style="padding: 0px 0px 0px 20px">
+                                                                        <li class="todo-inline">
+                                                                            张三
+                                                                            <span v-show="1"
+                                                                                  style="color: red; font-size: 0.3em">[负责]</span>、
+                                                                        </li>
+                                                                        <li class="todo-inline">
+                                                                            李四、
+                                                                        </li>
+                                                                        <li class="todo-inline">
+                                                                            王五、
+                                                                        </li>
+                                                                    </ul>
+                                                                    <hr>
+                                                                    <h4>负责项目:</h4>
+                                                                    <ul class="todo-tasks-content" style="padding: 0px">
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州金吉彩色电镀公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州市金霸王电源有限公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                        <li class="todo-tasks-item"
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
+                                                                            <h4 class="todo-inline">
+                                                                                <a data-toggle="modal">
+                                                                                    常州市金霸王电源有限公司
+                                                                                </a>
+                                                                            </h4>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane" id="page_3">
-                                                    cc
+                                                   和执行中派遣一样，不过想着是先折叠，点击再打开显示这一个任务的详细
                                                 </div>
                                             </div>
                                         </div>
@@ -684,9 +846,13 @@
             },
             createDispatch(){
                 var me = this;
+//                if (jQuery("#dispatchWizard").valid()) {
                 var items = me.addProjectList;
                 console.log(me.addProjectList);
-                var obj = {};//对象
+                var obj = {};
+                //先创一个对象，就你需要的task_id和company发到对象里；
+                // 再将对象push到一个数组里；
+                // 将数组用JSON.stringify()转换为字符串，传给project
                 var arrayList = [];
                 for (var i = 0; i < items.length; i++) {
 //                    console.log(items[i].task_id);
@@ -696,23 +862,188 @@
                     arrayList.push(obj);
                 }
                 me.dispatch.project = JSON.stringify(arrayList);
-//                console.log(me.dispatch);
-                App.startPageLoading({animate: true});
-                me.$http.post("/api/dispatch/create", me.dispatch).then(
-                    response => {
-                        var data = response.data;
-                        codeState(data.code, {
-                            200: function () {
-                                alert("任务派遣成功！");
-//                                me.getData();
-                                App.stopPageLoading();
-                            }
-                        })
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                )
+//                alert(arrayList.length);
+                if (arrayList.length < 1) {
+                    alert("您还没有选择任务，请选择派遣任务！")
+                } else {
+                    console.log(me.dispatch);
+                    App.startPageLoading({animate: true});
+                    me.$http.post("/api/dispatch/create", me.dispatch).then(
+                        response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("任务派遣成功！");
+                                    App.stopPageLoading();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        }
+                    )
+                }
+//                }
+//
+            },
+            ddddd(){
+                alert("详细信息！");
             }
+//            wizard(){
+//                //wizard插件和表单验证序列化
+//                var form = $('#dispatchWizard');
+//                var error = $('.alert-danger', form);
+//                var success = $('.alert-success', form);
+//                jQuery("#dispatchWizard").validate({
+//                    doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
+//                    errorElement: 'span', //default input error message container
+//                    errorClass: 'help-block help-block-error', // default input error message class
+//                    focusInvalid: false, // do not focus the last invalid input
+//                    rules: {
+//                        charge: {
+//                            required: true
+//                        }
+//                    },
+//
+//                    errorPlacement: function (error, element) { // render error placement for each input type
+//                        if (element.attr("name") == "gender") { // for uniform radio buttons, insert the after the given container
+//                            error.insertAfter("#form_gender_error");
+//                        } else if (element.attr("name") == "payment[]") { // for uniform checkboxes, insert the after the given container
+//                            error.insertAfter("#form_payment_error");
+//                        } else {
+//                            error.insertAfter(element); // for other inputs, just perform default behavior
+//                        }
+//                    },
+//
+//                    invalidHandler: function (event, validator) { //display error alert on form submit
+//                        success.hide();
+//                        error.show();
+//                        App.scrollTo(error, -200);
+//                    },
+//
+//                    highlight: function (element) { // hightlight error inputs
+//                        $(element)
+//                            .closest('.form-group').removeClass('has-success').addClass('has-error'); // set error class to the control group
+//                    },
+//
+//                    unhighlight: function (element) { // revert the change done by hightlight
+//                        $(element)
+//                            .closest('.form-group').removeClass('has-error'); // set error class to the control group
+//                    },
+//
+//                    success: function (label) {
+//                        if (label.attr("for") == "gender" || label.attr("for") == "payment[]") { // for checkboxes and radio buttons, no need to show OK icon
+//                            label
+//                                .closest('.form-group').removeClass('has-error').addClass('has-success');
+//                            label.remove(); // remove error label here
+//                        } else { // display success icon for other inputs
+//                            label
+//                                .addClass('valid') // mark the current input as valid and display OK icon
+//                                .closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
+//                        }
+//                    },
+//
+//                    submitHandler: function (form) {
+//                        success.show();
+//                        error.hide();
+//                        form[0].submit();
+//                        //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
+//                    }
+//
+//                });
+//                var displayConfirm = function () {
+//                    $('#tab4 .form-control-static', form).each(function () {
+//                        var input = $('[name="' + $(this).attr("data-display") + '"]', form);
+//                        if (input.is(":radio")) {
+//                            input = $('[name="' + $(this).attr("data-display") + '"]:checked', form);
+//                        }
+//                        if (input.is(":text") || input.is("textarea")) {
+//                            $(this).html(input.val());
+//                        } else if (input.is("select")) {
+//                            $(this).html(input.find('option:selected').text());
+//                        } else if (input.is(":radio") && input.is(":checked")) {
+//                            $(this).html(input.attr("data-title"));
+//                        } else if ($(this).attr("data-display") == 'payment[]') {
+//                            var payment = [];
+//                            $('[name="payment[]"]:checked', form).each(function () {
+//                                payment.push($(this).attr('data-title'));
+//                            });
+//                            $(this).html(payment.join("<br>"));
+//                        }
+//                    });
+//                }
+//                var handleTitle = function (tab, navigation, index) {
+//                    var total = navigation.find('li').length;
+//                    var current = index + 1;
+//                    // set wizard title
+//                    $('.step-title', $('#contract_wizard')).text('Step ' + (index + 1) + ' of ' + total);
+//                    // set done steps
+//                    jQuery('li', $('#contract_wizard')).removeClass("done");
+//                    var li_list = navigation.find('li');
+//                    for (var i = 0; i < index; i++) {
+//                        jQuery(li_list[i]).addClass("done");
+//                    }
+//
+//                    if (current == 1) {
+//                        $('#contract_wizard').find('.button-previous').hide();
+//                    } else {
+//                        $('#contract_wizard').find('.button-previous').show();
+//                    }
+//
+//                    if (current >= total) {
+//                        $('#contract_wizard').find('.button-next').hide();
+//                        $('#contract_wizard').find('.button-submit').show();
+//                        displayConfirm();
+//                    } else {
+//                        $('#contract_wizard').find('.button-next').show();
+//                        $('#contract_wizard').find('.button-submit').hide();
+//                    }
+//                    App.scrollTo($('.page-title'));
+//                }
+//                $('#contract_wizard').bootstrapWizard({
+//                    'nextSelector': '.button-next',
+//                    'previousSelector': '.button-previous',
+//                    onTabClick: function (tab, navigation, index, clickedIndex) {
+//                        return false;
+//
+//                        success.hide();
+//                        error.hide();
+//                        if (form.valid() == false) {
+//                            return false;
+//                        }
+//
+//                        handleTitle(tab, navigation, clickedIndex);
+//                    },
+//                    onNext: function (tab, navigation, index) {
+//                        success.hide();
+//                        error.hide();
+//
+//                        if (form.valid() == false) {
+//                            return false;
+//                        }
+//                        handleTitle(tab, navigation, index);
+//                    },
+//                    onPrevious: function (tab, navigation, index) {
+//                        success.hide();
+//                        error.hide();
+//
+//                        handleTitle(tab, navigation, index);
+//                    },
+//                    onTabShow: function (tab, navigation, index) {
+//                        var total = navigation.find('li').length;
+//                        var current = index + 1;
+//                        var $percent = (current / total) * 100;
+//                        $('#contract_wizard').find('.progress-bar').css({
+//                            width: $percent + '%'
+//                        });
+//                    }
+//                });
+//                $('#contract_wizard').find('.button-previous').hide();
+//                $('#contract_wizard').find('.button-submit').hide();
+//                $('#country_list', form).change(function () {
+//                    form.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
+//                });
+//            },
+
         }
     }
 
