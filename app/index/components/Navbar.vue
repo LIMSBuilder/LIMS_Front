@@ -51,7 +51,7 @@
             <li class="heading">
                 <h3 class="uppercase">个人中心</h3>
             </li>
-            <router-link :to="{ path: '/task/myTask' }" tag="li" active-class="active">
+            <router-link :to="{ path: '/sample/myTask' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-tasks"></i>
                     <span class="title">我的任务</span>
@@ -60,7 +60,7 @@
             <router-link :to="{ path: '/mail/inbox' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-envelope"></i>
-                    <span class="title">邮箱服务</span>
+                    <span class="title">Email</span>
                 </a>
             </router-link>
             <router-link :to="{ path: '/calendar' }" tag="li" active-class="active">
@@ -125,11 +125,7 @@
                             <span class="title">任务列表</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/task/disPatch' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">任务派遣</span>
-                        </a>
-                    </router-link>
+
                 </ul>
             </li>
 
@@ -140,6 +136,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+                    <router-link :to="{ path: '/sample/disPatch' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">采样任务派遣</span>
+                        </a>
+                    </router-link>
                     <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">样品号申请</span>
@@ -153,6 +154,90 @@
                     <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">自送样信息登记</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-legal"></i>
+                    <span class="title">质量控制</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">项目质控</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">实验结果二审</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">监测报告二审</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-magic"></i>
+                    <span class="title">实验分析</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">实验任务派遣</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">实验数据审核</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">实验数据复核</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">实验结果一审</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-paperclip"></i>
+                    <span class="title">报告管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">报告任务派遣</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">监测报告一审</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">监测报告签发</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">监测报告签收</span>
                         </a>
                     </router-link>
                 </ul>
