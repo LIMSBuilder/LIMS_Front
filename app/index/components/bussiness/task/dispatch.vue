@@ -21,6 +21,9 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4">
                                         <div class="todo-tasklist" id="task_list">
+                                            <div class="todo-tasklist-item todo-tasklist-item-border-warning">
+                                                <h4 class="text-center">显示全部</h4>
+                                            </div>
                                             <template v-for="item in taskList">
                                                 <div @click="viewElementMonitor(item.id)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
@@ -89,7 +92,7 @@
                                                 </template>
                                                 <li class="todo-projects-item " v-if="elementMonitor.length==0"
                                                     style="height: 100px;">
-                                                    <h4>暂无打开任务，点击左侧任务列表！</h4>
+                                                    <h4>尚未选择任务，点击左侧任务列表！</h4>
                                                 </li>
                                             </ul>
                                         </div>
