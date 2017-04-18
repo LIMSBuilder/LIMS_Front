@@ -97,12 +97,12 @@
                     </router-link>
                     <router-link :to="{ path: '/contract/sreview' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">小额审核</span>
+                            <span class="title">业务审核</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/contract/review' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">大额审核</span>
+                            <span class="title">技术审核</span>
                         </a>
                     </router-link>
                 </ul>
