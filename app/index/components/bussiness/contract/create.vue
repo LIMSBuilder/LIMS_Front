@@ -332,61 +332,68 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">检测项目
-                                                    <span class="required">  </span>
+                                                    <span class="required"> &nbsp;&nbsp; </span>
                                                 </label>
-                                                <div class="col-md-9">
+                                                <div class="col-md-10">
                                                     <div class="table-scrollable table-scrollable-borderless">
                                                         <table class="table table-hover table-light">
-                                                            <thead>
-                                                            <tr class="uppercase">
-                                                                <th> 序号</th>
-                                                                <!--<th> 公司、道路名称</th>-->
-                                                                <th> 环境要素</th>
-                                                                <th> 监测点（个）</th>
-                                                                <th> 监测项目</th>
-                                                                <th> 监测频次</th>
-                                                                <!--<th> 是否分包</th>-->
-                                                                <th> 备注</th>
-                                                                <th> 操作</th>
-                                                            </tr>
-                                                            </thead>
                                                             <tbody>
-                                                            <template v-for="(item,index) in contract.item">
-                                                                <tr>
-                                                                    <td class="text-center">{{index+1}}</td>
-                                                                    <!--<td class="text-center">{{item.company}}</td>-->
-                                                                    <td class="text-center">{{item.element.name}}
-                                                                    </td>
-                                                                    <td class="text-center">{{item.point}}
-                                                                    </td>
-                                                                    <td class="text-center">
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 公司名称</th>
+                                                                        <th> 环境要素</th>
+                                                                        <th> 监测点（个）</th>
+                                                                        <th> 监测项目</th>
+                                                                        <th> 监测频次</th>
+                                                                        <th> 备注</th>
+                                                                        <th> 操作</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="itemList in contract.item">
                                                                         <template
-                                                                                v-for="(project,index) in item.project">
-                                                                            {{project.name}}
-                                                                            <template
-                                                                                    v-if="index+1!=item.project.length">
-                                                                                ,
-                                                                            </template>
+                                                                                v-for="(item,index) in itemList.items">
+                                                                            <tr>
+                                                                                <td class="text-center">{{index+1}}</td>
+                                                                                <td class="text-center">
+                                                                                    {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{item.element.name}}
+                                                                                </td>
+                                                                                <td class="text-center">{{item.point}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <template
+                                                                                            v-for="(project,index) in item.project">
+                                                                                        {{project.name}}
+                                                                                        <template
+                                                                                                v-if="index+1!=item.project.length">
+                                                                                            ,
+                                                                                        </template>
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{item.frequency.total}}
+                                                                                </td>
+                                                                                <td class="text-center">{{item.other}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <a href="javascript:;"
+                                                                                       class="btn btn-icon-only red"
+                                                                                       @click="deleteItem(project)">
+                                                                                        <i class="fa fa-trash-o"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
                                                                         </template>
-                                                                    </td>
-                                                                    <td class="text-center">{{item.frequency.total}}
-                                                                    </td>
-                                                                    <!--<td class="text-center"-->
-                                                                    <!--v-if="item.is_package==1">是-->
-                                                                    <!--</td>-->
-                                                                    <!--<td class="text-center"-->
-                                                                    <!--v-if="item.is_package==0">否-->
-                                                                    <!--</td>-->
-                                                                    <td class="text-center">{{item.other}}</td>
-                                                                    <td class="text-center">
-                                                                        <a href="javascript:;"
-                                                                           class="btn btn-icon-only red"
-                                                                           @click="deleteItem(item)">
-                                                                            <i class="fa fa-trash-o"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            </template>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -668,56 +675,119 @@
                                                     <div class="col-md-10">
                                                         <div class="table-scrollable table-scrollable-borderless">
                                                             <table class="table table-hover table-light">
-                                                                <thead>
-                                                                <tr class="uppercase">
-                                                                    <th> 序号</th>
-                                                                    <!--<th> 公司、道路名称</th>-->
-                                                                    <th> 环境要素</th>
-                                                                    <th> 监测点（个）</th>
-                                                                    <th> 监测项目</th>
-                                                                    <th> 监测频次</th>
-                                                                    <!--<th> 是否分包</th>-->
-                                                                    <th> 备注</th>
-                                                                </tr>
-                                                                </thead>
                                                                 <tbody>
-                                                                <template v-for="(item,index) in contract.item">
-                                                                    <tr>
-                                                                        <td class="text-center">{{index+1}}</td>
-                                                                        <!--<td class="text-center">{{item.company}}</td>-->
-                                                                        <td class="text-center">{{item.element.name}}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{item.point}}
-                                                                        </td>
-                                                                        <td class="text-center">
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr class="uppercase">
+                                                                            <th> 序号</th>
+                                                                            <th> 公司名称</th>
+                                                                            <th> 环境要素</th>
+                                                                            <th> 监测点（个）</th>
+                                                                            <th> 监测项目</th>
+                                                                            <th> 监测频次</th>
+                                                                            <th> 备注</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <template v-for="itemList in contract.item">
                                                                             <template
-                                                                                    v-for="(project,index) in item.project">
-                                                                                {{project.name}}
-                                                                                <template
-                                                                                        v-if="project.isPackage==true">
-                                                                                    <span style="color: red;">[分包]</span>
-                                                                                </template>
-                                                                                <template
-                                                                                        v-if="index+1!=item.project.length">
-                                                                                    ,
-                                                                                </template>
+                                                                                    v-for="(item,index) in itemList.items">
+                                                                                <tr>
+                                                                                    <td class="text-center">
+                                                                                        {{index+1}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.element.name}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.point}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        <template
+                                                                                                v-for="(project,index) in item.project">
+                                                                                            {{project.name}}
+                                                                                            <template
+                                                                                                    v-if="project.isPackage==true">
+                                                                                                <span style="color: red;">[分包]</span>
+                                                                                            </template>
+                                                                                            <template
+                                                                                                    v-if="index+1!=item.project.length">
+                                                                                                ,
+                                                                                            </template>
+                                                                                        </template>
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.frequency.total}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.other}}
+                                                                                    </td>
+                                                                                </tr>
                                                                             </template>
-                                                                        </td>
-                                                                        <td class="text-center">{{item.frequency.total}}
-                                                                        </td>
-                                                                        <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==1">是-->
-                                                                        <!--</td>-->
-                                                                        <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==0">否-->
-                                                                        <!--</td>-->
-                                                                        <td class="text-center">{{item.other}}</td>
-                                                                    </tr>
-                                                                </template>
+                                                                        </template>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                                 </tbody>
                                                             </table>
                                                         </div>
+
+                                                        <!--<div class="table-scrollable table-scrollable-borderless">-->
+                                                        <!--<table class="table table-hover table-light">-->
+                                                        <!--<thead>-->
+                                                        <!--<tr class="uppercase">-->
+                                                        <!--<th> 序号</th>-->
+                                                        <!--&lt;!&ndash;<th> 公司、道路名称</th>&ndash;&gt;-->
+                                                        <!--<th> 环境要素</th>-->
+                                                        <!--<th> 监测点（个）</th>-->
+                                                        <!--<th> 监测项目</th>-->
+                                                        <!--<th> 监测频次</th>-->
+                                                        <!--&lt;!&ndash;<th> 是否分包</th>&ndash;&gt;-->
+                                                        <!--<th> 备注</th>-->
+                                                        <!--</tr>-->
+                                                        <!--</thead>-->
+                                                        <!--<tbody>-->
+                                                        <!--<template v-for="(item,index) in contract.item">-->
+                                                        <!--<tr>-->
+                                                        <!--<td class="text-center">{{index+1}}</td>-->
+                                                        <!--&lt;!&ndash;<td class="text-center">{{item.company}}</td>&ndash;&gt;-->
+                                                        <!--<td class="text-center">{{item.element.name}}-->
+                                                        <!--</td>-->
+                                                        <!--<td class="text-center">-->
+                                                        <!--{{item.point}}-->
+                                                        <!--</td>-->
+                                                        <!--<td class="text-center">-->
+                                                        <!--<template-->
+                                                        <!--v-for="(project,index) in item.project">-->
+                                                        <!--{{project.name}}-->
+                                                        <!--<template-->
+                                                        <!--v-if="project.isPackage==true">-->
+                                                        <!--<span style="color: red;">[分包]</span>-->
+                                                        <!--</template>-->
+                                                        <!--<template-->
+                                                        <!--v-if="index+1!=item.project.length">-->
+                                                        <!--,-->
+                                                        <!--</template>-->
+                                                        <!--</template>-->
+                                                        <!--</td>-->
+                                                        <!--<td class="text-center">{{item.frequency.total}}-->
+                                                        <!--</td>-->
+                                                        <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;v-if="item.is_package==1">是&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;v-if="item.is_package==0">否&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                                        <!--<td class="text-center">{{item.other}}</td>-->
+                                                        <!--</tr>-->
+                                                        <!--</template>-->
+                                                        <!--</tbody>-->
+                                                        <!--</table>-->
+                                                        <!--</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -731,7 +801,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="form-group">
+                                                <div class="form-group col-md-12">
                                                     <label class="control-label col-md-2">客户要求
                                                         <span class="required">  </span>
                                                     </label>
@@ -770,7 +840,7 @@
                                                     </label>
                                                     <div class="col-md-8">
                                                         <div class="col-md-4">
-                                                            <label class="control-label">{{contract.payment}}￥</label>
+                                                            <label class="control-label">￥{{contract.payment}}</label>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label class="control-label">{{paymentCap}}</label>
@@ -1039,50 +1109,111 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <template v-for="(item,index) in contract.item">
-                                    <tr>
-                                        <td class="text-center" rowspan="item.length">
-                                            {{item.company==null?'无':item.company}}
-                                        </td>
-                                        <td class="text-center" rowspan="item.project.length">{{item.element.name}}
-                                        </td>
-                                        <td class="text-center">
-                                            <table class="table table-hover table-light">
-                                                <tbody>
-                                                <template v-for="project in item.project">
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            {{project.name}}
-                                                        </td>
-                                                    </tr>
-                                                </template>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                        <td class="text-center">
-                                            <table class="table table-hover table-light">
-                                                <tbody>
-                                                <template v-for="project in item.project">
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <label class="mt-checkbox mt-checkbox-outline">
-                                                                <!--<input type="checkbox" v-model="project.id"-->
-                                                                <!--name="ispackage" :value="item.id+'/'+project.id">-->
-                                                                <input type="checkbox" v-model="project.isPackage"
-                                                                       name="ispackage" value="1">
-                                                                <span></span>
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                </template>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
+                                <template v-for="itemList in contract.item">
+                                    <template v-for="(item,index) in itemList.items">
+                                        <tr>
+                                            <td class="text-center" rowspan="itemList.length">
+                                                {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                            </td>
+                                            <td class="text-center" rowspan="item.project.length">{{item.element.name}}
+                                            </td>
+                                            <td class="text-center">
+                                                <table class="table table-hover table-light">
+                                                    <tbody>
+                                                    <template v-for="project in item.project">
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                {{project.name}}
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td class="text-center">
+                                                <table class="table table-hover table-light">
+                                                    <tbody>
+                                                    <template v-for="project in item.project">
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                <label class="mt-checkbox mt-checkbox-outline">
+                                                                    <!--<input type="checkbox" v-model="project.id"-->
+                                                                    <!--name="ispackage" :value="item.id+'/'+project.id">-->
+                                                                    <input type="checkbox" v-model="project.isPackage"
+                                                                           name="ispackage" value="1">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </template>
                                 </template>
                                 </tbody>
                             </table>
                         </div>
+                        <!--<div class="table-scrollable table-scrollable-borderless">-->
+                        <!--<template v-for="itemList in contract.item">-->
+                        <!--<table class="table table-hover table-light">-->
+                        <!--<thead class="uppercase text-center">公司名称【{{itemList.company}}】-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<div class="table-scrollable table-scrollable-borderless">-->
+                        <!--<table class="table table-hover table-light">-->
+                        <!--<thead>-->
+                        <!--<tr class="uppercase">-->
+                        <!--<th> 序号</th>-->
+                        <!--<th> 环境要素</th>-->
+                        <!--<th> 监测点（个）</th>-->
+                        <!--<th> 监测项目</th>-->
+                        <!--<th> 监测频次</th>-->
+                        <!--<th> 备注</th>-->
+                        <!--<th> 操作</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<template v-for="(item,index) in itemList.items">-->
+                        <!--<tr>-->
+                        <!--<td class="text-center">{{index+1}}</td>-->
+                        <!--<td class="text-center">-->
+                        <!--{{item.element.name}}-->
+                        <!--</td>-->
+                        <!--<td class="text-center">{{item.point}}-->
+                        <!--</td>-->
+                        <!--<td class="text-center">-->
+                        <!--<template-->
+                        <!--v-for="(project,index) in item.project">-->
+                        <!--{{project.name}}-->
+                        <!--<template-->
+                        <!--v-if="index+1!=item.project.length">-->
+                        <!--,-->
+                        <!--</template>-->
+                        <!--</template>-->
+                        <!--</td>-->
+                        <!--<td class="text-center">-->
+                        <!--{{item.frequency.total}}-->
+                        <!--</td>-->
+                        <!--<td class="text-center">{{item.other}}-->
+                        <!--</td>-->
+                        <!--<td class="text-center">-->
+                        <!--<a href="javascript:;"-->
+                        <!--class="btn btn-icon-only red"-->
+                        <!--@click="deleteItem(item)">-->
+                        <!--<i class="fa fa-trash-o"></i>-->
+                        <!--</a>-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                        <!--</template>-->
+                        <!--</tbody>-->
+                        <!--</table>-->
+                        <!--</div>-->
+                        <!--</tbody>-->
+                        <!--</table>-->
+                        <!--</template>-->
+                        <!--</div>-->
                         <div class="modal-footer">
                             <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
                             <button type="button" class="btn green" @click="isPackges">添 加</button>
@@ -1323,7 +1454,7 @@
                             var data = response.data;
                             alert("监测项目创建成功！");
                             me.contract.item.push(data);
-//                            console.log(JSON.parse(JSON.stringify(me.contract)));
+                            console.log(JSON.parse(JSON.stringify(me.contract)));
                         }
                         , function (response) {
                             serverErrorInfo(response);
@@ -1370,10 +1501,10 @@
                 var items = me.contract.item;
                 me.contract.project_items = [];
                 for (var i = 0; i < items.length; i++) {
-                    console.log(JSON.stringify(items[i]))
+//                    console.log(JSON.stringify(items[i]));
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
-                console.log(JSON.parse(JSON.stringify(me.contract)));
+//                console.log(JSON.parse(JSON.stringify(me.contract)));
                 App.startPageLoading({animate: true});
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
