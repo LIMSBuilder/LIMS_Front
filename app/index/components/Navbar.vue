@@ -51,6 +51,12 @@
             <li class="heading">
                 <h3 class="uppercase">个人中心</h3>
             </li>
+            <router-link :to="{ path: '/task/myTask' }" tag="li" active-class="active">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-tasks"></i>
+                    <span class="title">我的任务</span>
+                </a>
+            </router-link>
             <router-link :to="{ path: '/mail/inbox' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-envelope"></i>
@@ -61,6 +67,12 @@
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-calendar"></i>
                     <span class="title">日程计划</span>
+                </a>
+            </router-link>
+            <router-link :to="{ path: '/address/list' }" tag="li" active-class="active">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="title">通讯录</span>
                 </a>
             </router-link>
             <li class="heading">
@@ -83,9 +95,14 @@
                             <span class="title">合同列表</span>
                         </a>
                     </router-link>
+                    <router-link :to="{ path: '/contract/sreview' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">业务审核</span>
+                        </a>
+                    </router-link>
                     <router-link :to="{ path: '/contract/review' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">合同审核</span>
+                            <span class="title">技术审核</span>
                         </a>
                     </router-link>
                 </ul>

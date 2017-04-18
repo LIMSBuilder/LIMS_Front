@@ -41,12 +41,15 @@ import Create_Contract from './components/bussiness/contract/create.vue'
 import Contract_List from './components/bussiness/contract/list.vue'
 import Contract_Review from './components/bussiness/contract/review.vue'
 import Change_Contract from './components/bussiness/contract/change.vue'
+import contract_Sreview from './components/bussiness/contract/sreview.vue'
 
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
 import Task_List from './components/bussiness/task/list.vue'
 import DisPatch from './components/bussiness/task/dispatch.vue'
 import DisPatchSetting from './components/bussiness/task/dispatchSetting.vue'
+import DisPatchCheck from './components/bussiness/task/dispatchCheck.vue'
+import MyTask from './components/bussiness/task/myTask.vue'
 
 
 import Sample from './components/bussiness/sample/sample.vue'
@@ -132,7 +135,9 @@ import view from './components/mail/view.vue'
 import outbox from './components/mail/outbox.vue'
 import viewSend from './components/mail/viewSend.vue'
 
-
+//Address List
+import address from './components/address/address.vue'
+import address_list from './components/address/list.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -143,6 +148,7 @@ import 'style/switch'
 import 'style/iziToast'
 import 'style/iziModal'
 
+import 'style/datepicker'
 import 'style/component'
 import 'style/plugins'
 
@@ -181,6 +187,14 @@ var routes = [
             path: "help",
             component: help
 
+        }]
+    }, {
+        path: "/address",
+        name: "/address",
+        component: address,
+        children: [{
+            path: "list",
+            component: address_list
         }]
     },
     {
@@ -413,6 +427,10 @@ var routes = [
             {
                 path: "review",
                 component: Contract_Review
+            },
+            {
+                path: "sreview",
+                component: contract_Sreview
             }
         ]
     },
@@ -436,6 +454,14 @@ var routes = [
             {
                 path: "disPatchSetting",
                 component: DisPatchSetting
+            },
+            {
+                path: "disPatchCheck",
+                component: DisPatchCheck
+            },
+            {
+                path: "myTask",
+                component: MyTask
             }
         ]
     },

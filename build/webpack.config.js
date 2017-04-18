@@ -69,6 +69,7 @@ module.exports = {
             'mod/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.js'),
             'mod/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
             'mod/editable': path.resolve(PluginsPath, 'bootstrap-editable/bootstrap-editable/js/bootstrap-editable.js'),
+            'mod/jcrop':path.resolve(PluginsPath,'jcrop/js/jquery.Jcrop.js'),
 
             'mod/pushlet': path.resolve(JsPath, 'ajax-pushlet-client.js'),
 
@@ -99,6 +100,7 @@ module.exports = {
             'style/datarangepicker': path.resolve(PluginsPath, 'bootstrap-daterangepicker/daterangepicker.css'),
             'style/taginput': path.resolve(PluginsPath, 'bootstrap-tagsinput/bootstrap-tagsinput.css'),
 
+            'style/datepicker':path.resolve(PluginsPath,'bootstrap-datepicker/css/bootstrap-datepicker3.css'),
             'style/login': path.resolve(StylePath, 'login.css'),
 
             'style/contract_list': path.resolve(StylePath, 'contract_list.css'),
@@ -109,7 +111,9 @@ module.exports = {
             'style/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.css'),
             'style/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),
             'style/editable': path.resolve(PluginsPath, 'bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css'),
+            'style/jcrop':path.resolve(PluginsPath,'jcrop/css/jquery.Jcrop.css'),
             'style/main': path.resolve(StylePath, 'main.css'),
+
 
             'globalPath': path.resolve(GlobalPath)
         }
