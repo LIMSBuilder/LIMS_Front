@@ -849,6 +849,7 @@
                                     alert("合同审核完成！");
                                     me.viewDetails(me.contract.id);
                                     me.getData();
+                                    me.fetchDearCount();
 //                                    debugger
                                     jQuery("#reviewContract").modal("hide");
                                 }

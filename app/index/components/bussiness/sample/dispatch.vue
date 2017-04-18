@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 任务派遣
+        <h1 class="page-title"> 样品采样任务派遣
             <small>／Dispath</small>
         </h1>
         <div class="row">
@@ -32,7 +32,11 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}
+                                                        {{item.identify}}/
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==0">实验室分析室--自送样</span>
+                                                        <span class="label label-sm label-default"
+                                                              v-if="item.sample_type==1">现场检测室--现场采样</span>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -213,7 +217,8 @@
                                                 <div class="tab-pane" id="page_2">
                                                     <div class="todo-container">
                                                         <div class="row">
-                                                            <div class="todo-tasks-container" style="margin-bottom: 10px">
+                                                            <div class="todo-tasks-container"
+                                                                 style="margin-bottom: 10px">
                                                                 <div class="todo-head">
                                                                     <h3>
                                                                         <span class="todo-grey">Task:</span>任务编号
@@ -239,7 +244,8 @@
                                                                     <h4>负责项目:</h4>
                                                                     <ul class="todo-tasks-content" style="padding: 0px">
                                                                         <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;" @click="ddddd">
+                                                                            style="list-style: none; padding: 10px 0 20px 0;"
+                                                                            @click="ddddd">
                                                                             <h4 class="todo-inline">
                                                                                 <a data-toggle="modal">
                                                                                     常州金吉彩色电镀公司
@@ -266,7 +272,8 @@
 
                                                                 </div>
                                                             </div>
-                                                            <div class="todo-tasks-container" style="margin-bottom: 10px">
+                                                            <div class="todo-tasks-container"
+                                                                 style="margin-bottom: 10px">
                                                                 <div class="todo-head">
                                                                     <h3>
                                                                         <span class="todo-grey">Task:</span>任务编号
@@ -319,7 +326,8 @@
 
                                                                 </div>
                                                             </div>
-                                                            <div class="todo-tasks-container" style="margin-bottom: 10px;">
+                                                            <div class="todo-tasks-container"
+                                                                 style="margin-bottom: 10px;">
                                                                 <div class="todo-head">
                                                                     <h3>
                                                                         <span class="todo-grey">Task:</span>任务编号
@@ -377,7 +385,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="page_3">
-                                                   和执行中派遣一样，不过想着是先折叠，点击再打开显示这一个任务的详细
+                                                    和执行中派遣一样，不过想着是先折叠，点击再打开显示这一个任务的详细
                                                 </div>
                                             </div>
                                         </div>
@@ -612,7 +620,7 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "",
+                condition: "process=apply_sample",
                 taskList: [],
                 task: {
                     type: {}
