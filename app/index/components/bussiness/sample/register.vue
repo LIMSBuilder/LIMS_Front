@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="page-title"> 自送样信息登记
-            <small>／Sample</small>
+            <small>／Register</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -21,15 +21,16 @@
                                         <li class="active">
                                             <a href="javascript:;" @click="searchByProcess('apply_sample')"> 全部</a>
                                         </li>
-                                        <!--<li>-->
-                                        <!--<a href="javascript:;" @click="searchByProcess('')">-->
+                                        <li>
+                                            <a href="javascript:;" @click="searchByProcess('')">
                                         <!--<span class="badge badge-info"-->
-                                        <!--v-if="countProcess!=0"> {{countProcess}} </span> 待登记 </a>-->
-                                        <!--</li>-->
-                                        <!--<li>-->
-                                        <!--<a href="javascript:;"-->
-                                        <!--@click="searchByProcess('')">已登记 </a>-->
-                                        <!--</li>-->
+                                              <!--v-if="countProcess!=0"> {{countProcess}} </span> -->
+                                                待登记 </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;"
+                                               @click="searchByProcess('')">已登记 </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -97,9 +98,9 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <span class="label label-sm label-danger"
-                                                              v-if="item.process==2">待登记</span>
+                                                              v-if="item.process==1">待登记</span>
                                                         <span class="label label-sm label-info"
-                                                              v-if="item.process==1">已登记</span>
+                                                              v-if="item.process==2">已登记</span>
                                                     </div>
                                                 </div>
                                             </template>

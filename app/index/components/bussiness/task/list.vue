@@ -29,10 +29,6 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(2)">
-                                                待样品登记 </a>
-                                        </li>
-                                        <li>
                                             <a href="javascript:;" @click="searchByProcess(3)">
                                                 样品已登记 </a>
                                         </li>

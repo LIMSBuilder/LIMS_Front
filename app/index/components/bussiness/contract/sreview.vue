@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 小额审核
+        <h1 class="page-title"> 业务审核
             <small>／Review</small>
         </h1>
         <div class="row">
@@ -78,7 +78,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">小额审核</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">业务审核</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -849,6 +849,7 @@
                                     alert("合同审核完成！");
                                     me.viewDetails(me.contract.id);
                                     me.getData();
+                                    me.fetchDearCount();
 //                                    debugger
                                     jQuery("#reviewContract").modal("hide");
                                 }
