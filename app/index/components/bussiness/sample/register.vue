@@ -78,11 +78,7 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}/
-                                                        <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==0">实验室分析室--自送样</span>
-                                                        <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==1">现场检测室--现场采样</span>
+                                                        {{item.identify}}
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -132,10 +128,6 @@
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
                                                         <div class="todo-taskbody-date pull-right">
-                                                            <!--<button type="button"-->
-                                                            <!--class="todo-username-btn btn btn-circle btn-default btn-sm">-->
-                                                            <!--&nbsp; 导 出 &nbsp;</button>-->
-
                                                             <span class="todo-username pull-left"
                                                                   style="font-size: 14px;">编号：{{task.identify}}</span>
                                                         </div>
@@ -145,46 +137,6 @@
                                                     <div class="form-body">
                                                         <h3 class="form-section" style="margin-top: 0">添加样品信息</h3>
                                                         <div class="row">
-                                                            <!--<div class="form-group col-md-12 form-md-radios">-->
-                                                            <!--<label class="control-label col-md-3">编号前缀</label>-->
-                                                            <!--<div class="md-radio-inline col-md-9">-->
-                                                            <!--<div class="md-radio">-->
-                                                            <!--<input type="radio" id="default"-->
-                                                            <!--name="prefix"-->
-                                                            <!--class="md-radiobtn"-->
-                                                            <!--v-model="sample.prefix" value="0">-->
-                                                            <!--<label for="default">-->
-                                                            <!--<span class="inc"></span>-->
-                                                            <!--<span class="check"></span>-->
-                                                            <!--<span class="box"></span>-->
-                                                            <!--默认：{{task.type.name}}({{task.type.identifier}})-->
-                                                            <!--</label>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="md-radio">-->
-                                                            <!--<input type="radio" id="customer"-->
-                                                            <!--name="prefix"-->
-                                                            <!--class="md-radiobtn"-->
-                                                            <!--v-model="sample.prefix" value="1">-->
-                                                            <!--<label for="customer">-->
-                                                            <!--<span class="inc"></span>-->
-                                                            <!--<span class="check"></span>-->
-                                                            <!--<span class="box"></span> 自定义-->
-                                                            <!--</label>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="form-group col-md-12 form-md-line-input "-->
-                                                            <!--v-if="sample.prefix==1">-->
-                                                            <!--<label class="control-label col-md-3"-->
-                                                            <!--for="customer_prefix">自定义前缀</label>-->
-                                                            <!--<div class="col-md-9">-->
-                                                            <!--<input type="text" min="0" class="form-control"-->
-                                                            <!--id="customer_prefix"-->
-                                                            <!--placeholder="请输入样品前缀"-->
-                                                            <!--v-model="sample.prefix_text">-->
-                                                            <!--<span class="help-block">自定义前缀仅对本次申请有效。</span>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
                                                             <div class="form-group col-md-12 form-md-line-input ">
                                                                 <label class="control-label col-md-3"
                                                                        for="sample_name">样品名称/编号</label>
