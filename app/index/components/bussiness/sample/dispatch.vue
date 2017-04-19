@@ -32,7 +32,7 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}
+                                                        任务编号：{{item.identify}}
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -96,7 +96,7 @@
                                                 </template>
                                                 <li class="todo-projects-item " v-if="elementMonitor.length==0"
                                                     style="height: 100px;">
-                                                    <h4>尚未选择任务，点击左侧任务列表！</h4>
+                                                    <h4>尚未选择任务，或不存在待派遣任务</h4>
                                                 </li>
                                             </ul>
                                         </div>
