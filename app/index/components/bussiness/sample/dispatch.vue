@@ -840,8 +840,6 @@
                 var me = this;
                 item.isActive = 1;
                 me.addProjectList.push(item);
-                console.log(me.addProjectList);
-                console.log(me.addProjectList.length);
             },
             deleteItem(item){
                 var me = this;
@@ -859,21 +857,11 @@
                 var me = this;
 //                if (jQuery("#dispatchWizard").valid()) {
                 var items = me.addProjectList;
-                console.log(me.addProjectList);
-                var obj = {};
-                //先创一个对象，就你需要的task_id和company发到对象里；
-                // 再将对象push到一个数组里；
-                // 将数组用JSON.stringify()转换为字符串，传给project
                 var arrayList = [];
                 for (var i = 0; i < items.length; i++) {
-//                    console.log(items[i].task_id);
-//                    console.log(items[i].company);
-                    obj.task_id = items[i].task_id;
-                    obj.company = items[i].company;
-                    arrayList.push(obj);
+                    arrayList.push(items[i].id);
                 }
-                me.dispatch.project = JSON.stringify(arrayList);
-//                alert(arrayList.length);
+                me.dispatch.company = arrayList;
                 if (arrayList.length < 1) {
                     alert("您还没有选择任务，请选择派遣任务！")
                 } else {
