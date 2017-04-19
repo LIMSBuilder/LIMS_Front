@@ -32,11 +32,7 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}/
-                                                        <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==0">实验室分析室--自送样</span>
-                                                        <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==1">现场检测室--现场采样</span>
+                                                        任务编号：{{item.identify}}
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -67,7 +63,11 @@
                                                 <template v-for="item in elementMonitor">
                                                     <li class="todo-projects-item ">
                                                         <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
-                                                            {{item.company}}</h4>
+                                                            <span class="label label-danger"
+                                                                  v-if="item.process==0"> 待派遣 </span>
+                                                            <span class="label label-info"
+                                                                  v-if="item.process==1"> 已派遣 </span> {{item.company}}
+                                                        </h4>
                                                         <ul class="receiver_tag">
                                                             <template v-for="result in item.results">
                                                                 <li class="uppercase ">
@@ -88,7 +88,7 @@
                                                                     Members</a>
                                                                 <a class="todo-add-button" href="javascript:;"
                                                                    @click="addProject(item)"
-                                                                   v-if="item.isActive!=1">+</a>
+                                                                   v-if="item.isActive!=1&&item.process==0">+</a>
                                                             </p>
                                                         </div>
                                                     </li>
@@ -96,7 +96,7 @@
                                                 </template>
                                                 <li class="todo-projects-item " v-if="elementMonitor.length==0"
                                                     style="height: 100px;">
-                                                    <h4>尚未选择任务，点击左侧任务列表！</h4>
+                                                    <h4>尚未选择任务，或不存在待派遣任务</h4>
                                                 </li>
                                             </ul>
                                         </div>
@@ -620,7 +620,7 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=apply_sample",
+                condition: "process=delivery",
                 taskList: [],
                 task: {
                     type: {}
@@ -840,8 +840,6 @@
                 var me = this;
                 item.isActive = 1;
                 me.addProjectList.push(item);
-                console.log(me.addProjectList);
-                console.log(me.addProjectList.length);
             },
             deleteItem(item){
                 var me = this;
@@ -859,21 +857,11 @@
                 var me = this;
 //                if (jQuery("#dispatchWizard").valid()) {
                 var items = me.addProjectList;
-                console.log(me.addProjectList);
-                var obj = {};
-                //先创一个对象，就你需要的task_id和company发到对象里；
-                // 再将对象push到一个数组里；
-                // 将数组用JSON.stringify()转换为字符串，传给project
                 var arrayList = [];
                 for (var i = 0; i < items.length; i++) {
-//                    console.log(items[i].task_id);
-//                    console.log(items[i].company);
-                    obj.task_id = items[i].task_id;
-                    obj.company = items[i].company;
-                    arrayList.push(obj);
+                    arrayList.push(items[i].id);
                 }
-                me.dispatch.project = JSON.stringify(arrayList);
-//                alert(arrayList.length);
+                me.dispatch.company = arrayList;
                 if (arrayList.length < 1) {
                     alert("您还没有选择任务，请选择派遣任务！")
                 } else {
@@ -885,6 +873,8 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("任务派遣成功！");
+                                    me.viewElementMonitor(me.task.id);
+
                                     App.stopPageLoading();
                                 }
                             })
