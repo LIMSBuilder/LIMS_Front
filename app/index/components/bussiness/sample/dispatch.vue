@@ -620,7 +620,7 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=apply_sample",
+                condition: "process=delivery",
                 taskList: [],
                 task: {
                     type: {}
