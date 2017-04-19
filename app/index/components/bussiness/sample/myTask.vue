@@ -222,27 +222,6 @@
                                                                             </td>
                                                                             <td class="text-center">{{pro.other}}</td>
                                                                         </tr>
-                                                                        <!--<tr>-->
-                                                                        <!--<td class="text-center">{{item.company}}-->
-                                                                        <!--</td>-->
-                                                                        <!--<td class="text-center">-->
-                                                                        <!--{{item.element.name}}-->
-                                                                        <!--</td>-->
-                                                                        <!--<td class="text-center">-->
-                                                                        <!--{{item.point}}-->
-                                                                        <!--</td>-->
-                                                                        <!--<td class="text-center">-->
-                                                                        <!--<button type="button"-->
-                                                                        <!--class="btn green btn-outline"-->
-                                                                        <!--@click="showProjectName(item.id)">-->
-                                                                        <!--查看详情-->
-                                                                        <!--</button>-->
-                                                                        <!--</td>-->
-                                                                        <!--<td class="text-center">-->
-                                                                        <!--{{item.frequency?item.frequency.total:''}}-->
-                                                                        <!--</td>-->
-                                                                        <!--<td class="text-center">{{item.other}}</td>-->
-                                                                        <!--</tr>-->
                                                                     </template>
                                                                     </tbody>
                                                                 </table>
@@ -279,7 +258,62 @@
                                                     </ul>
                                                     <div class="tab-content">
                                                         <div class="tab-pane active" id="tab_1">
-
+                                                            <span v-if="sampleList.length==0">暂无样品信息</span>
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 实验室编号</th>
+                                                                        <th> 样品名称</th>
+                                                                        <th> 监测项目</th>
+                                                                        <th> 样品性状、颜色</th>
+                                                                        <th> 保存状态</th>
+                                                                        <th> 二维码</th>
+                                                                        <th> 保存</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="(sample,index) in sampleList">
+                                                                        <tr>
+                                                                            <td class="text-center">{{index+1}}</td>
+                                                                            <td class="text-center">{{sample.identify}}
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control">
+                                                                            </td>
+                                                                            <td>
+                                                                                <select class="form-control select-project"
+                                                                                        multiple
+                                                                                        data-live-search="true">
+                                                                                    <template
+                                                                                            v-for="item in projectList">
+                                                                                        <option :value="item.id">
+                                                                                            {{item.name}}
+                                                                                        </option>
+                                                                                    </template>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control">
+                                                                            </td>
+                                                                            <td>
+                                                                                <select class="form-control">
+                                                                                    <option value="1">是</option>
+                                                                                    <option value="0">否</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-sm green btn-outline">打印</button>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-sm blue btn-outline">保存</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
                                                         <div class="tab-pane " id="tab_2">
 
@@ -323,7 +357,8 @@
                                     <div class="col-md-10">
                                         <div class="input-icon right">
                                             <i class="fa fa-send"></i>
-                                            <input type="number" minlength="1" class="form-control" name="sample_count"
+                                            <input type="number" min="0" value="1" class="form-control"
+                                                   name="sample_count"
                                                    id="sample_count"/>
                                         </div>
                                     </div>
@@ -334,7 +369,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green" id="dialog_btn">确 认</button>
+                        <button type="button" class="btn green" id="dialog_btn" @click="applyBtn">确 认</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -358,7 +393,9 @@
                 item: {
                     task: {},
                     joiner: []
-                }
+                },
+                sampleList: [],
+                projectList: []
             }
         },
         mounted(){
@@ -385,6 +422,8 @@
                 orientation: "left",
                 autoclose: true
             });
+
+
         },
         methods: {
             init: function () {
@@ -449,6 +488,8 @@
             viewDetails(item){
                 var me = this;
                 me.itemDetails(item.id);
+                me.fetchSamples(item.id);
+                me.fetchProject(item.id);
             },
             itemDetails(id){
                 var me = this;
@@ -461,6 +502,43 @@
                     me.item = data;
                 }, response => {
                     serverErrorInfo(response);
+                })
+            },
+            fetchProject(id){
+                var me = this;
+                me.$http.get("/api/sample/fetchProject", {
+                    params: {
+                        company_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.projectList = data;
+                    me.$nextTick(function () {
+                        $('.select-project').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            countSelectedText: "count",
+                            deselectAllText: "取消选择",
+                            selectAllText: "选择全部",
+                            noneSelectedText: "请选择监测项目"
+
+                        });
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchSamples(id){
+                var me = this;
+                me.$http.get("/api/sample/list", {
+                    params: {
+                        company_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.sampleList = data.results;
+                }, response => {
+                    serverErrorInfo(response)
                 })
             },
             search(){
@@ -496,6 +574,25 @@
                         serverErrorInfo(response);
                     }
                 );
+            },
+            applyBtn(){
+                var me = this;
+                me.$http.get("/api/sample/apply", {
+                    params: {
+                        count: jQuery("#sample_count").val(),
+                        company_id: me.item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("样品编号申请成功！");
+                            me.fetchSamples(me.item.id);
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
             }
         }
     }
