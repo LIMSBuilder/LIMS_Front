@@ -32,11 +32,7 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}/
-                                                        <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==0">实验室分析室--自送样</span>
-                                                        <span class="label label-sm label-default"
-                                                              v-if="item.sample_type==1">现场检测室--现场采样</span>
+                                                        {{item.identify}}
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -67,7 +63,11 @@
                                                 <template v-for="item in elementMonitor">
                                                     <li class="todo-projects-item ">
                                                         <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
-                                                            {{item.company}}</h4>
+                                                            <span class="label label-danger"
+                                                                  v-if="item.process==0"> 待派遣 </span>
+                                                            <span class="label label-info"
+                                                                  v-if="item.process==1"> 已派遣 </span> {{item.company}}
+                                                        </h4>
                                                         <ul class="receiver_tag">
                                                             <template v-for="result in item.results">
                                                                 <li class="uppercase ">
@@ -88,7 +88,7 @@
                                                                     Members</a>
                                                                 <a class="todo-add-button" href="javascript:;"
                                                                    @click="addProject(item)"
-                                                                   v-if="item.isActive!=1">+</a>
+                                                                   v-if="item.isActive!=1&&item.process==0">+</a>
                                                             </p>
                                                         </div>
                                                     </li>
@@ -873,6 +873,8 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("任务派遣成功！");
+                                    me.viewElementMonitor(me.task.id);
+
                                     App.stopPageLoading();
                                 }
                             })
