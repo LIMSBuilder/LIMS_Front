@@ -865,7 +865,6 @@
                 if (arrayList.length < 1) {
                     alert("您还没有选择任务，请选择派遣任务！")
                 } else {
-                    console.log(me.dispatch);
                     App.startPageLoading({animate: true});
                     me.$http.post("/api/dispatch/create", me.dispatch).then(
                         response => {
@@ -873,8 +872,10 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("任务派遣成功！");
-                                    me.viewElementMonitor(me.task.id);
-
+                                    debugger
+//                                    me.viewElementMonitor(me.task.id);
+//                                    console.log(me.task.id);
+                                    console.log(me.dispatch);
                                     App.stopPageLoading();
                                 }
                             })
