@@ -56,6 +56,11 @@ import DisPatchSetting from './components/bussiness/sample/dispatchSetting.vue'
 import DisPatchCheck from './components/bussiness/sample/dispatchCheck.vue'
 import MyTask from './components/bussiness/sample/myTask.vue'
 
+import Quality from './components/bussiness/quality/quality.vue'
+import Qreview from './components/bussiness/quality/qReview.vue'
+import Firstreview from './components/bussiness/quality/firstReview.vue'
+
+
 
 //=============Basic================
 //Element
@@ -481,6 +486,21 @@ var routes = [
             {
                 path: "myTask",
                 component: MyTask
+            }
+        ]
+    },
+    {
+        path:"/quality",
+        name:"quality",
+        component:Quality,
+        children:[
+            {
+                path:"qreview",
+                component:Qreview
+            },
+            {
+                path:"firstreview",
+                component:Firstreview
             }
         ]
     }
