@@ -7,67 +7,6 @@
             <div class="col-md-12">
                 <!-- BEGIN TODO SIDEBAR -->
                 <div class="todo-ui">
-                    <div class="todo-sidebar">
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <span class="caption-subject font-green-sharp bold uppercase">任务进展 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看任务进展</span>
-                                </div>
-
-                            </div>
-                            <div class="portlet-body todo-project-list-content">
-                                <div class="todo-project-list">
-                                    <ul class="nav nav-stacked">
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(1)">
-                                                <span class="badge badge-default" v-if="countProcess!=0"> {{countProcess}} </span>
-                                                今日任务
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(2)">
-                                                历史任务 </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <span class="caption-subject font-blue bold uppercase">搜索 </span>
-                                </div>
-                            </div>
-                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
-                                <div class="form-group form-md-line-input form-md-floating-label"
-                                     style="padding-top: 0;">
-                                    <div class="input-icon right">
-                                        <input type="text" class="form-control" placeholder="搜索任务编号"
-                                               @keyup.enter="searchKey($event)">
-                                        <i class="fa fa-search"></i>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <!--<input class="form-control form-control-inline input-medium date-picker" type="text" value="" />-->
-                                    <div class="input-group date date-picker" data-date-format="yyyy-mm-dd"
-                                         data-date-end-date="+0d">
-                                        <input type="text" class="form-control" placeholder="搜索日期">
-                                        <span class="input-group-btn">
-                                                                <button class="btn default" type="button">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </button>
-                                                            </span>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="form-actions text-center">
-                                    <button type="button" class="btn green text-center" @click="searchKey">搜 索</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END TODO SIDEBAR -->
                     <!-- BEGIN TODO CONTENT -->
                     <div class="todo-content">
                         <div class="portlet light ">
@@ -77,20 +16,20 @@
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">我的任务</span>
                                 </div>
-                                <div class="actions">
-                                    <div class="btn-group">
-                                        <a class="btn green btn-circle btn-sm" href="javascript:;"
-                                           data-toggle="dropdown"
-                                           data-hover="dropdown" data-close-others="true"> 操 作
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="javascript:;"> 提交清单 </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <!--<div class="actions">-->
+                                    <!--<div class="btn-group">-->
+                                        <!--<a class="btn green btn-circle btn-sm" href="javascript:;"-->
+                                           <!--data-toggle="dropdown"-->
+                                           <!--data-hover="dropdown" data-close-others="true"> 操 作-->
+                                            <!--<i class="fa fa-angle-down"></i>-->
+                                        <!--</a>-->
+                                        <!--<ul class="dropdown-menu pull-right">-->
+                                            <!--<li>-->
+                                                <!--<a href="javascript:;" @click="finishList"> 提交清单 </a>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
@@ -169,6 +108,134 @@
                                                     </div>
                                                 </div>
 
+
+                                                <div class="clearfix" v-if="item.process<=1">
+                                                    <a href="#apply_sample" data-toggle="modal" class="btn btn-primary">编号申请</a>
+                                                    <button type="button" class="btn btn-info">扫描编号</button>
+                                                    <button type="button" class="btn btn-success"
+                                                            @click="finishBtn(item)">完 成
+                                                    </button>
+                                                </div>
+                                                <hr>
+                                                <div class="tabbable-line">
+                                                    <ul class="nav nav-tabs ">
+                                                        <li class="active">
+                                                            <a href="#tab_1" data-toggle="tab"> 样品信息 </a>
+                                                        </li>
+                                                        <!--<li>-->
+                                                        <!--<a href="#tab_2" data-toggle="tab"> 操作日志 </a>-->
+                                                        <!--</li>-->
+
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="tab_1">
+                                                            <span v-if="sampleList.length==0">暂无样品信息</span>
+                                                            <div class="table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 样品编号</th>
+                                                                        <th> 样品名称</th>
+                                                                        <th> 监测项目</th>
+                                                                        <th> 点位名称</th>
+                                                                        <th> 备注</th>
+                                                                        <th> 平行</th>
+                                                                        <th> 二维码</th>
+                                                                        <th v-if="item.process<=1"> 操作</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="(sample,index) in sampleList">
+                                                                        <tr :id="sample.identify">
+                                                                            <td class="text-center">{{index+1}}</td>
+                                                                            <td class="text-center">{{sample.identify}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <input type="text" class="form-control"
+                                                                                       v-model="sample.name"
+                                                                                       v-if="sample.process==null">
+                                                                                <span v-if="sample.process!=null">{{sample.name}}</span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select class="form-control select-project"
+                                                                                        multiple
+                                                                                        data-live-search="true"
+                                                                                        v-model="sample.project"
+                                                                                        v-if="sample.process==null">
+                                                                                    <template
+                                                                                            v-for="item in projectList">
+                                                                                        <optgroup :label="item.name">
+                                                                                            <template
+                                                                                                    v-for="p in item.project">
+                                                                                                <option :value="p.id">
+                                                                                                    {{p.name}}
+                                                                                                </option>
+                                                                                            </template>
+                                                                                        </optgroup>
+                                                                                    </template>
+                                                                                </select>
+                                                                                <template
+                                                                                        v-for="item in sample.projectList"
+                                                                                        v-if="sample.process!=null">
+                                                                                    {{item.name}}
+                                                                                </template>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <input type="text" class="form-control"
+                                                                                       v-model="sample.point"
+                                                                                       v-if="sample.process==null">
+                                                                                <span v-if="sample.process!=null">{{sample.point}}</span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="form-control"
+                                                                                       v-model="sample.other"
+                                                                                       v-if="sample.process==null">
+                                                                                <span v-if="sample.process!=null">{{sample.other}}</span>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm red btn-outline"
+                                                                                        v-if="sample.process==null"
+                                                                                        @click="balanceSample(sample)">
+                                                                                    {{sample.isbalance?sample.isbalance.identify:'设置'}}
+                                                                                </button>
+                                                                                <a href="javascript:;"
+                                                                                   @click="lightBtn(sample.isbalance)"
+                                                                                   v-if="sample.process!=null">{{sample.isbalance?sample.isbalance.identify:'否'}}</a>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm green btn-outline"
+                                                                                        @click="print(sample)">
+                                                                                    打印
+                                                                                </button>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm blue btn-outline"
+                                                                                        @click="sampleSave(sample)"
+                                                                                        v-if="sample.process==null&&item.process<=1">
+                                                                                    保存
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm blue btn-outline"
+                                                                                        @click="sampleChange(sample)"
+                                                                                        v-if="sample.process==0&&item.process<=1">
+                                                                                    修改
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <!--<div class="tab-pane " id="tab_2">-->
+
+                                                        <!--</div>-->
+                                                    </div>
+                                                </div>
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
                                                         <li class="active">
@@ -240,86 +307,6 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <div class="clearfix">
-                                                    <a href="#apply_sample" data-toggle="modal" class="btn btn-primary">编号申请</a>
-                                                    <button type="button" class="btn btn-info">扫描编号</button>
-                                                    <button type="button" class="btn btn-success">完 成</button>
-                                                </div>
-                                                <hr>
-                                                <div class="tabbable-line">
-                                                    <ul class="nav nav-tabs ">
-                                                        <li class="active">
-                                                            <a href="#tab_1" data-toggle="tab"> 样品信息 </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#tab_2" data-toggle="tab"> 操作日志 </a>
-                                                        </li>
-
-                                                    </ul>
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="tab_1">
-                                                            <span v-if="sampleList.length==0">暂无样品信息</span>
-                                                            <div class="table-scrollable table-scrollable-borderless">
-                                                                <table class="table table-hover table-light">
-                                                                    <thead>
-                                                                    <tr class="uppercase">
-                                                                        <th> 序号</th>
-                                                                        <th> 实验室编号</th>
-                                                                        <th> 样品名称</th>
-                                                                        <th> 监测项目</th>
-                                                                        <th> 样品性状、颜色</th>
-                                                                        <th> 保存状态</th>
-                                                                        <th> 二维码</th>
-                                                                        <th> 保存</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    <template v-for="(sample,index) in sampleList">
-                                                                        <tr>
-                                                                            <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{sample.identify}}
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" class="form-control">
-                                                                            </td>
-                                                                            <td>
-                                                                                <select class="form-control select-project"
-                                                                                        multiple
-                                                                                        data-live-search="true">
-                                                                                    <template
-                                                                                            v-for="item in projectList">
-                                                                                        <option :value="item.id">
-                                                                                            {{item.name}}
-                                                                                        </option>
-                                                                                    </template>
-                                                                                </select>
-                                                                            </td>
-                                                                            <td>
-                                                                                <input type="text" class="form-control">
-                                                                            </td>
-                                                                            <td>
-                                                                                <select class="form-control">
-                                                                                    <option value="1">是</option>
-                                                                                    <option value="0">否</option>
-                                                                                </select>
-                                                                            </td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-sm green btn-outline">打印</button>
-                                                                            </td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-sm blue btn-outline">保存</button>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </template>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane " id="tab_2">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -337,19 +324,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title" id="dialog_title">样品编号申请</h4>
+                        <h4 class="modal-title">样品编号申请</h4>
                     </div>
-                    <div class="modal-body form" id="dialog_body">
+                    <div class="modal-body form">
                         <form class="form-horizontal" action="#" method="POST">
                             <div class="form-body">
-                                <div class="form-group">
-                                    <label class="control-label col-md-2" for="sample_count">样品前缀
-                                        <span class="required"> &nbsp;&nbsp;&nbsp; </span>
-                                    </label>
-                                    <div class="col-md-10">
-                                        <p class="form-control-static">委托监测——WT</p>
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="sample_count">样品数量
                                         <span class="required"> &nbsp;&nbsp;&nbsp; </span>
@@ -376,6 +355,93 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+
+        <div class="modal fade bs-modal-sm" id="smallIcon" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">样品二维码</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="showIcon" style="text-align: center">
+                            <img src="../../../images/icon_demo.png" style="width: 200px;"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <div class="modal fade draggable-modal" id="balance_sample" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">选择平行样</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                <tr class="uppercase">
+                                    <th> 序号</th>
+                                    <th> 样品编号</th>
+                                    <th> 样品名称</th>
+                                    <th> 监测项目</th>
+                                    <th> 点位名称</th>
+                                    <th> 备注</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template v-for="(sample,index) in sampleList">
+                                    <tr v-if="sample.process != null">
+                                        <td class="text-center">
+                                            <label class="mt-radio mt-radio-outline">
+                                                <input type="radio" v-model="choose" name="choose" :value="sample">
+                                                <span></span>
+                                            </label>
+                                        </td>
+                                        <td class="text-center">{{sample.identify}}
+                                        </td>
+                                        <td class="text-center">
+                                            <span>{{sample.name}}</span>
+                                        </td>
+                                        <td>
+                                            <template v-for="item in projectList"
+                                                      v-if="sample.process!=null">
+                                                【{{item.name}}】:
+                                                <template v-for="p in item.project">
+                                                    {{p.name}}
+                                                </template>
+                                                <br>
+                                            </template>
+                                        </td>
+                                        <td class="text-center">
+                                            <span>{{sample.point}}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{sample.other}}</span>
+                                        </td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" id="balanceBtn">确 认</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 </template>
 <script type="es6">
@@ -395,7 +461,8 @@
                     joiner: []
                 },
                 sampleList: [],
-                projectList: []
+                projectList: [],
+                choose: {}
             }
         },
         mounted(){
@@ -488,8 +555,8 @@
             viewDetails(item){
                 var me = this;
                 me.itemDetails(item.id);
-                me.fetchSamples(item.id);
                 me.fetchProject(item.id);
+                me.fetchSamples(item.id);
             },
             itemDetails(id){
                 var me = this;
@@ -513,17 +580,6 @@
                 }).then(response => {
                     var data = response.data;
                     me.projectList = data;
-                    me.$nextTick(function () {
-                        $('.select-project').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check',
-                            countSelectedText: "count",
-                            deselectAllText: "取消选择",
-                            selectAllText: "选择全部",
-                            noneSelectedText: "请选择监测项目"
-
-                        });
-                    })
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -536,7 +592,20 @@
                     }
                 }).then(response => {
                     var data = response.data;
+                    $('.select-project').selectpicker('destroy');
                     me.sampleList = data.results;
+                    me.$nextTick(function () {
+//                        $('.select-project').selectpicker('destroy');
+                        $('.select-project').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            countSelectedText: "count",
+                            deselectAllText: "取消选择",
+                            selectAllText: "选择全部",
+                            noneSelectedText: "请选择监测项目"
+
+                        });
+                    })
                 }, response => {
                     serverErrorInfo(response)
                 })
@@ -588,6 +657,112 @@
                         200: function () {
                             alert("样品编号申请成功！");
                             me.fetchSamples(me.item.id);
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            sampleSave(item){
+                var me = this;
+                me.$http.get("/api/sample/saveSampleSigle", {
+                    params: item
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("样品保存成功！");
+                            me.fetchSamples(me.item.id);
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response)
+                })
+                console.log(JSON.parse(JSON.stringify(item)));
+
+            },
+            balanceSample(item){
+                var me = this;
+                jQuery("#balance_sample").modal("show");
+                jQuery("#balanceBtn").off("click").on("click", function () {
+                    if (!me.choose.id) {
+                        error("请选择平行样对象！");
+                        return;
+                    }
+                    if (me.choose.id == item.id) {
+                        error("无法设置自身为平行样！");
+                        return;
+                    }
+                    var obj = {
+                        id: me.choose.id,
+                        identify: me.choose.identify
+                    };
+                    item.isbalance = obj;
+                    alert("平行样设置成功！");
+                    me.choose = {}
+                    jQuery("#balance_sample").modal("hide");
+                });
+
+            },
+            lightBtn(item){
+                var me = this;
+                if (item) {
+                    BlogUtils.pulsate(item.identify);
+                }
+            },
+            sampleChange(item){
+                var me = this;
+                item.process = null;
+                me.$nextTick(function () {
+                    $("#" + item.identify + " .select-project").selectpicker({
+                        iconBase: 'fa',
+                        tickIcon: 'fa-check',
+                        countSelectedText: "count",
+                        deselectAllText: "取消选择",
+                        selectAllText: "选择全部",
+                        noneSelectedText: "请选择监测项目"
+
+                    });
+                    $("#" + item.identify + " .select-project").selectpicker("val", item.project);
+                });
+            },
+            finishBtn(item){
+                var me = this;
+                me.$http.get("/api/delivery/finishItem", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("当前派遣任务完成！");
+                            me.getData();
+                            me.viewDetails(me.item);
+                        },
+                        505: "存在尚未提交的样品信息！",
+                        504: "存在尚未处理的分析项目！"
+
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            print(item){
+                var me = this;
+                var identify = item.identify;
+//                window.print();
+                jQuery("#smallIcon").modal("show");
+//                jQuery("#showIcon").qrcode(BlogUtils.utf16to8("aa"));
+                jQuery("#showIcon").jqprint();
+            },
+            finishList(){
+                var me = this;
+                me.$http.get("/api/delivery/finishList").then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("")
                         }
                     })
                 }, response => {

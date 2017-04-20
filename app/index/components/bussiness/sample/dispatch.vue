@@ -21,9 +21,9 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4">
                                         <div class="todo-tasklist" id="task_list">
-                                            <div class="todo-tasklist-item todo-tasklist-item-border-warning">
-                                                <h4 class="text-center">显示全部</h4>
-                                            </div>
+                                            <!--<div class="todo-tasklist-item todo-tasklist-item-border-warning">-->
+                                            <!--<h4 class="text-center">显示全部</h4>-->
+                                            <!--</div>-->
                                             <template v-for="item in taskList">
                                                 <div @click="viewElementMonitor(item.id)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
@@ -66,7 +66,9 @@
                                                             <span class="label label-danger"
                                                                   v-if="item.process==0"> 待派遣 </span>
                                                             <span class="label label-info"
-                                                                  v-if="item.process==1"> 已派遣 </span> {{item.company}}
+                                                                  v-if="item.process==1"> 已派遣 </span>
+                                                            <span class="label label-success"
+                                                                  v-if="item.process==2"> 已完成 </span>{{item.company}}
                                                         </h4>
                                                         <ul class="receiver_tag">
                                                             <template v-for="result in item.results">
@@ -81,11 +83,15 @@
                                                         <div class="todo-project-item-foot">
                                                             <p class="todo-red todo-inline">
                                                                 <a href="javascript:;" class="font-green"
-                                                                   @click="showProject(item.task_id,item.company)">查看详情</a>
+                                                                   @click="showProject(item.id)">查看详情</a>
                                                             </p>
                                                             <p class="todo-inline todo-float-r">
-                                                                <a href="javascript:;" class="font-grey-salsa">6
+                                                                <a href="javascript:;" class="font-grey-salsa"
+                                                                   v-if="item.process!=0"
+                                                                   @click="showMember(item.joiner)">{{item.joiner.length}}
                                                                     Members</a>
+                                                                <button class="btn btn-default popovers" data-container="body"
+                                                                        data-trigger="hover" data-placement="top" data-content="Popover body goes here! Popover body goes here!" data-original-title="Popover in top">Top</button>
                                                                 <a class="todo-add-button" href="javascript:;"
                                                                    @click="addProject(item)"
                                                                    v-if="item.isActive!=1&&item.process==0">+</a>
@@ -100,11 +106,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <!-- Pagination -->
-                                        <div class="pagination pull-right">
-                                            <div class="M-box front pull-right" style="margin-top:10px; "></div>
-                                        </div>
-                                        <!-- End Pagination -->
                                     </div>
                                     <div class="col-md-4 col-sm-4 bg-after-green">
                                         <div class="tabbable-line">
@@ -181,30 +182,19 @@
                                                             <template v-for="item in addProjectList">
                                                                 <li class="todo-tasks-item"
                                                                     style="list-style: none; padding: 10px 0 20px 0;">
-                                                                    <h4 class="todo-inline">
+                                                                    <h4 class="todo-inline font-grey">
                                                                         <a data-toggle="modal" href="#todo-task-modal"
                                                                            @click="">
                                                                             {{item.company}}
                                                                         </a>
                                                                     </h4>
                                                                     <div class="todo-inline todo-float-r">
-                                                                        <button type="button" class="btn default"
-                                                                                @click="deleteItem(item)"
-                                                                                style="float: right; ">
-                                                                            取 消
-                                                                        </button>
+                                                                        <a class="todo-add-button" href="javascript:;"
+                                                                           @click="deleteItem(item)">-</a>
                                                                     </div>
                                                                 </li>
                                                             </template>
-                                                            <li class="todo-tasks-item"
-                                                                style="list-style: none; padding: 10px 0 20px 0;"
-                                                                v-if="addProjectList.length==0">
-                                                                <h4 class="todo-inline">
-                                                                    <a data-toggle="modal" href="#todo-task-modal">
-                                                                        暂无任务,请选择任务！
-                                                                    </a>
-                                                                </h4>
-                                                            </li>
+                                                            <span v-if="addProjectList.length==0">尚未选择任务。</span>
                                                         </ul>
                                                     </div>
                                                     <hr>
@@ -244,8 +234,7 @@
                                                                     <h4>负责项目:</h4>
                                                                     <ul class="todo-tasks-content" style="padding: 0px">
                                                                         <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;"
-                                                                            @click="ddddd">
+                                                                            style="list-style: none; padding: 10px 0 20px 0;">
                                                                             <h4 class="todo-inline">
                                                                                 <a data-toggle="modal">
                                                                                     常州金吉彩色电镀公司
@@ -520,20 +509,41 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade bs-modal-sm" id="smallIcon" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">检测项目详情列表</h4>
+                        <h4 class="modal-title">样品二维码</h4>
                     </div>
                     <div class="modal-body">
+                        <div id="showIcon" style="text-align: center">
+                            <img src="../../../images/icon_demo.png" style="width: 200px;"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade bs-modal-lg draggable-modal" id="showProject" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">查看详情</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>监测项目</h4>
                         <div class="table-scrollable table-scrollable-borderless">
                             <table class="table table-hover table-light">
                                 <thead>
                                 <tr class="uppercase">
                                     <th> 序号</th>
-                                    <th> 公司、道路名称</th>
                                     <th> 环境要素</th>
                                     <th> 监测点（个）</th>
                                     <th> 监测项目</th>
@@ -544,7 +554,6 @@
                                 <template v-for="(item,index) in element">
                                     <tr>
                                         <td class="text-center">{{index+1}}</td>
-                                        <td class="text-center">{{item.other}}</td>
                                         <td class="text-center">
                                             {{item.element.name}}
                                         </td>
@@ -552,11 +561,10 @@
                                             {{item.point}}
                                         </td>
                                         <td class="text-center">
-                                            <button type="button"
-                                                    class="btn green btn-outline"
-                                                    @click="showProjectName(item.id)">
-                                                详情
-                                            </button>
+                                            <template v-for="p in item.project">
+                                                {{p.name}}
+                                                <span class="font-red" v-if="p.isPackage==1">[分包]</span>
+                                            </template>
                                         </td>
                                         <td class="text-center">
                                             {{item.frequency?item.frequency.total:''}}
@@ -566,48 +574,68 @@
                                 </tbody>
                             </table>
                         </div>
-
+                        <hr>
+                        <h4>样品信息</h4>
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                <tr class="uppercase">
+                                    <th> 序号</th>
+                                    <th> 样品编号</th>
+                                    <th> 样品名称</th>
+                                    <th> 监测项目</th>
+                                    <th> 点位名称</th>
+                                    <th> 备注</th>
+                                    <th> 平行</th>
+                                    <th> 打印</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template v-for="(sample,index) in sampleList">
+                                    <tr :id="sample.identify">
+                                        <td class="text-center">{{index+1}}</td>
+                                        <td class="text-center">{{sample.identify}}
+                                        </td>
+                                        <td class="text-center">
+                                            <span>{{sample.name}}</span>
+                                        </td>
+                                        <td>
+                                            <template
+                                                    v-for="item in sample.projectList">
+                                                {{item.name}}
+                                            </template>
+                                        </td>
+                                        <td class="text-center">
+                                            <span>{{sample.point}}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{sample.other}}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="javascript:;"
+                                               @click="lightBtn(sample.isbalance)">{{sample.isbalance?sample.isbalance.identify:'否'}}</a>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button"
+                                                    class="btn btn-sm green btn-outline"
+                                                    @click="print(sample)">
+                                                打印
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <div class="modal fade draggable-modal" id="showProjectName" tabindex="-1" role="basic" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">检测项目详情列表</h4>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="receiver_tag">
-                            <template v-for="item in project">
-                                <li class="uppercase ">
-                                    <a href="javascript:;" style="line-height: 30px">
-                                        {{item.name}}
-                                        <template
-                                                v-if="item.isPackage==true">
-                                            <span style="color: red;">[分包]</span>
-                                        </template>
-                                    </a>
-                                </li>
-                            </template>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-
-
     </div>
 </template>
 
@@ -635,7 +663,8 @@
                     charge_id: "",
                     join_id: [],
                     project: []
-                }
+                },
+                sampleList: []
             }
         },
         mounted(){
@@ -800,41 +829,38 @@
                 )
             },
             //查看详细的环境要素
-            showProject(id, company){
+            showProject(company){
                 var me = this;
-                me.$http.get("/api/sample/DetailList", {
+                me.$http.get("/api/task/getByCompanyId", {
                     params: {
-                        task_id: id,
-                        company: company
+                        company_id: company
                     }
 
                 }).then(
                     response => {
                         var data = response.data;
-                        me.element = data;
+                        me.element = data.items;
                     }, response => {
                         serverErrorInfo(response);
                     }
                 );
+                me.fetchSamples(company);
                 jQuery("#showProject").modal("show");
 
             },
-            //查看详细的检测项目
-            showProjectName(id){
+            fetchSamples(id){
                 var me = this;
-                me.$http.get("/api/task/monitorItem", {
+                me.$http.get("/api/sample/list", {
                     params: {
-                        id: id
+                        company_id: id
                     }
-                }).then(
-                    response => {
-                        var data = response.data;
-                        me.project = data;
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                );
-                jQuery("#showProjectName").modal("show");
+                }).then(response => {
+                    var data = response.data;
+                    $('.select-project').selectpicker('destroy');
+                    me.sampleList = data.results;
+                }, response => {
+                    serverErrorInfo(response)
+                })
             },
             addProject(item){
                 var me = this;
@@ -852,6 +878,20 @@
                     return t.task_id == item.task_id && t.company == item.company;
                 });
                 if (obj) obj.isActive = 0;
+            },
+            lightBtn(item){
+                var me = this;
+                if (item) {
+                    BlogUtils.pulsate(item.identify);
+                }
+            },
+            print(item){
+                var me = this;
+                var identify = item.identify;
+//                window.print();
+                jQuery("#smallIcon").modal("show");
+//                jQuery("#showIcon").qrcode(BlogUtils.utf16to8("aa"));
+                jQuery("#showIcon").jqprint();
             },
             createDispatch(){
                 var me = this;
@@ -872,9 +912,6 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("任务派遣成功！");
-                                    debugger
-//                                    me.viewElementMonitor(me.task.id);
-//                                    console.log(me.task.id);
                                     console.log(me.dispatch);
                                     App.stopPageLoading();
                                 }
@@ -884,167 +921,10 @@
                         }
                     )
                 }
-//                }
-//
             },
-            ddddd(){
-                alert("详细信息！");
+            showMember(joiner){
+                console.log(joiner);
             }
-//            wizard(){
-//                //wizard插件和表单验证序列化
-//                var form = $('#dispatchWizard');
-//                var error = $('.alert-danger', form);
-//                var success = $('.alert-success', form);
-//                jQuery("#dispatchWizard").validate({
-//                    doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
-//                    errorElement: 'span', //default input error message container
-//                    errorClass: 'help-block help-block-error', // default input error message class
-//                    focusInvalid: false, // do not focus the last invalid input
-//                    rules: {
-//                        charge: {
-//                            required: true
-//                        }
-//                    },
-//
-//                    errorPlacement: function (error, element) { // render error placement for each input type
-//                        if (element.attr("name") == "gender") { // for uniform radio buttons, insert the after the given container
-//                            error.insertAfter("#form_gender_error");
-//                        } else if (element.attr("name") == "payment[]") { // for uniform checkboxes, insert the after the given container
-//                            error.insertAfter("#form_payment_error");
-//                        } else {
-//                            error.insertAfter(element); // for other inputs, just perform default behavior
-//                        }
-//                    },
-//
-//                    invalidHandler: function (event, validator) { //display error alert on form submit
-//                        success.hide();
-//                        error.show();
-//                        App.scrollTo(error, -200);
-//                    },
-//
-//                    highlight: function (element) { // hightlight error inputs
-//                        $(element)
-//                            .closest('.form-group').removeClass('has-success').addClass('has-error'); // set error class to the control group
-//                    },
-//
-//                    unhighlight: function (element) { // revert the change done by hightlight
-//                        $(element)
-//                            .closest('.form-group').removeClass('has-error'); // set error class to the control group
-//                    },
-//
-//                    success: function (label) {
-//                        if (label.attr("for") == "gender" || label.attr("for") == "payment[]") { // for checkboxes and radio buttons, no need to show OK icon
-//                            label
-//                                .closest('.form-group').removeClass('has-error').addClass('has-success');
-//                            label.remove(); // remove error label here
-//                        } else { // display success icon for other inputs
-//                            label
-//                                .addClass('valid') // mark the current input as valid and display OK icon
-//                                .closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
-//                        }
-//                    },
-//
-//                    submitHandler: function (form) {
-//                        success.show();
-//                        error.hide();
-//                        form[0].submit();
-//                        //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
-//                    }
-//
-//                });
-//                var displayConfirm = function () {
-//                    $('#tab4 .form-control-static', form).each(function () {
-//                        var input = $('[name="' + $(this).attr("data-display") + '"]', form);
-//                        if (input.is(":radio")) {
-//                            input = $('[name="' + $(this).attr("data-display") + '"]:checked', form);
-//                        }
-//                        if (input.is(":text") || input.is("textarea")) {
-//                            $(this).html(input.val());
-//                        } else if (input.is("select")) {
-//                            $(this).html(input.find('option:selected').text());
-//                        } else if (input.is(":radio") && input.is(":checked")) {
-//                            $(this).html(input.attr("data-title"));
-//                        } else if ($(this).attr("data-display") == 'payment[]') {
-//                            var payment = [];
-//                            $('[name="payment[]"]:checked', form).each(function () {
-//                                payment.push($(this).attr('data-title'));
-//                            });
-//                            $(this).html(payment.join("<br>"));
-//                        }
-//                    });
-//                }
-//                var handleTitle = function (tab, navigation, index) {
-//                    var total = navigation.find('li').length;
-//                    var current = index + 1;
-//                    // set wizard title
-//                    $('.step-title', $('#contract_wizard')).text('Step ' + (index + 1) + ' of ' + total);
-//                    // set done steps
-//                    jQuery('li', $('#contract_wizard')).removeClass("done");
-//                    var li_list = navigation.find('li');
-//                    for (var i = 0; i < index; i++) {
-//                        jQuery(li_list[i]).addClass("done");
-//                    }
-//
-//                    if (current == 1) {
-//                        $('#contract_wizard').find('.button-previous').hide();
-//                    } else {
-//                        $('#contract_wizard').find('.button-previous').show();
-//                    }
-//
-//                    if (current >= total) {
-//                        $('#contract_wizard').find('.button-next').hide();
-//                        $('#contract_wizard').find('.button-submit').show();
-//                        displayConfirm();
-//                    } else {
-//                        $('#contract_wizard').find('.button-next').show();
-//                        $('#contract_wizard').find('.button-submit').hide();
-//                    }
-//                    App.scrollTo($('.page-title'));
-//                }
-//                $('#contract_wizard').bootstrapWizard({
-//                    'nextSelector': '.button-next',
-//                    'previousSelector': '.button-previous',
-//                    onTabClick: function (tab, navigation, index, clickedIndex) {
-//                        return false;
-//
-//                        success.hide();
-//                        error.hide();
-//                        if (form.valid() == false) {
-//                            return false;
-//                        }
-//
-//                        handleTitle(tab, navigation, clickedIndex);
-//                    },
-//                    onNext: function (tab, navigation, index) {
-//                        success.hide();
-//                        error.hide();
-//
-//                        if (form.valid() == false) {
-//                            return false;
-//                        }
-//                        handleTitle(tab, navigation, index);
-//                    },
-//                    onPrevious: function (tab, navigation, index) {
-//                        success.hide();
-//                        error.hide();
-//
-//                        handleTitle(tab, navigation, index);
-//                    },
-//                    onTabShow: function (tab, navigation, index) {
-//                        var total = navigation.find('li').length;
-//                        var current = index + 1;
-//                        var $percent = (current / total) * 100;
-//                        $('#contract_wizard').find('.progress-bar').css({
-//                            width: $percent + '%'
-//                        });
-//                    }
-//                });
-//                $('#contract_wizard').find('.button-previous').hide();
-//                $('#contract_wizard').find('.button-submit').hide();
-//                $('#country_list', form).change(function () {
-//                    form.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
-//                });
-//            },
 
         }
     }

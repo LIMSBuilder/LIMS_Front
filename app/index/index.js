@@ -23,6 +23,10 @@ import 'mod／utils'
 import 'mod/jqueryUI'
 import 'mod/select2'
 
+import 'mod/pulsate'
+import 'mod/migrate'
+import 'mod/qrcode'
+import 'mod/jqprint'
 import 'mod/datepicker'
 import 'mod/datepicker_locales'
 

@@ -1601,7 +1601,6 @@
                                 selectAllText: "选择全部",
                                 noneSelectedText: "请选择监测项目"
                             });
-                            debugger
                             $('#monitor_project').selectpicker("val", selected);
                         })
                     }

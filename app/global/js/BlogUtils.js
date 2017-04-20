@@ -2,6 +2,32 @@ import iziToast from 'mod/iziToast'
 import 'mod/iziModal'
 
 var BlogUtils = {
+    utf16to8: function (str) {
+        var out, i, len, c;
+        out = "";
+        len = str.length;
+        for (i = 0; i < len; i++) {
+            c = str.charCodeAt(i);
+            if ((c >= 0x0001) && (c <= 0x007F)) {
+                out += str.charAt(i);
+            } else if (c > 0x07FF) {
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            } else {
+                out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            }
+        }
+        return out;
+    },
+    pulsate: function (id) {
+        jQuery("#" + id).pulsate({
+            color: "#bf1c56",
+            glow: true,
+            repeat: 5,
+        });
+    },
     atoc: function (numberValue) {
         var numberValue = new String(Math.round(numberValue * 100)); // 数字金额
         var chineseValue = ""; // 转换后的汉字金额
