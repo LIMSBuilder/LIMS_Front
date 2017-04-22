@@ -298,6 +298,56 @@
                                         </table>
                                     </td>
                                 </tr>
+                                <template v-for="item in departmentPowerList">
+                                    <tr>
+                                        <td class="text-center">
+                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                <input type="checkbox" name="type" v-model="actives">
+                                                <span></span>
+                                            </label>
+                                            {{item.name}}
+                                            {{actives}}
+                                        </td>
+                                        <td class="text-center">
+                                            <table class="table table-light table-hover">
+                                                <tbody>
+                                                <template v-for="child in item.child">
+                                                    <tr>
+                                                        <td>
+                                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                                <input type="checkbox" name="type" v-model="actives">
+                                                                <span></span>
+                                                            </label>
+                                                            {{child.name}}
+                                                            {{actives}}
+                                                        </td>
+                                                    </tr>
+                                                </template>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td class="text-center">
+                                            <table class="table table-light table-hover">
+                                                <tbody>
+                                                <template v-for="child in item.child">
+                                                    <tr>
+                                                        <template v-for="list in child.child">
+                                                            <td>
+                                                                <label class="mt-checkbox mt-checkbox-outline">
+                                                                    <input type="checkbox" name="type" v-model="actives">
+                                                                    <span></span>
+                                                                </label>
+                                                                {{list.name}}
+                                                                {{actives}}
+                                                            </td>
+                                                        </template>
+                                                    </tr>
+                                                </template>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </template>
                                 </tbody>
                             </table>
                         </div>
@@ -325,7 +375,9 @@
                 currentPage: 1,
                 condition: "",
                 selected: [],
-                powerList:[]
+                powerList: [],
+                departmentPowerList: [],
+                actives:[]
             }
         },
         mounted(){
@@ -497,6 +549,7 @@
                 }).then(response => {
                     var data = response.data;
                     me.departmentPowerList = data.results;
+                    me.actives=data.active;
                     console.log(me.departmentPowerList);
                 }, response => {
                     serverErrorInfo(response);

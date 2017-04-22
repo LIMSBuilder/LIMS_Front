@@ -48,8 +48,12 @@
                                 v-model="power.parent" id="parent">
                             <option value="0">无</option>
                             <template v-for="item in parentList">
-                                <option :value="item.id">{{item.name}}</option>
+                                <option :value="item.id">{{item.name}}/一级</option>
+                                <template v-for="child in item.child">
+                                    <option :value="child.id">{{child.name}}/二级</option>
+                                </template>
                             </template>
+
                         </select>
                     </div>
                     {{power.parent}}
