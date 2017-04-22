@@ -17,18 +17,18 @@
                                     <span class="caption-subject font-green-sharp bold uppercase">我的任务</span>
                                 </div>
                                 <!--<div class="actions">-->
-                                    <!--<div class="btn-group">-->
-                                        <!--<a class="btn green btn-circle btn-sm" href="javascript:;"-->
-                                           <!--data-toggle="dropdown"-->
-                                           <!--data-hover="dropdown" data-close-others="true"> 操 作-->
-                                            <!--<i class="fa fa-angle-down"></i>-->
-                                        <!--</a>-->
-                                        <!--<ul class="dropdown-menu pull-right">-->
-                                            <!--<li>-->
-                                                <!--<a href="javascript:;" @click="finishList"> 提交清单 </a>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    <!--</div>-->
+                                <!--<div class="btn-group">-->
+                                <!--<a class="btn green btn-circle btn-sm" href="javascript:;"-->
+                                <!--data-toggle="dropdown"-->
+                                <!--data-hover="dropdown" data-close-others="true"> 操 作-->
+                                <!--<i class="fa fa-angle-down"></i>-->
+                                <!--</a>-->
+                                <!--<ul class="dropdown-menu pull-right">-->
+                                <!--<li>-->
+                                <!--<a href="javascript:;" @click="finishList"> 提交清单 </a>-->
+                                <!--</li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
                                 <!--</div>-->
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -122,10 +122,9 @@
                                                         <li class="active">
                                                             <a href="#tab_1" data-toggle="tab"> 样品信息 </a>
                                                         </li>
-                                                        <!--<li>-->
-                                                        <!--<a href="#tab_2" data-toggle="tab"> 操作日志 </a>-->
-                                                        <!--</li>-->
-
+                                                        <li>
+                                                            <a href="#tab_2" data-toggle="tab"> 上传原始记录表 </a>
+                                                        </li>
                                                     </ul>
                                                     <div class="tab-content">
                                                         <div class="tab-pane active" id="tab_1">
@@ -231,9 +230,91 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <!--<div class="tab-pane " id="tab_2">-->
+                                                        <div class="tab-pane " id="tab_2">
+                                                            <form action="#" class="form-horizontal" id="myTask">
+                                                                <div class="form-body">
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label">图片名称
+                                                                            <span class="required">&nbsp;&nbsp;&nbsp;</span>
+                                                                        </label>
+                                                                        <div class="col-md-7">
+                                                                            <input type="text" class="form-control"
+                                                                                   id="title" placeholder=""
+                                                                                   name="title" required v-model="name">
+                                                                            <div class="form-control-focus"></div>
+                                                                            <span class="help-block">请输入现场采样原始记录名称，必需字段。</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label">原始记录
+                                                                            <span class="required">&nbsp;&nbsp;&nbsp;</span>
+                                                                        </label>
+                                                                        <div class="col-md-7">
+                                                                            <div id="myId" class="dropzone">
+                                                                                <div class="dz-message">
+                                                                                    将文件拖至此处或点击上传.<br>
+                                                                                    <span class="note">上传经过标签化处理的现场采样原始记录图片。</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <div class="col-md-3"></div>
+                                                                        <div class="col-md-7">
+                                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                                <table class="table table-hover table-light">
+                                                                                    <thead>
+                                                                                    <tr class="uppercase">
+                                                                                        <th> 序号</th>
+                                                                                        <th> 名字</th>
+                                                                                        <th> 操作</th>
+                                                                                    </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                    <template
+                                                                                            v-for="(item,index) in imageLists">
+                                                                                        <tr>
 
-                                                        <!--</div>-->
+                                                                                            <td class="text-center">
+                                                                                                {{index+1}}
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                {{item.name}}
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <button type="button"
+                                                                                                        class="btn green"
+                                                                                                        @click="imagecheck(item.file_path)">
+                                                                                                    查 看
+                                                                                                </button>
+                                                                                                <button type="button"
+                                                                                                        class="btn default"
+                                                                                                        @click="">删 除
+                                                                                                </button>
+                                                                                            </td>
+
+                                                                                        </tr>
+                                                                                    </template>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-actions">
+                                                                    <div class="row">
+                                                                        <div class="col-md-offset-5 col-md-9">
+                                                                            <button type="button" class="btn green"
+                                                                                    @click="createImage">保 存
+                                                                            </button>
+                                                                            <button type="reset" class="btn default"
+                                                                                    @click="resetAll">重 置
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="tabbable-line">
@@ -278,7 +359,6 @@
                                                                                             <a href="javascript:;"
                                                                                                style="line-height: 30px">
                                                                                                 {{p.name}}
-
                                                                                             </a>
                                                                                         </li>
                                                                                     </template>
@@ -355,7 +435,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
         <div class="modal fade bs-modal-sm" id="smallIcon" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -376,7 +455,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
         <div class="modal fade draggable-modal" id="balance_sample" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -442,9 +520,52 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <div class="modal fade draggable-modal" id="image" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">现场采样原始记录图片</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <img :src="path" style="width: 200px;height: 260px;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" id="imageBtn">确 认</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 </template>
+<style>
+    .dropzone .note {
+        border: none;
+        font-weight: 200;
+        font-size: 0.8em;
+        display: block;
+        margin-top: 1.4rem;
+    }
+
+    .dropzone .dz-message {
+        font-size: 1.5em;
+    }
+
+    #myId {
+        border: 2px dashed #0087F7;
+        border-radius: 5px;
+        background: white;
+    }
+</style>
 <script type="es6">
+    import Dropzone from 'mod/dropzone'
+    import 'style/dropzone'
     module.exports = {
         data: function () {
             return {
@@ -462,11 +583,36 @@
                 },
                 sampleList: [],
                 projectList: [],
-                choose: {}
+                choose: {},
+                name: "",
+                path: "",
+                imageLists: []
             }
         },
         mounted(){
             var me = this;
+            var elementDropzone = me.elementDropzone = new Dropzone("div#myId", {
+                url: "/api/file/upload",
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+                uploadMultiple: false,
+                addRemoveLinks: true,
+                previewsContainer: null,
+                acceptedFiles: "image/*",
+                dictInvalidFileType: "文件类型不匹配",
+                dictRemoveFile: "取消上传",
+                dictRemoveLinks: "x",
+                dictCancelUpload: "x"
+            });
+            elementDropzone.on("success", function (file, finished) {
+                codeState(finished.code, {
+                    200: function () {
+                        me.path = finished.path;
+                    }
+                })
+            });
+            BlogUtils.formValid(jQuery("#myTask"));
+
             me.init();
             me.getData();
             App.addResizeHandler(function () {
@@ -557,6 +703,7 @@
                 me.itemDetails(item.id);
                 me.fetchProject(item.id);
                 me.fetchSamples(item.id);
+                me.imageList(item.id);
             },
             itemDetails(id){
                 var me = this;
@@ -768,7 +915,55 @@
                 }, response => {
                     serverErrorInfo(response);
                 })
+            },
+            //上传原始记录图片
+            createImage(){
+                var me = this;
+                if (jQuery("#myTask").valid()) {
+                    me.$http.post("/api/file/saveSceneSample", {
+                        company_id: me.item.id,
+                        name: me.name,
+                        file_path: me.path
+                    }).then(response => {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("原始记录图片上传成功！");
+                                me.imageList(me.item.id);
+                            }
+
+                        });
+                    }, response => {
+                        serverErrorInfo(response);
+                    });
+                }
+            },
+            //取消原始记录图片的上传
+            resetAll(){
+                this.name = "";
+                this.path = "";
+                this.elementDropzone.removeAllFiles();
+            },
+            imageList(id){
+                var me = this;
+                me.$http.get("/api/file/findByCompanyId", {
+                    params: {
+                        company_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.imageLists = data.results;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            //点击查看原始记录图片
+            imagecheck(path){
+                var me = this;
+                me.path = path;
+                jQuery("#image").modal("show");
             }
+
         }
     }
 
