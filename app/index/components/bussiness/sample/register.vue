@@ -5,56 +5,7 @@
         </h1>
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN TODO SIDEBAR -->
                 <div class="todo-ui">
-                    <div class="todo-sidebar">
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
-                                    <span class="caption-subject font-green-sharp bold uppercase">样品进展 </span>
-                                </div>
-
-                            </div>
-                            <div class="portlet-body todo-project-list-content">
-                                <div class="todo-project-list">
-                                    <ul class="nav nav-stacked">
-                                        <li class="active">
-                                            <a href="javascript:;" @click="searchByProcess('apply_sample')"> 全部</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess('')">
-                                        <!--<span class="badge badge-info"-->
-                                              <!--v-if="countProcess!=0"> {{countProcess}} </span> -->
-                                                待登记 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;"
-                                               @click="searchByProcess('')">已登记 </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
-                                    <span class="caption-subject font-blue bold uppercase">搜索 </span>
-                                </div>
-                            </div>
-                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
-                                <div class="form-group form-md-line-input form-md-floating-label"
-                                     style="padding-top: 0;">
-                                    <div class="input-icon right">
-                                        <input type="text" class="form-control" @keyup.enter="searchKey($event)">
-                                        <span class="help-block">支持委托单位、合同编号和项目名称查询。</span>
-                                        <i class="fa fa-search"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END TODO SIDEBAR -->
                     <!-- BEGIN TODO CONTENT -->
                     <div class="todo-content">
                         <div class="portlet light ">

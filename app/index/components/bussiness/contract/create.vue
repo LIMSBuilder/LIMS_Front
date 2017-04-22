@@ -383,6 +383,11 @@
                                                                                 </td>
                                                                                 <td class="text-center">
                                                                                     <a href="javascript:;"
+                                                                                       class="btn btn-icon-only blue"
+                                                                                       @click="edit(item)">
+                                                                                        <i class="fa fa-gear"></i>
+                                                                                    </a>
+                                                                                    <a href="javascript:;"
                                                                                        class="btn btn-icon-only red"
                                                                                        @click="deleteItem(project)">
                                                                                         <i class="fa fa-trash-o"></i>
@@ -1019,6 +1024,7 @@
                                                     <template v-for="item in projectList">
                                                         <option :value="item.id">{{item.name}}
                                                         </option>
+                                                        //monitor.project里面存的value的值
                                                     </template>
                                                 </select>
                                             </div>
@@ -1084,6 +1090,104 @@
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
                         <button type="button" class="btn green" @click="addMonitor">添 加</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade bs-modal-lg" id="changeMonitor" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">修改监测项</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="portlet light portlet-fit portlet-form ">
+                            <div class="portlet-body">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal" id="item_change">
+                                    <div class="form-body">
+                                        <div class="alert alert-danger display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            表单尚未填写完整。
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_element">环境要素
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.element" name="change_element"
+                                                        id="change_element"
+                                                        @change="fetchProjectByElement($event)" data-live-search="true">
+                                                    <option>请选择环境要素</option>
+                                                    <template v-for="item in elementList">
+                                                        <option :value="item.id">{{item.name}}
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_project">监测项目
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.project" name="change_project"
+                                                        id="change_project" multiple
+                                                        data-actions-box="true" data-live-search="true">
+                                                    <template v-for="item in projectList">
+                                                        <option :value="item.id">{{item.name}}
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_frequency">监测频次
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="change_frequency"
+                                                        v-model="monitor.frequency" id="change_frequency"
+                                                        data-live-search="true">
+                                                    <option>请选择监测频次</option>
+                                                    <template v-for="item in frequencyList">
+                                                        <option :value="item.id">{{item.total}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_point">监测点
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="number" class="form-control"
+                                                       v-model="monitor.point" name="change_point" id="change_point">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_other">备注
+                                                <span class="required">  </span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" v-model="monitor.other"
+                                                          id="change_other" name="change_other" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" @click="addMonitor">修改</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -1480,8 +1584,6 @@
                 var data = {
                     element: item.element.id,
                     frequency: item.frequency.id,
-//                    company: item.company,
-//                    is_package: item.is_package,
                     point: item.point,
                     other: item.other,
                     project: temp
@@ -1501,10 +1603,10 @@
                 var items = me.contract.item;
                 me.contract.project_items = [];
                 for (var i = 0; i < items.length; i++) {
-//                    console.log(JSON.stringify(items[i]));
+                    console.log(JSON.stringify(items[i]));
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
-//                console.log(JSON.parse(JSON.stringify(me.contract)));
+                console.log(JSON.parse(JSON.stringify(me.contract)));
                 App.startPageLoading({animate: true});
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
@@ -1566,7 +1668,7 @@
                             $('#monitor_project').selectpicker('destroy');
                             //初始化监测项目选择框
                             $('#monitor_project').selectpicker({
-                                iconBase: 'fa',
+                                iconBase: 'fa',//图标库
                                 tickIcon: 'fa-check',
                                 countSelectedText: "count",
                                 deselectAllText: "取消选择",
@@ -1588,12 +1690,10 @@
                     }
                 }).then(function (response) {
                         var data = response.data;
+                        jQuery('#change_project').selectpicker('destroy');
                         me.projectList = data.results;
                         me.$nextTick(function () {
-                            //销毁监测项目选择框
-                            $('#monitor_project').selectpicker('destroy');
-                            //初始化监测项目选择框
-                            $('#monitor_project').selectpicker({
+                            jQuery('#change_project').selectpicker({
                                 iconBase: 'fa',
                                 tickIcon: 'fa-check',
                                 countSelectedText: "count",
@@ -1601,7 +1701,7 @@
                                 selectAllText: "选择全部",
                                 noneSelectedText: "请选择监测项目"
                             });
-                            $('#monitor_project').selectpicker("val", selected);
+                            jQuery('#change_project').selectpicker("val", selected);
                         })
                     }
                     , function (response) {
@@ -1728,6 +1828,24 @@
                         jQuery("#isPackage").modal("hide");
                     }
                 })
+            },
+            //合同中点击=某一检测项目，然后对该条检测项目进行修改
+            edit(item){
+                var me = this;
+                jQuery("#changeMonitor").modal("show");
+                var temp = [];
+                for (var i = 0; i < item.project.length; i++) {
+                    temp.push(item.project[i].id);
+                }
+                var data = {
+                    element: item.element.id,
+                    frequency: item.frequency.id,
+                    point: item.point,
+                    other: item.other,
+                    project: temp
+                };
+                me.monitor = data;
+                me.fetchProjectByValue(data.element, data.project);
             },
             wizard(){
                 //wizard插件和表单验证序列化
