@@ -302,11 +302,10 @@
                                     <tr>
                                         <td class="text-center">
                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                <input type="checkbox" name="type" v-model="actives">
+                                                <input type="checkbox" name="type" :value="item.id" v-model="actives">
                                                 <span></span>
                                             </label>
                                             {{item.name}}
-                                            {{actives}}
                                         </td>
                                         <td class="text-center">
                                             <table class="table table-light table-hover">
@@ -315,11 +314,10 @@
                                                     <tr>
                                                         <td>
                                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                                <input type="checkbox" name="type" v-model="actives">
+                                                                <input type="checkbox" :value="child.id" name="type" v-model="actives">
                                                                 <span></span>
                                                             </label>
                                                             {{child.name}}
-                                                            {{actives}}
                                                         </td>
                                                     </tr>
                                                 </template>
@@ -334,11 +332,11 @@
                                                         <template v-for="list in child.child">
                                                             <td>
                                                                 <label class="mt-checkbox mt-checkbox-outline">
-                                                                    <input type="checkbox" name="type" v-model="actives">
+                                                                    <input type="checkbox" name="type" :value="list.id"
+                                                                           v-model="actives">
                                                                     <span></span>
                                                                 </label>
                                                                 {{list.name}}
-                                                                {{actives}}
                                                             </td>
                                                         </template>
                                                     </tr>
@@ -377,7 +375,7 @@
                 selected: [],
                 powerList: [],
                 departmentPowerList: [],
-                actives:[]
+                actives: []
             }
         },
         mounted(){
@@ -549,7 +547,7 @@
                 }).then(response => {
                     var data = response.data;
                     me.departmentPowerList = data.results;
-                    me.actives=data.active;
+                    me.actives = data.active;
                     console.log(me.departmentPowerList);
                 }, response => {
                     serverErrorInfo(response);
