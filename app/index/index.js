@@ -124,6 +124,7 @@ import Change_User from './components/system/user/change.vue'
 import page_404 from './components/system/function/404.vue'
 import page_403 from './components/system/function/403.vue'
 import page_500 from './components/system/function/500.vue'
+import addpower from './components/system/function/addpower.vue'
 
 //DashBoard
 import dashboard from './components/dashboard/Dashboard.vue'
@@ -255,6 +256,11 @@ var routes = [
         path: "/500",
         name: "500",
         component: page_500
+    },
+    {
+        path:"/addpower",
+        name:"addpower",
+        component:addpower
     },
     {
         path: "/department",
