@@ -74,6 +74,7 @@ module.exports = {
             'mod/jqprint':path.resolve(PluginsPath,'jquery.jqprint-0.3.js'),
             'mod/migrate':path.resolve(PluginsPath,'jquery-migrate-1.2.1.min.js'),
             'mod/qrcode':path.resolve(PluginsPath,'qrcode.js'),
+            'mod/jstree':path.resolve(PluginsPath,'jstree/dist/jstree.js'),
 
             'mod/pushlet': path.resolve(JsPath, 'ajax-pushlet-client.js'),
 
@@ -111,6 +112,7 @@ module.exports = {
             'style/socicon': path.resolve(PluginsPath, 'socicon/socicon.css'),
             'style/touchspin': path.resolve(PluginsPath, 'bootstrap-touchspin/bootstrap.touchspin.css'),
 
+            'style/jstree':path.resolve(PluginsPath,'jstree/dist/themes/default/style.css'),
             'style/fullcalendar': path.resolve(PluginsPath, 'fullcalendar/fullcalendar.css'),
             'style/minicolors': path.resolve(PluginsPath, 'jquery-minicolors/jquery.minicolors.css'),
             'style/wysihtml5': path.resolve(PluginsPath, 'bootstrap-wysihtml5/bootstrap-wysihtml5.js'),

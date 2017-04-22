@@ -457,6 +457,11 @@
                             <span class="title">服务器异常</span>
                         </a>
                     </router-link>
+                    <router-link :to="{ path: '/addpower' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">新增权限</span>
+                        </a>
+                    </router-link>
                 </ul>
             </li>
         </ul>
