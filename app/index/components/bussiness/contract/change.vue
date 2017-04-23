@@ -295,7 +295,6 @@
                                                     <select class="bs-select form-control" name="projectType"
                                                             v-model="contract.type" id="projectType"
                                                             data-live-search="true">
-                                                        <option>请选择监测类别</option>
                                                         <template v-for="item in typeList">
                                                             <option :value="item.id">{{item.name}}</option>
                                                         </template>
@@ -885,17 +884,6 @@
                                             表单尚未填写完整。
                                         </div>
                                         <div class="form-group" style="padding-bottom: 10px">
-                                            <label class="col-md-2 control-label" for="monitor_company">监测企业或路段
-                                                <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="monitor_company"
-                                                       v-model="monitor.company"
-                                                       placeholder=""
-                                                       name="monitor_company">
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
                                                 <span class="required">*</span>
                                             </label>
@@ -924,13 +912,11 @@
                                                     <template v-for="item in projectList">
                                                         <option :value="item.id">{{item.name}}
                                                         </option>
+                                                        //monitor.project里面存的value的值
                                                     </template>
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <!--</div>-->
-
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_frequency">监测频次
                                                 <span class="required">*</span>
@@ -948,31 +934,11 @@
                                         </div>
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_point">监测点
-                                                <span class="required"> </span>
+                                                <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control input-large"
-                                                       v-model="monitor.point" name="monitor_point"
-                                                       data-role="tagsinput" id="monitor_point">
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="padding-bottom: 10px">
-                                            <label class="col-md-2 control-label">是否外包
-                                                <span class="required">  </span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <div class="mt-radio-inline">
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="is_package"
-                                                               v-model="monitor.is_package" value="0"> 否
-                                                        <span></span>
-                                                    </label>
-                                                    <label class="mt-radio">
-                                                        <input type="radio" name="is_package"
-                                                               v-model="monitor.is_package" value="1"> 是
-                                                        <span></span>
-                                                    </label>
-                                                </div>
+                                                <input type="number" class="form-control"
+                                                       v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
                                         <div class="form-group" style="padding-bottom: 10px">
@@ -1042,7 +1008,9 @@
                     item: [],
                     project_items: [],
                     other: "",
-                    type: ""
+                    type: "",
+                    name: "",
+                    aim: ""
                 },
                 typeList: [],
                 customerList: [],
@@ -1065,7 +1033,8 @@
                 tag: {
                     trustee: "",
                     type: ""
-                }
+                },
+                id: ""
             }
         },
         mounted(){
@@ -1132,6 +1101,55 @@
                 noneSelectedText: "请选择监测项目"
 
             });
+
+
+            var query = me.$route.query;
+            if (!query.id) {
+                confirm({
+                    content: "请先选择需要修改的合同信息！",
+                    success: function () {
+                        router.push("/contract/list");
+                        closeConfirm();
+                    }
+                });
+            } else {
+                me.id = query.id;
+                me.$http.get("/api/contract/contractDetails", {
+                    params: {
+                        id: query.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    for (var str in data) {
+                        if (me.contract[str] != undefined) {
+                            if (str == "type") {
+                                me.contract[str] = data.type.id;
+                            }
+                            me.contract[str] = data[str];
+                        }
+                    }
+                    me.$nextTick(function () {
+                        $('#projectType').selectpicker("val", data.type.id);
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
+                me.$http.get("/api/contract/getItems", {
+                    params: {
+                        contract_id: query.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+//                    console.log(data);
+//                    me.contract.item = data;
+                    console.log(JSON.parse(JSON.stringify(data)));
+                }, response => {
+                    serverErrorInfo(response);
+                })
+
+
+            }
+
         },
         watch: {
             "contract.trustee": function () {
@@ -1186,6 +1204,8 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("监测项目创建成功！");
+                                    debugger
+                                    console.log(JSON.parse(JSON.stringify(data)));
                                     me.contract.item.push(data);
                                 }
                             })
@@ -1437,15 +1457,10 @@
                     var data = response.data;
                     me.typeList = data.results;
                     me.$nextTick(function () {
-//                        $('.bs-select').selectpicker({
-//                            iconBase: 'fa',
-//                            tickIcon: 'fa-check'
-//                        });
                         $('#projectType').selectpicker({
                             iconBase: 'fa',
                             tickIcon: 'fa-check',
-                            noneSelectedText: "请选择联系人"
-
+                            noneSelectedText: "请选择监测类别"
                         });
                     })
                 }, function (response) {

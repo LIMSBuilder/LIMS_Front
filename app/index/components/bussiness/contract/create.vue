@@ -740,59 +740,6 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-
-                                                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                                                        <!--<table class="table table-hover table-light">-->
-                                                        <!--<thead>-->
-                                                        <!--<tr class="uppercase">-->
-                                                        <!--<th> 序号</th>-->
-                                                        <!--&lt;!&ndash;<th> 公司、道路名称</th>&ndash;&gt;-->
-                                                        <!--<th> 环境要素</th>-->
-                                                        <!--<th> 监测点（个）</th>-->
-                                                        <!--<th> 监测项目</th>-->
-                                                        <!--<th> 监测频次</th>-->
-                                                        <!--&lt;!&ndash;<th> 是否分包</th>&ndash;&gt;-->
-                                                        <!--<th> 备注</th>-->
-                                                        <!--</tr>-->
-                                                        <!--</thead>-->
-                                                        <!--<tbody>-->
-                                                        <!--<template v-for="(item,index) in contract.item">-->
-                                                        <!--<tr>-->
-                                                        <!--<td class="text-center">{{index+1}}</td>-->
-                                                        <!--&lt;!&ndash;<td class="text-center">{{item.company}}</td>&ndash;&gt;-->
-                                                        <!--<td class="text-center">{{item.element.name}}-->
-                                                        <!--</td>-->
-                                                        <!--<td class="text-center">-->
-                                                        <!--{{item.point}}-->
-                                                        <!--</td>-->
-                                                        <!--<td class="text-center">-->
-                                                        <!--<template-->
-                                                        <!--v-for="(project,index) in item.project">-->
-                                                        <!--{{project.name}}-->
-                                                        <!--<template-->
-                                                        <!--v-if="project.isPackage==true">-->
-                                                        <!--<span style="color: red;">[分包]</span>-->
-                                                        <!--</template>-->
-                                                        <!--<template-->
-                                                        <!--v-if="index+1!=item.project.length">-->
-                                                        <!--,-->
-                                                        <!--</template>-->
-                                                        <!--</template>-->
-                                                        <!--</td>-->
-                                                        <!--<td class="text-center">{{item.frequency.total}}-->
-                                                        <!--</td>-->
-                                                        <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;v-if="item.is_package==1">是&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;v-if="item.is_package==0">否&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                                                        <!--<td class="text-center">{{item.other}}</td>-->
-                                                        <!--</tr>-->
-                                                        <!--</template>-->
-                                                        <!--</tbody>-->
-                                                        <!--</table>-->
-                                                        <!--</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -984,17 +931,6 @@
                                             <button class="close" data-close="alert"></button>
                                             表单尚未填写完整。
                                         </div>
-                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                        <!--<label class="col-md-2 control-label" for="monitor_company">监测企业或路段-->
-                                        <!--<span class="required">*</span>-->
-                                        <!--</label>-->
-                                        <!--<div class="col-md-9">-->
-                                        <!--<input type="text" class="form-control" id="monitor_company"-->
-                                        <!--v-model="monitor.company"-->
-                                        <!--placeholder=""-->
-                                        <!--name="monitor_company">-->
-                                        <!--</div>-->
-                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
                                                 <span class="required">*</span>
@@ -1053,25 +989,6 @@
                                                        v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
-                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                        <!--<label class="col-md-2 control-label">是否外包-->
-                                        <!--<span class="required">  </span>-->
-                                        <!--</label>-->
-                                        <!--<div class="col-md-9">-->
-                                        <!--<div class="mt-radio-inline">-->
-                                        <!--<label class="mt-radio">-->
-                                        <!--<input type="radio" name="is_package"-->
-                                        <!--v-model="monitor.is_package" value="0"> 否-->
-                                        <!--<span></span>-->
-                                        <!--</label>-->
-                                        <!--<label class="mt-radio">-->
-                                        <!--<input type="radio" name="is_package"-->
-                                        <!--v-model="monitor.is_package" value="1"> 是-->
-                                        <!--<span></span>-->
-                                        <!--</label>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_other">备注
                                                 <span class="required">  </span>
