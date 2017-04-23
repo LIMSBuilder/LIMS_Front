@@ -1324,6 +1324,7 @@
             me.fetchFrequency();
             me.getCustomer();
             me.fetchElement();
+            me.importDefault();
             //me.fetchUser();
             me._init();
             moment.locale('zh-cn');
@@ -1701,19 +1702,28 @@
             },
             importDefault(){
                 //导入预设
+//                var me = this;
+//                confirm({
+//                    content: "是否导入预设的乙方联系信息？",
+//                    success: function () {
+//                        me.$http.get("/api/contract/fetchDefault").then(function (response) {
+//                            var data = response.data;
+//                            for (var key in data) {
+//                                me.contract[key] = data[key];
+//                            }
+//                        }, function (response) {
+//                            serverErrorInfo(response);
+//                        });
+//                    }
+//                })
                 var me = this;
-                confirm({
-                    content: "是否导入预设的乙方联系信息？",
-                    success: function () {
-                        me.$http.get("/api/contract/fetchDefault").then(function (response) {
-                            var data = response.data;
-                            for (var key in data) {
-                                me.contract[key] = data[key];
-                            }
-                        }, function (response) {
-                            serverErrorInfo(response);
-                        });
+                me.$http.get("/api/contract/fetchDefault").then(function (response) {
+                    var data = response.data;
+                    for (var key in data) {
+                        me.contract[key] = data[key];
                     }
+                }, function (response) {
+                    serverErrorInfo(response);
                 })
             },
             fetchType(){

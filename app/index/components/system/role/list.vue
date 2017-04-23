@@ -314,7 +314,8 @@
                                                     <tr>
                                                         <td>
                                                             <label class="mt-checkbox mt-checkbox-outline">
-                                                                <input type="checkbox" :value="child.id" name="type" v-model="actives">
+                                                                <input type="checkbox" :value="child.id" name="type"
+                                                                       v-model="actives">
                                                                 <span></span>
                                                             </label>
                                                             {{child.name}}
@@ -352,7 +353,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green">保存设置</button>
+                        <button type="button" class="btn green" @click="createPower()">保存设置</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -375,7 +376,8 @@
                 selected: [],
                 powerList: [],
                 departmentPowerList: [],
-                actives: []
+                actives: [],
+                roleId: ""//中间变量，存储设置权限时选择的那条记录的role_id角色的id值，之后给修改权限
             }
         },
         mounted(){
@@ -536,6 +538,7 @@
                 me.currentPage = 1;
                 me.getData();
             },
+            //根据role_id获取角色权限列表
             power(item){
                 var me = this;
                 console.log(item);
@@ -548,16 +551,31 @@
                     var data = response.data;
                     me.departmentPowerList = data.results;
                     me.actives = data.active;
+                    me.roleId = item.id;
                     console.log(me.departmentPowerList);
                 }, response => {
                     serverErrorInfo(response);
                 })
             },
-            fetchPowerList(){
+            //设置权限，即可认为是修改权限
+            createPower(){
                 var me = this;
-                me.$http.get("/api/power/getIetems").then(response => {
+//                alert(123);
+//                console.log(me.roleId);
+//                console.log(me.actives);
+                me.$http.get("/api/power/savePower", {
+                    params: {
+                        role_id: me.roleId,
+                        actives: me.actives
+                    }
+                }).then(response => {
                     var data = response.data;
-                    me.powerList = data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("权限修改成功！");
+//                            me.power(me.roleId);
+                        }
+                    })
                 }, response => {
                     serverErrorInfo(response);
                 })
