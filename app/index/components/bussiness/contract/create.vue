@@ -1176,65 +1176,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                        <!--<template v-for="itemList in contract.item">-->
-                        <!--<table class="table table-hover table-light">-->
-                        <!--<thead class="uppercase text-center">公司名称【{{itemList.company}}】-->
-                        <!--</thead>-->
-                        <!--<tbody>-->
-                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                        <!--<table class="table table-hover table-light">-->
-                        <!--<thead>-->
-                        <!--<tr class="uppercase">-->
-                        <!--<th> 序号</th>-->
-                        <!--<th> 环境要素</th>-->
-                        <!--<th> 监测点（个）</th>-->
-                        <!--<th> 监测项目</th>-->
-                        <!--<th> 监测频次</th>-->
-                        <!--<th> 备注</th>-->
-                        <!--<th> 操作</th>-->
-                        <!--</tr>-->
-                        <!--</thead>-->
-                        <!--<tbody>-->
-                        <!--<template v-for="(item,index) in itemList.items">-->
-                        <!--<tr>-->
-                        <!--<td class="text-center">{{index+1}}</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.element.name}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">{{item.point}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--<template-->
-                        <!--v-for="(project,index) in item.project">-->
-                        <!--{{project.name}}-->
-                        <!--<template-->
-                        <!--v-if="index+1!=item.project.length">-->
-                        <!--,-->
-                        <!--</template>-->
-                        <!--</template>-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.frequency.total}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">{{item.other}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--<a href="javascript:;"-->
-                        <!--class="btn btn-icon-only red"-->
-                        <!--@click="deleteItem(item)">-->
-                        <!--<i class="fa fa-trash-o"></i>-->
-                        <!--</a>-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--</template>-->
-                        <!--</tbody>-->
-                        <!--</table>-->
-                        <!--</div>-->
-                        <!--</tbody>-->
-                        <!--</table>-->
-                        <!--</template>-->
-                        <!--</div>-->
                         <div class="modal-footer">
                             <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
                             <button type="button" class="btn green" @click="isPackges">添 加</button>
