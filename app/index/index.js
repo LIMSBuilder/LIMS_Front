@@ -104,6 +104,7 @@ import Default from './components/basic/basic/default.vue'
 import Instrument from './components/basic/Instrument/Instrument.vue'
 import Create_Instrument from './components/basic/Instrument/create.vue'
 import List_Instrument from './components/basic/Instrument/list.vue'
+import Change_Instrument from './components/basic/Instrument/change.vue'
 
 //=============System===============
 //Department
@@ -333,6 +334,10 @@ var routes = [
             {
                 path:"list",
                 component:List_Instrument
+            },
+            {
+                path:"change",
+                component:Change_Instrument
             }
         ]
     },
