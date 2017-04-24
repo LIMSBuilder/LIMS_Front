@@ -65,7 +65,6 @@ import Qreview from './components/bussiness/quality/qReview.vue'
 import Firstreview from './components/bussiness/quality/firstReview.vue'
 
 
-
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -100,6 +99,11 @@ import Change_Customer from './components/basic/customer/change.vue'
 //Basic
 import Basic from './components/basic/basic/basic.vue'
 import Default from './components/basic/basic/default.vue'
+
+//Instrument
+import Instrument from './components/basic/Instrument/Instrument.vue'
+import Create_Instrument from './components/basic/Instrument/create.vue'
+import List_Instrument from './components/basic/Instrument/list.vue'
 
 //=============System===============
 //Department
@@ -258,9 +262,9 @@ var routes = [
         component: page_500
     },
     {
-        path:"/addpower",
-        name:"addpower",
-        component:addpower
+        path: "/addpower",
+        name: "addpower",
+        component: addpower
     },
     {
         path: "/department",
@@ -314,6 +318,21 @@ var routes = [
             {
                 path: "change",
                 component: Change_User
+            }
+        ]
+    },
+    {
+        path: "/instrument",
+        name: "instrument",
+        component:Instrument,
+        children:[
+            {
+                path:"create",
+                component:Create_Instrument
+            },
+            {
+                path:"list",
+                component:List_Instrument
             }
         ]
     },
@@ -500,17 +519,17 @@ var routes = [
         ]
     },
     {
-        path:"/quality",
-        name:"quality",
-        component:Quality,
-        children:[
+        path: "/quality",
+        name: "quality",
+        component: Quality,
+        children: [
             {
-                path:"qreview",
-                component:Qreview
+                path: "qreview",
+                component: Qreview
             },
             {
-                path:"firstreview",
-                component:Firstreview
+                path: "firstreview",
+                component: Firstreview
             }
         ]
     }

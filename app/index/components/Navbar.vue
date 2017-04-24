@@ -344,6 +344,25 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-balance-scale"></i>
+                    <span class="title">仪器管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/instrument/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建仪器</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/instrument/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">仪器列表</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-share-alt"></i>
                     <span class="title">客户管理</span>
                     <span class="arrow"></span>

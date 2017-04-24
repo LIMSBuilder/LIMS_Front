@@ -601,7 +601,7 @@
                         <p v-html="advice.msg"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn green btn-outline">导 出</button>
+                        <button type="button" class="btn green btn-outline" @click="exportReview">导 出</button>
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
                     </div>
                 </div>
@@ -915,7 +915,7 @@
                 },
                 reviewList: {},
                 advice: {},
-                project: []
+                project: [],
             }
         },
         mounted(){
@@ -1149,6 +1149,7 @@
                     var data = response.data;
 //                    console.log(data);
                     me.advice = data;
+//                    console.log(me.advice.id);
                 }, function (response) {
                     serverErrorInfo(response);
                 })
@@ -1177,6 +1178,13 @@
                     }
                 );
                 jQuery("#showProject").modal("show");
+
+            },
+            exportReview(){
+                var me = this;
+//                console.log(me.advice.id);
+                window.open("http://" + window.location.hostname + ":8080/api/contract/createReview?id=" + me.advice.id);
+
 
             }
         }
