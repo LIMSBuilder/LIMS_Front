@@ -1024,7 +1024,7 @@
                                                     <template v-for="item in projectList">
                                                         <option :value="item.id">{{item.name}}
                                                         </option>
-                                                        //monitor.project里面存的value的值
+                                                        <!--//monitor.project里面存的value的值-->
                                                     </template>
                                                 </select>
                                             </div>
@@ -1141,6 +1141,7 @@
                                                         data-actions-box="true" data-live-search="true">
                                                     <template v-for="item in projectList">
                                                         <option :value="item.id">{{item.name}}
+
                                                         </option>
                                                     </template>
                                                 </select>
@@ -1397,7 +1398,7 @@
                 tag: {
                     trustee: "",
                     type: ""
-                }
+                },
             }
         },
         mounted(){
@@ -1832,6 +1833,7 @@
             },
             isPackges(){
                 var me = this;
+                alert();
                 confirm({
                     content: "是否将选中项目设置为分包项目？分包项目将不参与后续流程！",
                     success: function () {
