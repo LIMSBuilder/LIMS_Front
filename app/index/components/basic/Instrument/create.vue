@@ -8,90 +8,114 @@
                 <!--BEGIN FROM -->
                 <form action="#" class="form-horizontal" id="">
                     <div class="form-body">
-                        <h3 class="form-section">设备管理</h3>
+                        <h3 class="form-section">新建设备</h3>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">固定资产编号
+                            <label class="col-md-3 control-label" for="GIdentify">固定资产编号
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="" placeholder=""
-                                       name="" required>
+                                <input type="text" class="form-control" id="GIdentify" placeholder=""
+                                       name="GIdentify" v-model="equipment.GIdentify" required>{{equipment.GIdentify}}
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入固定资产编号，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">仪器设备名称
+                            <label class="col-md-3 control-label" for="name">仪器设备名称
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="" placeholder=""
-                                       name="" required>
+                                <input type="text" class="form-control" id="name" placeholder=""
+                                       name="name" v-model="equipment.name" required>{{equipment.name}}
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入仪器设备名称，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">设备型号
+                            <label class="col-md-3 control-label" for="type">设备型号
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="" placeholder=""
-                                       name="" required>
+                                <input type="text" class="form-control" id="type" placeholder=""
+                                       name="type" v-model="equipment.type" required>{{equipment.type}}
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入设备型号，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">价 格
+                            <label class="col-md-3 control-label" for="Fidentify">设备出厂编号
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="" placeholder=""
-                                       name="" required>
+                                <input type="text" class="form-control" id="Fidentify" placeholder=""
+                                       name="Fidentify" v-model="equipment.Fidentify" required>{{equipment.Fidentify}}
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入设备出厂编号，必需字段。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="factory">生产厂家
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="factory" placeholder=""
+                                       name="factory" v-model="equipment.factory" required>{{equipment.factory}}
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入生产厂家，必需字段。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="price">价 格
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="price" placeholder=""
+                                       name="price" v-model="equipment.price" required>{{equipment.price}}
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入价格，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">溯源方式
+                            <label class="col-md-3 control-label" for="method">溯源方式
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="" placeholder=""
-                                       name="" required>
+                                <input type="text" class="form-control" id="method" placeholder=""
+                                       name="method" v-model="equipment.method" required>{{equipment.method}}
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入溯源方式，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">放置地点
+                            <label class="col-md-3 control-label" for="place">放置地点
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="" placeholder=""
-                                       name="" required>
+                                <input type="text" class="form-control" id="place" placeholder=""
+                                       name="place" v-model="equipment.place" required>{{equipment.place}}
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入放置地点，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">证 书 号
+                            <label class="col-md-3 control-label" for="certificate">证 书 号
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="" placeholder=""
-                                       name="" required>
+                                <input type="text" class="form-control" id="certificate" placeholder=""
+                                       name="certificate" v-model="equipment.certificate" required>{{equipment.certificate}}
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入证书号，必需字段。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">保管人
+                            <label class="col-md-3 control-label" for="people">保管人
                                 <span class="required">*</span>
                             </label>
+                            {{equipment.people}}
                             <div class="col-md-7">
-                                <select class="form-control" data-live-search="true" name="">
+                                <select class="form-control" data-live-search="true" id="people" name="people"
+                                        v-model="equipment.people">
                                     <option></option>
                                     <template v-for="item in userList">
                                         <optgroup :label="item.name">
@@ -104,19 +128,23 @@
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">最后检定时间
+                            <label class="col-md-3 control-label" for="finalTime">最后检定时间
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                2017年04月24日10:42:12
+                                <input class="form-control form-control-inline date-picker" size="16" type="text"
+                                       value="" id="finalTime" v-model="equipment.finalTime"/>{{equipment.finalTime}}
+                                <span class="help-block"> Select date </span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label" for="">有效期
+                            <label class="col-md-3 control-label" for="time">有效期
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-7">
-                                时间
+                                <input class="form-control form-control-inline date-picker" size="16" type="text"
+                                       value="" id="time" v-model="equipment.time"/>{{equipment.time}}
+                                <span class="help-block"> Select date </span>
                             </div>
                         </div>
                     </div>
@@ -140,12 +168,31 @@
     module.exports = {
         data: function () {
             return {
-                userList: []
+                userList: [],
+                equipment: {
+                    GIdentify: "BEM-101-001",
+                    name: "电导率仪",
+                    type: "DDS-307",
+                    Fidentify: "610510N0014020193",
+                    factory: "上海仪电科学仪器股份有限公司",
+                    price: 1400,
+                    method: "检定",
+                    place: "化学分析室（二）",
+                    people: "",
+                    finalTime: "2016.06.03",
+                    time: "2017.06.02",
+                    certificate: "20162018505001"
+                }
             }
         },
         mounted(){
             var me = this;
             me.fetchUser();
+            $('.date-picker').datepicker({
+                rtl: App.isRTL(),
+                orientation: "left",
+                autoclose: true
+            });
 
         },
         methods: {
@@ -159,7 +206,17 @@
                 })
             },
             create(){
-                alert(123);
+                var me = this;
+                me.$http.post("/api/equip/create", me.equipment).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("仪器添加成功！");
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
             }
         }
     }
