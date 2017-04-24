@@ -15,7 +15,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="GIdentify" placeholder=""
-                                       name="GIdentify" v-model="equipment.GIdentify" required>{{equipment.GIdentify}}
+                                       name="GIdentify" v-model="equipment.GIdentify" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入固定资产编号，必需字段。</span>
                             </div>
@@ -26,7 +26,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="name" placeholder=""
-                                       name="name" v-model="equipment.name" required>{{equipment.name}}
+                                       name="name" v-model="equipment.name" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入仪器设备名称，必需字段。</span>
                             </div>
@@ -37,7 +37,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="type" placeholder=""
-                                       name="type" v-model="equipment.type" required>{{equipment.type}}
+                                       name="type" v-model="equipment.type" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入设备型号，必需字段。</span>
                             </div>
@@ -48,7 +48,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="Fidentify" placeholder=""
-                                       name="Fidentify" v-model="equipment.Fidentify" required>{{equipment.Fidentify}}
+                                       name="Fidentify" v-model="equipment.Fidentify" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入设备出厂编号，必需字段。</span>
                             </div>
@@ -59,7 +59,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="factory" placeholder=""
-                                       name="factory" v-model="equipment.factory" required>{{equipment.factory}}
+                                       name="factory" v-model="equipment.factory" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入生产厂家，必需字段。</span>
                             </div>
@@ -70,7 +70,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="price" placeholder=""
-                                       name="price" v-model="equipment.price" required>{{equipment.price}}
+                                       name="price" v-model="equipment.price" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入价格，必需字段。</span>
                             </div>
@@ -81,7 +81,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="method" placeholder=""
-                                       name="method" v-model="equipment.method" required>{{equipment.method}}
+                                       name="method" v-model="equipment.method" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入溯源方式，必需字段。</span>
                             </div>
@@ -92,7 +92,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="place" placeholder=""
-                                       name="place" v-model="equipment.place" required>{{equipment.place}}
+                                       name="place" v-model="equipment.place" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入放置地点，必需字段。</span>
                             </div>
@@ -103,7 +103,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="certificate" placeholder=""
-                                       name="certificate" v-model="equipment.certificate" required>{{equipment.certificate}}
+                                       name="certificate" v-model="equipment.certificate" required>
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入证书号，必需字段。</span>
                             </div>
@@ -133,7 +133,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input class="form-control form-control-inline date-picker" size="16" type="text"
-                                       value="" id="finalTime" v-model="equipment.finalTime"/>{{equipment.finalTime}}
+                                       value="" id="finalTime" v-model="equipment.finalTime"/>
                                 <span class="help-block"> Select date </span>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                             </label>
                             <div class="col-md-7">
                                 <input class="form-control form-control-inline date-picker" size="16" type="text"
-                                       value="" id="time" v-model="equipment.time"/>{{equipment.time}}
+                                       value="" id="time" v-model="equipment.time"/>
                                 <span class="help-block"> Select date </span>
                             </div>
                         </div>
