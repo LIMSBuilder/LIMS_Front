@@ -128,7 +128,7 @@
                                                 <a href="javascript:;" @click="finishConstract">完成合同</a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> 导出合同</a>
+                                                <a href="javascript:;" @click="exportContract"> 导出合同</a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;" @click="stopContract"> 中止合同</a>
@@ -934,6 +934,10 @@
             changeContract(){
                 var me = this;
                 router.push("/contract/change?id=" + me.contract.id);
+            },
+            exportContract(){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id="+me.contract.id);
             }
         }
     }
