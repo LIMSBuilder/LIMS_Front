@@ -109,22 +109,8 @@
         data: function () {
             return {
                 userList: [],
-                equipment: {
-                    GIdentify: "BEM-101-001",
-                    name: "电导率仪",
-                    type: "DDS-307",
-                    Fidentify: "610510N0014020193",
-                    factory: "上海仪电科学仪器股份有限公司",
-                    price: 1400,
-                    method: "检定",
-                    place: "化学分析室（二）",
-                    people: "",
-                    finalTime: "2016.06.03",
-                    time: "2017.06.02",
-                    certificate: "20162018505001"
-                },
-                equipmentList: {
-                }
+                equipmentlist: [],
+                selected: []
             }
         },
         mounted(){
@@ -136,24 +122,91 @@
             create(){
                 router.push("/instrument/create");
             },
-            selectAll(){
-
-            },
-            removeAll(){
-
-            },
-            total(){
-
-            },
             fetchEquipmentList(){
                 var me = this;
-                me.$http.get("/api/equip/list").then(response => {
+                me.$http.get("/api/equip/total").then(response => {
                     var data = response.data;
                     me.equipmentlist = data.results;
                 }, response => {
                     serverErrorInfo(response);
                 })
-            }
+            },
+            //全选
+            selectAll(){
+                var me = this;
+                if (me.selected.length == 0) {
+                    me.selected = [];
+                    me.equipmentlist.forEach(function (item, index) {
+                        me.selected.push(item.id);
+                    })
+                } else {
+                    me.selected = [];
+                }
+
+            },
+            total(){
+                var me = this;
+                me.fetchEquipmentList();
+            },
+            //删除全部
+            removeAll(){
+                var me = this;
+                if (me.selected.length == 0) {
+                    error("至少需要选择一个仪器设备");
+                    return;
+                }
+                confirm({
+                    content: "是否删除当前选中仪器设备？",
+                    success: function () {
+                        me.$http.get("/api/equip/deleteAll", {
+                            params: {
+                                selected: me.selected
+                            }
+                        }).then(response => {
+                                var data = response.data;
+                                codeState(data.code, {
+                                    200: function () {
+                                        alert("仪器设备删除成功！");
+                                        me.fetchEquipmentList();
+                                        closeConfirm();
+                                    }
+                                });
+                            },
+                            response => {
+                                serverErrorInfo(response);
+                            }
+                        );
+                    }
+                });
+            },
+            //删除选中的一个
+            remove(id){
+                var me = this;
+                confirm({
+                    content: "是否删除当前选中仪器？",
+                    success: function () {
+                        me.$http.get("/api/equip/delete", {
+                            params: {
+                                id: id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("仪器设备删除成功！");
+                                    me.fetchEquipmentList();
+                                }
+                            }, response => {
+                                serverErrorInfo(response);
+                            })
+                        })
+                    }
+                })
+            },
+            edit(item){
+                var me = this;
+                router.push("/instrument/change?id=" + item.id);
+            },
         }
     }
 

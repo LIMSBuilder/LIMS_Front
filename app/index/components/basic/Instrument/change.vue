@@ -153,8 +153,8 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-5 col-md-9">
-                                <button type="button" class="btn green" @click="create">保 存</button>
-                                <button type="reset" class="btn default">重 置</button>
+                                <button type="button" class="btn green" @click="back">返回</button>
+                                <button type="reset" class="btn default" @click="create">保存</button>
                             </div>
                         </div>
                     </div>
@@ -169,25 +169,24 @@
         data: function () {
             return {
                 userList: [],
-                equipment: {
-                    GIdentify: "",
-                    name: "",
-                    type: "",
-                    Fidentify: "",
-                    factory: "",
-                    price: "",
-                    method: "",
-                    place: "",
-                    people: "",
-                    finalTime: "",
-                    time: "",
-                    certificate: ""
-                }
+                equipment: {}
+
             }
         },
         mounted(){
             var me = this;
-            me.fetchUser();
+            var query = me.$route.query;
+            me.$http.get("/api/equip/findById", {
+                params: {
+                    id: query.id
+                }
+            }).then(function (response) {
+                var data = response.data;
+                me.equipment = data;
+            }, function (response) {
+                serverErrorInfo(response);
+            });
+
             $('.date-picker').datepicker({
                 rtl: App.isRTL(),
                 orientation: "left",
@@ -200,22 +199,26 @@
                 var me = this;
                 me.$http.get("/api/user/listByDepartment").then(response => {
                     var data = response.data;
-                    me.userList = data.results;
+                    me.equipment = data.results;
                 }, response => {
                     serverErrorInfo(response);
                 })
             },
+            back(){
+                router.push("/instrument/list");
+            },
             create(){
                 var me = this;
-                me.$http.post("/api/equip/create", me.equipment).then(response => {
+                me.$http.post("/api/equip/change",me.equipment).then(response => {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
-                            alert("仪器添加成功！");
+                            alert("仪器设备修改成功！");
+                            router.push("/instrument/list");
                         }
+                    }, response => {
+                        serverErrorInfo(response);
                     })
-                }, response => {
-                    serverErrorInfo(response);
                 })
             }
         }
