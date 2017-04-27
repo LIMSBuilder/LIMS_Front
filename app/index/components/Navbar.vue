@@ -87,7 +87,12 @@
                 <ul class="sub-menu">
                     <router-link :to="{ path: '/contract/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">合同起草</span>
+                            <span class="title">业务合同起草</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/service' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">服务合同创建</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/contract/list' }" tag="li" active-class="active">
