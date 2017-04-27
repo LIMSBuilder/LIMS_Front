@@ -47,6 +47,8 @@ import Contract_Review from './components/bussiness/contract/review.vue'
 import Change_Contract from './components/bussiness/contract/change.vue'
 import contract_Sreview from './components/bussiness/contract/sreview.vue'
 
+import service from './components/bussiness/contract/service.vue'
+
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
 import Task_List from './components/bussiness/task/list.vue'
@@ -325,19 +327,19 @@ var routes = [
     {
         path: "/instrument",
         name: "instrument",
-        component:Instrument,
-        children:[
+        component: Instrument,
+        children: [
             {
-                path:"create",
-                component:Create_Instrument
+                path: "create",
+                component: Create_Instrument
             },
             {
-                path:"list",
-                component:List_Instrument
+                path: "list",
+                component: List_Instrument
             },
             {
-                path:"change",
-                component:Change_Instrument
+                path: "change",
+                component: Change_Instrument
             }
         ]
     },
@@ -470,6 +472,9 @@ var routes = [
             {
                 path: "sreview",
                 component: contract_Sreview
+            }, {
+                path: "service",
+                component: service
             }
         ]
     },
