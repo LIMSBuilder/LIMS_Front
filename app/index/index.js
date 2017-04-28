@@ -46,6 +46,7 @@ import Contract_List from './components/bussiness/contract/list.vue'
 import Contract_Review from './components/bussiness/contract/review.vue'
 import Change_Contract from './components/bussiness/contract/change.vue'
 import contract_Sreview from './components/bussiness/contract/sreview.vue'
+import contract_IsPackage from './components/bussiness/contract/isPackage.vue'
 
 import service from './components/bussiness/contract/service.vue'
 
@@ -472,6 +473,10 @@ var routes = [
             {
                 path: "sreview",
                 component: contract_Sreview
+            },
+            {
+                path: "isPackage",
+                component: contract_IsPackage
             }, {
                 path: "service",
                 component: service
