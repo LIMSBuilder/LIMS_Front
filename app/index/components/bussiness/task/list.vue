@@ -418,7 +418,7 @@
                                                                                             {{index+1}}
                                                                                         </td>
                                                                                         <td class="text-center">
-                                                                                            {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                            <!--{{itemList.flag==0?contract.client_unit:itemList.company}}-->
                                                                                         </td>
                                                                                         <td class="text-center">
                                                                                             {{item.element.name}}
@@ -583,13 +583,6 @@
                     serverErrorInfo(response);
                 })
             },
-//            _handleProjectListMenu: function () {
-//                if (App.getViewPort().width <= 992) {
-//                    $('.todo-project-list-content').addClass("collapse");
-//                } else {
-//                    $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
-//                }
-//            },
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.startPageLoading({animate: true});

@@ -479,6 +479,25 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2" for="trustee">采样类型
+                                                        <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-10">
+                                                        <div class="mt-radio-inline">
+                                                            <label class="mt-radio">
+                                                                <input type="radio" name="sample_type"
+                                                                       v-model="task.sample_type" value="0"> 自送样
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="mt-radio">
+                                                                <input type="radio" name="sample_type"
+                                                                       v-model="task.sample_type" value="1"> 现场采样
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab4">
@@ -727,14 +746,8 @@
                                             <a href="javascript:;" class="btn btn-outline green button-next"> 下一步
                                                 <i class="fa fa-angle-right"></i>
                                             </a>
-                                            <a href="javascript:;" class="btn green button-submit" @click="create(0)">
-                                                <!--自送样提交-->
-                                                实验分析室
-                                                <i class="fa fa-check"></i>
-                                            </a>
-                                            <a href="javascript:;" class="btn blue button-submit" @click="create(1)">
-                                                <!--现场采样提交-->
-                                                现场检测室
+                                            <a href="#splitConfirm" class="btn green button-submit" data-toggle="modal">
+                                                保 存
                                                 <i class="fa fa-check"></i>
                                             </a>
                                         </div>
@@ -1500,22 +1513,16 @@
             <!-- /.modal-dialog -->
 
         </div>
-        <div class="modal fade" id="contracServicetList" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-full">
+        <div class="modal fade draggable-modal" id="contracServicetList" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">选择合同</h4>
+                        <h4 class="modal-title">请选择服务合同</h4>
                     </div>
                     <div class="modal-body">
                         <div class="portlet light ">
                             <!-- PROJECT HEAD -->
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">服务合同列表</span>
-                                </div>
-                            </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
@@ -1538,18 +1545,6 @@
                                                                         <i class="fa fa-calendar"></i> {{item.create_time}} </span>
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </span>
-                                                    <div class="todo-tasklist-controls pull-right">
-                                                        <span class="label label-sm label-danger"
-                                                              v-if="item.process==-2">已中止</span>
-                                                        <span class="label label-sm label-warning"
-                                                              v-if="item.process==-1">待修改</span>
-                                                        <span class="label label-sm label-info"
-                                                              v-if="item.process==1">待审核</span>
-                                                        <span class="label label-sm label-primary"
-                                                              v-if="item.process==2">待执行</span>
-                                                        <span class="label label-sm label-success"
-                                                              v-if="item.process==3">已执行</span>
-                                                    </div>
                                                 </div>
                                             </template>
 
@@ -1566,13 +1561,12 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green" @click="chooseContract">选 择</button>
+                        <button type="button" class="btn green" >选 择</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
-
         </div>
 
         <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
@@ -1580,12 +1574,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
+                        <h4 class="modal-title">检测项目详情列表</h4>
                     </div>
-                    <div class="modal-body" id="modal_body">
-                        <!--<template v-for="(project,projectIndex) in item.project">-->
-                        <!--{{project.project.name}}-->
-                        <!--</template>-->
+                    <div class="modal-body">
                         <ul class="receiver_tag">
                             <template v-for="item in project">
                                 <li class="uppercase ">
@@ -1609,6 +1600,90 @@
             <!-- /.modal-dialog -->
         </div>
 
+
+        <div class="modal fade bs-modal-lg" id="splitConfirm" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">拆分操作确认</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success">
+                            <strong>NOTE:</strong> 系统会根据监测企业或路段的不同，将任务书自动拆分为若干作业同时执行。
+                        </div>
+                        <h3>请确认本任务书的拆分操作：</h3>
+                        <template v-for="(companyEntry,index) in task.item">
+                            <hr>
+                            <h4>作业{{index+1}}:{{companyEntry.company}}</h4>
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <thead>
+                                            <tr class="uppercase">
+                                                <th> 序号</th>
+                                                <th> 环境要素</th>
+                                                <th> 监测点（个）</th>
+                                                <th> 监测项目</th>
+                                                <th> 监测频次</th>
+                                                <th> 备注</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <template
+                                                    v-for="(item,index) in companyEntry.items">
+                                                <tr>
+                                                    <td class="text-center">
+                                                        {{index+1}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{item.element.name}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{item.point}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <template
+                                                                v-for="(project,index) in item.project">
+                                                            {{project.name}}
+                                                            <template
+                                                                    v-if="project.isPackage==true">
+                                                                <span style="color: red;">[分包]</span>
+                                                            </template>
+                                                            <template
+                                                                    v-if="index+1!=item.project.length">
+                                                                ,
+                                                            </template>
+                                                        </template>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{item.frequency.total}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{item.other}}
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" @click="create">确认保存</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 </template>
 
@@ -1640,7 +1715,8 @@
                     project_items: [],
                     other: "",
                     type: "",
-                    charge: ""
+                    charge: "",
+                    sample_type: 0
                 },
                 contractList: [],
                 itemLists: [],
@@ -1817,7 +1893,14 @@
                     }).then(function (response) {
                             var data = response.data;
                             alert("监测项目创建成功！");
-                            me.task.item.push(data);
+                            //me.task.item.push(data);
+                            if (me.task.item.length == 0) {
+                                me.task.item.push(data);
+                            } else {
+                                for (var m = 0; m < data.items.length; m++) {
+                                    me.task.item[0].items.push(data.items[m]);
+                                }
+                            }
                         }
                         , function (response) {
                             serverErrorInfo(response);
@@ -1858,26 +1941,25 @@
                     jQuery("#monitor_point").tagsinput("add", item.point[p]);
                 }
             },
-            create(type){
+            create(){
                 var me = this;
                 var items = me.task.item;
                 me.task.project_items = [];
                 for (var i = 0; i < items.length; i++) {
-                    console.log(JSON.stringify(items[i]))
                     me.task.project_items.push(JSON.stringify(items[i]))
                 }
-                console.log(JSON.parse(JSON.stringify(me.task)));
                 if (me.contract_type) {
                     //是根据合同创建的任务
                     me.$http.post("/api/task/createByContract", {
                         "contract_id": me.contract.id,
-                        "sample_type": type,
+                        "sample_type": me.task.sample_type,
                         "charge": me.task.charge
                     }).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {
                             200: function () {
                                 alert("任务创建成功！");
+                                jQuery("#splitConfirm").modal("hide");
                                 router.push("/task/list");
                             }
                         })
@@ -1886,7 +1968,6 @@
                     })
                 } else {
                     //是自定义创建的任务
-                    me.task.sample_type = type;
                     me.$http.post("/api/task/create", me.task).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {
@@ -2403,6 +2484,7 @@
                         me.task[key] = obj[key];
                     }
                 }
+                me.task.item = me.itemLists;
                 jQuery("#projectType").selectpicker("val", me.contract.type.id);
                 me.contract_type = true;
                 jQuery("#contractList").modal("hide");
@@ -2486,7 +2568,7 @@
             //点击服务合同，获取当前服务合同的id信息，再进行下面的自定义创建任务书
             fetchServiceItems(item){
                 console.log(item.id);
-                var me =this;
+                var me = this;
                 alert(item.id);
             }
 
