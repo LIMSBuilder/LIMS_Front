@@ -95,6 +95,11 @@
                             <span class="title">合同列表</span>
                         </a>
                     </router-link>
+                    <router-link :to="{ path: '/contract/isPackage' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">项目分包</span>
+                        </a>
+                    </router-link>
                     <router-link :to="{ path: '/contract/sreview' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">业务审核</span>
