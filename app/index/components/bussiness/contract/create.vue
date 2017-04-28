@@ -349,7 +349,8 @@
                                                                         <th> 监测项目</th>
                                                                         <th> 监测频次</th>
                                                                         <th> 备注</th>
-                                                                        <th> 操作</th>
+                                                                        <th> 修改</th>
+                                                                        <th> 删除</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -387,6 +388,8 @@
                                                                                        @click="edit(item)">
                                                                                         <i class="fa fa-gear"></i>
                                                                                     </a>
+                                                                                </td>
+                                                                                <td class="text-center">
                                                                                     <a href="javascript:;"
                                                                                        class="btn btn-icon-only red"
                                                                                        @click="deleteItem(project)">
@@ -408,8 +411,8 @@
                                                         <button type="button" class="btn red btn-outline"
                                                                 @click="deleteAllItem">删除全部
                                                         </button>
-                                                        <a href="#isPackage" data-toggle="modal"
-                                                           class="btn blue btn-outline">选择分包</a>
+                                                        <!--<a href="#isPackage" data-toggle="modal"-->
+                                                        <!--class="btn blue btn-outline">选择分包</a>-->
                                                     </p>
                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                         <div class="input-group input-large">
@@ -434,12 +437,18 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-2" for="packageUnit">分包单位
+                                                <label class="control-label col-md-2">是否分包
                                                     <span class="required">  </span>
                                                 </label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="packageUnit"
-                                                           id="packageUnit" v-model="contract.package_unit"/>
+                                                    <!--<input type="text" class="form-control" name="packageUnit"-->
+                                                    <!--id="packageUnit" v-model="contract.package_unit"/>-->
+                                                    <input type="radio" id="noPackage" value="1"
+                                                           v-model="contract.isPackage">
+                                                    <label for="noPackage">是</label>
+                                                    <input type="radio" id="yesPackage" value="0"
+                                                           v-model="contract.isPackage">
+                                                    <label for="yesPackage">否</label>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -745,10 +754,13 @@
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-12">
-                                                    <label class="control-label col-md-2" for="client">分包单位
+                                                    <label class="control-label col-md-2" for="client">是否分包
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <label class="control-label"> {{contract.package_unit}}</label>
+                                                        <!--<label class="control-label"> {{contract.package_unit}}</label>-->
+
+                                                        <label for="noPackage" v-if="contract.isPackage==1"> 是</label>
+                                                        <label for="yesPackage" v-if="contract.isPackage==0">否</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1112,81 +1124,81 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <div class="modal fade bs-modal-lg" id="isPackage" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">分包项目</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-scrollable table-scrollable-borderless">
-                            <table class="table table-hover table-light">
-                                <thead>
-                                <tr class="uppercase">
-                                    <th> 检测企业或路段</th>
-                                    <th> 环境要素</th>
-                                    <th> 监测项目</th>
-                                    <th> 是否分包</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <template v-for="itemList in contract.item">
-                                    <template v-for="(item,index) in itemList.items">
-                                        <tr>
-                                            <td class="text-center" rowspan="itemList.length">
-                                                {{itemList.flag==0?contract.client_unit:itemList.company}}
-                                            </td>
-                                            <td class="text-center" rowspan="item.project.length">{{item.element.name}}
-                                            </td>
-                                            <td class="text-center">
-                                                <table class="table table-hover table-light">
-                                                    <tbody>
-                                                    <template v-for="project in item.project">
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                {{project.name}}
-                                                            </td>
-                                                        </tr>
-                                                    </template>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td class="text-center">
-                                                <table class="table table-hover table-light">
-                                                    <tbody>
-                                                    <template v-for="project in item.project">
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                <label class="mt-checkbox mt-checkbox-outline">
-                                                                    <!--<input type="checkbox" v-model="project.id"-->
-                                                                    <!--name="ispackage" :value="item.id+'/'+project.id">-->
-                                                                    <input type="checkbox" v-model="project.isPackage"
-                                                                           name="ispackage" value="1">
-                                                                    <span></span>
-                                                                </label>
-                                                            </td>
-                                                        </tr>
-                                                    </template>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </template>
-                                </template>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                            <button type="button" class="btn green" @click="isPackges">添 加</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-        </div>
+        <!--<div class="modal fade bs-modal-lg" id="isPackage" tabindex="-1" role="dialog" aria-hidden="true">-->
+        <!--<div class="modal-dialog modal-lg">-->
+        <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>-->
+        <!--<h4 class="modal-title">分包项目</h4>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+        <!--<div class="table-scrollable table-scrollable-borderless">-->
+        <!--<table class="table table-hover table-light">-->
+        <!--<thead>-->
+        <!--<tr class="uppercase">-->
+        <!--<th> 检测企业或路段</th>-->
+        <!--<th> 环境要素</th>-->
+        <!--<th> 监测项目</th>-->
+        <!--<th> 是否分包</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<template v-for="itemList in contract.item">-->
+        <!--<template v-for="(item,index) in itemList.items">-->
+        <!--<tr>-->
+        <!--<td class="text-center" rowspan="itemList.length">-->
+        <!--{{itemList.flag==0?contract.client_unit:itemList.company}}-->
+        <!--</td>-->
+        <!--<td class="text-center" rowspan="item.project.length">{{item.element.name}}-->
+        <!--</td>-->
+        <!--<td class="text-center">-->
+        <!--<table class="table table-hover table-light">-->
+        <!--<tbody>-->
+        <!--<template v-for="project in item.project">-->
+        <!--<tr>-->
+        <!--<td class="text-center">-->
+        <!--{{project.name}}-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</template>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</td>-->
+        <!--<td class="text-center">-->
+        <!--<table class="table table-hover table-light">-->
+        <!--<tbody>-->
+        <!--<template v-for="project in item.project">-->
+        <!--<tr>-->
+        <!--<td class="text-center">-->
+        <!--<label class="mt-checkbox mt-checkbox-outline">-->
+        <!--&lt;!&ndash;<input type="checkbox" v-model="project.id"&ndash;&gt;-->
+        <!--&lt;!&ndash;name="ispackage" :value="item.id+'/'+project.id">&ndash;&gt;-->
+        <!--<input type="checkbox" v-model="project.isPackage"-->
+        <!--name="ispackage" value="1">-->
+        <!--<span></span>-->
+        <!--</label>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</template>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</template>-->
+        <!--</template>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>-->
+        <!--<button type="button" class="btn green" @click="isPackges">添 加</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.modal-content &ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -1231,7 +1243,8 @@
                     item: [],
                     project_items: [],
                     other: "",
-                    type: ""
+                    type: "",
+                    isPackage: 0
                 },
                 typeList: [],
                 paymentCap: "",
@@ -1314,10 +1327,10 @@
             $("#createMonitor").draggable({
                 handle: ".modal-header"
             });
-            //创建选择分包窗口可拖拽
-            $("#isPackage").draggable({
-                handle: ".modal-header"
-            });
+//            //创建选择分包窗口可拖拽
+//            $("#isPackage").draggable({
+//                handle: ".modal-header"
+//            });
             //初始化监测项目选择框
             $('#monitor_project').selectpicker({
                 iconBase: 'fa',
@@ -1689,16 +1702,16 @@
                     serverErrorInfo(response);
                 });
             },
-            isPackges(){
-                var me = this;
-                alert();
-                confirm({
-                    content: "是否将选中项目设置为分包项目？分包项目将不参与后续流程！",
-                    success: function () {
-                        jQuery("#isPackage").modal("hide");
-                    }
-                })
-            },
+//            isPackges(){
+////                var me = this;
+////                alert();
+////                confirm({
+////                    content: "是否将选中项目设置为分包项目？分包项目将不参与后续流程！",
+////                    success: function () {
+////                        jQuery("#isPackage").modal("hide");
+////                    }
+////                })
+//            },
             //合同中点击=某一检测项目，然后对该条检测项目进行修改
             edit(item){
                 var me = this;

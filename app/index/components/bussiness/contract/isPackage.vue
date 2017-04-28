@@ -21,79 +21,20 @@
 
                                     <ul class="nav nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('total')">
+                                            <a href="javascript:;" @click="searchByProcess('totalPackage')">
                                                 全部 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(-1)">
-                                                <span class="badge badge-warning">{{countProcess.change}} </span>
-                                                待修改
+                                            <a href="javascript:;" @click="searchByProcess('waitPackage')">
+                                                待分包
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(1)">
-                                                <span class="badge badge-info"> {{countProcess.create}} </span>
-                                                待审核 </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(2)">
-                                                <span class="badge badge-primary"> {{countProcess.review}}</span>
-                                                待执行</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(3)">
-                                                已执行
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" @click="searchByProcess(-2)">
-                                                已中止 </a>
+                                            <a href="javascript:;" @click="searchByProcess('afterPackage')">
+                                                已分包 </a>
                                         </li>
                                     </ul>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <span class="caption-subject font-red bold uppercase">监测类别 </span>
-                                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">点击查看</span>
-                                </div>
-                                <div class="actions">
-                                    <div class="actions">
-                                        <a class="btn btn-circle green btn-outline btn-sm" href="/type/create">
-                                            <i class="fa fa-plus"></i> 新增 </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
-                                <div class="todo-project-list">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <template v-for="item in typeList">
-                                            <li>
-                                                <a href="javascript:;" @click="searchByType(item.id)">{{item.name}} </a>
-                                            </li>
-                                        </template>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption" data-toggle="collapse"
-                                     data-target=".todo-project-list-content-tags">
-                                    <span class="caption-subject font-blue bold uppercase">搜索 </span>
-                                </div>
-                            </div>
-                            <div class="portlet-body todo-project-list-content todo-project-list-content-tags">
-                                <div class="form-group form-md-line-input form-md-floating-label"
-                                     style="padding-top: 0;">
-                                    <div class="input-icon right">
-                                        <input type="text" class="form-control" @keyup.enter="searchKey($event)">
-                                        <span class="help-block">支持委托单位、合同编号和项目名称查询。</span>
-                                        <i class="fa fa-search"></i>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -106,39 +47,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同列表</span>
-                                </div>
-                                <div class="actions" v-if="contract.id">
-                                    <div class="btn-group">
-                                        <a class="btn green btn-circle btn-sm" href="javascript:;"
-                                           data-toggle="dropdown"
-                                           data-hover="dropdown" data-close-others="true"> 操 作
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <!--<a href="javascript:;" > 创建新合同 </a>-->
-                                                <router-link to="/contract/create"> 创建新合同</router-link>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" @click="changeContract"> 编辑修改 </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li v-if="contract.process==2">
-                                                <a href="javascript:;" @click="finishConstract">完成合同</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" @click="exportContract"> 导出合同</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" @click="stopContract"> 中止合同</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="javascript:;" @click="deleteContract"> 删除合同 </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <span class="caption-subject font-green-sharp bold uppercase">分包列表</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -170,15 +79,9 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <span class="label label-sm label-danger"
-                                                              v-if="item.process==-2">已中止</span>
+                                                              v-if="item.package_id==null">待分包</span>
                                                         <span class="label label-sm label-warning"
-                                                              v-if="item.process==-1">待修改</span>
-                                                        <span class="label label-sm label-info"
-                                                              v-if="item.process==1">待审核</span>
-                                                        <span class="label label-sm label-primary"
-                                                              v-if="item.process==2">待执行</span>
-                                                        <span class="label label-sm label-success"
-                                                              v-if="item.process==3">已执行</span>
+                                                              v-if="item.package_id!=null">已分包</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -222,64 +125,155 @@
                                                             <a href="#page_5" data-toggle="tab"> 项目分包 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_1" data-toggle="tab"> 合同详情 </a>
-                                                        </li>
-                                                        <li>
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#page_3" data-toggle="tab"> 相关文档 </a>
+                                                            <a href="#page_1" data-toggle="tab"> 合同详情 </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#page_4" data-toggle="tab"> 操作日志 </a>
-                                                        </li>
+
                                                     </ul>
                                                     <div class="tab-content">
                                                         <div class="tab-pane active" id="page_5">
-                                                            <div class="row">
+                                                            <div class="row" v-if="contract.package_unit==null">
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">分包单位
+                                                                    <label class="control-label col-md-3" for="name">分包单位
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            {{contract.package_unit}}
-                                                                        </p>
+                                                                        <input type="text" class="form-control"
+                                                                               name="name"
+                                                                               v-model="packages.name"
+                                                                               id="name"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">服务内容
+                                                                    <label class="control-label col-md-3">项目
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <ul class="receiver_tag">
+                                                                            <template v-for="item in packageitems">
+                                                                                <li class="uppercase">
+                                                                                    <a href="javascript:;">{{item.name}}</a>
+                                                                                </li>
+                                                                            </template>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-3">
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <a href="#isPackage" data-toggle="modal"
-                                                                           class="btn blue btn-outline">选择分包</a>
+                                                                           class="btn blue btn-outline form-control">选择分包</a>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">价格
+                                                                    <label class="control-label col-md-3" for="payment">金额
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            ￥20000
-                                                                        </p>
+                                                                        <input type="text" class="form-control"
+                                                                               name="payment"
+                                                                               v-model="packages.payment"
+                                                                               id="payment"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">联系方式
+                                                                    <label class="control-label col-md-3" for="contact">联系方式
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            1322222222
-                                                                        </p>
+                                                                        <input type="text" class="form-control"
+                                                                               name="contact"
+                                                                               v-model="packages.contact"
+                                                                               id="contact"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-12">
-                                                                    <label class="control-label col-md-3">其他
+                                                                    <label class="control-label col-md-3" for="remark">其他
                                                                     </label>
                                                                     <div class="col-md-8">
-                                                                        <p class="form-control-static">
-                                                                            其他
-                                                                        </p>
+                                                                        <textarea id="remark" name="remark"
+                                                                                  v-model="packages.remark" rows="3"
+                                                                                  class="form-control"></textarea>
                                                                     </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <button type="button" class="btn green "
+                                                                            @click="createPackage"
+                                                                            style="float: right;">添 加
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" v-if="contract.package_unit!=null">
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-3" for="name">分包单位
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <input type="text" class="form-control"
+                                                                               name="name"
+                                                                               v-model="contract.package_unit.name"
+                                                                               id=""/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-3">项目
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <ul class="receiver_tag">
+                                                                            <template v-for="item in packageitems">
+                                                                                <li class="uppercase">
+                                                                                    <a href="javascript:;">{{item.name}}</a>
+                                                                                </li>
+                                                                            </template>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-3">
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <a href="#isPackage" data-toggle="modal"
+                                                                           class="btn blue btn-outline form-control"
+                                                                           @click="isPackage">选择分包</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-3" for="payment">金额
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <input type="text" class="form-control"
+                                                                               name="payment"
+                                                                               v-model="contract.package_unit.payment"
+                                                                               id=""/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-3" for="contact">联系方式
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <input type="text" class="form-control"
+                                                                               name="contact"
+                                                                               v-model="contract.package_unit.contact"
+                                                                               id=""/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label class="control-label col-md-3" for="remark">其他
+                                                                    </label>
+                                                                    <div class="col-md-8">
+                                                                        <textarea id="" name="remark"
+                                                                                  v-model="contract.package_unit.remark"
+                                                                                  rows="3"
+                                                                                  class="form-control"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <button type="button" class="btn red "
+                                                                            @click="deletePackahe(contract.id)"
+                                                                            style="float: right; margin-left: 10px">删 除
+                                                                    </button>
+                                                                    <button type="button" class="btn green "
+                                                                            @click="changePackage"
+                                                                            style="float: right;">修 改
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -592,44 +586,6 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane" id="page_3">
-                                                            <table class="table table-hover">
-                                                                <tr>
-                                                                    <td>
-                                                                        导出该合同
-
-                                                                    </td>
-                                                                    <td style="text-align: right">
-                                                                        <button type="button"
-                                                                                class="btn green btn-outline"
-                                                                                style="margin: 5px;">导 出
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        合同历史审核记录
-                                                                    </td>
-                                                                    <td style="text-align: right">
-                                                                        <button type="button"
-                                                                                class="btn green btn-outline"
-                                                                                style="margin: 5px;">导 出
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        <div class="tab-pane" id="page_4">
-                                                            <ul class="todo-task-history">
-                                                                <template v-for="item in log">
-                                                                    <li style="list-style: none">
-                                                                        <span>{{item.user.name}}</span>
-                                                                        <span>{{item.create_time}}</span>
-                                                                        <span>{{item.msg}}</span>
-                                                                    </li>
-                                                                </template>
-                                                            </ul>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -693,13 +649,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <template v-for="itemList in contract.item">
+                                    <template v-for="itemList in itemLists">
                                         <template v-for="(item,index) in itemList.items">
                                             <tr>
                                                 <td class="text-center" rowspan="itemList.length">
                                                     {{itemList.flag==0?contract.client_unit:itemList.company}}
                                                 </td>
-                                                <td class="text-center" rowspan="item.project.length">{{item.element.name}}
+                                                <td class="text-center" rowspan="item.project.length">
+                                                    {{item.element.name}}
                                                 </td>
                                                 <td class="text-center">
                                                     <table class="table table-hover table-light">
@@ -721,10 +678,10 @@
                                                             <tr>
                                                                 <td class="text-center">
                                                                     <label class="mt-checkbox mt-checkbox-outline">
-                                                                        <!--<input type="checkbox" v-model="project.id"-->
-                                                                        <!--name="ispackage" :value="item.id+'/'+project.id">-->
-                                                                        <input type="checkbox" v-model="project.isPackage"
-                                                                               name="ispackage" value="1">
+                                                                        <input type="checkbox"
+                                                                               v-model="packageitems"
+                                                                               name="packageitems"
+                                                                               :value="project">
                                                                         <span></span>
                                                                     </label>
                                                                 </td>
@@ -741,7 +698,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn green" @click="isPackges">添 加</button>
+                                <!--<button type="button" class="btn green" @click="">添 加</button>-->
                             </div>
                         </div>
                         <!-- /.modal-content -->
@@ -766,17 +723,27 @@
             return {
                 typeList: [],
                 currentPage: 1,
-                condition: "",
+                condition: "process=waitPackage",
                 contractList: [],
                 contract: {
                     trustee: {},
-                    type: {}
+                    type: {},
+                    package_unit: {}
                 },
                 itemLists: [],
                 log: {},
                 total_count: {},
                 countProcess: [],
-                project: []
+                project: [],
+                packages: {
+                    contract_id: "",
+                    name: "",
+                    payment: "",
+                    contact: "",
+                    remark: "",
+                    ids: []
+                },
+                packageitems: []
             }
         },
         mounted(){
@@ -841,6 +808,7 @@
                     var data = response.data;
 //                    debugger
                     me.contractList = data.results;
+                    console.log(me.contractList);
                     me.$nextTick(function () {
                         App.stopPageLoading();
                     })
@@ -883,7 +851,6 @@
                 }).then(response => {
                     var data = response.data;
                     me.itemLists = data;
-//                    console.log(me.itemLists);
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -926,6 +893,7 @@
                 })
                 me.fetchItems(item.id);
                 me.fetchLog(item.id);
+                me.viewPackageItems(item.id);
             },
             search(){
                 var me = this;
@@ -942,11 +910,7 @@
             searchByProcess(step){
                 var me = this;
                 me.currentPage = 1;
-                if (step != "total") {
-                    me.condition = "process=" + step;
-                } else {
-                    me.condition = "";
-                }
+                me.condition = "process=" + step;
                 me.getData();
 
             },
@@ -1065,6 +1029,94 @@
             exportContract(){
                 var me = this;
                 window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id=" + me.contract.id);
+            },
+            isPackage(){
+                var me = this;
+                me.packageitems = [];
+            },
+            createPackage(){
+                var me = this;
+                me.packages.contract_id = me.contract.id;
+                for (var i = 0; i < me.packageitems.length; i++) {
+                    me.packages.ids.push(me.packageitems[i].item_project_id);
+                }
+                console.log(me.packages.ids);
+//                console.log(me.packages);
+                this.$http.post("/api/package/create", me.packages).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("分包成功！");
+                            me.getData();
+                            me.packages = {
+                                contract_id: "",
+                                name: "",
+                                payment: "",
+                                contact: "",
+                                remark: "",
+                                ids: []
+                            };
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
+            },
+            //修改分包
+            changePackage(){
+                var me = this;
+                me.contract.package_unit.id = me.contract.id;
+                me.changePackage = me.contract.package_unit;
+                for (var i = 0; i < me.packageitems.length; i++) {
+                    me.packages.ids.push(me.packageitems[i].item_project_id);
+                }
+                me.changePackage.ids = me.packages.ids;
+                console.log(me.changePackage);
+                me.$http.post("/api/package/change", me.changePackage).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("分包项目修改成功！");
+                            me.getData();
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            //viewdetal时获取当前合同的分包项目
+            viewPackageItems(id){
+                var me = this;
+                me.$http.get("/api/package/getContractPackageList", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.packageitems = data;
+                    console.log(me.packageitems);
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            //删除分包
+            deletePackahe(id){
+                var me = this;
+                me.$http.get("/api/package/delete", {
+                    params: {
+                        id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("分包删除成功！");
+                            me.getData();
+                        }
+                    }, response => {
+                        serverErrorInfo(response);
+                    })
+                })
             }
         }
     }
