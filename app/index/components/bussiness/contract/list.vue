@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同列表
+        <h1 class="page-title"> 业务合同列表
             <small>／Contract</small>
         </h1>
         <div class="row">

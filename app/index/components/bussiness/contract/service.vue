@@ -130,6 +130,7 @@
             elementDropzone.on("success", function (file, finished) {
                 codeState(finished.code, {
                     200: function () {
+//                        debugger
                         me.path = finished.path;
                     }
                 })
@@ -140,14 +141,18 @@
             create(){
                 var me = this;
                 if (jQuery("#service_add").valid()) {
-                    me.$http.post("/api/contract/createService", {
+                    me.$http.post("/api/service/createService", {
                         review: me.isReview,
                         path: me.path,
                         name: me.name
                     }).then(response => {
                         var data = response.data;
                         codeState(data.code, {
-                            200: "服务合同保存成功！"
+                            200: function () {
+                                alert("服务合同保存成功！");
+                                router.push("/contract/serviceList");
+                            }
+
                         });
                     }, response => {
                         serverErrorInfo(response);

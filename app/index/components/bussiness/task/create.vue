@@ -78,12 +78,22 @@
                                             您已经通过当前页所有任务项的检查!
                                         </div>
                                         <div class="tab-pane active" id="tab1">
-                                            <h3 class="block">来自合同</h3>
+                                            <h3 class="block">来自业务合同</h3>
                                             <div class="row margin-bottom-40">
                                                 <div class="col-md-6 col-md-offset-3">
                                                     <button class="btn green-sharp btn-outline  btn-block sbold uppercase "
                                                             type="button" @click="createByContract">
-                                                        从现有合同中选择
+                                                        从业务合同中选择
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <h3 class="block">来自服务合同</h3>
+                                            <div class="row margin-bottom-40">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <button class="btn green-sharp btn-outline  btn-block sbold uppercase "
+                                                            type="button" @click="createByServiceContract">
+                                                        从服务合同中选择
                                                     </button>
                                                 </div>
                                             </div>
@@ -94,6 +104,7 @@
                                                     <h3>点击"下一步"创建</h3>
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div class="tab-pane" id="tab2">
                                             <h3 class="block">甲方信息
@@ -1489,6 +1500,81 @@
             <!-- /.modal-dialog -->
 
         </div>
+        <div class="modal fade" id="contracServicetList" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-full">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">选择合同</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="portlet light ">
+                            <!-- PROJECT HEAD -->
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-sharp hide"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">服务合同列表</span>
+                                </div>
+                            </div>
+                            <!-- end PROJECT HEAD -->
+                            <div class="portlet-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="todo-tasklist" id="">
+                                            <span v-if="contractList.length==0">暂无合同。</span>
+                                            <template v-for="item in contractList">
+                                                <div @click="fetchServiceItems(item)"
+                                                     :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
+                                                    <span class="todo-userpic pull-left" style="margin-right: 10px;"><i
+                                                            style="width: 27px;height: 27px;"
+                                                            class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
+                                                    </span>
+                                                    <span class="todo-tasklist-item-title"> {{item.identify}}
+                                                    </span>
+                                                    <span class="todo-tasklist-item-text" style="margin-left: 10px "> {{item.name}}
+                                                    </span>
+                                                    <span class="todo-tasklist-controls" style="margin-left: 10px ">
+                                                                    <span class="todo-tasklist-date">
+                                                                        <i class="fa fa-calendar"></i> {{item.create_time}} </span>
+                                                        <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
+                                                    </span>
+                                                    <div class="todo-tasklist-controls pull-right">
+                                                        <span class="label label-sm label-danger"
+                                                              v-if="item.process==-2">已中止</span>
+                                                        <span class="label label-sm label-warning"
+                                                              v-if="item.process==-1">待修改</span>
+                                                        <span class="label label-sm label-info"
+                                                              v-if="item.process==1">待审核</span>
+                                                        <span class="label label-sm label-primary"
+                                                              v-if="item.process==2">待执行</span>
+                                                        <span class="label label-sm label-success"
+                                                              v-if="item.process==3">已执行</span>
+                                                    </div>
+                                                </div>
+                                            </template>
+
+                                        </div>
+                                        <!-- Pagination -->
+                                        <div class="pagination pull-right">
+                                            <div class="M-box front pull-right" style="margin-top:10px; "></div>
+                                        </div>
+                                        <!-- End Pagination -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" @click="chooseContract">选 择</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+
+        </div>
+
         <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -1664,6 +1750,62 @@
                 var me = this;
                 me.getData();
                 jQuery("#contractList").modal("show");
+            },
+            fetchServiceData(pageNum, rowCount){
+                var me = this;
+                App.startPageLoading({animate: true});
+                this.$http.get('/api/service/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: pageNum,
+                        condition: this.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+//                    debugger
+                    me.contractList = data.results;
+                    me.$nextTick(function () {
+                        App.stopPageLoading();
+                    })
+                }, (response) => {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchServicePages(rowCount){
+                var me = this;
+                this.$http.get('/api/service/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: 1,
+                        condition: me.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    jQuery(".M-box").pagination({
+                        pageCount: data.totalPage || 1,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (data) {
+                            me.fetchData(data.getCurrent(), rowCount, me.condition);
+                            me.currentPage = data.getCurrent();
+                        }
+                    });
+                }, (response) => {
+                    serverErrorInfo(response);
+                });
+            },
+            getServiceData(){
+                var me = this;
+                me.fetchServiceData(me.currentPage, rowCount);
+                me.fetchServicePages(rowCount);
+            },
+            createByServiceContract(){
+                var me = this;
+                me.getServiceData();
+                jQuery("#contracServicetList").modal("show");
             },
             addMonitor(){
                 //新增一项监测内容
@@ -2225,6 +2367,7 @@
                     }
                 }).then(response => {
                     var data = response.data;
+//                    debugger
                     me.contract = data;
                 }, response => {
                     serverErrorInfo(response);
@@ -2339,7 +2482,14 @@
                         })
                     }
                 });
+            },
+            //点击服务合同，获取当前服务合同的id信息，再进行下面的自定义创建任务书
+            fetchServiceItems(item){
+                console.log(item.id);
+                var me =this;
+                alert(item.id);
             }
+
         }
     }
 </script>

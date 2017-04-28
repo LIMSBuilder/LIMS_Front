@@ -97,7 +97,12 @@
                     </router-link>
                     <router-link :to="{ path: '/contract/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">合同列表</span>
+                            <span class="title">业务合同列表</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/serviceList' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">服务合同列表</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/contract/isPackage' }" tag="li" active-class="active">
