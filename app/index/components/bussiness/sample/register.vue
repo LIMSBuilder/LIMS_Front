@@ -43,12 +43,12 @@
                                                                         <i class="fa fa-home"></i> {{item.client_unit}} </span>
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </div>
-                                                    <div class="todo-tasklist-controls pull-right">
-                                                        <span class="label label-sm label-danger"
-                                                              v-if="item.process==1">待登记</span>
-                                                        <span class="label label-sm label-info"
-                                                              v-if="item.process==2">已登记</span>
-                                                    </div>
+                                                    <!--<div class="todo-tasklist-controls pull-right">-->
+                                                        <!--<span class="label label-sm label-danger"-->
+                                                              <!--v-if="item.process==1">待登记</span>-->
+                                                        <!--<span class="label label-sm label-info"-->
+                                                              <!--v-if="item.process==2">已登记</span>-->
+                                                    <!--</div>-->
                                                 </div>
                                             </template>
 
@@ -89,7 +89,7 @@
                                                         <div class="todo-projects-divider"></div>
                                                     </template>
                                                     <li class="todo-projects-item "
-                                                        style="height: 100px;" >
+                                                        style="height: 100px;">
                                                         <h4>尚未选择任务，或不存在待派遣任务</h4>
                                                     </li>
                                                 </ul>
@@ -236,13 +236,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-actions right todo-form-actions">
-                                                        <button type="button" class="btn  green" @click="create"
-                                                                v-show="!sample.id">
+                                                        <!--<button type="button" class="btn  green" @click="create"-->
+                                                        <!--v-show="!sample.id">-->
+                                                        <!--<i class="fa fa-pencil"></i> 新增-->
+                                                        <!--</button>-->
+                                                        <!--<button type="button" class="btn yellow " v-show="sample.id"-->
+                                                        <!--@click="change">-->
+                                                        <!--<i class="fa fa-trash-o">修改</i>-->
+                                                        <!--</button>-->
+                                                        <button type="button" class="btn  green" @click="create">
                                                             <i class="fa fa-pencil"></i> 新增
-                                                        </button>
-                                                        <button type="button" class="btn yellow " v-show="sample.id"
-                                                                @click="change">
-                                                            <i class="fa fa-trash-o">修改</i>
                                                         </button>
                                                         <button type="button" class="btn default" @click="removeSample">
                                                             取 消
@@ -453,7 +456,7 @@
                                                                                             {{index+1}}
                                                                                         </td>
                                                                                         <td class="text-center">
-                                                                                            {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                            {{itemList.flag==0?taskList.client_unit:itemList.company}}
                                                                                         </td>
                                                                                         <td class="text-center">
                                                                                             {{item.element.name}}
@@ -582,8 +585,9 @@
                 project: [],
                 countProcess: 0,
                 sample: {
-                    id: "",
+//                    id: "",
                     task_id: "",
+                    company_id: "",
 //                    prefix: 0,
 //                    prefix_text: "",
                     condition: 1,
@@ -713,7 +717,6 @@
                     serverErrorInfo(response);
                 });
                 me.fetchItems(item.id);
-                me.fetchsampleList(item.id);
             },
             search(){
                 var me = this;
@@ -759,7 +762,7 @@
                         200: function () {
                             alert("样品删除成功！");
                             me.getData();
-                            me.fetchsampleList(me.task.id);
+//                            me.fetchsampleList(me.task.id);
                         }
                     })
                 }, response => {
@@ -792,7 +795,7 @@
                         codeState(data.code, {
                             200: function () {
                                 alert("样品信息修改成功！");
-                                me.fetchsampleList(me.task.id);
+//                                me.fetchsampleList(me.task.id);
                                 me.removeSample();
                                 me.sample.id = "";
                                 router.push("/sample/register");
@@ -826,6 +829,7 @@
             //点击中间红色查找检测项目
             fetchProjectByCategory(item){
                 var me = this;
+//                debugger
                 me.projectList = item.items;
                 me.$nextTick(function () {
                     //销毁监测项目选择框
@@ -849,13 +853,15 @@
                 var me = this;
                 me.dispatchElement = item.items;
                 me.fetchProjectByCategory(item);
+                me.fetchsampleList(item.id);
                 me.homeworks = item;
             },
             //新增自送样项目
             create(){
                 var me = this;
                 me.sample.task_id = me.task.id;
-                me.sample.sample_type = 0;//自送样默认为0
+                me.sample.company_id=me.homeworks.id;
+//                me.sample.sample_type = 0;//自送样默认为0
                 me.$http.post("/api/sample/selfCreate", me.sample).then(
                     response => {
                         var data = response.data;
@@ -863,7 +869,7 @@
                         codeState(data.code, {
                             200: function () {
                                 alert("样品信息添加成功！");
-                                me.fetchsampleList(me.task.id);
+                                me.fetchsampleList(me.homeworks.id);
                                 me.removeSample();
                                 router.push("/sample/register");
                             }
@@ -878,7 +884,7 @@
                 var me = this;
                 me.$http.get('/api/sample/getSelfSampleList', {
                     params: {
-                        task_id: id
+                        company_id: id
                     }
                 }).then(
                     response => {

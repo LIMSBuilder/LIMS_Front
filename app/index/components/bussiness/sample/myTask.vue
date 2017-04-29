@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 我的任务
-            <small>／Task</small>
+        <h1 class="page-title"> 我的作业
+            <small>／Job</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -14,28 +14,18 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">我的任务</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">我的作业</span>
                                 </div>
-                                <!--<div class="actions">-->
-                                <!--<div class="btn-group">-->
-                                <!--<a class="btn green btn-circle btn-sm" href="javascript:;"-->
-                                <!--data-toggle="dropdown"-->
-                                <!--data-hover="dropdown" data-close-others="true"> 操 作-->
-                                <!--<i class="fa fa-angle-down"></i>-->
-                                <!--</a>-->
-                                <!--<ul class="dropdown-menu pull-right">-->
-                                <!--<li>-->
-                                <!--<a href="javascript:;" @click="finishList"> 提交清单 </a>-->
-                                <!--</li>-->
-                                <!--</ul>-->
-                                <!--</div>-->
-                                <!--</div>-->
+                                <div class="actions">
+                                    <button type="button" class="btn green btn-outline" @click="finishList" v-if="item.company">提 交</button>
+                                </div>
                             </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
                                     <div class="col-md-5 col-sm-4">
                                         <div class="todo-tasklist" id="task_list">
+                                            <p v-if="taskList.length==0">暂无派遣给你的作业。</p>
                                             <template v-for="item in taskList">
                                                 <div @click="viewDetails(item)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
@@ -82,7 +72,8 @@
                                     <!--<h1 class="text-center">尚未指定任务</h1>-->
                                     <!--</div>-->
                                     <div class="col-md-7 col-sm-8">
-                                        <form action="#" class="form-horizontal form-bordered form-row-stripped">
+                                        <form action="#" class="form-horizontal form-bordered form-row-stripped"
+                                              v-show="item.company">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
                                                 <div class="form-group">
@@ -222,6 +213,12 @@
                                                                                         @click="sampleChange(sample)"
                                                                                         v-if="sample.process==0&&item.process<=1">
                                                                                     修改
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                        class="btn btn-sm red btn-outline"
+                                                                                        @click="sampleDelete(sample)"
+                                                                                        v-if="(sample.process==0||sample.process ==null)&&item.process<=1">
+                                                                                    删除
                                                                                 </button>
                                                                             </td>
                                                                         </tr>
@@ -586,7 +583,8 @@
                 choose: {},
                 name: "",
                 path: "",
-                imageLists: []
+                imageLists: [],
+                company_id: ""
             }
         },
         mounted(){
@@ -700,6 +698,7 @@
             },
             viewDetails(item){
                 var me = this;
+                me.company_id = item.id;
                 me.itemDetails(item.id);
                 me.fetchProject(item.id);
                 me.fetchSamples(item.id);
@@ -873,6 +872,29 @@
                     $("#" + item.identify + " .select-project").selectpicker("val", item.project);
                 });
             },
+            sampleDelete(item){
+                var me = this;
+                confirm({
+                    content: "是否删除当前样品？当前样品编号将作废！",
+                    success: function () {
+                        me.$http.get("/api/sample/deleteSample", {
+                            params: {
+                                sample_id: item.id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("样品删除成功！");
+                                    me.fetchSamples(me.company_id);
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
+            },
             finishBtn(item){
                 var me = this;
                 me.$http.get("/api/delivery/finishItem", {
@@ -962,6 +984,25 @@
                 var me = this;
                 me.path = path;
                 jQuery("#image").modal("show");
+            },
+            finishList(){
+                var me = this;
+                confirm({
+                    content: "是否提交当前所有任务执行结果？",
+                    success: function () {
+                        me.$http.get("/api/delivery/finishList").then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("当前全部任务提交成功！");
+                                    me.getData();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
             }
 
         }
