@@ -33,6 +33,11 @@
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
                                                         任务编号：{{item.identify}}
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn blue btn-sm btn-outline"
+                                                                    @click="flow(item.id)">流 转
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
@@ -64,7 +69,9 @@
                                                     <li class="todo-projects-item ">
                                                         <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
                                                             <span class="label label-danger"
-                                                                  v-if="item.process==0"> 待派遣 </span>
+                                                                  v-if="item.process==0&&item.isActive!=1"> 待派遣 </span>
+                                                            <span class="label label-warning"
+                                                                  v-if="item.process==0&&item.isActive==1"> 已选择 </span>
                                                             <span class="label label-info"
                                                                   v-if="item.process==1"> 已派遣 </span>
                                                             <span class="label label-success"
@@ -90,8 +97,6 @@
                                                                    v-if="item.process!=0"
                                                                    @click="showMember(item.joiner)">{{item.joiner.length}}
                                                                     Members</a>
-                                                                <button class="btn btn-default popovers" data-container="body"
-                                                                        data-trigger="hover" data-placement="top" data-content="Popover body goes here! Popover body goes here!" data-original-title="Popover in top">Top</button>
                                                                 <a class="todo-add-button" href="javascript:;"
                                                                    @click="addProject(item)"
                                                                    v-if="item.isActive!=1&&item.process==0">+</a>
@@ -113,17 +118,17 @@
                                                 <li class="active">
                                                     <a href="#page_1" data-toggle="tab"> 任务派遣 </a>
                                                 </li>
-                                                <li>
-                                                    <a href="#page_2" data-toggle="tab"> 执行中派遣 </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#page_3" data-toggle="tab"> 历史派遣 </a>
-                                                </li>
+                                                <!--<li>-->
+                                                    <!--<a href="#page_2" data-toggle="tab"> 执行中派遣 </a>-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<a href="#page_3" data-toggle="tab"> 历史派遣 </a>-->
+                                                <!--</li>-->
                                             </ul>
                                             <div class="tab-content" id="dispatchWizard">
                                                 <div class="tab-pane active" id="page_1">
                                                     <form class="form-horizontal" action="#"
-                                                          method="POST">
+                                                          method="POST" id="deliveryForm">
                                                         <h4>团队设置</h4>
                                                         <hr>
                                                         <div class="form-group">
@@ -137,6 +142,7 @@
                                                                         data-live-search="true"
                                                                         v-model="dispatch.charge_id"
                                                                         required>
+                                                                    <option></option>
                                                                     <template v-for="item in userList">
                                                                         <optgroup :label="item.name">
                                                                             <template v-for="user in item.user.results">
@@ -178,24 +184,61 @@
                                                     <div class="form-group todo-container" style="padding: 10px 0px ">
                                                         <h4>负责项目</h4>
                                                         <hr>
-                                                        <ul class="todo-tasks-content" style="padding: 0px;">
-                                                            <template v-for="item in addProjectList">
-                                                                <li class="todo-tasks-item"
-                                                                    style="list-style: none; padding: 10px 0 20px 0;">
-                                                                    <h4 class="todo-inline font-grey">
-                                                                        <a data-toggle="modal" href="#todo-task-modal"
-                                                                           @click="">
-                                                                            {{item.company}}
-                                                                        </a>
-                                                                    </h4>
-                                                                    <div class="todo-inline todo-float-r">
-                                                                        <a class="todo-add-button" href="javascript:;"
-                                                                           @click="deleteItem(item)">-</a>
-                                                                    </div>
-                                                                </li>
-                                                            </template>
-                                                            <span v-if="addProjectList.length==0">尚未选择任务。</span>
-                                                        </ul>
+
+                                                        <div class="todo-projects-item">
+                                                            <ul class="todo-projects-container" style="padding: 0px;">
+                                                                <template v-for="item in addProjectList">
+                                                                    <!--<li class="todo-tasks-item"-->
+                                                                    <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                    <!--<h4 class="todo-inline font-grey">-->
+                                                                    <!--<a data-toggle="modal" href="#todo-task-modal"-->
+                                                                    <!--@click="">-->
+                                                                    <!--{{item.company}}-->
+                                                                    <!--</a>-->
+                                                                    <!--</h4>-->
+                                                                    <!--<div class="todo-inline todo-float-r">-->
+                                                                    <!--<a class="todo-add-button" href="javascript:;"-->
+                                                                    <!--@click="deleteItem(item)">-</a>-->
+                                                                    <!--</div>-->
+                                                                    <!--</li>-->
+                                                                    <li class="todo-projects-item ">
+                                                                        <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
+                                                                            {{item.company}} /
+                                                                            {{item.task.identify}}</h4>
+                                                                        <ul class="receiver_tag">
+                                                                            <template v-for="result in item.results">
+                                                                                <li class="uppercase ">
+                                                                                    <a href="javascript:;"
+                                                                                       style="line-height: 30px">
+                                                                                        {{result.name}}
+                                                                                    </a>
+                                                                                </li>
+                                                                            </template>
+                                                                        </ul>
+                                                                        <div class="todo-project-item-foot">
+                                                                            <p class="todo-red todo-inline">
+                                                                                <a href="javascript:;"
+                                                                                   class="font-green"
+                                                                                   @click="showProject(item.id)">查看详情</a>
+                                                                            </p>
+                                                                            <p class="todo-inline todo-float-r">
+                                                                                <a href="javascript:;"
+                                                                                   class="font-grey-salsa"
+                                                                                   v-if="item.process!=0"
+                                                                                   @click="showMember(item.joiner)">{{item.joiner.length}}
+                                                                                    Members</a>
+                                                                                <a class="todo-add-button"
+                                                                                   href="javascript:;"
+                                                                                   @click="deleteItem(item)">-</a>
+                                                                            </p>
+                                                                        </div>
+                                                                    </li>
+                                                                    <div class="todo-projects-divider"></div>
+
+                                                                </template>
+                                                                <li v-if="addProjectList.length==0">尚未选择任务。</li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                     <hr>
                                                     <button type="button" class="btn green"
@@ -204,178 +247,178 @@
                                                         保存
                                                     </button>
                                                 </div>
-                                                <div class="tab-pane" id="page_2">
-                                                    <div class="todo-container">
-                                                        <div class="row">
-                                                            <div class="todo-tasks-container"
-                                                                 style="margin-bottom: 10px">
-                                                                <div class="todo-head">
-                                                                    <h3>
-                                                                        <span class="todo-grey">Task:</span>任务编号
-                                                                    </h3>
-                                                                    <p>2017-04-16</p>
-                                                                </div>
-                                                                <div class="todo-tasks-content">
-                                                                    <h4>参与人员:</h4>
-                                                                    <ul style="padding: 0px 0px 0px 20px">
-                                                                        <li class="todo-inline">
-                                                                            张三
-                                                                            <span v-show="1"
-                                                                                  style="color: red; font-size: 0.3em">[负责]</span>、
-                                                                        </li>
-                                                                        <li class="todo-inline">
-                                                                            李四、
-                                                                        </li>
-                                                                        <li class="todo-inline">
-                                                                            王五、
-                                                                        </li>
-                                                                    </ul>
-                                                                    <hr>
-                                                                    <h4>负责项目:</h4>
-                                                                    <ul class="todo-tasks-content" style="padding: 0px">
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州金吉彩色电镀公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州市金霸王电源有限公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州市金霸王电源有限公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                    </ul>
+                                                <!--<div class="tab-pane" id="page_2">-->
+                                                    <!--<div class="todo-container">-->
+                                                        <!--<div class="row">-->
+                                                            <!--<div class="todo-tasks-container"-->
+                                                                 <!--style="margin-bottom: 10px">-->
+                                                                <!--<div class="todo-head">-->
+                                                                    <!--<h3>-->
+                                                                        <!--<span class="todo-grey">Task:</span>任务编号-->
+                                                                    <!--</h3>-->
+                                                                    <!--<p>2017-04-16</p>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="todo-tasks-content">-->
+                                                                    <!--<h4>参与人员:</h4>-->
+                                                                    <!--<ul style="padding: 0px 0px 0px 20px">-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--张三-->
+                                                                            <!--<span v-show="1"-->
+                                                                                  <!--style="color: red; font-size: 0.3em">[负责]</span>、-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--李四、-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--王五、-->
+                                                                        <!--</li>-->
+                                                                    <!--</ul>-->
+                                                                    <!--<hr>-->
+                                                                    <!--<h4>负责项目:</h4>-->
+                                                                    <!--<ul class="todo-tasks-content" style="padding: 0px">-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州金吉彩色电镀公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州市金霸王电源有限公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州市金霸王电源有限公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                    <!--</ul>-->
 
-                                                                </div>
-                                                            </div>
-                                                            <div class="todo-tasks-container"
-                                                                 style="margin-bottom: 10px">
-                                                                <div class="todo-head">
-                                                                    <h3>
-                                                                        <span class="todo-grey">Task:</span>任务编号
-                                                                    </h3>
-                                                                    <p>2017-04-16</p>
-                                                                </div>
-                                                                <div class="todo-tasks-content">
-                                                                    <h4>参与人员:</h4>
-                                                                    <ul style="padding: 0px 0px 0px 20px">
-                                                                        <li class="todo-inline">
-                                                                            张三
-                                                                            <span v-show="1"
-                                                                                  style="color: red; font-size: 0.3em">[负责]</span>、
-                                                                        </li>
-                                                                        <li class="todo-inline">
-                                                                            李四、
-                                                                        </li>
-                                                                        <li class="todo-inline">
-                                                                            王五、
-                                                                        </li>
-                                                                    </ul>
-                                                                    <hr>
-                                                                    <h4>负责项目:</h4>
-                                                                    <ul class="todo-tasks-content" style="padding: 0px">
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州金吉彩色电镀公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州市金霸王电源有限公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州市金霸王电源有限公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                    </ul>
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="todo-tasks-container"-->
+                                                                 <!--style="margin-bottom: 10px">-->
+                                                                <!--<div class="todo-head">-->
+                                                                    <!--<h3>-->
+                                                                        <!--<span class="todo-grey">Task:</span>任务编号-->
+                                                                    <!--</h3>-->
+                                                                    <!--<p>2017-04-16</p>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="todo-tasks-content">-->
+                                                                    <!--<h4>参与人员:</h4>-->
+                                                                    <!--<ul style="padding: 0px 0px 0px 20px">-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--张三-->
+                                                                            <!--<span v-show="1"-->
+                                                                                  <!--style="color: red; font-size: 0.3em">[负责]</span>、-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--李四、-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--王五、-->
+                                                                        <!--</li>-->
+                                                                    <!--</ul>-->
+                                                                    <!--<hr>-->
+                                                                    <!--<h4>负责项目:</h4>-->
+                                                                    <!--<ul class="todo-tasks-content" style="padding: 0px">-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州金吉彩色电镀公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州市金霸王电源有限公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州市金霸王电源有限公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                    <!--</ul>-->
 
-                                                                </div>
-                                                            </div>
-                                                            <div class="todo-tasks-container"
-                                                                 style="margin-bottom: 10px;">
-                                                                <div class="todo-head">
-                                                                    <h3>
-                                                                        <span class="todo-grey">Task:</span>任务编号
-                                                                    </h3>
-                                                                    <p>2017-04-16</p>
-                                                                </div>
-                                                                <div class="todo-tasks-content">
-                                                                    <h4>参与人员:</h4>
-                                                                    <ul style="padding: 0px 0px 0px 20px">
-                                                                        <li class="todo-inline">
-                                                                            张三
-                                                                            <span v-show="1"
-                                                                                  style="color: red; font-size: 0.3em">[负责]</span>、
-                                                                        </li>
-                                                                        <li class="todo-inline">
-                                                                            李四、
-                                                                        </li>
-                                                                        <li class="todo-inline">
-                                                                            王五、
-                                                                        </li>
-                                                                    </ul>
-                                                                    <hr>
-                                                                    <h4>负责项目:</h4>
-                                                                    <ul class="todo-tasks-content" style="padding: 0px">
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州金吉彩色电镀公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州市金霸王电源有限公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                        <li class="todo-tasks-item"
-                                                                            style="list-style: none; padding: 10px 0 20px 0;">
-                                                                            <h4 class="todo-inline">
-                                                                                <a data-toggle="modal">
-                                                                                    常州市金霸王电源有限公司
-                                                                                </a>
-                                                                            </h4>
-                                                                        </li>
-                                                                    </ul>
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="todo-tasks-container"-->
+                                                                 <!--style="margin-bottom: 10px;">-->
+                                                                <!--<div class="todo-head">-->
+                                                                    <!--<h3>-->
+                                                                        <!--<span class="todo-grey">Task:</span>任务编号-->
+                                                                    <!--</h3>-->
+                                                                    <!--<p>2017-04-16</p>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="todo-tasks-content">-->
+                                                                    <!--<h4>参与人员:</h4>-->
+                                                                    <!--<ul style="padding: 0px 0px 0px 20px">-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--张三-->
+                                                                            <!--<span v-show="1"-->
+                                                                                  <!--style="color: red; font-size: 0.3em">[负责]</span>、-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--李四、-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-inline">-->
+                                                                            <!--王五、-->
+                                                                        <!--</li>-->
+                                                                    <!--</ul>-->
+                                                                    <!--<hr>-->
+                                                                    <!--<h4>负责项目:</h4>-->
+                                                                    <!--<ul class="todo-tasks-content" style="padding: 0px">-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州金吉彩色电镀公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州市金霸王电源有限公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                        <!--<li class="todo-tasks-item"-->
+                                                                            <!--style="list-style: none; padding: 10px 0 20px 0;">-->
+                                                                            <!--<h4 class="todo-inline">-->
+                                                                                <!--<a data-toggle="modal">-->
+                                                                                    <!--常州市金霸王电源有限公司-->
+                                                                                <!--</a>-->
+                                                                            <!--</h4>-->
+                                                                        <!--</li>-->
+                                                                    <!--</ul>-->
 
-                                                                </div>
-                                                            </div>
+                                                                <!--</div>-->
+                                                            <!--</div>-->
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane" id="page_3">
-                                                    和执行中派遣一样，不过想着是先折叠，点击再打开显示这一个任务的详细
-                                                </div>
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="tab-pane" id="page_3">-->
+                                                    <!--和执行中派遣一样，不过想着是先折叠，点击再打开显示这一个任务的详细-->
+                                                <!--</div>-->
                                             </div>
                                         </div>
 
@@ -627,6 +670,18 @@
                                 </tbody>
                             </table>
                         </div>
+                        <hr>
+                        <h4>团队成员</h4>
+                        <ul class="receiver_tag">
+                            <template v-for="join in joiner">
+                                <li class="uppercase ">
+                                    <a href="javascript:;"
+                                       style="line-height: 30px" :class="join.type==1?'font-red':''">
+                                        {{join.name}}
+                                    </a>
+                                </li>
+                            </template>
+                        </ul>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
@@ -664,7 +719,9 @@
                     join_id: [],
                     project: []
                 },
-                sampleList: []
+                sampleList: [],
+                joiner: [],
+                executingJobs: []
             }
         },
         mounted(){
@@ -698,6 +755,8 @@
                     dom.addClass('todo-active ');
                 }
             });
+            BlogUtils.formValid(jQuery("#deliveryForm"));
+            me.fetchExecuting();
 
         },
         methods: {
@@ -840,6 +899,7 @@
                     response => {
                         var data = response.data;
                         me.element = data.items;
+                        me.joiner = data.joiner;
                     }, response => {
                         serverErrorInfo(response);
                     }
@@ -895,15 +955,18 @@
             },
             createDispatch(){
                 var me = this;
-//                if (jQuery("#dispatchWizard").valid()) {
+                if (!jQuery("#deliveryForm").valid()) {
+                    return;
+                }
+
                 var items = me.addProjectList;
                 var arrayList = [];
                 for (var i = 0; i < items.length; i++) {
                     arrayList.push(items[i].id);
                 }
                 me.dispatch.company = arrayList;
-                if (arrayList.length < 1) {
-                    alert("您还没有选择任务，请选择派遣任务！")
+                if (arrayList.length == 0) {
+                    error("至少需要分配一个作业给团队成员！");
                 } else {
                     App.startPageLoading({animate: true});
                     me.$http.post("/api/dispatch/create", me.dispatch).then(
@@ -912,7 +975,7 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("任务派遣成功！");
-                                    console.log(me.dispatch);
+                                    me.addProjectList = [];
                                     App.stopPageLoading();
                                 }
                             })
@@ -924,6 +987,39 @@
             },
             showMember(joiner){
                 console.log(joiner);
+            },
+            flow(id){
+                var me = this;
+                confirm({
+                    content: "是否确认已完成所有作业的样品登记并流转该任务？",
+                    success: function () {
+                        me.$http.get("/api/dispatch/checkFlow", {
+                            params: {
+                                task_id: id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("任务书流转成功！");
+                                    me.getData();
+                                },
+                                501: "当前存在未完成作业，无法流转！"
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
+            },
+            fetchExecuting(){
+                var me = this;
+                me.$http.get("/api/dispatch/executingJobs").then(response => {
+                    var data = response.data;
+                    me.executingJobs = data.results;
+                }, response => {
+                    serverErrorInfo(response);
+                })
             }
 
         }
