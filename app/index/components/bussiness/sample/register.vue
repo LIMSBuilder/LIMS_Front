@@ -19,7 +19,7 @@
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
-                                    <div class="col-md-5 col-sm-4">
+                                    <div class="col-md-3 col-sm-3">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in taskList">
                                                 <div @click="viewDetails(item)"
@@ -59,11 +59,48 @@
                                         </div>
                                         <!-- End Pagination -->
                                     </div>
+
                                     <div class="todo-tasklist-devider"></div>
-                                    <div class="col-md-7 col-sm-8" v-show="!task.id">
+
+                                    <div class="col-md-3 col-sm-3 todo-container">
+                                        <div class="todo-projects-item">
+                                            <div class="todo-projects-item">
+                                                <ul class="todo-projects-container ">
+                                                    <template v-for="item in itemLists">
+                                                        <li class="todo-projects-item " style="padding-bottom: 30px">
+                                                            <h4 class="">
+                                                                <!--<span class="label label-info"-->
+                                                                <!--v-if="item.process==1"> 已登记 </span>-->
+                                                                <!--<span class="label label-success"-->
+                                                                <!--v-if="item.process==2"> 已完成 </span>{{item.company}}-->
+                                                                {{item.company}}
+                                                            </h4>
+                                                            <div class="todo-project-item-foot">
+                                                                <p class="todo-red todo-inline">
+                                                                    <a href="javascript:;" class="font-green"
+                                                                       @click="viewDispatchDetail(item.items)">查看详情</a>
+                                                                </p>
+                                                            </div>
+                                                            <div class="todo-project-item-foot" style="float: right; ">
+                                                                <span class="label label-danger"
+                                                                      @click="dispatchRegister(item)"> 待登记 </span>
+                                                            </div>
+                                                        </li>
+                                                        <div class="todo-projects-divider"></div>
+                                                    </template>
+                                                    <li class="todo-projects-item "
+                                                        style="height: 100px;" >
+                                                        <h4>尚未选择任务，或不存在待派遣任务</h4>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6" v-show="!homeworks.id">
                                         <h1 class="text-center">暂无任务信息</h1>
                                     </div>
-                                    <div class="col-md-7 col-sm-8" v-show="task.id">
+                                    <div class="col-md-6 col-sm-6" v-show="homeworks.id">
                                         <form action="#" class="form-horizontal form-bordered form-row-stripped">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
@@ -74,7 +111,7 @@
                                                                  style="margin-right: 10px;">
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
-                                                            <span class="todo-username pull-left">{{task.name}}</span>
+                                                            <span class="todo-username pull-left">{{homeworks.company}}</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
@@ -84,9 +121,47 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="table-scrollable table-scrollable-borderless">
+                                                    <h3>检测项目</h3>
+                                                    <table class="table table-hover table-light">
+                                                        <thead>
+                                                        <tr class="uppercase">
+                                                            <th> 序号</th>
+                                                            <th> 环境要素</th>
+                                                            <th> 监测点（个）</th>
+                                                            <th> 监测项目</th>
+                                                            <th> 监测频次</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <template v-for="(item,index) in dispatchElement">
+                                                            <tr>
+                                                                <td class="text-center">{{index+1}}</td>
+                                                                <td class="text-center">
+                                                                    {{item.element.name}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.point}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <template v-for="p in item.project">
+                                                                        {{p.name}}
+                                                                        <span class="font-red" v-if="p.isPackage==1">[分包]</span>
+                                                                    </template>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.frequency?item.frequency.total:''}}
+                                                                </td>
+                                                            </tr>
+                                                        </template>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <hr>
+
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-body">
-                                                        <h3 class="form-section" style="margin-top: 0">添加样品信息</h3>
+                                                        <h3>添加样品信息</h3>
                                                         <div class="row">
                                                             <div class="form-group col-md-12 form-md-line-input ">
                                                                 <label class="control-label col-md-3"
@@ -172,17 +247,78 @@
                                                         <button type="button" class="btn default" @click="removeSample">
                                                             取 消
                                                         </button>
+
                                                     </div>
                                                 </form>
+                                                <hr>
+                                                <div class="form-group col-md-12 form-md-line-input ">
+                                                    <h3>自送样登记表</h3>
+                                                    <span v-if="sampleList.length==0">暂无样品信息</span>
+                                                    <div class="table-scrollable table-scrollable-borderless"
+                                                         v-if="sampleList.length!=0">
+                                                        <table class="table table-hover table-light">
+                                                            <thead>
+                                                            <tr class="uppercase">
+                                                                <th> 序号</th>
+                                                                <th> 样品名称/编号</th>
+                                                                <th> 实验室编号</th>
+                                                                <th> 测试项目</th>
+                                                                <th> 样品状态/颜色</th>
+                                                                <th> 是否完好</th>
+                                                                <th> 操作</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <template v-for="(item,index) in sampleList">
+                                                                <tr :class="sample.item_id==item.id?'active':''">
+                                                                    <td class="text-center">{{index+1}}</td>
+                                                                    <td class="text-center">{{item.name}}
+                                                                    </td>
+                                                                    <td class="text-center">{{item.identify}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <template v-for="item in item.project">
+                                                                            {{item.name}}&nbsp;
+                                                                        </template>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{item.character}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        {{item.condition==1?'是':'否'}}
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:;"
+                                                                           @click="changeSampleItem(item)">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </a>
+                                                                        <a href="javascript:;"
+                                                                           @click="deleteSampleItem(item.id)">
+                                                                            <i class="fa fa-trash-o"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </template>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions right todo-form-actions">
+                                                    <button type="button" class="btn default"
+                                                            style="float: right;" @click="exportSample">
+                                                        导 出
+                                                    </button>
+                                                    <button type="button" class="btn  green "
+                                                            style="float: right;" @click="success">
+                                                        完 成
+                                                    </button>
+                                                </div>
                                                 <div class="tabbable-line">
                                                     <ul class="nav nav-tabs ">
-                                                        <li class="active">
-                                                            <a href="#page_3" data-toggle="tab"> 自送样登记表 </a>
-                                                        </li>
                                                         <!--<li>-->
                                                         <!--<a href="#page_4" data-toggle="tab"> 打印表格 </a>-->
                                                         <!--</li>-->
-                                                        <li>
+                                                        <li class="active">
                                                             <a href="#page_2" data-toggle="tab"> 监测项目 </a>
                                                         </li>
                                                         <li>
@@ -190,7 +326,7 @@
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
-                                                        <div class="tab-pane" id="page_1">
+                                                        <div class="tab-pane " id="page_1">
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
                                                                     <label class="control-label col-md-4">委托单位
@@ -291,7 +427,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane" id="page_2">
+                                                        <div class="tab-pane active" id="page_2">
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
                                                                     <tbody>
@@ -355,66 +491,6 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane active" id="page_3">
-                                                            <span v-if="sampleList.length==0">暂无样品信息</span>
-                                                            <div class="table-scrollable table-scrollable-borderless"
-                                                                 v-if="sampleList.length!=0">
-                                                                <table class="table table-hover table-light">
-                                                                    <thead>
-                                                                    <tr class="uppercase">
-                                                                        <th> 序号</th>
-                                                                        <th> 样品名称/编号</th>
-                                                                        <th> 实验室编号</th>
-                                                                        <th> 测试项目</th>
-                                                                        <th> 样品状态/颜色</th>
-                                                                        <th> 是否完好</th>
-                                                                        <th> 操作</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    <template v-for="(item,index) in sampleList">
-                                                                        <tr :class="sample.item_id==item.id?'active':''">
-                                                                            <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.name}}
-                                                                            </td>
-                                                                            <td class="text-center">{{item.identify}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <template v-for="item in item.project">
-                                                                                    {{item.name}}&nbsp;
-                                                                                </template>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.character}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.condition==1?'是':'否'}}
-                                                                            </td>
-                                                                            <td>
-                                                                                <a href="javascript:;"
-                                                                                   @click="changeSampleItem(item)">
-                                                                                    <i class="fa fa-edit"></i>
-                                                                                </a>
-                                                                                <a href="javascript:;"
-                                                                                   @click="deleteSampleItem(item.id)">
-                                                                                    <i class="fa fa-trash-o"></i>
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </template>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <hr>
-                                                            <button type="button" class="btn default"
-                                                                    style="float: right;" @click="exportSample">
-                                                                导 出
-                                                            </button>
-                                                            <button type="button" class="btn  green "
-                                                                    style="float: right;" @click="success">
-                                                                完 成
-                                                            </button>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -429,36 +505,7 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
-        <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title" id="modal_title">检测项目详情列表</h4>
-                    </div>
-                    <div class="modal-body" id="modal_body">
-                        <ul class="receiver_tag">
-                            <template v-for="item in project">
-                                <li class="uppercase ">
-                                    <a href="javascript:;" style="line-height: 30px">
-                                        {{item.name}}
-                                        <template
-                                                v-if="item.isPackage==true">
-                                            <span style="color: red;">[分包]</span>
-                                        </template>
-                                    </a>
-                                </li>
-                            </template>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
+
         <div class="modal fade draggable-modal" id="showsample" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -467,15 +514,42 @@
                         <h4 class="modal-title">检测项目详情列表</h4>
                     </div>
                     <div class="modal-body">
-                        <!--<template v-for="(project,projectIndex) in item.project">-->
-                        <!--{{project.project.name}}-->
-                        <!--</template>-->
-                        <ul class="receiver_tag">
-                            <!--<template v-for="names in projectName">-->
-                            <!--<li class="uppercase"><a href="javascript:;">{{names.name}}</a></li>-->
-                            <!--</template>-->
-                            样品详情。。。。。。。。
-                        </ul>
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                <tr class="uppercase">
+                                    <th> 序号</th>
+                                    <th> 环境要素</th>
+                                    <th> 监测点（个）</th>
+                                    <th> 监测项目</th>
+                                    <th> 监测频次</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template v-for="(item,index) in dispatchElement">
+                                    <tr>
+                                        <td class="text-center">{{index+1}}</td>
+                                        <td class="text-center">
+                                            {{item.element.name}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.point}}
+                                        </td>
+                                        <td class="text-center">
+                                            <template v-for="p in item.project">
+                                                {{p.name}}
+                                                <span class="font-red" v-if="p.isPackage==1">[分包]</span>
+                                            </template>
+                                        </td>
+                                        <td class="text-center">
+                                            {{item.frequency?item.frequency.total:''}}
+                                        </td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
@@ -519,12 +593,14 @@
                 },
                 sampleList: [],
                 projectList: [],
-                project: [],
                 user: {
                     role: {
                         department: {}
                     }
-                }
+                },
+                dispatchElement: {},
+                homeworks: "",
+
             }
         },
         mounted(){
@@ -603,6 +679,7 @@
                     serverErrorInfo(response);
                 });
             },
+            //点击左侧的任务书，以公司为单位，获取到作业
             fetchItems(id){
                 var me = this;
                 me.$http.get("/api/task/taskGetItems", {
@@ -615,35 +692,6 @@
                 }, response => {
                     serverErrorInfo(response);
                 });
-            },
-            //查找检测项目
-            fetchProjectByCategory(id){
-                var me = this;
-//                debugger
-                me.$http.get('/api/sample/getProjectByCategory', {
-                    params: {
-                        id: id
-                    }
-                }).then(response => {
-                    var data = response.data;
-                    me.projectList = data.results;
-                    me.$nextTick(function () {
-                        //销毁监测项目选择框
-                        $('#sample_project').selectpicker('destroy');
-                        //初始化监测项目选择框
-                        $('#sample_project').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check',
-                            countSelectedText: "count",
-                            deselectAllText: "取消选择",
-                            selectAllText: "选择全部",
-                            noneSelectedText: "请选择监测项目",
-                            dropupAuto: false
-                        });
-                    })
-                }, response => {
-                    serverErrorInfo(response);
-                })
             },
             getData(){
                 var me = this;
@@ -665,7 +713,6 @@
                     serverErrorInfo(response);
                 });
                 me.fetchItems(item.id);
-                me.fetchProjectByCategory(item.id);
                 me.fetchsampleList(item.id);
             },
             search(){
@@ -686,23 +733,6 @@
                 me.currentPage = 1;
                 me.getData();
             },
-            showProjectName(id){
-                var me = this;
-                me.$http.get("/api/task/monitorItem", {
-                    params: {
-                        id: id
-                    }
-                }).then(
-                    response => {
-                        var data = response.data;
-                        me.project = data;
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                );
-                jQuery("#showProject").modal("show");//弹出层显示
-
-            },
             showSample(){
                 jQuery("#showsample").modal("show");
             },
@@ -716,45 +746,6 @@
                         serverErrorInfo(response);
                     }
                 );
-            },
-            //新增自送样项目
-            create(){
-                var me = this;
-                me.sample.task_id = me.task.id;
-                me.sample.sample_type = 0;//自送样默认为0
-                me.$http.post("/api/sample/selfCreate", me.sample).then(
-                    response => {
-                        var data = response.data;
-                        console.log(me.sample);
-
-                        codeState(data.code, {
-                            200: function () {
-                                alert("样品信息添加成功！");
-                                me.fetchsampleList(me.task.id);
-                                me.removeSample();
-                                router.push("/sample/register");
-                            }
-                        })
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                )
-            },
-            //获取自送样列表
-            fetchsampleList(id){
-                var me = this;
-                me.$http.get('/api/sample/getSelfSampleList', {
-                    params: {
-                        task_id: id
-                    }
-                }).then(
-                    response => {
-                        var data = response.data;
-                        me.sampleList = data.results;
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                )
             },
             deleteSampleItem(id){
                 var me = this;
@@ -822,6 +813,83 @@
                 $("#sample_project").selectpicker("val", me.sample.project);
                 me.sample.name = "";
             },
+            exportSample(){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/sample/createSample?id=" + me.task.id);
+            },
+            //点击中间的查看详情，查看当前任务对应的公司的检测项目详情，点击->弹出弹窗->显示检测项目详细情况
+            viewDispatchDetail(item){
+                var me = this;
+                me.dispatchElement = item;
+                jQuery("#showsample").modal("show");
+            },
+            //点击中间红色查找检测项目
+            fetchProjectByCategory(item){
+                var me = this;
+                me.projectList = item.items;
+                me.$nextTick(function () {
+                    //销毁监测项目选择框
+                    $('#sample_project').selectpicker('destroy');
+                    //初始化监测项目选择框
+                    $('#sample_project').selectpicker({
+                        iconBase: 'fa',
+                        tickIcon: 'fa-check',
+                        countSelectedText: "count",
+                        deselectAllText: "取消选择",
+                        selectAllText: "选择全部",
+                        noneSelectedText: "请选择监测项目",
+                        dropupAuto: false
+                    });
+                })
+            },
+            //点击中间的红色带登记，最右侧就显示了样品登记
+            dispatchRegister(item){
+//                alert("点击带登记，右侧就可以进行样品的登记");
+//                console.log(item);
+                var me = this;
+                me.dispatchElement = item.items;
+                me.fetchProjectByCategory(item);
+                me.homeworks = item;
+            },
+            //新增自送样项目
+            create(){
+                var me = this;
+                me.sample.task_id = me.task.id;
+                me.sample.sample_type = 0;//自送样默认为0
+                me.$http.post("/api/sample/selfCreate", me.sample).then(
+                    response => {
+                        var data = response.data;
+                        console.log(me.sample);
+                        codeState(data.code, {
+                            200: function () {
+                                alert("样品信息添加成功！");
+                                me.fetchsampleList(me.task.id);
+                                me.removeSample();
+                                router.push("/sample/register");
+                            }
+                        })
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
+            },
+            //获取自送样列表
+            fetchsampleList(id){
+                var me = this;
+                me.$http.get('/api/sample/getSelfSampleList', {
+                    params: {
+                        task_id: id
+                    }
+                }).then(
+                    response => {
+                        var data = response.data;
+                        me.sampleList = data.results;
+                    }, response => {
+                        serverErrorInfo(response);
+                    }
+                )
+            },
+            //以一个公司为单位的作业，这个作业的样品全部完成登记，就点击完成
             success(){
                 var me = this;
                 me.$http.get('/api/sample/register', {
@@ -841,10 +909,7 @@
                     }
                 );
             },
-            exportSample(){
-                var me = this;
-                window.open("http://" + window.location.hostname + ":8080/api/sample/createSample?id=" + me.task.id);
-            }
+
         }
     }
 

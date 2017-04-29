@@ -969,8 +969,6 @@
                         <h4 class="modal-title">选择合同</h4>
                     </div>
                     <div class="modal-body">
-
-
                         <div class="portlet light ">
                             <!-- PROJECT HEAD -->
                             <div class="portlet-title">
@@ -1531,7 +1529,7 @@
                                             <span v-if="contractList.length==0">暂无合同。</span>
                                             <template v-for="item in contractList">
                                                 <div @click="fetchServiceItems(item)"
-                                                     :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
+                                                     :class="item.process==0?'todo-tasklist-item service-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item service-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item service-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item service-item todo-tasklist-item-border-success':'todo-tasklist-item service-item todo-tasklist-item-border-danger'">
                                                     <span class="todo-userpic pull-left" style="margin-right: 10px;"><i
                                                             style="width: 27px;height: 27px;"
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
@@ -1561,7 +1559,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green" >选 择</button>
+                        <button type="button" class="btn green" @click="chooseContracServicet">选 择</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -1599,8 +1597,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
-
         <div class="modal fade bs-modal-lg" id="splitConfirm" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -1745,7 +1741,8 @@
                     type: ""
                 },
                 contract_type: false,
-                project: []
+                project: [],
+                serviceItem: {}
             }
         },
         mounted(){
@@ -1842,6 +1839,11 @@
                     me.contractList = data.results;
                     me.$nextTick(function () {
                         App.stopPageLoading();
+                        jQuery(".service-item").on("click", function (event) {
+                            jQuery(".service-item").removeClass("active");
+                            //console.log(this);
+                            jQuery(event.target).addClass("active");
+                        });
                     })
                 }, (response) => {
                     serverErrorInfo(response);
@@ -1967,12 +1969,17 @@
                         serverErrorInfo(response);
                     })
                 } else {
+                    if (me.serviceItem) {
+                        //是根据服务合同创建的任务
+                        me.task.serviceId = me.serviceItem.id;
+                    }
                     //是自定义创建的任务
-                    me.$http.post("/api/task/create", me.task).then(function (response) {
+                    me.$http.post("/api/task/createByService", me.task).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {
                             200: function () {
                                 alert("任务创建成功！");
+                                jQuery("#splitConfirm").modal("hide");
                                 router.push("/task/list");
                             }
                         })
@@ -2567,9 +2574,20 @@
             },
             //点击服务合同，获取当前服务合同的id信息，再进行下面的自定义创建任务书
             fetchServiceItems(item){
-                console.log(item.id);
                 var me = this;
-                alert(item.id);
+                me.serviceItem = item;
+//                console.log(me.serviceItem);
+                //alert("你已经选择编号为：" + item.identify + "的合同！");
+            },
+            chooseContracServicet(){
+                var me = this;
+                if (!me.serviceItem.id) {
+                    error("请先选择服务合同！");
+                    return;
+                }
+                alert("服务合同选择完成！");
+                jQuery("#contracServicetList").modal("hide");
+                jQuery(".button-next").trigger("click");
             }
 
         }

@@ -82,7 +82,6 @@
                                                                 <li class="uppercase ">
                                                                     <a href="javascript:;" style="line-height: 30px">
                                                                         {{result.name}}
-
                                                                     </a>
                                                                 </li>
                                                             </template>
