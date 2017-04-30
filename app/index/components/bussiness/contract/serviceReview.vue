@@ -921,10 +921,11 @@
                     }
                 })
             },
-            changeContract(){
-                var me = this;
-                router.push("/contract/change?id=" + me.contract.id);
-            },
+//            changeContract(){
+//                var me = this;
+//                debugger
+//                router.push("/contract/change?id=" + me.contract.id);
+//            },
             exportContract(){
                 var me = this;
                 window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id=" + me.contract.id);
