@@ -769,6 +769,7 @@
                     }
                 }).then(response => {
                         var data = response.data;
+//                        debugger
                         me.log = data.results;
                     }, response => {
                         serverErrorInfo(response);
