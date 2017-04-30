@@ -117,7 +117,12 @@
                     </router-link>
                     <router-link :to="{ path: '/contract/review' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">技术审核</span>
+                            <span class="title">技术审核--业务合同</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/serviewReview' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">技术审核--服务合同</span>
                         </a>
                     </router-link>
                 </ul>

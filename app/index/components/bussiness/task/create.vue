@@ -966,7 +966,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">选择合同</h4>
+                        <h4 class="modal-title">选择业务合同</h4>
                     </div>
                     <div class="modal-body">
                         <div class="portlet light ">
@@ -1543,6 +1543,7 @@
                                                                         <i class="fa fa-calendar"></i> {{item.create_time}} </span>
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </span>
+                                                    <span class="label label-sm label-primary" style="float: right;">待执行</span>
                                                 </div>
                                             </template>
 
@@ -1831,7 +1832,7 @@
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
-                        condition: this.condition
+                        condition: "state=2"
                     }
                 }).then((response) => {
                     var data = response.data;
