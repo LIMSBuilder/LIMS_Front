@@ -983,7 +983,8 @@
                             codeState(data.code, {
                                 200: function () {
                                     alert("合同审核完成！");
-                                    me.viewDetails(me.contract.id);
+//                                    me.viewDetails(me.contract.id);
+//                                    debugger
                                     me.getData();
                                     me.fetchDearCount();
                                     jQuery("#reviewContract").modal("hide");
