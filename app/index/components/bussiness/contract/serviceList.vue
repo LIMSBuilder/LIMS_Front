@@ -611,7 +611,8 @@
             },
             changeContract(){
                 var me = this;
-                router.push("/contract/change?id=" + me.contract.id);
+//                debugger
+                router.push("/contract/service?id=" + me.contract.id);
             },
             exportContract(){
                 var me = this;

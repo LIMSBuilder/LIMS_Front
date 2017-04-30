@@ -70,7 +70,9 @@
                     <div class="form-actions">
                         <div class="row">
                             <div class="col-md-offset-5 col-md-9">
-                                <button type="button" class="btn green" @click="create">保 存</button>
+                                <button type="button" class="btn green" @click="create" v-if="flag==0">保 存</button>
+                                <button type="button" class="btn green" @click="change" v-if="flag==1">修 改</button>
+
                                 <button type="reset" class="btn default" @click="resetAll">重 置</button>
                             </div>
                         </div>
@@ -109,11 +111,32 @@
             return {
                 isReview: 1,
                 path: "",
-                name: ""
+                name: "",
+                flag: 0,
+                change_id: ""
             }
         },
         mounted(){
             var me = this;
+            var query = me.$route.query;
+//            debugger
+            if (query.id) {
+                me.$http.get("/api/service/findDetailsList", {
+                    params: {
+                        id: query.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.flag = 1;
+                    me.change_id = query.id;
+                    me.isReview = data.review;
+                    me.path = data.path;
+                    me.name = data.name;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            }
+
             var elementDropzone = me.elementDropzone = new Dropzone("div#myId", {
                 url: "/api/file/upload",
                 paramName: "file", // The name that will be used to transfer the file
@@ -142,6 +165,28 @@
                 var me = this;
                 if (jQuery("#service_add").valid()) {
                     me.$http.post("/api/service/createService", {
+                        review: me.isReview,
+                        path: me.path,
+                        name: me.name
+                    }).then(response => {
+                        var data = response.data;
+                        codeState(data.code, {
+                            200: function () {
+                                alert("服务合同保存成功！");
+                                router.push("/contract/serviceList");
+                            }
+
+                        });
+                    }, response => {
+                        serverErrorInfo(response);
+                    });
+                }
+            },
+            change(){
+                var me = this;
+                if (jQuery("#service_add").valid()) {
+                    me.$http.post("/api/service/change", {
+                        id: me.change_id,
                         review: me.isReview,
                         path: me.path,
                         name: me.name
