@@ -22,15 +22,21 @@
                                     <div class="col-md-3 col-sm-3">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in taskList">
-                                                <div @click="viewDetails(item)"
+                                                <div @click="viewDetails(item.id)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
                                                     <div class="todo-userpic pull-left" style="margin-right: 10px;"><i
                                                             style="width: 27px;height: 27px;"
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
+                                                    <div class="todo-tasklist-controls pull-right">
+                                                        <button type="button" class="btn blue btn-sm btn-outline"
+                                                                @click="flow(item.id)">流 转
+                                                        </button>
+                                                    </div>
                                                     <div class="todo-tasklist-item-title">
                                                         {{item.identify}}
                                                     </div>
+
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-left">
@@ -43,11 +49,12 @@
                                                                         <i class="fa fa-home"></i> {{item.client_unit}} </span>
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </div>
+
                                                     <!--<div class="todo-tasklist-controls pull-right">-->
-                                                        <!--<span class="label label-sm label-danger"-->
-                                                              <!--v-if="item.process==1">待登记</span>-->
-                                                        <!--<span class="label label-sm label-info"-->
-                                                              <!--v-if="item.process==2">已登记</span>-->
+                                                    <!--<span class="label label-sm label-danger"-->
+                                                    <!--v-if="item.process==1">待登记</span>-->
+                                                    <!--<span class="label label-sm label-info"-->
+                                                    <!--v-if="item.process==2">已登记</span>-->
                                                     <!--</div>-->
                                                 </div>
                                             </template>
@@ -67,7 +74,7 @@
                                             <div class="todo-projects-item">
                                                 <ul class="todo-projects-container ">
                                                     <template v-for="item in itemLists">
-                                                        <li class="todo-projects-item " style="padding-bottom: 30px">
+                                                        <li class="todo-projects-item " style="padding-bottom: 30px" @click="dispatchRegister(item)">
                                                             <h4 class="">
                                                                 <!--<span class="label label-info"-->
                                                                 <!--v-if="item.process==1"> 已登记 </span>-->
@@ -83,7 +90,10 @@
                                                             </div>
                                                             <div class="todo-project-item-foot" style="float: right; ">
                                                                 <span class="label label-danger"
-                                                                      @click="dispatchRegister(item)"> 待登记 </span>
+                                                                      v-if="item.process==0"> 待登记 </span>
+                                                                <span class="label label-success"
+                                                                      v-if="item.process==2"> 已完成 </span>
+
                                                             </div>
                                                         </li>
                                                         <div class="todo-projects-divider"></div>
@@ -159,7 +169,7 @@
                                                 </div>
                                                 <hr>
 
-                                                <form class="form-horizontal" role="form">
+                                                <form class="form-horizontal" role="form" v-if="homeworks.process!=2">
                                                     <div class="form-body">
                                                         <h3>添加样品信息</h3>
                                                         <div class="row">
@@ -187,7 +197,7 @@
                                                                             <optgroup :label="items.name">
                                                                                 <template
                                                                                         v-for="project in items.project">
-                                                                                    <option :value="project.id">
+                                                                                    <option :value="project.item_project_id">
                                                                                         {{project.name}}
                                                                                     </option>
                                                                                 </template>
@@ -240,11 +250,12 @@
                                                         <!--v-show="!sample.id">-->
                                                         <!--<i class="fa fa-pencil"></i> 新增-->
                                                         <!--</button>-->
-                                                        <!--<button type="button" class="btn yellow " v-show="sample.id"-->
-                                                        <!--@click="change">-->
-                                                        <!--<i class="fa fa-trash-o">修改</i>-->
-                                                        <!--</button>-->
-                                                        <button type="button" class="btn  green" @click="create">
+                                                        <button type="button" class="btn yellow " v-if="flagchange==1"
+                                                                @click="change">
+                                                            <i class="fa fa-trash-o">修改</i>
+                                                        </button>
+                                                        <button type="button" class="btn  green" @click="create"
+                                                                v-if="flagchange==0">
                                                             <i class="fa fa-pencil"></i> 新增
                                                         </button>
                                                         <button type="button" class="btn default" @click="removeSample">
@@ -312,7 +323,8 @@
                                                         导 出
                                                     </button>
                                                     <button type="button" class="btn  green "
-                                                            style="float: right;" @click="success">
+                                                            style="float: right;" @click="finishBtn()"
+                                                            v-if="homeworks.process!=2">
                                                         完 成
                                                     </button>
                                                 </div>
@@ -585,7 +597,7 @@
                 project: [],
                 countProcess: 0,
                 sample: {
-//                    id: "",
+                    id: "",
                     task_id: "",
                     company_id: "",
 //                    prefix: 0,
@@ -604,6 +616,8 @@
                 },
                 dispatchElement: {},
                 homeworks: "",
+                homeworksID: "",//点击完成是=时获取的以公司为单位的id
+                flagchange: 0 //点击修改操作时，记录一个字段，来显示修改，隐藏创建
 
             }
         },
@@ -703,11 +717,12 @@
                 me.fetchPages(rowCount);
             },
             //查看详细详信息
-            viewDetails(item){
+            viewDetails(id){
                 var me = this;
+//                debugger
                 me.$http.get("/api/task/taskDetails", {
                     params: {
-                        id: item.id
+                        id: id
                     }
                 }).then(response => {
                     var data = response.data;
@@ -716,7 +731,8 @@
                 }, response => {
                     serverErrorInfo(response);
                 });
-                me.fetchItems(item.id);
+                me.fetchItems(id);
+                me.homeworks = "";
             },
             search(){
                 var me = this;
@@ -762,7 +778,7 @@
                         200: function () {
                             alert("样品删除成功！");
                             me.getData();
-//                            me.fetchsampleList(me.task.id);
+                            me.fetchsampleList(me.homeworksID);
                         }
                     })
                 }, response => {
@@ -771,6 +787,8 @@
             },
             changeSampleItem(item){
                 var me = this;
+                me.flagchange = 1;
+//                debugger
 //                console.log(item);
                 for (var i in item) {
 //                    console.log(i);
@@ -782,22 +800,24 @@
                 me.sample.project = [];//将刚刚传的project清空
                 var project = item.project;
                 for (var i = 0; i < project.length; i++) {
-                    me.sample.project.push(project[i].id);
+                    me.sample.project.push(project[i].item_project_id);
                 }
 //                debugger
                 $('#sample_project').selectpicker("val", me.sample.project);
             },
             change(){
                 var me = this;
+//                debugger
                 me.$http.post("/api/sample/changeSample", me.sample).then(
                     response => {
                         var data = response.data;
                         codeState(data.code, {
                             200: function () {
                                 alert("样品信息修改成功！");
-//                                me.fetchsampleList(me.task.id);
+                                me.fetchsampleList(me.homeworks.id);
                                 me.removeSample();
                                 me.sample.id = "";
+                                me.flagchange = 0;
                                 router.push("/sample/register");
                             }
                         })
@@ -859,8 +879,10 @@
             //新增自送样项目
             create(){
                 var me = this;
+//                debugger
                 me.sample.task_id = me.task.id;
-                me.sample.company_id=me.homeworks.id;
+                me.sample.company_id = me.homeworks.id;
+//                debugger
 //                me.sample.sample_type = 0;//自送样默认为0
                 me.$http.post("/api/sample/selfCreate", me.sample).then(
                     response => {
@@ -882,6 +904,7 @@
             //获取自送样列表
             fetchsampleList(id){
                 var me = this;
+//                debugger
                 me.$http.get('/api/sample/getSelfSampleList', {
                     params: {
                         company_id: id
@@ -889,7 +912,9 @@
                 }).then(
                     response => {
                         var data = response.data;
+//                        debugger
                         me.sampleList = data.results;
+                        me.homeworksID = id;
                     }, response => {
                         serverErrorInfo(response);
                     }
@@ -914,6 +939,54 @@
                         serverErrorInfo(response);
                     }
                 );
+            },
+            finishBtn(){
+                var me = this;
+//                debugger
+                me.$http.get("/api/delivery/finishItem", {
+                    params: {
+                        id: me.homeworksID
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("自送样登记完成完成！");
+                            me.getData();
+                            me.viewDetails(me.task.id);
+
+                        },
+                        505: "存在尚未提交的样品信息！",
+                        504: "存在尚未处理的分析项目！"
+
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            flow(id){
+                var me = this;
+                confirm({
+                    content: "是否确认已完成所有作业的样品登记并流转该任务？",
+                    success: function () {
+                        me.$http.get("/api/dispatch/checkFlow", {
+                            params: {
+                                task_id: id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("任务书流转成功！");
+                                    me.getData();
+                                },
+                                501: "当前存在未完成作业，无法流转！"
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
             },
 
         }
