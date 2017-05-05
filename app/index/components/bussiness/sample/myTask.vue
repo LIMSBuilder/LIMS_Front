@@ -740,6 +740,7 @@
                     var data = response.data;
                     $('.select-project').selectpicker('destroy');
                     me.sampleList = data.results;
+                    debugger
                     me.$nextTick(function () {
 //                        $('.select-project').selectpicker('destroy');
                         $('.select-project').selectpicker({

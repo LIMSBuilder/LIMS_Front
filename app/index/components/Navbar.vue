@@ -176,6 +176,11 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
+                    <router-link :to="{ path: '/quality/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">质控列表</span>
+                        </a>
+                    </router-link>
                     <router-link :to="{ path: '/quality/qreview' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">项目质控</span>
