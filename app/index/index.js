@@ -69,6 +69,7 @@ import MyTask from './components/bussiness/sample/myTask.vue'
 import Quality from './components/bussiness/quality/quality.vue'
 import Qreview from './components/bussiness/quality/qReview.vue'
 import Firstreview from './components/bussiness/quality/firstReview.vue'
+import Quality_list from './components/bussiness/quality/list.vue'
 
 
 //=============Basic================
@@ -557,6 +558,10 @@ var routes = [
             {
                 path: "firstreview",
                 component: Firstreview
+            },
+            {
+                path:"list",
+                component:Quality_list
             }
         ]
     }
