@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 自送样信息登记
-            <small>／Register</small>
+        <h1 class="page-title"> 质控列表
+            <small>／Quality</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -13,13 +13,13 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">样品列表</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">质控列表</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-3">
+                                    <div class="col-md-2 col-sm-2">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in taskList">
                                                 <div @click="viewDetails(item.id)"
@@ -29,7 +29,8 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
-                                                        <button type="button" class="btn blue btn-sm btn-outline">流 转
+                                                        <button type="button" class="btn blue btn-sm btn-outline"
+                                                                @click="flow(item.id)">流 转
                                                         </button>
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
@@ -61,7 +62,7 @@
 
                                     <div class="todo-tasklist-devider"></div>
 
-                                    <div class="col-md-3 col-sm-3 todo-container">
+                                    <div class="col-md-2 col-sm-2 todo-container">
                                         <div class="todo-projects-item">
                                             <div class="todo-projects-item">
                                                 <ul class="todo-projects-container ">
@@ -79,9 +80,9 @@
                                                             </div>
                                                             <div class="todo-project-item-foot" style="float: right; ">
                                                                 <span class="label label-danger"
-                                                                      v-if="item.process==0"> 待登记 </span>
+                                                                      v-if="item.process==2"> 待质控 </span>
                                                                 <span class="label label-success"
-                                                                      v-if="item.process==2"> 已完成 </span>
+                                                                      v-if="item.process==3"> 已完成 </span>
 
                                                             </div>
                                                         </li>
@@ -96,10 +97,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-sm-6" v-show="!homeworks.id">
+                                    <div class="col-md-8 col-sm-8" v-show="!homeworks.id">
                                         <h1 class="text-center">暂无任务信息</h1>
                                     </div>
-                                    <div class="col-md-6 col-sm-6" v-show="homeworks.id">
+                                    <div class="col-md-8 col-sm-8" v-show="homeworks.id">
                                         <form action="#" class="form-horizontal form-bordered form-row-stripped">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
@@ -338,8 +339,7 @@
                                                                                                     <td class="text-center">
                                                                                                         <a href="javascript:;"
                                                                                                            class="btn btn-icon-only blue"
-                                                                                                           @click="chooseLaboratorys(item)"
-                                                                                                           style="width: 10px; height: 10px;">
+                                                                                                           @click="chooseLaboratorys(item)">
                                                                                                             <i class="fa fa-gear"></i>
                                                                                                         </a>
                                                                                                     </td>
@@ -363,8 +363,7 @@
                                                                                                     <td class="text-center">
                                                                                                         <a href="javascript:;"
                                                                                                            class="btn btn-icon-only blue"
-                                                                                                           @click="chooseJB(item)"
-                                                                                                           style="width: 10px; height: 10px;">
+                                                                                                           @click="chooseJB(item)">
                                                                                                             <i class="fa fa-gear"></i>
                                                                                                         </a>
                                                                                                     </td>
@@ -391,7 +390,7 @@
                                                                                             <button type="button"
                                                                                                     class="btn btn-sm blue btn-outline"
                                                                                                     @click="savequality(item)"
-                                                                                                    v-if="item.process==0">
+                                                                                                    v-if="item.process==null">
                                                                                                 保存
                                                                                             </button>
                                                                                             <button type="button"
@@ -415,11 +414,23 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <button type="button"
-                                                                        class="btn btn-sm blue btn-outline"
-                                                                        @click="savaAll">
-                                                                    保存全部
-                                                                </button>
+                                                                <div class="form-actions right todo-form-actions">
+                                                                    <button type="button"
+                                                                            class="btn btn-sm blue btn-outline"
+                                                                            @click="savaAll">
+                                                                        保存全部
+                                                                    </button>
+                                                                </div>
+                                                                <div class="form-actions right todo-form-actions">
+                                                                    <button type="button" class="btn default"
+                                                                            style="float: right;" @click="">
+                                                                        导 出
+                                                                    </button>
+                                                                    <button type="button" class="btn  green "
+                                                                            style="float: right;" @click="finishBtn()">
+                                                                        完 成
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                             <div class="tab-pane" id="page_3">
                                                                 送检单
@@ -855,6 +866,9 @@
                 choosejbs: [],//加标回收
                 jbitem: [],
                 jbId: "",
+                homeworksID: "",//点击完成是=时获取的以公司为单位的id
+                taskID: ""//点击获取task的id；
+
             }
         },
         mounted(){
@@ -943,6 +957,7 @@
                 }).then(response => {
                     var data = response.data;
                     me.itemLists = data;
+                    me.taskID = id;
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -1021,6 +1036,7 @@
                 }).then(response => {
                     var data = response.data;
                     me.qualitylist = data;
+                    me.homeworksID = item.id;
                 }, response => {
                     serverErrorInfo(response);
                 })
@@ -1091,7 +1107,7 @@
                 })
             },
             changequality(item){
-                item.process = 0;
+                item.process = null;
                 item.lab = [];
                 item.tag = [];
                 item.blind = 0;
@@ -1140,7 +1156,6 @@
                 var temp = {
                     items: items
                 };
-
                 me.$http.post("/api/quality/allSave", temp).then(response => {
                     var data = response.data;
                     codeState(data.code, {
@@ -1152,8 +1167,53 @@
                 }, response => {
                     serverErrorInfo(response);
                 })
-            }
+            },
+            finishBtn(){
+                var me = this;
+                me.$http.get("/api/quality/finishQuality", {
+                    params: {
+                        id: me.homeworksID
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("质控登记完成完成！");
+                            me.getData();
+                            console.log()
+                            me.viewDetails(me.taskID);
+                        },
+                        505: "存在尚未处理的质控项目！"
 
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            flow(id){
+                var me = this;
+                confirm({
+                    content: "是否确认已完成所有作业的质控？",
+                    success: function () {
+                        me.$http.get("/api/dispatch/checkFlowLab", {
+                            params: {
+                                task_id: id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("质控流转成功！");
+                                    me.getData();
+                                },
+                                501: "当前存在未完成作业，无法流转！"
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
+            },
         }
     }
 
