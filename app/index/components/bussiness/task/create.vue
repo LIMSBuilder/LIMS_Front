@@ -1543,7 +1543,7 @@
                                                                         <i class="fa fa-calendar"></i> {{item.create_time}} </span>
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </span>
-                                                    <span class="label label-sm label-primary" style="float: right;">待执行</span>
+                                                    <span class="label label-sm label-primary" style="fill-rule: ">待执行</span>
                                                 </div>
                                             </template>
 
