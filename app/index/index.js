@@ -113,6 +113,10 @@ import Create_Instrument from './components/basic/Instrument/create.vue'
 import List_Instrument from './components/basic/Instrument/list.vue'
 import Change_Instrument from './components/basic/Instrument/change.vue'
 
+//Export
+import Export from './components/basic/export/export.vue'
+import Export_List from './components/basic/export/list.vue'
+
 //=============System===============
 //Department
 import Department from './components/system/department/department.vue'
@@ -491,8 +495,8 @@ var routes = [
                 component: contract_ServiceList
             },
             {
-                path:"serviewReview",
-                component:contract_serviewReview
+                path: "serviewReview",
+                component: contract_serviewReview
             }
         ]
     },
@@ -547,6 +551,17 @@ var routes = [
         ]
     },
     {
+        path: "/export",
+        name: "export",
+        component: Export,
+        children: [
+            {
+                path:"list",
+                component:Export_List
+            }
+        ]
+    },
+    {
         path: "/quality",
         name: "quality",
         component: Quality,
@@ -560,8 +575,8 @@ var routes = [
                 component: Firstreview
             },
             {
-                path:"list",
-                component:Quality_list
+                path: "list",
+                component: Quality_list
             }
         ]
     }
