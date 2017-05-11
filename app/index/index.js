@@ -49,6 +49,7 @@ import contract_Sreview from './components/bussiness/contract/sreview.vue'
 import contract_IsPackage from './components/bussiness/contract/isPackage.vue'
 import contract_ServiceList from  './components/bussiness/contract/serviceList.vue'
 import contract_serviewReview from './components/bussiness/contract/serviceReview.vue'
+import ChangeItems from './components/bussiness/contract/changeItems.vue'
 
 
 import service from './components/bussiness/contract/service.vue'
@@ -467,6 +468,10 @@ var routes = [
                 component: Create_Contract
             },
             {
+                path: "changeItem",
+                component: ChangeItems
+            },
+            {
                 path: "list",
                 component: Contract_List
             },
@@ -556,8 +561,8 @@ var routes = [
         component: Export,
         children: [
             {
-                path:"list",
-                component:Export_List
+                path: "list",
+                component: Export_List
             }
         ]
     },
