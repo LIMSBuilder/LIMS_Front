@@ -123,6 +123,9 @@
                                             <li>
                                                 <a href="javascript:;" @click="changeContract"> 编辑修改 </a>
                                             </li>
+                                            <li>
+                                                <a href="javascript:;" @click="changeItems"> 监测项更新 </a>
+                                            </li>
                                             <li class="divider"></li>
                                             <li v-if="contract.process==2">
                                                 <a href="javascript:;" @click="finishConstract">完成合同</a>
@@ -938,7 +941,11 @@
             },
             exportContract(){
                 var me = this;
-                window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id="+me.contract.id);
+                window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id=" + me.contract.id);
+            },
+            changeItems(){
+                var me = this;
+                router.push("/contract/changeItem?id=" + me.contract.id);
             }
         }
     }
