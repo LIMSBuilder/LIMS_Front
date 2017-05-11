@@ -293,6 +293,20 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-external-link-square"></i>
+                    <span class="title">导出文档</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/export/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">导出所有文档</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-balance-scale"></i>
                     <span class="title">环境要素</span>
                     <span class="arrow"></span>
