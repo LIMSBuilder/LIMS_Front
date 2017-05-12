@@ -6,153 +6,19 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light portlet-fit portlet-form ">
-
-
                     <div class="portlet-body">
-
-
-                        <!--<template v-for="(companyEntry,index) in itemLists">-->
-                        <!--<hr>-->
-                        <!--<h4>作业{{index+1}}:{{companyEntry.company}}</h4>-->
-                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                        <!--<table class="table table-hover table-light">-->
-                        <!--<tbody>-->
-                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                        <!--<table class="table table-hover table-light">-->
-                        <!--<thead>-->
-                        <!--<tr class="uppercase">-->
-                        <!--<th> 序号</th>-->
-                        <!--<th> 环境要素</th>-->
-                        <!--<th> 监测点（个）</th>-->
-                        <!--<th> 监测项目</th>-->
-                        <!--<th> 监测频次</th>-->
-                        <!--<th> 备注</th>-->
-                        <!--</tr>-->
-                        <!--</thead>-->
-                        <!--<tbody>-->
-                        <!--<template-->
-                        <!--v-for="(item,index) in companyEntry.items">-->
-                        <!--<tr>-->
-                        <!--<td class="text-center">-->
-                        <!--{{index+1}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.element.name}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.point}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--<template-->
-                        <!--v-for="(project,index) in item.project">-->
-                        <!--{{project.name}}-->
-                        <!--<template-->
-                        <!--v-if="project.isPackage==true">-->
-                        <!--<span style="color: red;">[分包]</span>-->
-                        <!--</template>-->
-                        <!--<template-->
-                        <!--v-if="index+1!=item.project.length">-->
-                        <!--,-->
-                        <!--</template>-->
-                        <!--</template>-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.frequency.total}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.other}}-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--</template>-->
-                        <!--</tbody>-->
-                        <!--</table>-->
-                        <!--</div>-->
-                        <!--</tbody>-->
-                        <!--</table>-->
-                        <!--</div>-->
-                        <!--</template>-->
-
-
-                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                        <!--<table class="table table-hover table-light">-->
-                        <!--<tbody>-->
-                        <!--<div class="table-scrollable table-scrollable-borderless">-->
-                        <!--<table class="table table-hover table-light">-->
-                        <!--<thead>-->
-                        <!--<tr class="uppercase">-->
-                        <!--<th> 序号</th>-->
-                        <!--<th> 公司名称</th>-->
-                        <!--<th> 环境要素</th>-->
-                        <!--<th> 监测点（个）</th>-->
-                        <!--<th> 监测项目</th>-->
-                        <!--<th> 监测频次</th>-->
-                        <!--<th> 备注</th>-->
-                        <!--</tr>-->
-                        <!--</thead>-->
-                        <!--<tbody>-->
-                        <!--<template v-for="itemList in itemLists">-->
-                        <!--<template-->
-                        <!--v-for="(item,index) in itemList.items">-->
-                        <!--<tr>-->
-                        <!--<td class="text-center">-->
-                        <!--{{index+1}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{itemList.flag==0?contract.client_unit:itemList.company}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.element.name}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.point}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--<template-->
-                        <!--v-for="(project,index) in item.project">-->
-                        <!--{{project.name}}-->
-                        <!--<template-->
-                        <!--v-if="project.isPackage==true">-->
-                        <!--<span style="color: red;">[分包]</span>-->
-                        <!--</template>-->
-                        <!--<template-->
-                        <!--v-if="index+1!=item.project.length">-->
-                        <!--,-->
-                        <!--</template>-->
-                        <!--</template>-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.frequency.total}}-->
-                        <!--</td>-->
-                        <!--<td class="text-center">-->
-                        <!--{{item.other}}-->
-                        <!--</td>-->
-                        <!--</tr>-->
-                        <!--</template>-->
-                        <!--</template>-->
-                        <!--</tbody>-->
-                        <!--</table>-->
-                        <!--</div>-->
-                        <!--</tbody>-->
-                        <!--</table>-->
-                        <!--</div>-->
-                        <!--</div>-->
-
-
                         <div class="portlet-body">
                             <div class="mt-element-list">
-                                <div class="mt-list-head list-todo red">
+                                <div class="mt-list-head list-todo green">
                                     <div class="list-head-title-container">
                                         <h3 class="list-title">监测项目</h3>
                                         <div class="list-head-count">
                                             <div class="list-head-count-item">
-                                                <i class="fa fa-check"></i> 15
-                                            </div>
-                                            <div class="list-head-count-item">
-                                                <i class="fa fa-cog"></i> 34
+                                                {{itemLists.length}}家公司
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="javascript:;">
+                                    <a href="javascript:;" @click="createCompany">
                                         <div class="list-count pull-right red-mint">
                                             <i class="fa fa-plus"></i>
                                         </div>
@@ -192,7 +58,8 @@
                                                                     </div>
                                                                     <div class="task-status">
                                                                         <a class="done" href="javascript:;">
-                                                                            <i class="fa fa fa-edit"></i>
+                                                                            <i class="fa fa fa-edit"
+                                                                               @click="editItem(item)"></i>
                                                                         </a>
                                                                         <a class="pending" href="javascript:;">
                                                                             <i class="fa fa-trash font-red"
@@ -351,6 +218,145 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <div class="modal fade bs-modal-lg" id="changeMonitor" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">修改监测项</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="portlet light portlet-fit portlet-form ">
+                            <div class="portlet-body">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal" id="item_change">
+                                    <div class="form-body">
+                                        <div class="alert alert-danger display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            表单尚未填写完整。
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_element">环境要素
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.element" name="change_element"
+                                                        id="change_element"
+                                                        @change="fetchProjectByElement($event)" data-live-search="true">
+                                                    <option>请选择环境要素</option>
+                                                    <template v-for="item in elementList">
+                                                        <option :value="item.id">{{item.name}}
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_project">监测项目
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.project" name="change_project"
+                                                        id="change_project" multiple
+                                                        data-actions-box="true" data-live-search="true">
+                                                    <template v-for="item in projectList">
+                                                        <option :value="item.id">{{item.name}}
+
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_frequency">监测频次
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="change_frequency"
+                                                        v-model="monitor.frequency" id="change_frequency"
+                                                        data-live-search="true">
+                                                    <option>请选择监测频次</option>
+                                                    <template v-for="item in frequencyList">
+                                                        <option :value="item.id">{{item.total}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_point">监测点
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="number" class="form-control"
+                                                       v-model="monitor.point" name="change_point" id="change_point">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_other">备注
+                                                <span class="required">  </span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" v-model="monitor.other"
+                                                          id="change_other" name="change_other" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" @click="changeMonitor">修改</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade draggable-modal" id="createCompany" tabindex="-1" role="basic" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">上传新监测公司</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="alert alert-danger">
+                            <strong>警告!</strong> 上传的文件仅需包含新添加的监测公司和检测项。
+                        </div>
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="input-group input-large">
+                                <div class="form-control uneditable-input input-fixed input-medium"
+                                     data-trigger="fileinput">
+                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                    <span class="fileinput-filename"> </span>
+                                </div>
+                                <span class="input-group-addon btn default btn-file">
+                                                                    <span class="fileinput-new"> 选择模板 </span>
+                                                                <span class="fileinput-exists"> 变 更 </span>
+                                                                    <input type="file" name="..."> </span>
+                                <a href="javascript:;"
+                                   class="input-group-addon btn green fileinput-exists"
+                                   @click="readTemplate"> 读 取 </a>
+                                <a href="javascript:;"
+                                   class="input-group-addon btn red fileinput-exists"
+                                   data-dismiss="fileinput"> 删 除 </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 </template>
 
@@ -413,6 +419,10 @@
             $("#createMonitor").draggable({
                 handle: ".modal-header"
             });
+            //创建监测项目窗口可拖拽
+            $("#changeMonitor").draggable({
+                handle: ".modal-header"
+            });
             //初始化监测项目选择框
             $('#monitor_project').selectpicker({
                 iconBase: 'fa',
@@ -427,6 +437,7 @@
         methods: {
             fetchItems(id){
                 var me = this;
+                App.startPageLoading({animate: true});
                 me.$http.get("/api/contract/getItems", {
                     params: {
                         contract_id: id
@@ -434,6 +445,9 @@
                 }).then(response => {
                     var data = response.data;
                     me.itemLists = data;
+                    me.$nextTick(function () {
+                        App.stopPageLoading();
+                    })
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -503,6 +517,20 @@
                         });
                 }
             },
+            changeMonitor(){
+                var me = this;
+                if (jQuery("#item_add").valid()) {
+                    me.$http.get("/api/company/changeItem", {
+                        params: me.monitor
+                    }).then(function (response) {
+                        var data = response.data;
+                        alert("监测项目修改成功！");
+                        me.fetchItems(me.id);
+                    }, function (response) {
+                        serverErrorInfo(response);
+                    });
+                }
+            },
             fetchFrequency(){
                 var me = this;
                 me.$http.get("/api/frequency/total").then(function (response) {
@@ -569,6 +597,92 @@
                 var me = this;
                 me.company_id = item.id;
                 jQuery("#createMonitor").modal("show");
+            },
+            editItem(item){
+                var me = this;
+                jQuery("#changeMonitor").modal("show");
+                var temp = [];
+                for (var i = 0; i < item.project.length; i++) {
+                    temp.push(item.project[i].id);
+                }
+                var data = {
+                    element: item.element.id,
+                    frequency: item.frequency.id,
+                    point: item.point,
+                    other: item.other,
+                    project: temp,
+                    id: item.id
+                };
+                me.monitor = data;
+                me.fetchProjectByValue(data.element, data.project);
+            },
+            fetchProjectByValue(value, selected){
+                var me = this;
+                me.$http.get("/api/project/findByElement", {
+                    params: {
+                        element_id: value
+                    }
+                }).then(function (response) {
+                        var data = response.data;
+                        jQuery('#change_project').selectpicker('destroy');
+                        me.projectList = data.results;
+                        me.$nextTick(function () {
+                            jQuery('#change_project').selectpicker({
+                                iconBase: 'fa',
+                                tickIcon: 'fa-check',
+                                countSelectedText: "count",
+                                deselectAllText: "取消选择",
+                                selectAllText: "选择全部",
+                                noneSelectedText: "请选择监测项目"
+                            });
+                            jQuery('#change_project').selectpicker("val", selected);
+                        })
+                    }
+                    , function (response) {
+                        serverErrorInfo(response);
+                    }
+                )
+            },
+            readTemplate(){
+                var me = this;
+                var formData = new FormData();
+                formData.append("file", jQuery("input[type=file]")[0].files[0]);
+                jQuery.ajax({
+                    url: '/api/file/upload',
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (returndata) {
+                        codeState(returndata.code, {
+                            200: function () {
+                                alert("打开" + returndata.path);
+                                //这里调用球球的PageOffice页面，顺便把returndata.path传给球球
+                                me.$http.get("/api/company/addCompany", {
+                                    params: {
+                                        path: returndata.path,
+                                        id: me.id
+                                    }
+                                }).then(response => {
+                                    var data = response.data;
+                                    codeState(data.code, {
+                                        200(){
+                                            alert("监测公司新增成功！");
+                                            me.fetchItems(me.id);
+                                        }
+                                    })
+                                }, response => {
+                                    serverErrorInfo(response);
+                                })
+                            }
+                        })
+                    }
+                });
+            },
+            createCompany(){
+                jQuery("#createCompany").modal("show");
             }
         }
     }
