@@ -2119,7 +2119,7 @@
             changeMonitor(){
                 var me = this;
                 var index = me.changeMonitorIndex;
-                var item = me.task.item;
+                var item = me.task.item[0].items;
                 me.$http.get("/api/project/details", {
                     params: me.monitor
                 }).then(function (response) {
@@ -2127,7 +2127,7 @@
                         debugger
                         for (var i = 0; i < item.length; i++) {
                             if (i == index) {
-                                item[0].items[i] = data.items[0];
+                                item[i] = data.items[0];
                             }
                         }
                         alert("监测项目创修改成功！");
