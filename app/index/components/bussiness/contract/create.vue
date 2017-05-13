@@ -366,14 +366,14 @@
                                                                         <th> 监测项目</th>
                                                                         <th> 监测频次</th>
                                                                         <th> 备注</th>
-                                                                        <th> 修改</th>
-                                                                        <th> 删除</th>
+                                                                        <th v-if="contract.importWrite==0"> 修改</th>
+                                                                        <th v-if="contract.importWrite==0"> 删除</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <template v-for="itemList in contract.item">
+                                                                    <template v-for="(itemList,index) in contract.item">
                                                                         <template
-                                                                                v-for="(item,index) in itemList.items">
+                                                                                v-for="item in itemList.items">
                                                                             <tr>
                                                                                 <td class="text-center">{{index+1}}</td>
                                                                                 <td class="text-center">
@@ -399,14 +399,16 @@
                                                                                 </td>
                                                                                 <td class="text-center">{{item.other}}
                                                                                 </td>
-                                                                                <td class="text-center">
+                                                                                <td class="text-center"
+                                                                                    v-if="contract.importWrite==0">
                                                                                     <a href="javascript:;"
                                                                                        class="btn btn-icon-only blue"
-                                                                                       @click="edit(item)">
+                                                                                       @click="edit(item,index)">
                                                                                         <i class="fa fa-gear"></i>
                                                                                     </a>
                                                                                 </td>
-                                                                                <td class="text-center">
+                                                                                <td class="text-center"
+                                                                                    v-if="contract.importWrite==0">
                                                                                     <a href="javascript:;"
                                                                                        class="btn btn-icon-only red"
                                                                                        @click="deleteItem(project)">
@@ -1134,7 +1136,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green" @click="addMonitor">修改</button>
+                        <button type="button" class="btn green" @click="changeMonitor">修改</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -1288,7 +1290,7 @@
                     trustee: "",
                     type: ""
                 },
-
+                changeMonitorIndex: 0
             }
         },
         mounted(){
@@ -1366,15 +1368,13 @@
                 this.tag.trustee = jQuery("#trustee option:selected").html();
             },
             "contract.type": function () {
-                console.log("type");
+//                console.log("type");
                 this.tag.type = jQuery("#projectType option:selected").html();
             },
             'contract.payment': function (currentValue) {
                 this.paymentCap = BlogUtils.atoc(currentValue);
             },
             'contract.importWrite': function () {
-                alert(123);
-
                 this.contract.item = [];
             }
         },
@@ -1443,25 +1443,6 @@
                     serverErrorInfo(response);
                 });
             },
-            addMonitor(){
-                //新增一项监测内容
-                var me = this;
-                if (jQuery("#item_add").valid()) {
-//                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
-//                    me.monitor.isHand = 0;
-                    me.$http.get("/api/project/details", {
-                        params: me.monitor
-                    }).then(function (response) {
-                            var data = response.data;
-                            alert("监测项目创建成功！");
-                            me.contract.item.push(data);
-                            console.log(JSON.parse(JSON.stringify(me.contract)));
-                        }
-                        , function (response) {
-                            serverErrorInfo(response);
-                        });
-                }
-            },
             deleteItem(item){
                 var me = this;
                 me.contract.item.splice(me.contract.item.find(function (t) {
@@ -1500,10 +1481,10 @@
                 var items = me.contract.item;
                 me.contract.project_items = [];
                 for (var i = 0; i < items.length; i++) {
-                    console.log(JSON.stringify(items[i]));
+//                    console.log(JSON.stringify(items[i]));
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
-                console.log(JSON.parse(JSON.stringify(me.contract)));
+//                console.log(JSON.parse(JSON.stringify(me.contract)));
                 App.startPageLoading({animate: true});
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
@@ -1737,8 +1718,9 @@
 ////                })
 //            },
             //合同中点击=某一检测项目，然后对该条检测项目进行修改
-            edit(item){
+            edit(item, index){
                 var me = this;
+                me.changeMonitorIndex = index;
                 jQuery("#changeMonitor").modal("show");
                 var temp = [];
                 for (var i = 0; i < item.project.length; i++) {
@@ -1753,6 +1735,45 @@
                 };
                 me.monitor = data;
                 me.fetchProjectByValue(data.element, data.project);
+            },
+            addMonitor(){
+                //新增一项监测内容
+                var me = this;
+                if (jQuery("#item_add").valid()) {
+//                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
+//                    me.monitor.isHand = 0;
+                    me.$http.get("/api/project/details", {
+                        params: me.monitor
+                    }).then(function (response) {
+                            var data = response.data;
+                            alert("监测项目创建成功！");
+                            me.contract.item.push(data);
+                        }
+                        , function (response) {
+                            serverErrorInfo(response);
+                        });
+                }
+            },
+            changeMonitor(){
+                var me = this;
+                var index = me.changeMonitorIndex;
+                var item = me.contract.item;
+                me.$http.get("/api/project/details", {
+                    params: me.monitor
+                }).then(function (response) {
+                        var data = response.data;
+                        for (var i = 0; i < item.length; i++) {
+                            if (i == index) {
+                                item[i] = data;
+                            }
+                        }
+                        alert("监测项目创修改成功！");
+                        jQuery("#changeMonitor").modal("hide");
+                    }
+                    , function (response) {
+                        serverErrorInfo(response);
+                    }
+                );
             },
             wizard(){
                 //wizard插件和表单验证序列化

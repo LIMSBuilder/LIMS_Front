@@ -424,8 +424,8 @@
                                                             <button type="button" class="btn red btn-outline"
                                                                     @click="deleteAllItem">删除全部
                                                             </button>
-                                                            <a href="#isPackage" data-toggle="modal"
-                                                               class="btn blue btn-outline">选择分包</a>
+                                                            <!--<a href="#isPackage" data-toggle="modal"-->
+                                                               <!--class="btn blue btn-outline">选择分包</a>-->
                                                         </p>
                                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                                             <div class="input-group input-large">
@@ -635,10 +635,10 @@
                                                                                         <template
                                                                                                 v-for="(project,index) in item.project">
                                                                                             {{project.name}}
-                                                                                            <template
-                                                                                                    v-if="project.isPackage==true">
-                                                                                                <span style="color: red;">[分包]</span>
-                                                                                            </template>
+                                                                                            <!--<template-->
+                                                                                                    <!--v-if="project.isPackage==true">-->
+                                                                                                <!--<span style="color: red;">[分包]</span>-->
+                                                                                            <!--</template>-->
                                                                                             <template
                                                                                                     v-if="index+1!=item.project.length">
                                                                                                 ,
@@ -918,25 +918,6 @@
                                                        v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
-                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                        <!--<label class="col-md-2 control-label">是否外包-->
-                                        <!--<span class="required">  </span>-->
-                                        <!--</label>-->
-                                        <!--<div class="col-md-9">-->
-                                        <!--<div class="mt-radio-inline">-->
-                                        <!--<label class="mt-radio">-->
-                                        <!--<input type="radio" name="is_package"-->
-                                        <!--v-model="monitor.is_package" value="0"> 否-->
-                                        <!--<span></span>-->
-                                        <!--</label>-->
-                                        <!--<label class="mt-radio">-->
-                                        <!--<input type="radio" name="is_package"-->
-                                        <!--v-model="monitor.is_package" value="1"> 是-->
-                                        <!--<span></span>-->
-                                        <!--</label>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_other">备注
                                                 <span class="required">  </span>
@@ -966,7 +947,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">选择业务合同</h4>
+                        <h4 class="modal-title">选择合同</h4>
                     </div>
                     <div class="modal-body">
                         <div class="portlet light ">
@@ -1465,10 +1446,10 @@
                                                                                             <template
                                                                                                     v-for="(project,index) in item.project">
                                                                                                 {{project.name}}
-                                                                                                <template
-                                                                                                        v-if="project.isPackage==true">
-                                                                                                    <span style="color: red;">[分包]</span>
-                                                                                                </template>
+                                                                                                <!--<template-->
+                                                                                                        <!--v-if="project.isPackage==true">-->
+                                                                                                    <!--<span style="color: red;">[分包]</span>-->
+                                                                                                <!--</template>-->
                                                                                                 <template
                                                                                                         v-if="index+1!=item.project.length">
                                                                                                     ,
@@ -1543,7 +1524,6 @@
                                                                         <i class="fa fa-calendar"></i> {{item.create_time}} </span>
                                                         <!--<span class="todo-tasklist-badge badge badge-roundless">Urgent</span>-->
                                                     </span>
-                                                    <span class="label label-sm label-primary" style="fill-rule: ">待执行</span>
                                                 </div>
                                             </template>
 
@@ -1567,7 +1547,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
         <div class="modal fade draggable-modal" id="showProject" tabindex="-1" role="basic" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -1832,7 +1811,7 @@
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
-                        condition: "state=2"
+                        condition: this.condition
                     }
                 }).then((response) => {
                     var data = response.data;
