@@ -1985,7 +1985,7 @@
                         me.task.serviceId = me.serviceItem.id;
                     }
                     //是自定义创建的任务
-                    me.$http.post("/api/task/createByService", me.task).then(function (response) {
+                    me.$http.post("/api/task/create", me.task).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {
                             200: function () {
