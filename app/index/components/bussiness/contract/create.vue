@@ -331,6 +331,23 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="control-label col-md-2">录入or读取
+                                                    <span class="required">  </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <!--<input type="text" class="form-control" name="packageUnit"-->
+                                                    <!--id="packageUnit" v-model="contract.package_unit"/>-->
+                                                    <div class="col-md-10">
+                                                        <input type="radio" id="noimportWrite" value="0"
+                                                               v-model="contract.importWrite">
+                                                        <label for="noimportWrite">录入</label>
+                                                        <input type="radio" id="yesimportWrite" value="1"
+                                                               v-model="contract.importWrite">
+                                                        <label for="yesimportWrite">读取</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="control-label col-md-2">检测项目
                                                     <span class="required"> &nbsp;&nbsp; </span>
                                                 </label>
@@ -405,7 +422,7 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <p>
+                                                    <p v-if="contract.importWrite==0">
                                                         <a href="#createMonitor" data-toggle="modal"
                                                            class="btn green btn-outline">新 增</a>
                                                         <button type="button" class="btn red btn-outline"
@@ -414,7 +431,8 @@
                                                         <!--<a href="#isPackage" data-toggle="modal"-->
                                                         <!--class="btn blue btn-outline">选择分包</a>-->
                                                     </p>
-                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput"
+                                                         v-if="contract.importWrite==1">
                                                         <div class="input-group input-large">
                                                             <div class="form-control uneditable-input input-fixed input-medium"
                                                                  data-trigger="fileinput">
@@ -427,11 +445,14 @@
                                                                 <span class="fileinput-exists"> 变 更 </span>
                                                                     <input type="file" name="..."> </span>
                                                             <a href="javascript:;"
+                                                               class="input-group-addon btn red fileinput-exists"
+                                                               data-dismiss="fileinput">删除模板 </a>
+                                                            <a href="javascript:;"
                                                                class="input-group-addon btn green fileinput-exists"
                                                                @click="readTemplate"> 读 取 </a>
-                                                            <a href="javascript:;"
-                                                               class="input-group-addon btn red fileinput-exists"
-                                                               data-dismiss="fileinput"> 删 除 </a>
+                                                            <a href="javascript:;" class="input-group-addon btn red"
+                                                               @click="deleteAllItem" style="margin-left: 5px;">删除项目
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -440,16 +461,12 @@
                                                 <label class="control-label col-md-2">是否分包
                                                     <span class="required">  </span>
                                                 </label>
-                                                <div class="col-md-10">
-                                                    <!--<input type="text" class="form-control" name="packageUnit"-->
-                                                    <!--id="packageUnit" v-model="contract.package_unit"/>-->
-                                                    <input type="radio" id="noPackage" value="1"
-                                                           v-model="contract.isPackage">
-                                                    <label for="noPackage">是</label>
-                                                    <input type="radio" id="yesPackage" value="0"
-                                                           v-model="contract.isPackage">
-                                                    <label for="yesPackage">否</label>
-                                                </div>
+                                                <input type="radio" id="noPackage" value="1"
+                                                       v-model="contract.isPackage">
+                                                <label for="noPackage">是</label>
+                                                <input type="radio" id="yesPackage" value="0"
+                                                       v-model="contract.isPackage">
+                                                <label for="yesPackage">否</label>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">客户要求
@@ -1244,7 +1261,8 @@
                     project_items: [],
                     other: "",
                     type: "",
-                    isPackage: 0
+                    isPackage: 0,
+                    importWrite: 0,
                 },
                 typeList: [],
                 paymentCap: "",
@@ -1270,6 +1288,7 @@
                     trustee: "",
                     type: ""
                 },
+
             }
         },
         mounted(){
@@ -1352,6 +1371,11 @@
             },
             'contract.payment': function (currentValue) {
                 this.paymentCap = BlogUtils.atoc(currentValue);
+            },
+            'contract.importWrite': function () {
+                alert(123);
+
+                this.contract.item = [];
             }
         },
         methods: {
