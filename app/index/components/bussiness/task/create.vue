@@ -428,7 +428,7 @@
                                                                                         v-if="task.importWrite==0">
                                                                                         <a href="javascript:;"
                                                                                            class="btn btn-icon-only red"
-                                                                                           @click="deleteItem(project)">
+                                                                                           @click="deleteItem(index)">
                                                                                             <i class="fa fa-trash-o"></i>
                                                                                         </a>
                                                                                     </td>
@@ -963,6 +963,105 @@
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
                         <button type="button" class="btn green" @click="addMonitor">添 加</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade bs-modal-lg" id="changeMonitor" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">修改监测项</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="portlet light portlet-fit portlet-form ">
+                            <div class="portlet-body">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal" id="item_change">
+                                    <div class="form-body">
+                                        <div class="alert alert-danger display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            表单尚未填写完整。
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_element">环境要素
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.element" name="change_element"
+                                                        id="change_element"
+                                                        @change="fetchProjectByElement($event)" data-live-search="true">
+                                                    <option>请选择环境要素</option>
+                                                    <template v-for="item in elementList">
+                                                        <option :value="item.id">{{item.name}}
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_project">监测项目
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.project" name="change_project"
+                                                        id="change_project" multiple
+                                                        data-actions-box="true" data-live-search="true">
+                                                    <template v-for="item in projectList">
+                                                        <option :value="item.id">{{item.name}}
+
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_frequency">监测频次
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="change_frequency"
+                                                        v-model="monitor.frequency" id="change_frequency"
+                                                        data-live-search="true">
+                                                    <option>请选择监测频次</option>
+                                                    <template v-for="item in frequencyList">
+                                                        <option :value="item.id">{{item.total}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_point">监测点
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="number" class="form-control"
+                                                       v-model="monitor.point" name="change_point" id="change_point">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_other">备注
+                                                <span class="required">  </span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" v-model="monitor.other"
+                                                          id="change_other" name="change_other" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" @click="changeMonitor">修改</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -1750,7 +1849,8 @@
                 },
                 contract_type: false,
                 project: [],
-                serviceItem: {}
+                serviceItem: {},
+                changeMonitorIndex: 0
             }
         },
         mounted(){
@@ -1920,12 +2020,6 @@
                         });
                 }
             },
-            deleteItem(item){
-                var me = this;
-                me.task.item.splice(me.task.item.find(function (t) {
-                    return t.id === item.id;
-                }), 1);
-            },
             deleteAllItem(){
                 var me = this;
                 me.task.item = [];
@@ -1985,7 +2079,7 @@
                         me.task.serviceId = me.serviceItem.id;
                     }
                     //是自定义创建的任务
-                    me.$http.post("/api/task/createByService", me.task).then(function (response) {
+                    me.$http.post("/api/task/create", me.task).then(function (response) {
                         var data = response.data;
                         codeState(data.code, {
                             200: function () {
@@ -1998,6 +2092,52 @@
                         serverErrorInfo(response);
                     })
                 }
+            },
+            deleteItem(index){
+                var me = this;
+                me.task.item[0].items.splice(index, 1);
+                alert("删除成功！");
+            },
+            edit(item, index){
+                var me = this;
+                me.changeMonitorIndex = index;
+                jQuery("#changeMonitor").modal("show");
+                var temp = [];
+                for (var i = 0; i < item.project.length; i++) {
+                    temp.push(item.project[i].id);
+                }
+                var data = {
+                    element: item.element.id,
+                    frequency: item.frequency.id,
+                    point: item.point,
+                    other: item.other,
+                    project: temp
+                };
+                me.monitor = data;
+                me.fetchProjectByValue(data.element, data.project);
+            },
+            changeMonitor(){
+                var me = this;
+                var index = me.changeMonitorIndex;
+                var item = me.task.item;
+                me.$http.get("/api/project/details", {
+                    params: me.monitor
+                }).then(function (response) {
+                        var data = response.data;
+                        debugger
+                        for (var i = 0; i < item.length; i++) {
+                            if (i == index) {
+                                item[0].items[i] = data.items[0];
+                            }
+                        }
+                        alert("监测项目创修改成功！");
+                        console.log(item);
+                        jQuery("#changeMonitor").modal("hide");
+                    }
+                    , function (response) {
+                        serverErrorInfo(response);
+                    }
+                );
             },
             fetchCustomer(pageNum, rowCount){
                 var me = this;
@@ -2068,12 +2208,10 @@
                     }
                 }).then(function (response) {
                         var data = response.data;
+                        jQuery('#change_project').selectpicker('destroy');
                         me.projectList = data.results;
                         me.$nextTick(function () {
-                            //销毁监测项目选择框
-                            $('#monitor_project').selectpicker('destroy');
-                            //初始化监测项目选择框
-                            $('#monitor_project').selectpicker({
+                            jQuery('#change_project').selectpicker({
                                 iconBase: 'fa',
                                 tickIcon: 'fa-check',
                                 countSelectedText: "count",
@@ -2081,8 +2219,7 @@
                                 selectAllText: "选择全部",
                                 noneSelectedText: "请选择监测项目"
                             });
-                            debugger
-                            $('#monitor_project').selectpicker("val", selected);
+                            jQuery('#change_project').selectpicker("val", selected);
                         })
                     }
                     , function (response) {
@@ -2090,6 +2227,35 @@
                     }
                 )
             },
+//            fetchProjectByValue(value, selected){
+//                var me = this;
+//                me.$http.get("/api/project/findByElement", {
+//                    params: {
+//                        element_id: value
+//                    }
+//                }).then(function (response) {
+//                        var data = response.data;
+//                        me.projectList = data.results;
+//                        me.$nextTick(function () {
+//                            //销毁监测项目选择框
+//                            $('#monitor_project').selectpicker('destroy');
+//                            //初始化监测项目选择框
+//                            $('#monitor_project').selectpicker({
+//                                iconBase: 'fa',
+//                                tickIcon: 'fa-check',
+//                                countSelectedText: "count",
+//                                deselectAllText: "取消选择",
+//                                selectAllText: "选择全部",
+//                                noneSelectedText: "请选择监测项目"
+//                            });
+//                            $('#monitor_project').selectpicker("val", selected);
+//                        })
+//                    }
+//                    , function (response) {
+//                        serverErrorInfo(response);
+//                    }
+//                )
+//            },
             fetchFrequency(){
                 var me = this;
                 me.$http.get("/api/frequency/total").then(function (response) {

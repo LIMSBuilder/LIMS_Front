@@ -411,7 +411,7 @@
                                                                                     v-if="contract.importWrite==0">
                                                                                     <a href="javascript:;"
                                                                                        class="btn btn-icon-only red"
-                                                                                       @click="deleteItem(project)">
+                                                                                       @click="deleteItem(index)">
                                                                                         <i class="fa fa-trash-o"></i>
                                                                                     </a>
                                                                                 </td>
@@ -1443,11 +1443,10 @@
                     serverErrorInfo(response);
                 });
             },
-            deleteItem(item){
+            deleteItem(index){
                 var me = this;
-                me.contract.item.splice(me.contract.item.find(function (t) {
-                    return t.id === item.id;
-                }), 1);
+                me.contract.item.splice(index, 1);
+                alert("删除成功！");
             },
             deleteAllItem(){
                 var me = this;
@@ -1757,7 +1756,10 @@
             changeMonitor(){
                 var me = this;
                 var index = me.changeMonitorIndex;
+                debugger
+
                 var item = me.contract.item;
+                console.log(item);
                 me.$http.get("/api/project/details", {
                     params: me.monitor
                 }).then(function (response) {
