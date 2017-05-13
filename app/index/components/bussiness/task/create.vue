@@ -281,6 +281,19 @@
                                         </div>
                                         <div class="tab-pane" id="tab3">
                                             <h3 class="block">合同补充项</h3>
+                                            <div class="form-group" v-if="!contract_type">
+                                                <label class="control-label col-md-2">录入or读取
+                                                    <span class="required">  </span>
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <input type="radio" id="noimportWrite" value="0"
+                                                           v-model="task.importWrite">
+                                                    <label for="noimportWrite">录入</label>
+                                                    <input type="radio" id="yesimportWrite" value="1"
+                                                           v-model="task.importWrite">
+                                                    <label for="yesimportWrite">读取</label>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">检测项目
                                                     <span class="required">  </span>
@@ -366,7 +379,8 @@
                                                                             <th> 监测项目</th>
                                                                             <th> 监测频次</th>
                                                                             <th> 备注</th>
-                                                                            <th> 操作</th>
+                                                                            <th v-if="task.importWrite==0"> 修改</th>
+                                                                            <th v-if="task.importWrite==0"> 删除</th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -402,7 +416,16 @@
                                                                                     <td class="text-center">
                                                                                         {{item.other}}
                                                                                     </td>
-                                                                                    <td class="text-center">
+                                                                                    <td class="text-center"
+                                                                                        v-if="task.importWrite==0">
+                                                                                        <a href="javascript:;"
+                                                                                           class="btn btn-icon-only blue"
+                                                                                           @click="edit(item,index)">
+                                                                                            <i class="fa fa-gear"></i>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    <td class="text-center"
+                                                                                        v-if="task.importWrite==0">
                                                                                         <a href="javascript:;"
                                                                                            class="btn btn-icon-only red"
                                                                                            @click="deleteItem(project)">
@@ -418,16 +441,17 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                        <p>
+                                                        <p v-if="task.importWrite==0">
                                                             <a href="#createMonitor" data-toggle="modal"
                                                                class="btn green btn-outline">新 增</a>
                                                             <button type="button" class="btn red btn-outline"
                                                                     @click="deleteAllItem">删除全部
                                                             </button>
                                                             <!--<a href="#isPackage" data-toggle="modal"-->
-                                                               <!--class="btn blue btn-outline">选择分包</a>-->
+                                                            <!--class="btn blue btn-outline">选择分包</a>-->
                                                         </p>
-                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput"
+                                                             v-if="task.importWrite==1">
                                                             <div class="input-group input-large">
                                                                 <div class="form-control uneditable-input input-fixed input-medium"
                                                                      data-trigger="fileinput">
@@ -440,11 +464,14 @@
                                                                 <span class="fileinput-exists"> 变 更 </span>
                                                                     <input type="file" name="..."> </span>
                                                                 <a href="javascript:;"
+                                                                   class="input-group-addon btn red fileinput-exists"
+                                                                   data-dismiss="fileinput">删除模板 </a>
+                                                                <a href="javascript:;"
                                                                    class="input-group-addon btn green fileinput-exists"
                                                                    @click="readTemplate"> 读 取 </a>
-                                                                <a href="javascript:;"
-                                                                   class="input-group-addon btn red fileinput-exists"
-                                                                   data-dismiss="fileinput"> 删 除 </a>
+                                                                <a href="javascript:;" class="input-group-addon btn red"
+                                                                   @click="deleteAllItem" style="margin-left: 5px;">删除项目
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -636,8 +663,8 @@
                                                                                                 v-for="(project,index) in item.project">
                                                                                             {{project.name}}
                                                                                             <!--<template-->
-                                                                                                    <!--v-if="project.isPackage==true">-->
-                                                                                                <!--<span style="color: red;">[分包]</span>-->
+                                                                                            <!--v-if="project.isPackage==true">-->
+                                                                                            <!--<span style="color: red;">[分包]</span>-->
                                                                                             <!--</template>-->
                                                                                             <template
                                                                                                     v-if="index+1!=item.project.length">
@@ -1447,8 +1474,8 @@
                                                                                                     v-for="(project,index) in item.project">
                                                                                                 {{project.name}}
                                                                                                 <!--<template-->
-                                                                                                        <!--v-if="project.isPackage==true">-->
-                                                                                                    <!--<span style="color: red;">[分包]</span>-->
+                                                                                                <!--v-if="project.isPackage==true">-->
+                                                                                                <!--<span style="color: red;">[分包]</span>-->
                                                                                                 <!--</template>-->
                                                                                                 <template
                                                                                                         v-if="index+1!=item.project.length">
@@ -1692,7 +1719,8 @@
                     other: "",
                     type: "",
                     charge: "",
-                    sample_type: 0
+                    sample_type: 0,
+                    importWrite: 0
                 },
                 contractList: [],
                 itemLists: [],
@@ -1773,6 +1801,9 @@
             "task.type": function () {
                 console.log("type")
                 this.tag.type = jQuery("#projectType option:selected").html();
+            },
+            'task.importWrite': function () {
+                this.task.item = [];
             }
         },
         methods: {
