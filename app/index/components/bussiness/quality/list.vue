@@ -15,11 +15,21 @@
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">质控列表</span>
                                 </div>
+                                <div class="actions">
+                                    <div class="btn-group"><a href="javascript:;" data-toggle="dropdown"
+                                                              data-hover="dropdown" data-close-others="true"
+                                                              class="btn green btn-circle btn-sm"> 操 作
+                                        <i class="fa fa-angle-down"></i></a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="javascript:;" @click="exportDelivery"> 导出交接联单 </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-2">
+                                    <div class="col-md-4 col-sm-2">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in taskList">
                                                 <div @click="viewDetails(item.id)"
@@ -29,6 +39,9 @@
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
+                                                        <button type="button" class="btn blue btn-sm btn-outline"
+                                                                @click="exportDelivery(item.id)">导出交联单
+                                                        </button>
                                                         <button type="button" class="btn blue btn-sm btn-outline"
                                                                 @click="flow(item.id)">流 转
                                                         </button>
@@ -62,7 +75,7 @@
 
                                     <div class="todo-tasklist-devider"></div>
 
-                                    <div class="col-md-2 col-sm-2 todo-container">
+                                    <div class="col-md-4 col-sm-2 todo-container">
                                         <div class="todo-projects-item">
                                             <div class="todo-projects-item">
                                                 <ul class="todo-projects-container ">
@@ -97,10 +110,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-8 col-sm-8" v-show="!homeworks.id">
+                                    <div class="col-md-4 col-sm-8" v-show="!homeworks.id">
                                         <h1 class="text-center">暂无任务信息</h1>
                                     </div>
-                                    <div class="col-md-8 col-sm-8" v-show="homeworks.id">
+                                    <div class="col-md-4 col-sm-8" v-show="homeworks.id">
                                         <form action="#" class="form-horizontal form-bordered form-row-stripped">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
@@ -125,124 +138,11 @@
                                                       class="form-horizontal form-bordered form-row-stripped">
                                                     <div class="tabbable-line">
                                                         <ul class="nav nav-tabs ">
-                                                            <li>
-                                                                <a href="#page_4" data-toggle="tab"> 交接单 </a>
-                                                            </li>
                                                             <li class="active">
                                                                 <a href="#page_5" data-toggle="tab"> 质控单 </a>
                                                             </li>
-                                                            <li>
-                                                                <a href="#page_3" data-toggle="tab"> 送检单 </a>
-                                                            </li>
                                                         </ul>
                                                         <div class="tab-content">
-                                                            <div class="tab-pane " id="page_4">
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label col-md-5">委托单位
-                                                                        </label>
-                                                                        <div class="col-md-7">
-                                                                            <p class="form-control-static">
-                                                                                <!--{{contract.client_unit}}-->
-                                                                                常州滨海经济开发区环保局
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label col-md-5">任务编号
-                                                                        </label>
-                                                                        <div class="col-md-7">
-                                                                            <p class="form-control-static">
-                                                                                <!--{{contract.client_code}}-->
-                                                                                2017-083
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label col-md-5">任务来源
-                                                                        </label>
-                                                                        <div class="col-md-7">
-                                                                            <p class="form-control-static">
-                                                                                <!--{{contract.client_address}}-->
-                                                                                委托
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label col-md-5">样品起止编号
-                                                                        </label>
-                                                                        <div class="col-md-7">
-                                                                            <p class="form-control-static">
-                                                                                <!--{{contract.client_tel}}-->
-                                                                                wt2000-委托2200
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label col-md-5">送样时间
-                                                                        </label>
-                                                                        <div class="col-md-7">
-                                                                            <p class="form-control-static">
-                                                                                <!--{{contract.client}}-->
-                                                                                2017年2月2日
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label col-md-5">送样件数
-                                                                        </label>
-                                                                        <div class="col-md-7">
-                                                                            <p class="form-control-static">
-                                                                                <!--<!8-{{contract.client_fax}}&ndash;&gt;-->
-                                                                                8
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="table-scrollable table-scrollable-borderless">
-                                                                        <table class="table table-hover table-light">
-                                                                            <tbody>
-                                                                            <div class="table-scrollable table-scrollable-borderless">
-                                                                                <table class="table table-hover table-light">
-                                                                                    <thead>
-                                                                                    <tr class="uppercase">
-                                                                                        <th> 样品序号</th>
-                                                                                        <th> 样品类别</th>
-                                                                                        <th> 分析项目</th>
-                                                                                        <th> 件数</th>
-                                                                                    </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                    <tr class="uppercase">
-                                                                                        <td class="text-center"> 1</td>
-                                                                                        <td class="text-center"> 有组织废气
-                                                                                        </td>
-                                                                                        <td class="text-center"> 臭氧浓度
-                                                                                        </td>
-                                                                                        <td class="text-center"> 4</td>
-                                                                                    </tr>
-                                                                                    <tr class="uppercase">
-                                                                                        <td class="text-center"> 1</td>
-                                                                                        <td class="text-center"> 有组织废气
-                                                                                        </td>
-                                                                                        <td class="text-center"> 臭氧浓度
-                                                                                        </td>
-                                                                                        <td class="text-center"> 4</td>
-                                                                                    </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </div>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                            </div>
                                                             <div class="tab-pane active" id="page_5">
                                                                 <div class="table-scrollable table-scrollable-borderless">
                                                                     <table class="table table-hover table-light">
@@ -432,20 +332,6 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                            <div class="tab-pane" id="page_3">
-                                                                送检单
-                                                            </div>
-                                                            <!--<div class="tab-pane" id="page_4">-->
-                                                            <!--<ul class="todo-task-history">-->
-                                                            <!--<template v-for="item in log">-->
-                                                            <!--<li style="list-style: none">-->
-                                                            <!--<span>{{item.user.name}}</span>-->
-                                                            <!--<span>{{item.create_time}}</span>-->
-                                                            <!--<span>{{item.msg}}</span>-->
-                                                            <!--</li>-->
-                                                            <!--</template>-->
-                                                            <!--</ul>-->
-                                                            <!--</div>-->
                                                         </div>
                                                     </div>
                                                 </form>
@@ -836,7 +722,6 @@
                     type: {}
                 },
                 itemLists: [],
-//                log: [],
                 total_count: {},
                 projectName: [],
                 project: [],
@@ -845,8 +730,6 @@
                     id: "",
                     task_id: "",
                     company_id: "",
-//                    prefix: 0,
-//                    prefix_text: "",
                     condition: 1,
                     character: "",
                     name: "",
@@ -875,9 +758,7 @@
             var me = this;
             //me._initComponents();
             //me._handleProjectListMenu();
-            me.init();
             me.getData();
-            me.fetchCount();
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
@@ -893,15 +774,6 @@
             })
         },
         methods: {
-            init: function () {
-                var me = this;
-                me.$http.get("/api/type/contract_total").then(function (response) {
-                    var data = response.data;
-                    me.typeList = data.results;
-                }, function (response) {
-                    serverErrorInfo(response);
-                })
-            },
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.startPageLoading({animate: true});//用户等待时，提示的loading条
@@ -985,38 +857,10 @@
                 me.fetchItems(id);
                 me.homeworks = "";
             },
-            search(){
-                var me = this;
-                me.currentPage = 1;
-                me.condition = "process=apply_sample";
-                me.getData();
-            },
-            searchByProcess(step){
-                var me = this;
-                me.currentPage = 1;
-                me.condition = "process=" + step;
-                me.getData();
-            },
-            searchKey(e){
-                var me = this;
-                me.condition = "process=apply_sample&&keyWords=" + encodeURI(e.target.value);
-                me.currentPage = 1;
-                me.getData();
-            },
             showSample(){
                 jQuery("#showsample").modal("show");
             },
-            fetchCount(){
-                var me = this;
-                me.$http.get("/api/task/countProcess").then(
-                    response => {
-                        var data = response.data;
-                        me.countProcess = data.create;
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                );
-            },
+
             //点击中间的查看详情，查看当前任务对应的公司的检测项目详情，点击->弹出弹窗->显示检测项目详细情况
             viewDispatchDetail(item){
                 var me = this;
@@ -1214,6 +1058,12 @@
                     }
                 })
             },
+            exportDelivery(id){
+                var me = this;
+                // console.log(me.homeworksID);
+                window.open("http://" + window.location.hostname + ":8080/api/company/exportDelivery?id=" + me.task.id);
+                alert("aa");
+            }
         }
     }
 

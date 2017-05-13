@@ -602,6 +602,7 @@
                 var me = this;
                 jQuery("#changeMonitor").modal("show");
                 var temp = [];
+                debugger
                 for (var i = 0; i < item.project.length; i++) {
                     temp.push(item.project[i].id);
                 }
