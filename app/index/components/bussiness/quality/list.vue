@@ -293,7 +293,7 @@
                                                                                             <button type="button"
                                                                                                     class="btn btn-sm blue btn-outline"
                                                                                                     @click="savequality(item)"
-                                                                                                    v-if="item.process==null">
+                                                                                                    v-if="item.process==0">
                                                                                                 保存
                                                                                             </button>
                                                                                             <button type="button"
@@ -1020,7 +1020,7 @@
                 })
             },
             changequality(item){
-                item.process = null;
+                item.process = 0;
                 item.lab = [];
                 item.tag = [];
                 item.blind = 0;
@@ -1181,6 +1181,13 @@
             },
             createInspectAll(){
 
+                alert("aa");
+            },
+            exportQuality(id){
+                var me = this;
+                // console.log(me.homeworksID);
+                window.open("http://" + window.location.hostname + ":8080/api/company/exportQuality?id=" + me.task.id);
+                alert("aa");
             }
         }
     }
