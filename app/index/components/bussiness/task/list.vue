@@ -130,6 +130,9 @@
                                             <li>
                                                 <a href="javascript:;"> 作为模板任务创建 </a>
                                             </li>
+                                            <li>
+                                                <a href="javascript:;" @click="changeItems"> 监测项更新 </a>
+                                            </li>
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="javascript:;" @click="exportTask"> 导出任务</a>
@@ -769,6 +772,10 @@
             exportTask(){
                 var me = this;
                 window.open("http://" + window.location.hostname + ":8080/api/task/createTask?id="+me.task.id);
+            },
+            changeItems(){
+                var me = this;
+                router.push("/task/changeItems?id=" + me.task.id);
             }
         }
     }

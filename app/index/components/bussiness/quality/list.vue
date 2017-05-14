@@ -40,6 +40,9 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <button type="button" class="btn blue btn-sm btn-outline"
+                                                                @click="exportQuality(item.id)">导出质控单
+                                                        </button>
+                                                        <button type="button" class="btn blue btn-sm btn-outline"
                                                                 @click="exportDelivery(item.id)">导出交联单
                                                         </button>
                                                         <button type="button" class="btn blue btn-sm btn-outline"
@@ -290,7 +293,7 @@
                                                                                             <button type="button"
                                                                                                     class="btn btn-sm blue btn-outline"
                                                                                                     @click="savequality(item)"
-                                                                                                    v-if="item.process==null">
+                                                                                                    v-if="item.process==0">
                                                                                                 保存
                                                                                             </button>
                                                                                             <button type="button"
@@ -951,7 +954,7 @@
                 })
             },
             changequality(item){
-                item.process = null;
+                item.process = 0;
                 item.lab = [];
                 item.tag = [];
                 item.blind = 0;
@@ -1062,6 +1065,12 @@
                 var me = this;
                 // console.log(me.homeworksID);
                 window.open("http://" + window.location.hostname + ":8080/api/company/exportDelivery?id=" + me.task.id);
+                alert("aa");
+            },
+            exportQuality(id){
+                var me = this;
+                // console.log(me.homeworksID);
+                window.open("http://" + window.location.hostname + ":8080/api/company/exportQuality?id=" + me.task.id);
                 alert("aa");
             }
         }
