@@ -57,6 +57,7 @@ import service from './components/bussiness/contract/service.vue'
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
 import Task_List from './components/bussiness/task/list.vue'
+import ChangeTaskItems from  './components/bussiness/task/changeItems.vue'
 
 
 import Sample from './components/bussiness/sample/sample.vue'
@@ -517,6 +518,10 @@ var routes = [
             {
                 path: "list",
                 component: Task_List
+            },
+            {
+                path: "changeItems",
+                component: ChangeTaskItems
             }
         ]
     },
