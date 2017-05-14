@@ -40,6 +40,9 @@
                                                     </div>
                                                     <div class="todo-tasklist-controls pull-right">
                                                         <button type="button" class="btn blue btn-sm btn-outline"
+                                                                @click="exportQuality(item.id)">质控单
+                                                        </button>
+                                                        <button type="button" class="btn blue btn-sm btn-outline"
                                                                 @click="exportDelivery">交联单
                                                         </button>
                                                         <button type="button" class="btn blue btn-sm btn-outline"
@@ -1186,7 +1189,7 @@
             exportQuality(id){
                 var me = this;
                 // console.log(me.homeworksID);
-                window.open("http://" + window.location.hostname + ":8080/api/company/exportQuality?id=" + me.task.id);
+                window.open("http://" + window.location.hostname + ":8080/api/company/exportQuality?id=" +id);
                 alert("aa");
             }
         }
