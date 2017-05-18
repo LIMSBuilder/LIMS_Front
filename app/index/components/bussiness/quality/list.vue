@@ -29,7 +29,7 @@
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-2">
+                                    <div class="col-md-3 col-sm-2">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in taskList">
                                                 <div @click="viewDetails(item.id)"
@@ -38,7 +38,12 @@
                                                             style="width: 27px;height: 27px;"
                                                             class="socicon-btn socicon-btn-circle socicon-sm socicon-vimeo tooltips"></i>
                                                     </div>
-                                                    <div class="todo-tasklist-controls pull-right">
+
+                                                    <div class="todo-tasklist-item-title">
+                                                        {{item.identify}}
+                                                    </div>
+
+                                                    <div class="todo-tasklist-controls ">
                                                         <button type="button" class="btn blue btn-sm btn-outline"
                                                                 @click="exportQuality(item.id)">质控单
                                                         </button>
@@ -51,9 +56,6 @@
                                                         <button type="button" class="btn blue btn-sm btn-outline"
                                                                 @click="flow(item.id)">流 转
                                                         </button>
-                                                    </div>
-                                                    <div class="todo-tasklist-item-title">
-                                                        {{item.identify}}
                                                     </div>
 
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
@@ -81,7 +83,7 @@
 
                                     <div class="todo-tasklist-devider"></div>
 
-                                    <div class="col-md-4 col-sm-2 todo-container">
+                                    <div class="col-md-2 col-sm-2 todo-container">
                                         <div class="todo-projects-item">
                                             <div class="todo-projects-item">
                                                 <ul class="todo-projects-container ">
@@ -116,10 +118,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4 col-sm-8" v-show="!homeworks.id">
+                                    <div class="col-md-7 col-sm-8" v-show="!homeworks.id">
                                         <h1 class="text-center">暂无任务信息</h1>
                                     </div>
-                                    <div class="col-md-4 col-sm-8" v-show="homeworks.id">
+                                    <div class="col-md-7 col-sm-8" v-show="homeworks.id">
                                         <form action="#" class="form-horizontal form-bordered form-row-stripped">
                                             <!-- TASK HEAD -->
                                             <div class="form" style="margin-bottom: 40px;">
@@ -296,7 +298,7 @@
                                                                                             <button type="button"
                                                                                                     class="btn btn-sm blue btn-outline"
                                                                                                     @click="savequality(item)"
-                                                                                                    v-if="item.process==0">
+                                                                                                    v-if="item.process==null">
                                                                                                 保存
                                                                                             </button>
                                                                                             <button type="button"
@@ -1023,7 +1025,7 @@
                 })
             },
             changequality(item){
-                item.process = 0;
+                item.process = null;
                 item.lab = [];
                 item.tag = [];
                 item.blind = 0;
