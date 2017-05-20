@@ -212,6 +212,7 @@
                     codeState(data.code, {
                         200: function () {
                             alert("仪器添加成功！");
+                            router.push("/instrument/list");
                         }
                     })
                 }, response => {

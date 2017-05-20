@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 仪器设备
-            <small>／Instrument</small>
+        <h1 class="page-title"> 证书管理
+            <small>／Certificate</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -39,23 +39,14 @@
                                 <tr class="uppercase">
                                     <th> 选择</th>
                                     <th> 编号</th>
-                                    <th> 固定资产编号</th>
-                                    <th> 仪器设备名称</th>
-                                    <th> 设备型号</th>
-                                    <th> 设备出厂编号</th>
-                                    <th> 生产厂家</th>
-                                    <th> 价格</th>
-                                    <th> 溯源方式</th>
-                                    <th> 放置地点</th>
-                                    <th>保管人</th>
-                                    <th> 最后检定日期</th>
-                                    <th> 有效日期</th>
-                                    <th> 证书号</th>
-                                    <th>操作</th>
+                                    <th> 持证人员</th>
+                                    <th> 证书名</th>
+                                    <th> 操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <template v-for="(item,index) in equipmentlist">
+
+                                <template v-for="(item,index) in certificateList">
                                     <tr>
                                         <td class="text-center">
                                             <label class="mt-checkbox mt-checkbox-outline">
@@ -65,18 +56,8 @@
                                             </label>
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
-                                        <td class="text-center"> {{item.GIdentify}}</td>
-                                        <td class="text-center"> {{item.name}}</td>
-                                        <td class="text-center"> {{item.type}}</td>
-                                        <td class="text-center"> {{item.Fidentify}}</td>
-                                        <td class="text-center"> {{item.factory}}</td>
-                                        <td class="text-center"> {{item.price}}</td>
-                                        <td class="text-center"> {{item.method}}</td>
-                                        <td class="text-center"> {{item.place}}</td>
-                                        <td class="text-center"> {{item.people.name}}</td>
-                                        <td class="text-center"> {{item.finalTime}}</td>
-                                        <td class="text-center"> {{item.time}}</td>
-                                        <td class="text-center"> {{item.certificate}}</td>
+                                        <td class="text-center">{{item.name}}</td>
+                                        <td class="text-center">{{item.monitor}}</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">修 改
@@ -108,35 +89,73 @@
     module.exports = {
         data: function () {
             return {
-                userList: [],
-                equipmentlist: [],
+                certificateList: [],
+                currentPage: 1,
+                condition: "",
                 selected: []
             }
         },
         mounted(){
             var me = this;
-            me.fetchEquipmentList();
+            me.getData();
 
         },
         methods: {
             create(){
-                router.push("/instrument/create");
+                router.push("/certificate/create");
             },
-            fetchEquipmentList(){
+            fetchCertificateList(pageNum, rowCount){
                 var me = this;
-                me.$http.get("/api/equip/total").then(response => {
+                me.$http.get("/api/certificate/list", {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: pageNum,
+                        condition: this.condition
+                    }
+                }).then(response => {
                     var data = response.data;
-                    me.equipmentlist = data.results;
+                    me.certificateList = data.results;
                 }, response => {
                     serverErrorInfo(response);
                 })
+            },
+            fetchPages (rowCount) {
+                var me = this;
+                this.$http.get('/api/certificate/list', {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: 1,
+                        condition: me.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    jQuery(".M-box").pagination({
+                        pageCount: data.totalPage || 1,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (data) {
+                            me.fetchData(data.getCurrent(), rowCount, me.condition);
+                            me.currentPage = data.getCurrent();
+                        }
+                    });
+                }, (response) => {
+                    serverErrorInfo(response);
+                });
+            },
+            getData(){
+                var me = this;
+                me.fetchCertificateList(me.currentPage, rowCount);
+                me.fetchPages(rowCount);
             },
             //全选
             selectAll(){
                 var me = this;
                 if (me.selected.length == 0) {
                     me.selected = [];
-                    me.equipmentlist.forEach(function (item, index) {
+                    me.certificateList.forEach(function (item, index) {
                         me.selected.push(item.id);
                     })
                 } else {
@@ -146,7 +165,7 @@
             },
             total(){
                 var me = this;
-                me.fetchEquipmentList();
+                me.getData();
             },
             //删除全部
             removeAll(){
@@ -156,9 +175,9 @@
                     return;
                 }
                 confirm({
-                    content: "是否删除当前选中仪器设备？",
+                    content: "是否删除当前选中人员所持证书？",
                     success: function () {
-                        me.$http.get("/api/equip/deleteAll", {
+                        me.$http.get("/api/certificate/deleteAll", {
                             params: {
                                 selected: me.selected
                             }
@@ -166,8 +185,8 @@
                                 var data = response.data;
                                 codeState(data.code, {
                                     200: function () {
-                                        alert("仪器设备删除成功！");
-                                        me.fetchEquipmentList();
+                                        alert("当前人员所持该证删除成功！");
+                                        me.getData();
                                         closeConfirm();
                                     }
                                 });
@@ -183,9 +202,9 @@
             remove(id){
                 var me = this;
                 confirm({
-                    content: "是否删除当前选中仪器？",
+                    content: "是否删除当前人员所持证书？",
                     success: function () {
-                        me.$http.get("/api/equip/delete", {
+                        me.$http.get("/api/certificate/delete", {
                             params: {
                                 id: id
                             }
@@ -193,8 +212,8 @@
                             var data = response.data;
                             codeState(data.code, {
                                 200: function () {
-                                    alert("仪器设备删除成功！");
-                                    me.fetchEquipmentList();
+                                    alert("当前人员所持该证删除成功！");
+                                    me.getData();
                                 }
                             }, response => {
                                 serverErrorInfo(response);
@@ -205,7 +224,7 @@
             },
             edit(item){
                 var me = this;
-                router.push("/instrument/change?id=" + item.id);
+                router.push("/certificate/change?id=" + item.id);
             },
         }
     }
