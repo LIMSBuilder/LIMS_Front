@@ -175,7 +175,9 @@
         },
         mounted(){
             var me = this;
+            me.fetchUser();
             var query = me.$route.query;
+
             me.$http.get("/api/equip/findById", {
                 params: {
                     id: query.id
@@ -183,6 +185,8 @@
             }).then(function (response) {
                 var data = response.data;
                 me.equipment = data;
+
+
             }, function (response) {
                 serverErrorInfo(response);
             });
@@ -199,7 +203,7 @@
                 var me = this;
                 me.$http.get("/api/user/listByDepartment").then(response => {
                     var data = response.data;
-                    me.equipment = data.results;
+                    me.userList = data.results;
                 }, response => {
                     serverErrorInfo(response);
                 })

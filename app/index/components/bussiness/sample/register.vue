@@ -74,7 +74,8 @@
                                             <div class="todo-projects-item">
                                                 <ul class="todo-projects-container ">
                                                     <template v-for="item in itemLists">
-                                                        <li class="todo-projects-item " style="padding-bottom: 30px" @click="dispatchRegister(item)">
+                                                        <li class="todo-projects-item " style="padding-bottom: 30px"
+                                                            @click="dispatchRegister(item)">
                                                             <h4 class="">
                                                                 <!--<span class="label label-info"-->
                                                                 <!--v-if="item.process==1"> 已登记 </span>-->
@@ -90,8 +91,10 @@
                                                             </div>
                                                             <div class="todo-project-item-foot" style="float: right; ">
                                                                 <span class="label label-danger"
+
                                                                       v-if="item.process==0"> 待登记 </span>
                                                                 <span class="label label-success"
+                                                                      @click="dispatchRegister(item)"
                                                                       v-if="item.process==2"> 已完成 </span>
 
                                                             </div>
@@ -969,7 +972,7 @@
                 confirm({
                     content: "是否确认已完成所有作业的样品登记并流转该任务？",
                     success: function () {
-                        me.$http.get("/api/dispatch/checkFlow", {
+                        me.$http.get("/api/dispatch/checkFlowLab", {
                             params: {
                                 task_id: id
                             }

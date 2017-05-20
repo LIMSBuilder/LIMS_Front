@@ -67,6 +67,7 @@ import DisPatch from './components/bussiness/sample/dispatch.vue'
 import DisPatchSetting from './components/bussiness/sample/dispatchSetting.vue'
 import DisPatchCheck from './components/bussiness/sample/dispatchCheck.vue'
 import MyTask from './components/bussiness/sample/myTask.vue'
+import Transfer from './components/bussiness/sample/Transfer.vue'
 
 import Quality from './components/bussiness/quality/quality.vue'
 import Qreview from './components/bussiness/quality/qReview.vue'
@@ -114,6 +115,12 @@ import Instrument from './components/basic/Instrument/Instrument.vue'
 import Create_Instrument from './components/basic/Instrument/create.vue'
 import List_Instrument from './components/basic/Instrument/list.vue'
 import Change_Instrument from './components/basic/Instrument/change.vue'
+
+//Certificate
+import Certificate from './components/basic/certificate/certificate.vue'
+import Create_Certificate from  './components/basic/certificate/create.vue'
+import Change_Certificate from './components/basic/certificate/change.vue'
+import List_Certificate from './components/basic/certificate/list.vue'
 
 //Export
 import Export from './components/basic/export/export.vue'
@@ -355,6 +362,25 @@ var routes = [
         ]
     },
     {
+        path: "/certificate",
+        name: "certificate",
+        component: Certificate,
+        children: [
+            {
+                path: "create",
+                component: Create_Certificate
+            },
+            {
+                path: "list",
+                component: List_Certificate
+            },
+            {
+                path: "change",
+                component: Change_Certificate
+            }
+        ]
+    },
+    {
         path: "/element",
         name: "element",
         component: Element,
@@ -557,6 +583,10 @@ var routes = [
             {
                 path: "myTask",
                 component: MyTask
+            },
+            {
+                path: "transfer",
+                component: Transfer
             }
         ]
     },

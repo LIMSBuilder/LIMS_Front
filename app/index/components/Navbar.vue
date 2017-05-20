@@ -206,9 +206,9 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/sample/transfer' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">实验任务派遣</span>
+                            <span class="title">样品交接单</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
@@ -396,6 +396,25 @@
                     <router-link :to="{ path: '/instrument/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">仪器列表</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-balance-scale"></i>
+                    <span class="title">证书管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/certificate/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建证书</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/certificate/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">证书列表</span>
                         </a>
                     </router-link>
                 </ul>
