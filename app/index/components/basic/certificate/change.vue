@@ -31,7 +31,7 @@
                             <div class="col-md-7">
                                 <select class="form-control"
                                         v-model="certificate.name" name="name"
-                                        id="name" 
+                                        id="name"
                                         data-actions-box="true" data-live-search="true">
                                     <template v-for="item in project">
                                         <option :value="item.id">{{item.name}}

@@ -91,9 +91,21 @@
                                                             <template v-for="(item,index) in trandfer.items">
                                                                 <tr class="uppercase">
                                                                     <td class="text-center"> {{index+1}}</td>
-                                                                    <td class="text-center"> {{item.name}}</td>
-                                                                    <td class="text-center"> {{item.name2}}</td>
-                                                                    <td class="text-center"> {{item.cou}}</td>
+                                                                    <td class="text-center">
+                                                                        {{item.projects[0].elementName}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <template v-for="(p,i) in item.projects">
+                                                                            {{p.name}}
+                                                                            <template
+                                                                                    v-if="i<item.projects.length-1">
+                                                                                ,
+                                                                            </template>
+                                                                        </template>
+
+                                                                    </td>
+                                                                    <td class="text-center"> {{item.samples.length}}
+                                                                    </td>
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
@@ -146,12 +158,26 @@
                                                             <template v-for="(item,index) in trandfer.items">
                                                                 <tr class="uppercase">
                                                                     <td class="text-center"> {{index+1}}</td>
-                                                                    <td class="text-center"> {{item.name}}</td>
-                                                                    <td class="text-center"> {{item.name2}}</td>
-                                                                    <td class="text-center"> {{item.cou}}</td>
                                                                     <td class="text-center">
-                                                                        <template v-for="ch in item.characterList">
-                                                                            {{ch.character}}
+                                                                        {{item.projects[0].elementName}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <template v-for="(p,i) in item.projects">
+                                                                            {{p.name}}
+                                                                            <template
+                                                                                    v-if="i<item.projects.length-1">
+                                                                                ,
+                                                                            </template>
+                                                                        </template>
+
+                                                                    </td>
+                                                                    <td class="text-center"> {{item.samples.length}}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <template v-for="(sam,j) in item.samples">
+                                                                            {{sam.character}}
+                                                                            <template v-if="j<item.samples.length-1">/
+                                                                            </template>
                                                                         </template>
                                                                     </td>
                                                                     <td class="text-center">
@@ -446,32 +472,32 @@
                 alert("自送样样品登记！");
                 var tra = item;
                 console.log(tra);
-//                me.$http.post("", tra[index]).then(response => {
-//                    var data = response.data;
-//                    codeState(data.code, {
-//                        200: function () {
-//                            alert("样品交接！");
-//                        }
-//                    })
-//                }, response => {
-//                    serverErrorInfo(response);
-//                })
+                me.$http.post("/api/lab/saveReceipt", tra).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("样品交接！");
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
             },
             saveDisPatch(item){
                 var me = this;
                 alert("现场采样登记！");
                 var tra = item;
                 console.log(tra);
-//                me.$http.post("", tra[index]).then(response => {
-//                    var data = response.data;
-//                    codeState(data.code, {
-//                        200: function () {
-//                            alert("样品交接！");
-//                        }
-//                    })
-//                }, response => {
-//                    serverErrorInfo(response);
-//                })
+                me.$http.post("/api/lab/saveReceipt", tra).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("样品交接！");
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
             },
             save(){
                 alert("保存全部");
