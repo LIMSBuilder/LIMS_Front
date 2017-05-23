@@ -186,9 +186,8 @@
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
-                                                                               v-model="item.saveState"
-                                                                               v-if="item.item==null">
-                                                                        <span v-if="item.item[0].process==1">{{item.item[0].saveState}}</span>
+                                                                               v-model="item.saveState">
+                                                                        <!--<span >{{item.item[0].saveState}}</span>-->
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <button type="button"
