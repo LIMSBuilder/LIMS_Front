@@ -972,7 +972,7 @@
                 confirm({
                     content: "是否确认已完成所有作业的样品登记并流转该任务？",
                     success: function () {
-                        me.$http.get("/api/dispatch/checkFlowLab", {
+                        me.$http.get("/api/dispatch/checkFlowLab、", {
                             params: {
                                 task_id: id
                             }

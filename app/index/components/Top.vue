@@ -446,8 +446,8 @@
                 var me = this;
                 me.$http.get("/api/login/check", {
                     params: {
-                        username: "admin",
-                        password: "admin1"
+                        username: "Adelamyx",
+                        password: "320682"
                     }
                 }).then(function (response) {
                     codeState(response.data.code, {

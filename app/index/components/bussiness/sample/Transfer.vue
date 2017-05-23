@@ -114,8 +114,11 @@
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
-                                                                               v-model="item.saveState">
+                                                                               v-model="item.saveState"
+                                                                               v-if="item.item.process==null">
+                                                                        <span v-if="item.item.process==1">{{item.saveState}}</span>
                                                                     </td>
+
                                                                     <td class="text-center">
                                                                         <button type="button"
                                                                                 class="btn btn-sm blue btn-outline"
@@ -183,7 +186,9 @@
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
-                                                                               v-model="item.saveState">
+                                                                               v-model="item.saveState"
+                                                                               v-if="item.item==null">
+                                                                        <span v-if="item.item[0].process==1">{{item.item[0].saveState}}</span>
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <button type="button"
@@ -471,12 +476,18 @@
                 var me = this;
                 alert("自送样样品登记！");
                 var tra = item;
+                tra.saveCharacter = "";
+                tra.samplesID = [];
+                for (var i = 0; i < item.samples.length; i++) {
+                    tra.samplesID.push(item.samples[i].id);
+                }
                 console.log(tra);
                 me.$http.post("/api/lab/saveReceipt", tra).then(response => {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
                             alert("样品交接！");
+                            me.viewDetails(me.trandferId);
                         }
                     })
                 }, response => {
@@ -487,12 +498,17 @@
                 var me = this;
                 alert("现场采样登记！");
                 var tra = item;
+                tra.samplesID = [];
+                for (var i = 0; i < item.samples.length; i++) {
+                    tra.samplesID.push(item.samples[i].id);
+                }
                 console.log(tra);
                 me.$http.post("/api/lab/saveReceipt", tra).then(response => {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
                             alert("样品交接！");
+                            me.viewDetails(me.trandferId);
                         }
                     })
                 }, response => {
@@ -504,7 +520,7 @@
                 var me = this;
                 me.saveTransfer.id = me.trandferId;
                 console.log(me.saveTransfer);
-                me.$http.post("", me.saveTransfer).then(response => {
+                me.$http.post("/api/lab/saveAll", me.saveTransfer).then(response => {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
