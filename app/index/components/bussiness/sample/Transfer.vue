@@ -458,7 +458,7 @@
             //查看详细详信息
             viewDetails(id){
                 var me = this;
-                me.$http.get("/api/lab/selfList", {
+                me.$http.get("ceshi.json", {
                     params: {
                         id: id
                     }
