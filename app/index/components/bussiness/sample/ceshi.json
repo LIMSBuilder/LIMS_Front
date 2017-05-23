@@ -1,0 +1,38 @@
+{
+  "projects": [
+    {
+      "id": 16,
+      "elementName": "水和废水",
+      "name": "色度"
+    },
+    {
+      "id": 17,
+      "elementName": "水和废水",
+      "name": "溶解氧"
+    },
+    {
+      "id": 18,
+      "elementName": "水和废水",
+      "name": "化学需氧量"
+    }
+  ],
+  "samples": [
+    {
+      "character": "L,黑色"
+    },
+    {
+      "character": "L,白色"
+    },
+    {
+      "character": "L,红色"
+    }
+  ],
+  "items": {
+    "item": {
+      "id": 1,
+      "process": 1,
+      "saveState": "",
+      "saveCharacter": "dscasd"
+    }
+  }
+}
