@@ -513,6 +513,7 @@
             saveDisPatch(item){
                 var me = this;
                 var tra = item;
+//                tra.saveCharacter = "";
                 tra.samplesID = [];
                 for (var i = 0; i < item.samples.length; i++) {
                     tra.samplesID.push(item.samples[i].id);
@@ -522,6 +523,7 @@
                         tra.ID.push(me.positionItem.item);
                     }
                 }
+                debugger
                 me.$http.post("/api/lab/saveReceipt", tra).then(response => {
                     var data = response.data;
                     codeState(data.code, {
@@ -562,6 +564,16 @@
                     }
                 }
 
+            },
+            saveDisPatch(items, index){
+                var me = this;
+                me.position[index] = 0;
+                for (var i = 0; i < me.trandfer.items.length; i++) {
+                    if (i == index) {
+                        me.positionItem = items;
+                        me.trandfer.items[i].item = [];
+                    }
+                }
             },
             change(){
                 var me = this;
