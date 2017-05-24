@@ -84,7 +84,7 @@
                                                                 <th> 件数</th>
                                                                 <th> 样品描述</th>
                                                                 <th> 保存条件（低温/高温）</th>
-                                                                <th> 操作</th>
+                                                                <th v-if="processitem==1"> 操作</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -122,16 +122,16 @@
                                                                         <span v-if="item.item.length!=0">{{item.item[0].saveState}}</span>
                                                                     </td>
 
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" v-if="processitem==1">
                                                                         <button type="button"
                                                                                 class="btn btn-sm blue btn-outline"
-                                                                                @click="saveDisPatch(item)"
+                                                                                @click="savaRegister(item)"
                                                                                 v-if="item.item.length==0">
                                                                             保存
                                                                         </button>
                                                                         <button type="button"
                                                                                 class="btn btn-sm blue btn-outline"
-                                                                                @click="saveDisPatch(item,index)"
+                                                                                @click="changeRegister(item,index)"
                                                                                 v-if="item.item.length!=0">
                                                                             修改
                                                                         </button>
@@ -152,7 +152,7 @@
                                                                 <th> 件数</th>
                                                                 <th> 样品描述</th>
                                                                 <th> 保存条件（低温/高温）</th>
-                                                                <th> 操作</th>
+                                                                <th v-if="processitem==1"> 操作</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -189,7 +189,7 @@
                                                                         <span v-if="items.item.length!=0">{{items.item[0].saveState}}</span>
 
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" v-if="processitem==1">
                                                                         <button type="button"
                                                                                 class="btn btn-sm blue btn-outline"
                                                                                 @click="savaRegister(items)"
@@ -379,7 +379,11 @@
                 saveDispatch: {},
                 position: [],
                 positionItem: [],
-                saveAlLL: 1
+                saveAlLL: 1,
+                tra: {
+                    saveCharacter: ""
+                },
+                processitem: 1
 
             }
         },
@@ -469,9 +473,11 @@
                     me.position = [];
                     if (data.receive_type != null) {
                         me.saveAlLL = 0;
+                        me.processitem = 0;
                     }
                     else {
                         me.saveAlLL = 1;
+                        me.processitem = 1;
                     }
                     for (var i = 0; i < data.items.length; i++) {
                         if (data.items[i].item.length == 0) {
@@ -487,44 +493,18 @@
             },
             savaRegister(item){
                 var me = this;
-                var tra = item;
-                tra.saveCharacter = "";
-                tra.samplesID = [];
-                for (var i = 0; i < item.samples.length; i++) {
-                    tra.samplesID.push(item.samples[i].id);
-                }
-                if (item.item.length != 0) {
-                    for (var i = 0; i < item.samples.length; i++) {
-                        tra.ID.push(me.positionItem.item);
-                    }
-                }
-                me.$http.post("/api/lab/saveReceipt", tra).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("样品交接！");
-                            me.viewDetails(me.trandferId);
-                        }
-                    })
-                }, response => {
-                    serverErrorInfo(response);
-                })
-            },
-            saveDisPatch(item){
-                var me = this;
-                var tra = item;
+                me.tra = item;
 //                tra.saveCharacter = "";
-                tra.samplesID = [];
+                me.tra.samplesID = [];
                 for (var i = 0; i < item.samples.length; i++) {
-                    tra.samplesID.push(item.samples[i].id);
+                    me.tra.samplesID.push(item.samples[i].id);
                 }
                 if (item.item.length != 0) {
                     for (var i = 0; i < item.samples.length; i++) {
-                        tra.ID.push(me.positionItem.item);
+                        me.tra.ID.push(me.positionItem.item);
                     }
                 }
-                debugger
-                me.$http.post("/api/lab/saveReceipt", tra).then(response => {
+                me.$http.post("/api/lab/saveReceipt", me.tra).then(response => {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
@@ -546,7 +526,7 @@
                             alert("全部样品交接成功！");
                             me.viewDetails(me.trandferId);
                             me.saveAlLL = 0;
-
+                            me.processitem = 0;
                         }
                     })
                 }, response => {
@@ -565,19 +545,10 @@
                 }
 
             },
-            saveDisPatch(items, index){
-                var me = this;
-                me.position[index] = 0;
-                for (var i = 0; i < me.trandfer.items.length; i++) {
-                    if (i == index) {
-                        me.positionItem = items;
-                        me.trandfer.items[i].item = [];
-                    }
-                }
-            },
             change(){
                 var me = this;
                 me.saveAlLL = 1;
+                me.processitem = 1;
                 me.saveTransfer.additive = me.trandfer.additive;
                 me.saveTransfer.receive_type = me.trandfer.receive_type;
                 me.saveTransfer.package = me.trandfer.package;
