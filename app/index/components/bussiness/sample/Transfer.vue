@@ -89,7 +89,7 @@
                                                             </thead>
                                                             <tbody>
                                                             <template v-for="(item,index) in trandfer.items">
-                                                                <tr class="uppercase">
+                                                                <tr>
                                                                     <td class="text-center"> {{index+1}}</td>
                                                                     <td class="text-center">
                                                                         {{item.projects[0].elementName}}
@@ -109,34 +109,32 @@
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
-                                                                               v-model="item.saveCharacter">
+                                                                               v-model="item.saveCharacter"
+                                                                               v-if="item.item.length==0">
+                                                                        <span v-if="item.item.length!=0">{{item.item[0].saveCharacter}}</span>
+
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
                                                                                v-model="item.saveState"
-                                                                               v-if="item.item.process==null">
-                                                                        <span v-if="item.item.process==1">{{item.saveState}}</span>
+                                                                               v-if="item.item.length==0">
+                                                                        <span v-if="item.item.length!=0">{{item.item[0].saveState}}</span>
                                                                     </td>
 
                                                                     <td class="text-center">
                                                                         <button type="button"
                                                                                 class="btn btn-sm blue btn-outline"
-                                                                                @click="saveDisPatch(item)">
+                                                                                @click="saveDisPatch(item)"
+                                                                                v-if="item.item.length==0">
                                                                             保存
                                                                         </button>
-                                                                        <!--<button type="button"-->
-                                                                        <!--class="btn btn-sm blue btn-outline"-->
-                                                                        <!--@click="changequality(item)"-->
-                                                                        <!--v-if="item.process==1">-->
-                                                                        <!--修改-->
-                                                                        <!--</button>-->
-                                                                        <!--<button type="button"-->
-                                                                        <!--class="btn btn-sm red btn-outline"-->
-                                                                        <!--@click="deletequality(item)"-->
-                                                                        <!--v-if="item.process==1">-->
-                                                                        <!--删除-->
-                                                                        <!--</button>-->
+                                                                        <button type="button"
+                                                                                class="btn btn-sm blue btn-outline"
+                                                                                @click="saveDisPatch(item,index)"
+                                                                                v-if="item.item.length!=0">
+                                                                            修改
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             </template>
@@ -159,7 +157,7 @@
                                                             </thead>
                                                             <tbody>
                                                             <template v-for="(items,index) in trandfer.items">
-                                                                <tr class="uppercase">
+                                                                <tr>
                                                                     <td class="text-center"> {{index+1}}</td>
                                                                     <td class="text-center">
                                                                         {{items.projects[0].elementName}}
@@ -186,27 +184,24 @@
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
-                                                                               v-model="items.saveState">
-                                                                        {{items.item.saveState}}
+                                                                               v-model="items.saveState"
+                                                                               v-if="items.item.length==0">
+                                                                        <span v-if="items.item.length!=0">{{items.item[0].saveState}}</span>
+
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <button type="button"
                                                                                 class="btn btn-sm blue btn-outline"
-                                                                                @click="savaRegister(items)">
+                                                                                @click="savaRegister(items)"
+                                                                                v-if="items.item.length==0">
                                                                             保存
                                                                         </button>
-                                                                        <!--<button type="button"-->
-                                                                        <!--class="btn btn-sm blue btn-outline"-->
-                                                                        <!--@click="changequality(item)"-->
-                                                                        <!--v-if="item.process==1">-->
-                                                                        <!--修改-->
-                                                                        <!--</button>-->
-                                                                        <!--<button type="button"-->
-                                                                        <!--class="btn btn-sm red btn-outline"-->
-                                                                        <!--@click="deletequality(item)"-->
-                                                                        <!--v-if="item.process==1">-->
-                                                                        <!--删除-->
-                                                                        <!--</button>-->
+                                                                        <button type="button"
+                                                                                class="btn btn-sm blue btn-outline"
+                                                                                @click="changeRegister(items,index)"
+                                                                                v-if="items.item.length!=0">
+                                                                            修改
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             </template>
@@ -221,12 +216,14 @@
                                                             <div class="col-md-8">
                                                                 <select class="form-control" data-live-search="true"
                                                                         name="package" id="package"
-                                                                        v-model="saveTransfer.package">
+                                                                        v-model="saveTransfer.package"
+                                                                        v-if="saveAlLL==1">
                                                                     <option></option>
                                                                     <option>完好</option>
                                                                     <option>破损</option>
                                                                     <option>粘污</option>
                                                                 </select>
+                                                                <span v-if="saveAlLL==0">{{trandfer.package}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-md-6">
@@ -237,7 +234,9 @@
                                                                     <input type="text" class="form-control"
                                                                            name="receive_type"
                                                                            id="receive_type"
-                                                                           v-model="saveTransfer.receive_type"/>
+                                                                           v-model="saveTransfer.receive_type"
+                                                                           v-if="saveAlLL==1"/>
+                                                                    <span v-if="saveAlLL==0">{{trandfer.receive_type}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -251,29 +250,23 @@
                                                                     <input type="text" class="form-control"
                                                                            name="additive"
                                                                            id="additive"
-                                                                           v-model="saveTransfer.additive"/>
+                                                                           v-model="saveTransfer.additive"
+                                                                           v-if="saveAlLL==1"/>
+                                                                    <span v-if="saveAlLL==0">{{trandfer.additive}}</span>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label class="control-label col-md-4" for="">样品管理员
-                                                            </label>
-                                                            <div class="col-md-8">
-                                                                <select class="form-control" data-live-search="true"
-                                                                        name="" id="">
-                                                                    <option></option>
-                                                                    <option>1</option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-actions right todo-form-actions">
                                                         <button type="button" class="btn  green "
                                                                 style="float: right; margin-right: 20px"
-                                                                @click="save()">
+                                                                @click="save()" v-if="saveAlLL==1">
                                                             完 成
+                                                        </button>
+                                                        <button type="button" class="btn  green "
+                                                                style="float: right; margin-right: 20px"
+                                                                @click="change()" v-if="saveAlLL==0">
+                                                            修改
                                                         </button>
                                                     </div>
 
@@ -368,22 +361,25 @@
                     items: {
                         saveState: "",
                         saveCharacter: "",
-                        item: {
-                            saveState: ""
-                        }
-                    }
+                    },
+                    package: "",
+                    receive_type: "",
+                    additive: ""
                 },
                 trandferId: 0,
                 saveTransfer: {
                     id: "",
-                    package: "完好",
-                    receive_type: "一片白色",
-                    additive: "添加情况"
+                    package: "",
+                    receive_type: "",
+                    additive: ""
                 },
                 saveregister: {
                     a: "123"
                 },
                 saveDispatch: {},
+                position: [],
+                positionItem: [],
+                saveAlLL: 1
 
             }
         },
@@ -461,7 +457,6 @@
             //查看详细详信息
             viewDetails(id){
                 var me = this;
-//                /api/lab/selfList
                 me.$http.get("/api/lab/selfList", {
                     params: {
                         id: id
@@ -471,20 +466,38 @@
                     me.trandfer = data;
                     me.trandfer.type = data.type;
                     me.trandferId = id;
+                    me.position = [];
+                    if (data.receive_type != null) {
+                        me.saveAlLL = 0;
+                    }
+                    else {
+                        me.saveAlLL = 1;
+                    }
+                    for (var i = 0; i < data.items.length; i++) {
+                        if (data.items[i].item.length == 0) {
+                            me.position.push("0");
+                        }
+                        else {
+                            me.position.push("1");
+                        }
+                    }
                 }, response => {
                     serverErrorInfo(response);
                 });
             },
             savaRegister(item){
                 var me = this;
-                alert("自送样样品登记！");
                 var tra = item;
                 tra.saveCharacter = "";
                 tra.samplesID = [];
                 for (var i = 0; i < item.samples.length; i++) {
                     tra.samplesID.push(item.samples[i].id);
                 }
-                console.log(tra);
+                if (item.item.length != 0) {
+                    for (var i = 0; i < item.samples.length; i++) {
+                        tra.ID.push(me.positionItem.item);
+                    }
+                }
                 me.$http.post("/api/lab/saveReceipt", tra).then(response => {
                     var data = response.data;
                     codeState(data.code, {
@@ -499,13 +512,16 @@
             },
             saveDisPatch(item){
                 var me = this;
-                alert("现场采样登记！");
                 var tra = item;
                 tra.samplesID = [];
                 for (var i = 0; i < item.samples.length; i++) {
                     tra.samplesID.push(item.samples[i].id);
                 }
-                console.log(tra);
+                if (item.item.length != 0) {
+                    for (var i = 0; i < item.samples.length; i++) {
+                        tra.ID.push(me.positionItem.item);
+                    }
+                }
                 me.$http.post("/api/lab/saveReceipt", tra).then(response => {
                     var data = response.data;
                     codeState(data.code, {
@@ -519,23 +535,42 @@
                 })
             },
             save(){
-                alert("保存全部");
                 var me = this;
                 me.saveTransfer.id = me.trandferId;
-                console.log(me.saveTransfer);
                 me.$http.post("/api/lab/saveAll", me.saveTransfer).then(response => {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
-                            alert("样品交接成功！");
+                            alert("全部样品交接成功！");
+                            me.viewDetails(me.trandferId);
+                            me.saveAlLL = 0;
+
                         }
                     })
                 }, response => {
                     serverErrorInfo(response);
                 })
+            },
+            changeRegister(items, index){
+//                修改样品交接一个项目
+                var me = this;
+                me.position[index] = 0;
+                for (var i = 0; i < me.trandfer.items.length; i++) {
+                    if (i == index) {
+                        me.positionItem = items;
+                        me.trandfer.items[i].item = [];
+                    }
+                }
+
+            },
+            change(){
+                var me = this;
+                me.saveAlLL = 1;
+                me.saveTransfer.additive = me.trandfer.additive;
+                me.saveTransfer.receive_type = me.trandfer.receive_type;
+                me.saveTransfer.package = me.trandfer.package;
 
             }
-
         }
     }
 
