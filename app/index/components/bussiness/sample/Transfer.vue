@@ -158,41 +158,41 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <template v-for="(item,index) in trandfer.items">
+                                                            <template v-for="(items,index) in trandfer.items">
                                                                 <tr class="uppercase">
                                                                     <td class="text-center"> {{index+1}}</td>
                                                                     <td class="text-center">
-                                                                        {{item.projects[0].elementName}}
+                                                                        {{items.projects[0].elementName}}
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <template v-for="(p,i) in item.projects">
+                                                                        <template v-for="(p,i) in items.projects">
                                                                             {{p.name}}
                                                                             <template
-                                                                                    v-if="i<item.projects.length-1">
+                                                                                    v-if="i<items.projects.length-1">
                                                                                 ,
                                                                             </template>
                                                                         </template>
 
                                                                     </td>
-                                                                    <td class="text-center"> {{item.samples.length}}
+                                                                    <td class="text-center"> {{items.samples.length}}
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <template v-for="(sam,j) in item.samples">
+                                                                        <template v-for="(sam,j) in items.samples">
                                                                             {{sam.character}}
-                                                                            <template v-if="j<item.samples.length-1">/
+                                                                            <template v-if="j<items.samples.length-1">/
                                                                             </template>
                                                                         </template>
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <input type="text"
                                                                                style="width: 130px;"
-                                                                               v-model="item.saveState">
-                                                                        <!--<span >{{item.item[0].saveState}}</span>-->
+                                                                               v-model="items.saveState">
+                                                                        {{items.item.saveState}}
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <button type="button"
                                                                                 class="btn btn-sm blue btn-outline"
-                                                                                @click="savaRegister(item)">
+                                                                                @click="savaRegister(items)">
                                                                             保存
                                                                         </button>
                                                                         <!--<button type="button"-->
@@ -367,7 +367,10 @@
                     type: {},
                     items: {
                         saveState: "",
-                        saveCharacter: ""
+                        saveCharacter: "",
+                        item: {
+                            saveState: ""
+                        }
                     }
                 },
                 trandferId: 0,
@@ -380,7 +383,7 @@
                 saveregister: {
                     a: "123"
                 },
-                saveDispatch: {}
+                saveDispatch: {},
 
             }
         },
@@ -458,7 +461,8 @@
             //查看详细详信息
             viewDetails(id){
                 var me = this;
-                me.$http.get("ceshi.json", {
+//                /api/lab/selfList
+                me.$http.get("/api/lab/selfList", {
                     params: {
                         id: id
                     }
