@@ -19,7 +19,7 @@
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-2">
+                                    <div class="col-md-3 col-sm-3">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in transferList">
                                                 <div @click="viewDetails(item.id)"
@@ -31,6 +31,9 @@
 
                                                     <div class="todo-tasklist-item-title">
                                                         {{item.identify}}
+                                                        <button type="button" class="btn blue btn-sm btn-outline"
+                                                                @click="flow(item.id)" style="float: right;">流 转
+                                                        </button>
                                                     </div>
 
                                                     <div class="todo-tasklist-item-text"> {{item.name}}
@@ -58,10 +61,10 @@
 
                                     <div class="todo-tasklist-devider"></div>
 
-                                    <div class="col-md-10 col-sm-10" v-show="trandferId==0">
+                                    <div class="col-md-9 col-sm-9" v-show="trandferId==0">
                                         <h1 class="text-center">暂无任务信息</h1>
                                     </div>
-                                    <div class="col-md-10 col-sm-10" v-show="trandferId!=0">
+                                    <div class="col-md-9 col-sm-9" v-show="trandferId!=0">
                                         <div class="tabbable-line">
                                             <ul class="nav nav-tabs ">
                                                 <li class="active">
@@ -553,7 +556,31 @@
                 me.saveTransfer.receive_type = me.trandfer.receive_type;
                 me.saveTransfer.package = me.trandfer.package;
 
-            }
+            },
+            flow(id){
+                var me = this;
+                confirm({
+                    content: "是否确认已完成该任务的样品交接？",
+                    success: function () {
+                        me.$http.get("/api/dispatch/checkFlow", {
+                            params: {
+                                task_id: id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("样品交接流转成功！");
+                                    me.getData();
+                                },
+                                501: "当前存在未完成作业，无法流转！"
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
+            },
         }
     }
 

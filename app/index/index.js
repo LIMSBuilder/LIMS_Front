@@ -74,6 +74,9 @@ import Qreview from './components/bussiness/quality/qReview.vue'
 import Firstreview from './components/bussiness/quality/firstReview.vue'
 import Quality_list from './components/bussiness/quality/list.vue'
 
+import Laboratory from './components/bussiness/laboratory/laboratory.vue'
+import Lab_dispatch from './components/bussiness/laboratory/Labdispatch.vue'
+
 
 //=============Basic================
 //Element
@@ -533,6 +536,17 @@ var routes = [
         ]
     },
     {
+        path: "/Laboratory",
+        name: "Laboratory",
+        component: Laboratory,
+        children: [
+            {
+                path: "dispatch",
+                component: Lab_dispatch
+            }
+        ]
+    },
+    {
         path: "/task",
         name: "task",
         component: Task,
@@ -617,7 +631,7 @@ var routes = [
             {
                 path: "list",
                 component: Quality_list
-            }
+            },
         ]
     }
 ];
