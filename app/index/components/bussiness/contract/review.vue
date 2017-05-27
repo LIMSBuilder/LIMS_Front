@@ -601,7 +601,7 @@
                         <p v-html="advice.msg"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn green btn-outline">导 出</button>
+                        <button type="button" class="btn green btn-outline" @click="exportReview">导 出</button>
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
                     </div>
                 </div>
@@ -881,7 +881,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="es6">
     import 'wangeditor'
     import 'style/contract_list'
     import 'style/socicon'
@@ -915,7 +915,7 @@
                 },
                 reviewList: {},
                 advice: {},
-                project: []
+                project: [],
             }
         },
         mounted(){
@@ -1002,6 +1002,7 @@
                     }
                 }).then(response => {
                     var data = response.data;
+//                    debugger
                     me.itemLists = data;
                 }, response => {
                     serverErrorInfo(response);
@@ -1042,6 +1043,7 @@
                     }
                 }).then(function (response) {
                     var data = response.data;
+//                    debugger
                     me.reviewList = data;
                 }, function (response) {
                     serverErrorInfo(response);
@@ -1148,7 +1150,9 @@
                 }).then(function (response) {
                     var data = response.data;
 //                    console.log(data);
+                    debugger
                     me.advice = data;
+//                    console.log(me.advice.id);
                 }, function (response) {
                     serverErrorInfo(response);
                 })
@@ -1177,6 +1181,13 @@
                     }
                 );
                 jQuery("#showProject").modal("show");
+
+            },
+            exportReview(){
+                var me = this;
+//                console.log(me.advice.id);
+                window.open("http://" + window.location.hostname + ":8080/api/contract/createReview?id=" + me.advice.id);
+
 
             }
         }

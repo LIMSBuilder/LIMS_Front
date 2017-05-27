@@ -130,6 +130,9 @@
                                             <li>
                                                 <a href="javascript:;"> 作为模板任务创建 </a>
                                             </li>
+                                            <li>
+                                                <a href="javascript:;" @click="changeItems"> 监测项更新 </a>
+                                            </li>
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="javascript:;" @click="exportTask"> 导出任务</a>
@@ -344,54 +347,118 @@
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="page_2">
+                                                            <!--<div class="table-scrollable table-scrollable-borderless">-->
+                                                                <!--<table class="table table-hover table-light">-->
+                                                                    <!--<thead>-->
+                                                                    <!--<tr class="uppercase">-->
+                                                                        <!--<th> 序号</th>-->
+                                                                        <!--&lt;!&ndash;<th> 公司、道路名称</th>&ndash;&gt;-->
+                                                                        <!--<th> 环境要素</th>-->
+                                                                        <!--<th> 监测点（个）</th>-->
+                                                                        <!--<th> 监测项目</th>-->
+                                                                        <!--<th> 监测频次</th>-->
+                                                                        <!--&lt;!&ndash;<th> 是否分包</th>&ndash;&gt;-->
+                                                                        <!--<th> 备注</th>-->
+                                                                    <!--</tr>-->
+                                                                    <!--</thead>-->
+                                                                    <!--<tbody>-->
+                                                                    <!--<template v-for="(item,index) in items">-->
+                                                                        <!--<tr>-->
+                                                                            <!--<td class="text-center">{{index+1}}</td>-->
+                                                                            <!--&lt;!&ndash;<td class="text-center">{{item.company}}&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                                                            <!--<td class="text-center">-->
+                                                                                <!--{{item.element.name}}-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center">-->
+                                                                                <!--{{item.point}}-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center">-->
+                                                                                <!--<button type="button"-->
+                                                                                        <!--class="btn green btn-outline"-->
+                                                                                        <!--@click="showProjectName(item.id)">-->
+                                                                                    <!--查看详情-->
+                                                                                <!--</button>-->
+                                                                            <!--</td>-->
+                                                                            <!--<td class="text-center">-->
+                                                                                <!--{{item.frequency?item.frequency.total:''}}-->
+                                                                            <!--</td>-->
+                                                                            <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;v-if="item.is_package==1">是&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;v-if="item.is_package==0">否&ndash;&gt;-->
+                                                                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                                                            <!--<td class="text-center">{{item.other}}</td>-->
+                                                                        <!--</tr>-->
+                                                                    <!--</template>-->
+                                                                    <!--</tbody>-->
+                                                                <!--</table>-->
+                                                            <!--</div>-->
+
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
-                                                                    <thead>
-                                                                    <tr class="uppercase">
-                                                                        <th> 序号</th>
-                                                                        <!--<th> 公司、道路名称</th>-->
-                                                                        <th> 环境要素</th>
-                                                                        <th> 监测点（个）</th>
-                                                                        <th> 监测项目</th>
-                                                                        <th> 监测频次</th>
-                                                                        <!--<th> 是否分包</th>-->
-                                                                        <th> 备注</th>
-                                                                    </tr>
-                                                                    </thead>
                                                                     <tbody>
-                                                                    <template v-for="(item,index) in items">
-                                                                        <tr>
-                                                                            <td class="text-center">{{index+1}}</td>
-                                                                            <!--<td class="text-center">{{item.company}}-->
-                                                                            <!--</td>-->
-                                                                            <td class="text-center">
-                                                                                {{item.element.name}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.point}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <button type="button"
-                                                                                        class="btn green btn-outline"
-                                                                                        @click="showProjectName(item.id)">
-                                                                                    查看详情
-                                                                                </button>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.frequency?item.frequency.total:''}}
-                                                                            </td>
-                                                                            <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==1">是-->
-                                                                            <!--</td>-->
-                                                                            <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==0">否-->
-                                                                            <!--</td>-->
-                                                                            <td class="text-center">{{item.other}}</td>
-                                                                        </tr>
-                                                                    </template>
+                                                                    <div class="table-scrollable table-scrollable-borderless">
+                                                                        <table class="table table-hover table-light">
+                                                                            <thead>
+                                                                            <tr class="uppercase">
+                                                                                <th> 序号</th>
+                                                                                <th> 公司名称</th>
+                                                                                <th> 环境要素</th>
+                                                                                <th> 监测点（个）</th>
+                                                                                <th> 监测项目</th>
+                                                                                <th> 监测频次</th>
+                                                                                <th> 备注</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <template v-for="itemList in itemLists">
+                                                                                <template
+                                                                                        v-for="(item,index) in itemList.items">
+                                                                                    <tr>
+                                                                                        <td class="text-center">
+                                                                                            {{index+1}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            <!--{{itemList.flag==0?contract.client_unit:itemList.company}}-->
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.element.name}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.point}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            <template
+                                                                                                    v-for="(project,index) in item.project">
+                                                                                                {{project.name}}
+                                                                                                <template
+                                                                                                        v-if="project.isPackage==true">
+                                                                                                    <span style="color: red;">[分包]</span>
+                                                                                                </template>
+                                                                                                <template
+                                                                                                        v-if="index+1!=item.project.length">
+                                                                                                    ,
+                                                                                                </template>
+                                                                                            </template>
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.frequency.total}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.other}}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </template>
+                                                                            </template>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
+
                                                         </div>
                                                         <div class="tab-pane" id="page_3">
                                                             <table class="table table-hover">
@@ -480,7 +547,7 @@
                 task: {
                     type: {}
                 },
-                items: [],
+                itemLists: [],
                 log: [],
                 total_count: {},
                 project: [],
@@ -519,13 +586,6 @@
                     serverErrorInfo(response);
                 })
             },
-//            _handleProjectListMenu: function () {
-//                if (App.getViewPort().width <= 992) {
-//                    $('.todo-project-list-content').addClass("collapse");
-//                } else {
-//                    $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
-//                }
-//            },
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.startPageLoading({animate: true});
@@ -573,13 +633,13 @@
             },
             fetchItems(id){
                 var me = this;
-                me.$http.get("/api/task/getItems", {
+                me.$http.get("/api/task/taskGetItems", {
                     params: {
                         task_id: id
                     }
                 }).then(response => {
                     var data = response.data;
-                    me.items = data.items;
+                    me.itemLists = data;
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -712,6 +772,10 @@
             exportTask(){
                 var me = this;
                 window.open("http://" + window.location.hostname + ":8080/api/task/createTask?id="+me.task.id);
+            },
+            changeItems(){
+                var me = this;
+                router.push("/task/changeItems?id=" + me.task.id);
             }
         }
     }

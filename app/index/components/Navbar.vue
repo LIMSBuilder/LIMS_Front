@@ -87,12 +87,27 @@
                 <ul class="sub-menu">
                     <router-link :to="{ path: '/contract/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">合同起草</span>
+                            <span class="title">业务合同起草</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/service' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">服务合同创建</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/contract/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">合同列表</span>
+                            <span class="title">业务合同列表</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/serviceList' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">服务合同列表</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/isPackage' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">项目分包</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/contract/sreview' }" tag="li" active-class="active">
@@ -102,7 +117,12 @@
                     </router-link>
                     <router-link :to="{ path: '/contract/review' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">技术审核</span>
+                            <span class="title">技术审核--业务合同</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/contract/serviewReview' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">技术审核--服务合同</span>
                         </a>
                     </router-link>
                 </ul>
@@ -138,17 +158,7 @@
                 <ul class="sub-menu">
                     <router-link :to="{ path: '/sample/disPatch' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">采样任务派遣</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">样品号申请</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">现场采样信息补录</span>
+                            <span class="title">现场采样派遣</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
@@ -166,17 +176,22 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/quality/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">质控列表</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/quality/qreview' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">项目质控</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/quality/firstreview' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">实验结果二审</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/quality/firstreview' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">监测报告二审</span>
                         </a>
@@ -191,17 +206,17 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/sample/transfer' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">实验任务派遣</span>
+                            <span class="title">样品交接单</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/Laboratory/dispatch' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">实验数据审核</span>
+                            <span class="title">分派任务</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                    <router-link :to="{ path:  '/sample/transfer'  }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">实验数据复核</span>
                         </a>
@@ -278,6 +293,20 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-external-link-square"></i>
+                    <span class="title">导出文档</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/export/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">导出所有文档</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-balance-scale"></i>
                     <span class="title">环境要素</span>
                     <span class="arrow"></span>
@@ -348,6 +377,44 @@
                     <router-link :to="{ path: '/type/list' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">监测类别列表</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-balance-scale"></i>
+                    <span class="title">仪器管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/instrument/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建仪器</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/instrument/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">仪器列表</span>
+                        </a>
+                    </router-link>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-balance-scale"></i>
+                    <span class="title">证书管理</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <router-link :to="{ path: '/certificate/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">创建证书</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/certificate/list' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">证书列表</span>
                         </a>
                     </router-link>
                 </ul>
@@ -465,6 +532,11 @@
                     <router-link :to="{ path: '/500' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">服务器异常</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/addpower' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">新增权限</span>
                         </a>
                     </router-link>
                 </ul>

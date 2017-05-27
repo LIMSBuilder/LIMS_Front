@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同列表
+        <h1 class="page-title"> 业务合同列表
             <small>／Contract</small>
         </h1>
         <div class="row">
@@ -123,12 +123,15 @@
                                             <li>
                                                 <a href="javascript:;" @click="changeContract"> 编辑修改 </a>
                                             </li>
+                                            <li>
+                                                <a href="javascript:;" @click="changeItems"> 监测项更新 </a>
+                                            </li>
                                             <li class="divider"></li>
                                             <li v-if="contract.process==2">
                                                 <a href="javascript:;" @click="finishConstract">完成合同</a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> 导出合同</a>
+                                                <a href="javascript:;" @click="exportContract"> 导出合同</a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;" @click="stopContract"> 中止合同</a>
@@ -478,53 +481,6 @@
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="page_2">
-                                                            <!--<div class="table-scrollable table-scrollable-borderless">-->
-                                                            <!--<table class="table table-hover table-light">-->
-                                                            <!--<thead>-->
-                                                            <!--<tr class="uppercase">-->
-                                                            <!--<th> 序号</th>-->
-                                                            <!--&lt;!&ndash;<th> 公司、道路名称</th>&ndash;&gt;-->
-                                                            <!--<th> 环境要素</th>-->
-                                                            <!--<th> 监测点（个）</th>-->
-                                                            <!--<th> 监测项目</th>-->
-                                                            <!--<th> 监测频次</th>-->
-                                                            <!--&lt;!&ndash;<th> 是否分包</th>&ndash;&gt;-->
-                                                            <!--<th> 备注</th>-->
-                                                            <!--</tr>-->
-                                                            <!--</thead>-->
-                                                            <!--<tbody>-->
-                                                            <!--<template v-for="(item,index) in items">-->
-                                                            <!--<tr>-->
-                                                            <!--<td class="text-center">{{index+1}}</td>-->
-                                                            <!--&lt;!&ndash;<td class="text-center">{{item.company}}&ndash;&gt;-->
-                                                            <!--<td class="text-center">-->
-                                                            <!--{{item.element.name}}-->
-                                                            <!--</td>-->
-                                                            <!--<td class="text-center">-->
-                                                            <!--{{item.point}}-->
-                                                            <!--</td>-->
-                                                            <!--<td class="text-center">-->
-                                                            <!--<button type="button"-->
-                                                            <!--class="btn green btn-outline"-->
-                                                            <!--@click="showProjectName(item.id)">-->
-                                                            <!--详情-->
-                                                            <!--</button>-->
-                                                            <!--</td>-->
-                                                            <!--<td class="text-center">-->
-                                                            <!--{{item.frequency?item.frequency.total:''}}-->
-                                                            <!--</td>-->
-                                                            <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;v-if="item.is_package==1">是&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;<td class="text-center"&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;v-if="item.is_package==0">否&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                                                            <!--<td class="text-center">{{item.other}}</td>-->
-                                                            <!--</tr>-->
-                                                            <!--</template>-->
-                                                            <!--</tbody>-->
-                                                            <!--</table>-->
-                                                            <!--</div>-->
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
                                                                     <tbody>
@@ -816,6 +772,7 @@
                     }
                 }).then(response => {
                         var data = response.data;
+//                        debugger
                         me.log = data.results;
                     }, response => {
                         serverErrorInfo(response);
@@ -981,6 +938,14 @@
             changeContract(){
                 var me = this;
                 router.push("/contract/change?id=" + me.contract.id);
+            },
+            exportContract(){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id=" + me.contract.id);
+            },
+            changeItems(){
+                var me = this;
+                router.push("/contract/changeItem?id=" + me.contract.id);
             }
         }
     }

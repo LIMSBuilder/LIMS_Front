@@ -103,10 +103,257 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         <h4 class="modal-title">权限设置</h4>
                     </div>
-                    <div class="modal-body"> Modal body goes here</div>
+                    <div class="modal-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                <tr>
+                                    <td class="text-center">一级</td>
+                                    <td class="text-center">二级</td>
+                                    <td class="text-center">权限配置细则</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <label class="mt-checkbox mt-checkbox-outline">
+                                            <input type="checkbox" name="">
+                                            <span></span>
+                                        </label>
+                                        合同管理
+                                    </td>
+                                    <td class="text-center">
+                                        <table class="table table-light table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    合同创建
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    合同列表
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    业务审核
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    技术审核
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td class="text-center">
+                                        <table class="table table-light table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    创建
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    修改
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    删除
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    中止
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    创建
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    修改
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    删除
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    中止
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    查看
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    创建
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    修改
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    删除
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    中止
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    创建
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    修改
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    删除
+                                                </td>
+                                                <td>
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                    中止
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <template v-for="item in departmentPowerList">
+                                    <tr>
+                                        <td class="text-center">
+                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                <input type="checkbox" name="type" :value="item.id" v-model="actives">
+                                                <span></span>
+                                            </label>
+                                            {{item.name}}
+                                        </td>
+                                        <td class="text-center">
+                                            <table class="table table-light table-hover">
+                                                <tbody>
+                                                <template v-for="child in item.child">
+                                                    <tr>
+                                                        <td>
+                                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                                <input type="checkbox" :value="child.id" name="type"
+                                                                       v-model="actives">
+                                                                <span></span>
+                                                            </label>
+                                                            {{child.name}}
+                                                        </td>
+                                                    </tr>
+                                                </template>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td class="text-center">
+                                            <table class="table table-light table-hover">
+                                                <tbody>
+                                                <template v-for="child in item.child">
+                                                    <tr>
+                                                        <template v-for="list in child.child">
+                                                            <td>
+                                                                <label class="mt-checkbox mt-checkbox-outline">
+                                                                    <input type="checkbox" name="type" :value="list.id"
+                                                                           v-model="actives">
+                                                                    <span></span>
+                                                                </label>
+                                                                {{list.name}}
+                                                            </td>
+                                                        </template>
+                                                    </tr>
+                                                </template>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn green">保存设置</button>
+                        <button type="button" class="btn green" @click="createPower()">保存设置</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -117,6 +364,8 @@
 </template>
 
 <script type="es6">
+    import 'mod/jstree'
+    import 'style/jstree'
     module.exports = {
         data(){
             return {
@@ -124,7 +373,11 @@
                 roleList: [],
                 currentPage: 1,
                 condition: "",
-                selected: []
+                selected: [],
+                powerList: [],
+                departmentPowerList: [],
+                actives: [],
+                roleId: ""//中间变量，存储设置权限时选择的那条记录的role_id角色的id值，之后给修改权限
             }
         },
         mounted(){
@@ -285,9 +538,47 @@
                 me.currentPage = 1;
                 me.getData();
             },
+            //根据role_id获取角色权限列表
             power(item){
+                var me = this;
                 console.log(item);
                 jQuery("#powerSetting").modal("show");
+                me.$http.get("/api/power/findByRoleId", {
+                    params: {
+                        role_id: item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.departmentPowerList = data.results;
+                    me.actives = data.active;
+                    me.roleId = item.id;
+                    console.log(me.departmentPowerList);
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            //设置权限，即可认为是修改权限
+            createPower(){
+                var me = this;
+//                alert(123);
+//                console.log(me.roleId);
+//                console.log(me.actives);
+                me.$http.get("/api/power/savePower", {
+                    params: {
+                        role_id: me.roleId,
+                        actives: me.actives
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("权限修改成功！");
+//                            me.power(me.roleId);
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
             }
         }
     }
