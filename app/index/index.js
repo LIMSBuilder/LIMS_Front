@@ -76,6 +76,7 @@ import Quality_list from './components/bussiness/quality/list.vue'
 
 import Laboratory from './components/bussiness/laboratory/laboratory.vue'
 import Lab_dispatch from './components/bussiness/laboratory/Labdispatch.vue'
+import Lab_work from './components/bussiness/laboratory/labwork.vue'
 
 
 //=============Basic================
@@ -543,6 +544,10 @@ var routes = [
             {
                 path: "dispatch",
                 component: Lab_dispatch
+            },
+            {
+                path: "labwork",
+                component: Lab_work
             }
         ]
     },
