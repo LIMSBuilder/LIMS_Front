@@ -114,7 +114,7 @@
                                                                                 required v-model="useralabdispatch">
                                                                             <option></option>
                                                                             <template v-for="item in userList">
-                                                                                <option :value="item.id">
+                                                                                <option :value="item.lab">
                                                                                     {{item.name}}
                                                                                 </option>
                                                                             </template>

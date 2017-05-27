@@ -341,10 +341,78 @@
     module.exports = {
         data: function () {
             return {}
-        },
-        mounted(){
 
         },
-        methods: {}
+        mounted(){
+            var me = this;
+            //me._initComponents();
+            //me._handleProjectListMenu();
+            me.getData();
+            App.addResizeHandler(function () {
+                me._handleProjectListMenu();
+            });
+            jQuery(".todo-tasklist").off("click").on("click", function (e) {
+                var dom = jQuery(e.target);
+                while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
+                    dom = dom.parents(".todo-tasklist-item");
+                }
+                if (dom.hasClass("todo-tasklist-item")) {
+                    jQuery(".todo-tasklist-item").removeClass("active");
+                    dom.addClass('active');
+                }
+            });
+        },
+        methods: {
+            fetchData(pageNum, rowCount){
+                var me = this;
+                App.startPageLoading({animate: true});//用户等待时，提示的loading条
+                this.$http.get("/api/dispatch/itemList", {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: pageNum,
+                        condition: this.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    me.qualityList = data.results;
+                    me.$nextTick(function () {
+                        App.stopPageLoading();//获取数据后，去掉loading条
+                    })
+                }, (response) => {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchPages(rowCount){
+                var me = this;
+                this.$http.get("/api/dispatch/itemList", {
+                    params: {
+                        rowCount: rowCount,
+                        currentPage: 1,
+                        condition: me.condition
+                    }
+                }).then((response) => {
+                    var data = response.data;
+                    jQuery(".M-box").pagination({
+                        pageCount: data.totalPage || 1,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (data) {
+                            me.fetchData(data.getCurrent(), rowCount, me.condition);
+                            me.currentPage = data.getCurrent();
+                        }
+                    });
+                }, (response) => {
+                    serverErrorInfo(response);
+                });
+            },
+            getData(){
+                var me = this;
+                me.fetchData(me.currentPage, rowCount);
+                me.fetchPages(rowCount);
+            },
+        }
     }
 </script>
