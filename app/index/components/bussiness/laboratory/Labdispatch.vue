@@ -55,40 +55,41 @@
                                         <div class="todo-tasklist-devider"></div>
 
                                         <div class="col-md-4 col-sm-4 todo-container">
-                                            <div class="todo-projects-item">
-                                                <ul class="todo-projects-container ">
-
-                                                    <li class="todo-projects-item ">
-                                                        <!--<h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">-->
-                                                        <span class="label label-success"> 已完成 </span>任务号码——分析项目
-                                                    </li>
-                                                </ul>
-                                                <ul class="todo-projects-container">
-                                                    <li class="todo-projects-item ">
-                                                        <!--<h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">-->
-                                                        <span class="label label-danger"> 已完成 </span>任务号码——分析项目
-                                                    </li>
-                                                </ul>
-                                                <ul class="todo-projects-container">
-                                                    <li class="todo-projects-item ">
-                                                        <!--<h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">-->
-                                                        <span class="label label-info"> 已完成 </span>任务号码——分析项目
-                                                    </li>
-                                                </ul>
-                                                <ul class="todo-projects-container">
-                                                    <li class="todo-projects-item ">
-                                                        <!--<h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">-->
-                                                        <span class="label label-success"> 已完成 </span>任务号码——分析项目
-                                                        <a class="todo-add-button" href="javascript:;"
-                                                           @click="addProject()">+</a>
-                                                    </li>
+                                            <div class="todo-projects-item" v-if="labdetail.length!=0">
+                                                <template v-for="(item,index) in labdetail.items">
+                                                    <ul class="todo-projects-container ">
+                                                        <li class="todo-projects-item ">
+                                                            <span class="label label-info"
+                                                                  v-if="item.flag==null"> 未分配 </span>
+                                                            <span class="label label-danger"
+                                                                  v-if="item.flag==1"> 已分配 </span>
+                                                            <span class="label label-success"
+                                                                  v-if="item.flag==2"> 已完成 </span>
+                                                            {{labdetail.task_identify}}--{{item.name}}
+                                                            <a class="todo-add-button" href="javascript:;"
+                                                               @click="addlabdispatch(item,labdetail.task_identify,index)"
+                                                               v-if="item.flag==null && item.active==0">+</a>
+                                                        </li>
+                                                    </ul>
+                                                </template>
+                                            </div>
+                                            <div class="todo-projects-item" v-if="labdetail.length==0">
+                                                <ul class="todo-projects-container"
+                                                    style="padding: 0px;">
+                                                    <li>尚未选择任务。</li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="todo-tasklist-devider"></div>
 
 
-                                        <div class="col-md-4 col-sm-4 bg-after-green">
+                                        <div class="col-md-4 col-sm-4 bg-after-green" v-if="flagdispatch==0">
+                                            <div class="tabbable-line">
+                                                <h4>尚未选择分派任务</h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 bg-after-green" v-if="flagdispatch==1">
                                             <div class="tabbable-line">
                                                 <ul class="nav nav-tabs ">
                                                     <li class="active">
@@ -97,48 +98,42 @@
                                                 </ul>
                                                 <div class="tab-content" id="dispatclab">
                                                     <div class="tab-pane active" id="page_1">
-                                                        <form class="form-horizontal" action="#"
-                                                              method="POST" id="deliveryForm">
-                                                            <div class="form-group">
-                                                                <label class="control-label col-md-3" for="charge">分析者
-                                                                    <span class="required"> * </span>
-                                                                </label>
-                                                                <div class="col-md-9">
-                                                                    <select class="bs-select form-control"
-                                                                            name="charge"
-                                                                            id="charge"
-                                                                            data-live-search="true"
-                                                                            required>
-                                                                        <option></option>
-                                                                        <template v-for="item in userList">
-                                                                            <optgroup :label="item.name">
-                                                                                <template
-                                                                                        v-for="user in item.user.results">
-                                                                                    <option :value="user.id">
-                                                                                        {{user.name}}
-                                                                                    </option>
-                                                                                </template>
-                                                                            </optgroup>
-
-                                                                        </template>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </form>
                                                         <div class="form-group todo-container"
                                                              style="padding: 10px 0px ">
+                                                            <form class="form-horizontal" action="#"
+                                                                  method="POST" id="deliveryForm">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3" for="charge">分析者
+                                                                        <span class="required"> * </span>
+                                                                    </label>
+                                                                    <div class="col-md-9">
+                                                                        <select class="bs-select form-control"
+                                                                                name="charge"
+                                                                                id="charge"
+                                                                                data-live-search="true"
+                                                                                required v-model="useralabdispatch">
+                                                                            <option></option>
+                                                                            <template v-for="item in userList">
+                                                                                <option :value="item.lab">
+                                                                                    {{item.name}}
+                                                                                </option>
+                                                                            </template>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                             <h4>负责项目</h4>
                                                             <hr>
-
                                                             <div class="todo-projects-item">
                                                                 <ul class="todo-projects-container"
                                                                     style="padding: 0px;">
-                                                                    <li class="todo-projects-item ">
+                                                                    <li class="todo-projects-item "
+                                                                        v-if="chooseLabproject.length!=0">
                                                                         <h4 class="font-grey-salsa">
-                                                                            任务编号/分析项目
+                                                                            {{taskIdentify}}/{{chooseLabproject.name}}
                                                                         </h4>
                                                                     </li>
-                                                                    <li>尚未选择任务。</li>
+                                                                    <li v-if="chooseLabproject.length==0">尚未选择任务。</li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -151,11 +146,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -176,9 +167,15 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=5",
+                condition: "process=6",
                 qualityList: [],
                 userList: [],
+                labdetail: [],
+                chooseLabproject: [],
+                taskIdentify: "",
+                useralabdispatch: "",//分配人员
+                disproject: "",//分配任务,
+                flagdispatch: 0//标记分配任务
 
             }
         },
@@ -187,7 +184,6 @@
             //me._initComponents();
             //me._handleProjectListMenu();
             me.getData();
-            me.fetchUser();
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
@@ -253,9 +249,14 @@
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
             },
-            fetchUser(){
+            fetchUser(id){
                 var me = this;
-                me.$http.get("/api/user/listByDepartment").then(response => {
+                App.startPageLoading({animate: true});//用户等待时，提示的loading条
+                me.$http.get("/api/lab/labUserList", {
+                    params: {
+                        item_project_id: id
+                    }
+                }).then(response => {
                     var data = response.data;
                     me.userList = data.results;
                     me.$nextTick(function () {
@@ -265,28 +266,84 @@
                             noneSelectedText: "请选择负责人",
                             dropupAuto: false
                         });
-
-                        $('#join').selectpicker({
-                            iconBase: 'fa',
-                            tickIcon: 'fa-check',
-                            countSelectedText: "count",
-                            deselectAllText: "取消选择",
-                            selectAllText: "选择全部",
-                            noneSelectedText: "请选择参与人员",
-                            dropupAuto: false
-                        });
+                        me.$nextTick(function () {
+                            App.stopPageLoading();//获取数据后，去掉loading条
+                        })
                     });
                 }, response => {
                     serverErrorInfo(response);
                 })
             },
-            viewDetails(){
+            viewDetails(id){
+                var me = this;
+                me.flagdispatch = 0;
+                //销毁监测项目选择框
+                $('#charge').selectpicker('destroy');
+                App.startPageLoading({animate: true});//用户等待时，提示的loading条
+                me.$http.get("/api/lab/delivery", {
+                    params: {
+                        task_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.labdetail = data;
+                    for (var i = 0; i < data.items.length; i++) {
+                        if (data.items[i].flag == 1) {
+                            me.labdetail.items[i].active = "1";
+                        }
+                        else {
+                            me.labdetail.items[i].active = "0";
+                        }
+                    }
+                    me.$nextTick(function () {
+                        App.stopPageLoading();//获取数据后，去掉loading条
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
 
             },
-            addProject(){
-
+            addlabdispatch(item, task_identify, index){
+                var me = this;
+                me.flagdispatch = 1;
+                me.userList = [];
+                for (var i = 0; i < me.labdetail.items.length; i++) {
+                    if (me.labdetail.items[i].flag == 1) {
+                        me.labdetail.items[i].active = "1";
+                    }
+                    else {
+                        me.labdetail.items[i].active = "0";
+                    }
+                }
+                //销毁监测项目选择框
+                $('#charge').selectpicker('destroy');
+                me.labdetail.items[index].active = "1";
+                me.chooseLabproject = item;
+                me.taskIdentify = task_identify;
+                me.disproject = item.project_id;
+                me.fetchUser(item.item_project_id);
             },
             createDispatch(){
+                var me = this;
+                var disitem = {
+                    task_id: "",
+                    project_id: "",
+                    user_id: ""
+                };
+                disitem.task_id = me.labdetail.id;
+                disitem.project_id = me.disproject;
+                disitem.user_id = me.useralabdispatch;
+                me.$http.post("/api/lab/saveAnalysis", disitem).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("任务分配成功！");
+                            me.viewDetails(me.labdetail.id);
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                })
 
             }
         }

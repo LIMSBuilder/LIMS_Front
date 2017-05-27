@@ -216,9 +216,9 @@
                             <span class="title">分派任务</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path:  '/sample/transfer'  }" tag="li" active-class="active">
+                    <router-link :to="{ path:  '/Laboratory/labwork'  }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">实验数据复核</span>
+                            <span class="title">分析任务</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
