@@ -515,7 +515,7 @@
 </template>
 
 
-<script type="es6">
+<script type="">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -783,6 +783,7 @@
                         200: function () {
                             alert("质控登记完成完成！");
                             me.viewDetails(me.qualityID);
+                            me.getData();
                         },
                         505: "存在尚未处理的质控项目！"
                     })
@@ -795,7 +796,7 @@
                 confirm({
                     content: "是否确认已完成所有作业的质控？",
                     success: function () {
-                        me.$http.get("/api/dispatch/checkFlowLab", {
+                        me.$http.get("/api/dispatch/checkFlowLabtorary", {
                             params: {
                                 task_id: id
                             }
