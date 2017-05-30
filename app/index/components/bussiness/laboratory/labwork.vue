@@ -338,7 +338,8 @@
                 condition: "",
                 task: {},
                 taskList: [],
-                projectList: []
+                projectList: [],
+                deliveryList: []
             }
 
         },
@@ -430,8 +431,19 @@
                     serverErrorInfo(response);
                 })
             },
-            viewJobDetails(){
+            viewJobDetails(projectId){
                 var me = this;
+                me.$http.get("/api/dispatch/inspect", {
+                    params: {
+                        task_id: me.task.id,
+                        project_id: projectId
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.deliveryList = data.results;
+                }, response => {
+                    serverErrorInfo(response);
+                })
 
             }
         }
