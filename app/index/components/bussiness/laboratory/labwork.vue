@@ -47,7 +47,7 @@
                                         <div class="tabbable tabbable-tabdrop">
                                             <ul class="nav nav-tabs">
                                                 <template v-for="item in projectList">
-                                                    <li class="active">
+                                                    <li>
                                                         <a href="#tab1" data-toggle="tab">{{item.name}}</a>
                                                     </li>
                                                 </template>
@@ -418,7 +418,6 @@
             },
             fetchProject(){
                 var me = this;
-                debugger
                 me.$http.get("/api/dispatch/item", {
                     params: {
                         task_id: me.task.id

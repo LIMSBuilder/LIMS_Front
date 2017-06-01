@@ -510,6 +510,70 @@
             <!-- /.modal-dialog -->
         </div>
 
+        <div class="modal fade bs-modal-lg" id="exportInspect" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">选择需要导出的送检单</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover table-light">
+                            <tbody>
+                            <div class="">
+                                <table class="table table-hover table-light">
+                                    <thead>
+                                    <tr class="uppercase">
+                                        <th> 序号</th>
+                                        <th> 样品类别</th>
+                                        <th> 分析项目</th>
+                                        <th> 送检类别</th>
+                                        <th> 操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <template v-for="(item,index) in inspectList">
+                                        <tr>
+                                            <td class="text-center">{{index+1}}</td>
+                                            <td class="text-center">{{item.element.name}}</td>
+                                            <td class="text-center">{{item.name}}</td>
+                                            <td class="text-center">
+                                                <select class="form-control chooseInspect" data-live-search="true"
+                                                        v-model="item.inspectType">
+                                                    <option value="water"> 水质样品送检单</option>
+                                                    <option value="soil"> 土壤、底质样品送检单</option>
+                                                    <option value="solid"> 固定污染源有组织废气样品送检单</option>
+                                                    <option value="air"> 环境空气和无组织废气样品送检单</option>
+                                                    <option value="dysodia">臭气样品送检单</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn blue btn-outline"
+                                                        @click="createInspect(item)" v-if="item.inspect==null">
+                                                    生 成
+                                                </button>
+                                                <button type="button" class="btn green btn-outline"
+                                                        @click="exportInspectDetails(item)" v-if="item.inspect!=null">
+                                                    导 出
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn green">一键生成</button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
     </div>
 </template>
@@ -819,6 +883,53 @@
                 var me = this;
                 // console.log(me.homeworksID);
                 window.open("http://" + window.location.hostname + ":8080/api/company/exportDelivery?id=" + me.task.id);
+            },
+            exportInspect(id){
+                var me = this;
+                me.$http.get("/api/task/getInspectList", {
+                    params: {
+                        task_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    for (var i = 0; i < data.length; i++) {
+                        data[i].inspectType = "water";
+                    }
+                    me.inspectList = data;
+                    me.$nextTick(function () {
+                        $('.chooseInspect').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            noneSelectedText: "请选择送检单类型"
+                        });
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
+                jQuery("#exportInspect").modal("show");
+            },
+            exportInspectDetails(item){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/task/exportInspect?id=" + item.inspect.id);
+            },
+            createInspect(item){
+                var me = this;
+                me.$http.get("/api/task/createInspect", {
+                    params: {
+                        item_project_id: item.item_project_id,
+                        type: item.inspectType
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("送检单生成成功！");
+                            me.exportInspect(me.task.id);
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
             },
         }
     }
