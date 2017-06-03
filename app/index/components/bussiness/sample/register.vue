@@ -982,6 +982,7 @@
                                 200: function () {
                                     alert("任务书流转成功！");
                                     me.getData();
+                                    me.itemLists=[];
                                 },
                                 501: "当前存在未完成作业，无法流转！"
                             })

@@ -60,15 +60,15 @@
                                                     <ul class="todo-projects-container ">
                                                         <li class="todo-projects-item ">
                                                             <span class="label label-info"
-                                                                  v-if="item.flag==null"> 未分配 </span>
+                                                                  v-if="item.item[0].labFlag==null"> 未分配 </span>
                                                             <span class="label label-danger"
-                                                                  v-if="item.flag==1"> 已分配 </span>
+                                                                  v-if="item.item[0].labFlag==1"> 已分配 </span>
                                                             <span class="label label-success"
-                                                                  v-if="item.flag==2"> 已完成 </span>
-                                                            {{labdetail.task_identify}}--{{item.name}}
+                                                                  v-if="item.item[0].labFlag==2"> 已完成 </span>
+                                                            {{labdetail.task_identify}}--{{item.project.name}}
                                                             <a class="todo-add-button" href="javascript:;"
                                                                @click="addlabdispatch(item,labdetail.task_identify,index)"
-                                                               v-if="item.flag==null && item.active==0">+</a>
+                                                               v-if="item.item[0].labFlag==null && item.active==0">+</a>
                                                         </li>
                                                     </ul>
                                                 </template>
@@ -130,7 +130,7 @@
                                                                     <li class="todo-projects-item "
                                                                         v-if="chooseLabproject.length!=0">
                                                                         <h4 class="font-grey-salsa">
-                                                                            {{taskIdentify}}/{{chooseLabproject.name}}
+                                                                            {{taskIdentify}}/{{chooseLabproject.project.name}}
                                                                         </h4>
                                                                     </li>
                                                                     <li v-if="chooseLabproject.length==0">尚未选择任务。</li>
@@ -249,16 +249,18 @@
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
             },
+            //获取user值
             fetchUser(id){
                 var me = this;
                 App.startPageLoading({animate: true});//用户等待时，提示的loading条
                 me.$http.get("/api/lab/labUserList", {
                     params: {
-                        item_project_id: id
+                        project_id: id
                     }
                 }).then(response => {
                     var data = response.data;
                     me.userList = data.results;
+                    $('#charge').selectpicker('destroy');
                     me.$nextTick(function () {
                         $('#charge').selectpicker({
                             iconBase: 'fa',
@@ -320,8 +322,8 @@
                 me.labdetail.items[index].active = "1";
                 me.chooseLabproject = item;
                 me.taskIdentify = task_identify;
-                me.disproject = item.project_id;
-                me.fetchUser(item.item_project_id);
+                me.disproject = item.project.id;
+                me.fetchUser(item.project.id);
             },
             createDispatch(){
                 var me = this;
@@ -330,7 +332,7 @@
                     project_id: "",
                     user_id: ""
                 };
-                disitem.task_id = me.labdetail.id;
+                disitem.task_id = me.labdetail.task_id;
                 disitem.project_id = me.disproject;
                 disitem.user_id = me.useralabdispatch;
                 me.$http.post("/api/lab/saveAnalysis", disitem).then(response => {
@@ -338,7 +340,7 @@
                     codeState(data.code, {
                         200: function () {
                             alert("任务分配成功！");
-                            me.viewDetails(me.labdetail.id);
+                            me.viewDetails(me.labdetail.task_id);
                         }
                     })
                 }, response => {
