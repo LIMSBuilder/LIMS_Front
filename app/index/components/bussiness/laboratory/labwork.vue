@@ -434,6 +434,61 @@
                                             </div>
 
 
+                                            <div class="panel panel-danger">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">原始记录列表</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="actions" style="float: right">
+                                                        <button type="button"
+                                                                class="btn green-haze btn-outline sbold uppercase"
+                                                                data-toggle="modal" data-target="#uploadInspect">上 传
+                                                        </button>
+                                                    </div>
+                                                    <div class="table-scrollable table-scrollable-borderless">
+                                                        <table class="table table-hover table-light">
+                                                            <tbody>
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th> 序号</th>
+                                                                        <th> 附件名称</th>
+                                                                        <th> 操作</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                    <template
+                                                                            v-for="(attach,index) in inspectAttachment">
+                                                                        <tr>
+                                                                            <td class="text-center">{{index+1}}</td>
+                                                                            <td class="text-center">
+                                                                                {{attach.name}}
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <button type="button"
+                                                                                        class="btn green btn-outline">查
+                                                                                    看
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                        @click="deleteAttachment(attach)"
+                                                                                        class="btn red btn-outline">删 除
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">样品详情</h3>
@@ -516,11 +571,38 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade bs-modal-lg" id="uploadInspect" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">上传原始记录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myId" class="dropzone">
+                            <div class="dz-message">
+                                将文件拖至此处或点击上传.<br>
+                                <span class="note">上传经过标签化处理的送检单模板。 目前 <strong>仅支持</strong> DOC、DOCX、XLS、XLSX。</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
 </template>
 
 
 <script type="es6">
+    import Dropzone from 'mod/dropzone'
+    import 'style/dropzone'
     module.exports = {
         data: function () {
             return {
@@ -545,7 +627,8 @@
                 inspectInfo: {
                     sample_creater: {},
                     sample_receiver: {}
-                }
+                },
+                inspectAttachment: []
 
             }
 
@@ -556,6 +639,42 @@
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
             });
+
+            var elementDropzone = new Dropzone("div#myId", {
+                url: "/api/file/upload",
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+                uploadMultiple: false,
+                addRemoveLinks: true,
+                previewsContainer: null,
+                acceptedFiles: ".doc,.docx,.xls,.xlsx",
+                dictInvalidFileType: "文件类型不匹配",
+                dictRemoveFile: "取消上传",
+                dictRemoveLinks: "x",
+                dictCancelUpload: "x"
+            });
+            elementDropzone.on("success", function (file, finished) {
+                codeState(finished.code, {
+                    200: function () {
+                        me.$http.post("/api/inspect/saveAttachment", {
+                            task_id: me.task.id,
+                            project_id: me.chooseItem.project.id,
+                            path: finished.path
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("原始记录上传成功！");
+                                    me.fetchAttachment(me.chooseItem);
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        });
+                    }
+                })
+            });
+
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
                 var dom = jQuery(e.target);
                 while (!dom.hasClass("todo-tasklist-item") && dom[0] && dom[0].tagName != "body") {
@@ -652,6 +771,7 @@
                 me.chooseItem = item;
                 me.fetchItems(item);
                 me.fetchInfo(item);
+                me.fetchAttachment(item);
             },
             fetchItems(item){
                 var me = this;
@@ -682,6 +802,20 @@
                 })
 
             },
+            fetchAttachment(item){
+                var me = this;
+                me.$http.get("/api/dispatch/inspectAttachment", {
+                    params: {
+                        task_id: me.task.id,
+                        project_id: item.project.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.inspectAttachment = data;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
             saveInspect(item){
                 //console.log(item);
                 var me = this;
@@ -699,6 +833,22 @@
             },
             changeInspect(item){
                 item.process = 0;
+            },
+            deleteAttachment(item){
+                var me = this;
+                me.$http.get("/api/inspect/deleteAttachment", {
+                    params: {
+                        id: item.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("原始记录删除成功！");
+                            me.fetchAttachment(me.chooseItem);
+                        }
+                    })
+                })
             }
 
         }
