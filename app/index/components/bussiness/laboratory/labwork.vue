@@ -49,292 +49,461 @@
                                         <div style="margin-bottom: 30px;">
                                             <template v-for="item in projectList">
                                                 <button @click="chooseProject(item)" type="button"
-                                                        class=" btn btn-circle"
-                                                        style="margin-right: 10px;background-color:#2ab4c0; color: white;">
-                                                    {{item.project.name}}
+                                                        style="margin-right: 10px; width: 100px;"
+                                                        class="btn green btn-outline itemBtn">{{item.project.name}}
                                                 </button>
                                             </template>
                                         </div>
                                         <div v-if="chooseItem==0">
-                                            <h1 class="text-center">暂无选择检测项目</h1>
+                                            <h3 class="text-center">请选择分析项目</h3>
                                         </div>
+
+
                                         <form action="#" class="form-horizontal form-bordered form-row-stripped"
                                               v-if="chooseItem!=0">
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">任务编号：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            {{labItem.identify}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">分析项目：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            {{projectname}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">采样日期：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            {{labItem.Inspect[0].send_time}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">送样日期：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            {{labItem.Inspect[0].receive_time}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">送样者：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            {{labItem.Inspect[0].sender}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">接样者：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            {{labItem.Inspect[0].receiver}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">平行样：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static"
-                                                           v-if="labItem.items[0].libList.length!=0">
-                                                            <template v-for="items in labItem.items">
-                                                                <template v-for="item in items.libList">
-                                                                    {{item.identify}}
-                                                                </template>
-                                                            </template>
-                                                        </p>
-                                                        <p v-if="labItem.items[0].libList.length==0"
-                                                           class="form-control-static">无</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label col-md-4">加标回收样：
-                                                    </label>
-                                                    <div class="col-md-8">
-                                                        <p class="form-control-static"
-                                                           v-if="labItem.items[0].tagList.length!=0">
-                                                            <template v-for="items in labItem.items">
-                                                                <template v-for="item in items.tagList">
-                                                                    {{item.identify}}
-                                                                </template>
-                                                            </template>
-                                                        </p>
-                                                        <p v-if="labItem.items[0].tagList.length==0"
-                                                           class="form-control-static">无</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table-scrollable table-scrollable-borderless"
-                                                 v-if="type=='dysodia'">
-                                                <table class="table table-hover table-light">
-                                                    <tbody>
-                                                    <div class="table-scrollable table-scrollable-borderless">
-                                                        <table class="table table-hover table-light">
-                                                            <thead>
-                                                            <tr>
-                                                                <th> 序号（臭氧1）</th>
-                                                                <th> 样品编号</th>
-                                                                <th> 浓度</th>
-                                                                <th> 操作</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <template v-if="labItem.item[0]">
-
-                                                                </template>
-                                                                <td class="text-center"> 序号</td>
-                                                                <td class="text-center"> 样品编号</td>
-                                                                <td class="text-center"> 浓度</td>
-                                                                <td class="text-center"> 保存</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div class="table-scrollable table-scrollable-borderless"
-                                                 v-if="type=='air'">
-                                                <table class="table table-hover table-light">
-                                                    <tbody>
-                                                    <div class="table-scrollable table-scrollable-borderless">
-                                                        <table class="table table-hover table-light">
-                                                            <thead>
-                                                            <tr>
-                                                                <th> 序号（环境空气）</th>
-                                                                <th> 样品编号</th>
-                                                                <th> 分析结果（mg/L）</th>
-                                                                <th> 标况体积（NdL）</th>
-                                                                <th> 浓度（mg/m³）</th>
-                                                                <th> 操作</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td class="text-center"> 序号</td>
-                                                                <td class="text-center"> 样品编号</td>
-                                                                <td class="text-center"> 123</td>
-                                                                <td class="text-center"> 345</td>
-                                                                <td class="text-center"> 浓度</td>
-                                                                <td class="text-center"> 保存</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div class="table-scrollable table-scrollable-borderless"
-                                                 v-if="type=='water'">
-                                                <table class="table table-hover table-light">
-                                                    <tbody>
-                                                    <div class="table-scrollable table-scrollable-borderless">
-                                                        <table class="table table-hover table-light">
-                                                            <thead>
-                                                            <tr>
-                                                                <th> 序号(水)</th>
-                                                                <th> 样品编号</th>
-                                                                <th> 样品类型</th>
-                                                                <th> 分析结果（mg/L）</th>
-                                                                <th> 操作</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                            <template v-for="item in labItem.items">
-                                                                <template v-for="(sampleList,index) in item.sampleList">
-                                                                    <tr>
-                                                                        <td class="text-center">
-                                                                            {{index+1}}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{sampleList.identify}}
-                                                                        </td>
-                                                                        <td class="text-center"> shui</td>
-                                                                        <td class="text-center">
-                                                                            <input type="text" name="result" id="result"
-                                                                                   v-model="sampleList.result"/>
-                                                                            {{sampleList.result}}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            <button type="button" class="btn  green "
-                                                                                    style="float: right; margin-right: 20px"
-                                                                                    @click="save(sampleList)">
-                                                                                保存
-                                                                            </button>
-                                                                            <button type="button" class="btn  green "
-                                                                                    style="float: right; margin-right: 20px"
-                                                                                    @click="change()">
-                                                                                修改
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </template>
-                                                            </template>
 
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    </tbody>
-                                                </table>
+                                            <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">实验结果登记</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <template v-for="item in inspectList">
+                                                        <div class="table-scrollable table-scrollable-borderless"
+                                                             v-if="item.inspect.type=='dysodia'">
+                                                            <table class="table table-hover table-light">
+                                                                <tbody>
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th> 序号</th>
+                                                                            <th> 样品编号</th>
+                                                                            <th> 浓度</th>
+                                                                            <th> 操作</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <template v-for="(dysodia,index) in item.items">
+                                                                            <tr>
+                                                                                <td class="text-center">{{index+1}}</td>
+                                                                                <td class="text-center">
+                                                                                    {{dysodia.sample.identify}}
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="dysodia.concentration"
+                                                                                           v-if="dysodia.process==0">
+                                                                                    <template v-if="dysodia.process==1">
+                                                                                        {{dysodia.concentration}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button"
+                                                                                            @click="saveInspect(dysodia)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="dysodia.process==0">保
+                                                                                        存
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                            @click="changeInspect(dysodia)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="dysodia.process==1">修
+                                                                                        改
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </template>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="table-scrollable table-scrollable-borderless"
+                                                             v-if="item.inspect.type=='air'">
+                                                            <table class="table table-hover table-light">
+                                                                <tbody>
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th> 序号</th>
+                                                                            <th> 样品编号</th>
+                                                                            <th> 分析结果（mg/L）</th>
+                                                                            <th> 标况体积（NdL）</th>
+                                                                            <th> 浓度（mg/m³）</th>
+                                                                            <th> 操作</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <template v-for="(air,index) in item.items">
+                                                                            <tr>
+                                                                                <td class="text-center">{{index+1}}</td>
+                                                                                <td class="text-center">
+                                                                                    {{air.sample.identify}}
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="air.result"
+                                                                                           v-if="air.process==0">
+                                                                                    <template v-if="air.process==1">
+                                                                                        {{air.result}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="air.volume"
+                                                                                           v-if="air.process==0">
+                                                                                    <template v-if="air.process==1">
+                                                                                        {{air.volume}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="air.concentration"
+                                                                                           v-if="air.process==0">
+                                                                                    <template v-if="air.process==1">
+                                                                                        {{air.concentration}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button"
+                                                                                            @click="saveInspect(air)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="air.process==0">保
+                                                                                        存
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                            @click="changeInspect(air)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="air.process==1">修 改
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </template>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="table-scrollable table-scrollable-borderless"
+                                                             v-if="item.inspect.type=='water'">
+                                                            <table class="table table-hover table-light">
+                                                                <tbody>
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th> 序号</th>
+                                                                            <th> 样品编号</th>
+                                                                            <th style="width: 200px;"> 分析结果（mg/L）</th>
+                                                                            <th> 操作</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                        <template v-for="(water,index) in item.items">
+                                                                            <tr>
+                                                                                <td class="text-center">{{index+1}}</td>
+                                                                                <td class="text-center">
+                                                                                    {{water.sample.identify}}
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="water.result"
+                                                                                           v-if="water.process==0">
+                                                                                    <template v-if="water.process==1">
+                                                                                        {{water.result}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button"
+                                                                                            @click="saveInspect(water)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="water.process==0">保
+                                                                                        存
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                            @click="changeInspect(water)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="water.process==1">修 改
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </template>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="table-scrollable table-scrollable-borderless"
+                                                             v-if="item.inspect.type=='solid'">
+                                                            <table class="table table-hover table-light">
+                                                                <tbody>
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th> 序号</th>
+                                                                            <th> 样品编号</th>
+                                                                            <th> 分析结果（mg/L）</th>
+                                                                            <th> 标况体积（NdL）</th>
+                                                                            <th> 标干流量（Ndm³/h）</th>
+                                                                            <th> 浓度(mg/m³)</th>
+                                                                            <th> 排放量（kg/h）</th>
+                                                                            <th> 操作</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <template v-for="(solid,index) in item.items">
+                                                                            <tr>
+                                                                                <td class="text-center">{{index+1}}</td>
+                                                                                <td class="text-center">
+                                                                                    {{solid.sample.identify}}
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="solid.result"
+                                                                                           v-if="solid.process==0">
+                                                                                    <template v-if="solid.process==1">
+                                                                                        {{solid.result}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="solid.volume"
+                                                                                           v-if="solid.process==0">
+                                                                                    <template v-if="solid.process==1">
+                                                                                        {{solid.volume}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="solid.flow"
+                                                                                           v-if="solid.process==0">
+                                                                                    <template v-if="solid.process==1">
+                                                                                        {{solid.flow}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="solid.concentration"
+                                                                                           v-if="solid.process==0">
+                                                                                    <template v-if="solid.process==1">
+                                                                                        {{solid.concentration}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="solid.discharge"
+                                                                                           v-if="solid.process==0">
+                                                                                    <template v-if="solid.process==1">
+                                                                                        {{solid.discharge}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button"
+                                                                                            @click="saveInspect(solid)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="solid.process==0">保
+                                                                                        存
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                            @click="changeInspect(solid)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="solid.process==1">修 改
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </template>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="table-scrollable table-scrollable-borderless"
+                                                             v-if="item.inspect.type== 'soil' ">
+                                                            <table class="table table-hover table-light">
+                                                                <tbody>
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th> 序号</th>
+                                                                            <th> 样品编号</th>
+                                                                            <th> 样品名称</th>
+                                                                            <th> 采样断面（点）</th>
+                                                                            <th> 分析结果（mg/kg）</th>
+                                                                            <th> 备注</th>
+                                                                            <th> 操作</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <template v-for="(soil,index) in item.items">
+                                                                            <tr>
+                                                                                <td class="text-center">{{index+1}}</td>
+                                                                                <td class="text-center">
+                                                                                    {{soil.sample.identify}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{soil.sample.name}}
+                                                                                </td>
+                                                                                <td style="width: 50px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="soil.point"
+                                                                                           v-if="soil.process==0">
+                                                                                    <template v-if="soil.process==1">
+                                                                                        {{soil.point}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="soil.result"
+                                                                                           v-if="soil.process==0">
+                                                                                    <template v-if="soil.process==1">
+                                                                                        {{soil.result}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td style="width: 200px;"
+                                                                                    class="text-center">
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           v-model="soil.remark"
+                                                                                           v-if="soil.process==0">
+                                                                                    <template v-if="soil.process==1">
+                                                                                        {{soil.remark}}
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button"
+                                                                                            @click="saveInspect(soil)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="soil.process==0">保
+                                                                                        存
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                            @click="changeInspect(soil)"
+                                                                                            class="btn blue btn-outline"
+                                                                                            v-if="soil.process==1">修 改
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </template>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+
+                                                    </template>
+                                                </div>
                                             </div>
 
-                                            <div class="table-scrollable table-scrollable-borderless"
-                                                 v-if="type=='solid'">
-                                                <table class="table table-hover table-light">
-                                                    <tbody>
-                                                    <div class="table-scrollable table-scrollable-borderless">
-                                                        <table class="table table-hover table-light">
-                                                            <thead>
-                                                            <tr>
-                                                                <th> 序号(固体)</th>
-                                                                <th> 样品编号</th>
-                                                                <th> 分析结果（mg/L）</th>
-                                                                <th> 标况体积（NdL）</th>
-                                                                <th> 标干流量（Ndm³/h）</th>
-                                                                <th> 浓度(mg/m³)</th>
-                                                                <th> 排放量（kg/h）</th>
-                                                                <th> 操作</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td class="text-center"> 序号</td>
-                                                                <td class="text-center"> 样品编号</td>
-                                                                <td class="text-center"> 112</td>
-                                                                <td class="text-center"> 123</td>
-                                                                <td class="text-center"> 13</td>
-                                                                <td class="text-center"> 1231</td>
-                                                                <td class="text-center"> 123</td>
-                                                                <td class="text-center"> 保存</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    </tbody>
-                                                </table>
-                                            </div>
 
-                                            <div class="table-scrollable table-scrollable-borderless"
-                                                 v-if="type== 'soil' ">
-                                                <table class="table table-hover table-light">
-                                                    <tbody>
-                                                    <div class="table-scrollable table-scrollable-borderless">
-                                                        <table class="table table-hover table-light">
-                                                            <thead>
-                                                            <tr>
-                                                                <th> 序号(土壤)</th>
-                                                                <th> 样品编号</th>
-                                                                <th> 样品名称</th>
-                                                                <th> 采样断面（点）</th>
-                                                                <th> 分析结果（mg/kg）</th>
-                                                                <th> 备注</th>
-                                                                <th> 操作</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td class="text-center"> 序号</td>
-                                                                <td class="text-center"> 全额群翁</td>
-                                                                <td class="text-center"> 112</td>
-                                                                <td class="text-center"> 123</td>
-                                                                <td class="text-center"> 1231</td>
-                                                                <td class="text-center"> 123</td>
-                                                                <td class="text-center"> 保存</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
+                                            <div class="panel panel-info">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">样品详情</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">采样日期：
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">
+                                                                    {{inspectInfo.sample_time}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">送样日期：
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">
+                                                                    {{inspectInfo.sample_time}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    </tbody>
-                                                </table>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">送样者：
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">
+                                                                    {{inspectInfo.sample_creater.name}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">接样者：
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">
+                                                                    {{inspectInfo.sample_receiver.name}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">平行样：
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">
+                                                                    <template v-for="item in inspectInfo.libList">
+                                                                        {{item.identify}} /
+                                                                    </template>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">加标回收样：
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">
+                                                                    <template v-for="item in inspectInfo.tagList">
+                                                                        {{item.identify}} /
+                                                                    </template>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </form>
 
@@ -371,7 +540,12 @@
                     id: []
                 },
                 projectItems: [],//保存后得到的数据
-                result: ""
+                result: "",
+                inspectList: [],
+                inspectInfo: {
+                    sample_creater: {},
+                    sample_receiver: {}
+                }
 
             }
 
@@ -460,6 +634,14 @@
                     var data = response.data;
                     me.projectList = data.items;
                     me.choosep = 1;
+
+                    me.$nextTick(function () {
+                        jQuery(".itemBtn").off("click").on("click", function () {
+                            jQuery(".itemBtn").removeClass("active");
+                            jQuery(this).addClass("active");
+
+                        });
+                    })
                 }, response => {
                     serverErrorInfo(response);
                 })
@@ -467,7 +649,12 @@
             //点击分析项目，获取到分析项目的详细信息
             chooseProject(item){
                 var me = this;
-                me.chooseItem = 1;
+                me.chooseItem = item;
+                me.fetchItems(item);
+                me.fetchInfo(item);
+            },
+            fetchItems(item){
+                var me = this;
                 me.$http.get("/api/dispatch/inspect", {
                     params: {
                         task_id: me.task.id,
@@ -475,49 +662,43 @@
                     }
                 }).then(response => {
                     var data = response.data;
-                    me.projectname = item.project.name;//获取分析项目的名称
-                    me.labItem = data;
-                    me.type = data.Inspect[0].type;
+                    me.inspectList = data;
                 }, response => {
                     serverErrorInfo(response);
                 })
             },
-//            //点击化学需要量，传type和id数组获取下面表格的数据
-//            fetchlabitem(){
-//                var me = this;
-//                me.fetchLabItem.type = me.labItem.Inspect[0].type;
-//                for (var i = 0; i < me.labItem.Inspect.length; i++) {
-//                    me.fetchLabItem.id.push(me.labItem.Inspect[i].id);
-//                }
-//                me.$http.get("/api/inspect/save", me.fetchLabItem).then(response => {
-//                    var data = response.data;
-//
-//                }, response => {
-//                    serverErrorInfo(response);
-//                });
-//
-//
-//            },
-            save(item){
+            fetchInfo(item){
                 var me = this;
-                me.fetchLabItem.type = me.labItem.Inspect[0].type;
-                for (var i = 0; i < me.labItem.Inspect.length; i++) {
-                    me.fetchLabItem.id.push(me.labItem.Inspect[i].id);
-                }
-                me.fetchLabItem.item = item;
-
-                debugger
-                console.log(me.fetchLabItem);
-                me.$http.get("/api/inspect/save", me.fetchLabItem).then(response => {
+                me.$http.get("/api/dispatch/inspectInfo", {
+                    params: {
+                        task_id: me.task.id,
+                        project_id: item.project.id
+                    }
+                }).then(response => {
                     var data = response.data;
-                    debugger
-                    me.projectItems = data;
+                    me.inspectInfo = data;
                 }, response => {
                     serverErrorInfo(response);
                 })
-            },
-            change(){
 
+            },
+            saveInspect(item){
+                //console.log(item);
+                var me = this;
+                me.$http.post("/api/inspect/save", item).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("实验结果保存成功！");
+                            me.chooseProject(me.chooseItem)
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
+            },
+            changeInspect(item){
+                item.process = 0;
             }
 
         }
