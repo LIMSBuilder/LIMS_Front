@@ -119,20 +119,37 @@
                                                     <label class="control-label col-md-4">平行样：
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            mm</p>
+                                                        <p class="form-control-static"
+                                                           v-if="labItem.items[0].libList.length!=0">
+                                                            <template v-for="items in labItem.items">
+                                                                <template v-for="item in items.libList">
+                                                                    {{item.identify}}
+                                                                </template>
+                                                            </template>
+                                                        </p>
+                                                        <p v-if="labItem.items[0].libList.length==0"
+                                                           class="form-control-static">无</p>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="control-label col-md-4">加标回收样：
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <p class="form-control-static">
-                                                            qq</p>
+                                                        <p class="form-control-static"
+                                                           v-if="labItem.items[0].tagList.length!=0">
+                                                            <template v-for="items in labItem.items">
+                                                                <template v-for="item in items.tagList">
+                                                                    {{item.identify}}
+                                                                </template>
+                                                            </template>
+                                                        </p>
+                                                        <p v-if="labItem.items[0].tagList.length==0"
+                                                           class="form-control-static">无</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="table-scrollable table-scrollable-borderless">
+                                            <div class="table-scrollable table-scrollable-borderless"
+                                                 v-if="type=='dysodia'">
                                                 <table class="table table-hover table-light">
                                                     <tbody>
                                                     <div class="table-scrollable table-scrollable-borderless">
@@ -147,6 +164,9 @@
                                                             </thead>
                                                             <tbody>
                                                             <tr>
+                                                                <template v-if="labItem.item[0]">
+
+                                                                </template>
                                                                 <td class="text-center"> 序号</td>
                                                                 <td class="text-center"> 样品编号</td>
                                                                 <td class="text-center"> 浓度</td>
@@ -159,7 +179,8 @@
                                                 </table>
                                             </div>
 
-                                            <div class="table-scrollable table-scrollable-borderless">
+                                            <div class="table-scrollable table-scrollable-borderless"
+                                                 v-if="type=='air'">
                                                 <table class="table table-hover table-light">
                                                     <tbody>
                                                     <div class="table-scrollable table-scrollable-borderless">
@@ -190,7 +211,8 @@
                                                 </table>
                                             </div>
 
-                                            <div class="table-scrollable table-scrollable-borderless">
+                                            <div class="table-scrollable table-scrollable-borderless"
+                                                 v-if="type=='water'">
                                                 <table class="table table-hover table-light">
                                                     <tbody>
                                                     <div class="table-scrollable table-scrollable-borderless">
@@ -205,13 +227,39 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr>
-                                                                <td class="text-center"> 序号</td>
-                                                                <td class="text-center"> 样品编号</td>
-                                                                <td class="text-center"> shui</td>
-                                                                <td class="text-center"> 23</td>
-                                                                <td class="text-center"> 保存</td>
-                                                            </tr>
+
+                                                            <template v-for="item in labItem.items">
+                                                                <template v-for="(sampleList,index) in item.sampleList">
+                                                                    <tr>
+                                                                        <td class="text-center">
+                                                                            {{index+1}}
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            {{sampleList.identify}}
+                                                                        </td>
+                                                                        <td class="text-center"> shui</td>
+                                                                        <td class="text-center">
+                                                                            <input type="text" name="result" id="result"
+                                                                                   v-model="sampleList.result"/>
+                                                                            {{sampleList.result}}
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            <button type="button" class="btn  green "
+                                                                                    style="float: right; margin-right: 20px"
+                                                                                    @click="save(sampleList)">
+                                                                                保存
+                                                                            </button>
+                                                                            <button type="button" class="btn  green "
+                                                                                    style="float: right; margin-right: 20px"
+                                                                                    @click="change()">
+                                                                                修改
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </template>
+                                                            </template>
+
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -219,7 +267,8 @@
                                                 </table>
                                             </div>
 
-                                            <div class="table-scrollable table-scrollable-borderless">
+                                            <div class="table-scrollable table-scrollable-borderless"
+                                                 v-if="type=='solid'">
                                                 <table class="table table-hover table-light">
                                                     <tbody>
                                                     <div class="table-scrollable table-scrollable-borderless">
@@ -254,7 +303,8 @@
                                                 </table>
                                             </div>
 
-                                            <div class="table-scrollable table-scrollable-borderless">
+                                            <div class="table-scrollable table-scrollable-borderless"
+                                                 v-if="type== 'soil' ">
                                                 <table class="table table-hover table-light">
                                                     <tbody>
                                                     <div class="table-scrollable table-scrollable-borderless">
@@ -314,7 +364,14 @@
                 choosep: 0,
                 chooseItem: 0,
                 labItem: {},
-                projectname: ""
+                projectname: "",
+                type: "",
+                fetchLabItem: {
+                    type: "",
+                    id: []
+                },
+                projectItems: [],//保存后得到的数据
+                result: ""
 
             }
 
@@ -407,6 +464,7 @@
                     serverErrorInfo(response);
                 })
             },
+            //点击分析项目，获取到分析项目的详细信息
             chooseProject(item){
                 var me = this;
                 me.chooseItem = 1;
@@ -419,11 +477,49 @@
                     var data = response.data;
                     me.projectname = item.project.name;//获取分析项目的名称
                     me.labItem = data;
-                    debugger
+                    me.type = data.Inspect[0].type;
                 }, response => {
                     serverErrorInfo(response);
                 })
+            },
+//            //点击化学需要量，传type和id数组获取下面表格的数据
+//            fetchlabitem(){
+//                var me = this;
+//                me.fetchLabItem.type = me.labItem.Inspect[0].type;
+//                for (var i = 0; i < me.labItem.Inspect.length; i++) {
+//                    me.fetchLabItem.id.push(me.labItem.Inspect[i].id);
+//                }
+//                me.$http.get("/api/inspect/save", me.fetchLabItem).then(response => {
+//                    var data = response.data;
+//
+//                }, response => {
+//                    serverErrorInfo(response);
+//                });
+//
+//
+//            },
+            save(item){
+                var me = this;
+                me.fetchLabItem.type = me.labItem.Inspect[0].type;
+                for (var i = 0; i < me.labItem.Inspect.length; i++) {
+                    me.fetchLabItem.id.push(me.labItem.Inspect[i].id);
+                }
+                me.fetchLabItem.item = item;
+
+                debugger
+                console.log(me.fetchLabItem);
+                me.$http.get("/api/inspect/save", me.fetchLabItem).then(response => {
+                    var data = response.data;
+                    debugger
+                    me.projectItems = data;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            change(){
+
             }
+
         }
     }
 </script>
