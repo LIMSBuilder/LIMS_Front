@@ -29,7 +29,7 @@
                                     <div class="col-md-3 col-sm-2">
                                         <div class="todo-tasklist" id="task_list">
                                             <template v-for="item in qualityList">
-                                                <div @click="viewDetails(item.id)"
+                                                <div @click="viewDetails(item.id,item)"
                                                      :class="item.process==0?'todo-tasklist-item todo-tasklist-item-border-warning':item.process==1?'todo-tasklist-item todo-tasklist-item-border-info':item.process==2?'todo-tasklist-item todo-tasklist-item-border-primary':item.process==3?'todo-tasklist-item todo-tasklist-item-border-success':'todo-tasklist-item todo-tasklist-item-border-danger'">
                                                     <div class="todo-userpic pull-left" style="margin-right: 10px;"><i
                                                             style="width: 27px;height: 27px;"
@@ -94,13 +94,13 @@
                                                                  style="margin-right: 10px;">
                                                                 <i class="socicon-btn socicon-btn-circle socicon-vimeo tooltips"></i>
                                                             </div>
-                                                            <span class="todo-username pull-left">{{qualityDetail.client_unit}}</span>
+                                                            <span class="todo-username pull-left">{{trandfer.client_unit}}</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
                                                         <div class="todo-taskbody-date pull-right">
                                                             <span class="todo-username pull-left"
-                                                                  style="font-size: 14px;">编号：{{qualityDetail.identify}}</span>
+                                                                  style="font-size: 14px;">编号:{{trandfer.task_identify}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -134,59 +134,59 @@
                                                                                 <th> 编号（加）</th>
                                                                                 <th> 选择（加）</th>
                                                                                 <th> 盲样(个)</th>
-                                                                                <th v-if="qualityDetail.flag==null">
+                                                                                <th>
                                                                                     操作
                                                                                 </th>
                                                                             </tr>
                                                                             </thead>
                                                                             <tbody>
                                                                             <template
-                                                                                    v-for="(item,index) in qualityDetail.items">
+                                                                                    v-for="(item,index) in qualityDetail">
                                                                                 <tr class="uppercase">
                                                                                     <td class="text-center">
                                                                                         {{index+1}}
                                                                                     </td>
                                                                                     <td class="text-center">
-                                                                                        {{item.name}}
+                                                                                        {{item.project.name}}
                                                                                     </td>
                                                                                     <td class="text-center">
-                                                                                        {{item.sample.length}}
+                                                                                        {{item.sampleList.length}}
                                                                                     </td>
                                                                                     <td class="text-center">
                                                                                         <span v-if="item.sceneCount==0">无</span>
-                                                                                        <span v-if="item.sceneCount!=0">{{item.sceneCount}}</span>
+                                                                                        <span v-if="item.sceneCount!=0">现场平行个数</span>
                                                                                     </td>
                                                                                     <td class="text-center">
-                                                                                        {{item.lab.length}}
+                                                                                        {{item.libList.length}}
                                                                                     </td>
                                                                                     <td class="text-center"
                                                                                         style="width: 40px; color: red;">
                                                                                         <template
-                                                                                                v-for="idf in item.lab">
+                                                                                                v-for="idf in item.libList">
                                                                                             {{idf.identify}},
                                                                                         </template>
                                                                                     </td>
                                                                                     <td class="text-center">
                                                                                         <a href="javascript:;"
                                                                                            class="btn btn-icon-only blue"
-                                                                                           @click="chooseLaboratorys(item)">
+                                                                                           @click="chooseLaboratorys(item,index)">
                                                                                             <i class="fa fa-gear"></i>
                                                                                         </a>
                                                                                     </td>
                                                                                     <td class="text-center">
-                                                                                        {{item.tag.length}}
+                                                                                        {{item.tagList.length}}
                                                                                     </td>
                                                                                     <td class="text-center"
                                                                                         style="width: 40px ; color: red;">
                                                                                         <template
-                                                                                                v-for="idf in item.tag">
+                                                                                                v-for="idf in item.tagList">
                                                                                             {{idf.identify}},
                                                                                         </template>
                                                                                     </td>
                                                                                     <td class="text-center">
                                                                                         <a href="javascript:;"
                                                                                            class="btn btn-icon-only blue"
-                                                                                           @click="chooseJB(item)">
+                                                                                           @click="chooseJB(item,index)">
                                                                                             <i class="fa fa-gear"></i>
                                                                                         </a>
                                                                                     </td>
@@ -195,23 +195,23 @@
                                                                                                style="width: 40px;"
                                                                                                v-model="item.blind">
                                                                                     </td>
-                                                                                    <td v-if="qualityDetail.flag==null">
+                                                                                    <td>
                                                                                         <button type="button"
                                                                                                 class="btn btn-sm blue btn-outline"
                                                                                                 @click="savequality(item)"
-                                                                                                v-if="item.process==null">
+                                                                                                v-if="item.items[0].process==null">
                                                                                             保存
                                                                                         </button>
                                                                                         <button type="button"
                                                                                                 class="btn btn-sm blue btn-outline"
-                                                                                                @click="changequality(item)"
-                                                                                                v-if="item.process==1">
+                                                                                                @click="changequality(item,index)"
+                                                                                                v-if="item.items[0].process==1">
                                                                                             修改
                                                                                         </button>
                                                                                         <button type="button"
                                                                                                 class="btn btn-sm red btn-outline"
                                                                                                 @click="deletequality(item)"
-                                                                                                v-if="item.process==1">
+                                                                                                v-if="item.items[0].process==1">
                                                                                             删除
                                                                                         </button>
                                                                                     </td>
@@ -226,8 +226,7 @@
                                                             <div class="form-actions right todo-form-actions">
                                                                 <button type="button"
                                                                         class="btn btn-sm blue btn-outline"
-                                                                        @click="savaAll()"
-                                                                        v-if="qualityDetail.flag==null">
+                                                                        @click="savaAll()">
                                                                     保存全部
                                                                 </button>
                                                             </div>
@@ -509,13 +508,76 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
+        <div class="modal fade bs-modal-lg" id="exportInspect" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">选择需要导出的送检单</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover table-light">
+                            <tbody>
+                            <div class="">
+                                <table class="table table-hover table-light">
+                                    <thead>
+                                    <tr class="uppercase">
+                                        <th> 序号</th>
+                                        <th> 样品类别</th>
+                                        <th> 分析项目</th>
+                                        <th> 送检类别</th>
+                                        <th> 操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <template v-for="(item,index) in inspectList">
+                                        <tr>
+                                            <td class="text-center">{{index+1}}</td>
+                                            <td class="text-center">{{item.element.name}}</td>
+                                            <td class="text-center">{{item.name}}</td>
+                                            <td class="text-center">
+                                                <select class="form-control chooseInspect" data-live-search="true"
+                                                        v-model="item.inspectType">
+                                                    <option value="water"> 水质样品送检单</option>
+                                                    <option value="soil"> 土壤、底质样品送检单</option>
+                                                    <option value="solid"> 固定污染源有组织废气样品送检单</option>
+                                                    <option value="air"> 环境空气和无组织废气样品送检单</option>
+                                                    <option value="dysodia">臭气样品送检单</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn blue btn-outline"
+                                                        @click="createInspect(item)" v-if="item.inspect==null">
+                                                    生 成
+                                                </button>
+                                                <button type="button" class="btn green btn-outline"
+                                                        @click="exportInspectDetails(item)" v-if="item.inspect!=null">
+                                                    导 出
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn green">一键生成</button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
     </div>
 </template>
 
 
-<script type="">
+<script type="es6">
     import 'style/contract_list'
     import 'style/socicon'
     module.exports = {
@@ -531,16 +593,17 @@
                 qualitylist: [],
                 chooselaboratorys: [],//选择实验室平行
                 laboratoryitem: [],
-                labId: "",
+                labindex: "",//第几个做实验室做质检
                 choosejbs: [],//加标回收
                 jbitem: [],
-                jbId: "",
+                jbindex: "",//第几个做加标质检
                 homeworksID: "",//点击完成是=时获取的以公司为单位的id
                 taskID: "",//点击获取task的id；
                 inspectList: [],
-                qualityID: "",
+                qualityID: "",//task的id
                 trandfer: {},//获取样品基本信息
-                typename: ""
+                typename: "",
+                qualitycompany: "",//点击viewdetail时获取到公司名称和任务书编号
             }
         },
         mounted(){
@@ -615,6 +678,8 @@
             },
             viewDetails(id){
                 var me = this;
+                App.startPageLoading({animate: true});//用户等待时，提示的loading条
+
                 me.$http.get("/api/quality/list", {
                     params: {
                         task_id: id
@@ -625,6 +690,8 @@
                     me.qualityTab = 1;
                     me.qualityID = id;
                     me.fetchTransfer(id);
+                    App.stopPageLoading();//获取数据后，去掉loading条
+
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -643,39 +710,35 @@
                     serverErrorInfo(response);
                 });
             },
-            chooseLaboratorys(item){
+            chooseLaboratorys(item, index){
                 var me = this;
                 jQuery("#chooseLaboratory").modal("show");
-                me.chooselaboratorys = item.sample;
-                me.labId = item.id;
+                me.chooselaboratorys = item.sampleList;
+                me.labindex = index;
             },
             addlaboratory(){
                 var me = this;
-                var id = me.labId;
-                var item = me.qualityDetail.items.find(function (data) {
-                    return data.id == id;
-                });
+                var index = me.labindex;
+                me.qualityDetail[index].libList = [];
                 for (var i = 0; i < me.laboratoryitem.length; i++) {
-                    item.lab.push(me.laboratoryitem[i]);
+                    me.qualityDetail[index].libList.push(me.laboratoryitem[i]);
                 }
                 me.laboratoryitem = [];
                 jQuery("#chooseLaboratory").modal("hide");
+
             },
-            chooseJB(item){
+            chooseJB(item, index){
                 var me = this;
                 jQuery("#chooseJB").modal("show");
-                me.choosejbs = item.sample;
-                me.jbId = item.id;
-
+                me.choosejbs = item.sampleList;
+                me.jbindex = index;
             },
             addjb(){
                 var me = this;
-                var id = me.jbId;
-                var item = me.qualityDetail.items.find(function (data) {
-                    return data.id == id;
-                });
+                var index = me.jbindex;
+                me.qualityDetail[index].tagList = [];
                 for (var i = 0; i < me.jbitem.length; i++) {
-                    item.tag.push(me.jbitem[i]);
+                    me.qualityDetail[index].tagList.push(me.jbitem[i]);
                 }
                 me.jbitem = [];
                 jQuery("#chooseJB").modal("hide");
@@ -685,16 +748,20 @@
                 var saveItem = {
                     lab: [],
                     tag: [],
-                    blind: 0
+                    blind: 0,
+                    task_id: 0,
+                    project_id: 0
                 };
-                for (var i = 0; i < item.lab.length; i++) {
-                    saveItem.lab.push(item.lab[i].id);
+                for (var i = 0; i < item.libList.length; i++) {
+                    saveItem.lab.push(item.libList[i].id);
                 }
-                for (var i = 0; i < item.tag.length; i++) {
-                    saveItem.tag.push(item.tag[i].id);
+                for (var i = 0; i < item.tagList.length; i++) {
+                    saveItem.tag.push(item.tagList[i].id);
                 }
                 saveItem.blind = item.blind;
-                saveItem.id = item.item_project_id;
+                saveItem.task_id = me.qualityID;
+                saveItem.project_id = item.project.id;
+                console.log(saveItem);
                 me.$http.post("/api/quality/change", saveItem).then(response => {
                     var data = response.data;
                     codeState(data.code, {
@@ -708,11 +775,12 @@
                     serverErrorInfo(response);
                 })
             },
-            changequality(item){
-                item.process = null;
+            changequality(item, index){
+                var me = this;
+                item.items[0].process = null;
                 item.lab = [];
                 item.tag = [];
-                item.blind = 0;
+                item.blind = me.qualityDetail[index].blind;
             },
             deletequality(item){
                 var me = this;
@@ -721,7 +789,8 @@
                     success: function () {
                         me.$http.get("/api/quality/clear", {
                             params: {
-                                id: item.item_project_id
+                                task_id: me.qualityID,
+                                project_id: item.project.id
                             }
                         }).then(response => {
                             var data = response.data;
@@ -740,18 +809,20 @@
             //保存全部
             savaAll(){
                 var me = this;
-                var list = me.qualityDetail.items;
-                console.log(list);
+                var list = me.qualityDetail;
                 var items = [];
                 for (var i = 0; i < list.length; i++) {
-                    var item = list[i];
+                    var item = {};
                     item.labs = [];
                     item.tags = [];
-                    for (var j = 0; j < item.lab.length; j++) {
-                        item.labs.push(item.lab[j].id);
+                    item.blind = list[i].blind;
+                    item.task_id = me.qualityID;
+                    item.project_id = list[i].project.id;
+                    for (var j = 0; j < list[i].libList.length; j++) {
+                        item.labs.push(list[i].libList[j].id);
                     }
-                    for (var z = 0; z < item.tag.length; z++) {
-                        item.tags.push(item.tag[z].id);
+                    for (var z = 0; z < list[i].tagList.length; z++) {
+                        item.tags.push(list[i].tagList[z].id);
                     }
                     items.push(JSON.stringify(item));
                 }
@@ -772,7 +843,6 @@
             },
             finishBtn(){
                 var me = this;
-                debugger
                 me.$http.get("/api/quality/finishQuality", {
                     params: {
                         task_id: me.qualityID
@@ -782,8 +852,8 @@
                     codeState(data.code, {
                         200: function () {
                             alert("质控登记完成完成！");
-                            me.viewDetails(me.qualityID);
                             me.getData();
+                            me.viewDetails(me.qualityID);
                         },
                         505: "存在尚未处理的质控项目！"
                     })
@@ -806,8 +876,10 @@
                                 200: function () {
                                     alert("质控流转成功！");
                                     me.getData();
+                                    me.qualityTab = 0;
                                 },
-                                501: "当前存在完成质控，无法流转！"
+                                501: "当前存在完成质控，无法流转！",
+                                505: "当前存在未完成的送检单！"
                             })
                         }, response => {
                             serverErrorInfo(response);
@@ -819,6 +891,53 @@
                 var me = this;
                 // console.log(me.homeworksID);
                 window.open("http://" + window.location.hostname + ":8080/api/company/exportDelivery?id=" + me.task.id);
+            },
+            exportInspect(id){
+                var me = this;
+                me.$http.get("/api/task/getInspectList", {
+                    params: {
+                        task_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    for (var i = 0; i < data.length; i++) {
+                        data[i].inspectType = "water";
+                    }
+                    me.inspectList = data;
+                    me.$nextTick(function () {
+                        $('.chooseInspect').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            noneSelectedText: "请选择送检单类型"
+                        });
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
+                jQuery("#exportInspect").modal("show");
+            },
+            exportInspectDetails(item){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/task/exportInspect?id=" + item.inspect.id);
+            },
+            createInspect(item){
+                var me = this;
+                me.$http.get("/api/task/createInspect", {
+                    params: {
+                        item_project_id: item.item_project_id,
+                        type: item.inspectType
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("送检单生成成功！");
+//                            me.exportInspect(me.task.id);
+                        }
+                    })
+                }, response => {
+                    serverErrorInfo(response);
+                });
             },
         }
     }

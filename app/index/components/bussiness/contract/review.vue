@@ -764,7 +764,7 @@
 
                                     </div>
                                 </div>
-                                <div class="form-group form-md-radios">
+                                <div class="form-group form-md-radios" v-if="review_info.package==1">
                                     <label class="col-md-8 control-label"
                                            style="text-align: left">分包单位评审是否合格</label>
                                     <div class="md-radio-inline">
@@ -901,8 +901,8 @@
                     same: "1",
                     contract: "1",
                     guest: "1",
-                    package: "1",
-                    company: "1",
+                    package: "0",
+                    company: "3",
                     money: "1",
                     time: "1",
                     type: "",
@@ -941,6 +941,17 @@
                 }
             });
         },
+        watch: {
+            'review_info.package': function () {
+                var me = this;
+                if (me.review_info.package == 1) {
+                    me.review_info.company = 1;
+                }
+                else {
+                    me.review_info.company = "";
+                }
+            }
+        },
         methods: {
             _handleProjectListMenu: function () {
                 if (App.getViewPort().width <= 992) {
@@ -948,8 +959,10 @@
                 } else {
                     $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
                 }
-            },
-            fetchData(pageNum, rowCount){
+            }
+            ,
+            fetchData(pageNum, rowCount)
+            {
                 var me = this;
                 App.startPageLoading({animate: true});
                 this.$http.get('/api/contract/list', {
@@ -967,8 +980,10 @@
                 }, (response) => {
                     serverErrorInfo(response);
                 });
-            },
-            fetchPages(rowCount){
+            }
+            ,
+            fetchPages(rowCount)
+            {
                 var me = this;
                 this.$http.get('/api/contract/list', {
                     params: {
@@ -993,8 +1008,10 @@
                 }, (response) => {
                     serverErrorInfo(response);
                 });
-            },
-            fetchItems(id){
+            }
+            ,
+            fetchItems(id)
+            {
                 var me = this;
                 me.$http.get("/api/contract/getItems", {
                     params: {
@@ -1007,8 +1024,10 @@
                 }, response => {
                     serverErrorInfo(response);
                 });
-            },
-            fetchContract(id){
+            }
+            ,
+            fetchContract(id)
+            {
                 var me = this;
                 me.$http.get("/api/contract/contractDetails", {
                     params: {
@@ -1020,8 +1039,10 @@
                 }, response => {
                     serverErrorInfo(response);
                 })
-            },
-            fetchLog(id){
+            }
+            ,
+            fetchLog(id)
+            {
                 var me = this;
                 me.$http.get("/api/log/contractLog", {
                     params: {
@@ -1034,8 +1055,10 @@
                         serverErrorInfo(response);
                     }
                 );
-            },
-            fetchReviewList(id){
+            }
+            ,
+            fetchReviewList(id)
+            {
                 var me = this;
                 me.$http.get("/api/contract/getReviewList", {
                     params: {
@@ -1048,14 +1071,18 @@
                 }, function (response) {
                     serverErrorInfo(response);
                 })
-            },
-            getData(){
+            }
+            ,
+            getData()
+            {
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
                 me.fetchDearCount();
-            },
-            viewDetails(id){
+            }
+            ,
+            viewDetails(id)
+            {
                 var me = this;
                 App.startPageLoading({animate: true});
                 me.fetchContract(id)
@@ -1065,8 +1092,10 @@
                 me.$nextTick(function () {
                     App.stopPageLoading();
                 })
-            },
-            searchKey(){
+            }
+            ,
+            searchKey()
+            {
                 var me = this;
                 if (me.search.key != "") {
                     if (me.condition != "") {
@@ -1085,8 +1114,10 @@
                 }
                 me.currentPage = 1;
                 me.getData();
-            },
-            searchByProcess(step){
+            }
+            ,
+            searchByProcess(step)
+            {
                 var me = this;
                 me.currentPage = 1;
 //                me.condition = "process=" + step;  //这两个办法都可以实现通过进程查找当前合同
@@ -1110,8 +1141,10 @@
                 }
                 me.getData();
 
-            },
-            review_confirm(result){
+            }
+            ,
+            review_confirm(result)
+            {
                 var me = this;
                 var response = me.review_info;
                 response.result = result;
@@ -1131,6 +1164,7 @@
                                     me.viewDetails(me.contract.id);
                                     me.getData();
                                     me.fetchDearCount();
+                                    me.contract = {};
                                     jQuery("#reviewContract").modal("hide");
                                 }
                             })
@@ -1139,8 +1173,10 @@
                         })
                     }
                 })
-            },
-            viewReviewAdvice(item){
+            }
+            ,
+            viewReviewAdvice(item)
+            {
                 var me = this;
                 jQuery("#showReviewAdvice").modal("show");
                 me.$http.get("/api/contract/reviewDetail", {
@@ -1156,8 +1192,10 @@
                 }, function (response) {
                     serverErrorInfo(response);
                 })
-            },
-            fetchDearCount(){
+            }
+            ,
+            fetchDearCount()
+            {
                 var me = this;
                 me.$http.get("/api/contract/getWaitReviewCount").then(function (response) {
                     var data = response.data;
@@ -1165,8 +1203,10 @@
                 }, function (response) {
                     serverErrorInfo(response);
                 })
-            },
-            showProjectName(id){
+            }
+            ,
+            showProjectName(id)
+            {
                 var me = this;
                 me.$http.get("/api/task/monitorItem", {
                     params: {
@@ -1182,8 +1222,10 @@
                 );
                 jQuery("#showProject").modal("show");
 
-            },
-            exportReview(){
+            }
+            ,
+            exportReview()
+            {
                 var me = this;
 //                console.log(me.advice.id);
                 window.open("http://" + window.location.hostname + ":8080/api/contract/createReview?id=" + me.advice.id);

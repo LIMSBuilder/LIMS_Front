@@ -567,17 +567,19 @@
                                 task_id: id
                             }
                         }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("样品交接流转成功！");
-                                    me.getData();
-                                },
-                                501: "当前存在未完成作业，无法流转！"
-                            })
-                        }, response => {
-                            serverErrorInfo(response);
-                        })
+                                var data = response.data;
+                                codeState(data.code, {
+                                    200: function () {
+                                        alert("样品交接流转成功！");
+                                        me.getData();
+                                        me.trandferId = 0;
+                                    },
+                                    501: "当前存在未完成作业，无法流转！"
+                                })
+                            }, response => {
+                                serverErrorInfo(response);
+                            }
+                        )
                     }
                 })
             },
