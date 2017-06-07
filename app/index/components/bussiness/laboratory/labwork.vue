@@ -16,6 +16,9 @@
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
                                     <span class="caption-subject font-green-sharp bold uppercase">实验分析任务</span>
                                 </div>
+                                <div class="actions">
+                                    <button type="button" class="btn green btn-outline" @click="flowTask">流转任务</button>
+                                </div>
                             </div>
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
@@ -846,6 +849,21 @@
                         200: function () {
                             alert("原始记录删除成功！");
                             me.fetchAttachment(me.chooseItem);
+                        }
+                    })
+                })
+            },
+            flowTask(){
+                var me = this;
+                me.$http.get("/api/inspect/flowWord", {
+                    params: {
+                        task_id: me.task.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200: function () {
+                            alert("任务流转成功！");
                         }
                     })
                 })
