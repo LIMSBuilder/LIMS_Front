@@ -121,6 +121,45 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3"
+                                                                           for="reviewer">复核者
+                                                                        <span class="required"> * </span>
+                                                                    </label>
+                                                                    <div class="col-md-9">
+                                                                        <select class="bs-select form-control"
+                                                                                name="reviewer"
+                                                                                id="reviewer"
+                                                                                data-live-search="true"
+                                                                                required v-model="reviewer">
+                                                                            <option></option>
+                                                                            <template v-for="item in userList">
+                                                                                <option :value="item.lab">
+                                                                                    {{item.name}}
+                                                                                </option>
+                                                                            </template>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3" for="checker">审核者
+                                                                        <span class="required"> * </span>
+                                                                    </label>
+                                                                    <div class="col-md-9">
+                                                                        <select class="bs-select form-control"
+                                                                                name="checker"
+                                                                                id="checker"
+                                                                                data-live-search="true"
+                                                                                required v-model="checker">
+                                                                            <option></option>
+                                                                            <template v-for="item in userList">
+                                                                                <option :value="item.lab">
+                                                                                    {{item.name}}
+                                                                                </option>
+                                                                            </template>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
                                                             </form>
                                                             <h4>负责项目</h4>
                                                             <hr>
@@ -162,7 +201,7 @@
 
 </style>
 
-<script type="es6">
+<script type="">
     module.exports = {
         data: function () {
             return {
@@ -175,8 +214,9 @@
                 taskIdentify: "",
                 useralabdispatch: "",//分配人员
                 disproject: "",//分配任务,
-                flagdispatch: 0//标记分配任务
-
+                flagdispatch: 0,//标记分配任务
+                checker: "",//审核人员
+                reviewer: "",//复核人员
             }
         },
         mounted(){
@@ -272,6 +312,34 @@
                             App.stopPageLoading();//获取数据后，去掉loading条
                         })
                     });
+
+                    $('#checker').selectpicker('destroy');
+                    me.$nextTick(function () {
+                        $('#checker').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            noneSelectedText: "请选择负责人",
+                            dropupAuto: false
+                        });
+                        me.$nextTick(function () {
+                            App.stopPageLoading();//获取数据后，去掉loading条
+                        })
+                    });
+
+                    $('#reviewer').selectpicker('destroy');
+                    me.$nextTick(function () {
+                        $('#reviewer').selectpicker({
+                            iconBase: 'fa',
+                            tickIcon: 'fa-check',
+                            noneSelectedText: "请选择负责人",
+                            dropupAuto: false
+                        });
+                        me.$nextTick(function () {
+                            App.stopPageLoading();//获取数据后，去掉loading条
+                        })
+                    });
+
+
                 }, response => {
                     serverErrorInfo(response);
                 })
@@ -330,11 +398,15 @@
                 var disitem = {
                     task_id: "",
                     project_id: "",
-                    user_id: ""
+                    user_id: "",//分析者
+                    checker_id: "",//审核者
+                    reviewer_id: ""//复核者
                 };
                 disitem.task_id = me.labdetail.task_id;
                 disitem.project_id = me.disproject;
                 disitem.user_id = me.useralabdispatch;
+                disitem.checker_id = me.checker;
+                disitem.reviewer_id = me.reviewer;
                 me.$http.post("/api/lab/saveAnalysis", disitem).then(response => {
                     var data = response.data;
                     codeState(data.code, {
