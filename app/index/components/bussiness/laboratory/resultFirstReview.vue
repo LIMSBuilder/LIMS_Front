@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 实验分析任务
-            <small>／Analysis Job</small>
+        <h1 class="page-title"> 实验室主任一审
+            <small>／Director Review</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -14,7 +14,15 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">实验分析任务</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">待审核任务</span>
+                                </div>
+                                <div class="actions">
+                                    <!--<button type="button" class="btn green btn-outline" @click="agreeInspect">通 过-->
+                                    <!--</button>-->
+                                    <!--<button type="button" class="btn red btn-outline" @click="rejectInspect">拒 绝-->
+                                    <!--</button>-->
+                                    <!--<button type="button" class="btn blue btn-outline" @click="reviewInspect">实验审核-->
+                                    <!--</button>-->
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -32,6 +40,9 @@
                                                     </div>
                                                     <div class="todo-tasklist-item-title">
                                                         任务编号：{{item.identify}}
+                                                        <button type="button" class="btn blue btn-outline"
+                                                                @click="reviewInspect" style="float: right">审 核
+                                                        </button>
                                                     </div>
                                                     <div class="todo-tasklist-item-text"> {{item.client_unit}}
                                                     </div>
@@ -65,14 +76,9 @@
 
                                             <div class="panel panel-success">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">实验结果登记</h3>
+                                                    <h3 class="panel-title">实验结果审核</h3>
                                                 </div>
                                                 <div class="panel-body">
-                                                    <div class="actions" style="float: right">
-                                                        <button type="button" class="btn green btn-outline"
-                                                                @click="flowTask">流转任务
-                                                        </button>
-                                                    </div>
                                                     <template v-for="item in inspectList">
                                                         <div class="table-scrollable table-scrollable-borderless"
                                                              v-if="item.inspect.type=='dysodia'">
@@ -85,7 +91,6 @@
                                                                             <th> 序号</th>
                                                                             <th> 样品编号</th>
                                                                             <th> 浓度</th>
-                                                                            <th> 操作</th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -95,32 +100,9 @@
                                                                                 <td class="text-center">
                                                                                     {{dysodia.sample.identify}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="dysodia.concentration"
-                                                                                           v-if="dysodia.process==0">
-                                                                                    <template v-else>
-                                                                                        {{dysodia.concentration}}
-                                                                                    </template>
-                                                                                </td>
-                                                                                <td class="text-center">
-                                                                                    <button type="button"
-                                                                                            @click="saveInspect(dysodia)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="dysodia.process==0">保
-                                                                                        存
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                            @click="changeInspect(dysodia)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="dysodia.process==1">修
-                                                                                        改
-                                                                                    </button>
-                                                                                    <template v-if="dysodia.process==2">
-                                                                                        结果一审
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{dysodia.concentration}}
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -144,7 +126,6 @@
                                                                             <th> 分析结果（mg/L）</th>
                                                                             <th> 标况体积（NdL）</th>
                                                                             <th> 浓度（mg/m³）</th>
-                                                                            <th> 操作</th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -154,51 +135,17 @@
                                                                                 <td class="text-center">
                                                                                     {{air.sample.identify}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="air.result"
-                                                                                           v-if="air.process==0">
-                                                                                    <template v-else>
-                                                                                        {{air.result}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{air.result}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="air.volume"
-                                                                                           v-if="air.process==0">
-                                                                                    <template v-else>
-                                                                                        {{air.volume}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{air.volume}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="air.concentration"
-                                                                                           v-if="air.process==0">
-                                                                                    <template v-else>
-                                                                                        {{air.concentration}}
-                                                                                    </template>
-                                                                                </td>
-                                                                                <td class="text-center">
-                                                                                    <button type="button"
-                                                                                            @click="saveInspect(air)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="air.process==0">保
-                                                                                        存
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                            @click="changeInspect(air)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="air.process==1">修 改
-                                                                                    </button>
-                                                                                    <template v-if="air.process==2">
-                                                                                        结果一审
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{air.concentration}}
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -220,7 +167,6 @@
                                                                             <th> 序号</th>
                                                                             <th> 样品编号</th>
                                                                             <th style="width: 200px;"> 分析结果（mg/L）</th>
-                                                                            <th> 操作</th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -231,31 +177,9 @@
                                                                                 <td class="text-center">
                                                                                     {{water.sample.identify}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="water.result"
-                                                                                           v-if="water.process==0">
-                                                                                    <template v-else>
-                                                                                        {{water.result}}
-                                                                                    </template>
-                                                                                </td>
-                                                                                <td class="text-center">
-                                                                                    <button type="button"
-                                                                                            @click="saveInspect(water)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="water.process==0">保
-                                                                                        存
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                            @click="changeInspect(water)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="water.process==1">修 改
-                                                                                    </button>
-                                                                                    <template v-if="water.process==2">
-                                                                                        结果一审
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{water.result}}
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -281,7 +205,6 @@
                                                                             <th> 标干流量（Ndm³/h）</th>
                                                                             <th> 浓度(mg/m³)</th>
                                                                             <th> 排放量（kg/h）</th>
-                                                                            <th> 操作</th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -291,71 +214,25 @@
                                                                                 <td class="text-center">
                                                                                     {{solid.sample.identify}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="solid.result"
-                                                                                           v-if="solid.process==0">
-                                                                                    <template v-else>
-                                                                                        {{solid.result}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{solid.result}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="solid.volume"
-                                                                                           v-if="solid.process==0">
-                                                                                    <template v-else>
-                                                                                        {{solid.volume}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{solid.volume}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="solid.flow"
-                                                                                           v-if="solid.process==0">
-                                                                                    <template v-else>
-                                                                                        {{solid.flow}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{solid.flow}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="solid.concentration"
-                                                                                           v-if="solid.process==0">
-                                                                                    <template v-else>
-                                                                                        {{solid.concentration}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{solid.concentration}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="solid.discharge"
-                                                                                           v-if="solid.process==0">
-                                                                                    <template v-else>
-                                                                                        {{solid.discharge}}
-                                                                                    </template>
-                                                                                </td>
-                                                                                <td class="text-center">
-                                                                                    <button type="button"
-                                                                                            @click="saveInspect(solid)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="solid.process==0">保
-                                                                                        存
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                            @click="changeInspect(solid)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="solid.process==1">修 改
-                                                                                    </button>
-                                                                                    <template v-if="solid.process==2">
-                                                                                        结果一审
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{solid.discharge}}
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -380,7 +257,6 @@
                                                                             <th> 采样断面（点）</th>
                                                                             <th> 分析结果（mg/kg）</th>
                                                                             <th> 备注</th>
-                                                                            <th> 操作</th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -393,51 +269,17 @@
                                                                                 <td class="text-center">
                                                                                     {{soil.sample.name}}
                                                                                 </td>
-                                                                                <td style="width: 50px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="soil.point"
-                                                                                           v-if="soil.process==0">
-                                                                                    <template v-else>
-                                                                                        {{soil.point}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{soil.point}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="soil.result"
-                                                                                           v-if="soil.process==0">
-                                                                                    <template v-else>
-                                                                                        {{soil.result}}
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{soil.result}}
                                                                                 </td>
-                                                                                <td style="width: 200px;"
-                                                                                    class="text-center">
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           v-model="soil.remark"
-                                                                                           v-if="soil.process==0">
-                                                                                    <template v-else>
-                                                                                        {{soil.remark}}
-                                                                                    </template>
-                                                                                </td>
-                                                                                <td class="text-center">
-                                                                                    <button type="button"
-                                                                                            @click="saveInspect(soil)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="soil.process==0">保
-                                                                                        存
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                            @click="changeInspect(soil)"
-                                                                                            class="btn blue btn-outline"
-                                                                                            v-if="soil.process==1">修 改
-                                                                                    </button>
-                                                                                    <template v-if="soil.process==2">
-                                                                                        结果一审
-                                                                                    </template>
+                                                                                <td
+                                                                                        class="text-center">
+                                                                                    {{soil.remark}}
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -459,12 +301,6 @@
                                                     <h3 class="panel-title">原始记录列表</h3>
                                                 </div>
                                                 <div class="panel-body">
-                                                    <div class="actions" style="float: right">
-                                                        <button type="button"
-                                                                class="btn green-haze btn-outline sbold uppercase"
-                                                                data-toggle="modal" data-target="#uploadInspect">上 传
-                                                        </button>
-                                                    </div>
                                                     <div class="table-scrollable table-scrollable-borderless">
                                                         <table class="table table-hover table-light">
                                                             <tbody>
@@ -490,10 +326,6 @@
                                                                                 <button type="button"
                                                                                         class="btn green btn-outline">查
                                                                                     看
-                                                                                </button>
-                                                                                <button type="button"
-                                                                                        @click="deleteAttachment(attach)"
-                                                                                        class="btn red btn-outline">删 除
                                                                                 </button>
                                                                             </td>
                                                                         </tr>
@@ -592,23 +424,187 @@
             </div>
         </div>
 
-        <div class="modal fade bs-modal-lg" id="uploadInspect" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal fade bs-modal-lg" id="reviewInsp" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">上传原始记录</h4>
+                        <h4 class="modal-title">原始记录审核</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="myId" class="dropzone">
-                            <div class="dz-message">
-                                将文件拖至此处或点击上传.<br>
-                                <span class="note">上传经过标签化处理的送检单模板。 目前 <strong>仅支持</strong> DOC、DOCX、XLS、XLSX。</span>
+                        <div class="row margin-bottom-20">
+                            <label class="col-md-9 control-label">原始记录是否填写完整？</label>
+                            <div class="col-md-3">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio has-success">
+                                        <input type="radio" id="radio11" v-model="result.condition1" value="1"
+                                               name="radio1"
+                                               class="md-radiobtn">
+                                        <label for="radio11">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                    <div class="md-radio has-error">
+                                        <input type="radio" id="radio12" v-model="result.condition1" value="0"
+                                               name="radio1"
+                                               class="md-radiobtn">
+                                        <label for="radio12">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 否 </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="row margin-bottom-20">
+                            <label class="col-md-9 control-label">监测数据有效位数是否规范？</label>
+                            <div class="col-md-3">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio has-success">
+                                        <input type="radio" id="radio21" v-model="result.condition2" value="1"
+                                               name="radio2"
+                                               class="md-radiobtn">
+                                        <label for="radio21">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                    <div class="md-radio has-error">
+                                        <input type="radio" id="radio22" v-model="result.condition2" value="0"
+                                               name="radio2"
+                                               class="md-radiobtn">
+                                        <label for="radio22">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 否 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row margin-bottom-20">
+                            <label class="col-md-9 control-label">原始记录修改是否符合规范？</label>
+                            <div class="col-md-3">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio has-success">
+                                        <input type="radio" id="radio31" v-model="result.condition3" value="1"
+                                               name="radio3"
+                                               class="md-radiobtn">
+                                        <label for="radio31">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                    <div class="md-radio has-error">
+                                        <input type="radio" id="radio32" v-model="result.condition3" value="0"
+                                               name="radio3"
+                                               class="md-radiobtn">
+                                        <label for="radio32">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 否 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row margin-bottom-20">
+                            <label class="col-md-9 control-label">送检单结果与记录是否一致？</label>
+                            <div class="col-md-3">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio has-success">
+                                        <input type="radio" id="radio41" v-model="result.condition4" value="1"
+                                               name="radio4"
+                                               class="md-radiobtn">
+                                        <label for="radio41">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                    <div class="md-radio has-error">
+                                        <input type="radio" id="radio42" v-model="result.condition4" value="0"
+                                               name="radio4"
+                                               class="md-radiobtn">
+                                        <label for="radio42">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 否 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row margin-bottom-20">
+                            <label class="col-md-9 control-label">原始记录审核是否完整？</label>
+                            <div class="col-md-3">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio has-success">
+                                        <input type="radio" id="radio51" v-model="result.condition5" value="1"
+                                               name="radio5"
+                                               class="md-radiobtn">
+                                        <label for="radio51">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                    <div class="md-radio has-error">
+                                        <input type="radio" id="radio52" v-model="result.condition5" value="0"
+                                               name="radio5"
+                                               class="md-radiobtn">
+                                        <label for="radio52">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 否 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row margin-bottom-20">
+                            <label class="col-md-9 control-label">标准曲线是否符合规范？</label>
+                            <div class="col-md-3">
+                                <div class="md-radio-inline">
+                                    <div class="md-radio has-success">
+                                        <input type="radio" id="radio61" v-model="result.condition6" value="1"
+                                               name="radio6"
+                                               class="md-radiobtn">
+                                        <label for="radio61">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                    <div class="md-radio has-error">
+                                        <input type="radio" id="radio62" v-model="result.condition6" value="0"
+                                               name="radio6"
+                                               class="md-radiobtn">
+                                        <label for="radio62">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 否 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <textarea class="form-control" rows="5" v-model="result.remark"
+                                  placeholder="备注信息"></textarea>
+                        <hr>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-12">
+                                <p>审核结果：<span class="label label-success"
+                                              v-if="result.condition1==1&&result.condition2==1&&result.condition3==1&&result.condition4==1&&result.condition5==1&&result.condition6==1"> 通过 </span>
+                                    <span v-else class="label label-danger">拒绝</span>
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                        <button type="button" class="btn green btn-outline" @click="review">保存审核
+                        </button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -648,7 +644,19 @@
                     sample_creater: {},
                     sample_receiver: {}
                 },
-                inspectAttachment: []
+                inspectAttachment: [],
+                rejectObj: {
+                    remark: ""
+                },
+                result: {
+                    condition1: 1,
+                    condition2: 1,
+                    condition3: 1,
+                    condition4: 1,
+                    condition5: 1,
+                    condition6: 1,
+                    remark: ""
+                }
 
             }
 
@@ -658,41 +666,6 @@
             me.getData();
             App.addResizeHandler(function () {
                 me._handleProjectListMenu();
-            });
-
-            var elementDropzone = new Dropzone("div#myId", {
-                url: "/api/file/upload",
-                paramName: "file", // The name that will be used to transfer the file
-                maxFilesize: 2, // MB
-                uploadMultiple: false,
-                addRemoveLinks: true,
-                previewsContainer: null,
-                acceptedFiles: ".doc,.docx,.xls,.xlsx",
-                dictInvalidFileType: "文件类型不匹配",
-                dictRemoveFile: "取消上传",
-                dictRemoveLinks: "x",
-                dictCancelUpload: "x"
-            });
-            elementDropzone.on("success", function (file, finished) {
-                codeState(finished.code, {
-                    200: function () {
-                        me.$http.post("/api/inspect/saveAttachment", {
-                            task_id: me.task.id,
-                            project_id: me.chooseItem.project.id,
-                            path: finished.path
-                        }).then(response => {
-                            var data = response.data;
-                            codeState(data.code, {
-                                200: function () {
-                                    alert("原始记录上传成功！");
-                                    me.fetchAttachment(me.chooseItem);
-                                }
-                            })
-                        }, response => {
-                            serverErrorInfo(response);
-                        });
-                    }
-                })
             });
 
             jQuery(".todo-tasklist").off("click").on("click", function (e) {
@@ -710,7 +683,7 @@
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.startPageLoading({animate: true});//用户等待时，提示的loading条
-                this.$http.get("/api/dispatch/taskList", {
+                this.$http.get("/api/inspect/taskList", {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -728,7 +701,7 @@
             },
             fetchPages(rowCount){
                 var me = this;
-                this.$http.get("/api/dispatch/taskList", {
+                this.$http.get("/api/inspect/taskList", {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
@@ -765,7 +738,7 @@
             },
             fetchProject(){
                 var me = this;
-                me.$http.get("/api/dispatch/item", {
+                me.$http.get("/api/inspect/itemList", {
                     params: {
                         task_id: me.task.id
                     }
@@ -795,7 +768,7 @@
             },
             fetchItems(item){
                 var me = this;
-                me.$http.get("/api/dispatch/inspect", {
+                me.$http.get("/api/inspect/detail", {
                     params: {
                         task_id: me.task.id,
                         project_id: item.project.id
@@ -836,57 +809,45 @@
                     serverErrorInfo(response);
                 })
             },
-            saveInspect(item){
-                //console.log(item);
-                var me = this;
-                me.$http.post("/api/inspect/save", item).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("实验结果保存成功！");
-                            me.chooseProject(me.chooseItem)
-                        }
-                    })
-                }, response => {
-                    serverErrorInfo(response);
-                });
-            },
-            changeInspect(item){
-                item.process = 0;
-            },
-            deleteAttachment(item){
-                var me = this;
-                me.$http.get("/api/inspect/deleteAttachment", {
-                    params: {
-                        id: item.id
-                    }
-                }).then(response => {
-                    var data = response.data;
-                    codeState(data.code, {
-                        200: function () {
-                            alert("原始记录删除成功！");
-                            me.fetchAttachment(me.chooseItem);
-                        }
-                    })
-                })
-            },
             flowTask(){
                 var me = this;
-                me.$http.get("/api/inspect/flowWork", {
+                me.$http.get("/api/inspect/flowWord", {
                     params: {
-                        task_id: me.task.id,
-                        project_id: me.chooseItem.project.id
+                        task_id: me.task.id
                     }
                 }).then(response => {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
-                            alert("实验分析结果流转成功！");
-                            me.chooseProject(me.chooseItem)
-                        },
-                        505: "您存在尚未实验分析的样品，无法流转"
+                            alert("任务流转成功！");
+                        }
                     })
                 })
+            },
+            review(){
+                var me = this;
+                var obj = me.result;
+                obj.task_id = me.task.id;
+                confirm({
+                    content: "是否完成对任务编号为【" + me.task.identify + "】的实验审核?",
+                    success(){
+                        me.$http.post("/api/inspect/review", obj).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200(){
+                                    alert("审核成功！");
+                                    me.chooseProject(me.chooseItem);
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
+            },
+            reviewInspect(){
+                var me = this;
+                jQuery("#reviewInsp").modal("show");
             }
 
         }

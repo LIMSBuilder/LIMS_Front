@@ -39,18 +39,18 @@ app.use(hotMiddleware)
 // app.use('/api', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
 // app.use('/upload', proxy({target: 'http://192.168.0.16:8080', changeOrigin: true}));
 
-app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
-app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
-app.use('/pushlet.srv', proxy({target: 'http://localhost:8080', changeOrigin: true}));
+// app.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
+// app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
+// app.use('/pushlet.srv', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 //
 // app.use('/api', proxy({target: 'http://172.20.10.2:8080', changeOrigin: true}));
 // app.use('/upload', proxy({target: 'http://172.20.10.3:8080', changeOrigin: true}));
 // app.use('/pushlet.srv', proxy({target: 'http://172.20.10.3:8080', changeOrigin: true}));
 
 
-// app.use('/api', proxy({target: 'http://192.168.0.12:8080', changeOrigin: true}));
-// app.use('/upload', proxy({target: 'http://192.168.0.12:8080', changeOrigin: true}));
-// app.use('/pushlet.srv', proxy({target: 'http://192.168.0.12:8080', changeOrigin: true}));
+app.use('/api', proxy({target: 'http://192.168.0.3:8080', changeOrigin: true}));
+app.use('/upload', proxy({target: 'http://192.168.0.3:8080', changeOrigin: true}));
+app.use('/pushlet.srv', proxy({target: 'http://192.168.0.3:8080', changeOrigin: true}));
 
 // app.use('/api', proxy({target: 'http://172.20.10.2:8080', changeOrigin: true}));
 // app.use('/upload', proxy({target: 'http://172.20.10.2:8080', changeOrigin: true}));
