@@ -104,15 +104,16 @@
                                                                                     <button type="button"
                                                                                             @click="agreeInspect(dysodia)"
                                                                                             class="btn green btn-outline"
-                                                                                            v-if="dysodia.process==2">通
+                                                                                            v-if="dysodia.process==3">通
                                                                                         过
                                                                                     </button>
                                                                                     <button type="button"
                                                                                             @click="rejectInspect(dysodia)"
                                                                                             class="btn red btn-outline"
-                                                                                            v-if="dysodia.process==2">拒
+                                                                                            v-if="dysodia.process==3">拒
                                                                                         绝
                                                                                     </button>
+                                                                                    <template v-if="dysodia.process==4">二审通过</template>
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -162,13 +163,14 @@
                                                                                     <button type="button"
                                                                                             @click="agreeInspect(air)"
                                                                                             class="btn green btn-outline"
-                                                                                            v-if="air.process==2">通 过
+                                                                                            v-if="air.process==3">通 过
                                                                                     </button>
                                                                                     <button type="button"
                                                                                             @click="rejectInspect(air)"
                                                                                             class="btn red btn-outline"
-                                                                                            v-if="air.process==2">拒 绝
+                                                                                            v-if="air.process==3">拒 绝
                                                                                     </button>
+                                                                                    <template v-if="air.process==4">二审通过</template>
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -209,13 +211,14 @@
                                                                                     <button type="button"
                                                                                             @click="agreeInspect(water)"
                                                                                             class="btn green btn-outline"
-                                                                                            v-if="water.process==2">通 过
+                                                                                            v-if="water.process==3">通 过
                                                                                     </button>
                                                                                     <button type="button"
                                                                                             @click="rejectInspect(water)"
                                                                                             class="btn red btn-outline"
-                                                                                            v-if="water.process==2">拒 绝
+                                                                                            v-if="water.process==3">拒 绝
                                                                                     </button>
+                                                                                    <template v-if="water.process==4">二审通过</template>
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -275,13 +278,14 @@
                                                                                     <button type="button"
                                                                                             @click="agreeInspect(solid)"
                                                                                             class="btn green btn-outline"
-                                                                                            v-if="solid.process==2">通 过
+                                                                                            v-if="solid.process==3">通 过
                                                                                     </button>
                                                                                     <button type="button"
                                                                                             @click="rejectInspect(solid)"
                                                                                             class="btn red btn-outline"
-                                                                                            v-if="solid.process==2">拒 绝
+                                                                                            v-if="solid.process==3">拒 绝
                                                                                     </button>
+                                                                                    <template v-if="solid.process==4">二审通过</template>
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -335,13 +339,15 @@
                                                                                     <button type="button"
                                                                                             @click="agreeInspect(soil)"
                                                                                             class="btn green btn-outline"
-                                                                                            v-if="soil.process==2">通 过
+                                                                                            v-if="soil.process==3">通 过
                                                                                     </button>
                                                                                     <button type="button"
                                                                                             @click="rejectInspect(soil)"
                                                                                             class="btn red btn-outline"
-                                                                                            v-if="soil.process==2">拒 绝
+                                                                                            v-if="soil.process==3">拒 绝
                                                                                     </button>
+
+                                                                                    <template v-if="soil.process==4">二审通过</template>
                                                                                 </td>
                                                                             </tr>
                                                                         </template>
@@ -570,7 +576,7 @@
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.startPageLoading({animate: true});//用户等待时，提示的loading条
-                this.$http.get("/api/inspect/taskList", {
+                this.$http.get("/api/inspect/reviewTaskList", {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -588,7 +594,7 @@
             },
             fetchPages(rowCount){
                 var me = this;
-                this.$http.get("/api/inspect/taskList", {
+                this.$http.get("/api/inspect/reviewTaskList", {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
@@ -625,7 +631,7 @@
             },
             fetchProject(){
                 var me = this;
-                me.$http.get("/api/dispatch/item", {
+                me.$http.get("/api/inspect/reviewItem", {
                     params: {
                         task_id: me.task.id
                     }
@@ -655,7 +661,7 @@
             },
             fetchItems(item){
                 var me = this;
-                me.$http.get("/api/dispatch/inspect", {
+                me.$http.get("/api/inspect/reviewItemList", {
                     params: {
                         task_id: me.task.id,
                         project_id: item.project.id
@@ -723,7 +729,7 @@
                 confirm({
                     content: "是否审核拒绝编号为【" + item.sample.identify + "】的实验分析结果,拒绝原因为【" + remark + "】?",
                     success(){
-                        me.$http.get("/api/inspect/review", {
+                        me.$http.get("/api/inspect/reviewList", {
                             params: {
                                 result: 0,
                                 id: item.id,
@@ -749,7 +755,7 @@
                 confirm({
                     content: "是否审核通过编号为【" + item.sample.identify + "】的实验分析结果?",
                     success(){
-                        me.$http.get("/api/inspect/review", {
+                        me.$http.get("/api/inspect/reviewList", {
                             params: {
                                 result: 1,
                                 id: item.id,
