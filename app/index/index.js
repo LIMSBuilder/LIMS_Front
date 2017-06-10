@@ -77,8 +77,10 @@ import Quality_list from './components/bussiness/quality/list.vue'
 import Laboratory from './components/bussiness/laboratory/laboratory.vue'
 import Lab_dispatch from './components/bussiness/laboratory/Labdispatch.vue'
 import Lab_work from './components/bussiness/laboratory/labwork.vue'
+import Lab_Review from './components/bussiness/laboratory/labReview.vue'
+import Lab_Check from './components/bussiness/laboratory/labCheck.vue'
 
-
+import Director_Review from './components/bussiness/laboratory/resultFirstReview.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -548,6 +550,15 @@ var routes = [
             {
                 path: "labwork",
                 component: Lab_work
+            }, {
+                path: "review",
+                component: Lab_Review
+            }, {
+                path: "check",
+                component: Lab_Check
+            }, {
+                path: "firstReview",
+                component: Director_Review
             }
         ]
     },

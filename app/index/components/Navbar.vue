@@ -228,11 +228,22 @@
                             <span class="title">分析任务</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/Laboratory/review' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">实验结果一审</span>
                         </a>
                     </router-link>
+                    <router-link :to="{ path: '/Laboratory/check' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">实验结果二审</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/Laboratory/firstReview' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">实验主任审核</span>
+                        </a>
+                    </router-link>
+
                 </ul>
             </li>
             <li class="nav-item">
