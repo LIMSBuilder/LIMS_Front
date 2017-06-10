@@ -831,7 +831,7 @@
                 confirm({
                     content: "是否完成对任务编号为【" + me.task.identify + "】的实验审核?",
                     success(){
-                        me.$http.post("/api/inspect/review", obj).then(response => {
+                        me.$http.post("/api/inspect/firstReview", obj).then(response => {
                             var data = response.data;
                             codeState(data.code, {
                                 200(){
