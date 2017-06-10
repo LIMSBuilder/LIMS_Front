@@ -733,6 +733,7 @@
                             params: {
                                 result: 0,
                                 id: item.id,
+                                task_id: me.task.id,
                                 type: item.type,
                                 remark: remark
                             }
@@ -759,6 +760,7 @@
                             params: {
                                 result: 1,
                                 id: item.id,
+                                task_id: me.task.id,
                                 type: item.type,
                                 remark: ""
                             }
