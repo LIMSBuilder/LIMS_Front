@@ -81,6 +81,10 @@ import Lab_Review from './components/bussiness/laboratory/labReview.vue'
 import Lab_Check from './components/bussiness/laboratory/labCheck.vue'
 
 import Director_Review from './components/bussiness/laboratory/resultFirstReview.vue'
+
+
+import Report from './components/bussiness/report/report.vue'
+import Report_Dispatch from './components/bussiness/report/reportDispatch.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -559,6 +563,17 @@ var routes = [
             }, {
                 path: "firstReview",
                 component: Director_Review
+            }
+        ]
+    },
+    {
+        path: "/report",
+        name: "report",
+        component: Report,
+        children: [
+            {
+                path: "dispatch",
+                component: Report_Dispatch
             }
         ]
     },

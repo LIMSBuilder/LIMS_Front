@@ -53,7 +53,6 @@
                                             <!-- End Pagination -->
                                         </div>
                                         <div class="todo-tasklist-devider"></div>
-
                                         <div class="col-md-4 col-sm-4 todo-container">
                                             <div class="todo-projects-item" v-if="labdetail.length!=0">
                                                 <template v-for="(item,index) in labdetail.items">
