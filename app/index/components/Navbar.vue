@@ -253,7 +253,7 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/report/dispatch' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">报告任务派遣</span>
                         </a>
