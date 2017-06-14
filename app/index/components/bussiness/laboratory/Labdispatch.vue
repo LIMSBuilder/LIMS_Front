@@ -68,6 +68,12 @@
                                                             <a class="todo-add-button" href="javascript:;"
                                                                @click="addlabdispatch(item,labdetail.task_identify,index)"
                                                                v-if="item.item[0].labFlag==null && item.active==0">+</a>
+
+                                                            <button type="button" v-if="item.item[0].labFlag==1"
+                                                                    class="btn btn-sm green btn-outline todo-add-button"
+                                                                    @click="showInfo(item)">
+                                                                查 看
+                                                            </button>
                                                         </li>
                                                     </ul>
                                                 </template>
@@ -193,6 +199,23 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade bs-modal-lg" id="info" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">Modal Title</h4>
+                    </div>
+                    <div class="modal-body"> 你数据返回给我，我自己处理{{info}}</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn green">Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 </template>
 
@@ -216,6 +239,7 @@
                 flagdispatch: 0,//标记分配任务
                 checker: "",//审核人员
                 reviewer: "",//复核人员
+                info: {}
             }
         },
         mounted(){
@@ -418,6 +442,21 @@
                     serverErrorInfo(response);
                 })
 
+            },
+            showInfo(item){
+                var me = this;
+                console.log(item);
+                me.$http.get("/api/lab/getInfo", {
+                    params: {
+                        id: item.item[0].item_project_id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.info = data;
+                    jQuery("#info").modal("show");
+                }, response => {
+                    serverErrorInfo(response);
+                })
             }
         }
     }
