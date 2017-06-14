@@ -85,6 +85,7 @@ import Director_Review from './components/bussiness/laboratory/resultFirstReview
 
 import Report from './components/bussiness/report/report.vue'
 import Report_Dispatch from './components/bussiness/report/reportDispatch.vue'
+import Report_Create from './components/bussiness/report/myReportTask.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -574,6 +575,9 @@ var routes = [
             {
                 path: "dispatch",
                 component: Report_Dispatch
+            }, {
+                path: "create",
+                component: Report_Create
             }
         ]
     },
