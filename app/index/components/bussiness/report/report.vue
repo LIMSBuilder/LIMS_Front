@@ -13,7 +13,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>实验分析</span>
+                    <span>报告管理</span>
                 </li>
             </ul>
         </div>

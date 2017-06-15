@@ -64,6 +64,12 @@
                     <span class="title">我的分析任务</span>
                 </a>
             </router-link>
+            <router-link :to="{ path: '/report/create' }" tag="li" active-class="active">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-tasks"></i>
+                    <span class="title">我的报告编制</span>
+                </a>
+            </router-link>
             <router-link :to="{ path: '/mail/inbox' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-envelope"></i>
@@ -253,9 +259,14 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/report/dispatch' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">报告任务派遣</span>
+                        </a>
+                    </router-link>
+                    <router-link :to="{ path: '/report/create' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">我的报告编制</span>
                         </a>
                     </router-link>
                     <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
