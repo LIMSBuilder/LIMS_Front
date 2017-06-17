@@ -19,7 +19,7 @@
                             <!-- end PROJECT HEAD -->
                             <div class="portlet-body">
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-3 col-sm-3">
                                         <div class="todo-tasklist" id="task_list">
                                             <!--<div class="todo-tasklist-item todo-tasklist-item-border-warning">-->
                                             <!--<h4 class="text-center">显示全部</h4>-->
@@ -62,7 +62,7 @@
                                         <!-- End Pagination -->
                                     </div>
                                     <div class="todo-tasklist-devider"></div>
-                                    <div class="col-md-4 col-sm-4 todo-container">
+                                    <div class="col-md-3 col-sm-3 todo-container">
                                         <div class="todo-projects-item">
                                             <ul class="todo-projects-container ">
                                                 <template v-for="item in elementMonitor">
@@ -84,6 +84,11 @@
                                                                 <a href="javascript:;" class="font-green"
                                                                    @click="showProject(item.id)">查看详情</a>
                                                             </p>
+                                                            <p class="todo-inline todo-float-r">
+                                                                <button type="button"
+                                                                        class="btn btn-sm green btn-outline">完 成
+                                                                </button>
+                                                            </p>
                                                         </div>
                                                     </li>
                                                     <div class="todo-projects-divider"></div>
@@ -95,86 +100,122 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 bg-after-green">
-                                        <div class="tabbable-line">
-                                            <ul class="nav nav-tabs ">
-                                                <li class="active">
-                                                    <a href="#page_1" data-toggle="tab"> 报告编制 </a>
-                                                </li>
-                                                <!--<li>-->
-                                                <!--<a href="#page_2" data-toggle="tab"> 执行中派遣 </a>-->
-                                                <!--</li>-->
-                                                <!--<li>-->
-                                                <!--<a href="#page_3" data-toggle="tab"> 历史派遣 </a>-->
-                                                <!--</li>-->
-                                            </ul>
-                                            <div class="tab-content" id="dispatchWizard">
-                                                <div class="tab-pane active" id="page_1">
-                                                    <form class="form-horizontal" action="#"
-                                                          method="POST" id="deliveryForm">
-                                                        <h4>选择报告类型</h4>
-                                                        <hr>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3" for="charge">报告类型
-                                                                <span class="required"> * </span>
-                                                            </label>
-                                                            <div class="col-md-9">
-                                                                <select class="bs-select form-control"
-                                                                        name="charge"
-                                                                        id="charge"
-                                                                        data-live-search="true"
-                                                                        v-model="dispatch.charge_id"
-                                                                        required>
-                                                                    <option></option>
-                                                                    <template v-for="item in userList">
-                                                                        <optgroup :label="item.name">
-                                                                            <template v-for="user in item.user.results">
-                                                                                <option :value="user.id">
-                                                                                    {{user.name}}
-                                                                                </option>
-                                                                            </template>
-                                                                        </optgroup>
-
+                                    <div class="col-md-6 col-sm-6 bg-after-green">
+                                        <div class="tab-pane active" id="page_1">
+                                            <div class="form-group todo-container" style="padding: 10px 0px ">
+                                                <h4>相关文档</h4>
+                                                <hr>
+                                                <p>
+                                                    <button type="button" class="btn green btn-outline">合同
+                                                    </button>
+                                                    <button type="button" class="btn blue btn-outline">任务书
+                                                    </button>
+                                                    <button type="button" class="btn yellow btn-outline">样品信息
+                                                    </button>
+                                                    <button type="button" class="btn purple btn-outline">交接联单
+                                                    </button>
+                                                    <button type="button" class="btn dark btn-outline">实验结果
+                                                    </button>
+                                                </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <form class="form-horizontal" action="#"
+                                                  method="POST" id="deliveryForm">
+                                                <h4>报告编制</h4>
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3" for="charge">报告类型
+                                                        <span class="required"> * </span>
+                                                    </label>
+                                                    <div class="col-md-7">
+                                                        <select class="bs-select form-control"
+                                                                name="charge"
+                                                                id="charge"
+                                                                data-live-search="true"
+                                                                v-model="dispatch.charge_id"
+                                                                required>
+                                                            <option></option>
+                                                            <template v-for="item in userList">
+                                                                <optgroup :label="item.name">
+                                                                    <template v-for="user in item.user.results">
+                                                                        <option :value="user.id">
+                                                                            {{user.name}}
+                                                                        </option>
                                                                     </template>
-                                                                </select>
+                                                                </optgroup>
+
+                                                            </template>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2" style="padding-left: 0px;">
+                                                        <button type="button"
+                                                                class="btn blue btn-outline">创 建
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3" for="charge">上传报告
+                                                        <span class="required"> * </span>
+                                                    </label>
+                                                    <div class="col-md-9">
+                                                        <div id="myId" class="dropzone">
+                                                            <div class="dz-message">
+                                                                将文件拖至此处或点击上传.<br>
+                                                                <span class="note">上传已完成的报告。</span>
                                                             </div>
                                                         </div>
-                                                    </form>
-                                                    <button type="button" class="btn green btn-outline pull-right">创 建
-                                                    </button>
-                                                    <div class="clearfix"></div>
-                                                    <div class="form-group todo-container" style="padding: 10px 0px ">
-                                                        <h4>报告列表</h4>
-                                                        <hr>
-                                                        <div class="table-scrollable table-scrollable-borderless">
-                                                            <table class="table table-hover table-light">
-                                                                <thead>
-                                                                <tr class="uppercase">
-                                                                    <th> 序号</th>
-                                                                    <th> 报告类别</th>
-                                                                    <th> 创建者</th>
-                                                                    <th> 创建时间</th>
-                                                                    <th> 查看</th>
-                                                                    <th> 修改</th>
-                                                                    <th> 删除</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
                                                     </div>
-                                                    <hr>
-                                                    <button type="button" class="btn green"
-                                                            @click="createDispatch"
-                                                            style="float: right; ">
-                                                        完 成
-                                                    </button>
+                                                </div>
+                                            </form>
+                                            <button type="button" class="btn green btn-outline pull-right">保 存
+                                            </button>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group todo-container" style="padding: 10px 0px ">
+                                                <h4>报告列表</h4>
+                                                <hr>
+                                                <div class="table-scrollable table-scrollable-borderless">
+                                                    <table class="table table-hover table-light">
+                                                        <thead>
+                                                        <tr class="uppercase">
+                                                            <th> 序号</th>
+                                                            <th> 报告类别</th>
+                                                            <th> 创建者</th>
+                                                            <th> 创建时间</th>
+                                                            <th> 来源</th>
+                                                            <th> 操作</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="text-center">1</td>
+                                                            <td class="text-center">水质</td>
+                                                            <td class="text-center">张三</td>
+                                                            <td class="text-center"> 2017-03-21</td>
+                                                            <td class="text-center"> 上传</td>
+                                                            <td class="text-center">
+                                                                <button type="button"
+                                                                        class="btn btn-sm green btn-outline">查 看
+                                                                </button>
+                                                                <button type="button"
+                                                                        class="btn btn-sm btn-outline  blue">编 辑
+                                                                </button>
+                                                                <button type="button"
+                                                                        class="btn btn-sm btn-outline  red">删 除
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
+                                            <hr>
+                                            <button type="button" class="btn green"
+                                                    @click="createDispatch"
+                                                    style="float: right; ">
+                                                完 成
+                                            </button>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -413,6 +454,8 @@
     import 'style/socicon'
     import '../../../style/todo.css'
     import '../../../script/todo'
+    import Dropzone from 'mod/dropzone'
+    import 'style/dropzone'
     module.exports = {
         data: function () {
             return {
@@ -465,6 +508,27 @@
                     jQuery(".todo-projects-item").removeClass("todo-active");
                     dom.addClass('todo-active ');
                 }
+            });
+
+            var elementDropzone = me.elementDropzone = new Dropzone("div#myId", {
+                url: "/api/file/upload",
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+                uploadMultiple: false,
+                addRemoveLinks: true,
+                previewsContainer: null,
+                acceptedFiles: ".doc,.docx,.xls,.xlsx",
+                dictInvalidFileType: "文件类型不匹配",
+                dictRemoveFile: "取消上传",
+                dictRemoveLinks: "x",
+                dictCancelUpload: "x"
+            });
+            elementDropzone.on("success", function (file, finished) {
+                codeState(finished.code, {
+                    200: function () {
+                        me.path = finished.path;
+                    }
+                })
             });
             BlogUtils.formValid(jQuery("#deliveryForm"));
         },
