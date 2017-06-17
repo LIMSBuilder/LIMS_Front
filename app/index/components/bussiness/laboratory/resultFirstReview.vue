@@ -841,7 +841,7 @@
                             })
                         }, response => {
                             serverErrorInfo(response);
-                        })
+                        });
                     }
                 })
             },

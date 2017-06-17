@@ -86,6 +86,9 @@ import Director_Review from './components/bussiness/laboratory/resultFirstReview
 import Report from './components/bussiness/report/report.vue'
 import Report_Dispatch from './components/bussiness/report/reportDispatch.vue'
 import Report_Create from './components/bussiness/report/myReportTask.vue'
+import FirstReview from './components/bussiness/report/firstReview.vue'
+import SecondReview from './components/bussiness/report/secondReview.vue'
+import ThirdReview from './components/bussiness/report/thirdReview.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -578,6 +581,15 @@ var routes = [
             }, {
                 path: "create",
                 component: Report_Create
+            }, {
+                path: "firstReview",
+                component: FirstReview
+            }, {
+                path: "secondReview",
+                component: SecondReview
+            }, {
+                path: "thirdReview",
+                component: ThirdReview
             }
         ]
     },
