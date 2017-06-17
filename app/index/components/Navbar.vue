@@ -259,29 +259,24 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/report/dispatch' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">报告任务派遣</span>
-                        </a>
-                    </router-link>
                     <router-link :to="{ path: '/report/create' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">我的报告编制</span>
+                            <span class="title">报告编制</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/apply' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/report/firstReview' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">监测报告一审</span>
+                            <span class="title">报告一审</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/report/secondReview' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">监测报告签发</span>
+                            <span class="title">报告二审</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/sample/register' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/report/thirdReview' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">监测报告签收</span>
+                            <span class="title">签发审核</span>
                         </a>
                     </router-link>
                 </ul>
