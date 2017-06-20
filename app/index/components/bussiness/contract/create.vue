@@ -337,7 +337,7 @@
                                                 <div class="col-md-10">
                                                     <!--<input type="text" class="form-control" name="packageUnit"-->
                                                     <!--id="packageUnit" v-model="contract.package_unit"/>-->
-                                                    <div class="">
+                                                    <div class="mt-radio-inline">
                                                         <input type="radio" id="noimportWrite" value="0"
                                                                v-model="contract.importWrite">
                                                         <label for="noimportWrite">录入</label>
