@@ -28,7 +28,8 @@
                                             <li style="margin: 20px 0; ">
                                                 <div class="md-checkbox has-success">
                                                     <input type="checkbox" :id="'checkbox'+item.id"
-                                                           class="md-check" :value="item.id">
+                                                           class="md-check" :value="item.id"
+                                                           v-model="searchKey.monitor">
                                                     <label :for="'checkbox'+item.id">
                                                         <span class="inc"></span>
                                                         <span class="check"></span>
@@ -51,7 +52,7 @@
                                 <div class="form-group form-md-line-input form-md-floating-label"
                                      style="padding-top: 0;">
                                     <div class="input-icon right">
-                                        <input type="text" class="form-control" @keyup.enter="searchKey($event)">
+                                        <input type="text" class="form-control" v-model="searchKey.key">
                                         <span class="help-block">支持委托单位、合同编号和项目名称查询。</span>
                                         <i class="fa fa-search"></i>
                                     </div>
@@ -59,7 +60,8 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="input-group" id="defaultrange">
-                                            <input type="text" class="form-control" id="finish_time" name="finish_time">
+                                            <input type="text" class="form-control" id="finish_time" name="finish_time"
+                                                   v-model="searchKey.finishTime">
                                             <span class="input-group-btn">
                                                                 <button class="btn default date-range-toggle"
                                                                         type="button">
@@ -72,7 +74,7 @@
                                 <div class="clearfix"></div>
                                 <hr>
                                 <div class="form-actions text-center">
-                                    <button type="button" class="btn green text-center">搜 索</button>
+                                    <button type="button" class="btn green text-center" @click="search">搜 索</button>
                                 </div>
 
                             </div>
@@ -634,7 +636,12 @@
                 log: {},
                 total_count: {},
                 countProcess: [],
-                project: []
+                project: [],
+                searchKey: {
+                    monitor: [],
+                    key: "",
+                    finishTime: ""
+                }
             }
         },
         mounted(){
@@ -677,10 +684,9 @@
                 }
             );
             $('#defaultrange').on('apply.daterangepicker', function (ev, picker) {
-                var str = picker.startDate.format('YYYY-MM-DD') + "至" + picker.endDate.format('YYYY-MM-DD');
-                me.contract.finish_time = str;
+                var str = picker.startDate.format('YYYY-MM-DD') + "~" + picker.endDate.format('YYYY-MM-DD');
+                me.searchKey.finishTime = str;
             });
-            me.fetchCount();
         },
         methods: {
             init: function () {
@@ -788,7 +794,6 @@
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
-                me.fetchCount();
                 me.contract = {
                     trustee: {},
                     type: {}
@@ -811,42 +816,25 @@
             },
             search(){
                 var me = this;
-                me.currentPage = 1;
                 me.condition = "";
-                me.getData();
-            },
-            searchByType(id){
-                var me = this;
-                me.currentPage = 1;
-                me.condition = "type=" + id;
-                me.getData();
-            },
-            searchByProcess(step){
-                var me = this;
-                me.currentPage = 1;
-                if (step != "total") {
-                    me.condition = "process=" + step;
-                } else {
-                    me.condition = "";
+                if (me.searchKey.monitor.length != 0) {
+                    me.condition += "monitor=("
+                    for (var i = 0; i < me.searchKey.monitor.length; i++) {
+                        me.condition += me.searchKey.monitor[i] + ",";
+                    }
+                    me.condition= me.condition.substring(0, me.condition.length - 2);
+                    me.condition += ")";
                 }
-                me.getData();
-
-            },
-            searchKey(e){
-                var me = this;
-                me.condition = "keyWords=" + encodeURI(e.target.value);
+                if (me.searchKey.key != "") {
+                    if (me.condition != "") me.condition += "&&";
+                    me.condition += "keyWords=" + encodeURI(me.searchKey.key);
+                }
+                if (me.searchKey.finishTime != "") {
+                    if (me.condition != "") me.condition += "&&";
+                    me.condition += "finishTime=" + me.searchKey.finishTime;
+                }
                 me.currentPage = 1;
                 me.getData();
-            },
-            fetchCount(){
-                var me = this;
-                me.$http.get("/api/contract/countProcess").then(
-                    response => {
-                        var data = response.data;
-                        me.countProcess = data;
-                    }, response => {
-                        serverErrorInfo(response);
-                    });
             },
             showProjectName(id){
                 var me = this;
