@@ -73,8 +73,12 @@
                                         </td>
                                         <td class="text-center"> {{index+1}}</td>
                                         <td class="text-center"> {{item.name}}</td>
-                                        <td class="text-center"> <a href="javascript:;" @click="showSameElement(item.element.id)">{{item.element.name}}</a></td>
-                                        <td class="text-center"> <a href="javascript:;" @click="showSameDepartment(item.department.id)">{{item.department.name}}</a></td>
+                                        <td class="text-center"><a href="javascript:;"
+                                                                   @click="showSameElement(item.element.id)">{{item.element.name}}</a>
+                                        </td>
+                                        <td class="text-center"><a href="javascript:;"
+                                                                   @click="showSameDepartment(item.department.id)">{{item.department.name}}</a>
+                                        </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-sm blue btn-outline"
                                                     @click="edit(item)">修 改
@@ -98,8 +102,8 @@
                 </div>
                 <!-- END BORDERED TABLE PORTLET-->
             </div>
-
         </div>
+    </div>
 </template>
 
 <script type="es6">
@@ -131,7 +135,6 @@
                     }
                 }).then(response => {
                         var data = response.data;
-
                         me.projectList = data.results;
                     },
                     response => {
@@ -153,6 +156,7 @@
                 var me = this;
                 this.$http.get("/api/element/total").then(response => {
                     var data = response.data;
+
                     me.elementList = data.results;
                 }, response => {
                     serverErrorInfo(response);

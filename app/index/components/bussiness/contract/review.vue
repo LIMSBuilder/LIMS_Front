@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同审核
+        <h1 class="page-title"> 技术审核
             <small>／Review</small>
         </h1>
         <div class="row">
@@ -19,18 +19,18 @@
                                 <div class="todo-project-list">
                                     <ul class="nav nav-stacked">
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('total')">全部 </a>
+                                            <a href="javascript:;" @click="searchByProcess('reviewBig')">全部 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(1)">
+                                            <a href="javascript:;" @click="searchByProcess('waitReviewBig')">
                                                 <span class="badge badge-info"
                                                       v-if="dear_count!=0"> {{dear_count}} </span> 待审核 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess('after_receive')">已通过 </a>
+                                            <a href="javascript:;" @click="searchByProcess('afterReviewBig')">已通过 </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" @click="searchByProcess(-1)">待修改 </a>
+                                            <a href="javascript:;" @click="searchByProcess('beforeReviewBig')">待修改 </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -77,7 +77,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="icon-bar-chart font-green-sharp hide"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">合同审核</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">技术审核</span>
                                 </div>
                             </div>
                             <!-- end PROJECT HEAD -->
@@ -401,7 +401,7 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.payment}}
+                                                                            ￥{{contract.payment}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -421,55 +421,74 @@
                                                         <div class="tab-pane" id="page_2">
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
-                                                                    <thead>
-                                                                    <tr class="uppercase">
-                                                                        <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
-                                                                        <th> 环境要素</th>
-                                                                        <th> 监测点（个）</th>
-                                                                        <th> 监测项目</th>
-                                                                        <th> 监测频次</th>
-                                                                        <th> 是否分包</th>
-                                                                        <th> 备注</th>
-                                                                    </tr>
-                                                                    </thead>
                                                                     <tbody>
-                                                                    <template v-for="(item,index) in items">
-                                                                        <tr>
-                                                                            <td class="text-center">{{index+1}}</td>
-                                                                            <td class="text-center">{{item.company}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.element.name}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.point}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <button type="button"
-                                                                                        class="btn green btn-outline"
-                                                                                        @click="showProjectName(item.id)">
-                                                                                    查看详情
-                                                                                </button>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.frequency?item.frequency.total:''}}
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==1">是
-                                                                            </td>
-                                                                            <td class="text-center"
-                                                                                v-if="item.is_package==0">否
-                                                                            </td>
-                                                                            <td class="text-center">{{item.other}}</td>
-                                                                        </tr>
-                                                                    </template>
+                                                                    <div class="table-scrollable table-scrollable-borderless">
+                                                                        <table class="table table-hover table-light">
+                                                                            <thead>
+                                                                            <tr class="uppercase">
+                                                                                <th> 序号</th>
+                                                                                <th> 公司名称</th>
+                                                                                <th> 环境要素</th>
+                                                                                <th> 监测点（个）</th>
+                                                                                <th> 监测项目</th>
+                                                                                <th> 监测频次</th>
+                                                                                <th> 备注</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <template v-for="itemList in itemLists">
+                                                                                <template
+                                                                                        v-for="(item,index) in itemList.items">
+                                                                                    <tr>
+                                                                                        <td class="text-center">
+                                                                                            {{index+1}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.element.name}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.point}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            <template
+                                                                                                    v-for="(project,index) in item.project">
+                                                                                                {{project.name}}
+                                                                                                <template
+                                                                                                        v-if="project.isPackage==true">
+                                                                                                    <span style="color: red;">[分包]</span>
+                                                                                                </template>
+                                                                                                <template
+                                                                                                        v-if="index+1!=item.project.length">
+                                                                                                    ,
+                                                                                                </template>
+                                                                                            </template>
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.frequency.total}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.other}}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </template>
+                                                                            </template>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
+
                                                         </div>
                                                         <div class="tab-pane" id="page_3">
+                                                            <div class="col-md-7 col-sm-8" v-show="!reviewList.result">
+                                                                <h1 class="text-center">尚未审核合同</h1>
+                                                            </div>
                                                             <ul class="todo-task-history">
+
                                                                 <template v-for="item in reviewList.result">
                                                                     <li>
                                                                         <div class="todo-task-history-date">
@@ -493,13 +512,10 @@
                                                         <div class="tab-pane" id="page_4">
                                                             <ul class="todo-task-history">
                                                                 <template v-for="item in log">
-                                                                    <li>
-                                                                        <div class="todo-task-history-date">
-                                                                            {{item.log_time}}
-                                                                        </div>
-                                                                        <div class="todo-task-history-desc">
-                                                                            {{item.log_msg}}
-                                                                        </div>
+                                                                    <li style="list-style: none">
+                                                                        <span>{{item.user.name}}</span>
+                                                                        <span>{{item.create_time}}</span>
+                                                                        <span>{{item.msg}}</span>
                                                                     </li>
                                                                 </template>
                                                             </ul>
@@ -585,7 +601,7 @@
                         <p v-html="advice.msg"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn green btn-outline">导 出</button>
+                        <button type="button" class="btn green btn-outline" @click="exportReview">导 出</button>
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
                     </div>
                 </div>
@@ -602,9 +618,16 @@
                     </div>
                     <div class="modal-body">
                         <ul class="receiver_tag">
-                            <template v-for="names in projectName">
-                                <li class="uppercase"><a href="javascript:;"
-                                                         style="line-height: 30px">{{names.name}}</a></li>
+                            <template v-for="item in project">
+                                <li class="uppercase ">
+                                    <a href="javascript:;" style="line-height: 30px">
+                                        {{item.name}}
+                                        <template
+                                                v-if="item.isPackage==true">
+                                            <span style="color: red;">[分包]</span>
+                                        </template>
+                                    </a>
+                                </li>
                             </template>
                         </ul>
                     </div>
@@ -616,8 +639,6 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
-
         <div class="modal fade bs-modal-lg" id="reviewContract" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -743,7 +764,7 @@
 
                                     </div>
                                 </div>
-                                <div class="form-group form-md-radios">
+                                <div class="form-group form-md-radios" v-if="review_info.package==1">
                                     <label class="col-md-8 control-label"
                                            style="text-align: left">分包单位评审是否合格</label>
                                     <div class="md-radio-inline">
@@ -860,7 +881,7 @@
         </div>
     </div>
 </template>
-<script>
+<script type="es6">
     import 'wangeditor'
     import 'style/contract_list'
     import 'style/socicon'
@@ -868,20 +889,20 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=review",
+                condition: "process=waitReviewBig",
                 contractList: [],
                 contract: {
                     trustee: {},
                     type: {}
                 },
-                items: [],
+                itemLists: [],
                 log: [],
                 review_info: {
                     same: "1",
                     contract: "1",
                     guest: "1",
-                    package: "1",
-                    company: "1",
+                    package: "0",
+                    company: "3",
                     money: "1",
                     time: "1",
                     type: "",
@@ -894,7 +915,7 @@
                 },
                 reviewList: {},
                 advice: {},
-                projectName: []
+                project: [],
             }
         },
         mounted(){
@@ -920,6 +941,17 @@
                 }
             });
         },
+        watch: {
+            'review_info.package': function () {
+                var me = this;
+                if (me.review_info.package == 1) {
+                    me.review_info.company = 1;
+                }
+                else {
+                    me.review_info.company = "";
+                }
+            }
+        },
         methods: {
             _handleProjectListMenu: function () {
                 if (App.getViewPort().width <= 992) {
@@ -927,8 +959,10 @@
                 } else {
                     $('.todo-project-list-content').removeClass("collapse").css("height", "auto");
                 }
-            },
-            fetchData(pageNum, rowCount){
+            }
+            ,
+            fetchData(pageNum, rowCount)
+            {
                 var me = this;
                 App.startPageLoading({animate: true});
                 this.$http.get('/api/contract/list', {
@@ -946,8 +980,10 @@
                 }, (response) => {
                     serverErrorInfo(response);
                 });
-            },
-            fetchPages(rowCount){
+            }
+            ,
+            fetchPages(rowCount)
+            {
                 var me = this;
                 this.$http.get('/api/contract/list', {
                     params: {
@@ -972,8 +1008,10 @@
                 }, (response) => {
                     serverErrorInfo(response);
                 });
-            },
-            fetchItems(id){
+            }
+            ,
+            fetchItems(id)
+            {
                 var me = this;
                 me.$http.get("/api/contract/getItems", {
                     params: {
@@ -981,12 +1019,15 @@
                     }
                 }).then(response => {
                     var data = response.data;
-                    me.items = data.items;
+//                    debugger
+                    me.itemLists = data;
                 }, response => {
                     serverErrorInfo(response);
                 });
-            },
-            fetchContract(id){
+            }
+            ,
+            fetchContract(id)
+            {
                 var me = this;
                 me.$http.get("/api/contract/contractDetails", {
                     params: {
@@ -998,8 +1039,10 @@
                 }, response => {
                     serverErrorInfo(response);
                 })
-            },
-            fetchLog(id){
+            }
+            ,
+            fetchLog(id)
+            {
                 var me = this;
                 me.$http.get("/api/log/contractLog", {
                     params: {
@@ -1007,13 +1050,15 @@
                     }
                 }).then(response => {
                         var data = response.data;
-                        me.log = data;
+                        me.log = data.results;
                     }, response => {
                         serverErrorInfo(response);
                     }
                 );
-            },
-            fetchReviewList(id){
+            }
+            ,
+            fetchReviewList(id)
+            {
                 var me = this;
                 me.$http.get("/api/contract/getReviewList", {
                     params: {
@@ -1021,17 +1066,23 @@
                     }
                 }).then(function (response) {
                     var data = response.data;
+//                    debugger
                     me.reviewList = data;
                 }, function (response) {
                     serverErrorInfo(response);
                 })
-            },
-            getData(){
+            }
+            ,
+            getData()
+            {
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
-            },
-            viewDetails(id){
+                me.fetchDearCount();
+            }
+            ,
+            viewDetails(id)
+            {
                 var me = this;
                 App.startPageLoading({animate: true});
                 me.fetchContract(id)
@@ -1041,8 +1092,10 @@
                 me.$nextTick(function () {
                     App.stopPageLoading();
                 })
-            },
-            searchKey(){
+            }
+            ,
+            searchKey()
+            {
                 var me = this;
                 if (me.search.key != "") {
                     if (me.condition != "") {
@@ -1061,24 +1114,42 @@
                 }
                 me.currentPage = 1;
                 me.getData();
-            },
-            searchByProcess(step){
+            }
+            ,
+            searchByProcess(step)
+            {
                 var me = this;
                 me.currentPage = 1;
-                if (step != "total") {
-                    me.condition = "process=" + step;
-                } else {
-                    me.condition = "process=review";
+//                me.condition = "process=" + step;  //这两个办法都可以实现通过进程查找当前合同
+                switch (step) {
+                    case "reviewBig": {
+                        me.condition = "process=reviewBig";
+                        break;
+                    }
+                    case "waitReviewBig": {
+                        me.condition = "process=waitReviewBig";
+                        break;
+                    }
+                    case "afterReviewBig": {
+                        me.condition = "process=afterReviewBig";
+                        break;
+                    }
+                    case "beforeReviewBig": {
+                        me.condition = "process=beforeReviewBig";
+                        break;
+                    }
                 }
                 me.getData();
 
-            },
-            review_confirm(result){
+            }
+            ,
+            review_confirm(result)
+            {
                 var me = this;
                 var response = me.review_info;
                 response.result = result;
                 response.id = me.contract.id;
-
+//                debugger
                 confirm({
                     content: "是否审核" + (result == 0 ? "<span class='font-red'>拒绝</span>" : "<span class='font-green'>通过</span>") + "合同【" + me.contract.name + "】？",
                     success: function () {
@@ -1086,11 +1157,14 @@
                             params: response
                         }).then(function (response) {
                             var data = response.data;
+//                            debugger
                             codeState(data.code, {
                                 200: function () {
                                     alert("合同审核完成！");
                                     me.viewDetails(me.contract.id);
                                     me.getData();
+                                    me.fetchDearCount();
+                                    me.contract = {};
                                     jQuery("#reviewContract").modal("hide");
                                 }
                             })
@@ -1099,8 +1173,10 @@
                         })
                     }
                 })
-            },
-            viewReviewAdvice(item){
+            }
+            ,
+            viewReviewAdvice(item)
+            {
                 var me = this;
                 jQuery("#showReviewAdvice").modal("show");
                 me.$http.get("/api/contract/reviewDetail", {
@@ -1110,21 +1186,27 @@
                 }).then(function (response) {
                     var data = response.data;
 //                    console.log(data);
+                    debugger
                     me.advice = data;
+//                    console.log(me.advice.id);
                 }, function (response) {
                     serverErrorInfo(response);
                 })
-            },
-            fetchDearCount(){
+            }
+            ,
+            fetchDearCount()
+            {
                 var me = this;
                 me.$http.get("/api/contract/getWaitReviewCount").then(function (response) {
                     var data = response.data;
                     me.dear_count = data.count;
-                }, function () {
+                }, function (response) {
                     serverErrorInfo(response);
                 })
-            },
-            showProjectName(id){
+            }
+            ,
+            showProjectName(id)
+            {
                 var me = this;
                 me.$http.get("/api/task/monitorItem", {
                     params: {
@@ -1133,12 +1215,21 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }
                 );
                 jQuery("#showProject").modal("show");
+
+            }
+            ,
+            exportReview()
+            {
+                var me = this;
+//                console.log(me.advice.id);
+                window.open("http://" + window.location.hostname + ":8080/api/contract/createReview?id=" + me.advice.id);
+
 
             }
         }

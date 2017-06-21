@@ -331,75 +331,110 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-2">检测项目
+                                                <label class="control-label col-md-2">录入or读取
                                                     <span class="required">  </span>
                                                 </label>
-                                                <div class="col-md-9">
+                                                <div class="col-md-10">
+                                                    <!--<input type="text" class="form-control" name="packageUnit"-->
+                                                    <!--id="packageUnit" v-model="contract.package_unit"/>-->
+                                                    <div class="mt-radio-inline">
+                                                        <input type="radio" id="noimportWrite" value="0"
+                                                               v-model="contract.importWrite">
+                                                        <label for="noimportWrite">录入</label>
+                                                        <input type="radio" id="yesimportWrite" value="1"
+                                                               v-model="contract.importWrite">
+                                                        <label for="yesimportWrite">读取</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">检测项目
+                                                    <span class="required"> &nbsp;&nbsp; </span>
+                                                </label>
+                                                <div class="col-md-10">
                                                     <div class="table-scrollable table-scrollable-borderless">
                                                         <table class="table table-hover table-light">
-                                                            <thead>
-                                                            <tr class="uppercase">
-                                                                <th> 序号</th>
-                                                                <!--<th> 公司、道路名称</th>-->
-                                                                <th> 环境要素</th>
-                                                                <th> 监测点（个）</th>
-                                                                <th> 监测项目</th>
-                                                                <th> 监测频次</th>
-                                                                <!--<th> 是否分包</th>-->
-                                                                <th> 备注</th>
-                                                                <th> 操作</th>
-                                                            </tr>
-                                                            </thead>
                                                             <tbody>
-                                                            <template v-for="(item,index) in contract.item">
-                                                                <tr>
-                                                                    <td class="text-center">{{index+1}}</td>
-                                                                    <!--<td class="text-center">{{item.company}}</td>-->
-                                                                    <td class="text-center">{{item.element.name}}
-                                                                    </td>
-                                                                    <td class="text-center">{{item.point}}
-                                                                    </td>
-                                                                    <td class="text-center">
+                                                            <div class="table-scrollable table-scrollable-borderless">
+                                                                <table class="table table-hover table-light">
+                                                                    <thead>
+                                                                    <tr class="uppercase">
+                                                                        <th> 序号</th>
+                                                                        <th> 公司名称</th>
+                                                                        <th> 环境要素</th>
+                                                                        <th> 监测点（个）</th>
+                                                                        <th> 监测项目</th>
+                                                                        <th> 监测频次</th>
+                                                                        <th> 备注</th>
+                                                                        <th v-if="contract.importWrite==0"> 修改</th>
+                                                                        <th v-if="contract.importWrite==0"> 删除</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <template v-for="(itemList,index) in contract.item">
                                                                         <template
-                                                                                v-for="(project,index) in item.project">
-                                                                            {{project.name}}
-                                                                            <template
-                                                                                    v-if="index+1!=item.project.length">
-                                                                                ,
-                                                                            </template>
+                                                                                v-for="item in itemList.items">
+                                                                            <tr>
+                                                                                <td class="text-center">{{index+1}}</td>
+                                                                                <td class="text-center">
+                                                                                    {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{item.element.name}}
+                                                                                </td>
+                                                                                <td class="text-center">{{item.point}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <template
+                                                                                            v-for="(project,index) in item.project">
+                                                                                        {{project.name}}
+                                                                                        <template
+                                                                                                v-if="index+1!=item.project.length">
+                                                                                            ,
+                                                                                        </template>
+                                                                                    </template>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{item.frequency.total}}
+                                                                                </td>
+                                                                                <td class="text-center">{{item.other}}
+                                                                                </td>
+                                                                                <td class="text-center"
+                                                                                    v-if="contract.importWrite==0">
+                                                                                    <a href="javascript:;"
+                                                                                       class="btn btn-icon-only blue"
+                                                                                       @click="edit(item,index)">
+                                                                                        <i class="fa fa-gear"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="text-center"
+                                                                                    v-if="contract.importWrite==0">
+                                                                                    <a href="javascript:;"
+                                                                                       class="btn btn-icon-only red"
+                                                                                       @click="deleteItem(index)">
+                                                                                        <i class="fa fa-trash-o"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
                                                                         </template>
-                                                                    </td>
-                                                                    <td class="text-center">{{item.frequency.total}}
-                                                                    </td>
-                                                                    <!--<td class="text-center"-->
-                                                                    <!--v-if="item.is_package==1">是-->
-                                                                    <!--</td>-->
-                                                                    <!--<td class="text-center"-->
-                                                                    <!--v-if="item.is_package==0">否-->
-                                                                    <!--</td>-->
-                                                                    <td class="text-center">{{item.other}}</td>
-                                                                    <td class="text-center">
-                                                                        <a href="javascript:;"
-                                                                           class="btn btn-icon-only red"
-                                                                           @click="deleteItem(item)">
-                                                                            <i class="fa fa-trash-o"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            </template>
+                                                                    </template>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <p>
+                                                    <p v-if="contract.importWrite==0">
                                                         <a href="#createMonitor" data-toggle="modal"
                                                            class="btn green btn-outline">新 增</a>
                                                         <button type="button" class="btn red btn-outline"
                                                                 @click="deleteAllItem">删除全部
                                                         </button>
-                                                        <a href="#isPackage" data-toggle="modal"
-                                                           class="btn blue btn-outline">选择分包</a>
+                                                        <!--<a href="#isPackage" data-toggle="modal"-->
+                                                        <!--class="btn blue btn-outline">选择分包</a>-->
                                                     </p>
-                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput"
+                                                         v-if="contract.importWrite==1">
                                                         <div class="input-group input-large">
                                                             <div class="form-control uneditable-input input-fixed input-medium"
                                                                  data-trigger="fileinput">
@@ -412,23 +447,28 @@
                                                                 <span class="fileinput-exists"> 变 更 </span>
                                                                     <input type="file" name="..."> </span>
                                                             <a href="javascript:;"
+                                                               class="input-group-addon btn red fileinput-exists"
+                                                               data-dismiss="fileinput">删除模板 </a>
+                                                            <a href="javascript:;"
                                                                class="input-group-addon btn green fileinput-exists"
                                                                @click="readTemplate"> 读 取 </a>
-                                                            <a href="javascript:;"
-                                                               class="input-group-addon btn red fileinput-exists"
-                                                               data-dismiss="fileinput"> 删 除 </a>
+                                                            <a href="javascript:;" class="input-group-addon btn red"
+                                                               @click="deleteAllItem" style="margin-left: 5px;">删除项目
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-2" for="packageUnit">分包单位
+                                                <label class="control-label col-md-2">是否分包
                                                     <span class="required">  </span>
                                                 </label>
-                                                <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="packageUnit"
-                                                           id="packageUnit" v-model="contract.package_unit"/>
-                                                </div>
+                                                <input type="radio" id="noPackage" value="1"
+                                                       v-model="contract.isPackage">
+                                                <label for="noPackage">是</label>
+                                                <input type="radio" id="yesPackage" value="0"
+                                                       v-model="contract.isPackage">
+                                                <label for="yesPackage">否</label>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">客户要求
@@ -496,14 +536,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-2" for="payment">大写
+                                                <label class="control-label col-md-2" for="paymentCap">大写
                                                     <!--<span class="required"> * </span>-->
                                                 </label>
                                                 <div class="col-md-10">
                                                     <div class="input-icon right">
                                                         <i class="fa fa-cny"></i>
-                                                        <input type="text" class="form-control" name="payment"
-                                                               id="" v-model="contract.payment"/>
+                                                        <input type="text" class="form-control" name="paymentCap"
+                                                               id="paymentCap" v-model="paymentCap" disabled/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -668,49 +708,63 @@
                                                     <div class="col-md-10">
                                                         <div class="table-scrollable table-scrollable-borderless">
                                                             <table class="table table-hover table-light">
-                                                                <thead>
-                                                                <tr class="uppercase">
-                                                                    <th> 序号</th>
-                                                                    <!--<th> 公司、道路名称</th>-->
-                                                                    <th> 环境要素</th>
-                                                                    <th> 监测点（个）</th>
-                                                                    <th> 监测项目</th>
-                                                                    <th> 监测频次</th>
-                                                                    <!--<th> 是否分包</th>-->
-                                                                    <th> 备注</th>
-                                                                </tr>
-                                                                </thead>
                                                                 <tbody>
-                                                                <template v-for="(item,index) in contract.item">
-                                                                    <tr>
-                                                                        <td class="text-center">{{index+1}}</td>
-                                                                        <!--<td class="text-center">{{item.company}}</td>-->
-                                                                        <td class="text-center">{{item.element.name}}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{item.point}}
-                                                                        </td>
-                                                                        <td class="text-center">
+                                                                <div class="table-scrollable table-scrollable-borderless">
+                                                                    <table class="table table-hover table-light">
+                                                                        <thead>
+                                                                        <tr class="uppercase">
+                                                                            <th> 序号</th>
+                                                                            <th> 公司名称</th>
+                                                                            <th> 环境要素</th>
+                                                                            <th> 监测点（个）</th>
+                                                                            <th> 监测项目</th>
+                                                                            <th> 监测频次</th>
+                                                                            <th> 备注</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <template v-for="itemList in contract.item">
                                                                             <template
-                                                                                    v-for="(project,index) in item.project">
-                                                                                {{project.name}}
-                                                                                <template
-                                                                                        v-if="index+1!=item.project.length">
-                                                                                    ,
-                                                                                </template>
+                                                                                    v-for="(item,index) in itemList.items">
+                                                                                <tr>
+                                                                                    <td class="text-center">
+                                                                                        {{index+1}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.element.name}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.point}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        <template
+                                                                                                v-for="(project,index) in item.project">
+                                                                                            {{project.name}}
+                                                                                            <template
+                                                                                                    v-if="project.isPackage==true">
+                                                                                                <span style="color: red;">[分包]</span>
+                                                                                            </template>
+                                                                                            <template
+                                                                                                    v-if="index+1!=item.project.length">
+                                                                                                ,
+                                                                                            </template>
+                                                                                        </template>
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.frequency.total}}
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        {{item.other}}
+                                                                                    </td>
+                                                                                </tr>
                                                                             </template>
-                                                                        </td>
-                                                                        <td class="text-center">{{item.frequency.total}}
-                                                                        </td>
-                                                                        <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==1">是-->
-                                                                        <!--</td>-->
-                                                                        <!--<td class="text-center"-->
-                                                                        <!--v-if="item.is_package==0">否-->
-                                                                        <!--</td>-->
-                                                                        <td class="text-center">{{item.other}}</td>
-                                                                    </tr>
-                                                                </template>
+                                                                        </template>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -719,15 +773,18 @@
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-12">
-                                                    <label class="control-label col-md-2" for="client">分包单位
+                                                    <label class="control-label col-md-2" for="client">是否分包
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <label class="control-label"> {{contract.package_unit}}</label>
+                                                        <!--<label class="control-label"> {{contract.package_unit}}</label>-->
+
+                                                        <label for="noPackage" v-if="contract.isPackage==1"> 是</label>
+                                                        <label for="yesPackage" v-if="contract.isPackage==0">否</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="form-group">
+                                                <div class="form-group col-md-12">
                                                     <label class="control-label col-md-2">客户要求
                                                         <span class="required">  </span>
                                                     </label>
@@ -765,7 +822,12 @@
                                                     <label class="control-label col-md-2">监测费用
                                                     </label>
                                                     <div class="col-md-8">
-                                                        <label class="control-label">{{contract.payment}}</label>
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">￥{{contract.payment}}</label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">{{paymentCap}}</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -900,17 +962,6 @@
                                             <button class="close" data-close="alert"></button>
                                             表单尚未填写完整。
                                         </div>
-                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                        <!--<label class="col-md-2 control-label" for="monitor_company">监测企业或路段-->
-                                        <!--<span class="required">*</span>-->
-                                        <!--</label>-->
-                                        <!--<div class="col-md-9">-->
-                                        <!--<input type="text" class="form-control" id="monitor_company"-->
-                                        <!--v-model="monitor.company"-->
-                                        <!--placeholder=""-->
-                                        <!--name="monitor_company">-->
-                                        <!--</div>-->
-                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_element">环境要素
                                                 <span class="required">*</span>
@@ -940,6 +991,7 @@
                                                     <template v-for="item in projectList">
                                                         <option :value="item.id">{{item.name}}
                                                         </option>
+                                                        <!--//monitor.project里面存的value的值-->
                                                     </template>
                                                 </select>
                                             </div>
@@ -964,29 +1016,10 @@
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-9">
-                                                <input type="number" class="form-control input-large"
+                                                <input type="number" class="form-control"
                                                        v-model="monitor.point" name="monitor_point" id="monitor_point">
                                             </div>
                                         </div>
-                                        <!--<div class="form-group" style="padding-bottom: 10px">-->
-                                        <!--<label class="col-md-2 control-label">是否外包-->
-                                        <!--<span class="required">  </span>-->
-                                        <!--</label>-->
-                                        <!--<div class="col-md-9">-->
-                                        <!--<div class="mt-radio-inline">-->
-                                        <!--<label class="mt-radio">-->
-                                        <!--<input type="radio" name="is_package"-->
-                                        <!--v-model="monitor.is_package" value="0"> 否-->
-                                        <!--<span></span>-->
-                                        <!--</label>-->
-                                        <!--<label class="mt-radio">-->
-                                        <!--<input type="radio" name="is_package"-->
-                                        <!--v-model="monitor.is_package" value="1"> 是-->
-                                        <!--<span></span>-->
-                                        <!--</label>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
                                         <div class="form-group" style="padding-bottom: 10px">
                                             <label class="col-md-2 control-label" for="monitor_other">备注
                                                 <span class="required">  </span>
@@ -1011,76 +1044,180 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <div class="modal fade bs-modal-lg" id="isPackage" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade bs-modal-lg" id="changeMonitor" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">分包项目</h4>
+                        <h4 class="modal-title">修改监测项</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="table-scrollable table-scrollable-borderless">
-                            <table class="table table-hover table-light">
-                                <thead>
-                                <tr class="uppercase">
-                                    <th> 检测企业或路段</th>
-                                    <th> 环境要素</th>
-                                    <th> 监测项目</th>
-                                    <th> 是否分包</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <template v-for="(item,index) in contract.item">
-                                    <tr>
-                                        <td class="text-center" rowspan="item.length">人民路
-                                        </td>
-                                        <td class="text-center" rowspan="item.project.length">{{item.element.name}}
-                                        </td>
-                                        <td class="text-center">
-                                            <table class="table table-hover table-light">
-                                                <tbody>
-                                                <template v-for="project in item.project">
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            {{project.name}}
-                                                        </td>
-                                                    </tr>
-                                                </template>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                        <td class="text-center">
-                                            <table class="table table-hover table-light">
-                                                <tbody>
-                                                <template v-for="project in item.project">
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <label class="mt-checkbox mt-checkbox-outline">
-                                                                <input type="checkbox" v-model="project.id"
-                                                                       name="ispackage" :value="item.id+'/'+project.id">
-                                                                <span></span>
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                </template>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </template>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
-                            <button type="button" class="btn green" @click="isPackges">添 加</button>
+                        <div class="portlet light portlet-fit portlet-form ">
+                            <div class="portlet-body">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal" id="item_change">
+                                    <div class="form-body">
+                                        <div class="alert alert-danger display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            表单尚未填写完整。
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_element">环境要素
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.element" name="change_element"
+                                                        id="change_element"
+                                                        @change="fetchProjectByElement($event)" data-live-search="true">
+                                                    <option>请选择环境要素</option>
+                                                    <template v-for="item in elementList">
+                                                        <option :value="item.id">{{item.name}}
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_project">监测项目
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control"
+                                                        v-model="monitor.project" name="change_project"
+                                                        id="change_project" multiple
+                                                        data-actions-box="true" data-live-search="true">
+                                                    <template v-for="item in projectList">
+                                                        <option :value="item.id">{{item.name}}
+
+                                                        </option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_frequency">监测频次
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="change_frequency"
+                                                        v-model="monitor.frequency" id="change_frequency"
+                                                        data-live-search="true">
+                                                    <option>请选择监测频次</option>
+                                                    <template v-for="item in frequencyList">
+                                                        <option :value="item.id">{{item.total}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_point">监测点
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="number" class="form-control"
+                                                       v-model="monitor.point" name="change_point" id="change_point">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-bottom: 10px">
+                                            <label class="col-md-2 control-label" for="change_other">备注
+                                                <span class="required">  </span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" v-model="monitor.other"
+                                                          id="change_other" name="change_other" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END FORM-->
+                            </div>
                         </div>
                     </div>
-                    <!-- /.modal-content -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>
+                        <button type="button" class="btn green" @click="changeMonitor">修改</button>
+                    </div>
                 </div>
-                <!-- /.modal-dialog -->
+                <!-- /.modal-content -->
             </div>
+            <!-- /.modal-dialog -->
         </div>
+        <!--<div class="modal fade bs-modal-lg" id="isPackage" tabindex="-1" role="dialog" aria-hidden="true">-->
+        <!--<div class="modal-dialog modal-lg">-->
+        <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>-->
+        <!--<h4 class="modal-title">分包项目</h4>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+        <!--<div class="table-scrollable table-scrollable-borderless">-->
+        <!--<table class="table table-hover table-light">-->
+        <!--<thead>-->
+        <!--<tr class="uppercase">-->
+        <!--<th> 检测企业或路段</th>-->
+        <!--<th> 环境要素</th>-->
+        <!--<th> 监测项目</th>-->
+        <!--<th> 是否分包</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<template v-for="itemList in contract.item">-->
+        <!--<template v-for="(item,index) in itemList.items">-->
+        <!--<tr>-->
+        <!--<td class="text-center" rowspan="itemList.length">-->
+        <!--{{itemList.flag==0?contract.client_unit:itemList.company}}-->
+        <!--</td>-->
+        <!--<td class="text-center" rowspan="item.project.length">{{item.element.name}}-->
+        <!--</td>-->
+        <!--<td class="text-center">-->
+        <!--<table class="table table-hover table-light">-->
+        <!--<tbody>-->
+        <!--<template v-for="project in item.project">-->
+        <!--<tr>-->
+        <!--<td class="text-center">-->
+        <!--{{project.name}}-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</template>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</td>-->
+        <!--<td class="text-center">-->
+        <!--<table class="table table-hover table-light">-->
+        <!--<tbody>-->
+        <!--<template v-for="project in item.project">-->
+        <!--<tr>-->
+        <!--<td class="text-center">-->
+        <!--<label class="mt-checkbox mt-checkbox-outline">-->
+        <!--&lt;!&ndash;<input type="checkbox" v-model="project.id"&ndash;&gt;-->
+        <!--&lt;!&ndash;name="ispackage" :value="item.id+'/'+project.id">&ndash;&gt;-->
+        <!--<input type="checkbox" v-model="project.isPackage"-->
+        <!--name="ispackage" value="1">-->
+        <!--<span></span>-->
+        <!--</label>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</template>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</template>-->
+        <!--</template>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn dark btn-outline" data-dismiss="modal">取 消</button>-->
+        <!--<button type="button" class="btn green" @click="isPackges">添 加</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.modal-content &ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -1125,9 +1262,12 @@
                     item: [],
                     project_items: [],
                     other: "",
-                    type: ""
+                    type: "",
+                    isPackage: 0,
+                    importWrite: 0,
                 },
                 typeList: [],
+                paymentCap: "",
                 customerList: [],
                 currentPage: 1,
                 condition: "",
@@ -1149,7 +1289,8 @@
                 tag: {
                     trustee: "",
                     type: ""
-                }
+                },
+                changeMonitorIndex: 0
             }
         },
         mounted(){
@@ -1159,6 +1300,7 @@
             me.fetchFrequency();
             me.getCustomer();
             me.fetchElement();
+            me.importDefault();
             //me.fetchUser();
             me._init();
             moment.locale('zh-cn');
@@ -1206,10 +1348,10 @@
             $("#createMonitor").draggable({
                 handle: ".modal-header"
             });
-            //创建选择分包窗口可拖拽
-            $("#isPackage").draggable({
-                handle: ".modal-header"
-            });
+//            //创建选择分包窗口可拖拽
+//            $("#isPackage").draggable({
+//                handle: ".modal-header"
+//            });
             //初始化监测项目选择框
             $('#monitor_project').selectpicker({
                 iconBase: 'fa',
@@ -1226,8 +1368,14 @@
                 this.tag.trustee = jQuery("#trustee option:selected").html();
             },
             "contract.type": function () {
-                console.log("type")
+//                console.log("type");
                 this.tag.type = jQuery("#projectType option:selected").html();
+            },
+            'contract.payment': function (currentValue) {
+                this.paymentCap = BlogUtils.atoc(currentValue);
+            },
+            'contract.importWrite': function () {
+                this.contract.item = [];
             }
         },
         methods: {
@@ -1253,8 +1401,18 @@
                     success: function (returndata) {
                         codeState(returndata.code, {
                             200: function () {
-                                alert("让球球用PageOffice打开" + returndata.path);
+                                alert("打开" + returndata.path);
                                 //这里调用球球的PageOffice页面，顺便把returndata.path传给球球
+                                me.$http.get("/api/contract/readItemFile", {
+                                    params: {
+                                        path: returndata.path
+                                    }
+                                }).then(response => {
+                                    var data = response.data;
+                                    me.contract.item = data;
+                                }, response => {
+                                    serverErrorInfo(response);
+                                })
                             }
                         })
                     }
@@ -1285,30 +1443,10 @@
                     serverErrorInfo(response);
                 });
             },
-            addMonitor(){
-                //新增一项监测内容
+            deleteItem(index){
                 var me = this;
-                if (jQuery("#item_add").valid()) {
-//                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
-//                    me.monitor.isHand = 0;
-                    me.$http.get("/api/project/details", {
-                        params: me.monitor
-                    }).then(function (response) {
-                            var data = response.data;
-                            alert("监测项目创建成功！");
-                            me.contract.item.push(data);
-//                            console.log(JSON.parse(JSON.stringify(me.contract)));
-                        }
-                        , function (response) {
-                            serverErrorInfo(response);
-                        });
-                }
-            },
-            deleteItem(item){
-                var me = this;
-                me.contract.item.splice(me.contract.item.find(function (t) {
-                    return t.id === item.id;
-                }), 1);
+                me.contract.item.splice(index, 1);
+                alert("删除成功！");
             },
             deleteAllItem(){
                 var me = this;
@@ -1323,8 +1461,6 @@
                 var data = {
                     element: item.element.id,
                     frequency: item.frequency.id,
-//                    company: item.company,
-//                    is_package: item.is_package,
                     point: item.point,
                     other: item.other,
                     project: temp
@@ -1344,15 +1480,18 @@
                 var items = me.contract.item;
                 me.contract.project_items = [];
                 for (var i = 0; i < items.length; i++) {
-                    console.log(JSON.stringify(items[i]))
+//                    console.log(JSON.stringify(items[i]));
                     me.contract.project_items.push(JSON.stringify(items[i]))
                 }
+//                console.log(JSON.parse(JSON.stringify(me.contract)));
+                App.startPageLoading({animate: true});
                 me.$http.post("/api/contract/create", me.contract).then(function (response) {
                     var data = response.data;
                     codeState(data.code, {
                         200: function () {
                             alert("合同创建成功！");
                             router.push("/contract/list");
+                            App.stopPageLoading();//loading条结束
                         }
                     })
                 }, function (response) {
@@ -1406,7 +1545,7 @@
                             $('#monitor_project').selectpicker('destroy');
                             //初始化监测项目选择框
                             $('#monitor_project').selectpicker({
-                                iconBase: 'fa',
+                                iconBase: 'fa',//图标库
                                 tickIcon: 'fa-check',
                                 countSelectedText: "count",
                                 deselectAllText: "取消选择",
@@ -1428,12 +1567,10 @@
                     }
                 }).then(function (response) {
                         var data = response.data;
+                        jQuery('#change_project').selectpicker('destroy');
                         me.projectList = data.results;
                         me.$nextTick(function () {
-                            //销毁监测项目选择框
-                            $('#monitor_project').selectpicker('destroy');
-                            //初始化监测项目选择框
-                            $('#monitor_project').selectpicker({
+                            jQuery('#change_project').selectpicker({
                                 iconBase: 'fa',
                                 tickIcon: 'fa-check',
                                 countSelectedText: "count",
@@ -1441,8 +1578,7 @@
                                 selectAllText: "选择全部",
                                 noneSelectedText: "请选择监测项目"
                             });
-                            debugger
-                            $('#monitor_project').selectpicker("val", selected);
+                            jQuery('#change_project').selectpicker("val", selected);
                         })
                     }
                     , function (response) {
@@ -1525,19 +1661,28 @@
             },
             importDefault(){
                 //导入预设
+//                var me = this;
+//                confirm({
+//                    content: "是否导入预设的乙方联系信息？",
+//                    success: function () {
+//                        me.$http.get("/api/contract/fetchDefault").then(function (response) {
+//                            var data = response.data;
+//                            for (var key in data) {
+//                                me.contract[key] = data[key];
+//                            }
+//                        }, function (response) {
+//                            serverErrorInfo(response);
+//                        });
+//                    }
+//                })
                 var me = this;
-                confirm({
-                    content: "是否导入预设的乙方联系信息？",
-                    success: function () {
-                        me.$http.get("/api/contract/fetchDefault").then(function (response) {
-                            var data = response.data;
-                            for (var key in data) {
-                                me.contract[key] = data[key];
-                            }
-                        }, function (response) {
-                            serverErrorInfo(response);
-                        });
+                me.$http.get("/api/contract/fetchDefault").then(function (response) {
+                    var data = response.data;
+                    for (var key in data) {
+                        me.contract[key] = data[key];
                     }
+                }, function (response) {
+                    serverErrorInfo(response);
                 })
             },
             fetchType(){
@@ -1561,13 +1706,76 @@
                     serverErrorInfo(response);
                 });
             },
-            isPackges(){
+//            isPackges(){
+////                var me = this;
+////                alert();
+////                confirm({
+////                    content: "是否将选中项目设置为分包项目？分包项目将不参与后续流程！",
+////                    success: function () {
+////                        jQuery("#isPackage").modal("hide");
+////                    }
+////                })
+//            },
+            //合同中点击=某一检测项目，然后对该条检测项目进行修改
+            edit(item, index){
                 var me = this;
-//                debugger
-//                console.log(JSON.parse(JSON.stringify(me.contract)));
-//                console.log(JSON.parse(JSON.stringify(me.contract.item[0].project[1].id)));
-//                console.log(JSON.parse(JSON.stringify(me.contract.item[1].project[0].id)));
-                alert(123);
+                me.changeMonitorIndex = index;
+                jQuery("#changeMonitor").modal("show");
+                var temp = [];
+                for (var i = 0; i < item.project.length; i++) {
+                    temp.push(item.project[i].id);
+                }
+                var data = {
+                    element: item.element.id,
+                    frequency: item.frequency.id,
+                    point: item.point,
+                    other: item.other,
+                    project: temp
+                };
+                me.monitor = data;
+                me.fetchProjectByValue(data.element, data.project);
+            },
+            addMonitor(){
+                //新增一项监测内容
+                var me = this;
+                if (jQuery("#item_add").valid()) {
+//                    me.monitor.point = jQuery("#monitor_point").tagsinput("items");
+//                    me.monitor.isHand = 0;
+                    me.$http.get("/api/project/details", {
+                        params: me.monitor
+                    }).then(function (response) {
+                            var data = response.data;
+                            alert("监测项目创建成功！");
+                            me.contract.item.push(data);
+                        }
+                        , function (response) {
+                            serverErrorInfo(response);
+                        });
+                }
+            },
+            changeMonitor(){
+                var me = this;
+                var index = me.changeMonitorIndex;
+                debugger
+
+                var item = me.contract.item;
+                console.log(item);
+                me.$http.get("/api/project/details", {
+                    params: me.monitor
+                }).then(function (response) {
+                        var data = response.data;
+                        for (var i = 0; i < item.length; i++) {
+                            if (i == index) {
+                                item[i] = data;
+                            }
+                        }
+                        alert("监测项目创修改成功！");
+                        jQuery("#changeMonitor").modal("hide");
+                    }
+                    , function (response) {
+                        serverErrorInfo(response);
+                    }
+                );
             },
             wizard(){
                 //wizard插件和表单验证序列化
@@ -1687,9 +1895,6 @@
                             required: true
                         },
                         monitor_frequency: {
-                            required: true
-                        },
-                        monitor_point: {
                             required: true
                         }
                     },

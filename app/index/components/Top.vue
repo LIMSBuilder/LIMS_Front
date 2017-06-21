@@ -433,7 +433,8 @@
                     role: {
                         department: {}
                     }
-                }
+                },
+                noticeList: []
             }
         },
         mounted(){
@@ -445,14 +446,23 @@
                 var me = this;
                 me.$http.get("/api/login/check", {
                     params: {
-                        username: "admin",
-                        password: "admin1"
+                        username: "Adelamyx",
+                        password: "320682"
                     }
                 }).then(function (response) {
                     codeState(response.data.code, {
                         200: "调试模式登陆成功！"
                     })
                 }, function (response) {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchNotice(){
+                var me = this;
+                me.$http.get("/api/message/notice").then(response => {
+                    var data = response.data;
+                    me.noticeList = data.results;
+                }, response => {
                     serverErrorInfo(response);
                 });
             },

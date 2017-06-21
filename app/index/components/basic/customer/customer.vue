@@ -9,7 +9,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="#" 基础设置</a>
+                    <a href="#" >基础设置</a>
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>

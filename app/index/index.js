@@ -23,6 +23,10 @@ import 'mod／utils'
 import 'mod/jqueryUI'
 import 'mod/select2'
 
+import 'mod/pulsate'
+import 'mod/migrate'
+import 'mod/qrcode'
+import 'mod/jqprint'
 import 'mod/datepicker'
 import 'mod/datepicker_locales'
 
@@ -41,19 +45,50 @@ import Create_Contract from './components/bussiness/contract/create.vue'
 import Contract_List from './components/bussiness/contract/list.vue'
 import Contract_Review from './components/bussiness/contract/review.vue'
 import Change_Contract from './components/bussiness/contract/change.vue'
+import contract_Sreview from './components/bussiness/contract/sreview.vue'
+import contract_IsPackage from './components/bussiness/contract/isPackage.vue'
+import contract_ServiceList from  './components/bussiness/contract/serviceList.vue'
+import contract_serviewReview from './components/bussiness/contract/serviceReview.vue'
+import ChangeItems from './components/bussiness/contract/changeItems.vue'
+
+
+import service from './components/bussiness/contract/service.vue'
 
 import Task from './components/bussiness/task/task.vue'
 import Create_Task from './components/bussiness/task/create.vue'
 import Task_List from './components/bussiness/task/list.vue'
-import DisPatch from './components/bussiness/task/dispatch.vue'
-import DisPatchSetting from './components/bussiness/task/dispatchSetting.vue'
+import ChangeTaskItems from  './components/bussiness/task/changeItems.vue'
 
 
 import Sample from './components/bussiness/sample/sample.vue'
 import Apply_Sample from './components/bussiness/sample/apply.vue'
 import Register_Sample from './components/bussiness/sample/register.vue'
+import DisPatch from './components/bussiness/sample/dispatch.vue'
+import DisPatchSetting from './components/bussiness/sample/dispatchSetting.vue'
+import DisPatchCheck from './components/bussiness/sample/dispatchCheck.vue'
+import MyTask from './components/bussiness/sample/myTask.vue'
+import Transfer from './components/bussiness/sample/Transfer.vue'
+
+import Quality from './components/bussiness/quality/quality.vue'
+import Qreview from './components/bussiness/quality/qReview.vue'
+import Firstreview from './components/bussiness/quality/firstReview.vue'
+import Quality_list from './components/bussiness/quality/list.vue'
+
+import Laboratory from './components/bussiness/laboratory/laboratory.vue'
+import Lab_dispatch from './components/bussiness/laboratory/Labdispatch.vue'
+import Lab_work from './components/bussiness/laboratory/labwork.vue'
+import Lab_Review from './components/bussiness/laboratory/labReview.vue'
+import Lab_Check from './components/bussiness/laboratory/labCheck.vue'
+
+import Director_Review from './components/bussiness/laboratory/resultFirstReview.vue'
 
 
+import Report from './components/bussiness/report/report.vue'
+import Report_Dispatch from './components/bussiness/report/reportDispatch.vue'
+import Report_Create from './components/bussiness/report/myReportTask.vue'
+import FirstReview from './components/bussiness/report/firstReview.vue'
+import SecondReview from './components/bussiness/report/secondReview.vue'
+import ThirdReview from './components/bussiness/report/thirdReview.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -89,6 +124,22 @@ import Change_Customer from './components/basic/customer/change.vue'
 import Basic from './components/basic/basic/basic.vue'
 import Default from './components/basic/basic/default.vue'
 
+//Instrument
+import Instrument from './components/basic/Instrument/Instrument.vue'
+import Create_Instrument from './components/basic/Instrument/create.vue'
+import List_Instrument from './components/basic/Instrument/list.vue'
+import Change_Instrument from './components/basic/Instrument/change.vue'
+
+//Certificate
+import Certificate from './components/basic/certificate/certificate.vue'
+import Create_Certificate from  './components/basic/certificate/create.vue'
+import Change_Certificate from './components/basic/certificate/change.vue'
+import List_Certificate from './components/basic/certificate/list.vue'
+
+//Export
+import Export from './components/basic/export/export.vue'
+import Export_List from './components/basic/export/list.vue'
+
 //=============System===============
 //Department
 import Department from './components/system/department/department.vue'
@@ -112,6 +163,7 @@ import Change_User from './components/system/user/change.vue'
 import page_404 from './components/system/function/404.vue'
 import page_403 from './components/system/function/403.vue'
 import page_500 from './components/system/function/500.vue'
+import addpower from './components/system/function/addpower.vue'
 
 //DashBoard
 import dashboard from './components/dashboard/Dashboard.vue'
@@ -132,7 +184,9 @@ import view from './components/mail/view.vue'
 import outbox from './components/mail/outbox.vue'
 import viewSend from './components/mail/viewSend.vue'
 
-
+//Address List
+import address from './components/address/address.vue'
+import address_list from './components/address/list.vue'
 //==========导入CSS文件===============
 import 'style/font_sans'
 import 'style/font_awesome'
@@ -143,6 +197,7 @@ import 'style/switch'
 import 'style/iziToast'
 import 'style/iziModal'
 
+import 'style/datepicker'
 import 'style/component'
 import 'style/plugins'
 
@@ -181,6 +236,14 @@ var routes = [
             path: "help",
             component: help
 
+        }]
+    }, {
+        path: "/address",
+        name: "/address",
+        component: address,
+        children: [{
+            path: "list",
+            component: address_list
         }]
     },
     {
@@ -234,6 +297,11 @@ var routes = [
         component: page_500
     },
     {
+        path: "/addpower",
+        name: "addpower",
+        component: addpower
+    },
+    {
         path: "/department",
         name: "department",
         component: Department,
@@ -285,6 +353,44 @@ var routes = [
             {
                 path: "change",
                 component: Change_User
+            }
+        ]
+    },
+    {
+        path: "/instrument",
+        name: "instrument",
+        component: Instrument,
+        children: [
+            {
+                path: "create",
+                component: Create_Instrument
+            },
+            {
+                path: "list",
+                component: List_Instrument
+            },
+            {
+                path: "change",
+                component: Change_Instrument
+            }
+        ]
+    },
+    {
+        path: "/certificate",
+        name: "certificate",
+        component: Certificate,
+        children: [
+            {
+                path: "create",
+                component: Create_Certificate
+            },
+            {
+                path: "list",
+                component: List_Certificate
+            },
+            {
+                path: "change",
+                component: Change_Certificate
             }
         ]
     },
@@ -403,6 +509,10 @@ var routes = [
                 component: Create_Contract
             },
             {
+                path: "changeItem",
+                component: ChangeItems
+            },
+            {
                 path: "list",
                 component: Contract_List
             },
@@ -413,6 +523,73 @@ var routes = [
             {
                 path: "review",
                 component: Contract_Review
+            },
+            {
+                path: "sreview",
+                component: contract_Sreview
+            },
+            {
+                path: "isPackage",
+                component: contract_IsPackage
+            },
+            {
+                path: "service",
+                component: service
+            },
+            {
+                path: "serviceList",
+                component: contract_ServiceList
+            },
+            {
+                path: "serviewReview",
+                component: contract_serviewReview
+            }
+        ]
+    },
+    {
+        path: "/Laboratory",
+        name: "Laboratory",
+        component: Laboratory,
+        children: [
+            {
+                path: "dispatch",
+                component: Lab_dispatch
+            },
+            {
+                path: "labwork",
+                component: Lab_work
+            }, {
+                path: "review",
+                component: Lab_Review
+            }, {
+                path: "check",
+                component: Lab_Check
+            }, {
+                path: "firstReview",
+                component: Director_Review
+            }
+        ]
+    },
+    {
+        path: "/report",
+        name: "report",
+        component: Report,
+        children: [
+            {
+                path: "dispatch",
+                component: Report_Dispatch
+            }, {
+                path: "create",
+                component: Report_Create
+            }, {
+                path: "firstReview",
+                component: FirstReview
+            }, {
+                path: "secondReview",
+                component: SecondReview
+            }, {
+                path: "thirdReview",
+                component: ThirdReview
             }
         ]
     },
@@ -430,12 +607,8 @@ var routes = [
                 component: Task_List
             },
             {
-                path: "disPatch",
-                component: DisPatch
-            },
-            {
-                path: "disPatchSetting",
-                component: DisPatchSetting
+                path: "changeItems",
+                component: ChangeTaskItems
             }
         ]
     },
@@ -455,7 +628,57 @@ var routes = [
             {
                 path: "register",
                 component: Register_Sample
+            },
+            {
+                path: "disPatch",
+                component: DisPatch
+            },
+            {
+                path: "disPatchSetting",
+                component: DisPatchSetting
+            },
+            {
+                path: "disPatchCheck",
+                component: DisPatchCheck
+            },
+            {
+                path: "myTask",
+                component: MyTask
+            },
+            {
+                path: "transfer",
+                component: Transfer
             }
+        ]
+    },
+    {
+        path: "/export",
+        name: "export",
+        component: Export,
+        children: [
+            {
+                path: "list",
+                component: Export_List
+            }
+        ]
+    },
+    {
+        path: "/quality",
+        name: "quality",
+        component: Quality,
+        children: [
+            {
+                path: "qreview",
+                component: Qreview
+            },
+            {
+                path: "firstreview",
+                component: Firstreview
+            },
+            {
+                path: "list",
+                component: Quality_list
+            },
         ]
     }
 ];

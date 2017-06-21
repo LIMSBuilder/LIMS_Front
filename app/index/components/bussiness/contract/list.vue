@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="page-title"> 合同列表
+        <h1 class="page-title"> 业务合同列表
             <small>／Contract</small>
         </h1>
         <div class="row">
@@ -123,9 +123,15 @@
                                             <li>
                                                 <a href="javascript:;" @click="changeContract"> 编辑修改 </a>
                                             </li>
-                                            <li class="divider"></li>
                                             <li>
-                                                <a href="javascript:;"> 导出合同</a>
+                                                <a href="javascript:;" @click="changeItems"> 监测项更新 </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li v-if="contract.process==2">
+                                                <a href="javascript:;" @click="finishConstract">完成合同</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" @click="exportContract"> 导出合同</a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;" @click="stopContract"> 中止合同</a>
@@ -232,18 +238,18 @@
                                                         <div class="tab-pane active" id="page_1">
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">委托单位
+                                                                    <label class="control-label col-md-5">委托单位
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_unit}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">邮政编码
+                                                                    <label class="control-label col-md-5">邮政编码
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_code}}
                                                                         </p>
@@ -252,18 +258,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系地址
+                                                                    <label class="control-label col-md-5">联系地址
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_address}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系电话
+                                                                    <label class="control-label col-md-5">联系电话
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_tel}}
                                                                         </p>
@@ -272,18 +278,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系人
+                                                                    <label class="control-label col-md-5">联系人
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.client}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">传真号码
+                                                                    <label class="control-label col-md-5">传真号码
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_fax}}
                                                                         </p>
@@ -293,18 +299,18 @@
                                                             <hr>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">受托单位
+                                                                    <label class="control-label col-md-5">受托单位
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_unit}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">邮政编码
+                                                                    <label class="control-label col-md-5">邮政编码
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_code}}
                                                                         </p>
@@ -313,18 +319,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系地址
+                                                                    <label class="control-label col-md-5">联系地址
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.client_address}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系电话
+                                                                    <label class="control-label col-md-5">联系电话
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_tel}}
                                                                         </p>
@@ -333,18 +339,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">联系人
+                                                                    <label class="control-label col-md-5">联系人
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee.name}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label class="control-label col-md-4">传真号码
+                                                                    <label class="control-label col-md-5">传真号码
                                                                     </label>
-                                                                    <div class="col-md-8">
+                                                                    <div class="col-md-7">
                                                                         <p class="form-control-static">
                                                                             {{contract.trustee_fax}}
                                                                         </p>
@@ -457,7 +463,7 @@
                                                                     </label>
                                                                     <div class="col-md-8">
                                                                         <p class="form-control-static">
-                                                                            {{contract.payment}}
+                                                                            ￥{{contract.payment}}
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -477,51 +483,63 @@
                                                         <div class="tab-pane" id="page_2">
                                                             <div class="table-scrollable table-scrollable-borderless">
                                                                 <table class="table table-hover table-light">
-                                                                    <thead>
-                                                                    <tr class="uppercase">
-                                                                        <th> 序号</th>
-                                                                        <th> 公司、道路名称</th>
-                                                                        <th> 环境要素</th>
-                                                                        <th> 监测点（个）</th>
-                                                                        <th> 监测项目</th>
-                                                                        <th> 监测频次</th>
-                                                                        <th> 是否分包</th>
-                                                                        <th> 备注</th>
-                                                                    </tr>
-                                                                    </thead>
                                                                     <tbody>
-                                                                    <template v-for="(item,index) in items">
-                                                                        <tr>
-                                                                            <td class="text-center">{{index+1}}</td>
-                                                                            <!--<td class="text-center">{{item.company}}-->
-                                                                            <td class="text-center">路段
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.element.name}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.point}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <button type="button"
-                                                                                        class="btn green btn-outline"
-                                                                                        @click="showProjectName(item.id)">
-                                                                                    详情
-                                                                                </button>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                {{item.frequency?item.frequency.total:''}}
-                                                                            </td>
-                                                                            <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==1">是-->
-                                                                            <!--</td>-->
-                                                                            <!--<td class="text-center"-->
-                                                                            <!--v-if="item.is_package==0">否-->
-                                                                            <!--</td>-->
-                                                                            <td class="text-center">是</td>
-                                                                            <td class="text-center">{{item.other}}</td>
-                                                                        </tr>
-                                                                    </template>
+                                                                    <div class="table-scrollable table-scrollable-borderless">
+                                                                        <table class="table table-hover table-light">
+                                                                            <thead>
+                                                                            <tr class="uppercase">
+                                                                                <th> 序号</th>
+                                                                                <th> 公司名称</th>
+                                                                                <th> 环境要素</th>
+                                                                                <th> 监测点（个）</th>
+                                                                                <th> 监测项目</th>
+                                                                                <th> 监测频次</th>
+                                                                                <th> 备注</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <template v-for="itemList in itemLists">
+                                                                                <template
+                                                                                        v-for="(item,index) in itemList.items">
+                                                                                    <tr>
+                                                                                        <td class="text-center">
+                                                                                            {{index+1}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.element.name}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.point}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            <template
+                                                                                                    v-for="(project,index) in item.project">
+                                                                                                {{project.name}}
+                                                                                                <template
+                                                                                                        v-if="project.isPackage==true">
+                                                                                                    <span style="color: red;">[分包]</span>
+                                                                                                </template>
+                                                                                                <template
+                                                                                                        v-if="index+1!=item.project.length">
+                                                                                                    ,
+                                                                                                </template>
+                                                                                            </template>
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.frequency.total}}
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            {{item.other}}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </template>
+                                                                            </template>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -560,12 +578,6 @@
                                                                         <span>{{item.user.name}}</span>
                                                                         <span>{{item.create_time}}</span>
                                                                         <span>{{item.msg}}</span>
-                                                                        <div class="todo-task-history-data">
-                                                                        </div>
-                                                                        <div class="todo-task-history-date">
-                                                                        </div>
-                                                                        <div class="todo-task-history-desc">
-                                                                        </div>
                                                                     </li>
                                                                 </template>
                                                             </ul>
@@ -593,8 +605,15 @@
                         </div>
                         <div class="modal-body">
                             <ul class="receiver_tag">
-                                <template v-for="names in projectName">
-                                    <li class="uppercase "><a href="javascript:;" style="line-height: 30px">{{names.name}}</a>
+                                <template v-for="item in project">
+                                    <li class="uppercase ">
+                                        <a href="javascript:;" style="line-height: 30px">
+                                            {{item.name}}
+                                            <template
+                                                    v-if="item.isPackage==true">
+                                                <span style="color: red;">[分包]</span>
+                                            </template>
+                                        </a>
                                     </li>
                                 </template>
                             </ul>
@@ -629,11 +648,11 @@
                     trustee: {},
                     type: {}
                 },
-                items: [],
+                itemLists: [],
                 log: {},
                 total_count: {},
                 countProcess: [],
-                projectName: []
+                project: []
             }
         },
         mounted(){
@@ -696,6 +715,7 @@
                     }
                 }).then((response) => {
                     var data = response.data;
+//                    debugger
                     me.contractList = data.results;
                     me.$nextTick(function () {
                         App.stopPageLoading();
@@ -738,7 +758,8 @@
                     }
                 }).then(response => {
                     var data = response.data;
-                    me.items = data.items;
+                    me.itemLists = data;
+//                    console.log(me.itemLists);
                 }, response => {
                     serverErrorInfo(response);
                 });
@@ -751,6 +772,7 @@
                     }
                 }).then(response => {
                         var data = response.data;
+//                        debugger
                         me.log = data.results;
                     }, response => {
                         serverErrorInfo(response);
@@ -761,6 +783,7 @@
                 var me = this;
                 me.fetchData(me.currentPage, rowCount);
                 me.fetchPages(rowCount);
+                me.fetchCount();
                 me.contract = {
                     trustee: {},
                     type: {}
@@ -829,13 +852,38 @@
                 }).then(
                     response => {
                         var data = response.data;
-                        me.projectName = data;
+                        me.project = data;
                     }, response => {
                         serverErrorInfo(response);
                     }
                 );
                 jQuery("#showProject").modal("show");
 
+            },
+            finishConstract(){
+                var me = this;
+                confirm({
+                    content: "您是否已经完成合同【" + me.contract.name + "】的所有任务的创建,该操作将同时中止当前任务流程且无法撤销，是否继续？",
+                    success(){
+                        console.log(me.contract.id);
+                        me.$http.get("/api/contract/finishContract", {
+                            params: {
+                                id: me.contract.id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("成功！");
+//                                    debugger
+                                    me.getData();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
             },
             stopContract(){
                 var me = this;
@@ -890,6 +938,14 @@
             changeContract(){
                 var me = this;
                 router.push("/contract/change?id=" + me.contract.id);
+            },
+            exportContract(){
+                var me = this;
+                window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id=" + me.contract.id);
+            },
+            changeItems(){
+                var me = this;
+                router.push("/contract/changeItem?id=" + me.contract.id);
             }
         }
     }
