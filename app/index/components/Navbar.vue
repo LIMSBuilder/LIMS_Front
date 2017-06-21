@@ -289,23 +289,13 @@
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-balance-scale"></i>
-                    <span class="title">合同统计</span>
+                    <span class="title">综合业务</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <router-link :to="{ path: '/element/create' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/statistics/contract' }" tag="li" active-class="active">
                         <a class="nav-link ">
-                            <span class="title">合同创建数</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/element/list' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">合同修改数</span>
-                        </a>
-                    </router-link>
-                    <router-link :to="{ path: '/element/change' }" tag="li" active-class="active">
-                        <a class="nav-link ">
-                            <span class="title">合同审核数</span>
+                            <span class="title">合同查询</span>
                         </a>
                     </router-link>
                 </ul>

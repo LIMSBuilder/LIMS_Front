@@ -89,6 +89,11 @@ import Report_Create from './components/bussiness/report/myReportTask.vue'
 import FirstReview from './components/bussiness/report/firstReview.vue'
 import SecondReview from './components/bussiness/report/secondReview.vue'
 import ThirdReview from './components/bussiness/report/thirdReview.vue'
+
+
+//=============statistics==========
+import Statistics from './components/statistics/statistics.vue'
+import Statistics_Contract from './components/statistics/contract.vue'
 //=============Basic================
 //Element
 import Element from './components/basic/element/element.vue'
@@ -236,6 +241,15 @@ var routes = [
             path: "help",
             component: help
 
+        }]
+    },
+    {
+        path: "/statistics",
+        name: "/statistics",
+        component: Statistics,
+        children: [{
+            path: "contract",
+            component: Statistics_Contract
         }]
     }, {
         path: "/address",
