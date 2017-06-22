@@ -66,7 +66,7 @@
                                         <div class="todo-projects-item">
                                             <ul class="todo-projects-container ">
                                                 <template v-for="item in elementMonitor">
-                                                    <li class="todo-projects-item ">
+                                                    <li class="todo-projects-item " @click="viewCompany(item)">
                                                         <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
                                                             {{item.company}}
                                                         </h4>
@@ -100,7 +100,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 bg-after-green">
+                                    <div class="col-md-6 col-sm-6 bg-after-green" v-show="company_id">
                                         <div class="tab-pane active" id="page_1">
                                             <div class="form-group todo-container" style="padding: 10px 0px ">
                                                 <h4>相关文档</h4>
@@ -136,14 +136,7 @@
                                                                 required>
                                                             <option></option>
                                                             <template v-for="item in userList">
-                                                                <optgroup :label="item.name">
-                                                                    <template v-for="user in item.user.results">
-                                                                        <option :value="user.id">
-                                                                            {{user.name}}
-                                                                        </option>
-                                                                    </template>
-                                                                </optgroup>
-
+                                                                <option :value="item.id">{{item.name}}</option>
                                                             </template>
                                                         </select>
                                                     </div>
@@ -168,7 +161,8 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <button type="button" class="btn green btn-outline pull-right">保 存
+                                            <button type="button" id="createReport"
+                                                    class="btn green btn-outline pull-right">保 存
                                             </button>
                                             <div class="clearfix"></div>
                                             <div class="form-group todo-container" style="padding: 10px 0px ">
@@ -187,35 +181,40 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr>
-                                                            <td class="text-center">1</td>
-                                                            <td class="text-center">水质</td>
-                                                            <td class="text-center">张三</td>
-                                                            <td class="text-center"> 2017-03-21</td>
-                                                            <td class="text-center"> 上传</td>
-                                                            <td class="text-center">
-                                                                <button type="button"
-                                                                        class="btn btn-sm green btn-outline">查 看
-                                                                </button>
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-outline  blue">编 辑
-                                                                </button>
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-outline  red">删 除
-                                                                </button>
-                                                            </td>
-                                                        </tr>
+                                                        <template v-for="(it,index) in reportList">
+                                                            <tr>
+                                                                <td class="text-center">{{index+1}}</td>
+                                                                <td class="text-center">{{it.type.name}}</td>
+                                                                <td class="text-center">{{it.creater.name}}</td>
+                                                                <td class="text-center"> {{it.create_time}}</td>
+                                                                <td class="text-center" v-if="it.flag==0">
+                                                                    上传
+                                                                </td>
+                                                                <td class="text-center" v-if="it.flag==1">
+                                                                    创建
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button type="button"
+                                                                            class="btn btn-sm green btn-outline">查 看
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            class="btn btn-sm btn-outline  blue">编 辑
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            class="btn btn-sm btn-outline  red"
+                                                                            @click="deleteReport(it.id)">删 除
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </template>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <button type="button" class="btn green"
-                                                    @click="createDispatch"
-                                                    style="float: right; ">
-                                                完 成
-                                            </button>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 bg-after-green" v-show="!company_id">
+                                        <h4>尚未选择任务，或不存在待派遣任务</h4>
                                     </div>
                                 </div>
                             </div>
@@ -475,7 +474,9 @@
                     charge_id: "",
                     project: []
                 },
-                sampleList: []
+                sampleList: [],
+                company_id: "",
+                reportList: []
             }
         },
         mounted(){
@@ -526,7 +527,25 @@
             elementDropzone.on("success", function (file, finished) {
                 codeState(finished.code, {
                     200: function () {
-                        me.path = finished.path;
+                        //me.path = finished.path;
+                        jQuery("#createReport").off("click").on("click", function () {
+                            me.$http.post("/api/report/create", {
+                                type: me.dispatch.charge_id,
+                                flag: 0,
+                                report_path: finished.path,
+                                company_id: me.company_id
+                            }).then(response => {
+                                var data = response.data;
+                                codeState(data.code, {
+                                    200: function () {
+                                        alert("合同保存成功！");
+                                        me.fetchRepor();
+                                    }
+                                })
+                            }, response => {
+                                serverErrorInfo(response);
+                            })
+                        });
                     }
                 })
             });
@@ -607,7 +626,7 @@
             },
             fetchUser(){
                 var me = this;
-                me.$http.get("/api/user/listByDepartment").then(response => {
+                me.$http.get("/api/element/total").then(response => {
                     var data = response.data;
                     me.userList = data.results;
                     me.$nextTick(function () {
@@ -648,7 +667,7 @@
                     }, response => {
                         serverErrorInfo(response);
                     }
-                )
+                );
             },
             //查看详细的环境要素
             showProject(company){
@@ -707,37 +726,39 @@
                     BlogUtils.pulsate(item.identify);
                 }
             },
-            createDispatch(){
+            fetchRepor(){
                 var me = this;
-                if (!jQuery("#deliveryForm").valid()) {
-                    return;
-                }
-
-                var items = me.addProjectList;
-                var arrayList = [];
-                for (var i = 0; i < items.length; i++) {
-                    arrayList.push(items[i].id);
-                }
-                me.dispatch.company = arrayList;
-                if (arrayList.length == 0) {
-                    error("至少需要分配一个作业给团队成员！");
-                } else {
-                    App.startPageLoading({animate: true});
-                    me.$http.post("/api/dispatch/create", me.dispatch).then(
-                        response => {
+                me.$http.get("/api/report/list", {
+                    params: {
+                        id: me.company_id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.reportList = data;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            deleteReport(id){
+                var me = this;
+                confirm({
+                    content: "是否删除当前报告？",
+                    success(){
+                        me.$http.get("/api/report/deleteReport", {
+                            params: {
+                                report_id: id
+                            }
+                        }).then(response => {
                             var data = response.data;
                             codeState(data.code, {
-                                200: function () {
-                                    alert("任务派遣成功！");
-                                    me.addProjectList = [];
-                                    App.stopPageLoading();
+                                200(){
+                                    alert("删除成功！");
+                                    me.fetchRepor();
                                 }
                             })
-                        }, response => {
-                            serverErrorInfo(response);
-                        }
-                    )
-                }
+                        })
+                    }
+                })
             },
             flow(id){
                 var me = this;
@@ -762,6 +783,11 @@
                         })
                     }
                 })
+            },
+            viewCompany(item){
+                var me = this;
+                me.company_id = item.id;
+                me.fetchRepor();
             }
         }
     }
