@@ -66,7 +66,7 @@
                                         <div class="todo-projects-item">
                                             <ul class="todo-projects-container ">
                                                 <template v-for="item in elementMonitor">
-                                                    <li class="todo-projects-item ">
+                                                    <li class="todo-projects-item " @click="viewCompany(item)">
                                                         <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
                                                             {{item.company}}
                                                         </h4>
@@ -83,11 +83,6 @@
                                                             <p class="todo-red todo-inline">
                                                                 <a href="javascript:;" class="font-green"
                                                                    @click="showProject(item.id)">查看详情</a>
-                                                            </p>
-                                                            <p class="todo-inline todo-float-r">
-                                                                <button type="button"
-                                                                        class="btn btn-sm green btn-outline">完 成
-                                                                </button>
                                                             </p>
                                                         </div>
                                                     </li>
@@ -119,33 +114,32 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr>
-                                                            <td class="text-center">1</td>
-                                                            <td class="text-center">水质</td>
-                                                            <td class="text-center">张三</td>
-                                                            <td class="text-center"> 2017-03-21</td>
-                                                            <td class="text-center"> 上传</td>
-                                                            <td class="text-center">
-                                                                <button type="button"
-                                                                        class="btn btn-sm green btn-outline">查 看
-                                                                </button>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-outline  blue"
-                                                                        @click="reviewReport">审 核
-                                                                </button>
-                                                            </td>
-                                                        </tr>
+                                                        <template v-for="(it,index) in reportList">
+                                                            <tr>
+                                                                <td class="text-center">{{index+1}}</td>
+                                                                <td class="text-center">{{it.type.name}}</td>
+                                                                <td class="text-center">{{it.creater.name}}</td>
+                                                                <td class="text-center"> {{it.create_time}}</td>
+                                                                <td class="text-center" v-if="it.flag==0"> 上传</td>
+                                                                <td class="text-center" v-if="it.flag==1"> 创建</td>
+                                                                <td class="text-center">
+                                                                    <button type="button"
+                                                                            class="btn btn-sm green btn-outline">查 看
+                                                                    </button>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button type="button"
+                                                                            class="btn btn-sm btn-outline  blue"
+                                                                            @click="reviewReport(it)">审 核
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+
+                                                        </template>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <button type="button" class="btn green"
-                                                    style="float: right; ">
-                                                完 成
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -483,7 +477,7 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=delivery",
+                condition: "process=10",
                 taskList: [],
                 task: {
                     type: {}
@@ -508,7 +502,10 @@
                     condition6: 1,
                     condition7: 1,
                     other: ""
-                }
+                },
+                company_id: "",
+                reportList: [],
+                report:{}
             }
         },
         mounted(){
@@ -702,18 +699,19 @@
                     BlogUtils.pulsate(item.identify);
                 }
             },
-            reviewReport(){
+            reviewReport(item){
                 var me = this;
+                me.report=item;
                 jQuery("#reviewReport").modal("show");
             },
             review(){
                 var me = this;
                 var obj = me.result;
-                obj.task_id = me.task.id;
+                obj.report_id = me.report.id;
                 confirm({
                     content: "是否完成当前报告审核?",
                     success(){
-                        me.$http.post("/api/inspect/firstReview", obj).then(response => {
+                        me.$http.post("/api/report/firstReview", obj).then(response => {
                             var data = response.data;
                             codeState(data.code, {
                                 200(){
@@ -750,6 +748,25 @@
                         })
                     }
                 })
+            },
+            fetchRepor(){
+                var me = this;
+                me.$http.get("/api/report/list", {
+                    params: {
+                        id: me.company_id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                me.reportList = data;
+            }, response => {
+                    serverErrorInfo(response);
+                }
+            )
+            },
+            viewCompany(item){
+                var me = this;
+                me.company_id = item.id;
+                me.fetchRepor();
             }
         }
     }

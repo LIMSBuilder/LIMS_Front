@@ -84,11 +84,6 @@
                                                                 <a href="javascript:;" class="font-green"
                                                                    @click="showProject(item.id)">查看详情</a>
                                                             </p>
-                                                            <p class="todo-inline todo-float-r">
-                                                                <button type="button"
-                                                                        class="btn btn-sm green btn-outline">完 成
-                                                                </button>
-                                                            </p>
                                                         </div>
                                                     </li>
                                                     <div class="todo-projects-divider"></div>
@@ -763,9 +758,9 @@
             flow(id){
                 var me = this;
                 confirm({
-                    content: "是否确认已完成所有作业的样品登记并流转该任务？",
+                    content: "是否确认已完成所有作业的报告编制并流转该任务？",
                     success: function () {
-                        me.$http.get("/api/dispatch/checkFlowLab", {
+                        me.$http.get("/api/report/editFlow", {
                             params: {
                                 task_id: id
                             }
@@ -773,7 +768,7 @@
                             var data = response.data;
                             codeState(data.code, {
                                 200: function () {
-                                    alert("任务书流转成功！");
+                                    alert("任务流转成功！");
                                     me.getData();
                                 },
                                 501: "当前存在未完成作业，无法流转！"
