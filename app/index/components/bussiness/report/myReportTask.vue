@@ -172,6 +172,7 @@
                                                             <th> 创建者</th>
                                                             <th> 创建时间</th>
                                                             <th> 来源</th>
+                                                            <th> 状态</th>
                                                             <th> 操作</th>
                                                         </tr>
                                                         </thead>
@@ -189,15 +190,30 @@
                                                                     创建
                                                                 </td>
                                                                 <td class="text-center">
+                                                                    <span class="label label-info" v-if="it.process==0"> 编制 </span>
+                                                                    <span class="label label-danger"
+                                                                          v-if="it.process==-1"> 一审拒绝 </span>
+                                                                    <span class="label label-success"
+                                                                          v-if="it.process==2"> 一审通过 </span>
+                                                                    <span class="label label-danger"
+                                                                          v-if="it.process==-2"> 二审拒绝 </span>
+                                                                    <span class="label label-success"
+                                                                          v-if="it.process==3"> 二审通过 </span>
+                                                                </td>
+                                                                <td class="text-center">
                                                                     <button type="button"
                                                                             class="btn btn-sm green btn-outline">查 看
                                                                     </button>
                                                                     <button type="button"
-                                                                            class="btn btn-sm btn-outline  blue">编 辑
+                                                                            class="btn btn-sm btn-outline  blue"
+                                                                            v-if="it.process==1||it.process==-1||it.process==-2">
+                                                                        编 辑
                                                                     </button>
                                                                     <button type="button"
                                                                             class="btn btn-sm btn-outline  red"
-                                                                            @click="deleteReport(it.id)">删 除
+                                                                            @click="deleteReport(it.id)"
+                                                                            v-if="it.process==1||it.process==-1||it.process==-2">
+                                                                        删 除
                                                                     </button>
                                                                 </td>
                                                             </tr>

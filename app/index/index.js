@@ -89,7 +89,7 @@ import Report_Create from './components/bussiness/report/myReportTask.vue'
 import FirstReview from './components/bussiness/report/firstReview.vue'
 import SecondReview from './components/bussiness/report/secondReview.vue'
 import ThirdReview from './components/bussiness/report/thirdReview.vue'
-
+import Receive from './components/bussiness/report/reportReceive.vue'
 
 //=============statistics==========
 import Statistics from './components/statistics/statistics.vue'
@@ -604,6 +604,9 @@ var routes = [
             }, {
                 path: "thirdReview",
                 component: ThirdReview
+            }, {
+                path: "receive",
+                component: Receive
             }
         ]
     },
