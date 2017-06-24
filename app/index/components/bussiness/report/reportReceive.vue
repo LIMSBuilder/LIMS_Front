@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="page-title"> 签发审核
-            <small>／Report Review</small>
+        <h1 class="page-title"> 报告接收
+            <small>／Report Receive</small>
         </h1>
         <div class="row">
             <div class="col-md-12">
@@ -95,7 +95,8 @@
                                                             <th> 创建时间</th>
                                                             <th> 来源</th>
                                                             <th> 查看</th>
-                                                            <th> 操作</th>
+                                                            <th> 审核记录</th>
+                                                            <th> 接收</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -114,14 +115,16 @@
                                                                 </td>
                                                                 <td class="text-center">
                                                                     <button type="button"
-                                                                            class="btn btn-sm btn-outline  blue"
-                                                                            @click="reviewReport(it)"
-                                                                            v-if="it.process==3">审 核
+                                                                            class="btn btn-sm green btn-outline">查 看
                                                                     </button>
-                                                                    <span class="label label-danger"
-                                                                          v-if="it.process==-3"> 拒 绝 </span>
-                                                                    <span class="label label-success"
-                                                                          v-if="it.process>=4"> 通 过 </span>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button type="button"
+                                                                            class="btn btn-sm green btn-outline"
+                                                                            @click="finishReport(it)"
+                                                                            v-if="it.process==4">完 成
+                                                                    </button>
+                                                                    <span v-if="it.process==5">已接收</span>
                                                                 </td>
                                                             </tr>
 
@@ -141,114 +144,6 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
-        <div class="modal fade bs-modal-lg" id="reviewReport" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">报告审核</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">报告报表及各种记录是否齐全？</label>
-                            <div class="col-md-3">
-                                <div class="md-radio-inline">
-                                    <div class="md-radio has-success">
-                                        <input type="radio" id="radio11" v-model="result.condition1" value="1"
-                                               name="radio1"
-                                               class="md-radiobtn">
-                                        <label for="radio11">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 是 </label>
-                                    </div>
-                                    <div class="md-radio has-error">
-                                        <input type="radio" id="radio12" v-model="result.condition1" value="0"
-                                               name="radio1"
-                                               class="md-radiobtn">
-                                        <label for="radio12">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 否 </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">监测数据是否合理？</label>
-                            <div class="col-md-3">
-                                <div class="md-radio-inline">
-                                    <div class="md-radio has-success">
-                                        <input type="radio" id="radio21" v-model="result.condition2" value="1"
-                                               name="radio2"
-                                               class="md-radiobtn">
-                                        <label for="radio21">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 是 </label>
-                                    </div>
-                                    <div class="md-radio has-error">
-                                        <input type="radio" id="radio22" v-model="result.condition2" value="0"
-                                               name="radio2"
-                                               class="md-radiobtn">
-                                        <label for="radio22">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 否 </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">标准引用和结论是否准确？</label>
-                            <div class="col-md-3">
-                                <div class="md-radio-inline">
-                                    <div class="md-radio has-success">
-                                        <input type="radio" id="radio31" v-model="result.condition3" value="1"
-                                               name="radio3"
-                                               class="md-radiobtn">
-                                        <label for="radio31">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 是 </label>
-                                    </div>
-                                    <div class="md-radio has-error">
-                                        <input type="radio" id="radio32" v-model="result.condition3" value="0"
-                                               name="radio3"
-                                               class="md-radiobtn">
-                                        <label for="radio32">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 否 </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <textarea class="form-control" rows="5" v-model="result.other"
-                                  placeholder="备注信息"></textarea>
-                        <hr>
-                        <div class="row margin-bottom-20">
-                            <div class="col-md-12">
-                                <p>审核结果：<span class="label label-success"
-                                              v-if="result.condition1==1&&result.condition2==1&&result.condition3==1"> 通过 </span>
-                                    <span v-else class="label label-danger">拒绝</span>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
-                        <button type="button" class="btn green btn-outline" @click="review">保存审核
-                        </button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
     </div>
 </template>
 
@@ -261,7 +156,7 @@
         data: function () {
             return {
                 currentPage: 1,
-                condition: "process=12",
+                condition: "process=13",
                 taskList: [],
                 task: {
                     type: {}
@@ -439,41 +334,12 @@
                     }
                 )
             },
-            reviewReport(item){
-                var me = this;
-                me.report = item;
-                jQuery("#reviewReport").modal("show");
-            },
-            review(){
-                var me = this;
-                var obj = me.result;
-                obj.report_id = me.report.id;
-                confirm({
-                    content: "是否完成当前报告审核?",
-                    success(){
-                        me.$http.post("/api/report/thirdReview", obj).then(response => {
-                                var data = response.data;
-                                codeState(data.code, {
-                                    200(){
-                                        alert("审核成功！");
-                                        me.fetchRepor();
-                                        jQuery("#reviewReport").modal("hide");
-                                    }
-                                })
-                            },
-                            response => {
-                                serverErrorInfo(response);
-                            }
-                        );
-                    }
-                })
-            },
             flow(id){
                 var me = this;
                 confirm({
-                    content: "是否确认已完成所有报告审核并流转该任务？",
+                    content: "是否确认已完成所有报告接收并结束任务？",
                     success: function () {
-                        me.$http.get("/api/report/thirdReviewFlow", {
+                        me.$http.get("/api/report/receiveFlow", {
                             params: {
                                 task_id: id
                             }
@@ -481,10 +347,10 @@
                                 var data = response.data;
                                 codeState(data.code, {
                                     200: function () {
-                                        alert("报告流转成功！");
+                                        alert("任务结束！");
                                         me.getData();
                                     },
-                                    501: "当前存在未审核报告，无法流转！"
+                                    501: "当前存在未接收报告，无法结束！"
                                 })
                             },
                             response => {
@@ -513,6 +379,29 @@
                 var me = this;
                 me.company_id = item.id;
                 me.fetchRepor();
+            },
+            finishReport(item){
+                var me = this;
+                confirm({
+                    content: "是否完成对当前报告的接收？",
+                    success(){
+                        me.$http.get("/api/report/receive", {
+                            params: {
+                                report_id: item.id
+                            }
+                        }).then(response => {
+                            var data = response.data;
+                            codeState(data.code, {
+                                200: function () {
+                                    alert("报告接收完成！");
+                                    me.fetchReport();
+                                }
+                            })
+                        }, response => {
+                            serverErrorInfo(response);
+                        })
+                    }
+                })
             }
         }
     }

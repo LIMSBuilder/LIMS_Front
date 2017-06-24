@@ -279,6 +279,11 @@
                             <span class="title">签发审核</span>
                         </a>
                     </router-link>
+                    <router-link :to="{ path: '/report/receive' }" tag="li" active-class="active">
+                        <a class="nav-link ">
+                            <span class="title">报告签收</span>
+                        </a>
+                    </router-link>
                 </ul>
             </li>
 
