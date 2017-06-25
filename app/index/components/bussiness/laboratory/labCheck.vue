@@ -734,7 +734,7 @@
                                 result: 0,
                                 id: item.id,
                                 task_id: me.task.id,
-                                type: item.type,
+                                type: 'check',
                                 remark: remark
                             }
                         }).then(response => {
@@ -761,7 +761,7 @@
                                 result: 1,
                                 id: item.id,
                                 task_id: me.task.id,
-                                type: item.type,
+                                type: 'check',
                                 remark: ""
                             }
                         }).then(response => {

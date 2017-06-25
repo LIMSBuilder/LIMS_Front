@@ -732,7 +732,7 @@
                             params: {
                                 result: 0,
                                 id: item.id,
-                                type: item.type,
+                                type: 'review',
                                 remark: remark
                             }
                         }).then(response => {
@@ -758,7 +758,7 @@
                             params: {
                                 result: 1,
                                 id: item.id,
-                                type: item.type,
+                                type: 'review',
                                 remark: ""
                             }
                         }).then(response => {
