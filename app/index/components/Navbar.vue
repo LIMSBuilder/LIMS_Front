@@ -64,12 +64,6 @@
                     <span class="title">我的分析任务</span>
                 </a>
             </router-link>
-            <router-link :to="{ path: '/report/create' }" tag="li" active-class="active">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-tasks"></i>
-                    <span class="title">我的报告编制</span>
-                </a>
-            </router-link>
             <router-link :to="{ path: '/mail/inbox' }" tag="li" active-class="active">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-envelope"></i>
