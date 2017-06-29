@@ -70,21 +70,6 @@
                                                         <h4 :class="item.isActive==1?'font-green':'font-grey-salsa'">
                                                             {{item.company}}
                                                         </h4>
-                                                        <ul class="receiver_tag">
-                                                            <template v-for="result in item.results">
-                                                                <li class="uppercase ">
-                                                                    <a href="javascript:;" style="line-height: 30px">
-                                                                        {{result.name}}
-                                                                    </a>
-                                                                </li>
-                                                            </template>
-                                                        </ul>
-                                                        <div class="todo-project-item-foot">
-                                                            <p class="todo-red todo-inline">
-                                                                <a href="javascript:;" class="font-green"
-                                                                   @click="showProject(item.id)">查看详情</a>
-                                                            </p>
-                                                        </div>
                                                     </li>
                                                     <div class="todo-projects-divider"></div>
                                                 </template>
@@ -101,15 +86,23 @@
                                                 <h4>相关文档</h4>
                                                 <hr>
                                                 <p>
-                                                    <button type="button" class="btn green btn-outline">合同
+                                                    <button type="button" class="btn green btn-outline"
+                                                            @click="fetchTask">合同
                                                     </button>
-                                                    <button type="button" class="btn blue btn-outline">任务书
+                                                    <button type="button" class="btn blue btn-outline"
+                                                            @click="fetchTask">任务书
                                                     </button>
-                                                    <button type="button" class="btn yellow btn-outline">样品信息
+                                                    <button type="button" class="btn yellow btn-outline"
+                                                            @click="fetchSamples">样品信息
                                                     </button>
-                                                    <button type="button" class="btn purple btn-outline">交接联单
+                                                    <button type="button" class="btn purple btn-outline"
+                                                            @click="fetchQuery">质量控制
                                                     </button>
-                                                    <button type="button" class="btn dark btn-outline">实验结果
+                                                    <button type="button" class="btn dark btn-outline"
+                                                            @click="fetchProject">实验分析
+                                                    </button>
+                                                    <button type="button" class="btn dark btn-outline"
+                                                            @click="fetchInspectReview">实验审核
                                                     </button>
                                                 </p>
                                             </div>
@@ -172,6 +165,7 @@
                                                             <th> 创建者</th>
                                                             <th> 创建时间</th>
                                                             <th> 来源</th>
+                                                            <th> 状态</th>
                                                             <th> 操作</th>
                                                         </tr>
                                                         </thead>
@@ -189,15 +183,30 @@
                                                                     创建
                                                                 </td>
                                                                 <td class="text-center">
+                                                                    <span class="label label-info" v-if="it.process==0"> 编制 </span>
+                                                                    <span class="label label-danger"
+                                                                          v-if="it.process==-1"> 一审拒绝 </span>
+                                                                    <span class="label label-success"
+                                                                          v-if="it.process==2"> 一审通过 </span>
+                                                                    <span class="label label-danger"
+                                                                          v-if="it.process==-2"> 二审拒绝 </span>
+                                                                    <span class="label label-success"
+                                                                          v-if="it.process==3"> 二审通过 </span>
+                                                                </td>
+                                                                <td class="text-center">
                                                                     <button type="button"
                                                                             class="btn btn-sm green btn-outline">查 看
                                                                     </button>
                                                                     <button type="button"
-                                                                            class="btn btn-sm btn-outline  blue">编 辑
+                                                                            class="btn btn-sm btn-outline  blue"
+                                                                            v-if="it.process==1||it.process==-1||it.process==-2">
+                                                                        编 辑
                                                                     </button>
                                                                     <button type="button"
                                                                             class="btn btn-sm btn-outline  red"
-                                                                            @click="deleteReport(it.id)">删 除
+                                                                            @click="deleteReport(it.id)"
+                                                                            v-if="it.process==1||it.process==-1||it.process==-2">
+                                                                        删 除
                                                                     </button>
                                                                 </td>
                                                             </tr>
@@ -220,172 +229,490 @@
             </div>
             <!-- END PAGE CONTENT-->
         </div>
-        <div class="modal fade" id="dispatch" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-full">
+
+        <div class="modal fade bs-modal-lg" id="contract" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">设置派遣人员</h4>
+                        <h4 class="modal-title">查看合同详情</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="table-scrollable table-scrollable-borderless">
-                            <table class="table table-hover table-light">
-                                <thead>
-                                <tr class="uppercase">
-                                    <th> 序号</th>
-                                    <!--<th> 公司、道路名称</th>-->
-                                    <th> 环境要素</th>
-                                    <th> 监测点（个）</th>
-                                    <th> 监测项目</th>
-                                    <th> 监测频次</th>
-                                    <th> 是否分包</th>
-                                    <th> 备注</th>
-                                    <tH> 负责人</tH>
-                                    <th> 参与者</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <template v-for="(item,index) in items">
-                                    <template
-                                            v-for="(project,projectIndex) in item.project">
-                                        <tr>
-                                            <td class="text-center"
-                                                v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                {{index+1}}
-                                            </td>
-                                            <!--<td class="text-center"-->
-                                            <!--v-if="projectIndex==0"-->
-                                            <!--:rowspan="item.project.length">-->
-                                            <!--{{item.company}}-->
-                                            <!--</td>-->
-                                            <td class="text-center"
-                                                v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                {{item.element.name}}
-                                            </td>
-                                            <td class="text-center"
-                                                v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                {{item.point}}
-                                            </td>
-                                            <td class="text-center">
-                                                {{project.project.name}}
-                                            </td>
-                                            <td class="text-center"
-                                                v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                {{item.frequency?item.frequency.total:''}}
-                                            </td>
-                                            <td class="text-center"
-                                                v-if="item.is_package==1&&projectIndex==0"
-                                                :rowspan="item.project.length">是
-                                            </td>
-                                            <td class="text-center"
-                                                v-if="item.is_package==0&&projectIndex==0"
-                                                :rowspan="item.project.length">否
-                                            </td>
-                                            <td class="text-center"
-                                                v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                {{item.other}}
-                                            </td>
-                                            <td v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <select class="bs-select form-control" data-live-search="true">
-                                                            <template v-for="department in userList">
-                                                                <optgroup :label="department.name">
-                                                                    <template v-for="user in department.user.results">
-                                                                        <option>{{user.name}}</option>
+
+
+                        <h4 class="form-section">甲方信息</h4>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">委托单位
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.client_unit}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">邮政编码
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.client_code}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系地址
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label">
+                                        {{contract.client_address}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系电话
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.client_tel}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系人
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.client}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">传真号码
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.client_fax}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="form-section">乙方信息</h4>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">受托单位
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.trustee_unit}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">邮政编码
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.trustee_code}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系地址
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label">
+                                        {{contract.client_address}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系电话
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.trustee_tel}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系人
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.trustee.name}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">传真号码
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.trustee_fax}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="form-section">合同详情</h4>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">项目名称
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">监测目的
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.aim}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">监测类别
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label"> {{contract.type.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">检测方式
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label" v-if="contract.way==1">
+                                        以我单位通过计量认证、国家实验室认可的方法进行检测 </label>
+                                    <label class="control-label" v-if="contract.way==2">
+                                        客户指定的方法：{{contract.wayDesp}} </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">检测项目
+                                </label>
+                                <div class="col-md-10">
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <tbody>
+                                            <div class="table-scrollable table-scrollable-borderless">
+                                                <table class="table table-hover table-light">
+                                                    <thead>
+                                                    <tr class="uppercase">
+                                                        <th> 序号</th>
+                                                        <th> 公司名称</th>
+                                                        <th> 环境要素</th>
+                                                        <th> 监测点（个）</th>
+                                                        <th> 监测项目</th>
+                                                        <th> 监测频次</th>
+                                                        <th> 备注</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <template v-for="itemList in itemLists">
+                                                        <template
+                                                                v-for="(item,index) in itemList.items">
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    {{index+1}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{itemList.flag==0?contract.client_unit:itemList.company}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.element.name}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.point}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <template
+                                                                            v-for="(project,index) in item.project">
+                                                                        {{project.name}}
+                                                                        <template
+                                                                                v-if="project.isPackage==true">
+                                                                            <span style="color: red;">[分包]</span>
+                                                                        </template>
+                                                                        <template
+                                                                                v-if="index+1!=item.project.length">
+                                                                            ,
+                                                                        </template>
                                                                     </template>
-                                                                </optgroup>
-                                                            </template>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td v-if="projectIndex==0"
-                                                :rowspan="item.project.length">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <select class="bs-select form-control" multiple
-                                                                data-actions-box="true" data-live-search="true">
-                                                            <template v-for="department in userList">
-                                                                <optgroup :label="department.name">
-                                                                    <template v-for="user in department.user.results">
-                                                                        <option>{{user.name}}</option>
-                                                                    </template>
-                                                                </optgroup>
-                                                            </template>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </template>
-                                </template>
-                                </tbody>
-                            </table>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.frequency.total}}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    {{item.other}}
+                                                                </td>
+                                                            </tr>
+                                                        </template>
+                                                    </template>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">是否分包
+                                </label>
+                                <div class="col-md-8">
+                                    <!--<label class="control-label"> {{contract.package_unit}}</label>-->
+
+                                    <label v-if="contract.isPackage==1"> 是</label>
+                                    <label v-if="contract.isPackage==0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">客户要求
+                                    <span class="required">  </span>
+                                </label>
+                                <div class="col-md-10">
+                                    <div class="mt-checkbox-list">
+                                        <label class="control-label"
+                                               v-if="contract.in_room==1">客户需要进入实验室监视与本次委托有关的检测活动。</label>
+                                        <label class="control-label"
+                                               v-if="contract.secret==1">客户需要本实验室对本次委托有关资料保密。</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="form-section">其他约定</h4>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">交付方式
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label">{{contract.paymentWay}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">完成时间
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label">{{contract.finish_time}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">监测费用
+                                </label>
+                                <div class="col-md-8">
+                                    <div class="col-md-4">
+                                        <label class="control-label">￥{{contract.payment}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">其他约定
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label">{{contract.other}}</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer" id="dispath_body">
+                    <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
-                        <button type="button" class="btn green">保存方案</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <div class="modal fade bs-modal-lg draggable-modal" id="showProject" tabindex="-1" role="dialog"
-             aria-hidden="true">
+        <div class="modal fade bs-modal-lg" id="task" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">查看详情</h4>
+                        <h4 class="modal-title">查看任务书详情</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>监测项目</h4>
-                        <div class="table-scrollable table-scrollable-borderless">
-                            <table class="table table-hover table-light">
-                                <thead>
-                                <tr class="uppercase">
-                                    <th> 序号</th>
-                                    <th> 环境要素</th>
-                                    <th> 监测点（个）</th>
-                                    <th> 监测项目</th>
-                                    <th> 监测频次</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <template v-for="(item,index) in element">
-                                    <tr>
-                                        <td class="text-center">{{index+1}}</td>
-                                        <td class="text-center">
-                                            {{item.element.name}}
-                                        </td>
-                                        <td class="text-center">
-                                            {{item.point}}
-                                        </td>
-                                        <td class="text-center">
-                                            <template v-for="p in item.project">
-                                                {{p.name}}
-                                                <span class="font-red" v-if="p.isPackage==1">[分包]</span>
-                                            </template>
-                                        </td>
-                                        <td class="text-center">
-                                            {{item.frequency?item.frequency.total:''}}
-                                        </td>
-                                    </tr>
-                                </template>
-                                </tbody>
-                            </table>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">委托单位
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.client_unit}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">邮政编码
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.client_code}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系地址
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.client_address}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系电话
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.client_tel}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">联系人
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.client}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-4">传真号码
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.client_fax}}</p>
+                                </div>
+                            </div>
                         </div>
                         <hr>
-                        <h4>样品信息</h4>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">项目名称
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">监测目的
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.aim}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">监测类别
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static">
+                                        {{task.type.name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-2">检测方式
+                                </label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static"
+                                       v-if="task.way==1">
+                                        以我单位通过计量认证、国家实验室认可的方法进行检测。</p>
+                                    <p class="form-control-static"
+                                       v-if="task.way==2">
+                                        客户指定的方法：{{task.wayDesp}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <thead>
+                                            <tr class="uppercase">
+                                                <th> 序号</th>
+                                                <th> 公司名称</th>
+                                                <th> 环境要素</th>
+                                                <th> 监测点（个）</th>
+                                                <th> 监测项目</th>
+                                                <th> 监测频次</th>
+                                                <th> 备注</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <template v-for="itemList in taskitemLists">
+                                                <template
+                                                        v-for="(item,index) in itemList.items">
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            {{index+1}}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <!--{{itemList.flag==0?contract.client_unit:itemList.company}}-->
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{item.element.name}}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{item.point}}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <template
+                                                                    v-for="(project,index) in item.project">
+                                                                {{project.name}}
+                                                                <template
+                                                                        v-if="project.isPackage==true">
+                                                                    <span style="color: red;">[分包]</span>
+                                                                </template>
+                                                                <template
+                                                                        v-if="index+1!=item.project.length">
+                                                                    ,
+                                                                </template>
+                                                            </template>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{item.frequency.total}}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{item.other}}
+                                                        </td>
+                                                    </tr>
+                                                </template>
+                                            </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade bs-modal-lg" id="sample" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">查看样品详情</h4>
+                    </div>
+                    <div class="modal-body">
                         <div class="table-scrollable table-scrollable-borderless">
                             <table class="table table-hover table-light">
                                 <thead>
@@ -429,8 +756,685 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade bs-modal-lg" id="quality" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">查看质量控制</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <tbody>
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                        <tr class="uppercase">
+                                            <th> 序号</th>
+                                            <th> 分析项目</th>
+                                            <th> 样品数</th>
+                                            <th> 现场平行</th>
+                                            <th>
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td colspan="2"
+                                                            style="padding: 0px 20px;">
+                                                            实验室平行样
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center">个数</td>
+                                                        <td class="text-center">样品编号
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </th>
+                                            <th>
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td colspan="2"
+                                                            style="padding: 0px 20px;">
+                                                            加标回收样
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center">个数</td>
+                                                        <td class="text-center">样品编号
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </th>
+                                            <th> 盲样(个)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(item,index) in qualityList">
+                                            <tr class="uppercase">
+                                                <td class="text-center"> {{index+1}}
+                                                </td>
+                                                <td class="text-center"> {{item.project.name}}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.sampleList.length}}
+                                                </td>
+                                                <td class="text-center">
+                                                    <span v-if="item.sceneCount==0">/</span>
+                                                    <span v-if="item.sceneCount!=0">{{item.sceneCount}}</span>
+                                                </td>
+                                                <td>
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <td class="text-center"
+                                                                style="padding-top: 20px;">
+                                                                {{item.libList.length}}个
+                                                            </td>
+                                                            <td style="padding-top: 20px">
+                                                                <template v-for="sa in item.libList">
+                                                                    {{sa.identify}}
+                                                                </template>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="text-center">
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <td class="text-center"
+                                                                style="padding-top: 20px;">
+                                                                {{item.tagList.length}}个
+                                                            </td>
+                                                            <td style="padding-top: 20px">
+                                                                <template v-for="sa in item.tagList">
+                                                                    {{sa.identify}}
+                                                                </template>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.blind}}
+                                                </td>
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade bs-modal-lg" id="project" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">查看实验分析结果</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <tbody>
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                        <tr class="uppercase">
+                                            <th> 序号</th>
+                                            <th> 分析项目</th>
+                                            <th> 环境要素</th>
+                                            <th> 查 看</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(item,index) in projectList">
+                                            <tr class="uppercase">
+                                                <td class="text-center"> {{index+1}}
+                                                </td>
+                                                <td class="text-center"> {{item.name}}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.elementName}}
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn green btn-outline"
+                                                            @click="viewInspect(item.id)">查看
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
                         <hr>
-                        <h4>编制人员：张三</h4>
+                        <h3>实验分析结果</h3>
+                        <template v-for="item in inspectList">
+                            <div class="table-scrollable table-scrollable-borderless"
+                                 v-if="item.inspect.type=='dysodia'">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <thead>
+                                            <tr>
+                                                <th> 序号</th>
+                                                <th> 样品编号</th>
+                                                <th> 浓度</th>
+                                                <th> 审核记录</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <template v-for="(dysodia,index) in item.items">
+                                                <tr>
+                                                    <td class="text-center">{{index+1}}</td>
+                                                    <td class="text-center">
+                                                        {{dysodia.sample.identify}}
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="dysodia.concentration"
+                                                               v-if="dysodia.process==0">
+                                                        <template v-else>
+                                                            {{dysodia.concentration}}
+                                                        </template>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn green btn-outline"
+                                                                @click="viewInspectReview(dysodia)">查看
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-scrollable table-scrollable-borderless"
+                                 v-if="item.inspect.type=='air'">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <thead>
+                                            <tr>
+                                                <th> 序号</th>
+                                                <th> 样品编号</th>
+                                                <th> 分析结果（mg/L）</th>
+                                                <th> 标况体积（NdL）</th>
+                                                <th> 浓度（mg/m³）</th>
+                                                <th> 审核记录</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <template v-for="(air,index) in item.items">
+                                                <tr>
+                                                    <td class="text-center">{{index+1}}</td>
+                                                    <td class="text-center">
+                                                        {{air.sample.identify}}
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="air.result"
+                                                               v-if="air.process==0">
+                                                        <template v-else>
+                                                            {{air.result}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="air.volume"
+                                                               v-if="air.process==0">
+                                                        <template v-else>
+                                                            {{air.volume}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="air.concentration"
+                                                               v-if="air.process==0">
+                                                        <template v-else>
+                                                            {{air.concentration}}
+                                                        </template>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn green btn-outline"
+                                                                @click="viewInspectReview(air)">查看
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-scrollable table-scrollable-borderless"
+                                 v-if="item.inspect.type=='water'">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <thead>
+                                            <tr>
+                                                <th> 序号</th>
+                                                <th> 样品编号</th>
+                                                <th style="width: 200px;"> 分析结果（mg/L）</th>
+                                                <th> 审核记录</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <template v-for="(water,index) in item.items">
+                                                <tr>
+                                                    <td class="text-center">{{index+1}}</td>
+                                                    <td class="text-center">
+                                                        {{water.sample.identify}}
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="water.result"
+                                                               v-if="water.process==0">
+                                                        <template v-else>
+                                                            {{water.result}}
+                                                        </template>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn green btn-outline"
+                                                                @click="viewInspectReview(water)">查看
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-scrollable table-scrollable-borderless"
+                                 v-if="item.inspect.type=='solid'">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <thead>
+                                            <tr>
+                                                <th> 序号</th>
+                                                <th> 样品编号</th>
+                                                <th> 分析结果（mg/L）</th>
+                                                <th> 标况体积（NdL）</th>
+                                                <th> 标干流量（Ndm³/h）</th>
+                                                <th> 浓度(mg/m³)</th>
+                                                <th> 排放量（kg/h）</th>
+                                                <th 审核记录></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <template v-for="(solid,index) in item.items">
+                                                <tr>
+                                                    <td class="text-center">{{index+1}}</td>
+                                                    <td class="text-center">
+                                                        {{solid.sample.identify}}
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="solid.result"
+                                                               v-if="solid.process==0">
+                                                        <template v-else>
+                                                            {{solid.result}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="solid.volume"
+                                                               v-if="solid.process==0">
+                                                        <template v-else>
+                                                            {{solid.volume}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="solid.flow"
+                                                               v-if="solid.process==0">
+                                                        <template v-else>
+                                                            {{solid.flow}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="solid.concentration"
+                                                               v-if="solid.process==0">
+                                                        <template v-else>
+                                                            {{solid.concentration}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="solid.discharge"
+                                                               v-if="solid.process==0">
+                                                        <template v-else>
+                                                            {{solid.discharge}}
+                                                        </template>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn green btn-outline"
+                                                                @click="viewInspectReview(solid)">查看
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-scrollable table-scrollable-borderless"
+                                 v-if="item.inspect.type== 'soil' ">
+                                <table class="table table-hover table-light">
+                                    <tbody>
+                                    <div class="table-scrollable table-scrollable-borderless">
+                                        <table class="table table-hover table-light">
+                                            <thead>
+                                            <tr>
+                                                <th> 序号</th>
+                                                <th> 样品编号</th>
+                                                <th> 样品名称</th>
+                                                <th> 采样断面（点）</th>
+                                                <th> 分析结果（mg/kg）</th>
+                                                <th> 备注</th>
+                                                <th> 审核记录</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <template v-for="(soil,index) in item.items">
+                                                <tr>
+                                                    <td class="text-center">{{index+1}}</td>
+                                                    <td class="text-center">
+                                                        {{soil.sample.identify}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{soil.sample.name}}
+                                                    </td>
+                                                    <td style="width: 50px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="soil.point"
+                                                               v-if="soil.process==0">
+                                                        <template v-else>
+                                                            {{soil.point}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="soil.result"
+                                                               v-if="soil.process==0">
+                                                        <template v-else>
+                                                            {{soil.result}}
+                                                        </template>
+                                                    </td>
+                                                    <td style="width: 200px;"
+                                                        class="text-center">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               v-model="soil.remark"
+                                                               v-if="soil.process==0">
+                                                        <template v-else>
+                                                            {{soil.remark}}
+                                                        </template>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn green btn-outline"
+                                                                @click="viewInspectReview(soil)">查看
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                        <hr>
+                        <h3>实验原始记录</h3>
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <tbody>
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                        <tr>
+                                            <th> 序号</th>
+                                            <th> 附件名称</th>
+                                            <th> 操作</th>
+                                            <th> 审核记录</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <template
+                                                v-for="(attach,index) in inspectAttachment">
+                                            <tr>
+                                                <td class="text-center">{{index+1}}</td>
+                                                <td class="text-center">
+                                                    {{attach.name}}
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button"
+                                                            class="btn green btn-outline">查
+                                                        看
+                                                    </button>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn green btn-outline"
+                                                            @click="viewInspectReview(item)">查看
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <h3>实验审核记录</h3>
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <tbody>
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                        <tr>
+                                            <th> 序号</th>
+                                            <th> 审核类别</th>
+                                            <th> 审核结果</th>
+                                            <th> 审核者</th>
+                                            <th> 审核时间</th>
+                                            <th> 备注信息</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <template
+                                                v-for="(review,index) in inspectReview">
+                                            <tr>
+                                                <td class="text-center">{{index+1}}</td>
+                                                <td class="text-center">
+                                                    <template v-if="item.type=='review'">结果审核</template>
+                                                    <template v-if="item.type=='check'">结果复核</template>
+                                                </td>
+                                                <td class="text-center">
+                                                    <template v-if="item.result==0">
+                                                        审核拒绝
+                                                    </template>
+                                                    <template v-if="item.result==1">
+                                                        审核通过
+                                                    </template>
+                                                </td>
+                                                <td class="text-center">{{item.Name}}</td>
+                                                <td class="text-center">{{item.create_time}}</td>
+                                                <td class="text-center">{{item.remark}}</td>
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade bs-modal-lg" id="masterReview" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title">主任审核意见</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>一审记录</h3>
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <tbody>
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                        <tr class="uppercase">
+                                            <th> 序号</th>
+                                            <th> 审核者</th>
+                                            <th> 审核时间</th>
+                                            <th> 查 看</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(item,index) in masterReviewList.firstReview">
+                                            <tr class="uppercase">
+                                                <td class="text-center"> {{index+1}}
+                                                </td>
+                                                <td class="text-center"> {{item.creater.name}}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.create_time}}
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn green btn-outline"
+                                                            @click="viewReview(item.id)">查看
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <h3>二审记录</h3>
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <tbody>
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                        <tr class="uppercase">
+                                            <th> 序号</th>
+                                            <th> 审核者</th>
+                                            <th> 审核时间</th>
+                                            <th> 查 看</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(item,index) in masterReviewList.secondReview">
+                                            <tr class="uppercase">
+                                                <td class="text-center"> {{index+1}}
+                                                </td>
+                                                <td class="text-center"> {{item.creater.name}}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{item.create_time}}
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn green btn-outline"
+                                                            @click="viewReview(item.id)">查看
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn dark btn-outline" data-dismiss="modal">关 闭</button>
@@ -471,7 +1475,45 @@
                 },
                 sampleList: [],
                 company_id: "",
-                reportList: []
+                reportList: [],
+                contract: {
+                    client: "",
+                    client_code: "",
+                    client_address: "",
+                    client_tel: "",
+                    client_unit: "",
+                    client_fax: "",
+                    trustee: "",
+                    trustee_code: "",
+                    trustee_address: "",
+                    trustee_tel: "",
+                    trustee_unit: "",
+                    trustee_fax: "",
+                    way: 1,
+                    wayDesp: "",
+                    finish_time: "",
+                    payment: "",
+                    paymentWay: "挂号邮寄",
+                    in_room: false,
+                    secret: true,
+                    item: [],
+                    project_items: [],
+                    other: "",
+                    type: "",
+                    isPackage: 0,
+                    importWrite: 0,
+                },
+                itemLists: [],
+                taskitemLists: [],
+                qualityList: [],
+                projectList: [],
+                inspectList: [],
+                inspectAttachment: [],
+                inspectReview: [],
+                masterReviewList: {
+                    firstReview: [],
+                    secondReview: []
+                }
             }
         },
         mounted(){
@@ -659,44 +1701,11 @@
                             }
                         }
                         me.elementMonitor = data;
+                        me.task.id = id;
                     }, response => {
                         serverErrorInfo(response);
                     }
                 );
-            },
-            //查看详细的环境要素
-            showProject(company){
-                var me = this;
-                me.$http.get("/api/task/getByCompanyId", {
-                    params: {
-                        company_id: company
-                    }
-
-                }).then(
-                    response => {
-                        var data = response.data;
-                        me.element = data.items;
-                    }, response => {
-                        serverErrorInfo(response);
-                    }
-                );
-                me.fetchSamples(company);
-                jQuery("#showProject").modal("show");
-
-            },
-            fetchSamples(id){
-                var me = this;
-                me.$http.get("/api/sample/list", {
-                    params: {
-                        company_id: id
-                    }
-                }).then(response => {
-                    var data = response.data;
-                    $('.select-project').selectpicker('destroy');
-                    me.sampleList = data.results;
-                }, response => {
-                    serverErrorInfo(response)
-                })
             },
             addProject(item){
                 var me = this;
@@ -783,6 +1792,177 @@
                 var me = this;
                 me.company_id = item.id;
                 me.fetchRepor();
+            },
+            fetchTask(){
+                var me = this;
+                me.$http.get("/api/contract/findByTaskId", {
+                    params: {
+                        id: me.task.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    codeState(data.code, {
+                        200(){
+                            me.contract = data;
+                            me.fetchItems(data.id);
+                        },
+                        201(){
+                            window.open(data.path);
+                        },
+                        504(){
+                            alert("当前任务书暂无合同！");
+                        }
+                    })
+
+                    jQuery('#contract').modal("show");
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            fetchItems(id){
+                var me = this;
+                me.$http.get("/api/contract/getItems", {
+                    params: {
+                        contract_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.itemLists = data;
+//                    console.log(me.itemLists);
+                }, response => {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchTask(){
+                var me = this;
+                me.$http.get("/api/task/taskDetails", {
+                    params: {
+                        id: me.task.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.task = data;
+                    me.fetchTaskItems(data.id);
+                    jQuery('#task').modal("show");
+                }, response => {
+                    serverErrorInfo(response);
+                })
+
+            },
+            fetchTaskItems(id){
+                var me = this;
+                me.$http.get("/api/task/taskGetItems", {
+                    params: {
+                        task_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.taskitemLists = data;
+                }, response => {
+                    serverErrorInfo(response);
+                });
+            },
+            fetchSamples(){
+                var me = this;
+                me.$http.get("/api/sample/list", {
+                    params: {
+                        company_id: me.company_id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.sampleList = data.results;
+                    jQuery("#sample").modal("show");
+                }, response => {
+                    serverErrorInfo(response)
+                })
+            },
+            fetchQuery(){
+                var me = this;
+                me.$http.get("/api/quality/list", {
+                    params: {
+                        task_id: me.task.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.qualityList = data;
+                    jQuery("#quality").modal("show");
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            fetchProject(){
+                var me = this;
+                me.$http.get("/api/task/getProjects", {
+                    params: {
+                        task_id: me.task.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.projectList = data;
+                    jQuery("#project").modal("show");
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            viewInspect(id){
+                var me = this;
+                me.$http.get("/api/dispatch/inspect", {
+                    params: {
+                        task_id: me.task.id,
+                        project_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.inspectList = data;
+                    me.fetchAttachment(id);
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            fetchAttachment(id){
+                var me = this;
+                me.$http.get("/api/dispatch/inspectAttachment", {
+                    params: {
+                        task_id: me.task.id,
+                        project_id: id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.inspectAttachment = data;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            viewInspectReview(item){
+                var me = this;
+                me.$http.get("/api/inspect/getReviewList", {
+                    params: {
+                        inspect_id: item.id,
+                        type: item.type
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.inspectReview = data;
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            fetchInspectReview(){
+                var me = this;
+                me.$http.get("/api/inspect/fetchInspectReview", {
+                    params: {
+                        task_id: me.task.id
+                    }
+                }).then(response => {
+                    var data = response.data;
+                    me.masterReviewList = data;
+                    jQuery("#masterReview").modal("show");
+                }, response => {
+                    serverErrorInfo(response);
+                })
+            },
+            viewReview(id){
+                //打开审核记录PageOffice
             }
         }
     }
