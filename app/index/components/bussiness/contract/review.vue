@@ -1153,6 +1153,7 @@
                 response.result = result;
                 response.id = me.contract.id;
 //                debugger
+                debugger
                 confirm({
                     content: "是否审核" + (result == 0 ? "<span class='font-red'>拒绝</span>" : "<span class='font-green'>通过</span>") + "合同【" + me.contract.name + "】？",
                     success: function () {
