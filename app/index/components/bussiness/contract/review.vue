@@ -1146,10 +1146,14 @@
             review_confirm(result)
             {
                 var me = this;
+                if (me.review_info.package == 0) {
+                    me.review_info.company = 0;
+                }
                 var response = me.review_info;
                 response.result = result;
                 response.id = me.contract.id;
 //                debugger
+                debugger
                 confirm({
                     content: "是否审核" + (result == 0 ? "<span class='font-red'>拒绝</span>" : "<span class='font-green'>通过</span>") + "合同【" + me.contract.name + "】？",
                     success: function () {

@@ -193,7 +193,7 @@
                             <span class="title">项目质控</span>
                         </a>
                     </router-link>
-                    <router-link :to="{ path: '/quality/firstreview' }" tag="li" active-class="active">
+                    <router-link :to="{ path: '/quality/resultSecondReview' }" tag="li" active-class="active">
                         <a class="nav-link ">
                             <span class="title">实验结果二审</span>
                         </a>

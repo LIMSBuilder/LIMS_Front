@@ -73,6 +73,7 @@ import Quality from './components/bussiness/quality/quality.vue'
 import Qreview from './components/bussiness/quality/qReview.vue'
 import Firstreview from './components/bussiness/quality/firstReview.vue'
 import Quality_list from './components/bussiness/quality/list.vue'
+import resultSecondReview from './components/bussiness/quality/resultSecondReview'
 
 import Laboratory from './components/bussiness/laboratory/laboratory.vue'
 import Lab_dispatch from './components/bussiness/laboratory/Labdispatch.vue'
@@ -696,6 +697,10 @@ var routes = [
                 path: "list",
                 component: Quality_list
             },
+            {
+                path:"resultSecondReview",
+                component:resultSecondReview
+            }
         ]
     }
 ];
