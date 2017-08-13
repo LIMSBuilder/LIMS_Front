@@ -1146,6 +1146,9 @@
             review_confirm(result)
             {
                 var me = this;
+                if (me.review_info.package == 0) {
+                    me.review_info.company = 0;
+                }
                 var response = me.review_info;
                 response.result = result;
                 response.id = me.contract.id;
