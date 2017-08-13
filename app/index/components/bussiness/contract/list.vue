@@ -552,9 +552,9 @@
 
                                                                     </td>
                                                                     <td style="text-align: right">
-                                                                        <button type="button"
-                                                                                class="btn green btn-outline"
-                                                                                style="margin: 5px;">导 出
+                                                                        <button @click="exportContract"
+                                                                           class="btn green btn-outline"
+                                                                           style="margin: 5px;">导 出
                                                                         </button>
                                                                     </td>
                                                                 </tr>

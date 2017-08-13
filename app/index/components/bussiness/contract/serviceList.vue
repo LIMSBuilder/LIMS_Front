@@ -282,12 +282,11 @@
                                                                     <label class="control-label col-md-3">查看合同
                                                                     </label>
                                                                     <div class="col-md-9">
-                                                                        <button type="button"
-                                                                                class="btn green btn-outline"
-                                                                                style="margin: 5px;">查看
-                                                                        </button>
-                                                                        <p style="color: red">
-                                                                            查看什么，不是已经有了点击合同显示详细信息了吗？未实现</p>
+                                                                        <a :href="'http://192.168.0.105:8080/api/service/online?id='+contract.id"
+                                                                           target="_blank"
+                                                                           class="btn green btn-outline"
+                                                                           style="margin: 5px;">查看
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -296,12 +295,10 @@
                                                                     <label class="control-label col-md-3">下载合同
                                                                     </label>
                                                                     <div class="col-md-9">
-                                                                        <button type="button"
-                                                                                class="btn green btn-outline"
-                                                                                style="margin: 5px;"
-                                                                                @click="upload(contract.id)">下载
-                                                                        </button>
-                                                                        <p style="color: red">不知道怎么做？未实现</p>
+                                                                        <a href="/upload\2016-上海市房屋租赁合同-通用自行成交版.doc"
+                                                                           class="btn green btn-outline"
+                                                                           style="margin: 5px;">下载
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -314,7 +311,7 @@
 
                                                                     </td>
                                                                     <td style="text-align: right">
-                                                                        <button type="button"
+                                                                        <button @click="exportContract" type="button"
                                                                                 class="btn green btn-outline"
                                                                                 style="margin: 5px;">导 出
                                                                         </button>
@@ -616,7 +613,7 @@
             },
             exportContract(){
                 var me = this;
-                window.open("http://" + window.location.hostname + ":8080/api/contract/createContract?id=" + me.contract.id);
+                window.open("http://" + window.location.hostname + ":8080/api/contract/online?id=" + me.contract.id);
             },
             //下载服务合同
             upload(id){
