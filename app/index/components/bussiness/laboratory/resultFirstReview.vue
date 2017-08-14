@@ -683,7 +683,7 @@
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.startPageLoading({animate: true});//用户等待时，提示的loading条
-                this.$http.get("/api/inspect/taskList", {
+                this.$http.get("/api/inspect/taskFirstList", {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -701,7 +701,7 @@
             },
             fetchPages(rowCount){
                 var me = this;
-                this.$http.get("/api/inspect/taskList", {
+                this.$http.get("/api/inspect/taskFirstList", {
                     params: {
                         rowCount: rowCount,
                         currentPage: 1,
@@ -738,7 +738,7 @@
             },
             fetchProject(){
                 var me = this;
-                me.$http.get("/api/inspect/itemList", {
+                me.$http.get("/api/inspect/itemLabList", {
                     params: {
                         task_id: me.task.id
                     }
@@ -768,7 +768,7 @@
             },
             fetchItems(item){
                 var me = this;
-                me.$http.get("/api/inspect/detail", {
+                me.$http.get("/api/inspect/detailList", {
                     params: {
                         task_id: me.task.id,
                         project_id: item.project.id
