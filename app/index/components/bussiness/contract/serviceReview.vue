@@ -235,34 +235,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!--<div class="row">-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3">查看合同-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-9">-->
-                                                            <!--<button type="button"-->
-                                                            <!--class="btn green btn-outline"-->
-                                                            <!--style="margin: 5px;">查看-->
-                                                            <!--</button>-->
-                                                            <!--<p style="color: red">-->
-                                                            <!--查看什么，不是已经有了点击合同显示详细信息了吗？未实现</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--<div class="row">-->
-                                                            <!--<div class="form-group col-md-12">-->
-                                                            <!--<label class="control-label col-md-3">下载合同-->
-                                                            <!--</label>-->
-                                                            <!--<div class="col-md-9">-->
-                                                            <!--<button type="button"-->
-                                                            <!--class="btn green btn-outline"-->
-                                                            <!--style="margin: 5px;"-->
-                                                            <!--@click="upload(contract.id)">下载-->
-                                                            <!--</button>-->
-                                                            <!--<p style="color: red">不知道怎么做？未实现</p>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
-                                                            <!--</div>-->
                                                         </div>
                                                         <div class="tab-pane" id="page_3">
                                                             <div class="col-md-7 col-sm-8" v-if="contract.state==1">

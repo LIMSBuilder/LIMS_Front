@@ -434,7 +434,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">原始记录是否填写完整？</label>
+                            <label class="col-md-9 control-label">质控样品比例是否满足要求？</label>
                             <div class="col-md-3">
                                 <div class="md-radio-inline">
                                     <div class="md-radio has-success">
@@ -459,7 +459,7 @@
                             </div>
                         </div>
                         <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">监测数据有效位数是否规范？</label>
+                            <label class="col-md-9 control-label">监测过程是否满足规范要求？</label>
                             <div class="col-md-3">
                                 <div class="md-radio-inline">
                                     <div class="md-radio has-success">
@@ -485,7 +485,7 @@
                         </div>
 
                         <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">原始记录修改是否符合规范？</label>
+                            <label class="col-md-9 control-label">监测分析方法是否现行有效？</label>
                             <div class="col-md-3">
                                 <div class="md-radio-inline">
                                     <div class="md-radio has-success">
@@ -511,7 +511,7 @@
                         </div>
 
                         <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">送检单结果与记录是否一致？</label>
+                            <label class="col-md-9 control-label">回收率是否合格？ </label>
                             <div class="col-md-3">
                                 <div class="md-radio-inline">
                                     <div class="md-radio has-success">
@@ -537,7 +537,7 @@
                         </div>
 
                         <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">原始记录审核是否完整？</label>
+                            <label class="col-md-9 control-label">平行样偏差是否满足要求</label>
                             <div class="col-md-3">
                                 <div class="md-radio-inline">
                                     <div class="md-radio has-success">
@@ -563,7 +563,7 @@
                         </div>
 
                         <div class="row margin-bottom-20">
-                            <label class="col-md-9 control-label">标准曲线是否符合规范？</label>
+                            <label class="col-md-9 control-label">空白样测试结果是否满足要求？</label>
                             <div class="col-md-3">
                                 <div class="md-radio-inline">
                                     <div class="md-radio has-success">
@@ -683,7 +683,7 @@
             fetchData(pageNum, rowCount){
                 var me = this;
                 App.startPageLoading({animate: true});//用户等待时，提示的loading条
-                this.$http.get("/api/inspect/taskList", {
+                this.$http.get("/api/inspect/secondReviewList", {
                     params: {
                         rowCount: rowCount,
                         currentPage: pageNum,
@@ -738,7 +738,7 @@
             },
             fetchProject(){
                 var me = this;
-                me.$http.get("/api/inspect/itemList", {
+                me.$http.get("/api/inspect/itemLabList", {
                     params: {
                         task_id: me.task.id
                     }
@@ -768,7 +768,7 @@
             },
             fetchItems(item){
                 var me = this;
-                me.$http.get("/api/inspect/detail", {
+                me.$http.get("/api/inspect/detailList", {
                     params: {
                         task_id: me.task.id,
                         project_id: item.project.id
@@ -831,7 +831,7 @@
                 confirm({
                     content: "是否完成对任务编号为【" + me.task.identify + "】的实验审核?",
                     success(){
-                        me.$http.post("/api/inspect/firstReview", obj).then(response => {
+                        me.$http.post("/api/inspect/secondReview", obj).then(response => {
                             var data = response.data;
                             codeState(data.code, {
                                 200(){
